@@ -1,0 +1,94 @@
+\hypertarget{category_g_f_geometry_07_w_k_t_08}{}\section{G\+F\+Geometry(W\+K\+T) Category Reference}
+\label{category_g_f_geometry_07_w_k_t_08}\index{G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}}
+
+
+W\+K\+T (well-\/known-\/text) interface to \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Geometry.\+h$>$}
+
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(N\+S\+String $\ast$) -\/ \hyperlink{category_g_f_geometry_07_w_k_t_08_a9d257cce05d031211e2cece24b5530e4}{to\+W\+K\+T\+String}
+\end{DoxyCompactItemize}
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) + \hyperlink{category_g_f_geometry_07_w_k_t_08_a26ad5ae365b4dd4847fdb3370dfb6bb2}{geometry\+With\+W\+K\+T\+:}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+W\+K\+T (well-\/known-\/text) interface to \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/14/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{category_g_f_geometry_07_w_k_t_08_a26ad5ae365b4dd4847fdb3370dfb6bb2}{}\index{G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}!geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}}
+\index{geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}!G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}}
+\subsubsection[{geometry\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf G\+F\+Geometry} $\ast$) geometry\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{category_g_f_geometry_07_w_k_t_08_a26ad5ae365b4dd4847fdb3370dfb6bb2}
+Create a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance from the W\+K\+T string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em wkt} & an N\+S\+String wkt representation of the geometry\\
+\hline
+\end{DoxyParams}
+Example 1\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+
+
+Example 2\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"};
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ 
+
+Extends class \hyperlink{interface_g_f_geometry_a26ad5ae365b4dd4847fdb3370dfb6bb2}{G\+F\+Geometry}.
+
+\hypertarget{category_g_f_geometry_07_w_k_t_08_a9d257cce05d031211e2cece24b5530e4}{}\index{G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}!to\+W\+K\+T\+String@{to\+W\+K\+T\+String}}
+\index{to\+W\+K\+T\+String@{to\+W\+K\+T\+String}!G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}}
+\subsubsection[{to\+W\+K\+T\+String()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+String $\ast$) to\+W\+K\+T\+String 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{category_g_f_geometry_07_w_k_t_08_a9d257cce05d031211e2cece24b5530e4}
+\begin{DoxyReturn}{Returns}
+A W\+K\+T string representation of this \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}. 
+\end{DoxyReturn}
+
+
+Extends class \hyperlink{interface_g_f_geometry_a9d257cce05d031211e2cece24b5530e4}{G\+F\+Geometry}.
+
+
+
+The documentation for this category was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Geometry.\+h\end{DoxyCompactItemize}

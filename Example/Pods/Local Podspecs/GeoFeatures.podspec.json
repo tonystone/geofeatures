@@ -1,0 +1,44 @@
+{
+  "name": "GeoFeatures",
+  "version": "0.2.5",
+  "summary": "GeoFeatures is a full Geometry library for working with Points, Polygons, LineStrings, etc.",
+  "homepage": "http://www.climate.com",
+  "license": "MIT",
+  "authors": {
+    "Tony Stone": "tony@mobilegridinc.com"
+  },
+  "source": {
+    "git": "ssh://git@stash.ci.climatedna.net:7999/fdi/geofeatures-ios.git",
+    "tag": "0.2.5"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "Pod/Classes/*.h",
+  "private_header_files": "Pod/Classes/Internal/**/*.{h,hhp}",
+  "source_files": "Pod/Classes/*",
+  "resource_bundles": {
+    "GeoFeatures": [
+      "Pod/Assets/*.png"
+    ]
+  },
+  "frameworks": "MapKit",
+  "dependencies": {
+    "boost": [
+      "0.1.1"
+    ]
+  },
+  "xcconfig": {
+    "GCC_C_LANGUAGE_STANDARD": "c11",
+    "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+    "CLANG_CXX_LIBRARY": "libc++",
+    "OTHER_LDFLAGS": "-lc++"
+  },
+  "subspecs": [
+    {
+      "name": "Internal",
+      "source_files": "Pod/Classes/Internal/**/*"
+    }
+  ]
+}

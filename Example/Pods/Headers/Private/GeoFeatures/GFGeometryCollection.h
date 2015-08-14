@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/GFGeometryCollection.h

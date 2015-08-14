@@ -1,0 +1,114 @@
+\hypertarget{interface_g_f_line_string}{}\section{G\+F\+Line\+String Class Reference}
+\label{interface_g_f_line_string}\index{G\+F\+Line\+String@{G\+F\+Line\+String}}
+
+
+A \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} is a collection of G\+F\+Points.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Line\+String.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Line\+String\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_line_string__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Line\+String\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_line_string__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_line_string_ae2adf99cdccb6ee23e22bd8e035d7896}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_line_string_a956fe6e6daf06ca4e016f94d18b2c71f}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} is a collection of G\+F\+Points. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/14/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_line_string_ae2adf99cdccb6ee23e22bd8e035d7896}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_ae2adf99cdccb6ee23e22bd8e035d7896}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"LINESTRING(40 60,120 110)"};
+
+  \hyperlink{interface_g_f_line_string}{GFLineString} * lineString = [[\hyperlink{interface_g_f_line_string}{GFLineString} alloc] initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_line_string_a956fe6e6daf06ca4e016f94d18b2c71f}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_a956fe6e6daf06ca4e016f94d18b2c71f}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"LineString"},
+                    \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"LineString"},
+      \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Line\+String.\+h\end{DoxyCompactItemize}

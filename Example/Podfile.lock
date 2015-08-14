@@ -1,0 +1,20 @@
+PODS:
+  - boost (0.1.1)
+  - GeoFeatures (0.2.5):
+    - boost (= 0.1.1)
+    - GeoFeatures/Internal (= 0.2.5)
+  - GeoFeatures/Internal (0.2.5):
+    - boost (= 0.1.1)
+
+DEPENDENCIES:
+  - GeoFeatures (from `../`)
+
+EXTERNAL SOURCES:
+  GeoFeatures:
+    :path: ../
+
+SPEC CHECKSUMS:
+  boost: 3b285f2cccfc002e3384e793503c3eff6bb06642
+  GeoFeatures: f37d1e903c0e04ed232e265863a289c8b30a30c3
+
+COCOAPODS: 0.37.2

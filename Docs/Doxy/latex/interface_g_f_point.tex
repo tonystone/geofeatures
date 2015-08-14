@@ -1,0 +1,122 @@
+\hypertarget{interface_g_f_point}{}\section{G\+F\+Point Class Reference}
+\label{interface_g_f_point}\index{G\+F\+Point@{G\+F\+Point}}
+
+
+Inheritance diagram for G\+F\+Point\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_point__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Point\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_point__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_point_a430d98d14d3654c76f4682f53fbacf26}{init\+With\+X\+:y\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_point_a85ea5cc1bf88733d818798664b991400}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_point_ac653a5e1489a2318bf2f00e5d7d0c03b}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(double) -\/ \hyperlink{interface_g_f_point_a5b9383f1c429724b6d938a64d468f63a}{x}
+\item 
+(double) -\/ \hyperlink{interface_g_f_point_a6e8ac1c0393e802c7fa7d623e0cc9599}{y}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_point_a430d98d14d3654c76f4682f53fbacf26}{}\index{G\+F\+Point@{G\+F\+Point}!init\+With\+X\+:y\+:@{init\+With\+X\+:y\+:}}
+\index{init\+With\+X\+:y\+:@{init\+With\+X\+:y\+:}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{init\+With\+X\+:y\+:(double x,[y] double y)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+X\+: 
+\begin{DoxyParamCaption}
+\item[{(double)}]{x}
+\item[{y:(double)}]{y}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_a430d98d14d3654c76f4682f53fbacf26}
+Initialize this \hyperlink{interface_g_f_point}{G\+F\+Point} with the x,y coordinates \hypertarget{interface_g_f_point_a85ea5cc1bf88733d818798664b991400}{}\index{G\+F\+Point@{G\+F\+Point}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_a85ea5cc1bf88733d818798664b991400}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POINT(1 1)"};
+
+  \hyperlink{interface_g_f_point}{GFPoint} * point = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_point_ac653a5e1489a2318bf2f00e5d7d0c03b}{}\index{G\+F\+Point@{G\+F\+Point}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_ac653a5e1489a2318bf2f00e5d7d0c03b}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Point"},
+                    \textcolor{stringliteral}{"coordinates"}: [100.0, 0.0]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Point"},
+    \textcolor{stringliteral}{"coordinates"}: [100.0, 0.0]
+\}
+\end{DoxyCode}
+  
+\end{DoxyNote}
+\hypertarget{interface_g_f_point_a5b9383f1c429724b6d938a64d468f63a}{}\index{G\+F\+Point@{G\+F\+Point}!x@{x}}
+\index{x@{x}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{x()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) x 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_a5b9383f1c429724b6d938a64d468f63a}
+Get the point\textquotesingle{}s X value. \hypertarget{interface_g_f_point_a6e8ac1c0393e802c7fa7d623e0cc9599}{}\index{G\+F\+Point@{G\+F\+Point}!y@{y}}
+\index{y@{y}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{y()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) y 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_a6e8ac1c0393e802c7fa7d623e0cc9599}
+Get the point\textquotesingle{}s Y value. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Point.\+h\end{DoxyCompactItemize}

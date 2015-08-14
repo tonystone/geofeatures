@@ -1,0 +1,131 @@
+\hypertarget{interface_g_f_multi_polygon}{}\section{G\+F\+Multi\+Polygon Class Reference}
+\label{interface_g_f_multi_polygon}\index{G\+F\+Multi\+Polygon@{G\+F\+Multi\+Polygon}}
+
+
+A collection of G\+F\+Polygons.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Multi\+Polygon.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Multi\+Polygon\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_multi_polygon__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Multi\+Polygon\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_multi_polygon__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_multi_polygon_a8c666f7e976d0890ff2f63b001dbe1ac}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_multi_polygon_a375d9bb7ebc55c2867bc40ac8ebe79da}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A collection of G\+F\+Polygons. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/14/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_multi_polygon_a8c666f7e976d0890ff2f63b001dbe1ac}{}\index{G\+F\+Multi\+Polygon@{G\+F\+Multi\+Polygon}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Multi\+Polygon@{G\+F\+Multi\+Polygon}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_polygon_a8c666f7e976d0890ff2f63b001dbe1ac}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"};
+
+  \hyperlink{interface_g_f_multi_polygon}{GFMultiPolygon} * multiPolygon = [[\hyperlink{interface_g_f_multi_polygon}{GFMultiPolygon} alloc] initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_multi_polygon_a375d9bb7ebc55c2867bc40ac8ebe79da}{}\index{G\+F\+Multi\+Polygon@{G\+F\+Multi\+Polygon}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Multi\+Polygon@{G\+F\+Multi\+Polygon}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_polygon_a375d9bb7ebc55c2867bc40ac8ebe79da}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{
+                      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPolygon"},
+                      \textcolor{stringliteral}{"coordinates"}: [
+                           [
+                              [[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]
+                           ],
+                           [
+                              [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+                              [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+                           ]
+                      ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+ \{
+     \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPolygon"},
+     \textcolor{stringliteral}{"coordinates"}: [
+          [
+            [[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]
+          ],
+          [
+            [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
+            [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
+          ]
+       ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Multi\+Polygon.\+h\end{DoxyCompactItemize}

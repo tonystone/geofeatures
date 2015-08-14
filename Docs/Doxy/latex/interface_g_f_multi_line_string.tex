@@ -1,0 +1,123 @@
+\hypertarget{interface_g_f_multi_line_string}{}\section{G\+F\+Multi\+Line\+String Class Reference}
+\label{interface_g_f_multi_line_string}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
+
+
+A collection of G\+F\+Line\+Strings.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Multi\+Line\+String.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Multi\+Line\+String\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_multi_line_string__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Multi\+Line\+String\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_multi_line_string__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_multi_line_string_adddb143dc38b5f7611559ee53906ac5d}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_multi_line_string_add9c4b2526275719797deac98af60e8b}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A collection of G\+F\+Line\+Strings. 
+
+Multi\+Line\+String can be used to group lines belonging to each other, e.\+g. a highway (with interruptions)
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/4/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_multi_line_string_adddb143dc38b5f7611559ee53906ac5d}{}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_line_string_adddb143dc38b5f7611559ee53906ac5d}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"};
+
+  \hyperlink{interface_g_f_multi_line_string}{GFMultiLineString} * multiLineString = [[\hyperlink{interface_g_f_multi_line_string}{GFMultiLineString} alloc] 
+      initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_multi_line_string_add9c4b2526275719797deac98af60e8b}{}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_line_string_add9c4b2526275719797deac98af60e8b}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiLineString"},
+                    \textcolor{stringliteral}{"coordinates"}: [
+                              [ [100.0, 0.0], [101.0, 1.0] ],
+                              [ [102.0, 2.0], [103.0, 3.0] ]
+                      ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiLineString"},
+    \textcolor{stringliteral}{"coordinates"}: [
+            [ [100.0, 0.0], [101.0, 1.0] ],
+            [ [102.0, 2.0], [103.0, 3.0] ]
+      ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Multi\+Line\+String.\+h\end{DoxyCompactItemize}

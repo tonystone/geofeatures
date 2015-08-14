@@ -1,0 +1,115 @@
+\hypertarget{interface_g_f_polygon}{}\section{G\+F\+Polygon Class Reference}
+\label{interface_g_f_polygon}\index{G\+F\+Polygon@{G\+F\+Polygon}}
+
+
+A concrete Polygon implementation.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Polygon.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Polygon\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_polygon__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Polygon\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_polygon__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_polygon_a7b4fcbc552571447dc0609c8788909b0}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_polygon_a8d13c20909f1a5e67179f1ed51ce2887}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A concrete Polygon implementation. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/6/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_polygon_a7b4fcbc552571447dc0609c8788909b0}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_polygon_a7b4fcbc552571447dc0609c8788909b0}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  \hyperlink{interface_g_f_polygon}{GFPolygon} * polygon = [[\hyperlink{interface_g_f_polygon}{GFPolygon} alloc] initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_polygon_a8d13c20909f1a5e67179f1ed51ce2887}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_polygon_a8d13c20909f1a5e67179f1ed51ce2887}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Given the following J\+S\+O\+N\+: 
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{
+                      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPolygon"},
+                      \textcolor{stringliteral}{"coordinates"}: [
+                            [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+                       ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+You would pass this section to the init method. 
+\begin{DoxyCode}
+\{
+     \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPolygon"},
+     \textcolor{stringliteral}{"coordinates"}: [
+           [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+     ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Polygon.\+h\end{DoxyCompactItemize}

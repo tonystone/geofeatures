@@ -1,0 +1,114 @@
+\hypertarget{interface_g_f_multi_point}{}\section{G\+F\+Multi\+Point Class Reference}
+\label{interface_g_f_multi_point}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}
+
+
+A collection of G\+F\+Points.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Multi\+Point.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Multi\+Point\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_multi_point__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Multi\+Point\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_multi_point__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_multi_point_a76820b1b64308396ee379a5224e6447e}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_multi_point_a6ac08a062d835b8fcf0e1d40e4b73305}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A collection of G\+F\+Points. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/14/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_multi_point_a76820b1b64308396ee379a5224e6447e}{}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_point_a76820b1b64308396ee379a5224e6447e}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTIPOINT((1 1),(2 2))"};
+
+  \hyperlink{interface_g_f_multi_point}{GFMultiPoint} * multiPoint = [[\hyperlink{interface_g_f_multi_point}{GFMultiPoint} alloc] initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_multi_point_a6ac08a062d835b8fcf0e1d40e4b73305}{}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_point_a6ac08a062d835b8fcf0e1d40e4b73305}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPoint"},
+                    \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPoint"},
+    \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Multi\+Point.\+h\end{DoxyCompactItemize}

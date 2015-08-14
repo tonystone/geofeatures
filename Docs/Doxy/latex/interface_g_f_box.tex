@@ -1,0 +1,162 @@
+\hypertarget{interface_g_f_box}{}\section{G\+F\+Box Class Reference}
+\label{interface_g_f_box}\index{G\+F\+Box@{G\+F\+Box}}
+
+
+\hyperlink{interface_g_f_box}{G\+F\+Box} represents a simple box geometry.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Box.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Box\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_box__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Box\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_box__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(id) -\/ \hyperlink{interface_g_f_box_a639abb389fb3234d29b7315c3d8416e8}{init\+With\+Min\+Corner\+:max\+Corner\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_box_a7391861070f3ef70458b95e2c5a96a62}{init\+With\+W\+K\+T\+:}
+\item 
+(id) -\/ \hyperlink{interface_g_f_box_acb2fca8524a96ab32f7e20882042b9ce}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_box_a102f7c53d4871e5431e813a2cb43eccd}{min\+Corner}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_box_ac2926a7b4f4f826f769a6f59aecd6f64}{max\+Corner}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{interface_g_f_box}{G\+F\+Box} represents a simple box geometry. 
+
+The \hyperlink{interface_g_f_box}{G\+F\+Box} class represents a simple box geometry and is represented as min and max corner G\+F\+Points.
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/4/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_box_a639abb389fb3234d29b7315c3d8416e8}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+Min\+Corner\+:max\+Corner\+:@{init\+With\+Min\+Corner\+:max\+Corner\+:}}
+\index{init\+With\+Min\+Corner\+:max\+Corner\+:@{init\+With\+Min\+Corner\+:max\+Corner\+:}!G\+F\+Box@{G\+F\+Box}}
+\subsubsection[{init\+With\+Min\+Corner\+:max\+Corner\+:(\+G\+F\+Point $\ast$min\+Corner,[max\+Corner] G\+F\+Point $\ast$max\+Corner)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Min\+Corner\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{min\+Corner}
+\item[{maxCorner:({\bf G\+F\+Point} $\ast$)}]{max\+Corner}
+\end{DoxyParamCaption}
+}\label{interface_g_f_box_a639abb389fb3234d29b7315c3d8416e8}
+Initialize this \hyperlink{interface_g_f_box}{G\+F\+Box} with 2 points representing the min and max point in the box. \hypertarget{interface_g_f_box_a7391861070f3ef70458b95e2c5a96a62}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Box@{G\+F\+Box}}
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_box_a7391861070f3ef70458b95e2c5a96a62}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+\begin{DoxyNote}{Note}
+
+
+W\+K\+T does not support boxes. However, to be generic Geo\+Features supports reading and writing from and to boxes. Boxes are outputted as a standard P\+O\+L\+Y\+G\+O\+N W\+K\+T.
+
+Geo\+Features can read boxes from a standard P\+O\+L\+Y\+G\+O\+N, from a P\+O\+L\+Y\+G\+O\+N with 2 points or from a B\+O\+X
+
+The W\+K\+T output will always be a P\+O\+L\+Y\+G\+O\+N 
+\end{DoxyNote}
+
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  \hyperlink{interface_g_f_box}{GFBox} * box = [[\hyperlink{interface_g_f_box}{GFBox} alloc] initWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ \hypertarget{interface_g_f_box_acb2fca8524a96ab32f7e20882042b9ce}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Box@{G\+F\+Box}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_box_acb2fca8524a96ab32f7e20882042b9ce}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}:  \{
+          \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+          \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+      \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+    \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+\hypertarget{interface_g_f_box_a102f7c53d4871e5431e813a2cb43eccd}{}\index{G\+F\+Box@{G\+F\+Box}!min\+Corner@{min\+Corner}}
+\index{min\+Corner@{min\+Corner}!G\+F\+Box@{G\+F\+Box}}
+\subsubsection[{min\+Corner()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) min\+Corner 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_box_a102f7c53d4871e5431e813a2cb43eccd}
+\begin{DoxyReturn}{Returns}
+The min\+Corner \hyperlink{interface_g_f_point}{G\+F\+Point} from this \hyperlink{interface_g_f_box}{G\+F\+Box} 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_box_ac2926a7b4f4f826f769a6f59aecd6f64}{}\index{G\+F\+Box@{G\+F\+Box}!max\+Corner@{max\+Corner}}
+\index{max\+Corner@{max\+Corner}!G\+F\+Box@{G\+F\+Box}}
+\subsubsection[{max\+Corner()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) max\+Corner 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_box_ac2926a7b4f4f826f769a6f59aecd6f64}
+\begin{DoxyReturn}{Returns}
+The max\+Corner \hyperlink{interface_g_f_point}{G\+F\+Point} from this \hyperlink{interface_g_f_box}{G\+F\+Box} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Box.\+h\end{DoxyCompactItemize}

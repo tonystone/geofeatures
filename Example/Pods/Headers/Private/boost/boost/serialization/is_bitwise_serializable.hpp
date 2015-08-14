@@ -1,0 +1,1 @@
+../../../../../boost/Pod/Classes/boost/serialization/is_bitwise_serializable.hpp

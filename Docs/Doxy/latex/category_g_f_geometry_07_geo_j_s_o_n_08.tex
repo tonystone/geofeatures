@@ -1,0 +1,128 @@
+\hypertarget{category_g_f_geometry_07_geo_j_s_o_n_08}{}\section{G\+F\+Geometry(Geo\+J\+S\+O\+N) Category Reference}
+\label{category_g_f_geometry_07_geo_j_s_o_n_08}\index{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}}
+
+
+Geo\+J\+S\+O\+N interface to \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Geometry.\+h$>$}
+
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(N\+S\+Dictionary $\ast$) -\/ \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_a89a1dd53c1d9a51fd5b933fde28be5b7}{to\+Geo\+J\+S\+O\+N\+Geometry}
+\end{DoxyCompactItemize}
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) + \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_afcdd23bd5dd4b04868d6baf577f9bb32}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Geo\+J\+S\+O\+N interface to \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/14/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{category_g_f_geometry_07_geo_j_s_o_n_08_afcdd23bd5dd4b04868d6baf577f9bb32}{}\index{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}}
+\subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf G\+F\+Geometry} $\ast$) geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{geo\+J\+S\+O\+N\+Geometry\+Dictionary}
+\end{DoxyParamCaption}
+}\label{category_g_f_geometry_07_geo_j_s_o_n_08_afcdd23bd5dd4b04868d6baf577f9bb32}
+Creates a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} from the Geo\+J\+S\+O\+N dictionary supplied.
+
+\begin{DoxyNote}{Note}
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object. 
+
+Given the following Geo\+J\+S\+O\+N\+: 
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}:  \{
+          \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+          \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+      \}
+ \}
+\end{DoxyCode}
+
+
+You would pass the geometry section below to the init method. 
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+    \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Example\+: 
+\begin{DoxyCode}
+\{
+    NSString * jsonString = \textcolor{stringliteral}{@"\{ \(\backslash\)"}type\(\backslash\)\textcolor{stringliteral}{": \(\backslash\)"Polygon\(\backslash\)","}
+                             \textcolor{stringliteral}{"    \(\backslash\)"coordinates\(\backslash\)": ["}
+                             \textcolor{stringliteral}{"      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0,
+       0.0] ],"}
+                             \textcolor{stringliteral}{"      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]
+       ]"}
+                             \textcolor{stringliteral}{"      ]"}
+                             \textcolor{stringliteral}{"   \}"}
+
+    NSDictionary * geometryDictionary = [NSJSONSerialization JSONObjectWithData: [jsonString 
+      dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil];
+
+    \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithGeoJSONGeometry: geometryDictionary
+       ]
+
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & This method will throw an exception if the geo json is invalid. \\
+\hline
+\end{DoxyExceptions}
+
+
+Extends class \hyperlink{interface_g_f_geometry_afcdd23bd5dd4b04868d6baf577f9bb32}{G\+F\+Geometry}.
+
+\hypertarget{category_g_f_geometry_07_geo_j_s_o_n_08_a89a1dd53c1d9a51fd5b933fde28be5b7}{}\index{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}!to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}}
+\index{to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}!G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}}
+\subsubsection[{to\+Geo\+J\+S\+O\+N\+Geometry()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+Dictionary $\ast$) to\+Geo\+J\+S\+O\+N\+Geometry 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{category_g_f_geometry_07_geo_j_s_o_n_08_a89a1dd53c1d9a51fd5b933fde28be5b7}
+Converts the Geometry to a Geo\+J\+S\+O\+N object.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A N\+S\+Dictionary Geo\+J\+S\+O\+N representation of self. 
+\end{DoxyReturn}
+
+
+Extends class \hyperlink{interface_g_f_geometry_a89a1dd53c1d9a51fd5b933fde28be5b7}{G\+F\+Geometry}.
+
+
+
+The documentation for this category was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Geometry.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,114 @@
+\hypertarget{interface_g_f_geometry_collection}{}\section{G\+F\+Geometry\+Collection Class Reference}
+\label{interface_g_f_geometry_collection}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+
+
+A container class containing an array of \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} objects.  
+
+
+
+
+{\ttfamily \#import $<$G\+F\+Geometry\+Collection.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Geometry\+Collection\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_geometry_collection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Geometry\+Collection\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{interface_g_f_geometry_collection__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}{init\+With\+Array\+:}
+\item 
+(N\+S\+U\+Integer) -\/ \hyperlink{interface_g_f_geometry_collection_a020dd5245b572a391ccbd1ea92699240}{count}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_collection_aa4a654ef8751bdf8abac169f8746d026}{geometry\+At\+Index\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_collection_a1910e3af2895a6c9cb7baf18ec791aad}{first\+Geometry}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_collection_a46262687af8b3c6599b2b2d68b0481b6}{last\+Geometry}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A container class containing an array of \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} objects. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/5/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+Array\+:@{init\+With\+Array\+:}}
+\index{init\+With\+Array\+:@{init\+With\+Array\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{init\+With\+Array\+:(\+N\+S\+Array $\ast$array)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Array\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Array $\ast$)}]{array}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}
+Initialize this \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} with the N\+S\+Array of \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances.
+
+\begin{DoxyWarning}{Warning}
+The array must not contain another \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} instance. 
+\end{DoxyWarning}
+\hypertarget{interface_g_f_geometry_collection_a020dd5245b572a391ccbd1ea92699240}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!count@{count}}
+\index{count@{count}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+U\+Integer) count 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_a020dd5245b572a391ccbd1ea92699240}
+\begin{DoxyReturn}{Returns}
+The count of G\+D\+Geometry instances this collection contains. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_collection_aa4a654ef8751bdf8abac169f8746d026}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!geometry\+At\+Index\+:@{geometry\+At\+Index\+:}}
+\index{geometry\+At\+Index\+:@{geometry\+At\+Index\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{geometry\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) geometry\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_aa4a654ef8751bdf8abac169f8746d026}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance at the index given. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_collection_a1910e3af2895a6c9cb7baf18ec791aad}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!first\+Geometry@{first\+Geometry}}
+\index{first\+Geometry@{first\+Geometry}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{first\+Geometry()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) first\+Geometry 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_a1910e3af2895a6c9cb7baf18ec791aad}
+\begin{DoxyReturn}{Returns}
+The first \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances contained in this collection or nil if the container is empty. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_collection_a46262687af8b3c6599b2b2d68b0481b6}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!last\+Geometry@{last\+Geometry}}
+\index{last\+Geometry@{last\+Geometry}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{last\+Geometry()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) last\+Geometry 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_a46262687af8b3c6599b2b2d68b0481b6}
+\begin{DoxyReturn}{Returns}
+The last \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances contained in this collection or nil if the container is empty. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/tony/\+Workspaces/\+Climate/git/geofeatures-\/ios/\+Pod/\+Classes/G\+F\+Geometry\+Collection.\+h\end{DoxyCompactItemize}

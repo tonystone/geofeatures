@@ -1,0 +1,13 @@
+<map id="GFGeometry" name="GFGeometry">
+<area shape="rect" id="node5" href="$interface_g_f_box.html" title="GFBox represents a simple box geometry. " alt="" coords="5,155,69,181"/>
+<area shape="rect" id="node6" href="$interface_g_f_geometry_collection.html" title="A container class containing an array of GFGeometry objects. " alt="" coords="93,155,251,181"/>
+<area shape="rect" id="node7" href="$interface_g_f_line_string_abstract.html" title="An Abstract LineString implementation. " alt="" coords="275,155,424,181"/>
+<area shape="rect" id="node10" href="$interface_g_f_point_abstract.html" title="An Abstract Point implementation. " alt="" coords="448,155,568,181"/>
+<area shape="rect" id="node13" href="$interface_g_f_polygon_abstract.html" title="An Abstract Polygon implementation. " alt="" coords="647,155,785,181"/>
+<area shape="rect" id="node8" href="$interface_g_f_line_string.html" title="A GFLineString is a collection of GFPoints. " alt="" coords="161,229,261,256"/>
+<area shape="rect" id="node9" href="$interface_g_f_multi_line_string.html" title="A collection of GFLineStrings. " alt="" coords="285,229,414,256"/>
+<area shape="rect" id="node11" href="$interface_g_f_multi_point.html" title="A collection of GFPoints. " alt="" coords="439,229,537,256"/>
+<area shape="rect" id="node12" href="$interface_g_f_point.html" title="GFPoint" alt="" coords="562,229,633,256"/>
+<area shape="rect" id="node14" href="$interface_g_f_multi_polygon.html" title="A collection of GFPolygons. " alt="" coords="657,229,775,256"/>
+<area shape="rect" id="node15" href="$interface_g_f_polygon.html" title="A concrete Polygon implementation. " alt="" coords="799,229,889,256"/>
+</map>
