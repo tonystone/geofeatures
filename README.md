@@ -6,7 +6,8 @@ GeoFeatures is a full featured, lightweight and fast geometry library for Object
  set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
 
-Please refer to the Documentation folder in the distribution for full usage of the library.
+The distribution contains full documentation which can be found at [Docs/Doxy/html/index.html] (Docs/Doxy/html/index.html).  Please refer to the documentation for usage of this library.
+
 
 ## Usage
 
