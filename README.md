@@ -10,11 +10,6 @@
 GeoFeatures is a full featured, lightweight, high performance geometry library for Objective-C.  It supports the full
  set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 ## Documentation
 
 The doxygen documentation is online available at [Docs/Doxy/html/index.html] (Docs/Doxy/html/index.html).
@@ -27,7 +22,6 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "GeoFeatures"
 ```
-
 ## Author
 
 Tony Stone
