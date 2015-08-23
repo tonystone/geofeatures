@@ -1,5 +1,10 @@
 # GeoFeatures
 
+[![CI Status](http://img.shields.io/travis/Tony Stone/GeoFeatures.svg?style=flat)](https://travis-ci.org/Tony Stone/GeoFeatures)
+[![Version](https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
+[![License](https://img.shields.io/cocoapods/l/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
+[![Platform](https://img.shields.io/cocoapods/p/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
+
 ## Introduction
 
 GeoFeatures is a full featured, lightweight and fast geometry library for Objective-C.  It supports the full
