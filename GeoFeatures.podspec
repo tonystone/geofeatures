@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
             ssp.header_mappings_dir = 'Pod/Internal/boost'
             ssp.source_files        = 'Pod/Internal/boost/boost/**/*.{h,hpp,ipp}'
             ssp.public_header_files = 'Pod/Internal/boost/boost/**/*.{h,hpp}'
-            ssp.preserve_paths      = 'Pod/Internal/boost/LICENSE_1_0.txt'
+            ssp.preserve_path       = 'Pod/Internal/boost/LICENSE_1_0.txt'
         end
 
         sp.subspec 'detail' do |ssp|
