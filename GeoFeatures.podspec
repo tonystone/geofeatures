@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     s.version          = "0.2.7"
     s.summary          = "A full featured, lightweight, high performance geometry library for Objective-C"
     s.homepage         = "https://github.com/tonystone"
-    s.license          = 'Apache 2.0'
+    s.license          = 'Apache License, Version 2.0'
     s.author           = "Tony Stone"
     s.source           = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
 
@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
 
     s.source_files         = 'Pod/*'
     s.public_header_files  = 'Pod/*.h'
+    s.preserve_path        = 'LICENSE'
 
     s.subspec 'Internal' do |sp|
 
