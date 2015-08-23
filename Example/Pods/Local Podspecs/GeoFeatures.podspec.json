@@ -1,16 +1,17 @@
 {
   "name": "GeoFeatures",
-  "version": "0.2.6",
-  "summary": "GeoFeatures is a full Geometry library for working with Points, Polygons, LineStrings, etc.",
+  "version": "0.2.7",
+  "summary": "A full featured, lightweight, high performance geometry library for Objective-C",
   "homepage": "https://github.com/tonystone",
   "license": "Apache 2.0",
   "authors": "Tony Stone",
   "source": {
     "git": "https://github.com/tonystone/geofeatures.git",
-    "tag": "0.2.6"
+    "tag": "0.2.7"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "6.0",
+    "osx": "10.8"
   },
   "requires_arc": true,
   "source_files": "Pod/*",
