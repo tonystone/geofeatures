@@ -17,9 +17,9 @@ PREDEFINED 	       = __deprecated= \
 			 __attribute__((deprecated))=
 
 FILE_PATTERNS = *.h
-INPUT = ../README.md ../Pod/Classes
+INPUT = ../README.md ../Pod
 OUTPUT_DIRECTORY = ./Doxy
-EXCLUDE = ../Pod/Classes/internal
+EXCLUDE = ../Pod/internal
 
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
