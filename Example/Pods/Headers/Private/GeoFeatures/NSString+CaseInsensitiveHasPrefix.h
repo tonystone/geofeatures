@@ -1,1 +1,1 @@
-../../../../../Pod/Internal/NSString+CaseInsensitiveHasPrefix.h
+../../../../../Pod/Internal/detail/NSString+CaseInsensitiveHasPrefix.h

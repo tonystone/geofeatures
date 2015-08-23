@@ -22,18 +22,21 @@ Pod::Spec.new do |s|
     s.source_files         = 'Pod/*'
     s.public_header_files  = 'Pod/*.h'
 
-    s.subspec 'boost' do |sp|
-        sp.header_mappings_dir = 'Pod/Internal'
-        sp.source_files        = 'Pod/Internal/boost/**/*.{h,hpp,ipp}'
-        sp.public_header_files = 'Pod/Internal/boost/**/*.{h,hpp}'
-    end
+    s.subspec 'Internal' do |sp|
 
-    s.subspec 'internal' do |sp|
-         sp.dependency 'GeoFeatures/boost'
+        sp.subspec 'boost' do |ssp|
+            ssp.header_mappings_dir = 'Pod/Internal'
+            ssp.source_files        = 'Pod/Internal/boost/**/*.{h,hpp,ipp}'
+            ssp.public_header_files = 'Pod/Internal/boost/**/*.{h,hpp}'
+        end
 
-         sp.header_mappings_dir = 'Pod/Internal'
-         sp.source_files        = 'Pod/Internal/*',
-                                  'Pod/Internal/geofeatures/**/*'
+        sp.subspec 'detail' do |ssp|
+            ssp.dependency 'GeoFeatures/Internal/boost'
+
+            ssp.header_mappings_dir = 'Pod/Internal/detail'
+            ssp.source_files        = 'Pod/Internal/detail/*',
+                                      'Pod/Internal/detail/geofeatures/**/*'
+        end
     end
 
     s.frameworks = 'MapKit'

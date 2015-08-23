@@ -1,1 +1,1 @@
-../../../../../../../Pod/Internal/geofeatures/internal/LineString.hpp
+../../../../../../../Pod/Internal/detail/geofeatures/internal/LineString.hpp

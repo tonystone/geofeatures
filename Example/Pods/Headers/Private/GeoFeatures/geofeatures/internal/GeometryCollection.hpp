@@ -1,1 +1,1 @@
-../../../../../../../Pod/Internal/geofeatures/internal/GeometryCollection.hpp
+../../../../../../../Pod/Internal/detail/geofeatures/internal/GeometryCollection.hpp

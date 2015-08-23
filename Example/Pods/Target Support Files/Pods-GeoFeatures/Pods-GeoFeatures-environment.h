@@ -12,15 +12,21 @@
 #define COCOAPODS_VERSION_MINOR_GeoFeatures 2
 #define COCOAPODS_VERSION_PATCH_GeoFeatures 6
 
-// GeoFeatures/boost
-#define COCOAPODS_POD_AVAILABLE_GeoFeatures_boost
-#define COCOAPODS_VERSION_MAJOR_GeoFeatures_boost 0
-#define COCOAPODS_VERSION_MINOR_GeoFeatures_boost 2
-#define COCOAPODS_VERSION_PATCH_GeoFeatures_boost 6
+// GeoFeatures/Internal
+#define COCOAPODS_POD_AVAILABLE_GeoFeatures_Internal
+#define COCOAPODS_VERSION_MAJOR_GeoFeatures_Internal 0
+#define COCOAPODS_VERSION_MINOR_GeoFeatures_Internal 2
+#define COCOAPODS_VERSION_PATCH_GeoFeatures_Internal 6
 
-// GeoFeatures/internal
-#define COCOAPODS_POD_AVAILABLE_GeoFeatures_internal
-#define COCOAPODS_VERSION_MAJOR_GeoFeatures_internal 0
-#define COCOAPODS_VERSION_MINOR_GeoFeatures_internal 2
-#define COCOAPODS_VERSION_PATCH_GeoFeatures_internal 6
+// GeoFeatures/Internal/boost
+#define COCOAPODS_POD_AVAILABLE_GeoFeatures_Internal_boost
+#define COCOAPODS_VERSION_MAJOR_GeoFeatures_Internal_boost 0
+#define COCOAPODS_VERSION_MINOR_GeoFeatures_Internal_boost 2
+#define COCOAPODS_VERSION_PATCH_GeoFeatures_Internal_boost 6
+
+// GeoFeatures/Internal/detail
+#define COCOAPODS_POD_AVAILABLE_GeoFeatures_Internal_detail
+#define COCOAPODS_VERSION_MAJOR_GeoFeatures_Internal_detail 0
+#define COCOAPODS_VERSION_MINOR_GeoFeatures_Internal_detail 2
+#define COCOAPODS_VERSION_PATCH_GeoFeatures_Internal_detail 6
 

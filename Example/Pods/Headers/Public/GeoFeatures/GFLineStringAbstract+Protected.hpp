@@ -1,1 +1,1 @@
-../../../../../Pod/Internal/GFLineStringAbstract+Protected.hpp
+../../../../../Pod/Internal/detail/GFLineStringAbstract+Protected.hpp

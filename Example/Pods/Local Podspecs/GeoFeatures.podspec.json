@@ -24,22 +24,27 @@
   },
   "subspecs": [
     {
-      "name": "boost",
-      "header_mappings_dir": "Pod/Internal",
-      "source_files": "Pod/Internal/boost/**/*.{h,hpp,ipp}",
-      "public_header_files": "Pod/Internal/boost/**/*.{h,hpp}"
-    },
-    {
-      "name": "internal",
-      "dependencies": {
-        "GeoFeatures/boost": [
+      "name": "Internal",
+      "subspecs": [
+        {
+          "name": "boost",
+          "header_mappings_dir": "Pod/Internal",
+          "source_files": "Pod/Internal/boost/**/*.{h,hpp,ipp}",
+          "public_header_files": "Pod/Internal/boost/**/*.{h,hpp}"
+        },
+        {
+          "name": "detail",
+          "dependencies": {
+            "GeoFeatures/Internal/boost": [
 
-        ]
-      },
-      "header_mappings_dir": "Pod/Internal",
-      "source_files": [
-        "Pod/Internal/*",
-        "Pod/Internal/geofeatures/**/*"
+            ]
+          },
+          "header_mappings_dir": "Pod/Internal/detail",
+          "source_files": [
+            "Pod/Internal/detail/*",
+            "Pod/Internal/detail/geofeatures/**/*"
+          ]
+        }
       ]
     }
   ]
