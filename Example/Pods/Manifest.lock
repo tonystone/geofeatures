@@ -1,11 +1,11 @@
 PODS:
-  - GeoFeatures (0.2.7):
-    - GeoFeatures/Internal (= 0.2.7)
-  - GeoFeatures/Internal (0.2.7):
-    - GeoFeatures/Internal/boost (= 0.2.7)
-    - GeoFeatures/Internal/detail (= 0.2.7)
-  - GeoFeatures/Internal/boost (0.2.7)
-  - GeoFeatures/Internal/detail (0.2.7):
+  - GeoFeatures (1.0.0):
+    - GeoFeatures/Internal (= 1.0.0)
+  - GeoFeatures/Internal (1.0.0):
+    - GeoFeatures/Internal/boost (= 1.0.0)
+    - GeoFeatures/Internal/detail (= 1.0.0)
+  - GeoFeatures/Internal/boost (1.0.0)
+  - GeoFeatures/Internal/detail (1.0.0):
     - GeoFeatures/Internal/boost
 
 DEPENDENCIES:
@@ -16,6 +16,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GeoFeatures: 702b5f8f9880f5e060a02683a19e47fc3438f92d
+  GeoFeatures: e3404c7e3e211f43de8a64a538b7982a9da5058c
 
 COCOAPODS: 0.37.2
