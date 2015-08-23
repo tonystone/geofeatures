@@ -10,6 +10,18 @@
 GeoFeatures is a full featured, lightweight, high performance geometry library for Objective-C.  It supports the full
  set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
+## Features
+
+- Easy to use.
+- Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, Box and GeometryCollection implementations.
+- Area, Length, BoundingBox, Centroid, Perimeter, Union, and Within (point in polygon) algorithms.  More coming soon.
+- [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
+- [GeoJSON] (http://geojson.org/) input and output.
+- MapKit representations and drawing.
+- Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
+- Comprehensive doxygen documentation of the library available at [Docs/Doxy/html/index.html] (Docs/Doxy/html/index.html).
+- Implemented based on the popular and fast open source C++ boost geometry library.
+ 
 ## Documentation
 
 The doxygen documentation is online available at [Docs/Doxy/html/index.html] (Docs/Doxy/html/index.html).
