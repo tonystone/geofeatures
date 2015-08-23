@@ -43,11 +43,16 @@ Pod::Spec.new do |s|
 
     s.frameworks = 'MapKit'
 
+    #
+    # Note: __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES flag required to work around
+    #       conflict with Apple headers defined in https://svn.boost.org/trac/boost/ticket/10471
+    #
     s.xcconfig = {
         'GCC_C_LANGUAGE_STANDARD' => 'c11',
         'CLANG_CXX_LANGUAGE_STANDARD' => 'c++0x',
         'CLANG_CXX_LIBRARY' => 'libc++',
         'OTHER_LDFLAGS' => '-lc++',
+        'OTHER_CFLAGS' => '-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0',
     }
 
 end
