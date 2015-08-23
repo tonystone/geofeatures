@@ -17,6 +17,9 @@
 *   limitations under the License.
 *
 *   Created by Tony Stone on 6/11/15.
+*
+*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
+*
 */
 
 #ifndef __AreaOperation_HPP_
