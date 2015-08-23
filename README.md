@@ -26,6 +26,10 @@ GeoFeatures is a full featured, lightweight, high performance geometry library f
 
 The doxygen documentation is online available at [github.io] (http://tonystone.github.io/geofeatures).
 
+## Sources and Binaries
+
+You can find the latest sources and binaries on [github] (https://github.com/tonystone/geofeatures).
+
 ## Installation
 
 GeoFeatures is available through [CocoaPods](http://cocoapods.org). To install
