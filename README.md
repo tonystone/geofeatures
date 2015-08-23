@@ -19,12 +19,12 @@ GeoFeatures is a full featured, lightweight, high performance geometry library f
 - [GeoJSON] (http://geojson.org/) input and output.
 - MapKit representations and drawing.
 - Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
-- Comprehensive doxygen documentation of the library available at [Docs/Doxy/html/index.html] (Docs/Doxy/html/index.html).
+- Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
 - Implemented based on the popular and fast open source C++ boost geometry library.
  
 ## Documentation
 
-The doxygen documentation is online available at [Docs/Doxy/html/index.html] (Docs/Doxy/html/index.html).
+The doxygen documentation is online available at [github.io] (http://tonystone.github.io/geofeatures).
 
 ## Installation
 

@@ -2,8 +2,8 @@
   "name": "GeoFeatures",
   "version": "0.2.7",
   "summary": "A full featured, lightweight, high performance geometry library for Objective-C",
-  "homepage": "https://github.com/tonystone",
-  "license": "Apache 2.0",
+  "homepage": "http://tonystone.github.io/geofeatures",
+  "license": "Apache License, Version 2.0",
   "authors": "Tony Stone",
   "source": {
     "git": "https://github.com/tonystone/geofeatures.git",
@@ -16,6 +16,7 @@
   "requires_arc": true,
   "source_files": "Pod/*",
   "public_header_files": "Pod/*.h",
+  "preserve_paths": "LICENSE",
   "frameworks": "MapKit",
   "xcconfig": {
     "GCC_C_LANGUAGE_STANDARD": "c11",
