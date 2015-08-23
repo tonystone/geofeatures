@@ -1,1 +1,0 @@
-../../../../../../../boost/Pod/Classes/boost/geometry/algorithms/detail/point_is_spike_or_equal.hpp

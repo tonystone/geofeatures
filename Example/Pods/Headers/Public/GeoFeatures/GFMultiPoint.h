@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFMultiPoint.h
+../../../../../Pod/GFMultiPoint.h

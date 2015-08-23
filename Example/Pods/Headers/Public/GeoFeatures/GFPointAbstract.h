@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFPointAbstract.h
+../../../../../Pod/GFPointAbstract.h

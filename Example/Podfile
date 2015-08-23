@@ -1,5 +1,4 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'ssh://git@stash.ci.climatedna.net:7999/mob/climate-cocoapods-specs.git'
 
 target 'GeoFeatures', :exclusive => true do
   pod "GeoFeatures", :path => "../"

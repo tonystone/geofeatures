@@ -1,1 +1,0 @@
-../../../../../../../boost/Pod/Classes/boost/geometry/algorithms/detail/get_left_turns.hpp

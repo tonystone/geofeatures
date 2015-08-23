@@ -1,1 +1,0 @@
-../../../../../../../../boost/Pod/Classes/boost/geometry/algorithms/detail/overlay/clip_linestring.hpp

@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFPolygon.h
+../../../../../Pod/GFPolygon.h

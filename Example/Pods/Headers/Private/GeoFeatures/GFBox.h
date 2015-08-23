@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFBox.h
+../../../../../Pod/GFBox.h

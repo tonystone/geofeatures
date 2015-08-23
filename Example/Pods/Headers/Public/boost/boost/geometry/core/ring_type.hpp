@@ -1,1 +1,0 @@
-../../../../../../boost/Pod/Classes/boost/geometry/core/ring_type.hpp

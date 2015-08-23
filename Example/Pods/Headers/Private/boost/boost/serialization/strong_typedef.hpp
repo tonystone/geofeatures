@@ -1,1 +1,0 @@
-../../../../../boost/Pod/Classes/boost/serialization/strong_typedef.hpp

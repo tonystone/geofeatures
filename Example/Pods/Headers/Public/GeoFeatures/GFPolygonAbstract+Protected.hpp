@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Internal/GFPolygonAbstract+Protected.hpp
+../../../../../Pod/Internal/GFPolygonAbstract+Protected.hpp

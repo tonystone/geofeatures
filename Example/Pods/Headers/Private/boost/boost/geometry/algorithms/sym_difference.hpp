@@ -1,1 +1,0 @@
-../../../../../../boost/Pod/Classes/boost/geometry/algorithms/sym_difference.hpp

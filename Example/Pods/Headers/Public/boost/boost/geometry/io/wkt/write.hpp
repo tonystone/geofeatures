@@ -1,1 +1,0 @@
-../../../../../../../boost/Pod/Classes/boost/geometry/io/wkt/write.hpp

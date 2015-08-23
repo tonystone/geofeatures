@@ -1,34 +1,21 @@
 {
   "name": "GeoFeatures",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "summary": "GeoFeatures is a full Geometry library for working with Points, Polygons, LineStrings, etc.",
-  "homepage": "http://www.climate.com",
-  "license": "MIT",
-  "authors": {
-    "Tony Stone": "tony@mobilegridinc.com"
-  },
+  "homepage": "https://github.com/tonystone",
+  "license": "Apache 2.0",
+  "authors": "Tony Stone",
   "source": {
-    "git": "ssh://git@stash.ci.climatedna.net:7999/fdi/geofeatures-ios.git",
-    "tag": "0.2.5"
+    "git": "https://github.com/tonystone/geofeatures.git",
+    "tag": "0.2.6"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
-  "public_header_files": "Pod/Classes/*.h",
-  "private_header_files": "Pod/Classes/Internal/**/*.{h,hhp}",
-  "source_files": "Pod/Classes/*",
-  "resource_bundles": {
-    "GeoFeatures": [
-      "Pod/Assets/*.png"
-    ]
-  },
+  "source_files": "Pod/*",
+  "public_header_files": "Pod/*.h",
   "frameworks": "MapKit",
-  "dependencies": {
-    "boost": [
-      "0.1.1"
-    ]
-  },
   "xcconfig": {
     "GCC_C_LANGUAGE_STANDARD": "c11",
     "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -37,8 +24,23 @@
   },
   "subspecs": [
     {
-      "name": "Internal",
-      "source_files": "Pod/Classes/Internal/**/*"
+      "name": "boost",
+      "header_mappings_dir": "Pod/Internal",
+      "source_files": "Pod/Internal/boost/**/*.{h,hpp,ipp}",
+      "public_header_files": "Pod/Internal/boost/**/*.{h,hpp}"
+    },
+    {
+      "name": "internal",
+      "dependencies": {
+        "GeoFeatures/boost": [
+
+        ]
+      },
+      "header_mappings_dir": "Pod/Internal",
+      "source_files": [
+        "Pod/Internal/*",
+        "Pod/Internal/geofeatures/**/*"
+      ]
     }
   ]
 }

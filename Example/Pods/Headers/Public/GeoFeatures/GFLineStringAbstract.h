@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFLineStringAbstract.h
+../../../../../Pod/GFLineStringAbstract.h

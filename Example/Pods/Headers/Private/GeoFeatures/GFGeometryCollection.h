@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFGeometryCollection.h
+../../../../../Pod/GFGeometryCollection.h

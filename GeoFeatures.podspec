@@ -9,29 +9,34 @@
 
 Pod::Spec.new do |s|
     s.name             = "GeoFeatures"
-    s.version          = "0.2.5"
+    s.version          = "0.2.6"
     s.summary          = "GeoFeatures is a full Geometry library for working with Points, Polygons, LineStrings, etc."
-    s.homepage         = "http://www.climate.com"
-    s.license          = 'MIT'
-    s.author           = { "Tony Stone" => "tony@mobilegridinc.com" }
-    s.source           = { :git => "ssh://git@stash.ci.climatedna.net:7999/fdi/geofeatures-ios.git", :tag => s.version.to_s }
+    s.homepage         = "https://github.com/tonystone"
+    s.license          = 'Apache 2.0'
+    s.author           = "Tony Stone"
+    s.source           = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
 
     s.platform     = :ios, '8.0'
     s.requires_arc = true
 
-    s.public_header_files = 'Pod/Classes/*.h'
-    s.private_header_files = 'Pod/Classes/Internal/**/*.{h,hhp}'
-    s.source_files = 'Pod/Classes/*'
-    s.resource_bundles = {
-        'GeoFeatures' => ['Pod/Assets/*.png']
-    }
+    s.source_files         = 'Pod/*'
+    s.public_header_files  = 'Pod/*.h'
 
-    s.subspec 'Internal' do |sp|
-        sp.source_files = 'Pod/Classes/Internal/**/*'
+    s.subspec 'boost' do |sp|
+        sp.header_mappings_dir = 'Pod/Internal'
+        sp.source_files        = 'Pod/Internal/boost/**/*.{h,hpp,ipp}'
+        sp.public_header_files = 'Pod/Internal/boost/**/*.{h,hpp}'
+    end
+
+    s.subspec 'internal' do |sp|
+         sp.dependency 'GeoFeatures/boost'
+
+         sp.header_mappings_dir = 'Pod/Internal'
+         sp.source_files        = 'Pod/Internal/*',
+                                  'Pod/Internal/geofeatures/**/*'
     end
 
     s.frameworks = 'MapKit'
-    s.dependency 'boost', "0.1.1"
 
     s.xcconfig = {
         'GCC_C_LANGUAGE_STANDARD' => 'c11',

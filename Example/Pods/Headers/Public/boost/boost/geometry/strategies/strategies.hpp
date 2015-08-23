@@ -1,1 +1,0 @@
-../../../../../../boost/Pod/Classes/boost/geometry/strategies/strategies.hpp

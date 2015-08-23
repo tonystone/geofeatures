@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GFMultiLineString.h
+../../../../../Pod/GFMultiLineString.h
