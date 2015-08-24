@@ -1,6 +1,6 @@
 # GeoFeatures
 
-[![CI Status](http://img.shields.io/travis/Tony Stone/GeoFeatures.svg?style=flat)](https://travis-ci.org/Tony Stone/GeoFeatures)
+[![Build Status](https://travis-ci.org/tonystone/geofeatures.svg)](https://travis-ci.org/tonystone/geofeatures)
 [![Version](https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
 [![License](https://img.shields.io/cocoapods/l/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
 [![Platform](https://img.shields.io/cocoapods/p/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
