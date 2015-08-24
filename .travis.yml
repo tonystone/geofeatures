@@ -5,4 +5,4 @@ osx_image: xcode6.4
 xcode_sdk: iphonesimulator8.4
 
 Script:
-  xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-Example clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-Example clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
