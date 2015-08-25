@@ -21,6 +21,8 @@ INPUT = ../README.md ../Pod
 OUTPUT_DIRECTORY = ./Doxy
 EXCLUDE = ../Pod/internal
 
+IGNORE_PREFIX = GF
+
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
 #---------------------------------------------------------------------------
