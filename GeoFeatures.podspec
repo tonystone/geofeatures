@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name              = "GeoFeatures"
-    s.version           = "1.0.1"
+    s.version           = "1.0.2"
     s.summary           = "A lightweight, high performance geometry library for Objective-C"
     s.homepage          = "https://github.com/tonystone/geofeatures"
     s.documentation_url = "http://tonystone.github.io/geofeatures"
@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
     s.author            = "Tony Stone"
     s.source            = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
 
+    s.platform                  = :ios
     s.ios.deployment_target     = '6.0'
-    s.osx.deployment_target     = '10.8'
 
     s.requires_arc = true
 
