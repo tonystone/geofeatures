@@ -10,7 +10,7 @@
 Pod::Spec.new do |s|
     s.name              = "GeoFeatures"
     s.version           = "1.0.1"
-    s.summary           = "A full featured, lightweight, high performance geometry library for Objective-C"
+    s.summary           = "A lightweight, high performance geometry library for Objective-C"
     s.homepage          = "https://github.com/tonystone/geofeatures"
     s.documentation_url = "http://tonystone.github.io/geofeatures"
     s.license           = 'Apache License, Version 2.0'
