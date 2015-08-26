@@ -22,25 +22,25 @@ Pod::Spec.new do |s|
 
     s.requires_arc = true
 
-    s.source_files         = 'Pod/*'
-    s.public_header_files  = 'Pod/*.h'
+    s.source_files         = 'GeoFeatures/*'
+    s.public_header_files  = 'GeoFeatures/*.h'
     s.preserve_path        = 'LICENSE'
 
     s.subspec 'Internal' do |sp|
 
         sp.subspec 'boost' do |ssp|
-            ssp.header_mappings_dir = 'Pod/Internal/boost'
-            ssp.source_files        = 'Pod/Internal/boost/boost/**/*.{h,hpp,ipp}'
-            ssp.public_header_files = 'Pod/Internal/boost/boost/**/*.{h,hpp}'
-            ssp.preserve_path       = 'Pod/Internal/boost/LICENSE_1_0.txt'
+            ssp.header_mappings_dir = 'GeoFeatures/Internal/boost'
+            ssp.source_files        = 'GeoFeatures/Internal/boost/boost/**/*.{h,hpp,ipp}'
+            ssp.public_header_files = 'GeoFeatures/Internal/boost/boost/**/*.{h,hpp}'
+            ssp.preserve_path       = 'GeoFeatures/Internal/boost/LICENSE_1_0.txt'
         end
 
         sp.subspec 'detail' do |ssp|
             ssp.dependency 'GeoFeatures/Internal/boost'
 
-            ssp.header_mappings_dir = 'Pod/Internal/detail'
-            ssp.source_files        = 'Pod/Internal/detail/*',
-                                      'Pod/Internal/detail/geofeatures/**/*'
+            ssp.header_mappings_dir = 'GeoFeatures/Internal/detail'
+            ssp.source_files        = 'GeoFeatures/Internal/detail/*',
+                                      'GeoFeatures/Internal/detail/geofeatures/**/*'
         end
     end
 
