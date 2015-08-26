@@ -2,4 +2,6 @@ language: objective-c
 xcode_workspace: Example/GeoFeatures.xcworkspace
 xcode_scheme: GeoFeatures-Example
 osx_image: xcode6.4
-xcode_sdk: iphonesimulator8.4
+xcode_sdk: 
+  - iphonesimulator8.4
+  - macosx10.10
