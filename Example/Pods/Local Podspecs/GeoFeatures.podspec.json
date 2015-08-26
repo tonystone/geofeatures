@@ -1,7 +1,7 @@
 {
   "name": "GeoFeatures",
   "version": "1.0.1",
-  "summary": "A full featured, lightweight, high performance geometry library for Objective-C",
+  "summary": "A lightweight, high performance geometry library for Objective-C",
   "homepage": "https://github.com/tonystone/geofeatures",
   "documentation_url": "http://tonystone.github.io/geofeatures",
   "license": "Apache License, Version 2.0",
