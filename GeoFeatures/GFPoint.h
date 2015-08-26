@@ -2,6 +2,7 @@
 *   GFPoint.h
 *
 *   Copyright 2015 The Climate Corporation
+*   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
 *   you may not use this file except in compliance with the License.
@@ -16,6 +17,9 @@
 *   limitations under the License.
 *
 *   Created by Tony Stone on 6/4/15.
+*
+*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
+*
 */
 
 #import <Foundation/Foundation.h>
