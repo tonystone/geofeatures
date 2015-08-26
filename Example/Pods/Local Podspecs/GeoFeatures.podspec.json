@@ -1,6 +1,6 @@
 {
   "name": "GeoFeatures",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "summary": "A lightweight, high performance geometry library for Objective-C",
   "homepage": "https://github.com/tonystone/geofeatures",
   "documentation_url": "http://tonystone.github.io/geofeatures",
@@ -8,11 +8,10 @@
   "authors": "Tony Stone",
   "source": {
     "git": "https://github.com/tonystone/geofeatures.git",
-    "tag": "1.0.1"
+    "tag": "1.0.2"
   },
   "platforms": {
-    "ios": "6.0",
-    "osx": "10.8"
+    "ios": "6.0"
   },
   "requires_arc": true,
   "source_files": "GeoFeatures/*",
