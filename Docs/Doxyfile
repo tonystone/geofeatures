@@ -1,5 +1,5 @@
 PROJECT_NAME = GeoFeatures
-PROJECT_BRIEF = "A full featured, lightweight, high performance geometry library for Objective-C"
+PROJECT_BRIEF = "A lightweight, high performance geometry library for Objective-C"
 RECURSIVE = NO
 SORT_MEMBER_DOCS = NO
 GENERATE_TODOLIST = YES
