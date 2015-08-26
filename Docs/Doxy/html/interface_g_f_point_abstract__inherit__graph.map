@@ -1,5 +1,5 @@
 <map id="GFPointAbstract" name="GFPointAbstract">
 <area shape="rect" id="node6" href="$interface_g_f_multi_point.html" title="A collection of GFPoints. " alt="" coords="54,229,153,256"/>
-<area shape="rect" id="node7" href="$interface_g_f_point.html" title="GFPoint" alt="" coords="177,229,248,256"/>
+<area shape="rect" id="node7" href="$interface_g_f_point.html" title="A 2 dimensional point with x,y coordinates. " alt="" coords="177,229,248,256"/>
 <area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
 </map>
