@@ -21,6 +21,14 @@
 #import <Foundation/Foundation.h>
 #import "GFPointAbstract.h"
 
+/**
+* @class       GFPoint
+*
+* @brief       A 2 dimensional point with x,y coordinates.
+*
+* @author      Tony Stone
+* @date        6/14/15
+*/
 @interface GFPoint : GFPointAbstract
 
     /**
