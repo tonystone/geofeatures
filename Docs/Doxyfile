@@ -7,6 +7,12 @@ GENERATE_BUGLIST = YES
 GENERATE_TESTLIST = YES
 SHOW_FILES = NO
 WARN_NO_PARAMDOC = YES
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = ../
+STRIP_FROM_INC_PATH    = ../
+INPUT                  = ../README.md \
+                         ../GeoFeatures
+EXCLUDE                = ../GeoFeatures/internal
 USE_MDFILE_AS_MAINPAGE = README.md
 
 ENABLE_PREPROCESSING   = YES
@@ -17,9 +23,7 @@ PREDEFINED 	       = __deprecated= \
 			 __attribute__((deprecated))=
 
 FILE_PATTERNS = *.h
-INPUT = ../README.md ../Pod
 OUTPUT_DIRECTORY = ./Doxy
-EXCLUDE = ../Pod/internal
 
 IGNORE_PREFIX = GF
 

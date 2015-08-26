@@ -1,1 +1,1 @@
-../../../../../Pod/Internal/detail/GFLineStringAbstract+Protected.hpp
+../../../../../GeoFeatures/Internal/detail/GFLineStringAbstract+Protected.hpp

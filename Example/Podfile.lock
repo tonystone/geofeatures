@@ -16,6 +16,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GeoFeatures: e3404c7e3e211f43de8a64a538b7982a9da5058c
+  GeoFeatures: fae77de5e6d7f97204da66093bd75cd2e4f1bbe6
 
 COCOAPODS: 0.37.2

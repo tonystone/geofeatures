@@ -1,8 +1,8 @@
 {
   "name": "GeoFeatures",
   "version": "1.0.0",
-  "summary": "A full featured, lightweight, high performance geometry library for Objective-C",
-  "homepage": "http://tonystone.github.io/geofeatures",
+  "summary": "A lightweight, high performance geometry library for Objective-C",
+  "homepage": "http://github.com/tonystone/geofeatures",
   "documentation_url": "http://tonystone.github.io/geofeatures",
   "license": "Apache License, Version 2.0",
   "authors": "Tony Stone",
@@ -15,8 +15,8 @@
     "osx": "10.8"
   },
   "requires_arc": true,
-  "source_files": "Pod/*",
-  "public_header_files": "Pod/*.h",
+  "source_files": "GeoFeatures/*",
+  "public_header_files": "GeoFeatures/*.h",
   "preserve_paths": "LICENSE",
   "frameworks": "MapKit",
   "xcconfig": {
@@ -32,10 +32,10 @@
       "subspecs": [
         {
           "name": "boost",
-          "header_mappings_dir": "Pod/Internal/boost",
-          "source_files": "Pod/Internal/boost/boost/**/*.{h,hpp,ipp}",
-          "public_header_files": "Pod/Internal/boost/boost/**/*.{h,hpp}",
-          "preserve_paths": "Pod/Internal/boost/LICENSE_1_0.txt"
+          "header_mappings_dir": "GeoFeatures/Internal/boost",
+          "source_files": "GeoFeatures/Internal/boost/boost/**/*.{h,hpp,ipp}",
+          "public_header_files": "GeoFeatures/Internal/boost/boost/**/*.{h,hpp}",
+          "preserve_paths": "GeoFeatures/Internal/boost/LICENSE_1_0.txt"
         },
         {
           "name": "detail",
@@ -44,10 +44,10 @@
 
             ]
           },
-          "header_mappings_dir": "Pod/Internal/detail",
+          "header_mappings_dir": "GeoFeatures/Internal/detail",
           "source_files": [
-            "Pod/Internal/detail/*",
-            "Pod/Internal/detail/geofeatures/**/*"
+            "GeoFeatures/Internal/detail/*",
+            "GeoFeatures/Internal/detail/geofeatures/**/*"
           ]
         }
       ]
