@@ -30,6 +30,13 @@ The doxygen documentation is online available at [github.io] (http://tonystone.g
 
 You can find the latest sources and binaries on [github] (https://github.com/tonystone/geofeatures).
 
+## Communication and Contributions
+
+- If you **need help** or would like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
+- If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue] (https://github.com/tonystone/geofeatures/issues).
+- If you **have a feature request**, [open an issue] (https://github.com/tonystone/geofeatures/issues).
+- If you **want to contribute**, fork the [GeoFeatures repository] (https://github.com/tonystone/geofeatures), make your changes and submit a pull request.
+
 ## Installation
 
 GeoFeatures is available through [CocoaPods](http://cocoapods.org). To install
@@ -38,6 +45,9 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "GeoFeatures"
 ```
+
+See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information.
+
 ## Author
 
 Tony Stone
