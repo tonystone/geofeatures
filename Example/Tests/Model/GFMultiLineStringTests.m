@@ -1,5 +1,5 @@
 /*
-*   GFGeometryMultiLineStringTests.m
+*   GFMultiLineStringTests.m
 *
 *   Copyright 2015 Tony Stone
 *
@@ -19,10 +19,9 @@
 */
 
 #import <GeoFeatures/GeoFeatures.h>
-#import "GFGeometryTests.h"
-#import <MapKit/MapKit.h>
+#import <XCTest/XCTest.h>
 
-@interface GFGeometryMultiLineStringTests : GFGeometryTests
+@interface GFMultiLineStringTests : XCTestCase
 @end
 
 static NSString * geometry1JSONString = @"{ \"type\": \"MultiLineString\","
@@ -39,7 +38,19 @@ static NSString * geometry2JSONString = @"{ \"type\": \"MultiLineString\","
         "      ]"
         "}";
 
-@implementation GFGeometryMultiLineStringTests
+static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
+        "    \"coordinates\": {}"
+        "   }";
+
+@implementation GFMultiLineStringTests  {
+        Class expectedClass;
+
+        NSString * geoJSONGeometryName;
+
+        GFGeometry * geometry1a;
+        GFGeometry * geometry1b;
+        GFGeometry * geometry2;
+    }
 
     - (void)setUp {
         [super setUp];
@@ -61,6 +72,33 @@ static NSString * geometry2JSONString = @"{ \"type\": \"MultiLineString\","
         geometry2           = nil;
 
         [super tearDown];
+    }
+
+    - (void)testConstruction {
+
+        XCTAssertNotNil(geometry1a);
+        XCTAssertNotNil(geometry2);
+
+        XCTAssertEqual([geometry1a class], expectedClass);
+        XCTAssertEqual([geometry2 class], expectedClass);
+    }
+
+    - (void)testFailedConstruction {
+
+        NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
+
+        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+    }
+
+    - (void) testDescription {
+
+        // Currently we only check if it returns something and its not nill
+
+        XCTAssertNotNil([geometry1a description]);
+        XCTAssertNotNil([geometry2 description]);
+
+        XCTAssertTrue ([[geometry1a description] length] > 0);
+        XCTAssertTrue ([[geometry2 description] length] > 0);
     }
 
     - (void) testMapOverlays {
