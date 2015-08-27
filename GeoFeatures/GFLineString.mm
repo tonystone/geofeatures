@@ -31,13 +31,15 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+namespace gf = geofeatures::internal;
+
 @implementation GFLineString
 
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::LineString lineString;
+            gf::LineString lineString;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], lineString);
 
@@ -62,7 +64,7 @@
 
     - (NSDictionary *) toGeoJSONGeometry {
         try {
-            const geofeatures::internal::LineString & lineString = boost::polymorphic_strict_get<geofeatures::internal::LineString>([self cppGeometryConstReference]);
+            const gf::LineString & lineString = boost::polymorphic_strict_get<gf::LineString>([self cppGeometryConstReference]);
             
             return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPLineString: lineString]};
             
@@ -73,7 +75,7 @@
 
     - (NSArray *)mkMapOverlays {
         try {
-            const geofeatures::internal::LineString & lineString = boost::polymorphic_strict_get<geofeatures::internal::LineString>([self cppGeometryConstReference]);
+            const gf::LineString & lineString = boost::polymorphic_strict_get<gf::LineString>([self cppGeometryConstReference]);
             
             return @[[self mkOverlayWithCPPLineString: lineString]];
             

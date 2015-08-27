@@ -34,6 +34,8 @@
 @implementation GFPolygonAbstract
 @end
 
+namespace gf = geofeatures::internal;
+
 @implementation GFPolygonAbstract (Protected)
 
     - (id) init {
@@ -41,7 +43,7 @@
         return nil;
     }
 
-    - (geofeatures::internal::Polygon)cppPolygonWithGeoJSONCoordinates:(NSArray *)coordinates {
+    - (gf::Polygon)cppPolygonWithGeoJSONCoordinates:(NSArray *)coordinates {
 
         //
         // Note: Coordinates of a Polygon are an array of
@@ -67,13 +69,13 @@
         // }
         //
         try {
-            geofeatures::internal::Polygon polygon = {};
+            gf::Polygon polygon = {};
 
             //
             //  Get the outer ring
             //
             for (NSArray * coordinate in coordinates[0]) {
-                polygon.outer().push_back(geofeatures::internal::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+                polygon.outer().push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
             }
 
             polygon.inners().resize([coordinates count] - 1);
@@ -82,11 +84,11 @@
             // Now the innerRings if any
             //
             for (NSUInteger x = 1; x < [coordinates count]; x++) {
-                geofeatures::internal::Polygon::RingType & innerRing = polygon.inners().at(x - 1);
+                gf::Polygon::RingType & innerRing = polygon.inners().at(x - 1);
 
 
                 for (NSArray * coordinate in coordinates[x]) {
-                    innerRing.push_back(geofeatures::internal::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+                    innerRing.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
                 }
             }
             // Make sure this polygon is closed.
@@ -99,19 +101,19 @@
         }
     }
 
-    - (NSArray *)geoJSONCoordinatesWithCPPPolygon: (const geofeatures::internal::Polygon &) polygon  {
+    - (NSArray *)geoJSONCoordinatesWithCPPPolygon: (const gf::Polygon &) polygon  {
 
         NSMutableArray * rings = [[NSMutableArray alloc] init];
 
         try {
             NSUInteger currentRing = 0;
 
-            std::vector<geofeatures::internal::Point>::size_type outerCoordinateCount = polygon.outer().size();
+            std::vector<gf::Point>::size_type outerCoordinateCount = polygon.outer().size();
 
             // Created the outer ring
             NSMutableArray * outerRingArray = [[NSMutableArray alloc] init];
-            for (std::vector<geofeatures::internal::Point>::size_type i = 0; i < outerCoordinateCount; i++) {
-                const geofeatures::internal::Point& point = polygon.outer().at(i);
+            for (std::vector<gf::Point>::size_type i = 0; i < outerCoordinateCount; i++) {
+                const gf::Point& point = polygon.outer().at(i);
 
                 double longitude = point.get<0>();
                 double latitude  = point.get<1>();
@@ -121,16 +123,16 @@
             rings[currentRing] = outerRingArray;
 
             // Now the inner rings
-            for (std::vector<geofeatures::internal::Polygon::RingType>::size_type  x = 0; x < polygon.inners().size(); x++) {
-                const geofeatures::internal::Polygon::RingType& innerRing = polygon.inners().at(x);
+            for (std::vector<gf::Polygon::RingType>::size_type  x = 0; x < polygon.inners().size(); x++) {
+                const gf::Polygon::RingType& innerRing = polygon.inners().at(x);
 
                 NSMutableArray * innerRingArray = [[NSMutableArray alloc] init];
 
                 size_t innerPointCount = innerRing.size();
 
                 // Created the outer ring
-                for (std::vector<geofeatures::internal::Point>::size_type i = 0; i < innerPointCount; i++) {
-                    const geofeatures::internal::Point& point = innerRing.at(i);
+                for (std::vector<gf::Point>::size_type i = 0; i < innerPointCount; i++) {
+                    const gf::Point& point = innerRing.at(i);
 
                     double longitude = point.get<0>();
                     double latitude  = point.get<1>();
@@ -145,7 +147,7 @@
         return rings;
     }
 
-    - (id <MKOverlay>)mkOverlayWithCPPPolygon: (const geofeatures::internal::Polygon &) polygon {
+    - (id <MKOverlay>)mkOverlayWithCPPPolygon: (const gf::Polygon &) polygon {
 
         MKPolygon * mkPolygon = nil;
 
@@ -156,8 +158,8 @@
             size_t outerCoordinateCount = polygon.outer().size();
             CLLocationCoordinate2D * outerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * outerCoordinateCount);
 
-            for (geofeatures::internal::Polygon::RingType::vector::size_type i = 0; i < outerCoordinateCount; i++) {
-                const geofeatures::internal::Point& point = polygon.outer().at(i);
+            for (gf::Polygon::RingType::vector::size_type i = 0; i < outerCoordinateCount; i++) {
+                const gf::Point& point = polygon.outer().at(i);
 
                 outerCoordinates[i].longitude = point.get<0>();
                 outerCoordinates[i].latitude  = point.get<1>();
@@ -168,15 +170,15 @@
             //
             // Now the innerRings if any
             //
-            for (geofeatures::internal::Polygon::InnerContainerType::size_type  x = 0; x < polygon.inners().size(); x++) {
+            for (gf::Polygon::InnerContainerType::size_type  x = 0; x < polygon.inners().size(); x++) {
 
-                const geofeatures::internal::Polygon::RingType& innerRing = polygon.inners().at(x);
+                const gf::Polygon::RingType& innerRing = polygon.inners().at(x);
 
                 size_t innerCoordinateCount = innerRing.size();
                 CLLocationCoordinate2D * innerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * innerCoordinateCount);
 
                 for (size_t i = 0; i < innerCoordinateCount; i++) {
-                    const geofeatures::internal::Point& point = innerRing.at(i);
+                    const gf::Point& point = innerRing.at(i);
 
                     innerCoordinates[i].longitude = point.get<0>();
                     innerCoordinates[i].latitude  = point.get<1>();

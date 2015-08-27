@@ -31,6 +31,8 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+namespace gf = geofeatures::internal;
+
 /**
  * @class       GFPoint
  *
@@ -46,7 +48,7 @@
 @implementation GFPoint
 
     - (id)initWithX:(double)x y:(double)y {
-        geofeatures::internal::Point point;
+        gf::Point point;
 
         try {
             point.set<0>(x);
@@ -63,7 +65,7 @@
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::Point point;
+            gf::Point point;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], point);
 
@@ -86,25 +88,25 @@
     }
 
     - (double) x {
-        const geofeatures::internal::Point & point = boost::polymorphic_strict_get<geofeatures::internal::Point>([self cppGeometryConstReference]);
+        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
 
         return point.get<0>();
     }
 
     - (double) y {
-        const geofeatures::internal::Point & point = boost::polymorphic_strict_get<geofeatures::internal::Point>([self cppGeometryConstReference]);
+        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
 
         return point.get<1>();
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
-        const geofeatures::internal::Point & point = boost::polymorphic_strict_get<geofeatures::internal::Point>([self cppGeometryConstReference]);
+        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
 
         return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPPoint: point]};
     }
 
     - (NSArray *)mkMapOverlays {
-        const geofeatures::internal::Point & point = boost::polymorphic_strict_get<geofeatures::internal::Point>([self cppGeometryConstReference]);
+        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
 
         return @[[self mkOverlayWithCPPPoint: point]];
     }

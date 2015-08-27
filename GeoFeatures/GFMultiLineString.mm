@@ -35,13 +35,15 @@
 
 #include <vector>
 
+namespace gf = geofeatures::internal;
+
 @implementation GFMultiLineString
 
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::MultiLineString multiLineString;
+            gf::MultiLineString multiLineString;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiLineString);
 
@@ -70,7 +72,7 @@
         //      ]
         //  }
         //
-        geofeatures::internal::MultiLineString multiLineString;
+        gf::MultiLineString multiLineString;
 
         for (NSArray *lineString in coordinates) {
             multiLineString.push_back([self cppLineStringWithGeoJSONCoordinates:lineString]);
@@ -82,9 +84,9 @@
         NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
 
         try {
-            const geofeatures::internal::MultiLineString & multiLineString = boost::polymorphic_strict_get<geofeatures::internal::MultiLineString>([self cppGeometryConstReference]);
+            const gf::MultiLineString & multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>([self cppGeometryConstReference]);
 
-            for (geofeatures::internal::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+            for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
             }
         } catch (std::exception & e) {
@@ -97,9 +99,9 @@
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            const geofeatures::internal::MultiLineString & multiLineString = boost::polymorphic_strict_get<geofeatures::internal::MultiLineString>([self cppGeometryConstReference]);
+            const gf::MultiLineString & multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>([self cppGeometryConstReference]);
 
-            for (geofeatures::internal::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+            for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];
             }
         } catch (std::exception & e) {
