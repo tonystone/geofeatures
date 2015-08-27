@@ -1,5 +1,5 @@
 /*
-*   GFGeometryPolygonTests.m
+*   GFGeometryBoxTests.m
 *
 *   Copyright 2015 Tony Stone
 *
@@ -19,32 +19,38 @@
 */
 
 #import <GeoFeatures/GeoFeatures.h>
-#import "GFGeometryTests.h"
-#import <MapKit/MapKit.h>
+#import <XCTest/XCTest.h>
 
-@interface GFGeometryPolygonTests : GFGeometryTests
+@interface GFBoxTests : XCTestCase
 @end
 
-static NSString * geometry1JSONString = @"{ \"type\": \"Polygon\","
-        "    \"coordinates\": ["
-        "      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0, 0.0] ],"
-        "      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2] ]"
-        "      ]"
+static NSString * geometry1JSONString = @"{ \"type\": \"Box\", "
+        "    \"coordinates\": [[100.0, 0.0],[101.0, 1.0]] "
+        "}";
+
+static NSString * geometry2JSONString = @"{ \"type\": \"Box\", "
+        "    \"coordinates\": [[103.0, 2.0],[110.0, 4.0]] "
+        "}";
+
+static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
+        "    \"coordinates\": {}"
         "   }";
 
-static NSString * geometry2JSONString = @"{ \"type\": \"Polygon\","
-        "    \"coordinates\": ["
-        "      [ [98.0, 0.0], [101.0, 0.0], [101.0, 1.0], [98.0, 1.0], [98.0, 0.0] ]"
-        "      ]"
-        "   }";
+@implementation GFBoxTests {
+        Class expectedClass;
 
-@implementation GFGeometryPolygonTests
+        NSString * geoJSONGeometryName;
+
+        GFGeometry * geometry1a;
+        GFGeometry * geometry1b;
+        GFGeometry * geometry2;
+    }
 
     - (void)setUp {
         [super setUp];
 
-        expectedClass       = NSClassFromString( @"GFPolygon");
-        geoJSONGeometryName = @"Polygon";
+        expectedClass       = NSClassFromString( @"GFBox");
+        geoJSONGeometryName = @"Box";
         
         geometry1a = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
         geometry1b = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
@@ -62,25 +68,48 @@ static NSString * geometry2JSONString = @"{ \"type\": \"Polygon\","
         [super tearDown];
     }
 
-    - (void) testUnion {
-        GFGeometry * result = [geometry1a union_: geometry2];
-        XCTAssertNotNil(result);
+    - (void)testConstruction {
+
+        XCTAssertNotNil(geometry1a);
+        XCTAssertNotNil(geometry2);
+
+        XCTAssertEqual([geometry1a class], expectedClass);
+        XCTAssertEqual([geometry2 class], expectedClass);
+    }
+
+    - (void)testFailedConstruction {
+
+        NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
+
+        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+    }
+
+    - (void) testDescription {
+
+        // Currently we only check if it returns something and its not nill
+
+        XCTAssertNotNil([geometry1a description]);
+        XCTAssertNotNil([geometry2 description]);
+
+        XCTAssertTrue ([[geometry1a description] length] > 0);
+        XCTAssertTrue ([[geometry2 description] length] > 0);
     }
 
     - (void) testMapOverlays {
-    
+
         NSArray * mapOverlays = [geometry1a mkMapOverlays];
-        
+
         XCTAssertNotNil (mapOverlays);
         XCTAssertTrue   ([mapOverlays count] == 1);
-        
+
         XCTAssertTrue   ([[mapOverlays lastObject] isKindOfClass: [MKPolygon class]]);
-        
+
         MKPolygon * polygon = (MKPolygon *) [mapOverlays lastObject];
-        
+
         XCTAssertTrue   ([polygon pointCount] == 5);
-        XCTAssertTrue   ([[polygon interiorPolygons] count] == 1);
-        
+        XCTAssertTrue   ([[polygon interiorPolygons] count] == 0);
+
     }
 
 @end
+

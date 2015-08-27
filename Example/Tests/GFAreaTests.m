@@ -19,8 +19,6 @@
 */
 
 #import <GeoFeatures/GeoFeatures.h>
-#import "GFGeometryTests.h"
-#import <MapKit/MapKit.h>
 #import <XCTest/XCTest.h>
 
 @interface GFAreaTests : XCTestCase
