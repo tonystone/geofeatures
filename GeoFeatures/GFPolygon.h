@@ -2,6 +2,7 @@
 *   GFPolygon.h
 *
 *   Copyright 2015 The Climate Corporation
+*   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
 *   you may not use this file except in compliance with the License.
@@ -16,10 +17,16 @@
 *   limitations under the License.
 *
 *   Created by Tony Stone on 6/3/15.
+*
+*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
+*
 */
 
 #import <Foundation/Foundation.h>
 #import "GFPolygonAbstract.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 /**
  * @class       GFPolygon
@@ -30,6 +37,8 @@
  * @date        6/6/15
  */
 @interface GFPolygon : GFPolygonAbstract
+
+#pragma clang diagnostic pop
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.

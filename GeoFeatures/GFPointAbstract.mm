@@ -30,7 +30,12 @@
 
 namespace gf = geofeatures::internal;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @implementation GFPointAbstract (Protected)
+
+#pragma clang diagnostic pop
 
     - (id) init {
         NSAssert(![[self class] isMemberOfClass: [GFPointAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
