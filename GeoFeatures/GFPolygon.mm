@@ -32,6 +32,8 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+namespace gf = geofeatures::internal;
+
 /**
  * @class       GFPolygon
  *
@@ -40,14 +42,13 @@
  * @author      Tony Stone
  * @date        6/6/15
  */
-
 @implementation GFPolygon
 
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::Polygon polygon;
+            gf::Polygon polygon;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], polygon);
 
@@ -71,11 +72,11 @@
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
-        return @{@"type": @"Polygon", @"coordinates": [self geoJSONCoordinatesWithCPPPolygon: boost::polymorphic_strict_get<geofeatures::internal::Polygon>([self cppGeometryConstReference])]};
+        return @{@"type": @"Polygon", @"coordinates": [self geoJSONCoordinatesWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>([self cppGeometryConstReference])]};
     }
 
     - (NSArray *)mkMapOverlays {
-        return @[[self mkOverlayWithCPPPolygon: boost::polymorphic_strict_get<geofeatures::internal::Polygon>([self cppGeometryConstReference])]];
+        return @[[self mkOverlayWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>([self cppGeometryConstReference])]];
     }
 
 @end

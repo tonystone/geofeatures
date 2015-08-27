@@ -33,6 +33,7 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+namespace gf = geofeatures::internal;
 
 /**
  * @class       GFBox
@@ -46,8 +47,8 @@
 
     - (id)initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
         try {
-            geofeatures::internal::Box box(boost::polymorphic_strict_get<geofeatures::internal::Point>([minCorner cppGeometryReference]),
-                                 boost::polymorphic_strict_get<geofeatures::internal::Point>([maxCorner cppGeometryReference]));
+            gf::Box box(boost::polymorphic_strict_get<gf::Point>([minCorner cppGeometryReference]),
+                                 boost::polymorphic_strict_get<gf::Point>([maxCorner cppGeometryReference]));
 
             return [super initWithCPPGeometryVariant: box];
 
@@ -60,7 +61,7 @@
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::Box box;
+            gf::Box box;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], box);
 
@@ -91,10 +92,10 @@
              *      "coordinates": [[100.0, 0.0], [101.0, 1.0]]
              *  }
              */
-            geofeatures::internal::Point minCorner([coordinates[0][0] doubleValue], [coordinates[0][1] doubleValue]);
-            geofeatures::internal::Point maxCorner([coordinates[1][0] doubleValue], [coordinates[1][1] doubleValue]);
+            gf::Point minCorner([coordinates[0][0] doubleValue], [coordinates[0][1] doubleValue]);
+            gf::Point maxCorner([coordinates[1][0] doubleValue], [coordinates[1][1] doubleValue]);
 
-            return [super initWithCPPGeometryVariant: geofeatures::internal::Box(minCorner, maxCorner)];
+            return [super initWithCPPGeometryVariant: gf::Box(minCorner, maxCorner)];
 
         } catch (std::exception &e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -102,13 +103,13 @@
     }
 
     - (GFPoint *) minCorner {
-        const geofeatures::internal::Box & box = boost::polymorphic_strict_get<geofeatures::internal::Box>([self cppGeometryConstReference]);
+        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
 
         return [[GFPoint alloc] initWithCPPGeometryVariant: box.minCorner()];
     }
 
     - (GFPoint *) maxCorner {
-        const geofeatures::internal::Box & box = boost::polymorphic_strict_get<geofeatures::internal::Box>([self cppGeometryConstReference]);
+        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
 
         return [[GFPoint alloc] initWithCPPGeometryVariant: box.maxCorner()];
     }
@@ -116,7 +117,7 @@
     - (NSDictionary *)toGeoJSONGeometry {
 
         try {
-            const geofeatures::internal::Box & box = boost::polymorphic_strict_get<geofeatures::internal::Box>([self cppGeometryConstReference]);
+            const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
 
             double minCornerX = box.minCorner().get<0>();
             double minCornerY = box.minCorner().get<1>();
@@ -131,7 +132,7 @@
     }
 
     - (NSArray *)mkMapOverlays {
-        const geofeatures::internal::Box & box = boost::polymorphic_strict_get<geofeatures::internal::Box>([self cppGeometryConstReference]);
+        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
 
         CLLocationCoordinate2D coordinates[5];
 

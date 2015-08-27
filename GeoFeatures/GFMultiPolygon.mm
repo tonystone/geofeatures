@@ -35,13 +35,15 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+namespace gf = geofeatures::internal;
+
 @implementation GFMultiPolygon
 
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::MultiPolygon multiPolygon;
+            gf::MultiPolygon multiPolygon;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiPolygon);
 
@@ -77,7 +79,7 @@
         //         ]
         //  }
         //
-        geofeatures::internal::MultiPolygon multiPolygon;
+        gf::MultiPolygon multiPolygon;
 
         for (NSArray * polygon in coordinates) {
             multiPolygon.push_back([self cppPolygonWithGeoJSONCoordinates: polygon]);
@@ -89,9 +91,9 @@
         NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
-            const geofeatures::internal::MultiPolygon & multiPolygon = boost::polymorphic_strict_get<geofeatures::internal::MultiPolygon>([self cppGeometryConstReference]);
+            const gf::MultiPolygon & multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>([self cppGeometryConstReference]);
 
-            for (geofeatures::internal::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+            for (gf::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPolygon: (*it)]];
             }
         } catch (std::exception & e) {
@@ -104,9 +106,9 @@
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
         
         try {
-            const geofeatures::internal::MultiPolygon & multiPolygon = boost::polymorphic_strict_get<geofeatures::internal::MultiPolygon>([self cppGeometryConstReference]);
+            const gf::MultiPolygon & multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>([self cppGeometryConstReference]);
 
-            for (geofeatures::internal::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+            for (gf::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPPolygon: (*it)]];
             }
         } catch (std::exception & e) {

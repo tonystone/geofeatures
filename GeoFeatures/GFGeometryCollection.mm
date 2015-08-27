@@ -40,7 +40,7 @@
 
 #include "ReadWKT.hpp"
 
-using namespace geofeatures::internal;
+namespace  gf = geofeatures::internal;
 
 namespace geofeatures {
     namespace internal {
@@ -52,28 +52,28 @@ namespace geofeatures {
                 GFGeometry * operator()(const T & v) const {
                     return nil;
                 }
-                GFGeometry * operator()(const geofeatures::internal::Point & v) const {
+                GFGeometry * operator()(const gf::Point & v) const {
                     return [[GFPoint alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::MultiPoint & v) const {
+                GFGeometry * operator()(const gf::MultiPoint & v) const {
                     return [[GFMultiPoint alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::Box & v) const {
+                GFGeometry * operator()(const gf::Box & v) const {
                     return [[GFBox alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::LineString & v) const {
+                GFGeometry * operator()(const gf::LineString & v) const {
                     return [[GFLineString alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::MultiLineString & v) const {
+                GFGeometry * operator()(const gf::MultiLineString & v) const {
                     return [[GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::Polygon & v) const {
+                GFGeometry * operator()(const gf::Polygon & v) const {
                     return [[GFPolygon alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::MultiPolygon & v) const {
+                GFGeometry * operator()(const gf::MultiPolygon & v) const {
                     return [[GFMultiPolygon alloc] initWithCPPGeometryVariant: v];;
                 }
-                GFGeometry * operator()(const geofeatures::internal::GeometryCollection & v) const {
+                GFGeometry * operator()(const gf::GeometryCollection & v) const {
                     return [[GFGeometryCollection alloc] initWithCPPGeometryVariant: v];;
                 }
             };
@@ -81,25 +81,23 @@ namespace geofeatures {
             class AddGeometry : public  boost::static_visitor<void> {
                 
             public:
-                inline AddGeometry(GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
+                inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
                 
                 template <typename T>
                 void operator()(const T & v) const {
                     geometryCollection.push_back(v);
                 }
      
-                void operator()(const GeometryCollection & v)  const {
+                void operator()(const gf::GeometryCollection & v)  const {
                     ;   // Do nothing
                 }
 
             private:
-                GeometryCollection & geometryCollection;
+                gf::GeometryCollection & geometryCollection;
             };
         }
     }
 }
-
-using namespace geofeatures::internal::detail;
 
 @implementation GFGeometryCollection
 
@@ -107,7 +105,7 @@ using namespace geofeatures::internal::detail;
 
     - (instancetype)init {
 
-        self = [super initWithCPPGeometryVariant: geofeatures::internal::GeometryCollection()];
+        self = [super initWithCPPGeometryVariant: gf::GeometryCollection()];
 
         return self;
     }
@@ -120,18 +118,18 @@ using namespace geofeatures::internal::detail;
         return self;
     }
 
-    - (GeometryCollection) cppGeometryCollectionWithArray: (NSArray *) array {
+    - (gf::GeometryCollection) cppGeometryCollectionWithArray: (NSArray *) array {
         NSParameterAssert(array != nil);
 
         try {
-            GeometryCollection geometryCollection;
+            gf::GeometryCollection geometryCollection;
 
             for (GFGeometry * geometry in array) {
 
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
-                boost::apply_visitor(AddGeometry(geometryCollection), [geometry cppGeometryReference]);
+                boost::apply_visitor(gf::detail::AddGeometry(geometryCollection), [geometry cppGeometryReference]);
             }
             return geometryCollection;
 
@@ -143,13 +141,13 @@ using namespace geofeatures::internal::detail;
     - (GFGeometry *)geometryAtIndex:(NSUInteger)index {
 
         try {
-            const GeometryCollection & geometry = boost::polymorphic_strict_get<GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
 
             if (index >= geometry.size()) {
                 @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range." userInfo: nil];
                
             } else {
-                 return boost::apply_visitor(GFGeometryInstanceFromVariant(), geometry.at(index));
+                 return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), geometry.at(index));
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -159,11 +157,11 @@ using namespace geofeatures::internal::detail;
 
     - (GFGeometry *)firstGeometry {
         try {
-            const GeometryCollection & geometry = boost::polymorphic_strict_get<GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(GFGeometryInstanceFromVariant(), *(geometry.begin()));
+                return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), *(geometry.begin()));
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -174,11 +172,11 @@ using namespace geofeatures::internal::detail;
     - (GFGeometry *)lastGeometry {
 
         try {
-            const GeometryCollection & geometry = boost::polymorphic_strict_get<GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(geofeatures::internal::detail::GFGeometryInstanceFromVariant(), *(geometry.end()));
+                return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), *(geometry.end()));
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -190,7 +188,7 @@ using namespace geofeatures::internal::detail;
     - (NSUInteger)count {
 
         try {
-            const GeometryCollection & geometry = boost::polymorphic_strict_get<GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
 
             return geometry.size();
 
@@ -210,11 +208,11 @@ using namespace geofeatures::internal::detail;
         return self;
     }
 
-    - (geofeatures::internal::GeometryCollection) parseWKT: (NSString *) wkt {
-        geofeatures::internal::GeometryCollection geometryCollection;
+    - (gf::GeometryCollection) parseWKT: (NSString *) wkt {
+        gf::GeometryCollection geometryCollection;
         
         try {
-            geofeatures::internal::readWKT([wkt cStringUsingEncoding:NSUTF8StringEncoding], geometryCollection);
+            gf::readWKT([wkt cStringUsingEncoding:NSUTF8StringEncoding], geometryCollection);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];

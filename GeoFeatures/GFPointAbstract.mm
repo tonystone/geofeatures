@@ -28,6 +28,8 @@
 @implementation GFPointAbstract
 @end
 
+namespace gf = geofeatures::internal;
+
 @implementation GFPointAbstract (Protected)
 
     - (id) init {
@@ -35,7 +37,7 @@
         return nil;
     }
 
-    - (geofeatures::internal::Point)cppPointWithGeoJSONCoordinates:(NSArray *)coordinates {
+    - (gf::Point)cppPointWithGeoJSONCoordinates:(NSArray *)coordinates {
 
         //
         // { "type": "Point",
@@ -43,14 +45,14 @@
         // }
         //
         try {
-            return geofeatures::internal::Point([coordinates[0] doubleValue], [coordinates[1] doubleValue]);
+            return gf::Point([coordinates[0] doubleValue], [coordinates[1] doubleValue]);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
     }
 
-    - (NSArray *)geoJSONCoordinatesWithCPPPoint: (const geofeatures::internal::Point &) point {
+    - (NSArray *)geoJSONCoordinatesWithCPPPoint: (const gf::Point &) point {
         double longitude;
         double latitude;
 
@@ -64,7 +66,7 @@
         return @[@(longitude),@(latitude)];
     }
 
-    - (id <MKOverlay>)mkOverlayWithCPPPoint: (const geofeatures::internal::Point &) point {
+    - (id <MKOverlay>)mkOverlayWithCPPPoint: (const gf::Point &) point {
         MKCircle * mkCircle = nil;
 
         try {

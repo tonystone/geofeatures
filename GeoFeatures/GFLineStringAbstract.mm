@@ -34,6 +34,8 @@
 @implementation GFLineStringAbstract
 @end
 
+namespace gf = geofeatures::internal;
+
 @implementation GFLineStringAbstract (Protected)
 
     - (id) init {
@@ -41,7 +43,7 @@
         return nil;
     }
 
-    - (geofeatures::internal::LineString)cppLineStringWithGeoJSONCoordinates:(NSArray *)coordinates {
+    - (gf::LineString)cppLineStringWithGeoJSONCoordinates:(NSArray *)coordinates {
 
         try {
             //
@@ -58,10 +60,10 @@
             //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
             //  }
             //
-            geofeatures::internal::LineString linestring = {};
+            gf::LineString linestring = {};
             
             for (NSArray * coordinate in coordinates) {
-                linestring.push_back(geofeatures::internal::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+                linestring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
             }
             // Make sure this linestring is correct.
             boost::geometry::correct(linestring);
@@ -73,12 +75,12 @@
         }
     }
 
-    - (NSArray *)geoJSONCoordinatesWithCPPLineString: (const geofeatures::internal::LineString &) linestring  {
+    - (NSArray *)geoJSONCoordinatesWithCPPLineString: (const gf::LineString &) linestring  {
 
         NSMutableArray * points = [[NSMutableArray alloc] init];
 
         try {
-            for (geofeatures::internal::LineString::vector::const_iterator it = linestring.begin();  it != linestring.end(); ++it ) {
+            for (gf::LineString::vector::const_iterator it = linestring.begin();  it != linestring.end(); ++it ) {
                 const double longitude = it->get<0>();
                 const double latitude  = it->get<1>();
 
@@ -90,7 +92,7 @@
         return points;
     }
 
-    - (id <MKOverlay>)mkOverlayWithCPPLineString: (const geofeatures::internal::LineString &) linestring {
+    - (id <MKOverlay>)mkOverlayWithCPPLineString: (const gf::LineString &) linestring {
 
         MKPolyline * mkPolyline = nil;
 
@@ -98,8 +100,8 @@
             size_t pointCount = linestring.size();
             CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
 
-            for (geofeatures::internal::LineString::vector::size_type i = 0; i < pointCount; i++) {
-                const geofeatures::internal::Point& point = linestring.at(i);
+            for (gf::LineString::vector::size_type i = 0; i < pointCount; i++) {
+                const gf::Point& point = linestring.at(i);
 
                 coordinates[i].longitude = point.get<0>();
                 coordinates[i].latitude  = point.get<1>();

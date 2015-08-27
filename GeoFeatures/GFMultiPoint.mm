@@ -32,13 +32,15 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+namespace gf = geofeatures::internal;
+
 @implementation GFMultiPoint
 
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
-            geofeatures::internal::MultiPoint multiPoint;
+            gf::MultiPoint multiPoint;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiPoint);
 
@@ -64,7 +66,7 @@
         //      "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
         // }
         //
-        geofeatures::internal::MultiPoint multiPoint;
+        gf::MultiPoint multiPoint;
 
         for (NSArray * coordinate in coordinates) {
             multiPoint.push_back([self cppPointWithGeoJSONCoordinates: coordinate]);
@@ -76,9 +78,9 @@
         NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
-            const geofeatures::internal::MultiPoint & multiPoint = boost::polymorphic_strict_get<geofeatures::internal::MultiPoint>([self cppGeometryConstReference]);
+            const gf::MultiPoint & multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>([self cppGeometryConstReference]);
 
-            for (geofeatures::internal::MultiPoint::vector::const_iterator it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
+            for (gf::MultiPoint::vector::const_iterator it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPoint: (*it)]];
             }
         } catch (std::exception & e) {
@@ -91,9 +93,9 @@
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            const geofeatures::internal::MultiPoint & multiPoint = boost::polymorphic_strict_get<geofeatures::internal::MultiPoint>([self cppGeometryConstReference]);
+            const gf::MultiPoint & multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>([self cppGeometryConstReference]);
 
-            for (geofeatures::internal::MultiPoint::vector::const_iterator it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
+            for (gf::MultiPoint::vector::const_iterator it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
                 [mkPolygons addObject: [self mkOverlayWithCPPPoint: (*it)]];
             }
         } catch (std::exception & e) {
