@@ -109,4 +109,25 @@
     */
     - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    /** Returns the GFPolygon at the specified index.
+     *
+     * @param index An index within the bounds of the collection.
+     *
+     * @returns The GFPolygon located at index.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
+     *
+     *    GFPolygon * polygon = multiPolygon[1];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     */
+    - (id) objectAtIndexedSubscript: (NSUInteger) index;
+
 @end
