@@ -89,7 +89,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiPoint & multiPoint = gf::strict_get<gf::MultiPoint>(_intd);
+            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
             for (gf::MultiPoint::vector::const_iterator it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPoint: (*it)]];
@@ -104,7 +104,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiPoint & multiPoint = gf::strict_get<gf::MultiPoint>(_intd);
+            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
             for (gf::MultiPoint::vector::const_iterator it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
                 [mkPolygons addObject: [self mkOverlayWithCPPPoint: (*it)]];

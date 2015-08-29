@@ -113,18 +113,18 @@ namespace gf = geofeatures::internal;
     }
 
     - (GFPoint *) minCorner {
-        return [[GFPoint alloc] initWithCPPGeometryVariant: gf::strict_get <gf::Box>(_intd).minCorner()];
+        return [[GFPoint alloc] initWithCPPGeometryVariant: boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant).minCorner()];
     }
 
     - (GFPoint *) maxCorner {
 
-        return [[GFPoint alloc] initWithCPPGeometryVariant: gf::strict_get <gf::Box>(_intd).maxCorner()];
+        return [[GFPoint alloc] initWithCPPGeometryVariant: boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant).maxCorner()];
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
 
         try {
-            const gf::Box & box = gf::strict_get <gf::Box>(_intd);
+            const gf::Box & box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
 
             double minCornerX = box.minCorner().get<0>();
             double minCornerY = box.minCorner().get<1>();
@@ -139,7 +139,7 @@ namespace gf = geofeatures::internal;
     }
 
     - (NSArray *)mkMapOverlays {
-        const gf::Box & box = gf::strict_get <gf::Box>(_intd);
+        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
 
         CLLocationCoordinate2D coordinates[5];
 
