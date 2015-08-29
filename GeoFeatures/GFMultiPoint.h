@@ -109,6 +109,7 @@
      *
      * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
      *
+     * @since 1.1.0
      */
     - (id) objectAtIndexedSubscript: (NSUInteger) index;
 
