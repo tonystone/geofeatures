@@ -121,4 +121,16 @@ namespace gf = geofeatures::internal;
         return mkPolygons;
     }
 
+#pragma mark - IndexedSubScripting
+
+    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+
+        auto& multiLineString = gf::strict_get<gf::MultiLineString>(_intd);
+
+        if (index >= multiLineString.size())
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiLineString.size()];
+
+        return boost::apply_visitor(gf::GFGeometryInstanceFromVariant(), multiLineString[index]);
+    }
+
 @end
