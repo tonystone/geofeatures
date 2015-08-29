@@ -91,7 +91,7 @@ namespace gf = geofeatures::internal;
         try {
             auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
-            for (gf::MultiPoint::vector::const_iterator it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
+            for (auto it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPoint: (*it)]];
             }
         } catch (std::exception & e) {
@@ -106,13 +106,25 @@ namespace gf = geofeatures::internal;
         try {
             auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
-            for (gf::MultiPoint::vector::const_iterator it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
+            for (auto it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
                 [mkPolygons addObject: [self mkOverlayWithCPPPoint: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
         return mkPolygons;
+    }
+
+#pragma mark - Indexed Subscripting
+
+    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+
+        auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+
+        if (index >= multiPoint.size())
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiPoint.size()];
+
+        return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint[index]];
     }
 
 @end
