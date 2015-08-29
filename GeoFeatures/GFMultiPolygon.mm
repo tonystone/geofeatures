@@ -103,7 +103,7 @@ namespace gf = geofeatures::internal;
         try {
             auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
 
-            for (gf::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+            for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPolygon: (*it)]];
             }
         } catch (std::exception & e) {
@@ -118,13 +118,25 @@ namespace gf = geofeatures::internal;
         try {
             auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
 
-            for (gf::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+            for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPPolygon: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
         return mkPolygons;
+    }
+
+#pragma mark - Indexed Subscripting
+
+    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+
+        auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
+
+        if (index >= multiPolygon.size())
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiPolygon.size()];
+
+        return [[GFPolygon alloc] initWithCPPGeometryVariant: multiPolygon[index]];
     }
 
 @end
