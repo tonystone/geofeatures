@@ -90,4 +90,27 @@
     */
     - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    /** Returns the point at the specified index.
+     *
+     * @param index An index within the bounds of the collection.
+     *
+     * @returns The point located at index.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMultiPoint * multiPoint = [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"];
+     *
+     *    GFPoint * point1 = multiPoint[0];
+     *    GFPoint * point2 = multiPoint[1];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.1.0
+     */
+    - (id) objectAtIndexedSubscript: (NSUInteger) index;
+
 @end

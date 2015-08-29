@@ -114,6 +114,18 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         }
     }
 
+    - (void) testObjectAtIndexedSubscript {
+
+        GFMultiPoint * multiPoint = [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"];
+
+        XCTAssertNoThrow(multiPoint[0]);
+        XCTAssertNoThrow(multiPoint[1]);
+        XCTAssertThrowsSpecificNamed(multiPoint[2], NSException, NSRangeException);
+        
+        XCTAssertEqualObjects([multiPoint[0] toWKTString], @"POINT(1 1)");
+        XCTAssertEqualObjects([multiPoint[1] toWKTString], @"POINT(2 2)");
+    }
+
 @end
 
 

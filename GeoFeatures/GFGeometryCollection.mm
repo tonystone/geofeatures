@@ -44,58 +44,24 @@ namespace  gf = geofeatures::internal;
 
 namespace geofeatures {
     namespace internal {
-        namespace detail {
 
-            class GFGeometryInstanceFromVariant : public  boost::static_visitor<GFGeometry *> {
-            public:
-                template <typename T>
-                GFGeometry * operator()(const T & v) const {
-                    return nil;
-                }
-                GFGeometry * operator()(const gf::Point & v) const {
-                    return [[GFPoint alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::MultiPoint & v) const {
-                    return [[GFMultiPoint alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::Box & v) const {
-                    return [[GFBox alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::LineString & v) const {
-                    return [[GFLineString alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::MultiLineString & v) const {
-                    return [[GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::Polygon & v) const {
-                    return [[GFPolygon alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::MultiPolygon & v) const {
-                    return [[GFMultiPolygon alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::GeometryCollection & v) const {
-                    return [[GFGeometryCollection alloc] initWithCPPGeometryVariant: v];;
-                }
-            };
+        class AddGeometry : public  boost::static_visitor<void> {
 
-            class AddGeometry : public  boost::static_visitor<void> {
-                
-            public:
-                inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
-                
-                template <typename T>
-                void operator()(const T & v) const {
-                    geometryCollection.push_back(v);
-                }
-     
-                void operator()(const gf::GeometryCollection & v)  const {
-                    ;   // Do nothing
-                }
+        public:
+            inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
 
-            private:
-                gf::GeometryCollection & geometryCollection;
-            };
-        }
+            template <typename T>
+            void operator()(const T & v) const {
+                geometryCollection.push_back(v);
+            }
+
+            void operator()(const gf::GeometryCollection & v)  const {
+                ;   // Do nothing
+            }
+
+        private:
+            gf::GeometryCollection & geometryCollection;
+        };
     }
 }
 
@@ -127,7 +93,7 @@ namespace geofeatures {
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
-                boost::apply_visitor(gf::detail::AddGeometry(geometryCollection), geometry->_members->geometryVariant);
+                boost::apply_visitor(gf::AddGeometry(geometryCollection), geometry->_members->geometryVariant);
             }
             return geometryCollection;
 
@@ -145,7 +111,7 @@ namespace geofeatures {
                 @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range." userInfo: nil];
                
             } else {
-                 return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), geometry.at(index));
+                 return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.at(index));
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -159,7 +125,7 @@ namespace geofeatures {
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), *(geometry.begin()));
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), *(geometry.begin()));
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -174,7 +140,7 @@ namespace geofeatures {
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), *(geometry.end()));
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), *(geometry.end()));
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -223,5 +189,17 @@ namespace geofeatures {
         return [super toGeoJSONGeometry];
     }
 
+
+#pragma mark - Indexed Subscripting
+
+    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+
+        auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);;
+
+        if (index >= geometryCollection.size())
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, geometryCollection.size()];
+
+        return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection[index]);
+    }
 
 @end

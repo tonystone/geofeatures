@@ -97,7 +97,7 @@ namespace gf = geofeatures::internal;
         try {
             auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
             }
         } catch (std::exception & e) {
@@ -112,13 +112,25 @@ namespace gf = geofeatures::internal;
         try {
             auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
         return mkPolygons;
+    }
+
+#pragma mark - Indexed Subscripting
+
+    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+
+        auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+        if (index >= multiLineString.size())
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiLineString.size()];
+
+        return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString[index]];
     }
 
 @end

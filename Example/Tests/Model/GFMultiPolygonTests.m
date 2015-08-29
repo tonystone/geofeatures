@@ -127,4 +127,16 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         }
     }
 
+    - (void) testObjectAtIndexedSubscript {
+
+        GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
+
+        XCTAssertNoThrow(multiPolygon[0]);
+        XCTAssertNoThrow(multiPolygon[1]);
+        XCTAssertThrowsSpecificNamed(multiPolygon[2], NSException, NSRangeException);
+
+        XCTAssertEqualObjects([multiPolygon[0] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+        XCTAssertEqualObjects([multiPolygon[1] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+    }
+
 @end

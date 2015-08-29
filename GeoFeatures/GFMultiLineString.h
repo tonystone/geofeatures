@@ -99,4 +99,26 @@
     */
     - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    /** Returns the GFLineString at the specified index.
+     *
+     * @param index An index within the bounds of the collection.
+     *
+     * @returns The GFLineString located at index.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"];
+     *
+     *    GFLineString * lineString = multiLineString[1];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.1.0
+     */
+    - (id) objectAtIndexedSubscript: (NSUInteger) index;
+
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3669808E58860FC07296186F /* GFGeometryCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */; };
 		3669818022E70EFAFC22BCD0 /* GFWKTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366981225BFB9BEBE9A3B512 /* GFWKTTests.m */; };
 		36698207A19EC8CE74AB2FAF /* GFWithinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698D1BBEB6C10EB3476B2C /* GFWithinTests.m */; };
 		3669821F3CEFEF4B6F458D14 /* GFMultiPolygonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669866E55BBAB7FE20F06C7 /* GFMultiPolygonTests.m */; };
@@ -64,6 +65,7 @@
 		366988A210D230E2EF9F99E1 /* GFPerimeterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPerimeterTests.m; sourceTree = "<group>"; };
 		36698907141EECAB15ED39DF /* GFPointTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPointTests.m; sourceTree = "<group>"; };
 		366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMultiLineStringTests.m; sourceTree = "<group>"; };
+		36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeometryCollectionTests.m; sourceTree = "<group>"; };
 		36698C3FE1385E161EB5A0A7 /* GFCentroidTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCentroidTests.m; sourceTree = "<group>"; };
 		36698CCB90E1B4DC9F9DD6AF /* GFLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFLineStringTests.m; sourceTree = "<group>"; };
 		36698D1BBEB6C10EB3476B2C /* GFWithinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFWithinTests.m; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				36698FECBDE3474A6A4A674D /* GFMultiPointTests.m */,
 				3669866E55BBAB7FE20F06C7 /* GFMultiPolygonTests.m */,
 				366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */,
+				36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				36698BE95B098F31453A03FA /* GFMultiPointTests.m in Sources */,
 				3669821F3CEFEF4B6F458D14 /* GFMultiPolygonTests.m in Sources */,
 				36698FD5E108DFA674C763AA /* GFMultiLineStringTests.m in Sources */,
+				3669808E58860FC07296186F /* GFGeometryCollectionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
