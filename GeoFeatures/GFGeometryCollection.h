@@ -32,6 +32,22 @@
 @interface GFGeometryCollection : GFGeometry  // <NSFastEnumeration>
 
     /**
+    * Initialize this geometry with the given WKT (Well-Known-Text) string.
+    *
+    * Example:
+    * @code
+    * {
+    *
+    *   NSString * wkt = @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))";
+    *
+    *   GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: wkt]];
+    *
+    * }
+    * @endcode
+    */
+    - (id)initWithWKT:(NSString *)wkt;
+
+    /**
     *
     * Initialize this GFGeometryCollection with the NSArray of GFGeometry instances.
     *
@@ -61,5 +77,26 @@
     * @returns The last GFGeometry instances contained in this collection or nil if the container is empty.
     */
     - (GFGeometry *) lastGeometry;
+
+    /** Returns the GFGeometry at the specified index.
+     *
+     * @param index An index within the bounds of the collection.
+     *
+     * @returns The GFGeometry located at index.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"];
+     *
+     *    GFGeometry * geometry = geometryCollection[0];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     */
+    - (id) objectAtIndexedSubscript: (NSUInteger) index;
 
 @end
