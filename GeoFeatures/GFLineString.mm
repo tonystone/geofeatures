@@ -35,6 +35,11 @@ namespace gf = geofeatures::internal;
 
 @implementation GFLineString
 
+    - (instancetype) init {
+        self = [super initWithCPPGeometryVariant: gf::LineString()];
+        return self;
+    }
+
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 

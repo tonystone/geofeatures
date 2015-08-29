@@ -45,6 +45,11 @@ namespace gf = geofeatures::internal;
  */
 @implementation GFBox
 
+    - (instancetype) init {
+        self = [super initWithCPPGeometryVariant: gf::Box()];
+        return self;
+    }
+
     - (id)initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
         try {
             gf::Box box;

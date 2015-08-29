@@ -47,6 +47,11 @@ namespace gf = geofeatures::internal;
  */
 @implementation GFPoint
 
+    - (instancetype) init {
+        self = [super initWithCPPGeometryVariant: gf::Point()];
+        return self;
+    }
+
     - (id)initWithX:(double)x y:(double)y {
         gf::Point point;
 

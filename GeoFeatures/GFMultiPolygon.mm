@@ -39,6 +39,11 @@ namespace gf = geofeatures::internal;
 
 @implementation GFMultiPolygon
 
+    - (instancetype) init {
+        self = [super initWithCPPGeometryVariant: gf::MultiPolygon()];
+        return self;
+    }
+
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 

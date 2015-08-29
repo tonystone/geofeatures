@@ -36,6 +36,11 @@ namespace gf = geofeatures::internal;
 
 @implementation GFMultiPoint
 
+    - (instancetype) init {
+        self = [super initWithCPPGeometryVariant: gf::MultiPoint()];
+        return self;
+    }
+
     - (id)initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
