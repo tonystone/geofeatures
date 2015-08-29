@@ -95,7 +95,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiLineString & multiLineString = gf::strict_get<gf::MultiLineString>(_intd);
+            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
             for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
@@ -110,7 +110,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiLineString & multiLineString = gf::strict_get<gf::MultiLineString>(_intd);
+            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
             for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];
