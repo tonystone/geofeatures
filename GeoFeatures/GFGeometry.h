@@ -27,6 +27,8 @@
 @class GFPoint;
 @class GFBox;
 
+struct GFInternal;
+
 /**
  * @class       GFGeometry
  *
@@ -40,7 +42,9 @@
  * @author      Tony Stone
  * @date        6/14/15
  */
-@interface GFGeometry : NSObject <NSCoding, NSCopying>
+@interface GFGeometry : NSObject <NSCoding, NSCopying> {
+        struct GFInternal * _intd;
+    }
 
     /** Checks if a geometry is valid.
     */

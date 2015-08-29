@@ -74,9 +74,15 @@ namespace gf = geofeatures::internal;
         //
         gf::MultiLineString multiLineString;
 
-        for (NSArray *lineString in coordinates) {
-            multiLineString.push_back([self cppLineStringWithGeoJSONCoordinates:lineString]);
+        try {
+            for (NSArray * lineString in coordinates) {
+                multiLineString.push_back([self cppLineStringWithGeoJSONCoordinates: lineString]);
+            }
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+
         return [super initWithCPPGeometryVariant: multiLineString];
     }
 
@@ -84,7 +90,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiLineString & multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>([self cppGeometryConstReference]);
+            const gf::MultiLineString & multiLineString = gf::strict_get<gf::MultiLineString>(_intd);
 
             for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
@@ -99,7 +105,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiLineString & multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>([self cppGeometryConstReference]);
+            const gf::MultiLineString & multiLineString = gf::strict_get<gf::MultiLineString>(_intd);
 
             for (gf::MultiLineString::vector::const_iterator it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];

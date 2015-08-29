@@ -34,11 +34,26 @@
 
     - (id) initWithCPPGeometryVariant: (geofeatures::internal::GeometryVariant) geometryVariant;
 
-    - (const geofeatures::internal::GeometryVariant &)cppGeometryConstReference;
-    - (geofeatures::internal::GeometryVariant &)cppGeometryReference;
-
     - (id)initWithWKT:(NSString *)wkt;
 
 @end
+
+struct GFInternal {
+    geofeatures::internal::GeometryVariant geometryVariant;
+
+    GFInternal(geofeatures::internal::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
+};
+
+namespace geofeatures {
+    namespace internal {
+
+        template <typename T>
+        inline T & strict_get(GFInternal * internal)  {
+            return boost::polymorphic_strict_get<T>(internal->geometryVariant);
+        }
+    }
+}
+
+
 
 #endif // __GFGeometryProtected_hpp

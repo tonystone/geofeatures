@@ -101,9 +101,7 @@ namespace geofeatures {
     }
 }
 
-@implementation GFGeometry {
-        gf::GeometryVariant _geometryVariant; // Not this will be constructed with a Point initially
-    }
+@implementation GFGeometry
 
     - (void)encodeWithCoder:(NSCoder *)coder {
         [coder encodeObject: [self toWKTString] forKey: @"WKT"];
@@ -119,7 +117,7 @@ namespace geofeatures {
         GFGeometry *copy = (GFGeometry *) [[[self class] allocWithZone:zone] init];
 
         if (copy != nil) {
-            copy->_geometryVariant = self->_geometryVariant;
+            copy->_intd = new GFInternal(self->_intd->geometryVariant);
         }
         return copy;
     }
@@ -131,7 +129,7 @@ namespace geofeatures {
 
     - (BOOL) isValid {
         try {
-            return boost::apply_visitor(gf::operators::IsValidOperation(), _geometryVariant);
+            return boost::apply_visitor(gf::operators::IsValidOperation(), _intd->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -140,7 +138,7 @@ namespace geofeatures {
 
     - (double)area {
         try {
-            return boost::apply_visitor(gf::operators::AreaOperation(), _geometryVariant);
+            return boost::apply_visitor(gf::operators::AreaOperation(), _intd->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -149,7 +147,7 @@ namespace geofeatures {
 
     - (double)length {
         try {
-            return boost::apply_visitor(gf::operators::LengthOperation(), _geometryVariant);
+            return boost::apply_visitor(gf::operators::LengthOperation(), _intd->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -158,7 +156,7 @@ namespace geofeatures {
 
     - (double)perimeter {
         try {
-            return boost::apply_visitor(gf::operators::PerimeterOperation(), _geometryVariant);
+            return boost::apply_visitor(gf::operators::PerimeterOperation(), _intd->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -167,7 +165,7 @@ namespace geofeatures {
 
     - (GFPoint *)centroid {
         try {
-            return [[GFPoint alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::CentroidOperation(), _geometryVariant)];
+            return [[GFPoint alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::CentroidOperation(), _intd->geometryVariant)];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -176,7 +174,7 @@ namespace geofeatures {
 
     - (GFBox *)boundingBox {
         try {
-            return [[GFBox alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::BoundingBoxOperation(), _geometryVariant)];
+            return [[GFBox alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::BoundingBoxOperation(), _intd->geometryVariant)];
             
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -186,7 +184,7 @@ namespace geofeatures {
     - (BOOL)within:(GFGeometry *)other {
 
         try {
-            return boost::apply_visitor( gf::operators::WithinOperation(), _geometryVariant, other->_geometryVariant);
+            return boost::apply_visitor( gf::operators::WithinOperation(), _intd->geometryVariant, other->_intd->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -195,7 +193,7 @@ namespace geofeatures {
 
     - (GFGeometry *)union_: (GFGeometry *)other {
         try {
-            gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), _geometryVariant, other->_geometryVariant));
+            gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), _intd->geometryVariant, other->_intd->geometryVariant));
 
             return boost::apply_visitor(gf::detail::GFInstanceFromVariant(), result);
 
@@ -216,17 +214,15 @@ namespace geofeatures {
         NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
 
         if ((self = [super init])) {
-            _geometryVariant = geometryVariant;
+            _intd = new GFInternal(geometryVariant);
         }
         return self;
     }
 
-    - (const gf::GeometryVariant &)cppGeometryConstReference {
-        return _geometryVariant;
-    }
+    - (void) dealloc {
 
-    - (gf::GeometryVariant &)cppGeometryReference {
-        return _geometryVariant;
+        if (_intd)
+            delete _intd;
     }
 
     - (id) initWithWKT:(NSString *)wkt {
@@ -283,7 +279,7 @@ namespace geofeatures {
 
     - (NSString *) toWKTString {
         try {
-            std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), _geometryVariant);
+            std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), _intd->geometryVariant);
 
             return [NSString stringWithFormat:@"%s",wkt.c_str()];
 
