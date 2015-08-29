@@ -119,5 +119,17 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         }
     }
 
+    - (void) testObjectAtIndexedSubscript {
+
+        GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];
+
+        XCTAssertNoThrow(multiLineString[0]);
+        XCTAssertNoThrow(multiLineString[1]);
+        XCTAssertThrowsSpecificNamed(multiLineString[2], NSException, NSRangeException);
+
+        XCTAssertEqualObjects([multiLineString[0] toWKTString], @"LINESTRING(0 0,5 0)");
+        XCTAssertEqualObjects([multiLineString[1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+    }
+
 
 @end
