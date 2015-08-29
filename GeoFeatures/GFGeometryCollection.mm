@@ -224,4 +224,16 @@ namespace geofeatures {
     }
 
 
+#pragma mark - IndexedSubScripting
+
+    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+
+        auto& geometryCollection = gf::strict_get<gf::GeometryCollection>(_intd);
+
+        if (index >= geometryCollection.size())
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, geometryCollection.size()];
+
+        return boost::apply_visitor(gf::detail::GFGeometryInstanceFromVariant(), geometryCollection[index]);
+    }
+
 @end
