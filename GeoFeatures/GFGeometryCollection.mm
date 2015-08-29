@@ -104,9 +104,7 @@ namespace geofeatures {
 #pragma mark - Public methods
 
     - (instancetype)init {
-
         self = [super initWithCPPGeometryVariant: gf::GeometryCollection()];
-
         return self;
     }
 
