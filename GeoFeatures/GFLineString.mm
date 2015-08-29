@@ -70,7 +70,7 @@ namespace gf = geofeatures::internal;
     - (NSDictionary *) toGeoJSONGeometry {
         try {
 
-            return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPLineString: gf::strict_get<gf::LineString>(_intd)]};
+            return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]};
             
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -80,7 +80,7 @@ namespace gf = geofeatures::internal;
     - (NSArray *)mkMapOverlays {
         try {
 
-            return @[[self mkOverlayWithCPPLineString: gf::strict_get<gf::LineString>(_intd)]];
+            return @[[self mkOverlayWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]];
             
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];

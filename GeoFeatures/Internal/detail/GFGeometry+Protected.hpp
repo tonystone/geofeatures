@@ -27,8 +27,18 @@
 
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
+#import "GFPoint.h"
+#import "GFMultiPoint.h"
+#import "GFBox.h"
+#import "GFLineString.h"
+#import "GFMultiLineString.h"
+#import "GFPolygon.h"
+#import "GFMultiPolygon.h"
+#import "GFGeometryCollection.h"
 
+#include "geofeatures/internal/Geometry.hpp"
 #include "geofeatures/internal/GeometryVariant.hpp"
+
 
 @interface GFGeometry (Protected)
 
@@ -38,22 +48,56 @@
 
 @end
 
-struct GFInternal {
-    geofeatures::internal::GeometryVariant geometryVariant;
+/*
+ * @Note GFMembers structure is intentionally in the global namespace
+ */
+struct GFMembers {
+    public:
+        GFMembers(geofeatures::internal::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
 
-    GFInternal(geofeatures::internal::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
+        geofeatures::internal::GeometryVariant geometryVariant;
 };
 
 namespace geofeatures {
     namespace internal {
 
-        template <typename T>
-        inline T & strict_get(GFInternal * internal)  {
-            return boost::polymorphic_strict_get<T>(internal->geometryVariant);
-        }
+        /** static_visitor to transform the variant type to an ObjC type
+         *
+         */
+        class GFInstanceFromVariant : public  boost::static_visitor<GFGeometry *> {
+
+        public:
+            template <typename T>
+            GFGeometry * operator()(const T & v) const {
+                return nil;
+            }
+            GFGeometry * operator()(const Point & v) const {
+                return [[GFPoint alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const MultiPoint & v) const {
+                return [[GFMultiPoint alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const Box & v) const {
+                return [[GFBox alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const LineString & v) const {
+                return [[GFLineString alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const MultiLineString & v) const {
+                return [[GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const Polygon & v) const {
+                return [[GFPolygon alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const MultiPolygon & v) const {
+                return [[GFMultiPolygon alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const GeometryCollection & v) const {
+                return [[GFGeometryCollection alloc] initWithCPPGeometryVariant: v];;
+            }
+        };
+
     }
 }
-
-
 
 #endif // __GFGeometryProtected_hpp

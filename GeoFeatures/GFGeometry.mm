@@ -26,15 +26,6 @@
 #import <MapKit/MapKit.h>
 #import "NSString+CaseInsensitiveHasPrefix.h"
 
-#import "GFPoint.h"
-#import "GFMultiPoint.h"
-#import "GFBox.h"
-#import "GFLineString.h"
-#import "GFMultiLineString.h"
-#import "GFPolygon.h"
-#import "GFMultiPolygon.h"
-#import "GFGeometryCollection.h"
-
 #include "geofeatures/internal/Geometry.hpp"
 #include "geofeatures/internal/GeometryVariant.hpp"
 #include "geofeatures/internal/operators/UnionOperation.hpp"
@@ -61,47 +52,12 @@ namespace  gf = geofeatures::internal;
 @interface GFGeometry ()
 @end
 
-namespace geofeatures {
-    namespace internal {
-        namespace detail {
-
-            class GFInstanceFromVariant : public  boost::static_visitor<GFGeometry *> {
-
-            public:
-                template <typename T>
-                GFGeometry * operator()(const T & v) const {
-                    return nil;
-                }
-                GFGeometry * operator()(const gf::Point & v) const {
-                    return [[GFPoint alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::MultiPoint & v) const {
-                    return [[GFMultiPoint alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::Box & v) const {
-                    return [[GFBox alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::LineString & v) const {
-                    return [[GFLineString alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::MultiLineString & v) const {
-                    return [[GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::Polygon & v) const {
-                    return [[GFPolygon alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::MultiPolygon & v) const {
-                    return [[GFMultiPolygon alloc] initWithCPPGeometryVariant: v];;
-                }
-                GFGeometry * operator()(const gf::GeometryCollection & v) const {
-                    return [[GFGeometryCollection alloc] initWithCPPGeometryVariant: v];;
-                }
-            };
-        }
-    }
-}
-
 @implementation GFGeometry
+
+    - (id) init {
+        NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
+        return nil;
+    }
 
     - (void)encodeWithCoder:(NSCoder *)coder {
         [coder encodeObject: [self toWKTString] forKey: @"WKT"];
@@ -117,19 +73,14 @@ namespace geofeatures {
         GFGeometry *copy = (GFGeometry *) [[[self class] allocWithZone:zone] init];
 
         if (copy != nil) {
-            copy->_intd = new GFInternal(self->_intd->geometryVariant);
+            copy->_members = new GFMembers(self->_members->geometryVariant);
         }
         return copy;
     }
 
-    - (id) init {
-        NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
-    }
-
     - (BOOL) isValid {
         try {
-            return boost::apply_visitor(gf::operators::IsValidOperation(), _intd->geometryVariant);
+            return boost::apply_visitor(gf::operators::IsValidOperation(), _members->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -138,7 +89,7 @@ namespace geofeatures {
 
     - (double)area {
         try {
-            return boost::apply_visitor(gf::operators::AreaOperation(), _intd->geometryVariant);
+            return boost::apply_visitor(gf::operators::AreaOperation(), _members->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -147,7 +98,7 @@ namespace geofeatures {
 
     - (double)length {
         try {
-            return boost::apply_visitor(gf::operators::LengthOperation(), _intd->geometryVariant);
+            return boost::apply_visitor(gf::operators::LengthOperation(), _members->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -156,7 +107,7 @@ namespace geofeatures {
 
     - (double)perimeter {
         try {
-            return boost::apply_visitor(gf::operators::PerimeterOperation(), _intd->geometryVariant);
+            return boost::apply_visitor(gf::operators::PerimeterOperation(), _members->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -165,7 +116,7 @@ namespace geofeatures {
 
     - (GFPoint *)centroid {
         try {
-            return [[GFPoint alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::CentroidOperation(), _intd->geometryVariant)];
+            return [[GFPoint alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::CentroidOperation(), _members->geometryVariant)];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -174,7 +125,7 @@ namespace geofeatures {
 
     - (GFBox *)boundingBox {
         try {
-            return [[GFBox alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::BoundingBoxOperation(), _intd->geometryVariant)];
+            return [[GFBox alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::BoundingBoxOperation(), _members->geometryVariant)];
             
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -184,7 +135,7 @@ namespace geofeatures {
     - (BOOL)within:(GFGeometry *)other {
 
         try {
-            return boost::apply_visitor( gf::operators::WithinOperation(), _intd->geometryVariant, other->_intd->geometryVariant);
+            return boost::apply_visitor( gf::operators::WithinOperation(), _members->geometryVariant, other->_members->geometryVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -193,9 +144,9 @@ namespace geofeatures {
 
     - (GFGeometry *)union_: (GFGeometry *)other {
         try {
-            gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), _intd->geometryVariant, other->_intd->geometryVariant));
+            gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), _members->geometryVariant, other->_members->geometryVariant));
 
-            return boost::apply_visitor(gf::detail::GFInstanceFromVariant(), result);
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), result);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -214,20 +165,19 @@ namespace geofeatures {
         NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
 
         if ((self = [super init])) {
-            _intd = new GFInternal(geometryVariant);
+            _members = new GFMembers(geometryVariant);
         }
         return self;
     }
 
     - (void) dealloc {
 
-        if (_intd)
-            delete _intd;
+        if (_members)
+            delete _members;
     }
 
     - (id) initWithWKT:(NSString *)wkt {
         @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
-        return self;
     }
 
 @end
@@ -279,7 +229,7 @@ namespace geofeatures {
 
     - (NSString *) toWKTString {
         try {
-            std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), _intd->geometryVariant);
+            std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), _members->geometryVariant);
 
             return [NSString stringWithFormat:@"%s",wkt.c_str()];
 
