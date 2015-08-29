@@ -81,8 +81,13 @@ namespace gf = geofeatures::internal;
         //
         gf::MultiPolygon multiPolygon;
 
-        for (NSArray * polygon in coordinates) {
-            multiPolygon.push_back([self cppPolygonWithGeoJSONCoordinates: polygon]);
+        try {
+            for (NSArray * polygon in coordinates) {
+                multiPolygon.push_back([self cppPolygonWithGeoJSONCoordinates: polygon]);
+            }
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
         return [super initWithCPPGeometryVariant: multiPolygon];
     }
@@ -91,7 +96,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
-            const gf::MultiPolygon & multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>([self cppGeometryConstReference]);
+            const gf::MultiPolygon & multiPolygon = gf::strict_get<gf::MultiPolygon>(_intd);
 
             for (gf::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPolygon: (*it)]];
@@ -106,7 +111,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
         
         try {
-            const gf::MultiPolygon & multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>([self cppGeometryConstReference]);
+            const gf::MultiPolygon & multiPolygon = gf::strict_get<gf::MultiPolygon>(_intd);
 
             for (gf::MultiPolygon::vector::const_iterator it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPPolygon: (*it)]];

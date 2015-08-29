@@ -88,27 +88,25 @@ namespace gf = geofeatures::internal;
     }
 
     - (double) x {
-        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
+        const gf::Point & point = gf::strict_get<gf::Point>(_intd);
 
         return point.get<0>();
     }
 
     - (double) y {
-        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
+        const gf::Point & point = gf::strict_get<gf::Point>(_intd);
 
         return point.get<1>();
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
-        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
 
-        return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPPoint: point]};
+        return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPPoint: gf::strict_get<gf::Point>(_intd)]};
     }
 
     - (NSArray *)mkMapOverlays {
-        const gf::Point & point = boost::polymorphic_strict_get<gf::Point>([self cppGeometryConstReference]);
 
-        return @[[self mkOverlayWithCPPPoint: point]];
+        return @[[self mkOverlayWithCPPPoint: gf::strict_get<gf::Point>(_intd)]];
     }
 
 @end

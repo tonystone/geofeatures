@@ -41,12 +41,12 @@ namespace gf = geofeatures::internal;
 
 @implementation GFLineStringAbstract (Protected)
 
-#pragma clang diagnostic pop
-
     - (id) init {
         NSAssert(![[self class] isMemberOfClass: [GFLineStringAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
+
+#pragma clang diagnostic pop
 
     - (gf::LineString)cppLineStringWithGeoJSONCoordinates:(NSArray *)coordinates {
 

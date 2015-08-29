@@ -35,12 +35,12 @@ namespace gf = geofeatures::internal;
 
 @implementation GFPointAbstract (Protected)
 
-#pragma clang diagnostic pop
-
     - (id) init {
         NSAssert(![[self class] isMemberOfClass: [GFPointAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
+
+#pragma clang diagnostic pop
 
     - (gf::Point)cppPointWithGeoJSONCoordinates:(NSArray *)coordinates {
 

@@ -47,8 +47,13 @@ namespace gf = geofeatures::internal;
 
     - (id)initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
         try {
-            gf::Box box(boost::polymorphic_strict_get<gf::Point>([minCorner cppGeometryReference]),
-                                 boost::polymorphic_strict_get<gf::Point>([maxCorner cppGeometryReference]));
+            gf::Box box;
+
+            box.minCorner().set<0>([minCorner x]);
+            box.minCorner().set<1>([minCorner y]);
+
+            box.maxCorner().set<0>([minCorner x]);
+            box.maxCorner().set<1>([minCorner y]);
 
             return [super initWithCPPGeometryVariant: box];
 
@@ -103,21 +108,18 @@ namespace gf = geofeatures::internal;
     }
 
     - (GFPoint *) minCorner {
-        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
-
-        return [[GFPoint alloc] initWithCPPGeometryVariant: box.minCorner()];
+        return [[GFPoint alloc] initWithCPPGeometryVariant: gf::strict_get <gf::Box>(_intd).minCorner()];
     }
 
     - (GFPoint *) maxCorner {
-        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
 
-        return [[GFPoint alloc] initWithCPPGeometryVariant: box.maxCorner()];
+        return [[GFPoint alloc] initWithCPPGeometryVariant: gf::strict_get <gf::Box>(_intd).maxCorner()];
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
 
         try {
-            const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
+            const gf::Box & box = gf::strict_get <gf::Box>(_intd);
 
             double minCornerX = box.minCorner().get<0>();
             double minCornerY = box.minCorner().get<1>();
@@ -132,7 +134,7 @@ namespace gf = geofeatures::internal;
     }
 
     - (NSArray *)mkMapOverlays {
-        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>([self cppGeometryConstReference]);
+        const gf::Box & box = gf::strict_get <gf::Box>(_intd);
 
         CLLocationCoordinate2D coordinates[5];
 

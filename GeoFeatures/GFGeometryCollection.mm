@@ -129,7 +129,7 @@ namespace geofeatures {
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
-                boost::apply_visitor(gf::detail::AddGeometry(geometryCollection), [geometry cppGeometryReference]);
+                boost::apply_visitor(gf::detail::AddGeometry(geometryCollection), geometry->_intd->geometryVariant);
             }
             return geometryCollection;
 
@@ -141,7 +141,7 @@ namespace geofeatures {
     - (GFGeometry *)geometryAtIndex:(NSUInteger)index {
 
         try {
-            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = gf::strict_get<gf::GeometryCollection>(_intd);
 
             if (index >= geometry.size()) {
                 @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range." userInfo: nil];
@@ -157,7 +157,7 @@ namespace geofeatures {
 
     - (GFGeometry *)firstGeometry {
         try {
-            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = gf::strict_get<gf::GeometryCollection>(_intd);
 
             if (geometry.size() > 0) {
 
@@ -172,7 +172,7 @@ namespace geofeatures {
     - (GFGeometry *)lastGeometry {
 
         try {
-            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = gf::strict_get<gf::GeometryCollection>(_intd);
 
             if (geometry.size() > 0) {
 
@@ -188,7 +188,7 @@ namespace geofeatures {
     - (NSUInteger)count {
 
         try {
-            const gf::GeometryCollection & geometry = boost::polymorphic_strict_get<gf::GeometryCollection>([self cppGeometryConstReference]);
+            const gf::GeometryCollection & geometry = gf::strict_get<gf::GeometryCollection>(_intd);
 
             return geometry.size();
 

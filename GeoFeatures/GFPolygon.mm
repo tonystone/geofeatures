@@ -72,11 +72,11 @@ namespace gf = geofeatures::internal;
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
-        return @{@"type": @"Polygon", @"coordinates": [self geoJSONCoordinatesWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>([self cppGeometryConstReference])]};
+        return @{@"type": @"Polygon", @"coordinates": [self geoJSONCoordinatesWithCPPPolygon: gf::strict_get<gf::Polygon>(_intd)]};
     }
 
     - (NSArray *)mkMapOverlays {
-        return @[[self mkOverlayWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>([self cppGeometryConstReference])]];
+        return @[[self mkOverlayWithCPPPolygon: gf::strict_get<gf::Polygon>(_intd)]];
     }
 
 @end
