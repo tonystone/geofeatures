@@ -42,9 +42,9 @@
 
 @interface GFGeometry (Protected)
 
-    - (id) initWithCPPGeometryVariant: (geofeatures::internal::GeometryVariant) geometryVariant;
+    - (instancetype) initWithCPPGeometryVariant: (geofeatures::internal::GeometryVariant) geometryVariant;
 
-    - (id)initWithWKT:(NSString *)wkt;
+    - (instancetype) initWithWKT: (NSString *) wkt;
 
 @end
 
