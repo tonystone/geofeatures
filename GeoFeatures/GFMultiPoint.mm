@@ -91,7 +91,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
-            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+            const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
             for (auto it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
                 [polygons addObject: [self geoJSONCoordinatesWithCPPPoint: (*it)]];
@@ -106,7 +106,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+            const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
             for (auto it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
                 [mkPolygons addObject: [self mkOverlayWithCPPPoint: (*it)]];
@@ -121,7 +121,7 @@ namespace gf = geofeatures::internal;
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+        const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
         if (index >= multiPoint.size())
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiPoint.size()];

@@ -127,7 +127,7 @@ namespace gf = geofeatures::internal;
     - (NSDictionary *) toGeoJSONGeometry {
 
         try {
-            const gf::Box & box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
+            const auto& box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
 
             double minCornerX = box.minCorner().get<0>();
             double minCornerY = box.minCorner().get<1>();
@@ -142,7 +142,7 @@ namespace gf = geofeatures::internal;
     }
 
     - (NSArray *)mkMapOverlays {
-        const gf::Box & box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
+        const auto& box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
 
         CLLocationCoordinate2D coordinates[5];
 

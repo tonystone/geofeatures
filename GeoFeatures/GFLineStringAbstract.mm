@@ -85,7 +85,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * points = [[NSMutableArray alloc] init];
 
         try {
-            for (gf::LineString::vector::const_iterator it = linestring.begin();  it != linestring.end(); ++it ) {
+            for (auto it = linestring.begin();  it != linestring.end(); ++it) {
                 const double longitude = it->get<0>();
                 const double latitude  = it->get<1>();
 
@@ -105,8 +105,8 @@ namespace gf = geofeatures::internal;
             size_t pointCount = linestring.size();
             CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
 
-            for (gf::LineString::vector::size_type i = 0; i < pointCount; i++) {
-                const gf::Point& point = linestring.at(i);
+            for (std::size_t i = 0; i < pointCount; i++) {
+                const auto& point = linestring.at(i);
 
                 coordinates[i].longitude = point.get<0>();
                 coordinates[i].latitude  = point.get<1>();

@@ -52,11 +52,12 @@ namespace gf = geofeatures::internal;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiLineString);
 
-            return [super initWithCPPGeometryVariant: multiLineString];
+            self = [super initWithCPPGeometryVariant: multiLineString];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
@@ -88,14 +89,15 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
 
-        return [super initWithCPPGeometryVariant: multiLineString];
+        self = [super initWithCPPGeometryVariant: multiLineString];
+        return self;
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
         NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
 
         try {
-            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+            const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
             for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
@@ -110,7 +112,7 @@ namespace gf = geofeatures::internal;
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
-            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+            const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
             for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
                 [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];
@@ -125,7 +127,7 @@ namespace gf = geofeatures::internal;
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+        const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
         if (index >= multiLineString.size())
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiLineString.size()];

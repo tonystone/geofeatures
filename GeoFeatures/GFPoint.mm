@@ -96,13 +96,13 @@ namespace gf = geofeatures::internal;
     }
 
     - (double) x {
-        auto& point = boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant);
+        const auto& point = boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant);
 
         return point.get<0>();
     }
 
     - (double) y {
-        auto& point = boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant);
+        const auto& point = boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant);
 
         return point.get<1>();
     }
