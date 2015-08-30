@@ -35,7 +35,7 @@ namespace gf = geofeatures::internal;
 
 @implementation GFPointAbstract (Protected)
 
-    - (id) init {
+    - (instancetype) init {
         NSAssert(![[self class] isMemberOfClass: [GFPointAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
@@ -57,7 +57,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (NSArray *)geoJSONCoordinatesWithCPPPoint: (const gf::Point &) point {
+    - (NSArray *) geoJSONCoordinatesWithCPPPoint: (const gf::Point &) point {
         double longitude;
         double latitude;
 
@@ -71,7 +71,7 @@ namespace gf = geofeatures::internal;
         return @[@(longitude),@(latitude)];
     }
 
-    - (id <MKOverlay>)mkOverlayWithCPPPoint: (const gf::Point &) point {
+    - (id <MKOverlay>) mkOverlayWithCPPPoint: (const gf::Point &) point {
         MKCircle * mkCircle = nil;
 
         try {

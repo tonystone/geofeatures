@@ -69,7 +69,7 @@ namespace geofeatures {
 
 #pragma mark - Public methods
 
-    - (instancetype)init {
+    - (instancetype) init {
         self = [super initWithCPPGeometryVariant: gf::GeometryCollection()];
         return self;
     }
@@ -164,7 +164,7 @@ namespace geofeatures {
 
 #pragma mark - Protected methods
 
-    - (id)initWithWKT:(NSString *) wktString {
+    - (instancetype)initWithWKT:(NSString *) wktString {
 
         NSParameterAssert(wktString != nil);
         

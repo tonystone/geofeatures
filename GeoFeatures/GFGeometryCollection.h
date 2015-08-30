@@ -49,7 +49,7 @@
     * }
     * @endcode
     */
-    - (id)initWithWKT:(NSString *)wkt;
+    - (instancetype) initWithWKT:(NSString *)wkt;
 
     /**
     *

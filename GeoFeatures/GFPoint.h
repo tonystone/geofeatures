@@ -43,7 +43,7 @@
     /**
     * Initialize this GFPoint with the x,y coordinates
     */
-    - (id) initWithX: (double) x y: (double) y;
+    - (instancetype) initWithX: (double) x y: (double) y;
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
@@ -59,7 +59,7 @@
     * }
     * @endcode
     */
-    - (id) initWithWKT:(NSString *)wkt;
+    - (instancetype) initWithWKT:(NSString *)wkt;
 
     /**
     * Initialize this geometry with the given jsonDictionary.
@@ -93,16 +93,16 @@
     * @endcode
     * @endparbloc
     */
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
     /**
     * Get the point's X value.
     */
-    - (double)x;
+    - (double) x;
 
     /**
     * Get the point's Y value.
     */
-    - (double)y;
+    - (double) y;
 
 @end

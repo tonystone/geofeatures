@@ -50,7 +50,7 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (id)initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
+    - (instancetype) initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
         try {
             gf::Box box;
 
@@ -60,14 +60,15 @@ namespace gf = geofeatures::internal;
             box.maxCorner().set<0>([minCorner x]);
             box.maxCorner().set<1>([minCorner y]);
 
-            return [super initWithCPPGeometryVariant: box];
+            self = [super initWithCPPGeometryVariant: box];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+        return self;
     }
 
-    - (id)initWithWKT:(NSString *)wkt {
+    - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
@@ -75,14 +76,15 @@ namespace gf = geofeatures::internal;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], box);
 
-            return [super initWithCPPGeometryVariant: box];
+            self = [super initWithCPPGeometryVariant: box];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
 
         try {
 
@@ -105,11 +107,12 @@ namespace gf = geofeatures::internal;
             gf::Point minCorner([coordinates[0][0] doubleValue], [coordinates[0][1] doubleValue]);
             gf::Point maxCorner([coordinates[1][0] doubleValue], [coordinates[1][1] doubleValue]);
 
-            return [super initWithCPPGeometryVariant: gf::Box(minCorner, maxCorner)];
+            self = [super initWithCPPGeometryVariant: gf::Box(minCorner, maxCorner)];
 
         } catch (std::exception &e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
     - (GFPoint *) minCorner {
@@ -121,7 +124,7 @@ namespace gf = geofeatures::internal;
         return [[GFPoint alloc] initWithCPPGeometryVariant: boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant).maxCorner()];
     }
 
-    - (NSDictionary *)toGeoJSONGeometry {
+    - (NSDictionary *) toGeoJSONGeometry {
 
         try {
             const gf::Box & box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);

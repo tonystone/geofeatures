@@ -44,7 +44,7 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (id)initWithWKT:(NSString *)wkt {
+    - (instancetype) initWithWKT: (NSString *) wkt {
         NSParameterAssert(wkt != nil);
 
         try {
@@ -52,14 +52,15 @@ namespace gf = geofeatures::internal;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiPolygon);
 
-            return [super initWithCPPGeometryVariant: multiPolygon];
+            self = [super initWithCPPGeometryVariant: multiPolygon];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
         id coordinates = jsonDictionary[@"coordinates"];
@@ -94,10 +95,12 @@ namespace gf = geofeatures::internal;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return [super initWithCPPGeometryVariant: multiPolygon];
+
+        self = [super initWithCPPGeometryVariant: multiPolygon];
+        return self;
     }
 
-    - (NSDictionary *)toGeoJSONGeometry {
+    - (NSDictionary *) toGeoJSONGeometry {
         NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
@@ -112,7 +115,7 @@ namespace gf = geofeatures::internal;
         return @{@"type": @"MultiPolygon", @"coordinates": polygons};
     }
 
-    - (NSArray *)mkMapOverlays {
+    - (NSArray *) mkMapOverlays {
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
         
         try {

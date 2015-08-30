@@ -41,7 +41,7 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (id)initWithWKT:(NSString *)wkt {
+    - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
@@ -49,14 +49,15 @@ namespace gf = geofeatures::internal;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiPoint);
 
-            return [super initWithCPPGeometryVariant: multiPoint];
+            self = [super initWithCPPGeometryVariant: multiPoint];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
         id coordinates = jsonDictionary[@"coordinates"];
@@ -82,7 +83,8 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
 
-        return [super initWithCPPGeometryVariant: multiPoint];
+        self = [super initWithCPPGeometryVariant: multiPoint];
+        return self;
     }
 
     - (NSDictionary *)toGeoJSONGeometry {

@@ -49,7 +49,7 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (id)initWithWKT:(NSString *)wkt {
+    - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
@@ -57,14 +57,15 @@ namespace gf = geofeatures::internal;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], polygon);
 
-            return [super initWithCPPGeometryVariant: polygon];
+            self = [super initWithCPPGeometryVariant: polygon];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
         id coordinates = jsonDictionary[@"coordinates"];
@@ -73,14 +74,15 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName:@"Invalid GeoJSON" reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
         }
 
-        return [super initWithCPPGeometryVariant: [self cppPolygonWithGeoJSONCoordinates:coordinates]];
+        self = [super initWithCPPGeometryVariant: [self cppPolygonWithGeoJSONCoordinates:coordinates]];
+        return self;
     }
 
-    - (NSDictionary *)toGeoJSONGeometry {
+    - (NSDictionary *) toGeoJSONGeometry {
         return @{@"type": @"Polygon", @"coordinates": [self geoJSONCoordinatesWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant)]};
     }
 
-    - (NSArray *)mkMapOverlays {
+    - (NSArray *) mkMapOverlays {
         return @[[self mkOverlayWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant)]];
     }
 

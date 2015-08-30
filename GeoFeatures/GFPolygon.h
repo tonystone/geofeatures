@@ -54,7 +54,7 @@
     * }
     * @endcode
     */
-    - (id) initWithWKT:(NSString *)wkt;
+    - (instancetype) initWithWKT:(NSString *)wkt;
 
     /**
     * Initialize this geometry with the given jsonDictionary.
@@ -90,6 +90,6 @@
     * @endcode
     * @endparblock
     */
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
 @end
