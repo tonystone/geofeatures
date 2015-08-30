@@ -2,6 +2,7 @@
 *   GFBox.h
 *
 *   Copyright 2015 The Climate Corporation
+*   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
 *   you may not use this file except in compliance with the License.
@@ -16,6 +17,9 @@
 *   limitations under the License.
 *
 *   Created by Tony Stone on 6/4/15.
+*
+*  MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
+*
 */
 
 #import <Foundation/Foundation.h>
@@ -37,7 +41,7 @@
     /**
     * Initialize this GFBox with 2 points representing the min and max point in the box.
     */
-    - (id) initWithMinCorner: (GFPoint *) minCorner maxCorner: (GFPoint *) maxCorner;
+    - (instancetype) initWithMinCorner: (GFPoint *) minCorner maxCorner: (GFPoint *) maxCorner;
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
@@ -66,7 +70,7 @@
     * }
     * @endcode
     */
-    - (id) initWithWKT:(NSString *)wkt;
+    - (instancetype) initWithWKT:(NSString *)wkt;
 
     /**
     * Initialize this geometry with the given jsonDictionary.
@@ -101,7 +105,7 @@
     * @endcode
     * @endparblock
     */
-    - (id) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
     /**
     * @returns The minCorner GFPoint from this GFBox

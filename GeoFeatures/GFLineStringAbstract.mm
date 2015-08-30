@@ -41,14 +41,14 @@ namespace gf = geofeatures::internal;
 
 @implementation GFLineStringAbstract (Protected)
 
-    - (id) init {
+    - (instancetype) init {
         NSAssert(![[self class] isMemberOfClass: [GFLineStringAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
 
 #pragma clang diagnostic pop
 
-    - (gf::LineString)cppLineStringWithGeoJSONCoordinates:(NSArray *)coordinates {
+    - (gf::LineString) cppLineStringWithGeoJSONCoordinates:(NSArray *)coordinates {
 
         try {
             //
@@ -80,7 +80,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (NSArray *)geoJSONCoordinatesWithCPPLineString: (const gf::LineString &) linestring  {
+    - (NSArray *) geoJSONCoordinatesWithCPPLineString: (const gf::LineString &) linestring  {
 
         NSMutableArray * points = [[NSMutableArray alloc] init];
 
@@ -97,7 +97,7 @@ namespace gf = geofeatures::internal;
         return points;
     }
 
-    - (id <MKOverlay>)mkOverlayWithCPPLineString: (const gf::LineString &) linestring {
+    - (id <MKOverlay>) mkOverlayWithCPPLineString: (const gf::LineString &) linestring {
 
         MKPolyline * mkPolyline = nil;
 

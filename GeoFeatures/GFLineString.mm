@@ -40,7 +40,7 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (id)initWithWKT:(NSString *)wkt {
+    - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
@@ -55,7 +55,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
         id coordinates = jsonDictionary[@"coordinates"];
@@ -77,7 +77,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (NSArray *)mkMapOverlays {
+    - (NSArray *) mkMapOverlays {
         try {
 
             return @[[self mkOverlayWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]];

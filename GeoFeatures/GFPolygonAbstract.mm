@@ -41,14 +41,14 @@ namespace gf = geofeatures::internal;
 
 @implementation GFPolygonAbstract (Protected)
 
-    - (id) init {
+    - (instancetype) init {
         NSAssert(![[self class] isMemberOfClass: [GFPolygonAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
 
 #pragma clang diagnostic pop
 
-    - (gf::Polygon)cppPolygonWithGeoJSONCoordinates:(NSArray *)coordinates {
+    - (gf::Polygon) cppPolygonWithGeoJSONCoordinates:(NSArray *)coordinates {
 
         //
         // Note: Coordinates of a Polygon are an array of
@@ -106,7 +106,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (NSArray *)geoJSONCoordinatesWithCPPPolygon: (const gf::Polygon &) polygon  {
+    - (NSArray *) geoJSONCoordinatesWithCPPPolygon: (const gf::Polygon &) polygon  {
 
         NSMutableArray * rings = [[NSMutableArray alloc] init];
 
@@ -152,7 +152,7 @@ namespace gf = geofeatures::internal;
         return rings;
     }
 
-    - (id <MKOverlay>)mkOverlayWithCPPPolygon: (const gf::Polygon &) polygon {
+    - (id <MKOverlay>) mkOverlayWithCPPPolygon: (const gf::Polygon &) polygon {
 
         MKPolygon * mkPolygon = nil;
 

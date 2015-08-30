@@ -163,7 +163,7 @@ struct GFMembers;
     * @endcode
     *
     */
-    + (GFGeometry *)geometryWithWKT:(NSString *)wkt;
+    + (instancetype) geometryWithWKT:(NSString *)wkt;
 
     /**
     *
@@ -229,7 +229,7 @@ struct GFMembers;
     *
     * @throws NSException This method will throw an exception if the geo json is invalid.
     */
-    + (GFGeometry *) geometryWithGeoJSONGeometry: (NSDictionary *) geoJSONGeometryDictionary;
+    + (instancetype) geometryWithGeoJSONGeometry: (NSDictionary *) geoJSONGeometryDictionary;
 
     /** Converts the Geometry to a GeoJSON object.
     *

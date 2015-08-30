@@ -44,7 +44,7 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (id)initWithWKT:(NSString *)wkt {
+    - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
         try {
@@ -59,7 +59,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (id)initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
         id coordinates = jsonDictionary[@"coordinates"];
