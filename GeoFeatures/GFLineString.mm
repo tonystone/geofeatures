@@ -48,11 +48,12 @@ namespace gf = geofeatures::internal;
 
             boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], lineString);
 
-            return [super initWithCPPGeometryVariant: lineString];
+            self = [super initWithCPPGeometryVariant: lineString];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
     }
 
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
@@ -64,7 +65,8 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName:@"Invalid GeoJSON" reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
         }
 
-        return [super initWithCPPGeometryVariant: [self cppLineStringWithGeoJSONCoordinates: jsonDictionary[@"coordinates"]]];
+        self =  [super initWithCPPGeometryVariant: [self cppLineStringWithGeoJSONCoordinates: jsonDictionary[@"coordinates"]]];
+        return self;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
