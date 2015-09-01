@@ -90,6 +90,11 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
     }
 
+    - (void) testToGeoJSONGeometry {
+
+        XCTAssertEqualObjects([geometry1a toGeoJSONGeometry], [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]);
+    }
+
     - (void) testDescription {
 
         // Currently we only check if it returns something and its not nill

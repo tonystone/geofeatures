@@ -26,7 +26,7 @@
 
 static NSString * geometry1JSONString = @"{ \"type\": \"Polygon\","
         "    \"coordinates\": ["
-        "      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0, 0.0] ],"
+        "      [ [100.0, 0.0], [200.0, 100.0],[200.0, 0.0], [100.0, 1.0], [100.0, 0.0] ],"
         "      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2] ]"
         "      ]"
         "   }";
@@ -87,6 +87,11 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
 
         XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+    }
+
+    - (void) testToGeoJSONGeometry {
+
+        XCTAssertEqualObjects([geometry1a toGeoJSONGeometry], [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]);
     }
 
     - (void) testDescription {
