@@ -99,7 +99,7 @@ namespace gf = geofeatures::internal;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return @{@"type": @"MultiPolygon", @"coordinates": polygons};
+        return @{@"type": @"MultiPoint", @"coordinates": polygons};
     }
 
     - (NSArray *)mkMapOverlays {
