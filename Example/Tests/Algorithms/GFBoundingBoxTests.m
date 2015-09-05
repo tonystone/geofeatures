@@ -26,12 +26,11 @@
 
 bool closeAtTolerance (double left, double right, double tolerance);
 
-#define BoundingBoxTest(wkt, x1, y1, x2, y2) XCTAssertTrue([self checkValidBoundingBox: (wkt) minX: x1 minY: y1 maxX: x2 maxY: y2])
+#define BoundingBoxTest(T, wkt, x1, y1, x2, y2) XCTAssertTrue([self checkValidBoundingBox: ([[T alloc] initWithWKT: (wkt)]) minX: x1 minY: y1 maxX: x2 maxY: y2])
 
 @implementation GFBoundingBoxTests
 
-    - (BOOL) checkValidBoundingBox: (NSString *) wkt minX: (double) minX minY: (double) minY maxX: (double) maxX maxY: (double) maxY {
-        GFGeometry * geometry = [GFGeometry geometryWithWKT: wkt];
+    - (BOOL) checkValidBoundingBox: (GFGeometry *) geometry minX: (double) minX minY: (double) minY maxX: (double) maxX maxY: (double) maxY {
 
         GFBox * boundingBox = [geometry boundingBox];
 
@@ -47,20 +46,20 @@ bool closeAtTolerance (double left, double right, double tolerance);
     }
 
     - (void) testPoint {
-        BoundingBoxTest(@"POINT(1 1)", 1, 1, 1, 1);
+        BoundingBoxTest(GFPoint, @"POINT(1 1)", 1, 1, 1, 1);
     }
 
     - (void) testBox {
-        BoundingBoxTest(@"BOX(1 1,3 3)", 1, 1, 3, 3);
+        BoundingBoxTest(GFBox, @"BOX(1 1,3 3)", 1, 1, 3, 3);
     }
 
     - (void) testLineString {
-        BoundingBoxTest(@"LINESTRING(1 1,2 2)", 1,  1, 2, 2);
+        BoundingBoxTest(GFLineString, @"LINESTRING(1 1,2 2)", 1,  1, 2, 2);
     }
 
     - (void) testPolygon {
-        BoundingBoxTest(@"POLYGON((1 1,1 3,3 3,3 1,1 1))", 1, 1, 3, 3);
-        BoundingBoxTest(@"POLYGON((4 1,0 7,7 9,4 1))", 0, 1, 7, 9);
+        BoundingBoxTest(GFPolygon, @"POLYGON((1 1,1 3,3 3,3 1,1 1))", 1, 1, 3, 3);
+        BoundingBoxTest(GFPolygon, @"POLYGON((4 1,0 7,7 9,4 1))", 0, 1, 7, 9);
     }
 
 @end

@@ -24,39 +24,39 @@
 @interface GFPerimeterTests : XCTestCase
 @end
 
-#define PerimeterTest(input,expected) XCTAssertEqual([[GFGeometry geometryWithWKT: (input)] perimeter], (expected))
+#define PerimeterTest(T,input,expected) XCTAssertEqual([[[T alloc] initWithWKT: (input)] perimeter], (expected))
 
 @implementation GFPerimeterTests
 
     - (void) testPoint {
-        PerimeterTest(@"POINT(0 0)", 0.0);
-        PerimeterTest(@"POINT(1 1)", 0.0);
-        PerimeterTest(@"POINT EMPTY", 0.0);
+        PerimeterTest(GFPoint, @"POINT(0 0)", 0.0);
+        PerimeterTest(GFPoint, @"POINT(1 1)", 0.0);
+        PerimeterTest(GFPoint, @"POINT EMPTY", 0.0);
     }
 
     - (void) testMultiPoint {
-        PerimeterTest(@"MULTIPOINT(0 0,1 1)", 0.0);
-        PerimeterTest(@"MULTIPOINT EMPTY", 0.0);
+        PerimeterTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", 0.0);
+        PerimeterTest(GFMultiPoint, @"MULTIPOINT EMPTY", 0.0);
     }
 
     - (void) testLineString {
-        PerimeterTest(@"LINESTRING(0 0,1 1)", 0.0);
-        PerimeterTest(@"LINESTRING EMPTY", 0.0);
+        PerimeterTest(GFLineString, @"LINESTRING(0 0,1 1)", 0.0);
+        PerimeterTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
 
     - (void) testMultiLineString {
-        PerimeterTest(@"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 0.0);
-        PerimeterTest(@"MULTILINESTRING EMPTY", 0.0);
+        PerimeterTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 0.0);
+        PerimeterTest(GFMultiLineString, @"MULTILINESTRING EMPTY", 0.0);
     }
 
     - (void) testPolygon {
-        PerimeterTest(@"POLYGON((0 0,0 4,4 4,4 0,0 0),(1 1,2 1,2 2,1 2,1 1))", 20);
-        PerimeterTest(@"POLYGON EMPTY", 0.0);
+        PerimeterTest(GFPolygon, @"POLYGON((0 0,0 4,4 4,4 0,0 0),(1 1,2 1,2 2,1 2,1 1))", 20);
+        PerimeterTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
     - (void) testMultiPolygon {
-        PerimeterTest(@"MULTIPOLYGON(((0 0,0 1,1 0,0 0)))", 1.0 + 1.0 + sqrt(2.0));
-        PerimeterTest(@"MULTIPOLYGON EMPTY", 0.0);
+        PerimeterTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 1,1 0,0 0)))", 1.0 + 1.0 + sqrt(2.0));
+        PerimeterTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", 0.0);
     }
 
 
