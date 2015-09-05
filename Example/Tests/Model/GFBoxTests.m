@@ -1,5 +1,5 @@
 /*
-*   GFGeometryBoxTests.m
+*   GFBoxBoxTests.m
 *
 *   Copyright 2015 Tony Stone
 *
@@ -41,9 +41,9 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
 
         NSString * geoJSONGeometryName;
 
-        GFGeometry * geometry1a;
-        GFGeometry * geometry1b;
-        GFGeometry * geometry2;
+        GFBox * geometry1a;
+        GFBox * geometry1b;
+        GFBox * geometry2;
     }
 
     - (void)setUp {
@@ -52,9 +52,9 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         expectedClass       = NSClassFromString( @"GFBox");
         geoJSONGeometryName = @"Box";
         
-        geometry1a = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry1b = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry2  = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry2JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
+        geometry1a = [[GFBox alloc] initWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
+        geometry1b = [[GFBox alloc] initWithGeoJSONGeometry:[NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
+        geometry2  = [[GFBox alloc] initWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry2JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
     }
 
     - (void)tearDown {
@@ -81,7 +81,7 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
 
         NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
 
-        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+        XCTAssertThrowsSpecificNamed([GFBox geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
     }
 
     - (void) testDescription {
