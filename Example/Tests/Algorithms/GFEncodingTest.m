@@ -24,13 +24,11 @@
 @interface GFEncodingTest : XCTestCase
 @end
 
-#define EncodingTest(wkt) XCTAssertEqualObjects([self encodeDecodeWithWKT: (wkt)], (wkt))
+#define EncodingTest(T,wkt) XCTAssertEqualObjects([self encodeDecode: [[T alloc] initWithWKT: (wkt)]], (wkt))
 
 @implementation GFEncodingTest
 
-    - (NSString *) encodeDecodeWithWKT: (NSString *) wkt {
-        
-        GFGeometry *inputGeometry = [GFGeometry geometryWithWKT: wkt];
+    - (NSString *) encodeDecode: (GFGeometry *) inputGeometry {
         
         NSMutableData * archive = [[NSMutableData alloc] init];
         NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:archive];
