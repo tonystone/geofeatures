@@ -3,6 +3,11 @@ xcode_workspace: Example/GeoFeatures.xcworkspace
 xcode_scheme: GeoFeatures-Example
 osx_image: xcode6.4
 xcode_sdk: iphonesimulator8.4
-script: build test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+before_install:
+    - brew update
+    - brew install xctool
+script:
+  - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-Example \
+      build test -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 after_success:
   - bash <(curl -s https://codecov.io/bash)
