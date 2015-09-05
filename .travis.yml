@@ -4,10 +4,11 @@ xcode_scheme: GeoFeatures-Example
 osx_image: xcode6.4
 xcode_sdk: iphonesimulator8.4
 before_install:
+    - brew uninstall xctool
     - brew update
     - brew install xctool
 script:
   - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-Example \
-      build test -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+      -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
