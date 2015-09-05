@@ -4,8 +4,6 @@ xcode_scheme: GeoFeatures-Example
 osx_image: xcode6.4
 xcode_sdk: iphonesimulator8.4
 before_install:
-    - brew uninstall xctool
-    - brew update
     - brew install xctool
 script:
   - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-Example \
