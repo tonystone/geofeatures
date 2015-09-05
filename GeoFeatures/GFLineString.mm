@@ -72,7 +72,7 @@ namespace gf = geofeatures::internal;
     - (NSDictionary *) toGeoJSONGeometry {
         try {
 
-            return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]};
+            return @{@"type": @"LineString", @"coordinates": [self geoJSONCoordinatesWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]};
             
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];

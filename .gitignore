@@ -24,3 +24,17 @@ DerivedData
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 #Pods/
+
+#####
+# OS X temporary files that should never be committed
+#
+.DS_Store
+.Trashes
+*.swp
+
+#####
+# JetBrains ApCode
+#
+## Directory-based project format:
+.idea/
+*.iml
