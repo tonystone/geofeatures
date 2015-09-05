@@ -24,42 +24,41 @@
 @interface GFIsValidTests : XCTestCase
 @end
 
-#define IsValidTest(input,expected) XCTAssertEqual([[GFGeometry geometryWithWKT: (input)] isValid], (expected))
+#define IsValidTest(T, input,expected) XCTAssertEqual([[[T alloc] initWithWKT: (input)] isValid], (expected))
 
 @implementation GFIsValidTests
 
 
     - (void) testPoint {
-        IsValidTest(@"POINT(0 0)", true);
-        IsValidTest(@"POINT(1 1)", true);
-        IsValidTest(@"POINT EMPTY", true);
+        IsValidTest(GFPoint, @"POINT(0 0)", true);
+        IsValidTest(GFPoint, @"POINT(1 1)", true);
+        IsValidTest(GFPoint, @"POINT EMPTY", true);
     }
 
     - (void) testMultiPoint {
-        IsValidTest(@"MULTIPOINT(0 0,1 1)", true);
-        IsValidTest(@"MULTIPOINT EMPTY", true);
+        IsValidTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", true);
+        IsValidTest(GFMultiPoint, @"MULTIPOINT EMPTY", true);
     }
 
     - (void) testLineString {
-        IsValidTest(@"LINESTRING(0 0,1 1)", true);
-        IsValidTest(@"LINESTRING EMPTY", false);
+        IsValidTest(GFLineString, @"LINESTRING(0 0,1 1)", true);
+        IsValidTest(GFLineString, @"LINESTRING EMPTY", false);
     }
 
     - (void) testMultiLineString {
-        IsValidTest(@"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", true);
-        IsValidTest(@"MULTILINESTRING EMPTY", true);
+        IsValidTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", true);
+        IsValidTest(GFMultiLineString, @"MULTILINESTRING EMPTY", true);
     }
 
     - (void) testPolygon {
-        IsValidTest(@"POLYGON((0 0,0 7,4 2,2 0,0 0))", true);
-        IsValidTest(@"POLYGON EMPTY", false);
+        IsValidTest(GFPolygon, @"POLYGON((0 0,0 7,4 2,2 0,0 0))", true);
+        IsValidTest(GFPolygon, @"POLYGON EMPTY", false);
     }
 
-
     - (void) testMultiPolygon {
-        IsValidTest(@"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((0 0,0 7,4 2,2 0,0 0)))", false);
-        IsValidTest(@"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((10 10,10 17,14 12,12 10,10 10)))", true);
-        IsValidTest(@"MULTIPOLYGON EMPTY", true);
+        IsValidTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((0 0,0 7,4 2,2 0,0 0)))", false);
+        IsValidTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((10 10,10 17,14 12,12 10,10 10)))", true);
+        IsValidTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", true);
     }
 
 @end
