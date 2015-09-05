@@ -70,5 +70,4 @@
         WKTTest(GFGeometryCollection, @"GEOMETRYCOLLECTION()");
         WKTTest2(GFGeometryCollection, @"GEOMETRYCOLLECTION EMPTY", @"GEOMETRYCOLLECTION()");
     }
-
 @end
