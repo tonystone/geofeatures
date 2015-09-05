@@ -37,8 +37,6 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         "   }";
 
 @implementation GFBoxTests {
-        Class expectedClass;
-
         NSString * geoJSONGeometryName;
 
         GFBox * geometry1a;
@@ -49,7 +47,6 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
     - (void)setUp {
         [super setUp];
 
-        expectedClass       = NSClassFromString( @"GFBox");
         geoJSONGeometryName = @"Box";
         
         geometry1a = [[GFBox alloc] initWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
@@ -58,8 +55,6 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
     }
 
     - (void)tearDown {
-
-        expectedClass       = nil;
         geoJSONGeometryName = nil;
         
         geometry1a = nil;
@@ -73,8 +68,8 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
         XCTAssertNotNil(geometry1a);
         XCTAssertNotNil(geometry2);
 
-        XCTAssertEqual([geometry1a class], expectedClass);
-        XCTAssertEqual([geometry2 class], expectedClass);
+        XCTAssertEqual([geometry1a class], [GFBox class]);
+        XCTAssertEqual([geometry2 class], [GFBox class]);
     }
 
     - (void)testFailedConstruction {
