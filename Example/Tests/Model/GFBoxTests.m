@@ -24,75 +24,55 @@
 @interface GFBoxTests : XCTestCase
 @end
 
-static NSString * geometry1JSONString = @"{ \"type\": \"Box\", "
-        "    \"coordinates\": [[100.0, 0.0],[101.0, 1.0]] "
-        "}";
+static NSDictionary * geoJSON1;
+static NSDictionary * geoJSON2;
+static NSDictionary * invalidGeoJSON;
 
-static NSString * geometry2JSONString = @"{ \"type\": \"Box\", "
-        "    \"coordinates\": [[103.0, 2.0],[110.0, 4.0]] "
-        "}";
+//
+// Static constructor
+//
+static __attribute__((constructor(101),used,visibility("internal"))) void staticConstructor (void) {
+    geoJSON1       = @{@"type": @"Box", @"coordinates": @[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]]};
+    geoJSON2       = @{@"type": @"Box", @"coordinates": @[@[@(103.0), @(2.0)],@[@(110.0), @(4.0)]]};
+    invalidGeoJSON = @{@"type": @"Box", @"coordinates": @{}};
+}
 
-static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
-        "    \"coordinates\": {}"
-        "   }";
-
-@implementation GFBoxTests {
-        NSString * geoJSONGeometryName;
-
-        GFBox * geometry1a;
-        GFBox * geometry1b;
-        GFBox * geometry2;
-    }
-
-    - (void)setUp {
-        [super setUp];
-
-        geoJSONGeometryName = @"Box";
-        
-        geometry1a = [[GFBox alloc] initWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry1b = [[GFBox alloc] initWithGeoJSONGeometry:[NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry2  = [[GFBox alloc] initWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry2JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-    }
-
-    - (void)tearDown {
-        geoJSONGeometryName = nil;
-        
-        geometry1a = nil;
-        geometry2           = nil;
-
-        [super tearDown];
-    }
+@implementation GFBoxTests
 
     - (void)testConstruction {
 
-        XCTAssertNotNil(geometry1a);
-        XCTAssertNotNil(geometry2);
+        XCTAssertNoThrow([[GFBox alloc] init]);
+        XCTAssertNotNil([[GFBox alloc] init]);
 
-        XCTAssertEqual([geometry1a class], [GFBox class]);
-        XCTAssertEqual([geometry2 class], [GFBox class]);
+        XCTAssertNoThrow([[GFBox alloc] initWithMinCorner: [[GFPoint alloc] initWithX:100.0 y: 0.0] maxCorner: [[GFPoint alloc] initWithX: 101.0 y:1.0]]);
+        XCTAssertNotNil([[GFBox alloc] initWithMinCorner: [[GFPoint alloc] initWithX:100.0 y: 0.0] maxCorner: [[GFPoint alloc] initWithX: 101.0 y:1.0]]);
+        
+        XCTAssertNoThrow([[GFBox alloc] initWithGeoJSONGeometry: geoJSON1]);
+        XCTAssertNotNil([[GFBox alloc] initWithGeoJSONGeometry: geoJSON1]);
     }
 
     - (void)testFailedConstruction {
+        XCTAssertThrowsSpecificNamed([[GFBox alloc] initWithGeoJSONGeometry: invalidGeoJSON], NSException, @"Invalid GeoJSON");
+    }
 
-        NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
-
-        XCTAssertThrowsSpecificNamed([GFBox geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+    - (void) testToGeoJSONGeometry  {
+        XCTAssertEqualObjects([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
     - (void) testDescription {
 
         // Currently we only check if it returns something and its not nill
 
-        XCTAssertNotNil([geometry1a description]);
-        XCTAssertNotNil([geometry2 description]);
+        XCTAssertNotNil([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] description]);
+        XCTAssertNotNil([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON2] description]);
 
-        XCTAssertTrue ([[geometry1a description] length] > 0);
-        XCTAssertTrue ([[geometry2 description] length] > 0);
+        XCTAssertTrue ([[[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] description] length] > 0);
+        XCTAssertTrue ([[[[GFBox alloc] initWithGeoJSONGeometry: geoJSON2] description] length] > 0);
     }
 
     - (void) testMapOverlays {
 
-        NSArray * mapOverlays = [geometry1a mkMapOverlays];
+        NSArray * mapOverlays = [[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] mkMapOverlays];
 
         XCTAssertNotNil (mapOverlays);
         XCTAssertTrue   ([mapOverlays count] == 1);
