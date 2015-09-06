@@ -21,93 +21,56 @@
 #import <GeoFeatures/GeoFeatures.h>
 #import <XCTest/XCTest.h>
 
+static NSDictionary * geoJSON1;
+static NSDictionary * geoJSON2;
+static NSDictionary * invalidGeoJSON;
+
+//
+// Static constructor
+//
+static __attribute__((constructor(101),used,visibility("internal"))) void staticConstructor (void) {
+    geoJSON1       = @{@"type": @"Polygon",
+                      @"coordinates": @[
+                        @[ @[@(100.0), @(0.0)], @[@(200.0), @(100.0)],@[@(200.0), @(0.0)], @[@(100.0), @(1.0)], @[@(100.0), @(0.0)] ],
+                        @[ @[@(100.2), @(0.2)], @[@(100.8), @(0.2)],  @[@(100.8), @(0.8)], @[@(100.2), @(0.8)], @[@(100.2), @(0.2)] ]
+                        ]
+                    };
+    geoJSON2       = @{@"type": @"Polygon",
+                         @"coordinates": @[
+                            @[ @[@(98.0), @(0.0)], @[@(101.0), @(1.0)],@[@(101.0), @(0.0)], @[@(98.0), @(1.0)], @[@(98.0), @(0.0)] ]
+                        ]
+                    };
+    invalidGeoJSON = @{@"type": @"Polygon", @"coordinates": @{}};
+}
+
 @interface GFPolygonTests : XCTestCase
 @end
 
-static NSString * geometry1JSONString = @"{ \"type\": \"Polygon\","
-        "    \"coordinates\": ["
-        "      [ [100.0, 0.0], [200.0, 100.0],[200.0, 0.0], [100.0, 1.0], [100.0, 0.0] ],"
-        "      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2] ]"
-        "      ]"
-        "   }";
 
-static NSString * geometry2JSONString = @"{ \"type\": \"Polygon\","
-        "    \"coordinates\": ["
-        "      [ [98.0, 0.0], [101.0, 0.0], [101.0, 1.0], [98.0, 1.0], [98.0, 0.0] ]"
-        "      ]"
-        "   }";
-
-static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
-        "    \"coordinates\": {}"
-        "   }";
-
-@implementation GFPolygonTests {
-        Class expectedClass;
-
-        NSString * geoJSONGeometryName;
-
-        GFGeometry * geometry1a;
-        GFGeometry * geometry1b;
-        GFGeometry * geometry2;
-    }
-
-    - (void)setUp {
-        [super setUp];
-
-        expectedClass       = NSClassFromString( @"GFPolygon");
-        geoJSONGeometryName = @"Polygon";
-        
-        geometry1a = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry1b = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry2  = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry2JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-    }
-
-    - (void)tearDown {
-
-        expectedClass       = nil;
-        geoJSONGeometryName = nil;
-        
-        geometry1a = nil;
-        geometry2           = nil;
-
-        [super tearDown];
-    }
+@implementation GFPolygonTests
 
     - (void)testConstruction {
 
-        XCTAssertNotNil(geometry1a);
-        XCTAssertNotNil(geometry2);
-
-        XCTAssertEqual([geometry1a class], expectedClass);
-        XCTAssertEqual([geometry2 class], expectedClass);
+        XCTAssertNotNil([[GFPolygon alloc] init]);
+        XCTAssertNotNil([[GFPolygon alloc] init]);
     }
 
     - (void)testFailedConstruction {
-
-        NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
-
-        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+        XCTAssertThrowsSpecificNamed([[GFPolygon alloc] initWithGeoJSONGeometry: invalidGeoJSON], NSException, @"Invalid GeoJSON");
     }
 
     - (void) testToGeoJSONGeometry {
-
-        XCTAssertEqualObjects([geometry1a toGeoJSONGeometry], [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]);
+        XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
     - (void) testDescription {
-
-        // Currently we only check if it returns something and its not nill
-
-        XCTAssertNotNil([geometry1a description]);
-        XCTAssertNotNil([geometry2 description]);
-
-        XCTAssertTrue ([[geometry1a description] length] > 0);
-        XCTAssertTrue ([[geometry2 description] length] > 0);
+        XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1] description], @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))");
+        XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON2] description], @"POLYGON((98 0,101 1,101 0,98 1,98 0))");
     }
 
     - (void) testMapOverlays {
     
-        NSArray * mapOverlays = [geometry1a mkMapOverlays];
+        NSArray * mapOverlays = [[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1]  mkMapOverlays];
         
         XCTAssertNotNil (mapOverlays);
         XCTAssertTrue   ([mapOverlays count] == 1);
