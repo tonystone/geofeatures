@@ -66,8 +66,8 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertNotNil([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] description]);
         XCTAssertNotNil([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON2] description]);
 
-        XCTAssertTrue ([[[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] description] length] > 0);
-        XCTAssertTrue ([[[[GFBox alloc] initWithGeoJSONGeometry: geoJSON2] description] length] > 0);
+        XCTAssertEqualObjects([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] description], @"POLYGON((100 0,100 1,101 1,101 0,100 0))");
+        XCTAssertEqualObjects([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON2] description], @"POLYGON((103 2,103 4,110 4,110 2,103 2))");
     }
 
     - (void) testMapOverlays {
