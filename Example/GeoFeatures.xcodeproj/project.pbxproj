@@ -11,6 +11,7 @@
 		3669818022E70EFAFC22BCD0 /* GFWKTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366981225BFB9BEBE9A3B512 /* GFWKTTests.m */; };
 		36698207A19EC8CE74AB2FAF /* GFWithinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698D1BBEB6C10EB3476B2C /* GFWithinTests.m */; };
 		3669821F3CEFEF4B6F458D14 /* GFMultiPolygonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669866E55BBAB7FE20F06C7 /* GFMultiPolygonTests.m */; };
+		3669828B7E7F987193664354 /* NSString+CaseInsensitiveHasPrefixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698B9400DAEAE50985F8B4 /* NSString+CaseInsensitiveHasPrefixTests.m */; };
 		366982BCCAC434E702E20896 /* GFLineStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698CCB90E1B4DC9F9DD6AF /* GFLineStringTests.m */; };
 		366985E09B9633326DB82E12 /* GFIsValidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669818456264350A29F3AEB /* GFIsValidTests.m */; };
 		3669866AF010812E23F9F2EE /* GFPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698907141EECAB15ED39DF /* GFPointTests.m */; };
@@ -66,6 +67,7 @@
 		36698907141EECAB15ED39DF /* GFPointTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPointTests.m; sourceTree = "<group>"; };
 		366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMultiLineStringTests.m; sourceTree = "<group>"; };
 		36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeometryCollectionTests.m; sourceTree = "<group>"; };
+		36698B9400DAEAE50985F8B4 /* NSString+CaseInsensitiveHasPrefixTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CaseInsensitiveHasPrefixTests.m"; path = "Internal/NSString+CaseInsensitiveHasPrefixTests.m"; sourceTree = "<group>"; };
 		36698C3FE1385E161EB5A0A7 /* GFCentroidTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCentroidTests.m; sourceTree = "<group>"; };
 		36698CCB90E1B4DC9F9DD6AF /* GFLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFLineStringTests.m; sourceTree = "<group>"; };
 		36698D1BBEB6C10EB3476B2C /* GFWithinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFWithinTests.m; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EAA463711B9E554B00ADEC86 /* Internal */,
 				36698F24E052FB822149C2B9 /* Model */,
 				36698F1E73C01FB683A2C509 /* Algorithms */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
@@ -260,6 +263,14 @@
 				22529FD0A77AEC89DC728E5F /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		EAA463711B9E554B00ADEC86 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				36698B9400DAEAE50985F8B4 /* NSString+CaseInsensitiveHasPrefixTests.m */,
+			);
+			name = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +467,7 @@
 				3669821F3CEFEF4B6F458D14 /* GFMultiPolygonTests.m in Sources */,
 				36698FD5E108DFA674C763AA /* GFMultiLineStringTests.m in Sources */,
 				3669808E58860FC07296186F /* GFGeometryCollectionTests.m in Sources */,
+				3669828B7E7F987193664354 /* NSString+CaseInsensitiveHasPrefixTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
