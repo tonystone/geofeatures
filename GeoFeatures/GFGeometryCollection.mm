@@ -125,7 +125,7 @@ namespace geofeatures {
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), *(geometry.begin()));
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.front());
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -140,7 +140,7 @@ namespace geofeatures {
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), *(geometry.end()));
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.back());
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
