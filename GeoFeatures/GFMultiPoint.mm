@@ -36,6 +36,8 @@ namespace gf = geofeatures::internal;
 
 @implementation GFMultiPoint
 
+#pragma mark - Construction
+
     - (instancetype) init {
         self = [super initWithCPPGeometryVariant: gf::MultiPoint()];
         return self;
@@ -87,21 +89,65 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
+#pragma mark - Querying a GFMultiPoint
+
+    - (NSUInteger)count {
 
         try {
             const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
-            }
+            return multiPoint.size();
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
     }
 
+    - (GFPoint *) geometryAtIndex: (NSUInteger) index {
+
+        try {
+            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+
+            unsigned long size = multiPoint.size();
+
+            if (size == 0 || index > (size -1)) {
+                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
+            }
+
+            return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint.at(index)];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFPoint *) firstGeometry {
 
         try {
             const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
 
+            if (multiPoint.size() == 0) {
+                return nil;
             }
+
+            return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint.front()];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFPoint *) lastGeometry {
+
+        try {
+            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+
+            if (multiPoint.size() == 0) {
+                return nil;
+            }
+
+            return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint.back()];
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }

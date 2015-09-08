@@ -88,6 +88,42 @@
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    /** The number of GFPoint instances in this collection.
+    *
+    * @returns The count of GDGeometry instances this collection contains.
+    *
+    * @since 1.1.0
+    */
+    - (NSUInteger) count;
+
+    /** Returns the GFPoint located at the specified index.
+    *
+    * @param index - An index within the bounds of the collection.
+    *
+    * @returns The GFPoint located at index.
+    *
+    * @throws NSException, NSRangeException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+    *
+    * @since 1.1.0
+    */
+    - (GFPoint *) geometryAtIndex: (NSUInteger) index;
+
+    /** The first GFPoint in this collection.
+    *
+    * @returns The first GFPoint instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.1.0
+    */
+    - (GFPoint *) firstGeometry;
+
+    /** The last GFPoint in this collection.
+    *
+    * @returns The last GFPoint instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.1.0
+    */
+    - (GFPoint *) lastGeometry;
+
     /** Returns the point at the specified index.
      *
      * @param index An index within the bounds of the collection.
