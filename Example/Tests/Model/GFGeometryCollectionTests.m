@@ -29,6 +29,16 @@
     - (void)testConstruction {
         XCTAssertNoThrow([[GFGeometryCollection alloc] init]);
         XCTAssertNotNil([[GFGeometryCollection alloc] init]);
+        
+        XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: @[]]);
+        XCTAssertNotNil ([[GFGeometryCollection alloc] initWithArray: @[]]);
+
+
+        XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: (@[[[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],[[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"]])]);
+        XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithArray: (@[[[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],[[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"]])] toWKTString], @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))");
+
+        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: (@[ [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"]])], NSException, NSInvalidArgumentException);
+        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: @[[[NSObject alloc] init]]], NSException, NSInvalidArgumentException);
     }
 
     - (void) testDescription {
