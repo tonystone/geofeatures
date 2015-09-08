@@ -22,11 +22,10 @@
 *
 */
 
-#include "GFLineString.h"
-#include "GFLineStringAbstract+Protected.hpp"
+#include "GFLineString+Primitives.hpp"
+#include "GFGeometry+Protected.hpp"
 #include "GFPoint.h"
 
-#include "GFGeometry+Protected.hpp"
 #include "geofeatures/internal/LineString.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
@@ -65,29 +64,28 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName:@"Invalid GeoJSON" reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
         }
 
-        self =  [super initWithCPPGeometryVariant: [self cppLineStringWithGeoJSONCoordinates: jsonDictionary[@"coordinates"]]];
+        self = [super initWithCPPGeometryVariant: gf::GFLineString::lineStringWithGeoJSONCoordinates(coordinates)];
         return self;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        try {
 
-            return @{@"type": @"LineString", @"coordinates": [self geoJSONCoordinatesWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]};
-            
+        try {
+            return @{@"type": @"LineString", @"coordinates":  gf::GFLineString::geoJSONCoordinatesWithLineString(boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant))};
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
     }
 
     - (NSArray *) mkMapOverlays {
-        try {
 
-            return @[[self mkOverlayWithCPPLineString: boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant)]];
-            
+        try {
+            return @[gf::GFLineString::mkOverlayWithLineString(boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant))];
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
     }
 
 @end
-

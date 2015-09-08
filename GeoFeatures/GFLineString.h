@@ -23,10 +23,10 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GFLineStringAbstract.h"
+#import "GFGeometryCollection.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+// Forward declarations
+@class GFPoint;
 
 /**
  * @class       GFLineString
@@ -36,9 +36,7 @@
  * @author      Tony Stone
  * @date        6/14/15
  */
-@interface GFLineString : GFLineStringAbstract
-
-#pragma clang diagnostic pop
+@interface GFLineString : GFGeometryCollection
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
@@ -89,6 +87,65 @@
     * @endparblock
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+
+    /** The number of GFPoint instances in this collection.
+    *
+    * @returns The count of GDGeometry instances this collection contains.
+    *
+    * @since 1.1.0
+    */
+    - (NSUInteger) count;
+
+    /** Returns the GFPoint located at the specified index.
+    *
+    * @param index - An index within the bounds of the collection.
+    *
+    * @returns The GFPoint located at index.
+    *
+    * @throws NSException, NSRangeException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+    *
+    * @since 1.1.0
+    */
+    - (GFPoint *) geometryAtIndex: (NSUInteger) index;
+
+    /** The first GFPoint in this collection.
+    *
+    * @returns The first GFPoint instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.1.0
+    */
+    - (GFPoint *) firstGeometry;
+
+    /** The last GFPoint in this collection.
+    *
+    * @returns The last GFPoint instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.1.0
+    */
+    - (GFPoint *) lastGeometry;
+
+    /** Returns the point at the specified index.
+     *
+     * @param index An index within the bounds of the collection.
+     *
+     * @returns The point located at index.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFLineString * lineString = [[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"];
+     *
+     *    GFPoint * point1 = lineString[0];
+     *    GFPoint * point2 = lineString[1];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.1.0
+     */
+    - (id) objectAtIndexedSubscript: (NSUInteger) index;
 
 @end
 

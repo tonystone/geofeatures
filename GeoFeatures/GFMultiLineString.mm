@@ -24,12 +24,12 @@
 
 #import <MapKit/MapKit.h>
 #import "GFMultiLineString.h"
+#import "GFLineString.h"
 
-#include "GFLineStringAbstract+Protected.hpp"
+#include "GFLineString+Primitives.hpp"
 #include "GFGeometry+Protected.hpp"
 
 #include "geofeatures/internal/MultiLineString.hpp"
-#include "geofeatures/internal/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
@@ -82,7 +82,7 @@ namespace gf = geofeatures::internal;
 
         try {
             for (NSArray * lineString in coordinates) {
-                multiLineString.push_back([self cppLineStringWithGeoJSONCoordinates: lineString]);
+                multiLineString.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(lineString));
             }
 
         } catch (std::exception & e) {
@@ -93,34 +93,24 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (NSDictionary *)toGeoJSONGeometry {
-        NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
 
         try {
             const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
-                [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return @{@"type": @"MultiLineString", @"coordinates": lineStrings};
     }
 
-    - (NSArray *)mkMapOverlays {
-        NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
         try {
             const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
-                [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return mkPolygons;
     }
 
 #pragma mark - Indexed Subscripting
@@ -134,5 +124,40 @@ namespace gf = geofeatures::internal;
 
         return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString[index]];
     }
+
+#pragma mark - GeoJSON Output
+
+    - (NSDictionary *)toGeoJSONGeometry {
+        NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
+
+        try {
+            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+                [lineStrings addObject: gf::GFLineString::geoJSONCoordinatesWithLineString(*it)];
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return @{@"type": @"MultiLineString", @"coordinates": lineStrings};
+    }
+
+#pragma mark - MapKit
+
+    - (NSArray *)mkMapOverlays {
+        NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
+
+        try {
+            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+                [mkPolygons addObject: gf::GFLineString::mkOverlayWithLineString(*it)];
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return mkPolygons;
+    }
+
 
 @end

@@ -23,11 +23,10 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GFLineString.h"
-#import "GFLineStringAbstract.h"
+#import "GFGeometryCollection.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+// Forward declarations
+@class GFLineString;
 
 /**
  * @class       GFMultiLineString
@@ -39,9 +38,7 @@
  * @author      Tony Stone
  * @date        6/4/15
  */
-@interface GFMultiLineString : GFLineStringAbstract
-
-#pragma clang diagnostic pop
+@interface GFMultiLineString : GFGeometryCollection
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
