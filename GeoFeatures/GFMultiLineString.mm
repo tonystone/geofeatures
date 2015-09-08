@@ -26,8 +26,8 @@
 #import "GFMultiLineString.h"
 #import "GFLineString.h"
 
-#include "GFLineString+Primitives.hpp"
 #include "GFGeometry+Protected.hpp"
+#include "GFLineString+Primitives.hpp"
 
 #include "geofeatures/internal/MultiLineString.hpp"
 
