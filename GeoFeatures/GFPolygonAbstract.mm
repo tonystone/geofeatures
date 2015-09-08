@@ -42,7 +42,7 @@ namespace gf = geofeatures::internal;
 @implementation GFPolygonAbstract (Protected)
 
     - (instancetype) init {
-        NSAssert(![[self class] isMemberOfClass: [GFPolygonAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
+        NSAssert(![self isMemberOfClass: [GFPolygonAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
 
