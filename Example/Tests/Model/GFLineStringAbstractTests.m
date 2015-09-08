@@ -1,7 +1,6 @@
 /*
-*   GFPolygonAbstract.mm
+*   GFLineStringAbstract.m
 *
-*   Copyright 2015 The Climate Corporation
 *   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,18 +15,26 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 *
-*   Created by Tony Stone on 6/6/15.
-*
-*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
-*
+*   Created by Tony Stone on 09/08/2015.
 */
-#import "GFPolygonAbstract.h"
 
-@implementation GFPolygonAbstract
+#import <GeoFeatures/GFLineStringAbstract.h>
+#import <XCTest/XCTest.h>
 
-    - (instancetype) init {
-        NSAssert(![self isMemberOfClass: [GFPolygonAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
+@interface GFLineStringAbstractTests : XCTestCase
+@end
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+@implementation GFLineStringAbstractTests
+
+    - (void)testConstruction {
+
+        XCTAssertThrows([[GFLineStringAbstract alloc] init]);
     }
 
 @end
+
+#pragma clang diagnostic pop
+
