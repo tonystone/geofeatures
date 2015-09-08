@@ -80,6 +80,8 @@
         XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION()"] lastGeometry], nil);
     }
 
+#pragma mark - Indexed Subscript Tests
+
     - (void) testObjectAtIndexedSubscript {
 
         GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"];
