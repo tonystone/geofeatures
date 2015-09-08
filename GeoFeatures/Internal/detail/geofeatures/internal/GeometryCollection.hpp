@@ -35,7 +35,6 @@
 #include "Ring.hpp"
 #include "Polygon.hpp"
 #include "MultiPolygon.hpp"
-#include "GeometryCollection.hpp"
 
 #include <boost/variant.hpp>
 #include <vector>
