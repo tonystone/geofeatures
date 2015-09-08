@@ -90,7 +90,7 @@ namespace geofeatures {
 
             for (GFGeometry * geometry in array) {
 
-                if ([geometry isKindOfClass: [GFGeometryCollection class]]) {
+                if ([geometry isMemberOfClass: [GFGeometryCollection class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  GFGeometryCollections can not contain other GFGeometryCollections.", NSStringFromClass([self class])] userInfo: nil];
                 }
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
