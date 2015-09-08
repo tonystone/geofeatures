@@ -22,11 +22,12 @@
 *
 */
 
-#import "GFMultiPolygon.h"
 #import <MapKit/MapKit.h>
+#import "GFMultiPolygon.h"
+#import "GFPolygon.h"
 
 #include "GFGeometry+Protected.hpp"
-#include "GFPolygonAbstract+Protected.hpp"
+#include "GFPolygon+Primitives.hpp"
 
 #include "geofeatures/internal/MultiPolygon.hpp"
 #include "geofeatures/internal/GeometryVariant.hpp"
@@ -89,7 +90,7 @@ namespace gf = geofeatures::internal;
 
         try {
             for (NSArray * polygon in coordinates) {
-                multiPolygon.push_back([self cppPolygonWithGeoJSONCoordinates: polygon]);
+                multiPolygon.push_back(gf::GFPolygon::polygonWithGeoJSONCoordinates(polygon));
             }
 
         } catch (std::exception & e) {
@@ -100,34 +101,23 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (NSDictionary *) toGeoJSONGeometry {
-        NSMutableArray * polygons = [[NSMutableArray alloc] init];
 
         try {
             const auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
 
-            for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
-                [polygons addObject: [self geoJSONCoordinatesWithCPPPolygon: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return @{@"type": @"MultiPolygon", @"coordinates": polygons};
     }
 
-    - (NSArray *) mkMapOverlays {
-        NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
-        
         try {
             const auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
 
-            for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
-                [mkPolygons addObject:[self mkOverlayWithCPPPolygon: (*it)]];
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return mkPolygons;
     }
 
 #pragma mark - Indexed Subscripting
@@ -140,6 +130,40 @@ namespace gf = geofeatures::internal;
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiPolygon.size()];
 
         return [[GFPolygon alloc] initWithCPPGeometryVariant: multiPolygon[index]];
+    }
+
+#pragma mark - GeoJSON Output
+
+    - (NSDictionary *) toGeoJSONGeometry {
+        NSMutableArray * polygons = [[NSMutableArray alloc] init];
+
+        try {
+            auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
+
+            for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+                [polygons addObject: gf::GFPolygon::geoJSONCoordinatesWithPolygon(*it)];
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return @{@"type": @"MultiPolygon", @"coordinates": polygons};
+    }
+
+#pragma mark - MapKit
+
+    - (NSArray *) mkMapOverlays {
+        NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
+        
+        try {
+            auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
+
+            for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+                [mkPolygons addObject: gf::GFPolygon::mkOverlayWithPolygon(*it)];
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return mkPolygons;
     }
 
 @end

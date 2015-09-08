@@ -23,10 +23,11 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GFPolygonAbstract.h"
+#import "GFGeometry.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+// Forward declarations
+@class GFRing;
+@class GFGeometryCollection;
 
 /**
  * @class       GFPolygon
@@ -36,9 +37,7 @@
  * @author      Tony Stone
  * @date        6/6/15
  */
-@interface GFPolygon : GFPolygonAbstract
-
-#pragma clang diagnostic pop
+@interface GFPolygon : GFGeometry
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.

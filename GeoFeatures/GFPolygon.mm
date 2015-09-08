@@ -26,9 +26,10 @@
 #import <MapKit/MapKit.h>
 
 #include "GFGeometry+Protected.hpp"
-#include "GFPolygonAbstract+Protected.hpp"
+#include "GFPolygon+Primitives.hpp"
 
 #include "geofeatures/internal/Polygon.hpp"
+#import "GFGeometryCollection.h"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
@@ -74,16 +75,16 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName:@"Invalid GeoJSON" reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
         }
 
-        self = [super initWithCPPGeometryVariant: [self cppPolygonWithGeoJSONCoordinates:coordinates]];
+        self = [super initWithCPPGeometryVariant: gf::GFPolygon::polygonWithGeoJSONCoordinates(coordinates)];
         return self;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        return @{@"type": @"Polygon", @"coordinates": [self geoJSONCoordinatesWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant)]};
+        return @{@"type": @"Polygon", @"coordinates": gf::GFPolygon::geoJSONCoordinatesWithPolygon(boost::polymorphic_strict_get <gf::Polygon>(_members->geometryVariant))};
     }
 
     - (NSArray *) mkMapOverlays {
-        return @[[self mkOverlayWithCPPPolygon: boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant)]];
+        return @[gf::GFPolygon::mkOverlayWithPolygon(boost::polymorphic_strict_get <gf::Polygon>(_members->geometryVariant))];
     }
 
 @end
