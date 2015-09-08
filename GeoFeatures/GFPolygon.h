@@ -91,4 +91,8 @@
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    - (GFRing *) outerRing;
+
+    - (GFGeometryCollection *) innerRings;
+
 @end

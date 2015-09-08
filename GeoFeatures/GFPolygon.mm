@@ -23,6 +23,7 @@
 */
 
 #import "GFPolygon.h"
+#import "GFRing.h"
 #import <MapKit/MapKit.h>
 
 #include "GFGeometry+Protected.hpp"
@@ -33,7 +34,31 @@
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
+
 namespace gf = geofeatures::internal;
+
+namespace geofeatures {
+    namespace internal {
+
+        class AddGeometry : public  boost::static_visitor<void> {
+
+        public:
+            inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
+
+            template <typename T>
+            void operator()(const T & v) const {
+                geometryCollection.push_back(v);
+            }
+
+            void operator()(const gf::GeometryCollection & v)  const {
+                ;   // Do nothing
+            }
+
+        private:
+            gf::GeometryCollection & geometryCollection;
+        };
+    }
+}
 
 /**
  * @class       GFPolygon
@@ -77,6 +102,41 @@ namespace gf = geofeatures::internal;
 
         self = [super initWithCPPGeometryVariant: gf::GFPolygon::polygonWithGeoJSONCoordinates(coordinates)];
         return self;
+    }
+
+    - (GFRing *) outerRing {
+        GFRing * ring = nil;
+
+        try {
+            const auto& polygon = boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant);
+
+            ring = [[GFRing alloc] initWithCPPGeometryVariant: polygon.outer()];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return ring;
+    }
+
+    - (GFGeometryCollection *) innerRings {
+        GFGeometryCollection * innerRings = nil;
+
+        try {
+            const auto& polygon = boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant);
+            const auto& inners  = polygon.inners();
+
+            gf::GeometryCollection geometryCollection;
+
+            for (auto it = inners.begin(); it != inners.end(); ++it) {
+                geometryCollection.push_back(*it);
+            }
+
+            innerRings = [[GFGeometryCollection alloc] initWithCPPGeometryVariant: geometryCollection];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return innerRings;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
