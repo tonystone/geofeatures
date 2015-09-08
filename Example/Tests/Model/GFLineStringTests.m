@@ -72,5 +72,52 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertTrue   ([polyline pointCount] == 2);
     }
 
+#pragma mark - Querying Tests
+
+    - (void) testCount {
+
+        XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] count], 0);
+        XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60)"] count], 1);
+        XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] count], 2);
+    }
+
+    - (void) testObjectAtIndex {
+
+        XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] geometryAtIndex: 0] toWKTString], @"POINT(40 60)");
+        XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] geometryAtIndex: 1] toWKTString], @"POINT(120 110)");
+
+        XCTAssertThrowsSpecificNamed(([[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60)"] geometryAtIndex: 1]), NSException, NSRangeException);
+    }
+
+    - (void) testFirstObject {
+
+        XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] firstGeometry] toWKTString], @"POINT(40 60)");
+
+        XCTAssertNoThrow([[[GFLineString alloc] initWithWKT:  @"LINESTRING()"] firstGeometry]);
+        XCTAssertEqualObjects([[[GFLineString alloc] initWithWKT:  @"LINESTRING()"] firstGeometry], nil);
+    }
+
+    - (void) testLastObject {
+
+        XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] lastGeometry] toWKTString], @"POINT(120 110)");
+
+        XCTAssertNoThrow([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] lastGeometry]);
+        XCTAssertEqualObjects([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] lastGeometry], nil);
+    }
+
+#pragma mark - Indexed Subscripting Tests
+
+    - (void) testObjectAtIndexedSubscript {
+
+        GFLineString * lineString = [[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"];
+
+        XCTAssertNoThrow(lineString[0]);
+        XCTAssertNoThrow(lineString[1]);
+        XCTAssertThrowsSpecificNamed(lineString[2], NSException, NSRangeException);
+
+        XCTAssertEqualObjects([lineString[0] toWKTString], @"POINT(40 60)");
+        XCTAssertEqualObjects([lineString[1] toWKTString], @"POINT(120 110)");
+    }
+
 @end
 
