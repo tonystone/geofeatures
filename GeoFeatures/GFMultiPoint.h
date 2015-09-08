@@ -23,10 +23,10 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GFPointAbstract.h"
+#import "GFGeometryCollection.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+// Forward declarations
+@class GFPoint;
 
 /**
  * @class       GFMultiPoint
@@ -36,9 +36,7 @@
  * @author      Tony Stone
  * @date        6/14/15
  */
-@interface GFMultiPoint : GFPointAbstract
-
-#pragma clang diagnostic pop
+@interface GFMultiPoint : GFGeometryCollection
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
