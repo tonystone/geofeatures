@@ -85,7 +85,7 @@ namespace geofeatures {
                 return [[GFLineString alloc] initWithCPPGeometryVariant: v];;
             }
             GFGeometry * operator()(const Ring & v) const {
-                return [[::GFRing alloc] initWithCPPGeometryVariant: v];;
+                return [[GFRing alloc] initWithCPPGeometryVariant: v];;
             }
             GFGeometry * operator()(const MultiLineString & v) const {
                 return [[GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
