@@ -39,6 +39,8 @@ namespace gf = geofeatures::internal;
 
 @implementation GFMultiLineString
 
+#pragma mark - Construction
+
     - (instancetype) init {
         self = [super initWithCPPGeometryVariant: gf::MultiLineString()];
         return self;
@@ -93,21 +95,58 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
+#pragma mark - Querying a GFMultiLineString
 
+    - (NSUInteger) count {
         try {
             const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            }
+            return multiLineString.size();
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
     }
 
-
+    - (GFLineString *) geometryAtIndex:(NSUInteger)index {
         try {
             const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
+            unsigned long size = multiLineString.size();
+
+            if (size == 0 || index > (size -1)) {
+                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
             }
+            return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString.at(index)];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFLineString *) firstGeometry {
+        try {
+            const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            if (multiLineString.size() == 0) {
+                return nil;
+            }
+            return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString.front()];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFLineString *) lastGeometry {
+        try {
+            const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            if (multiLineString.size() == 0) {
+                return nil;
+            }
+            return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString.back()];
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }

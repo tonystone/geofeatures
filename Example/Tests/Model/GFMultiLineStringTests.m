@@ -76,6 +76,41 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         }
     }
 
+#pragma mark - Querying Tests
+
+    - (void) testCount {
+
+        XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] count], 0);
+        XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] count], 1);
+        XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] count], 2);
+    }
+
+    - (void) testObjectAtIndex {
+
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 0] toWKTString], @"LINESTRING(0 0,5 0)");
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+
+        XCTAssertThrowsSpecificNamed(([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] geometryAtIndex: 1]), NSException, NSRangeException);
+    }
+
+    - (void) testFirstObject {
+
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] firstGeometry] toWKTString], @"LINESTRING(0 0,5 0)");
+
+        XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry]);
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry], nil);
+    }
+
+    - (void) testLastObject {
+
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] lastGeometry] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+
+        XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry]);
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry], nil);
+    }
+
+#pragma mark - Indexed Subscript Tests
+
     - (void) testObjectAtIndexedSubscript {
 
         GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];

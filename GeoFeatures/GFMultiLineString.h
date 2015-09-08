@@ -96,6 +96,42 @@
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    /** The number of GFLineString instances in this collection.
+    *
+    * @returns The count of GFLineString instances this collection contains.
+    *
+    * @since 1.1.0
+    */
+    - (NSUInteger) count;
+
+    /** Returns the GFLineString located at the specified index.
+    *
+    * @param index - An index within the bounds of the collection.
+    *
+    * @returns The GFLineString located at index.
+    *
+    * @throws NSException, NSRangeException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+    *
+    * @since 1.1.0
+    */
+    - (GFLineString *) geometryAtIndex:(NSUInteger)index;
+
+    /** The first GFLineString in this collection.
+    *
+    * @returns The first GFLineString instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.1.0
+    */
+    - (GFLineString *) firstGeometry;
+
+    /** The last GFLineString in this collection.
+    *
+    * @returns The last GFLineString instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.1.0
+    */
+    - (GFLineString *) lastGeometry;
+
     /** Returns the GFLineString at the specified index.
      *
      * @param index An index within the bounds of the collection.
