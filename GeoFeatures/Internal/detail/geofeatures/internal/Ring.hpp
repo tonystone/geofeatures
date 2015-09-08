@@ -56,8 +56,10 @@ namespace geofeatures {
 
         public:
             inline Ring() : Geometry(), RingBaseType() {}
-            inline Ring(Ring & other) : Geometry(), RingBaseType(other) {}
-            inline Ring(Ring const & other) : Geometry(), RingBaseType(other) {}
+            template <typename T>
+            inline Ring(T & other) : Geometry(), RingBaseType(other) {}
+            template <typename T>
+            inline Ring(T const & other) : Geometry(), RingBaseType(other) {}
             
             inline virtual ~Ring() {};
         };
