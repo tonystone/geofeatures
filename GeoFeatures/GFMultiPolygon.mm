@@ -40,6 +40,8 @@ namespace gf = geofeatures::internal;
 
 @implementation GFMultiPolygon
 
+#pragma mark - Construction
+
     - (instancetype) init {
         self = [super initWithCPPGeometryVariant: gf::MultiPolygon()];
         return self;
@@ -101,20 +103,65 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
+#pragma mark - Querying a GFMultiPolygon
+
+    - (NSUInteger)count {
 
         try {
             const auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
 
-            }
+            return multiPolygon.size();
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
     }
 
+    - (GFPolygon *) geometryAtIndex: (NSUInteger) index {
+
+        try {
+            auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
+
+            unsigned long size = multiPolygon.size();
+
+            if (size == 0 || index > (size -1)) {
+                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
+            }
+
+            return [[GFPolygon alloc] initWithCPPGeometryVariant: multiPolygon.at(index)];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFPolygon *) firstGeometry {
+
         try {
             const auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
 
+            if (multiPolygon.size() == 0) {
+                return nil;
             }
+
+            return [[GFPolygon alloc] initWithCPPGeometryVariant: multiPolygon.front()];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFPolygon *) lastGeometry {
+
+        try {
+            auto& multiPolygon = boost::polymorphic_strict_get<gf::MultiPolygon>(_members->geometryVariant);
+
+            if (multiPolygon.size() == 0) {
+                return nil;
+            }
+
+            return [[GFPolygon alloc] initWithCPPGeometryVariant: multiPolygon.back()];
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }

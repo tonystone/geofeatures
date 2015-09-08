@@ -99,6 +99,41 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         }
     }
 
+#pragma mark - Querying Tests
+
+    - (void) testCount {
+
+        XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] count], 0);
+        XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))"] count], 1);
+        XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] count], 2);
+    }
+
+    - (void) testObjectAtIndex {
+
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 0] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 1] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+
+        XCTAssertThrowsSpecificNamed(([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))"] geometryAtIndex: 1]), NSException, NSRangeException);
+    }
+
+    - (void) testFirstObject {
+
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] firstGeometry] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+
+        XCTAssertNoThrow([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] firstGeometry]);
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] firstGeometry], nil);
+    }
+
+    - (void) testLastObject {
+
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] lastGeometry] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+
+        XCTAssertNoThrow([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] lastGeometry]);
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] lastGeometry], nil);
+    }
+
+#pragma mark - Indexed Subscripting Tests
+
     - (void) testObjectAtIndexedSubscript {
 
         GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
