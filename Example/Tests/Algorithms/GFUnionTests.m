@@ -49,5 +49,13 @@
                                   @"MULTIPOLYGON(((0 0,0 90,90 90,90 0,0 0)),((120 0,120 90,210 90,210 0,120 0)))");
     }
 
+    // TODO: Requires more testing
+    - (void) testRing {
+        UnionTest(GFRing, @"LINESTRING(210 90,210 0,120 0,120 90,210 90)", \
+                  GFRing, @"LINESTRING(210 90,210 0,120 0,120 90,210 90)", \
+                          @"LINESTRING(210 0,120 0,120 90,210 90,210 0)");
+
+    }
+
 
 @end

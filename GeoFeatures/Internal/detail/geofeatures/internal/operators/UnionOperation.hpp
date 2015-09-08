@@ -85,6 +85,22 @@ namespace geofeatures {
                 GeometryVariant operator()(const MultiPolygon & lhs, const MultiPolygon & rhs) const {
                     return singleTypeUnion<MultiPolygon>(lhs, rhs);
                 }
+
+                GeometryVariant operator()(const Ring & lhs, const Ring & rhs) const {
+                    std::vector<Ring> tmp;
+
+                    boost::geometry::union_(lhs, rhs, tmp);
+                    
+                    if (tmp.size() == 1) {
+                        return tmp.front();
+                    }
+
+                    GeometryCollection output;
+                    for (auto it = tmp.begin(); it != tmp.end(); ++it) {
+                        output.push_back(*it);
+                    }
+                    return output;
+                }
                 
                 //
                 // For GeometryCollections the initial implemention of these

@@ -61,4 +61,9 @@
         IsValidTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", true);
     }
 
+    - (void) testRing {
+        IsValidTest(GFRing, @"LINESTRING(0 0,0 7,4 2,2 0,0 0)", true);
+        IsValidTest(GFRing, @"LINESTRING EMPTY", false);
+    }
+
 @end

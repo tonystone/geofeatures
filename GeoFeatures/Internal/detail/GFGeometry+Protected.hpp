@@ -31,6 +31,7 @@
 #import "GFMultiPoint.h"
 #import "GFBox.h"
 #import "GFLineString.h"
+#import "GFRing.h"
 #import "GFMultiLineString.h"
 #import "GFPolygon.h"
 #import "GFMultiPolygon.h"
@@ -82,6 +83,9 @@ namespace geofeatures {
             }
             GFGeometry * operator()(const LineString & v) const {
                 return [[GFLineString alloc] initWithCPPGeometryVariant: v];;
+            }
+            GFGeometry * operator()(const Ring & v) const {
+                return [[::GFRing alloc] initWithCPPGeometryVariant: v];;
             }
             GFGeometry * operator()(const MultiLineString & v) const {
                 return [[GFMultiLineString alloc] initWithCPPGeometryVariant: v];;

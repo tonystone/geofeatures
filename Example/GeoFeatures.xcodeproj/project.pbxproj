@@ -42,6 +42,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		ABD5CE6C82C2A19C35082387 /* libPods-GeoFeatures.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CAA0BDEA0C382D2219ABF7 /* libPods-GeoFeatures.a */; };
 		C2E7A24DA5733510BE66C70A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6113E8DBE79D7B6B049C4349 /* libPods-Tests.a */; };
+		EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C85B1B9F47F9002C8018 /* GFRingTests.m */; };
 		EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		B5167E5171228242A1D08E37 /* GeoFeatures.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures.podspec; path = ../GeoFeatures.podspec; sourceTree = "<group>"; };
 		DB9F622A86B409D90D95038C /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDACAA67D4D19946EF05C148 /* Pods-GeoFeatures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures/Pods-GeoFeatures.release.xcconfig"; sourceTree = "<group>"; };
+		EA52C85B1B9F47F9002C8018 /* GFRingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFRingTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		36698F24E052FB822149C2B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EA52C85B1B9F47F9002C8018 /* GFRingTests.m */,
 				3669841D7B352FD8D549B9CE /* GFBoxTests.m */,
 				36698907141EECAB15ED39DF /* GFPointTests.m */,
 				36698EA5DB721C9CE82CD242 /* GFPolygonTests.m */,
@@ -464,6 +467,7 @@
 				36698A000919EEEA85208C76 /* GFBoundingBoxTests.m in Sources */,
 				36698730DE766EC3201B61FB /* GFBoxTests.m in Sources */,
 				3669866AF010812E23F9F2EE /* GFPointTests.m in Sources */,
+				EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */,
 				366987B4790476C2AA46A086 /* GFPolygonTests.m in Sources */,
 				366982BCCAC434E702E20896 /* GFLineStringTests.m in Sources */,
 				36698BE95B098F31453A03FA /* GFMultiPointTests.m in Sources */,

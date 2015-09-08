@@ -69,10 +69,10 @@
     - (void) testGeometryCollection {
         EncodingTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
     }
-//
-//    - (void) testRing {
-//        EncodingTest(GFRing, @"LINESTRING(0 0,0 90,90 90,90 0,0 0)");
-//    }
+
+    - (void) testRing {
+        EncodingTest(GFRing, @"LINESTRING(0 0,0 90,90 90,90 0,0 0)");
+    }
 
 
 @end
