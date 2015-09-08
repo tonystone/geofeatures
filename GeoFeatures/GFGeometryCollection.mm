@@ -90,6 +90,9 @@ namespace geofeatures {
 
             for (GFGeometry * geometry in array) {
 
+                if ([geometry isKindOfClass: [GFGeometryCollection class]]) {
+                    @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  GFGeometryCollections can not contain other GFGeometryCollections.", NSStringFromClass([self class])] userInfo: nil];
+                }
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
@@ -125,7 +128,7 @@ namespace geofeatures {
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), *(geometry.begin()));
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.front());
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
@@ -140,7 +143,7 @@ namespace geofeatures {
 
             if (geometry.size() > 0) {
 
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), *(geometry.end()));
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.back());
             }
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
