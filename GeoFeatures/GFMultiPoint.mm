@@ -24,8 +24,8 @@
 
 #import "GFMultiPoint.h"
 
-#include "GFPoint+Primitives.hpp"
 #include "GFGeometry+Protected.hpp"
+#include "GFPoint+Primitives.hpp"
 
 #include "geofeatures/internal/MultiPoint.hpp"
 #include "geofeatures/internal/GeometryVariant.hpp"
