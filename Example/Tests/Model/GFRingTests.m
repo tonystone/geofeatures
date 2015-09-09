@@ -43,16 +43,11 @@ void __attribute__((constructor)) staticInitializer() {
 @implementation GFRingTests
 
     - (void)testConstruction {
-
-        XCTAssertNotNil([[GFRing alloc] initWithGeoJSONGeometry: geoJSON1]);
-        XCTAssertNotNil([[GFRing alloc] initWithGeoJSONGeometry: geoJSON2]);
-
-        XCTAssertEqualObjects([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] class], [GFRing class]);
-        XCTAssertEqualObjects([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON2] class], [GFRing class]);
+        XCTAssertNoThrow([[GFRing alloc] init]);
+        XCTAssertNotNil([[GFRing alloc] init]);
     }
 
     - (void)testFailedConstruction {
-
         XCTAssertThrowsSpecificNamed(([GFGeometry geometryWithGeoJSONGeometry: @{@"type": @"LineString",@"coordinates": @{}}]), NSException, @"Invalid GeoJSON");
     }
 
@@ -65,6 +60,10 @@ void __attribute__((constructor)) staticInitializer() {
 
         XCTAssertTrue ([[[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] description] length] > 0);
         XCTAssertTrue ([[[[GFRing alloc] initWithGeoJSONGeometry: geoJSON2] description] length] > 0);
+    }
+
+    - (void) testToGeoJSONGeometry {
+        XCTAssertEqualObjects([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
     - (void) testMapOverlays {
