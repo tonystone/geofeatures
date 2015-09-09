@@ -91,8 +91,16 @@
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
+    /** The outer ring of this polygon.
+     *
+     * @returns The outer GFRing of this polygon.
+     */
     - (GFRing *) outerRing;
 
+    /** The inner rings of this polygon.
+     *
+     * @returns A collection of inner GFRings of this polygon.
+     */
     - (GFGeometryCollection *) innerRings;
 
 @end
