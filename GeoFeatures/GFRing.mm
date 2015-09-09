@@ -117,7 +117,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (GFPoint *) geometryAtIndex: (NSUInteger) index {
+    - (GFPoint *) pointAtIndex: (NSUInteger) index {
 
         try {
             const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
@@ -134,7 +134,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (GFPoint *) firstGeometry {
+    - (GFPoint *) firstPoint {
 
         try {
             const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
@@ -149,7 +149,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (GFPoint *) lastGeometry {
+    - (GFPoint *) lastPoint {
 
         try {
             const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);

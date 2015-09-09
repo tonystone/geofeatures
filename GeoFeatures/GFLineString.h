@@ -106,7 +106,7 @@
     *
     * @since 1.1.0
     */
-    - (GFPoint *) geometryAtIndex: (NSUInteger) index;
+    - (GFPoint *) pointAtIndex: (NSUInteger) index;
 
     /** The first GFPoint in this collection.
     *
@@ -114,7 +114,7 @@
     *
     * @since 1.1.0
     */
-    - (GFPoint *) firstGeometry;
+    - (GFPoint *) firstPoint;
 
     /** The last GFPoint in this collection.
     *
@@ -122,7 +122,7 @@
     *
     * @since 1.1.0
     */
-    - (GFPoint *) lastGeometry;
+    - (GFPoint *) lastPoint;
 
     /** Returns the point at the specified index.
      *

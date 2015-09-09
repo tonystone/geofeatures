@@ -84,7 +84,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (GFPoint *) geometryAtIndex: (NSUInteger) index {
+    - (GFPoint *) pointAtIndex: (NSUInteger) index {
 
         try {
             auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
@@ -102,7 +102,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (GFPoint *) firstGeometry {
+    - (GFPoint *) firstPoint {
 
         try {
             auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
@@ -118,7 +118,7 @@ namespace gf = geofeatures::internal;
         }
     }
 
-    - (GFPoint *) lastGeometry {
+    - (GFPoint *) lastPoint {
 
         try {
             auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);

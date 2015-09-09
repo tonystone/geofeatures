@@ -91,26 +91,26 @@ void __attribute__((constructor)) staticInitializer() {
 
     - (void) testObjectAtIndex {
 
-        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] geometryAtIndex: 0] toWKTString], @"POINT(20 0)");
-        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] geometryAtIndex: 1] toWKTString], @"POINT(20 10)");
+        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 0] toWKTString], @"POINT(20 0)");
+        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 1] toWKTString], @"POINT(20 10)");
 
-        XCTAssertThrowsSpecificNamed(([[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] geometryAtIndex: 5]), NSException, NSRangeException);
+        XCTAssertThrowsSpecificNamed(([[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 5]), NSException, NSRangeException);
     }
 
     - (void) testFirstObject {
 
-        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] firstGeometry] toWKTString], @"POINT(20 0)");
+        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] firstPoint] toWKTString], @"POINT(20 0)");
 
-        XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstGeometry]);
-        XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstGeometry], nil);
+        XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstPoint]);
+        XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstPoint], nil);
     }
 
     - (void) testLastObject {
 
-        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] lastGeometry] toWKTString], @"POINT(20 0)");
+        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] lastPoint] toWKTString], @"POINT(20 0)");
 
-        XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastGeometry]);
-        XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastGeometry], nil);
+        XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastPoint]);
+        XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastPoint], nil);
     }
 
 #pragma mark - Indexed Subscripting Tests
