@@ -36,7 +36,7 @@
  * @author      Tony Stone
  * @date        6/14/15
  */
-@interface GFLineString : GFGeometryCollection
+@interface GFLineString : GFGeometry
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
