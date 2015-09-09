@@ -10,7 +10,7 @@
 GeoFeatures is a lightweight, high performance geometry library for Objective-C.  It supports the full
  set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
-![Class Diagram](Docs/GeoFeatures-Class-Diagram.png)
+![Inheritance Diagram](Docs/GeoFeatures-Inheritance-Diagram.png)
 
 ## Features
 
