@@ -84,4 +84,12 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         
     }
 
+    - (void) testOuterRing {
+        XCTAssertEqualObjects([[[[GFPolygon alloc] initWithWKT: @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))"] outerRing] toWKTString], @"LINESTRING(100 0,200 100,200 0,100 1,100 0)");
+    }
+
+    - (void) testInnerRings {
+        XCTAssertEqualObjects([[[[[GFPolygon alloc] initWithWKT: @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))"] innerRings] firstGeometry] toWKTString], @"LINESTRING(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)");
+    }
+
 @end
