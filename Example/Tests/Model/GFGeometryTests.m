@@ -31,6 +31,10 @@
 
 @implementation GFGeometryTests
 
+    - (void)testFailedConstruction {
+        XCTAssertThrowsSpecificNamed([[GFGeometry alloc] init], NSException, NSInternalInconsistencyException);
+    }
+
     - (void) testGeometryWithWKT {
         GeometryWithWKTTest (@"POINT(1 1)");
         GeometryWithWKTTest2(@"POINT()", @"POINT(0 0)");
