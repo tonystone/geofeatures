@@ -36,11 +36,6 @@
                BlueprintName = "Tests"
                ReferencedContainer = "container:GeoFeatures.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "GFGeometryTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
