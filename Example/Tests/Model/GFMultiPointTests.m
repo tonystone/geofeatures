@@ -77,6 +77,41 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         }
     }
 
+#pragma mark - Querying Tests
+
+    - (void) testCount {
+
+        XCTAssertEqual([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT()"] count], 0);
+        XCTAssertEqual([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1))"] count], 1);
+        XCTAssertEqual([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"] count], 2);
+    }
+
+    - (void) testObjectAtIndex {
+
+        XCTAssertEqualObjects([[[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"] geometryAtIndex: 0] toWKTString], @"POINT(1 1)");
+        XCTAssertEqualObjects([[[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"] geometryAtIndex: 1] toWKTString], @"POINT(2 2)");
+
+        XCTAssertThrowsSpecificNamed(([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1))"] geometryAtIndex: 1]), NSException, NSRangeException);
+    }
+
+    - (void) testFirstObject {
+
+        XCTAssertEqualObjects([[[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"] firstGeometry] toWKTString], @"POINT(1 1)");
+        
+        XCTAssertNoThrow([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT()"] firstGeometry]);
+        XCTAssertEqualObjects([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT()"] firstGeometry], nil);
+    }
+
+    - (void) testLastObject {
+
+        XCTAssertEqualObjects([[[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"] lastGeometry] toWKTString], @"POINT(2 2)");
+        
+        XCTAssertNoThrow([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT()"] lastGeometry]);
+        XCTAssertEqualObjects([[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT()"] lastGeometry], nil);
+    }
+
+#pragma mark - Indexed Subscripting Tests
+
     - (void) testObjectAtIndexedSubscript {
 
         GFMultiPoint * multiPoint = [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((1 1),(2 2))"];

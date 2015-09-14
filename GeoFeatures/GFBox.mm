@@ -24,9 +24,7 @@
 
 #import "GFBox.h"
 #import "GFPoint.h"
-#import "GFPolygon.h"
 
-#include "GFPointAbstract+Protected.hpp"
 #include "GFGeometry+Protected.hpp"
 
 #include "geofeatures/internal/Box.hpp"

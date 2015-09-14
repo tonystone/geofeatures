@@ -62,6 +62,10 @@ bool closeAtTolerance (double left, double right, double tolerance);
         BoundingBoxTest(GFPolygon, @"POLYGON((4 1,0 7,7 9,4 1))", 0, 1, 7, 9);
     }
 
+    - (void) testRing {
+        BoundingBoxTest(GFRing, @"LINESTRING(1 1,1 3,3 3,3 1,1 1)", 1,  1, 3, 3);
+    }
+
 @end
 
 //

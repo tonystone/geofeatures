@@ -61,4 +61,9 @@
         LengthTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", 0.0);
     }
 
+    - (void) testRing {
+        LengthTest(GFRing, @"LINESTRING(0 0,1 1,1 0,0 0)", 0.0);
+        LengthTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
+
 @end

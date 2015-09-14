@@ -70,4 +70,12 @@
         WKTTest(GFGeometryCollection, @"GEOMETRYCOLLECTION()");
         WKTTest2(GFGeometryCollection, @"GEOMETRYCOLLECTION EMPTY", @"GEOMETRYCOLLECTION()");
     }
+
+    - (void) testRing {
+        WKTTest (GFRing, @"LINESTRING(40 60,120 110)");
+        WKTTest (GFRing, @"LINESTRING()");
+        WKTTest2(GFRing, @"LINESTRING EMPTY", @"LINESTRING()");
+    }
+
 @end
+

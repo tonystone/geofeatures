@@ -1,7 +1,6 @@
-/*
-*   GFPointAbstract.mm
+/**
+*   GFPoint+Primitives.hpp
 *
-*   Copyright 2015 The Climate Corporation
 *   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,20 +15,32 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 *
-*   Created by Tony Stone on 6/6/15.
-*
-*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
-*
+*   Created by Tony Stone on 9/3/15.
 */
+#pragma once
 
-#import "GFPointAbstract.h"
+#ifndef __GFPointPrimitives_hpp
+#define __GFPointPrimitives_hpp
+
+#import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@implementation GFPointAbstract
 
-    - (instancetype) init {
-        NSAssert(![self isMemberOfClass: [GFPointAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
+namespace geofeatures {
+    namespace internal {
+
+        // Forward declarations
+        class Point;
+
+        namespace GFPoint {
+
+            internal::Point pointWithGeoJSONCoordinates(NSArray * coordinates);
+
+            NSArray * geoJSONCoordinatesWithPoint(const internal::Point & point);
+
+            id <MKOverlay> mkOverlayWithPoint(const internal::Point & point);
+        }
     }
+}
 
-@end
+#endif // __GFPointPrimitives_hpp

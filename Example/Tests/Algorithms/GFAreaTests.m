@@ -55,4 +55,9 @@
         AreaTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
+    - (void) testRing {
+        AreaTest(GFRing, @"LINESTRING(0 0,0 7,4 2,2 0,0 0)", 16);
+        AreaTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
+
 @end

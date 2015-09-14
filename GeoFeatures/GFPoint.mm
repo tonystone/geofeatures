@@ -24,7 +24,7 @@
 
 #import "GFPoint.h"
 
-#include "GFPointAbstract+Protected.hpp"
+#include "GFPoint+Primitives.hpp"
 #include "GFGeometry+Protected.hpp"
 
 #include "geofeatures/internal/Point.hpp"
@@ -91,7 +91,7 @@ namespace gf = geofeatures::internal;
             @throw [NSException exceptionWithName: @"Invalid GeoJSON" reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type."  userInfo: nil];
         }
 
-        self = [super initWithCPPGeometryVariant: [self cppPointWithGeoJSONCoordinates: coordinates]];
+        self = [super initWithCPPGeometryVariant: gf::GFPoint::pointWithGeoJSONCoordinates(coordinates)];
         return self;
     }
 
@@ -109,12 +109,12 @@ namespace gf = geofeatures::internal;
 
     - (NSDictionary *) toGeoJSONGeometry {
 
-        return @{@"type": @"Point", @"coordinates": [self geoJSONCoordinatesWithCPPPoint: boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant)]};
+        return @{@"type": @"Point", @"coordinates": gf::GFPoint::geoJSONCoordinatesWithPoint(boost::polymorphic_strict_get <gf::Point>(_members->geometryVariant))};
     }
 
     - (NSArray *) mkMapOverlays {
 
-        return @[[self mkOverlayWithCPPPoint: boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant)]];
+        return @[gf::GFPoint::mkOverlayWithPoint(boost::polymorphic_strict_get <gf::Point>(_members->geometryVariant))];
     }
 
 @end

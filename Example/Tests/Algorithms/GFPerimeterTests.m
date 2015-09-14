@@ -59,5 +59,9 @@
         PerimeterTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", 0.0);
     }
 
+    - (void) testRing {
+        PerimeterTest(GFRing, @"LINESTRING(0 0,0 1,1 1,1 0,0 0)", 4);
+        PerimeterTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
 
 @end

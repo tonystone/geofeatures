@@ -90,7 +90,7 @@ namespace geofeatures {
 
             for (GFGeometry * geometry in array) {
 
-                if ([geometry isKindOfClass: [GFGeometryCollection class]]) {
+                if ([geometry isMemberOfClass: [GFGeometryCollection class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  GFGeometryCollections can not contain other GFGeometryCollections.", NSStringFromClass([self class])] userInfo: nil];
                 }
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
@@ -105,65 +105,63 @@ namespace geofeatures {
         }
     }
 
-    - (GFGeometry *)geometryAtIndex:(NSUInteger)index {
-
-        try {
-            auto& geometry = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
-
-            if (index >= geometry.size()) {
-                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range." userInfo: nil];
-               
-            } else {
-                 return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.at(index));
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
-        return nil;
-    }
-
-    - (GFGeometry *)firstGeometry {
-        try {
-            auto& geometry = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
-
-            if (geometry.size() > 0) {
-
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.front());
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
-        return nil;
-    }
-
-    - (GFGeometry *)lastGeometry {
-
-        try {
-            auto& geometry = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
-
-            if (geometry.size() > 0) {
-
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometry.back());
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
-        return nil;
-    }
-
-
     - (NSUInteger)count {
 
         try {
-            auto& geometry = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
+            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
 
-            return geometry.size();
+            return geometryCollection.size();
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
     }
 
+    - (id) geometryAtIndex: (NSUInteger) index {
+
+        try {
+            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
+
+            if (index >= geometryCollection.size()) {
+                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range." userInfo: nil];
+               
+            } else {
+                 return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection.at(index));
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        }
+        return nil;
+    }
+
+    - (id) firstGeometry {
+
+        try {
+            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
+
+            if (geometryCollection.size() > 0) {
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection.front());
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        }
+        return nil;
+    }
+
+    - (id) lastGeometry {
+
+        try {
+            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
+
+            if (geometryCollection.size() > 0) {
+
+                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection.back());
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        }
+        return nil;
+    }
 
 #pragma mark - Protected methods
 

@@ -1,7 +1,6 @@
 /*
-*   GFPoint.h
+*   GFRing.h
 *
-*   Copyright 2015 The Climate Corporation
 *   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,29 +15,27 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 *
-*   Created by Tony Stone on 6/4/15.
-*
-*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
-*
+*   Created by Tony Stone on 08/29/15.
 */
 
 #import <Foundation/Foundation.h>
-#import "GFGeometry.h"
+#import "GFLineString.h"
 
 /**
-* @class       GFPoint
-*
-* @brief       A 2 dimensional point with x,y coordinates.
-*
-* @author      Tony Stone
-* @date        6/14/15
-*/
-@interface GFPoint : GFGeometry
-
-    /**
-    * Initialize this GFPoint with the x,y coordinates
-    */
-    - (instancetype) initWithX: (double) x y: (double) y;
+ * @class       GFRing
+ *
+ * @brief       A GFRing (aka linear ring) is a closed line which should not be self intersecting.
+ *
+ * A GFRing is a GFLineString which is closed. The first and last coordinate in the ring
+ * must be equal, and the interior of the ring must not self-intersect. A ring must have
+ * either 0 or 4 or more GFPoints.  If these conditions are not met, the constructors
+ * throw an IllegalArgumentException
+ *
+ * @author      Tony Stone
+ * @date        8/30/15
+ */
+@interface GFRing : GFLineString 
+    /// @see GFLineString for methods
 
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
@@ -47,9 +44,9 @@
     * @code
     * {
     *
-    *   NSString * wkt = @"POINT(1 1)";
+    *   NSString * wkt = @"LINESTRING(40 60,120 110)";
     *
-    *   GFPoint * point = [[GFPoint alloc] initWithWKT: wkt]];
+    *   GFRing * ring = [[GFRing alloc] initWithWKT: wkt]];
     *
     * }
     * @endcode
@@ -71,8 +68,8 @@
     * {
     *       "type": "Feature",
     *
-    *       "geometry": { "type": "Point",
-    *                     "coordinates": [100.0, 0.0]
+    *       "geometry": { "type": "LineString",
+    *                     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
     *                   }
     *  }
     * @endcode
@@ -81,23 +78,13 @@
     * represents the geometry portion is passed.
     *
     * @code
-    *       {
-    *           "type": "Point",
-    *           "coordinates": [100.0, 0.0]
-    *       }
+    *     {
+    *           "type": "LineString",
+    *           "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+    *     }
     * @endcode
-    * @endparbloc
+    * @endparblock
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
-
-    /**
-    * Get the point's X value.
-    */
-    - (double) x;
-
-    /**
-    * Get the point's Y value.
-    */
-    - (double) y;
 
 @end
