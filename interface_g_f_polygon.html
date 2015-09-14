@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -100,8 +101,7 @@ Inheritance diagram for GFPolygon:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_g_f_polygon__inherit__graph.png" border="0" usemap="#_g_f_polygon_inherit__map" alt="Inheritance graph"/></div>
 <map name="_g_f_polygon_inherit__map" id="_g_f_polygon_inherit__map">
-<area shape="rect" id="node2" href="interface_g_f_polygon_abstract.html" title="An Abstract Polygon implementation. " alt="" coords="89,155,227,181"/>
-<area shape="rect" id="node3" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
+<area shape="rect" id="node2" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -109,17 +109,20 @@ Collaboration diagram for GFPolygon:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_g_f_polygon__coll__graph.png" border="0" usemap="#_g_f_polygon_coll__map" alt="Collaboration graph"/></div>
 <map name="_g_f_polygon_coll__map" id="_g_f_polygon_coll__map">
-<area shape="rect" id="node2" href="interface_g_f_polygon_abstract.html" title="An Abstract Polygon implementation. " alt="" coords="89,155,227,181"/>
-<area shape="rect" id="node3" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
+<area shape="rect" id="node2" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Instance Methods</h2></td></tr>
-<tr class="memitem:a7b4fcbc552571447dc0609c8788909b0"><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_polygon.html#a7b4fcbc552571447dc0609c8788909b0">initWithWKT:</a></td></tr>
-<tr class="separator:a7b4fcbc552571447dc0609c8788909b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d13c20909f1a5e67179f1ed51ce2887"><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_polygon.html#a8d13c20909f1a5e67179f1ed51ce2887">initWithGeoJSONGeometry:</a></td></tr>
-<tr class="separator:a8d13c20909f1a5e67179f1ed51ce2887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e0e0e299103715f933177f57df2815"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_polygon.html#a72e0e0e299103715f933177f57df2815">initWithWKT:</a></td></tr>
+<tr class="separator:a72e0e0e299103715f933177f57df2815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f132a23f38e16d5e8dea762f43ef84"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_polygon.html#a91f132a23f38e16d5e8dea762f43ef84">initWithGeoJSONGeometry:</a></td></tr>
+<tr class="separator:a91f132a23f38e16d5e8dea762f43ef84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af984fc68777e9069cd2418f6077454c1"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_g_f_ring.html">GFRing</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_polygon.html#af984fc68777e9069cd2418f6077454c1">outerRing</a></td></tr>
+<tr class="separator:af984fc68777e9069cd2418f6077454c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a7ec1a59646496e5ed5e4a813909f9"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_polygon.html#ae2a7ec1a59646496e5ed5e4a813909f9">innerRings</a></td></tr>
+<tr class="separator:ae2a7ec1a59646496e5ed5e4a813909f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_interface_g_f_geometry"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_interface_g_f_geometry')"><img src="closed.png" alt="-"/>&#160;Instance Methods inherited from <a class="el" href="interface_g_f_geometry.html">GFGeometry</a></td></tr>
 <tr class="memitem:a3a63de5905eae52356c6afd7313e4828 inherit pub_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a3a63de5905eae52356c6afd7313e4828">isValid</a></td></tr>
 <tr class="separator:a3a63de5905eae52356c6afd7313e4828 inherit pub_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,22 +150,26 @@ Instance Methods</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_interface_g_f_geometry"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_interface_g_f_geometry')"><img src="closed.png" alt="-"/>&#160;Class Methods inherited from <a class="el" href="interface_g_f_geometry.html">GFGeometry</a></td></tr>
-<tr class="memitem:afcdd23bd5dd4b04868d6baf577f9bb32 inherit pub_static_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_g_f_geometry.html">GFGeometry</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_g_f_geometry.html#afcdd23bd5dd4b04868d6baf577f9bb32">geometryWithGeoJSONGeometry:</a></td></tr>
-<tr class="separator:afcdd23bd5dd4b04868d6baf577f9bb32 inherit pub_static_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26ad5ae365b4dd4847fdb3370dfb6bb2 inherit pub_static_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_g_f_geometry.html">GFGeometry</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_g_f_geometry.html#a26ad5ae365b4dd4847fdb3370dfb6bb2">geometryWithWKT:</a></td></tr>
-<tr class="separator:a26ad5ae365b4dd4847fdb3370dfb6bb2 inherit pub_static_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b730dcea33fc8b2c156199400e3014e inherit pub_static_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_g_f_geometry.html#a5b730dcea33fc8b2c156199400e3014e">geometryWithGeoJSONGeometry:</a></td></tr>
+<tr class="separator:a5b730dcea33fc8b2c156199400e3014e inherit pub_static_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a49e08fdbc2998735c26ddbfa88741 inherit pub_static_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_g_f_geometry.html#a32a49e08fdbc2998735c26ddbfa88741">geometryWithWKT:</a></td></tr>
+<tr class="separator:a32a49e08fdbc2998735c26ddbfa88741 inherit pub_static_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_interface_g_f_geometry"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_interface_g_f_geometry')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="interface_g_f_geometry.html">GFGeometry</a></td></tr>
+<tr class="memitem:af3a4f3f6a6496401cf06070b171e9936 inherit pro_attribs_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3a4f3f6a6496401cf06070b171e9936"></a>
+struct GFMembers *&#160;</td><td class="memItemRight" valign="bottom"><b>_members</b></td></tr>
+<tr class="separator:af3a4f3f6a6496401cf06070b171e9936 inherit pro_attribs_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A concrete Polygon implementation. </p>
 <dl class="section author"><dt>Author</dt><dd>Tony Stone </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>6/6/15 </dd></dl>
 </div><h2 class="groupheader">Method Documentation</h2>
-<a class="anchor" id="a7b4fcbc552571447dc0609c8788909b0"></a>
+<a class="anchor" id="a72e0e0e299103715f933177f57df2815"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (id) initWithWKT: </td>
+          <td class="memname">- (instancetype) initWithWKT: </td>
           <td></td>
           <td class="paramtype">(NSString *)&#160;</td>
           <td class="paramname"><em>wkt</em></td>
@@ -181,12 +188,12 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="a8d13c20909f1a5e67179f1ed51ce2887"></a>
+<a class="anchor" id="a91f132a23f38e16d5e8dea762f43ef84"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (id) initWithGeoJSONGeometry: </td>
+          <td class="memname">- (instancetype) initWithGeoJSONGeometry: </td>
           <td></td>
           <td class="paramtype">(NSDictionary *)&#160;</td>
           <td class="paramname"><em>jsonDictionary</em></td>
@@ -217,13 +224,47 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af984fc68777e9069cd2418f6077454c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_g_f_ring.html">GFRing</a> *) outerRing </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The outer ring of this polygon.</p>
+<dl class="section return"><dt>Returns</dt><dd>The outer <a class="el" href="interface_g_f_ring.html" title="A GFRing (aka linear ring) is a closed line which should not be self intersecting. ">GFRing</a> of this polygon. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae2a7ec1a59646496e5ed5e4a813909f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> *) innerRings </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The inner rings of this polygon.</p>
+<dl class="section return"><dt>Returns</dt><dd>A collection of inner GFRings of this polygon. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>GeoFeatures/<a class="el" href="_g_f_polygon_8h_source.html">GFPolygon.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 26 2015 10:58:12 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 14 2015 16:26:28 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
