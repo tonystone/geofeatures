@@ -40,6 +40,15 @@
     /**
     * Initialize this geometry with the given WKT (Well-Known-Text) string.
     *
+    * @note
+    * @parblock
+    *
+    * WKT does not support rings. However, to be generic GeoFeatures
+    * supports reading and writing from and to rings. Rings are read
+    * and written as a standard LINESTRING WKT.
+    *
+    * @endparblock
+    *
     * Example:
     * @code
     * {
@@ -58,6 +67,10 @@
     *
     * @note
     * @parblock
+    *
+    * GeoJSON does not support rings. However, to be generic GeoFeatures
+    * supports reading and writing from and to rings. Rings are read
+    * and written as a standard GeoJSON LineString.
     *
     * You must pass the geometry portion of the GeoJSON structure and
     * not the entire GeoJSON object.
