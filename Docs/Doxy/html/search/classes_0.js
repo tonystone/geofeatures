@@ -14,5 +14,6 @@ var searchData=
   ['gfpoint',['GFPoint',['../interface_g_f_point.html',1,'']]],
   ['gfpointabstract',['GFPointAbstract',['../interface_g_f_point_abstract.html',1,'']]],
   ['gfpolygon',['GFPolygon',['../interface_g_f_polygon.html',1,'']]],
-  ['gfpolygonabstract',['GFPolygonAbstract',['../interface_g_f_polygon_abstract.html',1,'']]]
+  ['gfpolygonabstract',['GFPolygonAbstract',['../interface_g_f_polygon_abstract.html',1,'']]],
+  ['gfring',['GFRing',['../interface_g_f_ring.html',1,'']]]
 ];

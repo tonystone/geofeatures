@@ -6,6 +6,10 @@
       <Path>index.html</Path>
       <Subnodes>
        <Node>
+        <Name>Deprecated List</Name>
+        <Path>deprecated.html</Path>
+       </Node>
+       <Node>
         <Name>Classes</Name>
         <Path>annotated.html</Path>
         <Subnodes>
@@ -20,17 +24,17 @@
              <Node>
               <Name>initWithMinCorner:maxCorner:</Name>
               <Path>interface_g_f_box.html</Path>
-              <Anchor>a639abb389fb3234d29b7315c3d8416e8</Anchor>
+              <Anchor>a87bf50c9385711b4fed6c5ec9552397e</Anchor>
              </Node>
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_box.html</Path>
-              <Anchor>a7391861070f3ef70458b95e2c5a96a62</Anchor>
+              <Anchor>ab1c15e82e6b01e415e5fad629ac34ca4</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_box.html</Path>
-              <Anchor>acb2fca8524a96ab32f7e20882042b9ce</Anchor>
+              <Anchor>a4865745ca621d9ee91186301d1bee3b3</Anchor>
              </Node>
              <Node>
               <Name>minCorner</Name>
@@ -103,6 +107,11 @@
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>a9d257cce05d031211e2cece24b5530e4</Anchor>
              </Node>
+             <Node>
+              <Name>_members</Name>
+              <Path>interface_g_f_geometry.html</Path>
+              <Anchor>af3a4f3f6a6496401cf06070b171e9936</Anchor>
+             </Node>
             </Subnodes>
            </Node>
            <Node>
@@ -143,6 +152,11 @@
             <Path>interface_g_f_geometry_collection.html</Path>
             <Subnodes>
              <Node>
+              <Name>initWithWKT:</Name>
+              <Path>interface_g_f_geometry_collection.html</Path>
+              <Anchor>a13156620e5298fe7d286bb800df4097b</Anchor>
+             </Node>
+             <Node>
               <Name>initWithArray:</Name>
               <Path>interface_g_f_geometry_collection.html</Path>
               <Anchor>a260bb3daa9d3324cb1cc2fa9ef3a61e9</Anchor>
@@ -155,17 +169,22 @@
              <Node>
               <Name>geometryAtIndex:</Name>
               <Path>interface_g_f_geometry_collection.html</Path>
-              <Anchor>aa4a654ef8751bdf8abac169f8746d026</Anchor>
+              <Anchor>a4cd182279facec2850b47634aa0f6297</Anchor>
              </Node>
              <Node>
               <Name>firstGeometry</Name>
               <Path>interface_g_f_geometry_collection.html</Path>
-              <Anchor>a1910e3af2895a6c9cb7baf18ec791aad</Anchor>
+              <Anchor>a610f72a22d76a3ce6c9eaeb2dad35c0e</Anchor>
              </Node>
              <Node>
               <Name>lastGeometry</Name>
               <Path>interface_g_f_geometry_collection.html</Path>
-              <Anchor>a46262687af8b3c6599b2b2d68b0481b6</Anchor>
+              <Anchor>a89b3b6e2097cf5899a6d635ddcb95ef3</Anchor>
+             </Node>
+             <Node>
+              <Name>objectAtIndexedSubscript:</Name>
+              <Path>interface_g_f_geometry_collection.html</Path>
+              <Anchor>ac67dd4526580a8a38408e39c489a7503</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -176,12 +195,37 @@
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_line_string.html</Path>
-              <Anchor>ae2adf99cdccb6ee23e22bd8e035d7896</Anchor>
+              <Anchor>a261a4d08fe5cb35f935d265c3a97f453</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_line_string.html</Path>
-              <Anchor>a956fe6e6daf06ca4e016f94d18b2c71f</Anchor>
+              <Anchor>ad7a913bc12b6099982229190d1debd71</Anchor>
+             </Node>
+             <Node>
+              <Name>count</Name>
+              <Path>interface_g_f_line_string.html</Path>
+              <Anchor>a58fc2980cff73581d57943a64d60ddba</Anchor>
+             </Node>
+             <Node>
+              <Name>pointAtIndex:</Name>
+              <Path>interface_g_f_line_string.html</Path>
+              <Anchor>a51963123a916fd666131859f571e2609</Anchor>
+             </Node>
+             <Node>
+              <Name>firstPoint</Name>
+              <Path>interface_g_f_line_string.html</Path>
+              <Anchor>a1fc7f9d3388d5237cb824573e8f6f71f</Anchor>
+             </Node>
+             <Node>
+              <Name>lastPoint</Name>
+              <Path>interface_g_f_line_string.html</Path>
+              <Anchor>aa9db281010dcfe2ab30b697710859dde</Anchor>
+             </Node>
+             <Node>
+              <Name>objectAtIndexedSubscript:</Name>
+              <Path>interface_g_f_line_string.html</Path>
+              <Anchor>a6278fa4d628e0eba39d8cfdb2ba0030e</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -196,12 +240,37 @@
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_multi_line_string.html</Path>
-              <Anchor>adddb143dc38b5f7611559ee53906ac5d</Anchor>
+              <Anchor>a23cca8dc30634c3ac23c8cfaca41c569</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_multi_line_string.html</Path>
-              <Anchor>add9c4b2526275719797deac98af60e8b</Anchor>
+              <Anchor>a35fba00c08f785e70b47dda5067f84f8</Anchor>
+             </Node>
+             <Node>
+              <Name>count</Name>
+              <Path>interface_g_f_multi_line_string.html</Path>
+              <Anchor>a49494350a429df86186d111b5496d66c</Anchor>
+             </Node>
+             <Node>
+              <Name>geometryAtIndex:</Name>
+              <Path>interface_g_f_multi_line_string.html</Path>
+              <Anchor>a6724df65ee49b15e8778f965d3498bcb</Anchor>
+             </Node>
+             <Node>
+              <Name>firstGeometry</Name>
+              <Path>interface_g_f_multi_line_string.html</Path>
+              <Anchor>a78586818fa6ddbce9c3cf2032eba7f2d</Anchor>
+             </Node>
+             <Node>
+              <Name>lastGeometry</Name>
+              <Path>interface_g_f_multi_line_string.html</Path>
+              <Anchor>a807c900c20062193febb780e4ecc6abd</Anchor>
+             </Node>
+             <Node>
+              <Name>objectAtIndexedSubscript:</Name>
+              <Path>interface_g_f_multi_line_string.html</Path>
+              <Anchor>af890018703b1499460cc379a1f498ea0</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -212,12 +281,37 @@
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_multi_point.html</Path>
-              <Anchor>a76820b1b64308396ee379a5224e6447e</Anchor>
+              <Anchor>a003eb1cee88057991c210dd0cd63ef7f</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_multi_point.html</Path>
-              <Anchor>a6ac08a062d835b8fcf0e1d40e4b73305</Anchor>
+              <Anchor>a08bc62987b4e8c0435b00367dd617e00</Anchor>
+             </Node>
+             <Node>
+              <Name>count</Name>
+              <Path>interface_g_f_multi_point.html</Path>
+              <Anchor>afb692f3668a3631fbec6739c7fd7bf2c</Anchor>
+             </Node>
+             <Node>
+              <Name>geometryAtIndex:</Name>
+              <Path>interface_g_f_multi_point.html</Path>
+              <Anchor>a679f88a16cfc5e7d2d2bd1fda95303be</Anchor>
+             </Node>
+             <Node>
+              <Name>firstGeometry</Name>
+              <Path>interface_g_f_multi_point.html</Path>
+              <Anchor>a2f300bc57f0010bc65da0f151b916e33</Anchor>
+             </Node>
+             <Node>
+              <Name>lastGeometry</Name>
+              <Path>interface_g_f_multi_point.html</Path>
+              <Anchor>aa0c216ccbac49420bb8694fdb3311c6b</Anchor>
+             </Node>
+             <Node>
+              <Name>objectAtIndexedSubscript:</Name>
+              <Path>interface_g_f_multi_point.html</Path>
+              <Anchor>ae63934c501b12fa80e6ddaa739af16d9</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -228,12 +322,37 @@
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_multi_polygon.html</Path>
-              <Anchor>a8c666f7e976d0890ff2f63b001dbe1ac</Anchor>
+              <Anchor>a321e0b2c64e6dbe079205f1c58a17a2f</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_multi_polygon.html</Path>
-              <Anchor>a375d9bb7ebc55c2867bc40ac8ebe79da</Anchor>
+              <Anchor>a2c8f29141e272aad174a9f65190d7cab</Anchor>
+             </Node>
+             <Node>
+              <Name>count</Name>
+              <Path>interface_g_f_multi_polygon.html</Path>
+              <Anchor>a268a15cb86f1a8a57bb9f7c7f07b6443</Anchor>
+             </Node>
+             <Node>
+              <Name>geometryAtIndex:</Name>
+              <Path>interface_g_f_multi_polygon.html</Path>
+              <Anchor>ab18a262a8d02f4b15250bad1d8073f2a</Anchor>
+             </Node>
+             <Node>
+              <Name>firstGeometry</Name>
+              <Path>interface_g_f_multi_polygon.html</Path>
+              <Anchor>a7dca748ca40ba2e1de638d4aaf251144</Anchor>
+             </Node>
+             <Node>
+              <Name>lastGeometry</Name>
+              <Path>interface_g_f_multi_polygon.html</Path>
+              <Anchor>a8aa2546c3a714b390a5d2580d1356b62</Anchor>
+             </Node>
+             <Node>
+              <Name>objectAtIndexedSubscript:</Name>
+              <Path>interface_g_f_multi_polygon.html</Path>
+              <Anchor>a9336b76baf557cba039569fcf0c5dcd0</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -244,17 +363,17 @@
              <Node>
               <Name>initWithX:y:</Name>
               <Path>interface_g_f_point.html</Path>
-              <Anchor>a430d98d14d3654c76f4682f53fbacf26</Anchor>
+              <Anchor>af63bcab9cd2d2fd5d8f4f9feedf55bb2</Anchor>
              </Node>
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_point.html</Path>
-              <Anchor>a85ea5cc1bf88733d818798664b991400</Anchor>
+              <Anchor>ae5497af29fc8105557b2f6eb5c60ad1d</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_point.html</Path>
-              <Anchor>ac653a5e1489a2318bf2f00e5d7d0c03b</Anchor>
+              <Anchor>aed287f2d4f50a2efe3ffe6c7f58993b7</Anchor>
              </Node>
              <Node>
               <Name>x</Name>
@@ -279,18 +398,44 @@
              <Node>
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_polygon.html</Path>
-              <Anchor>a7b4fcbc552571447dc0609c8788909b0</Anchor>
+              <Anchor>a72e0e0e299103715f933177f57df2815</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
               <Path>interface_g_f_polygon.html</Path>
-              <Anchor>a8d13c20909f1a5e67179f1ed51ce2887</Anchor>
+              <Anchor>a91f132a23f38e16d5e8dea762f43ef84</Anchor>
+             </Node>
+             <Node>
+              <Name>outerRing</Name>
+              <Path>interface_g_f_polygon.html</Path>
+              <Anchor>af984fc68777e9069cd2418f6077454c1</Anchor>
+             </Node>
+             <Node>
+              <Name>innerRings</Name>
+              <Path>interface_g_f_polygon.html</Path>
+              <Anchor>ae2a7ec1a59646496e5ed5e4a813909f9</Anchor>
              </Node>
             </Subnodes>
            </Node>
            <Node>
             <Name>GFPolygonAbstract</Name>
             <Path>interface_g_f_polygon_abstract.html</Path>
+           </Node>
+           <Node>
+            <Name>GFRing</Name>
+            <Path>interface_g_f_ring.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>initWithWKT:</Name>
+              <Path>interface_g_f_ring.html</Path>
+              <Anchor>a063be826fc24346e1fb5d4830f641ef0</Anchor>
+             </Node>
+             <Node>
+              <Name>initWithGeoJSONGeometry:</Name>
+              <Path>interface_g_f_ring.html</Path>
+              <Anchor>a3562a7a5b8b37c53de97a0c31981c907</Anchor>
+             </Node>
+            </Subnodes>
            </Node>
           </Subnodes>
          </Node>
@@ -329,48 +474,50 @@
                <Node>
                 <Name>GFGeometryCollection</Name>
                 <Path>interface_g_f_geometry_collection.html</Path>
-               </Node>
-               <Node>
-                <Name>GFLineStringAbstract</Name>
-                <Path>interface_g_f_line_string_abstract.html</Path>
                 <Subnodes>
-                 <Node>
-                  <Name>GFLineString</Name>
-                  <Path>interface_g_f_line_string.html</Path>
-                 </Node>
                  <Node>
                   <Name>GFMultiLineString</Name>
                   <Path>interface_g_f_multi_line_string.html</Path>
                  </Node>
-                </Subnodes>
-               </Node>
-               <Node>
-                <Name>GFPointAbstract</Name>
-                <Path>interface_g_f_point_abstract.html</Path>
-                <Subnodes>
                  <Node>
                   <Name>GFMultiPoint</Name>
                   <Path>interface_g_f_multi_point.html</Path>
                  </Node>
                  <Node>
-                  <Name>GFPoint</Name>
-                  <Path>interface_g_f_point.html</Path>
+                  <Name>GFMultiPolygon</Name>
+                  <Path>interface_g_f_multi_polygon.html</Path>
                  </Node>
                 </Subnodes>
                </Node>
                <Node>
-                <Name>GFPolygonAbstract</Name>
-                <Path>interface_g_f_polygon_abstract.html</Path>
+                <Name>GFLineString</Name>
+                <Path>interface_g_f_line_string.html</Path>
                 <Subnodes>
                  <Node>
-                  <Name>GFMultiPolygon</Name>
-                  <Path>interface_g_f_multi_polygon.html</Path>
-                 </Node>
-                 <Node>
-                  <Name>GFPolygon</Name>
-                  <Path>interface_g_f_polygon.html</Path>
+                  <Name>GFRing</Name>
+                  <Path>interface_g_f_ring.html</Path>
                  </Node>
                 </Subnodes>
+               </Node>
+               <Node>
+                <Name>GFLineStringAbstract</Name>
+                <Path>interface_g_f_line_string_abstract.html</Path>
+               </Node>
+               <Node>
+                <Name>GFPoint</Name>
+                <Path>interface_g_f_point.html</Path>
+               </Node>
+               <Node>
+                <Name>GFPointAbstract</Name>
+                <Path>interface_g_f_point_abstract.html</Path>
+               </Node>
+               <Node>
+                <Name>GFPolygon</Name>
+                <Path>interface_g_f_polygon.html</Path>
+               </Node>
+               <Node>
+                <Name>GFPolygonAbstract</Name>
+                <Path>interface_g_f_polygon_abstract.html</Path>
                </Node>
               </Subnodes>
              </Node>
@@ -477,6 +624,10 @@
              <Node>
               <Name>GFPolygonAbstract.h</Name>
               <Path>_g_f_polygon_abstract_8h_source.html</Path>
+             </Node>
+             <Node>
+              <Name>GFRing.h</Name>
+              <Path>_g_f_ring_8h_source.html</Path>
              </Node>
             </Subnodes>
            </Node>

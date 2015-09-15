@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -82,6 +83,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">
 <h2>Introduction</h2>
 <p>GeoFeatures is a lightweight, high performance geometry library for Objective-C. It supports the full set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.</p>
+<div class="image">
+<img src="GeoFeatures-Inheritance-Diagram.png"  alt="Inheritance Diagram"/>
+</div>
 <h2>Features</h2>
 <ul>
 <li>Easy to use.</li>
@@ -90,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><a href="https://en.wikipedia.org/wiki/Well-known_text">WKT (Well-Known-Text)</a> input and output.</li>
 <li><a href="http://geojson.org/">GeoJSON</a> input and output.</li>
 <li>MapKit representations and drawing.</li>
+<li>Indexed Subscripting support for all collection types (e.g. <code>GEPoint * point = multiPoint[0]</code>).</li>
 <li>Open Sourced under the the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a>.</li>
 <li>Comprehensive doxygen documentation of the library available at <a href="http://tonystone.github.io/geofeatures">github.io</a>.</li>
 <li>Implemented based on the popular and fast open source C++ boost geometry library.</li>
@@ -105,9 +110,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>If you <b>found a bug</b>, <em>and can provide steps to reliably reproduce it</em>, <a href="https://github.com/tonystone/geofeatures/issues">open an issue</a>.</li>
 <li>If you <b>have a feature request</b>, <a href="https://github.com/tonystone/geofeatures/issues">open an issue</a>.</li>
 <li>If you <b>want to contribute</b><ul>
-<li>Fork the <a href="https://github.com/tonystone/geofeatures">GeoFeatures repository</a></li>
-<li>Make your changes</li>
-<li>Submit a pull request.</li>
+<li>Fork it! <a href="https://github.com/tonystone/geofeatures">GeoFeatures repository</a></li>
+<li>Create your feature branch: <code>git checkout -b my-new-feature</code></li>
+<li>Commit your changes: <code>git commit -am 'Add some feature'</code></li>
+<li>Push to the branch: <code>git push origin my-new-feature</code></li>
+<li>Submit a pull request :-)</li>
 </ul>
 </li>
 </ul>
@@ -123,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 26 2015 10:58:12 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 14 2015 16:26:28 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
