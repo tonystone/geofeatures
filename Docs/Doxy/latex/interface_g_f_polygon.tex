@@ -30,9 +30,13 @@ Collaboration diagram for G\+F\+Polygon\+:\nopagebreak
 \subsection*{Instance Methods}
 \begin{DoxyCompactItemize}
 \item 
-(id) -\/ \hyperlink{interface_g_f_polygon_a7b4fcbc552571447dc0609c8788909b0}{init\+With\+W\+K\+T\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_polygon_a72e0e0e299103715f933177f57df2815}{init\+With\+W\+K\+T\+:}
 \item 
-(id) -\/ \hyperlink{interface_g_f_polygon_a8d13c20909f1a5e67179f1ed51ce2887}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_polygon_a91f132a23f38e16d5e8dea762f43ef84}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(\hyperlink{interface_g_f_ring}{G\+F\+Ring} $\ast$) -\/ \hyperlink{interface_g_f_polygon_af984fc68777e9069cd2418f6077454c1}{outer\+Ring}
+\item 
+(\hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} $\ast$) -\/ \hyperlink{interface_g_f_polygon_ae2a7ec1a59646496e5ed5e4a813909f9}{inner\+Rings}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -49,13 +53,13 @@ Tony Stone
 
 
 \subsection{Method Documentation}
-\hypertarget{interface_g_f_polygon_a7b4fcbc552571447dc0609c8788909b0}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\hypertarget{interface_g_f_polygon_a72e0e0e299103715f933177f57df2815}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
 \index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
-\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+W\+K\+T\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+String $\ast$)}]{wkt}
 \end{DoxyParamCaption}
-}\label{interface_g_f_polygon_a7b4fcbc552571447dc0609c8788909b0}
+}\label{interface_g_f_polygon_a72e0e0e299103715f933177f57df2815}
 Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
 
 Example\+: 
@@ -68,13 +72,13 @@ Example\+:
 
 \}
 \end{DoxyCode}
- \hypertarget{interface_g_f_polygon_a8d13c20909f1a5e67179f1ed51ce2887}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+ \hypertarget{interface_g_f_polygon_a91f132a23f38e16d5e8dea762f43ef84}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
-\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
 \end{DoxyParamCaption}
-}\label{interface_g_f_polygon_a8d13c20909f1a5e67179f1ed51ce2887}
+}\label{interface_g_f_polygon_a91f132a23f38e16d5e8dea762f43ef84}
 Initialize this geometry with the given json\+Dictionary.
 
 \begin{DoxyNote}{Note}
@@ -108,6 +112,30 @@ You would pass this section to the init method.
 \end{DoxyCode}
  
 \end{DoxyNote}
+\hypertarget{interface_g_f_polygon_af984fc68777e9069cd2418f6077454c1}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!outer\+Ring@{outer\+Ring}}
+\index{outer\+Ring@{outer\+Ring}!G\+F\+Polygon@{G\+F\+Polygon}}
+\subsubsection[{outer\+Ring()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Ring} $\ast$) outer\+Ring 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_polygon_af984fc68777e9069cd2418f6077454c1}
+The outer ring of this polygon.
+
+\begin{DoxyReturn}{Returns}
+The outer \hyperlink{interface_g_f_ring}{G\+F\+Ring} of this polygon. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_polygon_ae2a7ec1a59646496e5ed5e4a813909f9}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!inner\+Rings@{inner\+Rings}}
+\index{inner\+Rings@{inner\+Rings}!G\+F\+Polygon@{G\+F\+Polygon}}
+\subsubsection[{inner\+Rings()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry\+Collection} $\ast$) inner\+Rings 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_polygon_ae2a7ec1a59646496e5ed5e4a813909f9}
+The inner rings of this polygon.
+
+\begin{DoxyReturn}{Returns}
+A collection of inner G\+F\+Rings of this polygon. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

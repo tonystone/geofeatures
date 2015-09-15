@@ -30,9 +30,19 @@ Collaboration diagram for G\+F\+Line\+String\+:\nopagebreak
 \subsection*{Instance Methods}
 \begin{DoxyCompactItemize}
 \item 
-(id) -\/ \hyperlink{interface_g_f_line_string_ae2adf99cdccb6ee23e22bd8e035d7896}{init\+With\+W\+K\+T\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_line_string_a261a4d08fe5cb35f935d265c3a97f453}{init\+With\+W\+K\+T\+:}
 \item 
-(id) -\/ \hyperlink{interface_g_f_line_string_a956fe6e6daf06ca4e016f94d18b2c71f}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_line_string_ad7a913bc12b6099982229190d1debd71}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(N\+S\+U\+Integer) -\/ \hyperlink{interface_g_f_line_string_a58fc2980cff73581d57943a64d60ddba}{count}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_line_string_a51963123a916fd666131859f571e2609}{point\+At\+Index\+:}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_line_string_a1fc7f9d3388d5237cb824573e8f6f71f}{first\+Point}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_line_string_aa9db281010dcfe2ab30b697710859dde}{last\+Point}
+\item 
+(id) -\/ \hyperlink{interface_g_f_line_string_a6278fa4d628e0eba39d8cfdb2ba0030e}{object\+At\+Indexed\+Subscript\+:}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -49,13 +59,13 @@ Tony Stone
 
 
 \subsection{Method Documentation}
-\hypertarget{interface_g_f_line_string_ae2adf99cdccb6ee23e22bd8e035d7896}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+\hypertarget{interface_g_f_line_string_a261a4d08fe5cb35f935d265c3a97f453}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
 \index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
-\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+W\+K\+T\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+String $\ast$)}]{wkt}
 \end{DoxyParamCaption}
-}\label{interface_g_f_line_string_ae2adf99cdccb6ee23e22bd8e035d7896}
+}\label{interface_g_f_line_string_a261a4d08fe5cb35f935d265c3a97f453}
 Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
 
 Example\+: 
@@ -68,13 +78,17 @@ Example\+:
 
 \}
 \end{DoxyCode}
- \hypertarget{interface_g_f_line_string_a956fe6e6daf06ca4e016f94d18b2c71f}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+ 
+
+Reimplemented in \hyperlink{interface_g_f_ring_a063be826fc24346e1fb5d4830f641ef0}{G\+F\+Ring}.
+
+\hypertarget{interface_g_f_line_string_ad7a913bc12b6099982229190d1debd71}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
-\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
 \end{DoxyParamCaption}
-}\label{interface_g_f_line_string_a956fe6e6daf06ca4e016f94d18b2c71f}
+}\label{interface_g_f_line_string_ad7a913bc12b6099982229190d1debd71}
 Initialize this geometry with the given json\+Dictionary.
 
 \begin{DoxyNote}{Note}
@@ -107,6 +121,119 @@ In the above example only the dictionary below that represents the geometry port
 \end{DoxyCode}
  
 \end{DoxyNote}
+
+
+Reimplemented in \hyperlink{interface_g_f_ring_a3562a7a5b8b37c53de97a0c31981c907}{G\+F\+Ring}.
+
+\hypertarget{interface_g_f_line_string_a58fc2980cff73581d57943a64d60ddba}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!count@{count}}
+\index{count@{count}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+U\+Integer) count 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_a58fc2980cff73581d57943a64d60ddba}
+The number of \hyperlink{interface_g_f_point}{G\+F\+Point} instances in this collection.
+
+\begin{DoxyReturn}{Returns}
+The count of G\+D\+Geometry instances this collection contains.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+1.\+1.\+0 
+\end{DoxySince}
+\hypertarget{interface_g_f_line_string_a51963123a916fd666131859f571e2609}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!point\+At\+Index\+:@{point\+At\+Index\+:}}
+\index{point\+At\+Index\+:@{point\+At\+Index\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{point\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) point\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_a51963123a916fd666131859f571e2609}
+Returns the \hyperlink{interface_g_f_point}{G\+F\+Point} located at the specified index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & -\/ An index within the bounds of the collection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{interface_g_f_point}{G\+F\+Point} located at index.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception,N\+S\+Range\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+1.\+0 
+\end{DoxySince}
+\hypertarget{interface_g_f_line_string_a1fc7f9d3388d5237cb824573e8f6f71f}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!first\+Point@{first\+Point}}
+\index{first\+Point@{first\+Point}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{first\+Point()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) first\+Point 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_a1fc7f9d3388d5237cb824573e8f6f71f}
+The first \hyperlink{interface_g_f_point}{G\+F\+Point} in this collection.
+
+\begin{DoxyReturn}{Returns}
+The first \hyperlink{interface_g_f_point}{G\+F\+Point} instances contained in this collection or nil if the container is empty.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+1.\+1.\+0 
+\end{DoxySince}
+\hypertarget{interface_g_f_line_string_aa9db281010dcfe2ab30b697710859dde}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!last\+Point@{last\+Point}}
+\index{last\+Point@{last\+Point}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{last\+Point()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) last\+Point 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_aa9db281010dcfe2ab30b697710859dde}
+The last \hyperlink{interface_g_f_point}{G\+F\+Point} in this collection.
+
+\begin{DoxyReturn}{Returns}
+The last \hyperlink{interface_g_f_point}{G\+F\+Point} instances contained in this collection or nil if the container is empty.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+1.\+1.\+0 
+\end{DoxySince}
+\hypertarget{interface_g_f_line_string_a6278fa4d628e0eba39d8cfdb2ba0030e}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!object\+At\+Indexed\+Subscript\+:@{object\+At\+Indexed\+Subscript\+:}}
+\index{object\+At\+Indexed\+Subscript\+:@{object\+At\+Indexed\+Subscript\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{object\+At\+Indexed\+Subscript\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) object\+At\+Indexed\+Subscript\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_a6278fa4d628e0eba39d8cfdb2ba0030e}
+Returns the point at the specified index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & An index within the bounds of the collection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The point located at index.
+\end{DoxyReturn}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_line_string}{GFLineString} * lineString = [[\hyperlink{interface_g_f_line_string}{GFLineString} alloc] initWithWKT: \textcolor{stringliteral}{@"LINESTRING(40
+       60,120 110)"}];
+
+   \hyperlink{interface_g_f_point}{GFPoint} * point1 = lineString[0];
+   \hyperlink{interface_g_f_point}{GFPoint} * point2 = lineString[1];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+1.\+0 
+\end{DoxySince}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

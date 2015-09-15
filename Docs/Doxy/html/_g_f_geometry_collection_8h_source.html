@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,47 +93,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">*   GFGeometryCollection.h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*   Copyright 2015 The Climate Corporation</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*   you may not use this file except in compliance with the License.</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*   You may obtain a copy of the License at</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">*   http://www.apache.org/licenses/LICENSE-2.0</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*   Unless required by applicable law or agreed to in writing, software</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">*   See the License for the specific language governing permissions and</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*   limitations under the License.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">*   Created by Tony Stone on 6/5/15.</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#import &quot;GFGeometry.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="interface_g_f_geometry_collection.html">   32</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> : <a class="code" href="interface_g_f_geometry.html">GFGeometry</a>  <span class="comment">// &lt;NSFastEnumeration&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    - (instancetype)initWithArray:(NSArray *)array;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    - (NSUInteger) <a class="code" href="interface_g_f_geometry_collection.html#a020dd5245b572a391ccbd1ea92699240">count</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    - (<a class="code" href="interface_g_f_geometry.html">GFGeometry</a> *) geometryAtIndex:(NSUInteger)index;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    - (<a class="code" href="interface_g_f_geometry.html">GFGeometry</a> *) <a class="code" href="interface_g_f_geometry_collection.html#a1910e3af2895a6c9cb7baf18ec791aad">firstGeometry</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    - (<a class="code" href="interface_g_f_geometry.html">GFGeometry</a> *) <a class="code" href="interface_g_f_geometry_collection.html#a46262687af8b3c6599b2b2d68b0481b6">lastGeometry</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">@end</span></div>
-<div class="ttc" id="interface_g_f_geometry_html"><div class="ttname"><a href="interface_g_f_geometry.html">GFGeometry</a></div><div class="ttdoc">An abstract class that represents a geometric shape. </div><div class="ttdef"><b>Definition:</b> GFGeometry.h:43</div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*   Copyright 2015 Tony Stone</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*   you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*   You may obtain a copy of the License at</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">*   http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*   Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">*   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*   See the License for the specific language governing permissions and</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*   limitations under the License.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">*   Created by Tony Stone on 6/5/15.</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#import &quot;GFGeometry.h&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="interface_g_f_geometry_collection.html">   36</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> : <a class="code" href="interface_g_f_geometry.html">GFGeometry</a>  <span class="comment">// &lt;NSFastEnumeration&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    - (instancetype)initWithArray:(NSArray *)array;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    - (NSUInteger) <a class="code" href="interface_g_f_geometry_collection.html#a020dd5245b572a391ccbd1ea92699240">count</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    - (id) geometryAtIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    - (id) <a class="code" href="interface_g_f_geometry_collection.html#a610f72a22d76a3ce6c9eaeb2dad35c0e">firstGeometry</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    - (id) <a class="code" href="interface_g_f_geometry_collection.html#a89b3b6e2097cf5899a6d635ddcb95ef3">lastGeometry</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    - (id) objectAtIndexedSubscript: (NSUInteger) index;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">@end</span></div>
+<div class="ttc" id="interface_g_f_geometry_collection_html_a89b3b6e2097cf5899a6d635ddcb95ef3"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a89b3b6e2097cf5899a6d635ddcb95ef3">-[GFGeometryCollection lastGeometry]</a></div><div class="ttdeci">id lastGeometry()</div></div>
+<div class="ttc" id="interface_g_f_geometry_html"><div class="ttname"><a href="interface_g_f_geometry.html">GFGeometry</a></div><div class="ttdoc">An abstract class that represents a geometric shape. </div><div class="ttdef"><b>Definition:</b> GFGeometry.h:49</div></div>
 <div class="ttc" id="interface_g_f_geometry_collection_html_a020dd5245b572a391ccbd1ea92699240"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a020dd5245b572a391ccbd1ea92699240">-[GFGeometryCollection count]</a></div><div class="ttdeci">NSUInteger count()</div></div>
-<div class="ttc" id="interface_g_f_geometry_collection_html"><div class="ttname"><a href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div><div class="ttdoc">A container class containing an array of GFGeometry objects. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:32</div></div>
-<div class="ttc" id="interface_g_f_geometry_collection_html_a46262687af8b3c6599b2b2d68b0481b6"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a46262687af8b3c6599b2b2d68b0481b6">-[GFGeometryCollection lastGeometry]</a></div><div class="ttdeci">GFGeometry * lastGeometry()</div></div>
-<div class="ttc" id="interface_g_f_geometry_collection_html_a1910e3af2895a6c9cb7baf18ec791aad"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a1910e3af2895a6c9cb7baf18ec791aad">-[GFGeometryCollection firstGeometry]</a></div><div class="ttdeci">GFGeometry * firstGeometry()</div></div>
+<div class="ttc" id="interface_g_f_geometry_collection_html"><div class="ttname"><a href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div><div class="ttdoc">A container class containing an array of GFGeometry objects. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:36</div></div>
+<div class="ttc" id="interface_g_f_geometry_collection_html_a610f72a22d76a3ce6c9eaeb2dad35c0e"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a610f72a22d76a3ce6c9eaeb2dad35c0e">-[GFGeometryCollection firstGeometry]</a></div><div class="ttdeci">id firstGeometry()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 26 2015 10:58:12 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 14 2015 16:26:28 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

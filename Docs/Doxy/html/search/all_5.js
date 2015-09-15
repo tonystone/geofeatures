@@ -1,9 +1,22 @@
 var searchData=
 [
-  ['initwitharray_3a',['initWithArray:',['../interface_g_f_geometry_collection.html#a260bb3daa9d3324cb1cc2fa9ef3a61e9',1,'GFGeometryCollection']]],
-  ['initwithgeojsongeometry_3a',['initWithGeoJSONGeometry:',['../interface_g_f_box.html#acb2fca8524a96ab32f7e20882042b9ce',1,'GFBox::initWithGeoJSONGeometry:()'],['../interface_g_f_line_string.html#a956fe6e6daf06ca4e016f94d18b2c71f',1,'GFLineString::initWithGeoJSONGeometry:()'],['../interface_g_f_multi_line_string.html#add9c4b2526275719797deac98af60e8b',1,'GFMultiLineString::initWithGeoJSONGeometry:()'],['../interface_g_f_multi_point.html#a6ac08a062d835b8fcf0e1d40e4b73305',1,'GFMultiPoint::initWithGeoJSONGeometry:()'],['../interface_g_f_multi_polygon.html#a375d9bb7ebc55c2867bc40ac8ebe79da',1,'GFMultiPolygon::initWithGeoJSONGeometry:()'],['../interface_g_f_point.html#ac653a5e1489a2318bf2f00e5d7d0c03b',1,'GFPoint::initWithGeoJSONGeometry:()'],['../interface_g_f_polygon.html#a8d13c20909f1a5e67179f1ed51ce2887',1,'GFPolygon::initWithGeoJSONGeometry:()']]],
-  ['initwithmincorner_3amaxcorner_3a',['initWithMinCorner:maxCorner:',['../interface_g_f_box.html#a639abb389fb3234d29b7315c3d8416e8',1,'GFBox']]],
-  ['initwithwkt_3a',['initWithWKT:',['../interface_g_f_box.html#a7391861070f3ef70458b95e2c5a96a62',1,'GFBox::initWithWKT:()'],['../interface_g_f_line_string.html#ae2adf99cdccb6ee23e22bd8e035d7896',1,'GFLineString::initWithWKT:()'],['../interface_g_f_multi_line_string.html#adddb143dc38b5f7611559ee53906ac5d',1,'GFMultiLineString::initWithWKT:()'],['../interface_g_f_multi_point.html#a76820b1b64308396ee379a5224e6447e',1,'GFMultiPoint::initWithWKT:()'],['../interface_g_f_multi_polygon.html#a8c666f7e976d0890ff2f63b001dbe1ac',1,'GFMultiPolygon::initWithWKT:()'],['../interface_g_f_point.html#a85ea5cc1bf88733d818798664b991400',1,'GFPoint::initWithWKT:()'],['../interface_g_f_polygon.html#a7b4fcbc552571447dc0609c8788909b0',1,'GFPolygon::initWithWKT:()']]],
-  ['initwithx_3ay_3a',['initWithX:y:',['../interface_g_f_point.html#a430d98d14d3654c76f4682f53fbacf26',1,'GFPoint']]],
-  ['isvalid',['isValid',['../interface_g_f_geometry.html#a3a63de5905eae52356c6afd7313e4828',1,'GFGeometry']]]
+  ['geometryatindex_3a',['geometryAtIndex:',['../interface_g_f_geometry_collection.html#a4cd182279facec2850b47634aa0f6297',1,'GFGeometryCollection::geometryAtIndex:()'],['../interface_g_f_multi_line_string.html#a6724df65ee49b15e8778f965d3498bcb',1,'GFMultiLineString::geometryAtIndex:()'],['../interface_g_f_multi_point.html#a679f88a16cfc5e7d2d2bd1fda95303be',1,'GFMultiPoint::geometryAtIndex:()'],['../interface_g_f_multi_polygon.html#ab18a262a8d02f4b15250bad1d8073f2a',1,'GFMultiPolygon::geometryAtIndex:()']]],
+  ['geometrywithgeojsongeometry_3a',['geometryWithGeoJSONGeometry:',['../category_g_f_geometry_07_geo_j_s_o_n_08.html#a5b730dcea33fc8b2c156199400e3014e',1,'GFGeometry(GeoJSON)::geometryWithGeoJSONGeometry:()'],['../interface_g_f_geometry.html#a5b730dcea33fc8b2c156199400e3014e',1,'GFGeometry::geometryWithGeoJSONGeometry:()']]],
+  ['geometrywithwkt_3a',['geometryWithWKT:',['../category_g_f_geometry_07_w_k_t_08.html#a32a49e08fdbc2998735c26ddbfa88741',1,'GFGeometry(WKT)::geometryWithWKT:()'],['../interface_g_f_geometry.html#a32a49e08fdbc2998735c26ddbfa88741',1,'GFGeometry::geometryWithWKT:()']]],
+  ['gfbox',['GFBox',['../interface_g_f_box.html',1,'']]],
+  ['gfgeometry',['GFGeometry',['../interface_g_f_geometry.html',1,'']]],
+  ['gfgeometry_28geojson_29',['GFGeometry(GeoJSON)',['../category_g_f_geometry_07_geo_j_s_o_n_08.html',1,'']]],
+  ['gfgeometry_28mapkit_29',['GFGeometry(MapKit)',['../category_g_f_geometry_07_map_kit_08.html',1,'']]],
+  ['gfgeometry_28wkt_29',['GFGeometry(WKT)',['../category_g_f_geometry_07_w_k_t_08.html',1,'']]],
+  ['gfgeometrycollection',['GFGeometryCollection',['../interface_g_f_geometry_collection.html',1,'']]],
+  ['gflinestring',['GFLineString',['../interface_g_f_line_string.html',1,'']]],
+  ['gflinestringabstract',['GFLineStringAbstract',['../interface_g_f_line_string_abstract.html',1,'']]],
+  ['gfmultilinestring',['GFMultiLineString',['../interface_g_f_multi_line_string.html',1,'']]],
+  ['gfmultipoint',['GFMultiPoint',['../interface_g_f_multi_point.html',1,'']]],
+  ['gfmultipolygon',['GFMultiPolygon',['../interface_g_f_multi_polygon.html',1,'']]],
+  ['gfpoint',['GFPoint',['../interface_g_f_point.html',1,'']]],
+  ['gfpointabstract',['GFPointAbstract',['../interface_g_f_point_abstract.html',1,'']]],
+  ['gfpolygon',['GFPolygon',['../interface_g_f_polygon.html',1,'']]],
+  ['gfpolygonabstract',['GFPolygonAbstract',['../interface_g_f_polygon_abstract.html',1,'']]],
+  ['gfring',['GFRing',['../interface_g_f_ring.html',1,'']]]
 ];
