@@ -19,7 +19,6 @@
 */
 
 #import "GFPoint+Primitives.hpp"
-#include "GFGeometry+Protected.hpp"
 #import <MapKit/MapKit.h>
 
 #include "geofeatures/internal/Point.hpp"

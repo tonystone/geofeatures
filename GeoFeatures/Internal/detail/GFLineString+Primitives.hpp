@@ -22,7 +22,6 @@
 #ifndef __GFLineStringProtected_hpp
 #define __GFLineStringProtected_hpp
 
-#import "GFLineString.h"
 #import <MapKit/MapKit.h>
 
 namespace geofeatures {

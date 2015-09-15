@@ -19,7 +19,6 @@
 */
 
 #import "GFLineString+Primitives.hpp"
-#include "GFGeometry+Protected.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
