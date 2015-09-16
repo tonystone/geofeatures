@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F0DE9E6F205CC9770BCB17E6"
+               BlueprintIdentifier = "301327EBB72FA8FC57416B7D"
                BuildableName = "libPods-Tests-GeoFeatures.a"
                BlueprintName = "Pods-Tests-GeoFeatures"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F0DE9E6F205CC9770BCB17E6"
-            BuildableName = "libPods-Tests-GeoFeatures.a"
-            BlueprintName = "Pods-Tests-GeoFeatures"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
