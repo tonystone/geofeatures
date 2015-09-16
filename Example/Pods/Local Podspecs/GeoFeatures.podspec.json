@@ -16,7 +16,10 @@
   "public_header_files": "GeoFeatures/*.h",
   "header_mappings_dir": "GeoFeatures",
   "source_files": "GeoFeatures/**/*",
-  "preserve_paths": "GeoFeatures/**/*",
+  "preserve_paths": [
+    "GeoFeatures/**/*",
+    "LICENSE_BOOST_1_0"
+  ],
   "exclude_files": "GeoFeatures/**/*.pl",
   "frameworks": "MapKit",
   "xcconfig": {
