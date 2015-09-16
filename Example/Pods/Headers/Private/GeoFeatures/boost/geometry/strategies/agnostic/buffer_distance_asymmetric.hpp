@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/agnostic/buffer_distance_asymmetric.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/agnostic/buffer_distance_asymmetric.hpp

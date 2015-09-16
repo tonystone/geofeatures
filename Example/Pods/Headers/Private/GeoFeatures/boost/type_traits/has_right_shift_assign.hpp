@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/has_right_shift_assign.hpp
+../../../../../../../GeoFeatures/boost/type_traits/has_right_shift_assign.hpp

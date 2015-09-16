@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/composite_traits.hpp
+../../../../../../../GeoFeatures/boost/type_traits/composite_traits.hpp

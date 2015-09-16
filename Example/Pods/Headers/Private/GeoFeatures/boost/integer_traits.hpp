@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/boost/boost/integer_traits.hpp
+../../../../../../GeoFeatures/boost/integer_traits.hpp

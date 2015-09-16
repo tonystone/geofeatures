@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/compiler/kai.hpp
+../../../../../../../../GeoFeatures/boost/config/compiler/kai.hpp

@@ -1,0 +1,1 @@
+../../../../../../../../../GeoFeatures/Internal/detail/geofeatures/internal/LineString.hpp

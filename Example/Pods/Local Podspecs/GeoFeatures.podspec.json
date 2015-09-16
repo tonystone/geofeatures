@@ -14,9 +14,11 @@
     "ios": "6.0"
   },
   "requires_arc": true,
-  "source_files": "GeoFeatures/*",
   "public_header_files": "GeoFeatures/*.h",
-  "preserve_paths": "LICENSE",
+  "header_mappings_dir": "GeoFeatures",
+  "source_files": "GeoFeatures/**/*",
+  "preserve_paths": "GeoFeatures/**/*",
+  "exclude_files": "GeoFeatures/**/*.pl",
   "frameworks": "MapKit",
   "xcconfig": {
     "GCC_C_LANGUAGE_STANDARD": "c11",
@@ -24,32 +26,5 @@
     "CLANG_CXX_LIBRARY": "libc++",
     "OTHER_LDFLAGS": "-lc++",
     "OTHER_CFLAGS": "-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0"
-  },
-  "subspecs": [
-    {
-      "name": "Internal",
-      "subspecs": [
-        {
-          "name": "boost",
-          "header_mappings_dir": "GeoFeatures/Internal/boost",
-          "source_files": "GeoFeatures/Internal/boost/boost/**/*.{h,hpp,ipp}",
-          "public_header_files": "GeoFeatures/Internal/boost/boost/**/*.{h,hpp}",
-          "preserve_paths": "GeoFeatures/Internal/boost/LICENSE_1_0.txt"
-        },
-        {
-          "name": "detail",
-          "dependencies": {
-            "GeoFeatures/Internal/boost": [
-
-            ]
-          },
-          "header_mappings_dir": "GeoFeatures/Internal/detail",
-          "source_files": [
-            "GeoFeatures/Internal/detail/*",
-            "GeoFeatures/Internal/detail/geofeatures/**/*"
-          ]
-        }
-      ]
-    }
-  ]
+  }
 }

@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/copy_segments.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/overlay/copy_segments.hpp

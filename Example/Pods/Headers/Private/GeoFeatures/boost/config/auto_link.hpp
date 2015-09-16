@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/config/auto_link.hpp
+../../../../../../../GeoFeatures/boost/config/auto_link.hpp

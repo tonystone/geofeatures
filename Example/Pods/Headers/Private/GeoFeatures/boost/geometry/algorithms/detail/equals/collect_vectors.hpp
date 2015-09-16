@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/equals/collect_vectors.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/equals/collect_vectors.hpp

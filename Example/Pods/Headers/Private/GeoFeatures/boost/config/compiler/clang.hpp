@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/compiler/clang.hpp
+../../../../../../../../GeoFeatures/boost/config/compiler/clang.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/core/coordinate_dimension.hpp
+../../../../../../../../GeoFeatures/boost/geometry/core/coordinate_dimension.hpp

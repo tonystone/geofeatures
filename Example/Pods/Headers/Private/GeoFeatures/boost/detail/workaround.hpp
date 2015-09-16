@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/detail/workaround.hpp
+../../../../../../../GeoFeatures/boost/detail/workaround.hpp

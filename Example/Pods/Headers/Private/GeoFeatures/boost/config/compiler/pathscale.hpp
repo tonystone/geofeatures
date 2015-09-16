@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/compiler/pathscale.hpp
+../../../../../../../../GeoFeatures/boost/config/compiler/pathscale.hpp

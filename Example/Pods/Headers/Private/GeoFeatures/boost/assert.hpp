@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/boost/boost/assert.hpp
+../../../../../../GeoFeatures/boost/assert.hpp

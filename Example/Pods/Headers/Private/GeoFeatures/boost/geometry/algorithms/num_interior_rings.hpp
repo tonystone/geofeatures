@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/num_interior_rings.hpp
+../../../../../../../../GeoFeatures/boost/geometry/algorithms/num_interior_rings.hpp

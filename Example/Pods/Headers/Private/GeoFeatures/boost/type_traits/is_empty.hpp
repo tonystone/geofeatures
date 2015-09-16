@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/is_empty.hpp
+../../../../../../../GeoFeatures/boost/type_traits/is_empty.hpp

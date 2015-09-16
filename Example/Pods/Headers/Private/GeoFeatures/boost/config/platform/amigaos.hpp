@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/amigaos.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/amigaos.hpp

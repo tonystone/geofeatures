@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/handle_tangencies.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/overlay/handle_tangencies.hpp

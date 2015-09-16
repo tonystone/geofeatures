@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/detail/indirect_traits.hpp
+../../../../../../../GeoFeatures/boost/detail/indirect_traits.hpp

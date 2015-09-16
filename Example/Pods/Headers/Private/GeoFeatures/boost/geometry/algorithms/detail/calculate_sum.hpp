@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/calculate_sum.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/calculate_sum.hpp

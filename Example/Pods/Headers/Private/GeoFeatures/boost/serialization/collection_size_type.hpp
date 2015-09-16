@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/serialization/collection_size_type.hpp
+../../../../../../../GeoFeatures/boost/serialization/collection_size_type.hpp

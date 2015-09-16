@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/remove_volatile.hpp
+../../../../../../../GeoFeatures/boost/type_traits/remove_volatile.hpp

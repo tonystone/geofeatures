@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/algorithm/string/yes_no_type.hpp
+../../../../../../../../GeoFeatures/boost/algorithm/string/yes_no_type.hpp

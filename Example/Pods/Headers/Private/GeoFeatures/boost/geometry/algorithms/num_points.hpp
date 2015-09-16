@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/num_points.hpp
+../../../../../../../../GeoFeatures/boost/geometry/algorithms/num_points.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/util/promote_integral.hpp
+../../../../../../../../GeoFeatures/boost/geometry/util/promote_integral.hpp

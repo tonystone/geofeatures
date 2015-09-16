@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/has_nothrow_copy.hpp
+../../../../../../../GeoFeatures/boost/type_traits/has_nothrow_copy.hpp

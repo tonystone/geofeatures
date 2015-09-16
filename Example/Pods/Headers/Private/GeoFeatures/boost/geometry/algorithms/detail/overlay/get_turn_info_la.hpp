@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/get_turn_info_la.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/overlay/get_turn_info_la.hpp

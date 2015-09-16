@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/mpl/bool.hpp
+../../../../../../../GeoFeatures/boost/mpl/bool.hpp

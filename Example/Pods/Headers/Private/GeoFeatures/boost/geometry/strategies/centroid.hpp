@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/centroid.hpp
+../../../../../../../../GeoFeatures/boost/geometry/strategies/centroid.hpp

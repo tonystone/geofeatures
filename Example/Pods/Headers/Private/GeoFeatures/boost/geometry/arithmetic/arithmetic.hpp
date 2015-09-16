@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/arithmetic/arithmetic.hpp
+../../../../../../../../GeoFeatures/boost/geometry/arithmetic/arithmetic.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/segment_identifier.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/overlay/segment_identifier.hpp

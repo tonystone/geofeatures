@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/buffer_join_miter.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/buffer_join_miter.hpp
