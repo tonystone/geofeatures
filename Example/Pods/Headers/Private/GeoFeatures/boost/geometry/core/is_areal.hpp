@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/core/is_areal.hpp
+../../../../../../../../GeoFeatures/boost/geometry/core/is_areal.hpp

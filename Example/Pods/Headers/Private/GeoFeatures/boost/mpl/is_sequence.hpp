@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/mpl/is_sequence.hpp
+../../../../../../../GeoFeatures/boost/mpl/is_sequence.hpp

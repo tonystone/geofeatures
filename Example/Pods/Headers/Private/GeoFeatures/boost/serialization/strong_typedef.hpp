@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/serialization/strong_typedef.hpp
+../../../../../../../GeoFeatures/boost/serialization/strong_typedef.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/io/wkt/wkt.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/io/wkt/wkt.hpp

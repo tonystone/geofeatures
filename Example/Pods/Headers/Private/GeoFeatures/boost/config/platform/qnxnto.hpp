@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/qnxnto.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/qnxnto.hpp

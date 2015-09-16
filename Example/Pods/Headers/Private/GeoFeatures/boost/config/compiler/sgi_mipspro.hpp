@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/compiler/sgi_mipspro.hpp
+../../../../../../../../GeoFeatures/boost/config/compiler/sgi_mipspro.hpp

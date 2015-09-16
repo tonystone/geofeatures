@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/core/exception.hpp
+../../../../../../../../GeoFeatures/boost/geometry/core/exception.hpp

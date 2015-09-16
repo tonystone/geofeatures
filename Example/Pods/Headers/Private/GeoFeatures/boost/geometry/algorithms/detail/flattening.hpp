@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/flattening.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/flattening.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/arithmetic/dot_product.hpp
+../../../../../../../../GeoFeatures/boost/geometry/arithmetic/dot_product.hpp

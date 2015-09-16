@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/assign_box_corners.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/assign_box_corners.hpp

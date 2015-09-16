@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/typeof/int_encoding.hpp
+../../../../../../../GeoFeatures/boost/typeof/int_encoding.hpp

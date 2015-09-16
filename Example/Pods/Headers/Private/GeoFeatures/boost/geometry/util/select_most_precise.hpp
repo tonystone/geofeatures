@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/util/select_most_precise.hpp
+../../../../../../../../GeoFeatures/boost/geometry/util/select_most_precise.hpp

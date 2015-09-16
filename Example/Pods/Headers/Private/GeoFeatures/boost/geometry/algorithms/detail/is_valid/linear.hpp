@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/is_valid/linear.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/is_valid/linear.hpp

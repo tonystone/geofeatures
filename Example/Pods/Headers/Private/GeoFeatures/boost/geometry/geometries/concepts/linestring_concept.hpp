@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/geometries/concepts/linestring_concept.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/geometries/concepts/linestring_concept.hpp

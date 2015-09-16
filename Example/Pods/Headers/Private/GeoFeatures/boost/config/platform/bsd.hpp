@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/bsd.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/bsd.hpp

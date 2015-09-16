@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/mpl/aux_/msvc_is_class.hpp
+../../../../../../../../GeoFeatures/boost/mpl/aux_/msvc_is_class.hpp

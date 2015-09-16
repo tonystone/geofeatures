@@ -9,10 +9,9 @@
 
 Pod::Spec.new do |s|
     s.name              = "GeoFeatures"
-    s.version           = "1.1.0"
+    s.version           = "1.2.0"
     s.summary           = "A lightweight, high performance geometry library for Objective-C"
     s.homepage          = "https://github.com/tonystone/geofeatures"
-    s.documentation_url = "http://tonystone.github.io/geofeatures"
     s.license           = 'Apache License, Version 2.0'
     s.author            = "Tony Stone"
     s.source            = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
@@ -22,27 +21,13 @@ Pod::Spec.new do |s|
 
     s.requires_arc = true
 
-    s.source_files         = 'GeoFeatures/*'
     s.public_header_files  = 'GeoFeatures/*.h'
-    s.preserve_path        = 'LICENSE'
+    s.header_mappings_dir =  'GeoFeatures'
 
-    s.subspec 'Internal' do |sp|
+    s.source_files         = 'GeoFeatures/**/*'
+    s.preserve_paths       = 'GeoFeatures/**/*', 'LICENSE_BOOST_1_0'
 
-        sp.subspec 'boost' do |ssp|
-            ssp.header_mappings_dir = 'GeoFeatures/Internal/boost'
-            ssp.source_files        = 'GeoFeatures/Internal/boost/boost/**/*.{h,hpp,ipp}'
-            ssp.public_header_files = 'GeoFeatures/Internal/boost/boost/**/*.{h,hpp}'
-            ssp.preserve_path       = 'GeoFeatures/Internal/boost/LICENSE_1_0.txt'
-        end
-
-        sp.subspec 'detail' do |ssp|
-            ssp.dependency 'GeoFeatures/Internal/boost'
-
-            ssp.header_mappings_dir = 'GeoFeatures/Internal/detail'
-            ssp.source_files        = 'GeoFeatures/Internal/detail/*',
-                                      'GeoFeatures/Internal/detail/geofeatures/**/*'
-        end
-    end
+    s.exclude_files        = 'GeoFeatures/**/*.pl'
 
     s.frameworks = 'MapKit'
 

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/default_strategy.hpp
+../../../../../../../../GeoFeatures/boost/geometry/strategies/default_strategy.hpp

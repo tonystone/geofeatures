@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/area_surveyor.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/area_surveyor.hpp

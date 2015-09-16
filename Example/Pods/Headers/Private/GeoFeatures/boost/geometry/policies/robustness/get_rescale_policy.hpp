@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/policies/robustness/get_rescale_policy.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/policies/robustness/get_rescale_policy.hpp

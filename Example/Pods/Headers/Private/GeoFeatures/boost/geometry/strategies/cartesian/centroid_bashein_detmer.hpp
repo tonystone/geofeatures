@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/centroid_bashein_detmer.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/centroid_bashein_detmer.hpp

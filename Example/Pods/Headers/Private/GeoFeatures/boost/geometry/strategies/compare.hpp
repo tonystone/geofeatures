@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/compare.hpp
+../../../../../../../../GeoFeatures/boost/geometry/strategies/compare.hpp

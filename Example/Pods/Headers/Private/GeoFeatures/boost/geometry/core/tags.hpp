@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/core/tags.hpp
+../../../../../../../../GeoFeatures/boost/geometry/core/tags.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/core/assert.hpp
+../../../../../../../../GeoFeatures/boost/geometry/core/assert.hpp

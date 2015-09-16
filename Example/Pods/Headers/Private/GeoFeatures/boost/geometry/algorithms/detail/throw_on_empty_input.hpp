@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/throw_on_empty_input.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/throw_on_empty_input.hpp

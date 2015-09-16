@@ -1,1 +1,0 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/intersection_result.hpp

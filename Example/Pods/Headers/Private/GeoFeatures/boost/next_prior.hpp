@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/boost/boost/next_prior.hpp
+../../../../../../GeoFeatures/boost/next_prior.hpp

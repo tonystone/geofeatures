@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/util/parameter_type_of.hpp
+../../../../../../../../GeoFeatures/boost/geometry/util/parameter_type_of.hpp

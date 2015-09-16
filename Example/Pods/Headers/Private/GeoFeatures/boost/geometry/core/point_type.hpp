@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/core/point_type.hpp
+../../../../../../../../GeoFeatures/boost/geometry/core/point_type.hpp

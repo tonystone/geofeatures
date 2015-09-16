@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/is_arithmetic.hpp
+../../../../../../../GeoFeatures/boost/type_traits/is_arithmetic.hpp

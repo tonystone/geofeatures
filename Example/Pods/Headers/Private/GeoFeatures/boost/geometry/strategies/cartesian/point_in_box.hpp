@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/point_in_box.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/point_in_box.hpp

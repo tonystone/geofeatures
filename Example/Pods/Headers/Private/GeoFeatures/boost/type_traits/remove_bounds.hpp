@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/remove_bounds.hpp
+../../../../../../../GeoFeatures/boost/type_traits/remove_bounds.hpp

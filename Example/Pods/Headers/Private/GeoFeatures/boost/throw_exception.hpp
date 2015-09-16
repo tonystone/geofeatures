@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/boost/boost/throw_exception.hpp
+../../../../../../GeoFeatures/boost/throw_exception.hpp

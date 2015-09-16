@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/mpl/aux_/preprocessed/msvc60/shift_right.hpp
+../../../../../../../../../../GeoFeatures/boost/mpl/aux_/preprocessed/msvc60/shift_right.hpp

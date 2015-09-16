@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/azimuth.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/azimuth.hpp

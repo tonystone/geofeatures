@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/buffer_join_round_by_divide.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/buffer_join_round_by_divide.hpp

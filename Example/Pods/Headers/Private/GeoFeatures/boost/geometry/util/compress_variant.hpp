@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/util/compress_variant.hpp
+../../../../../../../../GeoFeatures/boost/geometry/util/compress_variant.hpp

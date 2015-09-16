@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_traits/is_member_object_pointer.hpp
+../../../../../../../GeoFeatures/boost/type_traits/is_member_object_pointer.hpp

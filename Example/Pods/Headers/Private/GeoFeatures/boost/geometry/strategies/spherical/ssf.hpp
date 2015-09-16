@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/spherical/ssf.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/spherical/ssf.hpp

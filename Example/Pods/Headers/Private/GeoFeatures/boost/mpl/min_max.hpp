@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/mpl/min_max.hpp
+../../../../../../../GeoFeatures/boost/mpl/min_max.hpp

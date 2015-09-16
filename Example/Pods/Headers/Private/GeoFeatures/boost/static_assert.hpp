@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/boost/boost/static_assert.hpp
+../../../../../../GeoFeatures/boost/static_assert.hpp

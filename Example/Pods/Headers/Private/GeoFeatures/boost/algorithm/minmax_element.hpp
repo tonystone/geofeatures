@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/algorithm/minmax_element.hpp
+../../../../../../../GeoFeatures/boost/algorithm/minmax_element.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/geographic/distance_thomas.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/geographic/distance_thomas.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/policies/robustness/segment_ratio.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/policies/robustness/segment_ratio.hpp
