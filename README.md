@@ -21,6 +21,7 @@ GeoFeatures is a lightweight, high performance geometry library for Objective-C.
 - [GeoJSON] (http://geojson.org/) input and output.
 - MapKit representations and drawing.
 - Indexed Subscripting support for all collection types (e.g. `GEPoint * point = multiPoint[0]`).
+- **Swift**: supports direct use in Swift applications.
 - Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
 - Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
 - Implemented based on the popular and fast open source C++ boost geometry library.
