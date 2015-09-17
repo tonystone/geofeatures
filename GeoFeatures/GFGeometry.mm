@@ -55,12 +55,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry
 
     - (instancetype) init {
-        NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-       
-        if ((self = [super init])) {
-            _members = new GFMembers();
-        }
-        return self;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class])] userInfo:nil];
     }
 
     - (void)encodeWithCoder:(NSCoder *)coder {
