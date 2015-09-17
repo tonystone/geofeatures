@@ -242,15 +242,6 @@ namespace  gf = geofeatures::internal;
 
 @implementation GFGeometry (GeoJSON)
 
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
-        NSParameterAssert(jsonDictionary != nil);
-
-        if ((self = [super init])) {
-            _members = new GFMembers();
-        }
-        return self;
-    }
-
     + (instancetype) geometryWithGeoJSONGeometry:(NSDictionary *)geoJSONGeometryDictionary {
         NSParameterAssert(geoJSONGeometryDictionary != nil);
 
@@ -262,6 +253,10 @@ namespace  gf = geofeatures::internal;
             geometry = [(GFGeometry *)[geometryClass alloc] initWithGeoJSONGeometry: geoJSONGeometryDictionary];
         }
         return geometry;
+    }
+
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
