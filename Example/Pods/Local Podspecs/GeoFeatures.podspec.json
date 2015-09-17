@@ -15,7 +15,11 @@
   "requires_arc": true,
   "public_header_files": "GeoFeatures/*.h",
   "header_mappings_dir": "GeoFeatures",
-  "source_files": "GeoFeatures/**/*",
+  "source_files": [
+    "GeoFeatures/*",
+    "GeoFeatures/Internal/**/*",
+    "GeoFeatures/boost/**/*"
+  ],
   "preserve_paths": [
     "GeoFeatures/**/*",
     "LICENSE_BOOST_1_0"
