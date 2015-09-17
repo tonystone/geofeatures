@@ -56,7 +56,11 @@ namespace  gf = geofeatures::internal;
 
     - (instancetype) init {
         NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
+       
+        if ((self = [super init])) {
+            _members = new GFMembers();
+        }
+        return self;
     }
 
     - (void)encodeWithCoder:(NSCoder *)coder {
@@ -246,6 +250,7 @@ namespace  gf = geofeatures::internal;
         NSParameterAssert(jsonDictionary != nil);
 
         if ((self = [super init])) {
+            _members = new GFMembers();
         }
         return self;
     }

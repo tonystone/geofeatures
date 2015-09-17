@@ -54,6 +54,7 @@
  */
 struct GFMembers {
     public:
+        GFMembers() {};
         GFMembers(geofeatures::internal::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
 
         geofeatures::internal::GeometryVariant geometryVariant;
