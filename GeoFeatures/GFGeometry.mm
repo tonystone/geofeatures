@@ -160,6 +160,7 @@ namespace  gf = geofeatures::internal;
 
 @implementation GFGeometry (Protected)
 
+    // Designated initializer
     - (instancetype) initWithCPPGeometryVariant: (gf::GeometryVariant) geometryVariant {
         NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
 
