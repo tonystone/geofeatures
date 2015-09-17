@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
     s.public_header_files  = 'GeoFeatures/*.h'
     s.header_mappings_dir =  'GeoFeatures'
 
-    s.source_files         = 'GeoFeatures/*', 'GeoFeatures/Internal/**/*', 'GeoFeatures/boost/**/*'
+    s.source_files         = 'GeoFeatures/**/*'
     s.preserve_paths       = 'GeoFeatures/**/*', 'LICENSE_BOOST_1_0'
 
     s.exclude_files        = 'GeoFeatures/**/*.pl'
