@@ -55,8 +55,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry
 
     - (instancetype) init {
-        NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class])] userInfo:nil];
     }
 
     - (void)encodeWithCoder:(NSCoder *)coder {
@@ -161,8 +160,9 @@ namespace  gf = geofeatures::internal;
 
 @implementation GFGeometry (Protected)
 
+    // Designated initializer
     - (instancetype) initWithCPPGeometryVariant: (gf::GeometryVariant) geometryVariant {
-        NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
+        NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
 
         if ((self = [super init])) {
             _members = new GFMembers(geometryVariant);
@@ -177,7 +177,7 @@ namespace  gf = geofeatures::internal;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
-        @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
@@ -242,14 +242,6 @@ namespace  gf = geofeatures::internal;
 
 @implementation GFGeometry (GeoJSON)
 
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
-        NSParameterAssert(jsonDictionary != nil);
-
-        if ((self = [super init])) {
-        }
-        return self;
-    }
-
     + (instancetype) geometryWithGeoJSONGeometry:(NSDictionary *)geoJSONGeometryDictionary {
         NSParameterAssert(geoJSONGeometryDictionary != nil);
 
@@ -263,9 +255,12 @@ namespace  gf = geofeatures::internal;
         return geometry;
     }
 
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+
     - (NSDictionary *) toGeoJSONGeometry {
-        @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
@@ -273,8 +268,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry (MapKit)
 
     - (NSArray *) mkMapOverlays {
-        @throw [NSException exceptionWithName:@"Must Override" reason:[NSString stringWithFormat:@"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
