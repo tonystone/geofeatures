@@ -26,9 +26,13 @@
 //
 // Open up the protected methods in GFGeometry for testing.
 //
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
 @interface GFGeometry (Test)
     - (instancetype) initWithWKT: (NSString *) wkt;
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 @end
+#pragma clang diagnostic pop
 
 //
 // Internal test class
@@ -36,6 +40,9 @@
 @interface GFGeometryTestSubClass : GFGeometry
 @end
 @implementation GFGeometryTestSubClass
+    - (instancetype) init {
+        return self;
+    }
 @end
 
 
@@ -114,9 +121,10 @@
     }
 
     - (void) testOverriddenMethods {
+        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
+        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithGeoJSONGeometry: nil], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] toGeoJSONGeometry], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] mkMapOverlays], NSException, NSInternalInconsistencyException);
-        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
     }
 
 @end
