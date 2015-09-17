@@ -162,7 +162,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry (Protected)
 
     - (instancetype) initWithCPPGeometryVariant: (gf::GeometryVariant) geometryVariant {
-        NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
+        NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
 
         if ((self = [super init])) {
             _members = new GFMembers(geometryVariant);
@@ -177,7 +177,7 @@ namespace  gf = geofeatures::internal;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
-        @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
@@ -264,8 +264,7 @@ namespace  gf = geofeatures::internal;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
@@ -273,8 +272,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry (MapKit)
 
     - (NSArray *) mkMapOverlays {
-        @throw [NSException exceptionWithName:@"Must Override" reason:[NSString stringWithFormat:@"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
