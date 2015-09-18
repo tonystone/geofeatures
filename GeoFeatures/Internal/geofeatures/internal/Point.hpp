@@ -61,7 +61,7 @@ namespace geofeatures {
             
         public:
             // construction/destruction
-            inline Point(CoordinateType const& x = 0.0, CoordinateType const& y = 0.0) : Geometry() {
+            inline Point(CoordinateType const& x = 0.0, CoordinateType const& y = 0.0) noexcept : Geometry() {
                 values_[0] = x;
                 values_[1] = y;
             }
@@ -69,12 +69,12 @@ namespace geofeatures {
             inline virtual ~Point() {};
 
             template <std::size_t K>
-            inline CoordinateType const& get() const {
+            inline CoordinateType const& get() const noexcept {
                 return values_[K];
             }
 
             template <std::size_t K>
-            inline void set(CoordinateType const& value){
+            inline void set(CoordinateType const& value) noexcept {
                 values_[K] = value;
             }
 
