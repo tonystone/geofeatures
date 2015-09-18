@@ -53,17 +53,7 @@ namespace gf = geofeatures::internal;
     }
 
     - (instancetype) initWithX:(double)x y:(double)y {
-        gf::Point point;
-
-        try {
-            point.set<0>(x);
-            point.set<1>(y);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-
-        self = [super initWithCPPGeometryVariant: point];
+        self = [super initWithCPPGeometryVariant: gf::Point(x,y)];
         return self;
     }
 
@@ -78,7 +68,7 @@ namespace gf = geofeatures::internal;
             self = [super initWithCPPGeometryVariant: point];
 
         } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
         return self;
     }
