@@ -56,6 +56,7 @@
 
     - (void)testFailedConstruction {
         XCTAssertThrowsSpecificNamed([[GFGeometry alloc] init], NSException, NSInternalInconsistencyException);
+        XCTAssertThrows([[GFGeometry alloc] initWithWKT: @"INVALID()"]);
     }
 
     - (void) testGeometryWithWKT {
