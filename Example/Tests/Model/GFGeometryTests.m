@@ -58,6 +58,12 @@
         XCTAssertThrowsSpecificNamed([[GFGeometry alloc] init], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithGeoJSONGeometry: nil], NSException, NSInternalInconsistencyException);
+
+        XCTAssertThrowsSpecificNamed(([GFGeometry geometryWithGeoJSONGeometry: @{@"type" : @"Invalid", @"invalid" : @[@(103.0), @(2.0)]}]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testGeometryWithGeoJSONGeometry {
+        XCTAssertEqualObjects(([[GFGeometry geometryWithGeoJSONGeometry: @{@"type" : @"Point", @"coordinates" : @[@(103.0), @(2.0)]}] toWKTString]), @"POINT(103 2)");
     }
 
     - (void) testGeometryWithWKT {
