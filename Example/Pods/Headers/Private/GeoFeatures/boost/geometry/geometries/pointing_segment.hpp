@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/geometries/pointing_segment.hpp
+../../../../../../../../GeoFeatures/boost/geometry/geometries/pointing_segment.hpp

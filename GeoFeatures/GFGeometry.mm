@@ -55,8 +55,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry
 
     - (instancetype) init {
-        NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class])] userInfo:nil];
     }
 
     - (void)encodeWithCoder:(NSCoder *)coder {
@@ -161,8 +160,9 @@ namespace  gf = geofeatures::internal;
 
 @implementation GFGeometry (Protected)
 
+    // Designated initializer
     - (instancetype) initWithCPPGeometryVariant: (gf::GeometryVariant) geometryVariant {
-        NSAssert(![[self class] isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
+        NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
 
         if ((self = [super init])) {
             _members = new GFMembers(geometryVariant);
@@ -177,7 +177,7 @@ namespace  gf = geofeatures::internal;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
-        @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
@@ -186,45 +186,40 @@ namespace  gf = geofeatures::internal;
 
     + (instancetype) geometryWithWKT:(NSString *) wkt {
 
-        try {
-            if ([wkt hasPrefix: @"GEOMETRYCOLLECTION" caseInsensitive: YES]) {
+        if ([wkt hasPrefix: @"GEOMETRYCOLLECTION" caseInsensitive: YES]) {
 
-                return [[GFGeometryCollection alloc] initWithWKT: wkt];
+            return [[GFGeometryCollection alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"POINT" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"POINT" caseInsensitive: YES]) {
 
-                return [[GFPoint alloc] initWithWKT: wkt];
+            return [[GFPoint alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"MULTIPOINT" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"MULTIPOINT" caseInsensitive: YES]) {
 
-                return [[GFMultiPoint alloc] initWithWKT: wkt];
+            return [[GFMultiPoint alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"BOX" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"BOX" caseInsensitive: YES]) {
 
-                return [[GFBox alloc] initWithWKT: wkt];
+            return [[GFBox alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"LINESTRING" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"LINESTRING" caseInsensitive: YES]) {
 
-                return [[GFLineString alloc] initWithWKT: wkt];
+            return [[GFLineString alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"MULTILINESTRING" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"MULTILINESTRING" caseInsensitive: YES]) {
 
-                return [[GFMultiLineString alloc] initWithWKT: wkt];
+            return [[GFMultiLineString alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"POLYGON" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"POLYGON" caseInsensitive: YES]) {
 
-                return [[GFPolygon alloc] initWithWKT: wkt];
+            return [[GFPolygon alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"MULTIPOLYGON" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"MULTIPOLYGON" caseInsensitive: YES]) {
 
-                return [[GFMultiPolygon alloc] initWithWKT: wkt];
-            }
-
-            return nil;
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            return [[GFMultiPolygon alloc] initWithWKT: wkt];
         }
+
+        @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid WKT, %@ not supported.", wkt] userInfo:nil];
     }
 
     - (NSString *) toWKTString {
@@ -242,14 +237,6 @@ namespace  gf = geofeatures::internal;
 
 @implementation GFGeometry (GeoJSON)
 
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
-        NSParameterAssert(jsonDictionary != nil);
-
-        if ((self = [super init])) {
-        }
-        return self;
-    }
-
     + (instancetype) geometryWithGeoJSONGeometry:(NSDictionary *)geoJSONGeometryDictionary {
         NSParameterAssert(geoJSONGeometryDictionary != nil);
 
@@ -259,13 +246,18 @@ namespace  gf = geofeatures::internal;
 
         if (geometryClass) {
             geometry = [(GFGeometry *)[geometryClass alloc] initWithGeoJSONGeometry: geoJSONGeometryDictionary];
+        } else {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid GeoJSON Geometry Object, type %@ not supported.", geoJSONGeometryDictionary[@"type"]] userInfo:nil];
         }
         return geometry;
     }
 
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+
     - (NSDictionary *) toGeoJSONGeometry {
-        @throw [NSException exceptionWithName: @"Must Override" reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end
@@ -273,8 +265,7 @@ namespace  gf = geofeatures::internal;
 @implementation GFGeometry (MapKit)
 
     - (NSArray *) mkMapOverlays {
-        @throw [NSException exceptionWithName:@"Must Override" reason:[NSString stringWithFormat:@"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
 @end

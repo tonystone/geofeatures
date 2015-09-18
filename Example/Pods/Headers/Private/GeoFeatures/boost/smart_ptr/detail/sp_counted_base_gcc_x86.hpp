@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp
+../../../../../../../../GeoFeatures/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp

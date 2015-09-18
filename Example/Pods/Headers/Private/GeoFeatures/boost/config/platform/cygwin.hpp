@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/cygwin.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/cygwin.hpp

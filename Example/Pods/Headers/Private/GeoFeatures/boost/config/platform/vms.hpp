@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/vms.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/vms.hpp

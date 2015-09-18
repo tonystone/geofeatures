@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y',['y',['../interface_g_f_point.html#a6e8ac1c0393e802c7fa7d623e0cc9599',1,'GFPoint']]]
+  ['x',['x',['../interface_g_f_point.html#a5b9383f1c429724b6d938a64d468f63a',1,'GFPoint']]]
 ];

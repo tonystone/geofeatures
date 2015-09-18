@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/predef/architecture/sparc.h
+../../../../../../../../GeoFeatures/boost/predef/architecture/sparc.h

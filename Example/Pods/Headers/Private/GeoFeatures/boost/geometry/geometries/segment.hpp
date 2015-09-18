@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/geometries/segment.hpp
+../../../../../../../../GeoFeatures/boost/geometry/geometries/segment.hpp

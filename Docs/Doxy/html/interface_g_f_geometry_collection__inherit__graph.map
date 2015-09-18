@@ -1,3 +1,6 @@
 <map id="GFGeometryCollection" name="GFGeometryCollection">
-<area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
+<area shape="rect" id="node6" href="$interface_g_f_multi_line_string.html" title="A collection of GFLineStrings. " alt="" coords="5,229,135,256"/>
+<area shape="rect" id="node7" href="$interface_g_f_multi_point.html" title="A collection of GFPoints. " alt="" coords="159,229,258,256"/>
+<area shape="rect" id="node8" href="$interface_g_f_multi_polygon.html" title="A collection of GFPolygons. " alt="" coords="282,229,399,256"/>
+<area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="159,80,258,107"/>
 </map>

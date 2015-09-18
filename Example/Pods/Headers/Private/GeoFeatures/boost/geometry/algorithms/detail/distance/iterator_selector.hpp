@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/distance/iterator_selector.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/distance/iterator_selector.hpp

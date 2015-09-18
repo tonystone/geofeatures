@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/solaris.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/solaris.hpp

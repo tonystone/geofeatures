@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/algorithm/string/trim.hpp
+../../../../../../../../GeoFeatures/boost/algorithm/string/trim.hpp

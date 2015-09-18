@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/buffer_end_flat.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/buffer_end_flat.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/mpl/aux_/config/typeof.hpp
+../../../../../../../../../GeoFeatures/boost/mpl/aux_/config/typeof.hpp

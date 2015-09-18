@@ -24,12 +24,12 @@
 
 #import <MapKit/MapKit.h>
 #import "GFMultiLineString.h"
+#import "GFLineString.h"
 
-#include "GFLineStringAbstract+Protected.hpp"
 #include "GFGeometry+Protected.hpp"
+#include "GFLineString+Primitives.hpp"
 
 #include "geofeatures/internal/MultiLineString.hpp"
-#include "geofeatures/internal/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
@@ -38,6 +38,8 @@
 namespace gf = geofeatures::internal;
 
 @implementation GFMultiLineString
+
+#pragma mark - Construction
 
     - (instancetype) init {
         self = [super initWithCPPGeometryVariant: gf::MultiLineString()];
@@ -66,7 +68,7 @@ namespace gf = geofeatures::internal;
         id coordinates = jsonDictionary[@"coordinates"];
 
         if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
-            @throw [NSException exceptionWithName:@"Invalid GeoJSON" reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
         }
         //
         // Coordinates of a MultiLineString are an array of LineString coordinate arrays:
@@ -82,7 +84,7 @@ namespace gf = geofeatures::internal;
 
         try {
             for (NSArray * lineString in coordinates) {
-                multiLineString.push_back([self cppLineStringWithGeoJSONCoordinates: lineString]);
+                multiLineString.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(lineString));
             }
 
         } catch (std::exception & e) {
@@ -93,34 +95,61 @@ namespace gf = geofeatures::internal;
         return self;
     }
 
-    - (NSDictionary *)toGeoJSONGeometry {
-        NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
+#pragma mark - Querying a GFMultiLineString
 
+    - (NSUInteger) count {
         try {
             const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
-                [lineStrings addObject:[self geoJSONCoordinatesWithCPPLineString: (*it)]];
-            }
+            return multiLineString.size();
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return @{@"type": @"MultiLineString", @"coordinates": lineStrings};
     }
 
-    - (NSArray *)mkMapOverlays {
-        NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
-
+    - (GFLineString *) geometryAtIndex:(NSUInteger)index {
         try {
             const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
 
-            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
-                [mkPolygons addObject:[self mkOverlayWithCPPLineString: (*it)]];
+            unsigned long size = multiLineString.size();
+
+            if (size == 0 || index > (size -1)) {
+                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
             }
+            return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString.at(index)];
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-        return mkPolygons;
+    }
+
+    - (GFLineString *) firstGeometry {
+        try {
+            const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            if (multiLineString.size() == 0) {
+                return nil;
+            }
+            return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString.front()];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFLineString *) lastGeometry {
+        try {
+            const auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            if (multiLineString.size() == 0) {
+                return nil;
+            }
+            return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString.back()];
+
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
     }
 
 #pragma mark - Indexed Subscripting
@@ -134,5 +163,40 @@ namespace gf = geofeatures::internal;
 
         return [[GFLineString alloc] initWithCPPGeometryVariant: multiLineString[index]];
     }
+
+#pragma mark - GeoJSON Output
+
+    - (NSDictionary *)toGeoJSONGeometry {
+        NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
+
+        try {
+            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+                [lineStrings addObject: gf::GFLineString::geoJSONCoordinatesWithLineString(*it)];
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return @{@"type": @"MultiLineString", @"coordinates": lineStrings};
+    }
+
+#pragma mark - MapKit
+
+    - (NSArray *)mkMapOverlays {
+        NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
+
+        try {
+            auto& multiLineString = boost::polymorphic_strict_get<gf::MultiLineString>(_members->geometryVariant);
+
+            for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+                [mkPolygons addObject: gf::GFLineString::mkOverlayWithLineString(*it)];
+            }
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+        return mkPolygons;
+    }
+
 
 @end

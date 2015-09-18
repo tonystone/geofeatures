@@ -23,10 +23,7 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GFPointAbstract.h"
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#import "GFGeometry.h"
 
 /**
 * @class       GFPoint
@@ -36,9 +33,7 @@
 * @author      Tony Stone
 * @date        6/14/15
 */
-@interface GFPoint : GFPointAbstract
-
-#pragma clang diagnostic pop
+@interface GFPoint : GFGeometry
 
     /**
     * Initialize this GFPoint with the x,y coordinates

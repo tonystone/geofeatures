@@ -1,6 +1,7 @@
 # GeoFeatures
 
 [![Build Status](https://travis-ci.org/tonystone/geofeatures.svg?branch=master)](https://travis-ci.org/tonystone/geofeatures)
+[![codecov.io](http://codecov.io/github/tonystone/geofeatures/coverage.svg?branch=master)](http://codecov.io/github/tonystone/geofeatures?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
 [![License](https://img.shields.io/cocoapods/l/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
 [![Platform](https://img.shields.io/cocoapods/p/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
@@ -10,6 +11,8 @@
 GeoFeatures is a lightweight, high performance geometry library for Objective-C.  It supports the full
  set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
+![Inheritance Diagram](Docs/GeoFeatures-Inheritance-Diagram.png)
+
 ## Features
 
 - Easy to use.
@@ -18,6 +21,9 @@ GeoFeatures is a lightweight, high performance geometry library for Objective-C.
 - [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
 - [GeoJSON] (http://geojson.org/) input and output.
 - MapKit representations and drawing.
+- Indexed Subscripting support for all collection types (e.g. `GEPoint * point = multiPoint[0]`).
+- **Swift**: supports direct use in Swift applications.
+- CocoaPod framework support (compile as Objective-C framework or static lib).
 - Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
 - Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
 - Implemented based on the popular and fast open source C++ boost geometry library.
@@ -37,9 +43,11 @@ You can find the latest sources and binaries on [github] (https://github.com/ton
 - If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue] (https://github.com/tonystone/geofeatures/issues).
 - If you **have a feature request**, [open an issue] (https://github.com/tonystone/geofeatures/issues).
 - If you **want to contribute**
-   - Fork the [GeoFeatures repository] (https://github.com/tonystone/geofeatures)
-   - Make your changes
-   - Submit a pull request.
+   - Fork it! [GeoFeatures repository] (https://github.com/tonystone/geofeatures)
+   - Create your feature branch: `git checkout -b my-new-feature`
+   - Commit your changes: `git commit -am 'Add some feature'`
+   - Push to the branch: `git push origin my-new-feature`
+   - Submit a pull request :-)
 
 ## Installation
 

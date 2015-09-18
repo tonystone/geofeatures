@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/intersection_result.hpp
+../../../../../../../../GeoFeatures/boost/geometry/strategies/intersection_result.hpp

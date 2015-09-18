@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/distance_projected_point.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/distance_projected_point.hpp

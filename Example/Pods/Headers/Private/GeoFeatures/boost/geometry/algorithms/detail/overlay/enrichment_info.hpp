@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/enrichment_info.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/overlay/enrichment_info.hpp

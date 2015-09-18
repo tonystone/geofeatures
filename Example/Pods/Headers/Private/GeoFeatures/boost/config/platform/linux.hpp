@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/linux.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/linux.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/vxworks.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/vxworks.hpp

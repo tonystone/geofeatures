@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/typeof/integral_template_param.hpp
+../../../../../../../GeoFeatures/boost/typeof/integral_template_param.hpp

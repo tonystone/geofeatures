@@ -1,1 +1,0 @@
-../../../../../GeoFeatures/Internal/detail/GFLineStringAbstract+Protected.hpp

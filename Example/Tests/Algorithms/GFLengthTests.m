@@ -24,43 +24,46 @@
 @interface GFLengthTests : XCTestCase
 @end
 
-#define LengthTest(input,expected) XCTAssertEqual([[GFGeometry geometryWithWKT: (input)] length], (expected))
+#define LengthTest(T, input,expected) XCTAssertEqual([[[T alloc] initWithWKT: (input)] length], (expected))
 
 @implementation GFLengthTests
 
 
     - (void) testPoint {
-        LengthTest(@"POINT(0 0)", 0.0);
-        LengthTest(@"POINT(1 1)", 0.0);
-        LengthTest(@"POINT EMPTY", 0.0);
+        LengthTest(GFPoint, @"POINT(0 0)", 0.0);
+        LengthTest(GFPoint, @"POINT(1 1)", 0.0);
+        LengthTest(GFPoint, @"POINT EMPTY", 0.0);
     }
 
     - (void) testMultiPoint {
-        LengthTest(@"MULTIPOINT(0 0,1 1)", 0.0);
-        LengthTest(@"MULTIPOINT EMPTY", 0.0);
+        LengthTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", 0.0);
+        LengthTest(GFMultiPoint, @"MULTIPOINT EMPTY", 0.0);
     }
 
-
     - (void) testLineString {
-        LengthTest(@"LINESTRING(0 0,1 1)", 1.4142135623730951);
-        LengthTest(@"LINESTRING EMPTY", 0.0);
+        LengthTest(GFLineString, @"LINESTRING(0 0,1 1)", 1.4142135623730951);
+        LengthTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
 
     - (void) testMultiLineString {
-        LengthTest(@"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 3.4142135623730949);
-        LengthTest(@"MULTILINESTRING EMPTY", 0.0);
+        LengthTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 3.4142135623730949);
+        LengthTest(GFMultiLineString, @"MULTILINESTRING EMPTY", 0.0);
     }
 
     - (void) testPolygon {
-        LengthTest(@"POLYGON((0 0,1 1,1 0))", 0.0);
-        LengthTest(@"POLYGON EMPTY", 0.0);
+        LengthTest(GFPolygon, @"POLYGON((0 0,1 1,1 0))", 0.0);
+        LengthTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
     - (void) testMultiPolygon {
-        LengthTest(@"MULTIPOLYGON(((0 0,1 1,1 0)),((0 0,1 1,1 0)))", 0.0);
-        LengthTest(@"MULTIPOLYGON(((0 0,1 1,1 0)),((0 0,1 1,1 0)))", 0.0);
-        LengthTest(@"MULTIPOLYGON EMPTY", 0.0);
+        LengthTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,1 1,1 0)),((0 0,1 1,1 0)))", 0.0);
+        LengthTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,1 1,1 0)),((0 0,1 1,1 0)))", 0.0);
+        LengthTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", 0.0);
     }
 
+    - (void) testRing {
+        LengthTest(GFRing, @"LINESTRING(0 0,1 1,1 0,0 0)", 0.0);
+        LengthTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
 
 @end

@@ -2,6 +2,13 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
+      <Name>deprecated</Name>
+      <APILanguage>unknown</APILanguage>
+    </TokenIdentifier>
+    <Path>deprecated.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>GFBox</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -19,7 +26,7 @@
       <Scope>GFBox</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_box.html</Path>
-    <Anchor>a639abb389fb3234d29b7315c3d8416e8</Anchor>
+    <Anchor>a87bf50c9385711b4fed6c5ec9552397e</Anchor>
     <DeclaredIn>GFBox.h</DeclaredIn>
   </Token>
   <Token>
@@ -30,7 +37,7 @@
       <Scope>GFBox</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_box.html</Path>
-    <Anchor>a7391861070f3ef70458b95e2c5a96a62</Anchor>
+    <Anchor>ab1c15e82e6b01e415e5fad629ac34ca4</Anchor>
     <DeclaredIn>GFBox.h</DeclaredIn>
   </Token>
   <Token>
@@ -41,7 +48,7 @@
       <Scope>GFBox</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_box.html</Path>
-    <Anchor>acb2fca8524a96ab32f7e20882042b9ce</Anchor>
+    <Anchor>a4865745ca621d9ee91186301d1bee3b3</Anchor>
     <DeclaredIn>GFBox.h</DeclaredIn>
   </Token>
   <Token>
@@ -195,7 +202,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -206,7 +213,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -349,7 +356,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -360,7 +367,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -393,7 +400,7 @@
       <Scope>GFGeometry(GeoJSON)</Scope>
     </TokenIdentifier>
     <Path>category_g_f_geometry_07_geo_j_s_o_n_08.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -448,7 +455,7 @@
       <Scope>GFGeometry(WKT)</Scope>
     </TokenIdentifier>
     <Path>category_g_f_geometry_07_w_k_t_08.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -461,6 +468,17 @@
     <Path>interface_g_f_geometry_collection.html</Path>
     <Abstract>A container class containing an array of GFGeometry objects. </Abstract>
     <DeclaredIn>GeoFeatures/GFGeometryCollection.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithWKT:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>a13156620e5298fe7d286bb800df4097b</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -492,7 +510,7 @@
       <Scope>GFGeometryCollection</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry_collection.html</Path>
-    <Anchor>aa4a654ef8751bdf8abac169f8746d026</Anchor>
+    <Anchor>a4cd182279facec2850b47634aa0f6297</Anchor>
     <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
@@ -503,7 +521,7 @@
       <Scope>GFGeometryCollection</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry_collection.html</Path>
-    <Anchor>a1910e3af2895a6c9cb7baf18ec791aad</Anchor>
+    <Anchor>a610f72a22d76a3ce6c9eaeb2dad35c0e</Anchor>
     <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
@@ -514,7 +532,18 @@
       <Scope>GFGeometryCollection</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry_collection.html</Path>
-    <Anchor>a46262687af8b3c6599b2b2d68b0481b6</Anchor>
+    <Anchor>a89b3b6e2097cf5899a6d635ddcb95ef3</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexedSubscript:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>ac67dd4526580a8a38408e39c489a7503</Anchor>
     <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
@@ -646,7 +675,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -657,7 +686,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -679,7 +708,7 @@
       <Scope>GFLineString</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_line_string.html</Path>
-    <Anchor>ae2adf99cdccb6ee23e22bd8e035d7896</Anchor>
+    <Anchor>a261a4d08fe5cb35f935d265c3a97f453</Anchor>
     <DeclaredIn>GFLineString.h</DeclaredIn>
   </Token>
   <Token>
@@ -690,7 +719,62 @@
       <Scope>GFLineString</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_line_string.html</Path>
-    <Anchor>a956fe6e6daf06ca4e016f94d18b2c71f</Anchor>
+    <Anchor>ad7a913bc12b6099982229190d1debd71</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a58fc2980cff73581d57943a64d60ddba</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pointAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a51963123a916fd666131859f571e2609</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>firstPoint</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a1fc7f9d3388d5237cb824573e8f6f71f</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastPoint</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>aa9db281010dcfe2ab30b697710859dde</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexedSubscript:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a6278fa4d628e0eba39d8cfdb2ba0030e</Anchor>
     <DeclaredIn>GFLineString.h</DeclaredIn>
   </Token>
   <Token>
@@ -822,7 +906,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -833,7 +917,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -976,7 +1060,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -987,7 +1071,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1009,7 +1093,7 @@
       <Scope>GFMultiLineString</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_multi_line_string.html</Path>
-    <Anchor>adddb143dc38b5f7611559ee53906ac5d</Anchor>
+    <Anchor>a23cca8dc30634c3ac23c8cfaca41c569</Anchor>
     <DeclaredIn>GFMultiLineString.h</DeclaredIn>
   </Token>
   <Token>
@@ -1020,8 +1104,74 @@
       <Scope>GFMultiLineString</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_multi_line_string.html</Path>
-    <Anchor>add9c4b2526275719797deac98af60e8b</Anchor>
+    <Anchor>a35fba00c08f785e70b47dda5067f84f8</Anchor>
     <DeclaredIn>GFMultiLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_line_string.html</Path>
+    <Anchor>a49494350a429df86186d111b5496d66c</Anchor>
+    <DeclaredIn>GFMultiLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>geometryAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_line_string.html</Path>
+    <Anchor>a6724df65ee49b15e8778f965d3498bcb</Anchor>
+    <DeclaredIn>GFMultiLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>firstGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_line_string.html</Path>
+    <Anchor>a78586818fa6ddbce9c3cf2032eba7f2d</Anchor>
+    <DeclaredIn>GFMultiLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_line_string.html</Path>
+    <Anchor>a807c900c20062193febb780e4ecc6abd</Anchor>
+    <DeclaredIn>GFMultiLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexedSubscript:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_line_string.html</Path>
+    <Anchor>af890018703b1499460cc379a1f498ea0</Anchor>
+    <DeclaredIn>GFMultiLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithArray:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>a260bb3daa9d3324cb1cc2fa9ef3a61e9</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1152,7 +1302,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1163,7 +1313,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1185,7 +1335,7 @@
       <Scope>GFMultiPoint</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_multi_point.html</Path>
-    <Anchor>a76820b1b64308396ee379a5224e6447e</Anchor>
+    <Anchor>a003eb1cee88057991c210dd0cd63ef7f</Anchor>
     <DeclaredIn>GFMultiPoint.h</DeclaredIn>
   </Token>
   <Token>
@@ -1196,8 +1346,74 @@
       <Scope>GFMultiPoint</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_multi_point.html</Path>
-    <Anchor>a6ac08a062d835b8fcf0e1d40e4b73305</Anchor>
+    <Anchor>a08bc62987b4e8c0435b00367dd617e00</Anchor>
     <DeclaredIn>GFMultiPoint.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPoint</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_point.html</Path>
+    <Anchor>afb692f3668a3631fbec6739c7fd7bf2c</Anchor>
+    <DeclaredIn>GFMultiPoint.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>geometryAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPoint</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_point.html</Path>
+    <Anchor>a679f88a16cfc5e7d2d2bd1fda95303be</Anchor>
+    <DeclaredIn>GFMultiPoint.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>firstGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPoint</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_point.html</Path>
+    <Anchor>a2f300bc57f0010bc65da0f151b916e33</Anchor>
+    <DeclaredIn>GFMultiPoint.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPoint</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_point.html</Path>
+    <Anchor>aa0c216ccbac49420bb8694fdb3311c6b</Anchor>
+    <DeclaredIn>GFMultiPoint.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexedSubscript:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPoint</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_point.html</Path>
+    <Anchor>ae63934c501b12fa80e6ddaa739af16d9</Anchor>
+    <DeclaredIn>GFMultiPoint.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithArray:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>a260bb3daa9d3324cb1cc2fa9ef3a61e9</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1328,7 +1544,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1339,7 +1555,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1361,7 +1577,7 @@
       <Scope>GFMultiPolygon</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_multi_polygon.html</Path>
-    <Anchor>a8c666f7e976d0890ff2f63b001dbe1ac</Anchor>
+    <Anchor>a321e0b2c64e6dbe079205f1c58a17a2f</Anchor>
     <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
   </Token>
   <Token>
@@ -1372,8 +1588,74 @@
       <Scope>GFMultiPolygon</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_multi_polygon.html</Path>
-    <Anchor>a375d9bb7ebc55c2867bc40ac8ebe79da</Anchor>
+    <Anchor>a2c8f29141e272aad174a9f65190d7cab</Anchor>
     <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_polygon.html</Path>
+    <Anchor>a268a15cb86f1a8a57bb9f7c7f07b6443</Anchor>
+    <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>geometryAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_polygon.html</Path>
+    <Anchor>ab18a262a8d02f4b15250bad1d8073f2a</Anchor>
+    <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>firstGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_polygon.html</Path>
+    <Anchor>a7dca748ca40ba2e1de638d4aaf251144</Anchor>
+    <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_polygon.html</Path>
+    <Anchor>a8aa2546c3a714b390a5d2580d1356b62</Anchor>
+    <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexedSubscript:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFMultiPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_multi_polygon.html</Path>
+    <Anchor>a9336b76baf557cba039569fcf0c5dcd0</Anchor>
+    <DeclaredIn>GFMultiPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithArray:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>a260bb3daa9d3324cb1cc2fa9ef3a61e9</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1504,7 +1786,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1515,7 +1797,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1526,6 +1808,8 @@
       <Scope>GFPoint</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_point.html</Path>
+    <Abstract>A 2 dimensional point with x,y coordinates. </Abstract>
+    <DeclaredIn>GeoFeatures/GFPoint.h</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1535,7 +1819,7 @@
       <Scope>GFPoint</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_point.html</Path>
-    <Anchor>a430d98d14d3654c76f4682f53fbacf26</Anchor>
+    <Anchor>af63bcab9cd2d2fd5d8f4f9feedf55bb2</Anchor>
     <DeclaredIn>GFPoint.h</DeclaredIn>
   </Token>
   <Token>
@@ -1546,7 +1830,7 @@
       <Scope>GFPoint</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_point.html</Path>
-    <Anchor>a85ea5cc1bf88733d818798664b991400</Anchor>
+    <Anchor>ae5497af29fc8105557b2f6eb5c60ad1d</Anchor>
     <DeclaredIn>GFPoint.h</DeclaredIn>
   </Token>
   <Token>
@@ -1557,7 +1841,7 @@
       <Scope>GFPoint</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_point.html</Path>
-    <Anchor>ac653a5e1489a2318bf2f00e5d7d0c03b</Anchor>
+    <Anchor>aed287f2d4f50a2efe3ffe6c7f58993b7</Anchor>
     <DeclaredIn>GFPoint.h</DeclaredIn>
   </Token>
   <Token>
@@ -1711,7 +1995,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1722,7 +2006,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1865,7 +2149,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1876,7 +2160,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1898,7 +2182,7 @@
       <Scope>GFPolygon</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_polygon.html</Path>
-    <Anchor>a7b4fcbc552571447dc0609c8788909b0</Anchor>
+    <Anchor>a72e0e0e299103715f933177f57df2815</Anchor>
     <DeclaredIn>GFPolygon.h</DeclaredIn>
   </Token>
   <Token>
@@ -1909,7 +2193,29 @@
       <Scope>GFPolygon</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_polygon.html</Path>
-    <Anchor>a8d13c20909f1a5e67179f1ed51ce2887</Anchor>
+    <Anchor>a91f132a23f38e16d5e8dea762f43ef84</Anchor>
+    <DeclaredIn>GFPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>outerRing</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_polygon.html</Path>
+    <Anchor>af984fc68777e9069cd2418f6077454c1</Anchor>
+    <DeclaredIn>GFPolygon.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>innerRings</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFPolygon</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_polygon.html</Path>
+    <Anchor>ae2a7ec1a59646496e5ed5e4a813909f9</Anchor>
     <DeclaredIn>GFPolygon.h</DeclaredIn>
   </Token>
   <Token>
@@ -2041,7 +2347,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -2052,7 +2358,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -2195,7 +2501,7 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>afcdd23bd5dd4b04868d6baf577f9bb32</Anchor>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -2206,7 +2512,238 @@
       <Scope>GFGeometry</Scope>
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
-    <Anchor>a26ad5ae365b4dd4847fdb3370dfb6bb2</Anchor>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>GFRing</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>GFRing</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_ring.html</Path>
+    <Abstract>A GFRing (aka linear ring) is a closed line which should not be self intersecting. </Abstract>
+    <DeclaredIn>GeoFeatures/GFRing.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithWKT:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFRing</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_ring.html</Path>
+    <Anchor>a063be826fc24346e1fb5d4830f641ef0</Anchor>
+    <DeclaredIn>GFRing.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithGeoJSONGeometry:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFRing</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_ring.html</Path>
+    <Anchor>a3562a7a5b8b37c53de97a0c31981c907</Anchor>
+    <DeclaredIn>GFRing.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a58fc2980cff73581d57943a64d60ddba</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pointAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a51963123a916fd666131859f571e2609</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>firstPoint</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a1fc7f9d3388d5237cb824573e8f6f71f</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastPoint</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>aa9db281010dcfe2ab30b697710859dde</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexedSubscript:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFLineString</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_line_string.html</Path>
+    <Anchor>a6278fa4d628e0eba39d8cfdb2ba0030e</Anchor>
+    <DeclaredIn>GFLineString.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>isValid</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3a63de5905eae52356c6afd7313e4828</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>area</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a0028dc3b2c2315a24d803dfa4cf2250e</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>length</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>ab68dd3c418a3f06c6593d02dfebe2585</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>perimeter</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a31593eea12da7a9ed46b2dd4e6ca511e</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>centroid</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>af53b7bf19dfea6827eed19a7979c7dca</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>boundingBox</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a808ba7daf6d4c3d742668ad3fe5d0f0e</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>within:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>union_:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a58c32fcf4a3932281498d1a1b25fb46b</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>toGeoJSONGeometry</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a89a1dd53c1d9a51fd5b933fde28be5b7</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>mkMapOverlays</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a69a56e7786e1de09034c546ade1c7262</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>toWKTString</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a9d257cce05d031211e2cece24b5530e4</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>geometryWithGeoJSONGeometry:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a5b730dcea33fc8b2c156199400e3014e</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>geometryWithWKT:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a32a49e08fdbc2998735c26ddbfa88741</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
 </Tokens>

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/symbian.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/symbian.hpp

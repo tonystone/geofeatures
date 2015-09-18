@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/algorithm/string/constants.hpp
+../../../../../../../../GeoFeatures/boost/algorithm/string/constants.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/partition.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/partition.hpp

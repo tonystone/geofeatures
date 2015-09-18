@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/envelope/initialize.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/envelope/initialize.hpp

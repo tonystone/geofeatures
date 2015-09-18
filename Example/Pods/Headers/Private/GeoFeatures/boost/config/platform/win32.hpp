@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/win32.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/win32.hpp

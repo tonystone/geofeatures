@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/config/warning_disable.hpp
+../../../../../../../GeoFeatures/boost/config/warning_disable.hpp

@@ -30,11 +30,11 @@ Collaboration diagram for G\+F\+Box\+:\nopagebreak
 \subsection*{Instance Methods}
 \begin{DoxyCompactItemize}
 \item 
-(id) -\/ \hyperlink{interface_g_f_box_a639abb389fb3234d29b7315c3d8416e8}{init\+With\+Min\+Corner\+:max\+Corner\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_box_a87bf50c9385711b4fed6c5ec9552397e}{init\+With\+Min\+Corner\+:max\+Corner\+:}
 \item 
-(id) -\/ \hyperlink{interface_g_f_box_a7391861070f3ef70458b95e2c5a96a62}{init\+With\+W\+K\+T\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_box_ab1c15e82e6b01e415e5fad629ac34ca4}{init\+With\+W\+K\+T\+:}
 \item 
-(id) -\/ \hyperlink{interface_g_f_box_acb2fca8524a96ab32f7e20882042b9ce}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+(instancetype) -\/ \hyperlink{interface_g_f_box_a4865745ca621d9ee91186301d1bee3b3}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
 \item 
 (\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_box_a102f7c53d4871e5431e813a2cb43eccd}{min\+Corner}
 \item 
@@ -57,21 +57,21 @@ Tony Stone
 
 
 \subsection{Method Documentation}
-\hypertarget{interface_g_f_box_a639abb389fb3234d29b7315c3d8416e8}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+Min\+Corner\+:max\+Corner\+:@{init\+With\+Min\+Corner\+:max\+Corner\+:}}
+\hypertarget{interface_g_f_box_a87bf50c9385711b4fed6c5ec9552397e}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+Min\+Corner\+:max\+Corner\+:@{init\+With\+Min\+Corner\+:max\+Corner\+:}}
 \index{init\+With\+Min\+Corner\+:max\+Corner\+:@{init\+With\+Min\+Corner\+:max\+Corner\+:}!G\+F\+Box@{G\+F\+Box}}
-\subsubsection[{init\+With\+Min\+Corner\+:max\+Corner\+:(\+G\+F\+Point $\ast$min\+Corner,[max\+Corner] G\+F\+Point $\ast$max\+Corner)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Min\+Corner\+: 
+\subsubsection[{init\+With\+Min\+Corner\+:max\+Corner\+:(\+G\+F\+Point $\ast$min\+Corner,[max\+Corner] G\+F\+Point $\ast$max\+Corner)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Min\+Corner\+: 
 \begin{DoxyParamCaption}
 \item[{({\bf G\+F\+Point} $\ast$)}]{min\+Corner}
 \item[{maxCorner:({\bf G\+F\+Point} $\ast$)}]{max\+Corner}
 \end{DoxyParamCaption}
-}\label{interface_g_f_box_a639abb389fb3234d29b7315c3d8416e8}
-Initialize this \hyperlink{interface_g_f_box}{G\+F\+Box} with 2 points representing the min and max point in the box. \hypertarget{interface_g_f_box_a7391861070f3ef70458b95e2c5a96a62}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
+}\label{interface_g_f_box_a87bf50c9385711b4fed6c5ec9552397e}
+Initialize this \hyperlink{interface_g_f_box}{G\+F\+Box} with 2 points representing the min and max point in the box. \hypertarget{interface_g_f_box_ab1c15e82e6b01e415e5fad629ac34ca4}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}}
 \index{init\+With\+W\+K\+T\+:@{init\+With\+W\+K\+T\+:}!G\+F\+Box@{G\+F\+Box}}
-\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+W\+K\+T\+: 
+\subsubsection[{init\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+W\+K\+T\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+String $\ast$)}]{wkt}
 \end{DoxyParamCaption}
-}\label{interface_g_f_box_a7391861070f3ef70458b95e2c5a96a62}
+}\label{interface_g_f_box_ab1c15e82e6b01e415e5fad629ac34ca4}
 Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
 
 \begin{DoxyNote}{Note}
@@ -95,13 +95,13 @@ Example\+:
 
 \}
 \end{DoxyCode}
- \hypertarget{interface_g_f_box_acb2fca8524a96ab32f7e20882042b9ce}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+ \hypertarget{interface_g_f_box_a4865745ca621d9ee91186301d1bee3b3}{}\index{G\+F\+Box@{G\+F\+Box}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Box@{G\+F\+Box}}
-\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (id) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
 \end{DoxyParamCaption}
-}\label{interface_g_f_box_acb2fca8524a96ab32f7e20882042b9ce}
+}\label{interface_g_f_box_a4865745ca621d9ee91186301d1bee3b3}
 Initialize this geometry with the given json\+Dictionary.
 
 \begin{DoxyNote}{Note}

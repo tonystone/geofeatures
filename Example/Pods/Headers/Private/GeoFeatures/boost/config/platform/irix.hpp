@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/platform/irix.hpp
+../../../../../../../../GeoFeatures/boost/config/platform/irix.hpp

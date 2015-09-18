@@ -23,7 +23,10 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GFPointAbstract.h"
+#import "GFGeometry.h"
+
+// Forward declarations
+@class GFPoint;
 
 /**
 * @class       GFBox

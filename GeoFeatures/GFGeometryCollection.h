@@ -60,27 +60,39 @@
     */
     - (instancetype)initWithArray:(NSArray *)array;
 
-    /**
+    /** The number of GFGeometry instances in this collection.
+    *
     * @returns The count of GDGeometry instances this collection contains.
     */
     - (NSUInteger) count;
 
-    /**
-    * @returns The GFGeometry instance at the index given.
+    /** Returns the GFGeometry located at the specified index.
+    *
+    * @param index - An index within the bounds of the collection.
+    *
+    * @returns The GFGeometry located at index.
+    *
+    * @throws NSException, NSRangeException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+    *
+    * @since 1.0.0
     */
-    - (GFGeometry *) geometryAtIndex:(NSUInteger)index;
+    - (id) geometryAtIndex: (NSUInteger) index;
 
-    /**
+    /** The first GFGeometry in this collection.
     *
     * @returns The first GFGeometry instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.0.0
     */
-    - (GFGeometry *) firstGeometry;
+    - (id) firstGeometry;
 
-    /**
+    /** The last GFGeometry in this collection.
     *
     * @returns The last GFGeometry instances contained in this collection or nil if the container is empty.
+    *
+    * @since 1.0.0
     */
-    - (GFGeometry *) lastGeometry;
+    - (id) lastGeometry;
 
     /** Returns the GFGeometry at the specified index.
      *
@@ -103,5 +115,6 @@
      * @since 1.1.0
      */
     - (id) objectAtIndexedSubscript: (NSUInteger) index;
+
 
 @end

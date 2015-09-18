@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/policies/relate/intersection_points.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/policies/relate/intersection_points.hpp

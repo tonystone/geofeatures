@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/mpl/sequence_tag.hpp
+../../../../../../../GeoFeatures/boost/mpl/sequence_tag.hpp

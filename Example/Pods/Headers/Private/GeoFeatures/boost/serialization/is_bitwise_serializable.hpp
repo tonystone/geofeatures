@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/serialization/is_bitwise_serializable.hpp
+../../../../../../../GeoFeatures/boost/serialization/is_bitwise_serializable.hpp

@@ -1,5 +1,3 @@
 <map id="GFPolygonAbstract" name="GFPolygonAbstract">
-<area shape="rect" id="node6" href="$interface_g_f_multi_polygon.html" title="A collection of GFPolygons. " alt="" coords="35,229,153,256"/>
-<area shape="rect" id="node7" href="$interface_g_f_polygon.html" title="A concrete Polygon implementation. " alt="" coords="177,229,267,256"/>
 <area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
 </map>

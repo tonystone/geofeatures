@@ -1,1 +1,0 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/traversal_info.hpp

@@ -22,104 +22,12 @@
 *
 */
 
-#import "GFLineStringAbstract+Protected.hpp"
-#import <MapKit/MapKit.h>
-
-#include <boost/geometry/strategies/strategies.hpp>
-#include <boost/geometry/algorithms/correct.hpp>
-#include <boost/geometry/algorithms/is_valid.hpp>
-
-#include "geofeatures/internal/LineString.hpp"
+#import "GFLineStringAbstract.h"
 
 @implementation GFLineStringAbstract
-@end
-
-namespace gf = geofeatures::internal;
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
-@implementation GFLineStringAbstract (Protected)
 
     - (instancetype) init {
-        NSAssert(![[self class] isMemberOfClass: [GFLineStringAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
+        NSAssert(![self isMemberOfClass: [GFLineStringAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
         return nil;
     }
-
-#pragma clang diagnostic pop
-
-    - (gf::LineString) cppLineStringWithGeoJSONCoordinates:(NSArray *)coordinates {
-
-        try {
-            //
-            // For type "LineString", the "coordinates" member must
-            // be an array of two or more positions.
-            //
-            // A LinearRing is closed LineString with 4 or more positions.
-            // The first and last positions are equivalent (they represent
-            // equivalent points). Though a LinearRing is not explicitly
-            // represented as a GeoJSON geometry type, it is referred to
-            // in the LineString geometry type definition.
-            //
-            //  { "type": "LineString",
-            //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
-            //  }
-            //
-            gf::LineString linestring = {};
-            
-            for (NSArray * coordinate in coordinates) {
-                linestring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
-            }
-            // Make sure this linestring is correct.
-            boost::geometry::correct(linestring);
-
-            return linestring;
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (NSArray *) geoJSONCoordinatesWithCPPLineString: (const gf::LineString &) linestring  {
-
-        NSMutableArray * points = [[NSMutableArray alloc] init];
-
-        try {
-            for (auto it = linestring.begin();  it != linestring.end(); ++it) {
-                const double longitude = it->get<0>();
-                const double latitude  = it->get<1>();
-
-                [points addObject:@[@(longitude),@(latitude)]];
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-        return points;
-    }
-
-    - (id <MKOverlay>) mkOverlayWithCPPLineString: (const gf::LineString &) linestring {
-
-        MKPolyline * mkPolyline = nil;
-
-        try {
-            size_t pointCount = linestring.size();
-            CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
-
-            for (std::size_t i = 0; i < pointCount; i++) {
-                const auto& point = linestring.at(i);
-
-                coordinates[i].longitude = point.get<0>();
-                coordinates[i].latitude  = point.get<1>();
-            }
-
-            mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
-
-            free(coordinates);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-        return mkPolyline;
-    }
-
 @end

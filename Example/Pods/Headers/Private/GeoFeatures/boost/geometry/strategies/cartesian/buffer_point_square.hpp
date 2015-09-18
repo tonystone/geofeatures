@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/strategies/cartesian/buffer_point_square.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/buffer_point_square.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/iterators/segment_iterator.hpp
+../../../../../../../../GeoFeatures/boost/geometry/iterators/segment_iterator.hpp

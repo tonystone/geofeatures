@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/overlay/self_turn_points.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/overlay/self_turn_points.hpp

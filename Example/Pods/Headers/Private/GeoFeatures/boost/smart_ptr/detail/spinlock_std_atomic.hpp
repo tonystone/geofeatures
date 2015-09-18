@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/smart_ptr/detail/spinlock_std_atomic.hpp
+../../../../../../../../GeoFeatures/boost/smart_ptr/detail/spinlock_std_atomic.hpp

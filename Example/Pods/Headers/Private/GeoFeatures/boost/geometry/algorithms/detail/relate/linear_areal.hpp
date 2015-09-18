@@ -1,1 +1,1 @@
-../../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/relate/linear_areal.hpp
+../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/relate/linear_areal.hpp

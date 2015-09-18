@@ -21,100 +21,53 @@
 #import <GeoFeatures/GeoFeatures.h>
 #import <XCTest/XCTest.h>
 
+static NSDictionary * geoJSON1;
+static NSDictionary * geoJSON2;
+static NSDictionary * invalidGeoJSON;
+
+//
+// Static constructor
+//
+static __attribute__((constructor(101),used,visibility("internal"))) void staticConstructor (void) {
+    geoJSON1       = @{@"type": @"MultiLineString", @"coordinates": @[@[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]], @[@[@(102.0), @(2.0)],@[@(103.0), @(3.0)]]]};
+    geoJSON2       = @{@"type": @"MultiLineString", @"coordinates": @[@[@[@(103.0), @(2.0)],@[@(101.0), @(1.0)]], @[@[@(102.0), @(2.0)],@[@(103.0), @(3.0)]]]};
+    invalidGeoJSON = @{@"type": @"MultiLineString", @"coordinates": @{}};
+}
+
 @interface GFMultiLineStringTests : XCTestCase
 @end
 
-static NSString * geometry1JSONString = @"{ \"type\": \"MultiLineString\","
-        "    \"coordinates\": ["
-        "        [ [100.0, 0.0], [101.0, 1.0] ],"
-        "        [ [102.0, 2.0], [103.0, 3.0] ]"
-        "      ]"
-        "}";
-
-static NSString * geometry2JSONString = @"{ \"type\": \"MultiLineString\","
-        "    \"coordinates\": ["
-        "        [ [101.0, 0.0], [102.0, 1.0] ],"
-        "        [ [102.0, 2.0], [103.0, 3.0] ]"
-        "      ]"
-        "}";
-
-static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
-        "    \"coordinates\": {}"
-        "   }";
-
-@implementation GFMultiLineStringTests  {
-        Class expectedClass;
-
-        NSString * geoJSONGeometryName;
-
-        GFGeometry * geometry1a;
-        GFGeometry * geometry1b;
-        GFGeometry * geometry2;
-    }
-
-    - (void)setUp {
-        [super setUp];
-
-        expectedClass       = NSClassFromString( @"GFMultiLineString");
-        geoJSONGeometryName = @"MultiLineString";
-        
-        geometry1a = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry1b = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry2  = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry2JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-    }
-
-    - (void)tearDown {
-
-        expectedClass       = nil;
-        geoJSONGeometryName = nil;
-        
-        geometry1a = nil;
-        geometry2           = nil;
-
-        [super tearDown];
-    }
+@implementation GFMultiLineStringTests
 
     - (void)testConstruction {
 
-        XCTAssertNotNil(geometry1a);
-        XCTAssertNotNil(geometry2);
-
-        XCTAssertEqual([geometry1a class], expectedClass);
-        XCTAssertEqual([geometry2 class], expectedClass);
+        XCTAssertNoThrow([[GFMultiLineString alloc] init]);
+        XCTAssertNotNil([[GFMultiLineString alloc] init]);
     }
 
     - (void)testFailedConstruction {
-
-        NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
-
-        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+        XCTAssertThrowsSpecificNamed([[GFMultiLineString alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
+        XCTAssertThrows([[GFMultiLineString alloc] initWithWKT: @"INVALID()"]);
     }
 
     - (void) testToGeoJSONGeometry {
-
-        XCTAssertEqualObjects([geometry1a toGeoJSONGeometry], [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]);
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
     - (void) testDescription {
-
-        // Currently we only check if it returns something and its not nill
-
-        XCTAssertNotNil([geometry1a description]);
-        XCTAssertNotNil([geometry2 description]);
-
-        XCTAssertTrue ([[geometry1a description] length] > 0);
-        XCTAssertTrue ([[geometry2 description] length] > 0);
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] description], @"MULTILINESTRING((100 0,101 1),(102 2,103 3))");
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON2] description], @"MULTILINESTRING((103 2,101 1),(102 2,103 3))");
     }
 
     - (void) testMapOverlays {
         
-        NSArray * mapOverlays = [geometry1a mkMapOverlays];
+        NSArray * mapOverlays = [[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] mkMapOverlays];
         
         XCTAssertNotNil (mapOverlays);
         XCTAssertTrue   ([mapOverlays count] == 2);
         
         for (int i = 0; i < [mapOverlays count]; i++) {
-            id mapOverlay = [mapOverlays objectAtIndex: i];
+            id mapOverlay = mapOverlays[i];
             
             XCTAssertTrue   ([mapOverlay isKindOfClass: [MKPolyline class]]);
             
@@ -123,6 +76,41 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
             XCTAssertTrue   ([polyline pointCount] == 2);
         }
     }
+
+#pragma mark - Querying Tests
+
+    - (void) testCount {
+
+        XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] count], 0);
+        XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] count], 1);
+        XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] count], 2);
+    }
+
+    - (void) testObjectAtIndex {
+
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 0] toWKTString], @"LINESTRING(0 0,5 0)");
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+
+        XCTAssertThrowsSpecificNamed(([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] geometryAtIndex: 1]), NSException, NSRangeException);
+    }
+
+    - (void) testFirstObject {
+
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] firstGeometry] toWKTString], @"LINESTRING(0 0,5 0)");
+
+        XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry]);
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry], nil);
+    }
+
+    - (void) testLastObject {
+
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] lastGeometry] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+
+        XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry]);
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry], nil);
+    }
+
+#pragma mark - Indexed Subscript Tests
 
     - (void) testObjectAtIndexedSubscript {
 

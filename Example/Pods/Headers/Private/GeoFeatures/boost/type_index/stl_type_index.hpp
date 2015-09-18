@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/type_index/stl_type_index.hpp
+../../../../../../../GeoFeatures/boost/type_index/stl_type_index.hpp

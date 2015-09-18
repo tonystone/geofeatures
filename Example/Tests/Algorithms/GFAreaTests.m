@@ -24,36 +24,40 @@
 @interface GFAreaTests : XCTestCase
 @end
 
-#define AreaTest(input,expected) XCTAssertEqual([[GFGeometry geometryWithWKT: (input)] area], (expected))
+#define AreaTest(T, input,expected) XCTAssertEqual([[[T alloc] initWithWKT: (input)] area], (expected))
 
 @implementation GFAreaTests
 
 
     - (void) testPoint {
-        AreaTest(@"POINT(0 0)", 0.0);
-        AreaTest(@"POINT(1 1)", 0.0);
-        AreaTest(@"POINT EMPTY", 0.0);
+        AreaTest(GFPoint, @"POINT(0 0)", 0.0);
+        AreaTest(GFPoint, @"POINT(1 1)", 0.0);
+        AreaTest(GFPoint, @"POINT EMPTY", 0.0);
     }
 
     - (void) testMultiPoint {
-        AreaTest(@"MULTIPOINT(0 0,1 1)", 0.0);
-        AreaTest(@"MULTIPOINT EMPTY", 0.0);
+        AreaTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", 0.0);
+        AreaTest(GFMultiPoint, @"MULTIPOINT EMPTY", 0.0);
     }
 
     - (void) testLineString {
-        AreaTest(@"LINESTRING(0 0,1 1)", 0.0);
-        AreaTest(@"LINESTRING EMPTY", 0.0);
+        AreaTest(GFLineString, @"LINESTRING(0 0,1 1)", 0.0);
+        AreaTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
 
     - (void) testMultiLineString {
-        AreaTest(@"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 0.0);
-        AreaTest(@"MULTILINESTRING EMPTY", 0.0);
+        AreaTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 0.0);
+        AreaTest(GFMultiLineString, @"MULTILINESTRING EMPTY", 0.0);
     }
 
     - (void) testPolygon {
-        AreaTest(@"POLYGON((0 0,0 7,4 2,2 0,0 0))", 16);
-        AreaTest(@"POLYGON EMPTY", 0.0);
+        AreaTest(GFPolygon, @"POLYGON((0 0,0 7,4 2,2 0,0 0))", 16);
+        AreaTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
+    - (void) testRing {
+        AreaTest(GFRing, @"LINESTRING(0 0,0 7,4 2,2 0,0 0)", 16);
+        AreaTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
 
 @end

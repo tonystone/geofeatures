@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/config/compiler/digitalmars.hpp
+../../../../../../../../GeoFeatures/boost/config/compiler/digitalmars.hpp

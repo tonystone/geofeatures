@@ -1,1 +1,1 @@
-../../../../../../../../GeoFeatures/Internal/boost/boost/predef/platform/mingw.h
+../../../../../../../../GeoFeatures/boost/predef/platform/mingw.h

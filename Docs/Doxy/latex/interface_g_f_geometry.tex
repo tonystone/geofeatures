@@ -11,8 +11,7 @@ An abstract class that represents a geometric shape.
 
 
 
-Inheritance diagram for G\+F\+Geometry\+:
-\nopagebreak
+Inheritance diagram for G\+F\+Geometry\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -56,9 +55,15 @@ Collaboration diagram for G\+F\+Geometry\+:\nopagebreak
 \subsection*{Class Methods}
 \begin{DoxyCompactItemize}
 \item 
-(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) + \hyperlink{interface_g_f_geometry_afcdd23bd5dd4b04868d6baf577f9bb32}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+(instancetype) + \hyperlink{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
 \item 
-(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) + \hyperlink{interface_g_f_geometry_a26ad5ae365b4dd4847fdb3370dfb6bb2}{geometry\+With\+W\+K\+T\+:}
+(instancetype) + \hyperlink{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}{geometry\+With\+W\+K\+T\+:}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{interface_g_f_geometry_af3a4f3f6a6496401cf06070b171e9936}{}struct G\+F\+Members $\ast$ {\bfseries \+\_\+members}\label{interface_g_f_geometry_af3a4f3f6a6496401cf06070b171e9936}
+
 \end{DoxyCompactItemize}
 
 
@@ -196,13 +201,13 @@ Combines the other geometry with self. The union calculates the spatial set theo
 \begin{DoxyReturn}{Returns}
 A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the union of the self and other. 
 \end{DoxyReturn}
-\hypertarget{interface_g_f_geometry_afcdd23bd5dd4b04868d6baf577f9bb32}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\hypertarget{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
-\subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf G\+F\+Geometry} $\ast$) geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+Dictionary $\ast$)}]{geo\+J\+S\+O\+N\+Geometry\+Dictionary}
 \end{DoxyParamCaption}
-}\label{interface_g_f_geometry_afcdd23bd5dd4b04868d6baf577f9bb32}
+}\label{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}
 Creates a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} from the Geo\+J\+S\+O\+N dictionary supplied.
 
 \begin{DoxyNote}{Note}
@@ -261,7 +266,7 @@ Example\+:
 \end{DoxyExceptions}
 
 
-Provided by category \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_afcdd23bd5dd4b04868d6baf577f9bb32}{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}.
+Provided by category \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_a5b730dcea33fc8b2c156199400e3014e}{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}.
 
 \hypertarget{interface_g_f_geometry_a89a1dd53c1d9a51fd5b933fde28be5b7}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}}
 \index{to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}!G\+F\+Geometry@{G\+F\+Geometry}}
@@ -298,13 +303,13 @@ An array of map overlay objects that represent this geometry. These can be place
 
 Provided by category \hyperlink{category_g_f_geometry_07_map_kit_08_a69a56e7786e1de09034c546ade1c7262}{G\+F\+Geometry(\+Map\+Kit)}.
 
-\hypertarget{interface_g_f_geometry_a26ad5ae365b4dd4847fdb3370dfb6bb2}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}}
+\hypertarget{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}}
 \index{geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
-\subsubsection[{geometry\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf G\+F\+Geometry} $\ast$) geometry\+With\+W\+K\+T\+: 
+\subsubsection[{geometry\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+W\+K\+T\+: 
 \begin{DoxyParamCaption}
 \item[{(N\+S\+String $\ast$)}]{wkt}
 \end{DoxyParamCaption}
-}\label{interface_g_f_geometry_a26ad5ae365b4dd4847fdb3370dfb6bb2}
+}\label{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}
 Create a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance from the W\+K\+T string.
 
 
@@ -336,7 +341,7 @@ Example 2\+:
 \end{DoxyCode}
  
 
-Provided by category \hyperlink{category_g_f_geometry_07_w_k_t_08_a26ad5ae365b4dd4847fdb3370dfb6bb2}{G\+F\+Geometry(\+W\+K\+T)}.
+Provided by category \hyperlink{category_g_f_geometry_07_w_k_t_08_a32a49e08fdbc2998735c26ddbfa88741}{G\+F\+Geometry(\+W\+K\+T)}.
 
 \hypertarget{interface_g_f_geometry_a9d257cce05d031211e2cece24b5530e4}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!to\+W\+K\+T\+String@{to\+W\+K\+T\+String}}
 \index{to\+W\+K\+T\+String@{to\+W\+K\+T\+String}!G\+F\+Geometry@{G\+F\+Geometry}}

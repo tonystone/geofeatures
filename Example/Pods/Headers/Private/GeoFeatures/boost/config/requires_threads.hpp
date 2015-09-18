@@ -1,1 +1,1 @@
-../../../../../../../GeoFeatures/Internal/boost/boost/config/requires_threads.hpp
+../../../../../../../GeoFeatures/boost/config/requires_threads.hpp

@@ -1,1 +1,1 @@
-../../../../../../../../../GeoFeatures/Internal/boost/boost/geometry/algorithms/detail/interior_iterator.hpp
+../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/interior_iterator.hpp

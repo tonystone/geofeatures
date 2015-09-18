@@ -21,102 +21,70 @@
 #import <GeoFeatures/GeoFeatures.h>
 #import <XCTest/XCTest.h>
 
+static NSDictionary * geoJSON1;
+static NSDictionary * geoJSON2;
+static NSDictionary * invalidGeoJSON;
+
+//
+// Static constructor
+//
+static __attribute__((constructor(101),used,visibility("internal"))) void staticConstructor (void) {
+    geoJSON1 = @{
+            @"type": @"MultiPolygon",
+            @"coordinates": @[
+                    @[
+                            @[@[@(102.0), @(2.0)], @[@(102.0), @(3.0)], @[@(103.0), @(3.0)], @[@(103.0), @(2.0)], @[@(102.0), @(2.0)]]
+                    ],
+                    @[
+                            @[@[@(100.0), @(0.0)], @[@(101.0), @(1.0)], @[@(100.0), @(1.0)], @[@(101.0), @(0.0)], @[@(100.0), @(0.0)]],
+                            @[@[@(100.2), @(0.2)], @[@(100.8), @(0.2)], @[@(100.8), @(0.8)], @[@(100.2), @(0.8)], @[@(100.2), @(0.2)]]
+                    ]
+            ]
+    };
+    geoJSON2 = @{
+            @"type" : @"MultiPolygon",
+            @"coordinates" : @[
+                    @[@[@[@(103.0), @(2.0)], @[@(104.0), @(2.0)], @[@(104.0), @(3.0)], @[@(103.0), @(3.0)], @[@(103.0), @(2.0)]]],
+                    @[@[@[@(100.0), @(0.0)], @[@(101.0), @(0.0)], @[@(101.0), @(1.0)], @[@(100.0), @(1.0)], @[@(100.0), @(0.0)]],
+                            @[@[@(100.2), @(0.2)], @[@(100.8), @(0.2)], @[@(100.8), @(0.8)], @[@(100.2), @(0.8)], @[@(100.2), @(0.2)]]]
+            ]
+    };
+
+    invalidGeoJSON = @{@"type": @"MultiLineString", @"coordinates": @{}};
+}
+
 @interface GFMultiPolygonTests : XCTestCase
 @end
 
-static NSString * geometry1JSONString = @"{ \"type\": \"MultiPolygon\","
-        "    \"coordinates\": ["
-        "      [[[102.0, 2.0], [102.0, 3.0], [103.0, 3.0], [103.0, 2.0], [102.0, 2.0]]],"
-        "      [[[100.0, 0.0], [101.0, 1.0], [100.0, 1.0], [101.0, 0.0], [100.0, 0.0]],"
-        "       [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]"
-        "      ]"
-        "    }";
-
-static NSString * geometry2JSONString = @"{ \"type\": \"MultiPolygon\","
-        "    \"coordinates\": ["
-        "      [[[103.0, 2.0], [104.0, 2.0], [104.0, 3.0], [103.0, 3.0], [103.0, 2.0]]],"
-        "      [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],"
-        "       [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]"
-        "      ]"
-        "    }";
-
-static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
-        "    \"coordinates\": {}"
-        "   }";
-
-@implementation GFMultiPolygonTests {
-        Class expectedClass;
-
-        NSString * geoJSONGeometryName;
-
-        GFGeometry * geometry1a;
-        GFGeometry * geometry1b;
-        GFGeometry * geometry2;
-    }
-
-    - (void)setUp {
-        [super setUp];
-
-        expectedClass       = NSClassFromString( @"GFMultiPolygon");
-        geoJSONGeometryName = @"MultiPolygon";
-        
-        geometry1a = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry1b = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-        geometry2  = [GFGeometry geometryWithGeoJSONGeometry: [NSJSONSerialization JSONObjectWithData: [geometry2JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]];
-    }
-
-    - (void)tearDown {
-
-        expectedClass       = nil;
-        geoJSONGeometryName = nil;
-        
-        geometry1a = nil;
-        geometry2           = nil;
-
-        [super tearDown];
-    }
+@implementation GFMultiPolygonTests
 
     - (void)testConstruction {
-
-        XCTAssertNotNil(geometry1a);
-        XCTAssertNotNil(geometry2);
-
-        XCTAssertEqual([geometry1a class], expectedClass);
-        XCTAssertEqual([geometry2 class], expectedClass);
+        XCTAssertNoThrow([[GFMultiPolygon alloc] init]);
+        XCTAssertNotNil([[GFMultiPolygon alloc] init]);
     }
 
     - (void)testFailedConstruction {
-
-        NSDictionary * testJSON  = [NSJSONSerialization JSONObjectWithData: [[NSString stringWithFormat:invalidGeometryJSONString, geoJSONGeometryName] dataUsingEncoding: NSUTF8StringEncoding]  options: 0 error: nil];
-
-        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithGeoJSONGeometry: testJSON], NSException, @"Invalid GeoJSON");
+        XCTAssertThrowsSpecificNamed([[GFMultiPolygon alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
+        XCTAssertThrows([[GFMultiPolygon alloc] initWithWKT: @"INVALID()"]);
     }
 
     - (void) testToGeoJSONGeometry {
-
-        XCTAssertEqualObjects([geometry1a toGeoJSONGeometry], [NSJSONSerialization JSONObjectWithData: [geometry1JSONString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil]);
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
     - (void) testDescription {
-
-        // Currently we only check if it returns something and its not nill
-
-        XCTAssertNotNil([geometry1a description]);
-        XCTAssertNotNil([geometry2 description]);
-
-        XCTAssertTrue ([[geometry1a description] length] > 0);
-        XCTAssertTrue ([[geometry2 description] length] > 0);
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] description], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
     }
 
     - (void) testMapOverlays {
         
-        NSArray * mapOverlays = [geometry1a mkMapOverlays];
+        NSArray * mapOverlays = [[[GFMultiPolygon alloc] initWithGeoJSONGeometry: geoJSON1] mkMapOverlays];
         
         XCTAssertNotNil (mapOverlays);
         XCTAssertTrue   ([mapOverlays count] == 2);
         
         for (int i = 0; i < [mapOverlays count]; i++) {
-            id mapOverlay = [mapOverlays objectAtIndex: i];
+            id mapOverlay = mapOverlays[i];
             
             XCTAssertTrue   ([mapOverlay isKindOfClass: [MKPolygon class]]);
             
@@ -131,6 +99,41 @@ static NSString * invalidGeometryJSONString = @"{ \"type\": \"%@\","
             }
         }
     }
+
+#pragma mark - Querying Tests
+
+    - (void) testCount {
+
+        XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] count], 0);
+        XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))"] count], 1);
+        XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] count], 2);
+    }
+
+    - (void) testObjectAtIndex {
+
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 0] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 1] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+
+        XCTAssertThrowsSpecificNamed(([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))"] geometryAtIndex: 1]), NSException, NSRangeException);
+    }
+
+    - (void) testFirstObject {
+
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] firstGeometry] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+
+        XCTAssertNoThrow([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] firstGeometry]);
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] firstGeometry], nil);
+    }
+
+    - (void) testLastObject {
+
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] lastGeometry] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+
+        XCTAssertNoThrow([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] lastGeometry]);
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] lastGeometry], nil);
+    }
+
+#pragma mark - Indexed Subscripting Tests
 
     - (void) testObjectAtIndexedSubscript {
 
