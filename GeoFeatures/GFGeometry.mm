@@ -186,45 +186,40 @@ namespace  gf = geofeatures::internal;
 
     + (instancetype) geometryWithWKT:(NSString *) wkt {
 
-        try {
-            if ([wkt hasPrefix: @"GEOMETRYCOLLECTION" caseInsensitive: YES]) {
+        if ([wkt hasPrefix: @"GEOMETRYCOLLECTION" caseInsensitive: YES]) {
 
-                return [[GFGeometryCollection alloc] initWithWKT: wkt];
+            return [[GFGeometryCollection alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"POINT" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"POINT" caseInsensitive: YES]) {
 
-                return [[GFPoint alloc] initWithWKT: wkt];
+            return [[GFPoint alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"MULTIPOINT" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"MULTIPOINT" caseInsensitive: YES]) {
 
-                return [[GFMultiPoint alloc] initWithWKT: wkt];
+            return [[GFMultiPoint alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"BOX" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"BOX" caseInsensitive: YES]) {
 
-                return [[GFBox alloc] initWithWKT: wkt];
+            return [[GFBox alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"LINESTRING" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"LINESTRING" caseInsensitive: YES]) {
 
-                return [[GFLineString alloc] initWithWKT: wkt];
+            return [[GFLineString alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"MULTILINESTRING" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"MULTILINESTRING" caseInsensitive: YES]) {
 
-                return [[GFMultiLineString alloc] initWithWKT: wkt];
+            return [[GFMultiLineString alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"POLYGON" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"POLYGON" caseInsensitive: YES]) {
 
-                return [[GFPolygon alloc] initWithWKT: wkt];
+            return [[GFPolygon alloc] initWithWKT: wkt];
 
-            } else if ([wkt hasPrefix: @"MULTIPOLYGON" caseInsensitive: YES]) {
+        } else if ([wkt hasPrefix: @"MULTIPOLYGON" caseInsensitive: YES]) {
 
-                return [[GFMultiPolygon alloc] initWithWKT: wkt];
-            }
-
-            return nil;
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            return [[GFMultiPolygon alloc] initWithWKT: wkt];
         }
+
+        @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid WKT, %@ not supported.", wkt] userInfo:nil];
     }
 
     - (NSString *) toWKTString {
@@ -251,6 +246,8 @@ namespace  gf = geofeatures::internal;
 
         if (geometryClass) {
             geometry = [(GFGeometry *)[geometryClass alloc] initWithGeoJSONGeometry: geoJSONGeometryDictionary];
+        } else {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid GeoJSON Geometry Object, type %@ not supported.", geoJSONGeometryDictionary[@"type"]] userInfo:nil];
         }
         return geometry;
     }

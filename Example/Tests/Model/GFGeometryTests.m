@@ -56,7 +56,14 @@
 
     - (void)testFailedConstruction {
         XCTAssertThrowsSpecificNamed([[GFGeometry alloc] init], NSException, NSInternalInconsistencyException);
-        XCTAssertThrows([[GFGeometry alloc] initWithWKT: @"INVALID()"]);
+        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
+        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithGeoJSONGeometry: nil], NSException, NSInternalInconsistencyException);
+
+        XCTAssertThrowsSpecificNamed(([GFGeometry geometryWithGeoJSONGeometry: @{@"type" : @"Invalid", @"invalid" : @[@(103.0), @(2.0)]}]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testGeometryWithGeoJSONGeometry {
+        XCTAssertEqualObjects(([[GFGeometry geometryWithGeoJSONGeometry: @{@"type" : @"Point", @"coordinates" : @[@(103.0), @(2.0)]}] toWKTString]), @"POINT(103 2)");
     }
 
     - (void) testGeometryWithWKT {
@@ -87,6 +94,8 @@
         GeometryWithWKTTest (@"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
         GeometryWithWKTTest (@"GEOMETRYCOLLECTION()");
         GeometryWithWKTTest2(@"GEOMETRYCOLLECTION EMPTY", @"GEOMETRYCOLLECTION()");
+        
+        XCTAssertThrowsSpecificNamed([GFGeometry geometryWithWKT: @"INVALID WKT --"], NSException, NSInvalidArgumentException);
     }
 
 
@@ -122,8 +131,6 @@
     }
 
     - (void) testOverriddenMethods {
-        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
-        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithGeoJSONGeometry: nil], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] toGeoJSONGeometry], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] mkMapOverlays], NSException, NSInternalInconsistencyException);
     }

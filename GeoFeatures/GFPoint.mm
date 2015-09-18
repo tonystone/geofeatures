@@ -88,7 +88,7 @@ namespace gf = geofeatures::internal;
         id coordinates = jsonDictionary[@"coordinates"];
 
         if (!coordinates || ![coordinates isKindOfClass: [NSArray  class]]) {
-            @throw [NSException exceptionWithName: @"Invalid GeoJSON" reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type."  userInfo: nil];
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type."  userInfo: nil];
         }
 
         self = [super initWithCPPGeometryVariant: gf::GFPoint::pointWithGeoJSONCoordinates(coordinates)];
