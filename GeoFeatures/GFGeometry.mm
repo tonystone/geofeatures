@@ -251,6 +251,8 @@ namespace  gf = geofeatures::internal;
 
         if (geometryClass) {
             geometry = [(GFGeometry *)[geometryClass alloc] initWithGeoJSONGeometry: geoJSONGeometryDictionary];
+        } else {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid GeoJSON Geometry Object, type %@ not supported.", geoJSONGeometryDictionary[@"type"]] userInfo:nil];
         }
         return geometry;
     }
