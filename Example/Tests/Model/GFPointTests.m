@@ -58,7 +58,7 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     }
 
     - (void)testFailedConstruction {
-        XCTAssertThrowsSpecificNamed([[GFPoint alloc] initWithGeoJSONGeometry: invalidGeoJSON], NSException, @"Invalid GeoJSON");
+        XCTAssertThrowsSpecificNamed([[GFPoint alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
         XCTAssertThrows([[GFPoint alloc] initWithWKT: @"INVALID()"]);
     }
 

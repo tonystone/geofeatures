@@ -56,7 +56,8 @@
 
     - (void)testFailedConstruction {
         XCTAssertThrowsSpecificNamed([[GFGeometry alloc] init], NSException, NSInternalInconsistencyException);
-        XCTAssertThrows([[GFGeometry alloc] initWithWKT: @"INVALID()"]);
+        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
+        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithGeoJSONGeometry: nil], NSException, NSInternalInconsistencyException);
     }
 
     - (void) testGeometryWithWKT {
@@ -122,8 +123,6 @@
     }
 
     - (void) testOverriddenMethods {
-        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithWKT: nil], NSException, NSInternalInconsistencyException);
-        XCTAssertThrowsSpecificNamed([[GFGeometryTestSubClass alloc] initWithGeoJSONGeometry: nil], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] toGeoJSONGeometry], NSException, NSInternalInconsistencyException);
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] mkMapOverlays], NSException, NSInternalInconsistencyException);
     }
