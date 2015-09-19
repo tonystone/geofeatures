@@ -25,28 +25,26 @@
 #import <MapKit/MapKit.h>
 
 namespace geofeatures {
-    namespace internal {
 
-        // Forward declarations
-        class LineString;
+    // Forward declarations
+    class LineString;
 
-        namespace GFLineString {
+    namespace GFLineString {
 
-            /**
-             * @returns geofeatures::internal::LineString represented by the GeoJSON coordinates
-             */
-            internal::LineString lineStringWithGeoJSONCoordinates(NSArray * coordinates);
+        /**
+         * @returns geofeatures::LineString represented by the GeoJSON coordinates
+         */
+        geofeatures::LineString lineStringWithGeoJSONCoordinates(NSArray * coordinates);
 
-            /**
-             * @returns the GeoJSON coordinates for the geofeatures::internal::LineString
-             */
-            NSArray * geoJSONCoordinatesWithLineString(const internal::LineString & linestring);
+        /**
+         * @returns the GeoJSON coordinates for the geofeatures::LineString
+         */
+        NSArray * geoJSONCoordinatesWithLineString(const geofeatures::LineString & linestring);
 
-            /**
-             * @returns An object that implements the MKOverlay protocol that represents the geofeatures::internal::LineString
-             */
-            id <MKOverlay> mkOverlayWithLineString(const internal::LineString & linestring);
-        }
+        /**
+         * @returns An object that implements the MKOverlay protocol that represents the geofeatures::LineString
+         */
+        id <MKOverlay> mkOverlayWithLineString(const geofeatures::LineString & linestring);
     }
 }
 

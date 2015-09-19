@@ -27,19 +27,17 @@
 
 
 namespace geofeatures {
-    namespace internal {
 
-        // Forward declarations
-        class Point;
+    // Forward declarations
+    class Point;
 
-        namespace GFPoint {
+    namespace GFPoint {
 
-            internal::Point pointWithGeoJSONCoordinates(NSArray * coordinates);
+        geofeatures::Point pointWithGeoJSONCoordinates(NSArray * coordinates);
 
-            NSArray * geoJSONCoordinatesWithPoint(const internal::Point & point);
+        NSArray * geoJSONCoordinatesWithPoint(const geofeatures::Point & point);
 
-            id <MKOverlay> mkOverlayWithPoint(const internal::Point & point);
-        }
+        id <MKOverlay> mkOverlayWithPoint(const geofeatures::Point & point);
     }
 }
 

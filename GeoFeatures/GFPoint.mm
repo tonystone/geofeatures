@@ -27,11 +27,11 @@
 #include "GFPoint+Primitives.hpp"
 #include "GFGeometry+Protected.hpp"
 
-#include "geofeatures/internal/Point.hpp"
+#include "internal/geofeatures/Point.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 /**
  * @class       GFPoint

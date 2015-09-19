@@ -29,13 +29,13 @@
 #include "GFGeometry+Protected.hpp"
 #include "GFLineString+Primitives.hpp"
 
-#include "geofeatures/internal/MultiLineString.hpp"
+#include "internal/geofeatures/MultiLineString.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
 #include <vector>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 @implementation GFMultiLineString
 

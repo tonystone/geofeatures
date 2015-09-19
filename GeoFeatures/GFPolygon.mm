@@ -29,13 +29,13 @@
 #include "GFGeometry+Protected.hpp"
 #include "GFPolygon+Primitives.hpp"
 
-#include "geofeatures/internal/Polygon.hpp"
+#include "internal/geofeatures/Polygon.hpp"
 #import "GFGeometryCollection.h"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 namespace geofeatures {
     namespace internal {

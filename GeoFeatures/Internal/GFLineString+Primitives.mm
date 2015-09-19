@@ -23,14 +23,14 @@
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
 
-#include "geofeatures/internal/LineString.hpp"
+#include "internal/geofeatures/LineString.hpp"
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 //
 // Protected free functions
 //
-gf::LineString geofeatures::internal::GFLineString::lineStringWithGeoJSONCoordinates(NSArray * coordinates) {
+gf::LineString geofeatures::GFLineString::lineStringWithGeoJSONCoordinates(NSArray * coordinates) {
 
     try {
         //
@@ -62,7 +62,7 @@ gf::LineString geofeatures::internal::GFLineString::lineStringWithGeoJSONCoordin
     }
 }
 
-NSArray * geofeatures::internal::GFLineString::geoJSONCoordinatesWithLineString(const gf::LineString & linestring) {
+NSArray * geofeatures::GFLineString::geoJSONCoordinatesWithLineString(const gf::LineString & linestring) {
 
     NSMutableArray * points = [[NSMutableArray alloc] init];
 
@@ -79,7 +79,7 @@ NSArray * geofeatures::internal::GFLineString::geoJSONCoordinatesWithLineString(
     return points;
 }
 
-id <MKOverlay> geofeatures::internal::GFLineString::mkOverlayWithLineString(const gf::LineString & linestring) {
+id <MKOverlay> geofeatures::GFLineString::mkOverlayWithLineString(const gf::LineString & linestring) {
 
     MKPolyline * mkPolyline = nil;
 

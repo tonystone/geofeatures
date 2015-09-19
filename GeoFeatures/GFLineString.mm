@@ -26,13 +26,13 @@
 #include "GFGeometry+Protected.hpp"
 #include "GFPoint.h"
 
-#include "geofeatures/internal/LineString.hpp"
+#include "internal/geofeatures/LineString.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
 #include <boost/geometry/io/wkt/wkt.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 @implementation GFLineString
 

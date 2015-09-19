@@ -21,14 +21,14 @@
 #import "GFPolygon+Primitives.hpp"
 #import <MapKit/MapKit.h>
 
-#include "geofeatures/internal/Polygon.hpp"
+#include "internal/geofeatures/Polygon.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
-gf::Polygon geofeatures::internal::GFPolygon::polygonWithGeoJSONCoordinates(NSArray * coordinates) {
+gf::Polygon geofeatures::GFPolygon::polygonWithGeoJSONCoordinates(NSArray * coordinates) {
 
     //
     // Note: Coordinates of a Polygon are an array of
@@ -85,7 +85,7 @@ gf::Polygon geofeatures::internal::GFPolygon::polygonWithGeoJSONCoordinates(NSAr
     }
 }
 
-NSArray * geofeatures::internal::GFPolygon::geoJSONCoordinatesWithPolygon(const gf::Polygon & polygon)  {
+NSArray * geofeatures::GFPolygon::geoJSONCoordinatesWithPolygon(const gf::Polygon & polygon)  {
 
     NSMutableArray * rings = [[NSMutableArray alloc] init];
 
@@ -131,7 +131,7 @@ NSArray * geofeatures::internal::GFPolygon::geoJSONCoordinatesWithPolygon(const 
     return rings;
 }
 
-id <MKOverlay> geofeatures::internal::GFPolygon::mkOverlayWithPolygon(const gf::Polygon & polygon) {
+id <MKOverlay> geofeatures::GFPolygon::mkOverlayWithPolygon(const gf::Polygon & polygon) {
 
     MKPolygon * mkPolygon = nil;
 

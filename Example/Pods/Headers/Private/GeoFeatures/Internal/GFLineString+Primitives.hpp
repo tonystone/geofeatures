@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/GFLineString+Primitives.hpp
+../../../../../../GeoFeatures/internal/GFLineString+Primitives.hpp

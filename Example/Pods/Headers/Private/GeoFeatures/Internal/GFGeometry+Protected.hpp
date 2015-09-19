@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/GFGeometry+Protected.hpp
+../../../../../../GeoFeatures/internal/GFGeometry+Protected.hpp
