@@ -19,7 +19,8 @@
 */
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface GFViewController : UIViewController
+@interface GFViewController : UIViewController <MKMapViewDelegate>
 
 @end
