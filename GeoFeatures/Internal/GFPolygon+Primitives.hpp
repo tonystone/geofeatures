@@ -27,20 +27,18 @@
 
 
 namespace geofeatures {
-    namespace internal {
 
-        // Forward declarations
-        class Polygon;
+    // Forward declarations
+    class Polygon;
 
 
-        namespace GFPolygon {
+    namespace GFPolygon {
 
-            geofeatures::internal::Polygon polygonWithGeoJSONCoordinates(NSArray * coordinates);
+        geofeatures::Polygon polygonWithGeoJSONCoordinates(NSArray * coordinates);
 
-            NSArray * geoJSONCoordinatesWithPolygon(const geofeatures::internal::Polygon & polygon);
+        NSArray * geoJSONCoordinatesWithPolygon(const geofeatures::Polygon & polygon);
 
-            id <MKOverlay> mkOverlayWithPolygon(const geofeatures::internal::Polygon & polygon);
-        }
+        id <MKOverlay> mkOverlayWithPolygon(const geofeatures::Polygon & polygon);
     }
 }
 

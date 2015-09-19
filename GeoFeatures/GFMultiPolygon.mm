@@ -29,14 +29,14 @@
 #include "GFGeometry+Protected.hpp"
 #include "GFPolygon+Primitives.hpp"
 
-#include "geofeatures/internal/MultiPolygon.hpp"
-#include "geofeatures/internal/GeometryVariant.hpp"
+#include "internal/geofeatures/MultiPolygon.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <vector>
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 @implementation GFMultiPolygon
 

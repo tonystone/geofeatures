@@ -27,11 +27,11 @@
 
 #include "GFGeometry+Protected.hpp"
 
-#include "geofeatures/internal/Box.hpp"
+#include "internal/geofeatures/Box.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 /**
  * @class       GFBox

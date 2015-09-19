@@ -24,14 +24,14 @@
 #include "GFPoint.h"
 
 #include "GFGeometry+Protected.hpp"
-#include "geofeatures/internal/LineString.hpp"
+#include "internal/geofeatures/LineString.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 @implementation GFRing
 

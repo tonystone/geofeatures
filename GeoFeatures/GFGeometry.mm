@@ -26,17 +26,17 @@
 #import <MapKit/MapKit.h>
 #import "NSString+CaseInsensitiveHasPrefix.h"
 
-#include "geofeatures/internal/Geometry.hpp"
-#include "geofeatures/internal/GeometryVariant.hpp"
-#include "geofeatures/internal/operators/UnionOperation.hpp"
-#include "geofeatures/internal/operators/CentroidOperation.hpp"
-#include "geofeatures/internal/operators/LengthOperation.hpp"
-#include "geofeatures/internal/operators/AreaOperation.hpp"
-#include "geofeatures/internal/operators/BoundingBoxOperation.hpp"
-#include "geofeatures/internal/operators/PerimeterOperation.hpp"
-#include "geofeatures/internal/operators/WKTOperation.hpp"
-#include "geofeatures/internal/operators/WithinOperation.hpp"
-#include "geofeatures/internal/operators/IsValidOperation.hpp"
+#include "internal/geofeatures/Geometry.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
+#include "internal/geofeatures/operators/UnionOperation.hpp"
+#include "internal/geofeatures/operators/CentroidOperation.hpp"
+#include "internal/geofeatures/operators/LengthOperation.hpp"
+#include "internal/geofeatures/operators/AreaOperation.hpp"
+#include "internal/geofeatures/operators/BoundingBoxOperation.hpp"
+#include "internal/geofeatures/operators/PerimeterOperation.hpp"
+#include "internal/geofeatures/operators/WKTOperation.hpp"
+#include "internal/geofeatures/operators/WithinOperation.hpp"
+#include "internal/geofeatures/operators/IsValidOperation.hpp"
 
 #include <memory>
 
@@ -44,7 +44,7 @@
 #include <boost/variant.hpp>
 #include <boost/variant/polymorphic_get.hpp>
 
-namespace  gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 //
 // Private methods

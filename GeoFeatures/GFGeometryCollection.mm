@@ -35,34 +35,32 @@
 #include "GFPolygon.h"
 #include "GFMultiPolygon.h"
 
-#include "geofeatures/internal/GeometryVariant.hpp"
-#include "geofeatures/internal/GeometryCollection.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
+#include "internal/geofeatures/GeometryCollection.hpp"
 
-#include "ReadWKT.hpp"
+#include "internal/geofeatures/io/ReadWKT.hpp"
 
-namespace  gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 namespace geofeatures {
-    namespace internal {
 
-        class AddGeometry : public  boost::static_visitor<void> {
-
-        public:
-            inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
-
-            template <typename T>
-            void operator()(const T & v) const {
-                geometryCollection.push_back(v);
-            }
-
-            void operator()(const gf::GeometryCollection & v)  const {
-                ;   // Do nothing
-            }
-
-        private:
-            gf::GeometryCollection & geometryCollection;
-        };
-    }
+    class AddGeometry : public  boost::static_visitor<void> {
+        
+    public:
+        inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
+        
+        template <typename T>
+        void operator()(const T & v) const {
+            geometryCollection.push_back(v);
+        }
+        
+        void operator()(const gf::GeometryCollection & v)  const {
+            ;   // Do nothing
+        }
+        
+    private:
+        gf::GeometryCollection & geometryCollection;
+    };
 }
 
 @implementation GFGeometryCollection
@@ -177,7 +175,7 @@ namespace geofeatures {
         gf::GeometryCollection geometryCollection;
         
         try {
-            gf::readWKT([wkt cStringUsingEncoding:NSUTF8StringEncoding], geometryCollection);
+            gf::io::readWKT([wkt cStringUsingEncoding:NSUTF8StringEncoding], geometryCollection);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];

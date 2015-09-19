@@ -37,13 +37,12 @@
 #import "GFMultiPolygon.h"
 #import "GFGeometryCollection.h"
 
-#include "geofeatures/internal/Geometry.hpp"
-#include "geofeatures/internal/GeometryVariant.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 
 @interface GFGeometry (Protected)
 
-    - (instancetype) initWithCPPGeometryVariant: (geofeatures::internal::GeometryVariant) geometryVariant;
+    - (instancetype) initWithCPPGeometryVariant: (geofeatures::GeometryVariant) geometryVariant;
 
     - (instancetype) initWithWKT: (NSString *) wkt;
 
@@ -55,60 +54,57 @@
 struct GFMembers {
     public:
         GFMembers() {};
-        GFMembers(geofeatures::internal::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
+        GFMembers(geofeatures::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
 
-        geofeatures::internal::GeometryVariant geometryVariant;
+        geofeatures::GeometryVariant geometryVariant;
 };
 
 namespace geofeatures {
-    namespace internal {
 
-        /** static_visitor to transform the variant type to an ObjC type
-         *
-         */
-        class GFInstanceFromVariant : public  boost::static_visitor<GFGeometry *> {
+    /** static_visitor to transform the variant type to an ObjC type
+     *
+     */
+    class GFInstanceFromVariant : public  boost::static_visitor<GFGeometry *> {
 
-            //
-            // Note: The scope-resolution operator (::) on the Objective-C classes
-            //       is required when the classes are used at this level to avoid
-            //       a clash with the name space of the same name at this level.
-            //
+        //
+        // Note: The scope-resolution operator (::) on the Objective-C classes
+        //       is required when the classes are used at this level to avoid
+        //       a clash with the name space of the same name at this level.
+        //
 
-        public:
-            template <typename T>
-            GFGeometry * operator()(const T & v) const {
-                return nil;
-            }
-            GFGeometry * operator()(const Point & v) const {
-                return [[::GFPoint alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const MultiPoint & v) const {
-                return [[::GFMultiPoint alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const Box & v) const {
-                return [[::GFBox alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const LineString & v) const {
-                return [[::GFLineString alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const Ring & v) const {
-                return [[::GFRing alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const MultiLineString & v) const {
-                return [[::GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const Polygon & v) const {
-                return [[::GFPolygon alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const MultiPolygon & v) const {
-                return [[::GFMultiPolygon alloc] initWithCPPGeometryVariant: v];;
-            }
-            GFGeometry * operator()(const GeometryCollection & v) const {
-                return [[::GFGeometryCollection alloc] initWithCPPGeometryVariant: v];;
-            }
-        };
-
-    }
+    public:
+        template <typename T>
+        GFGeometry * operator()(const T & v) const {
+            return nil;
+        }
+        GFGeometry * operator()(const Point & v) const {
+            return [[::GFPoint alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const MultiPoint & v) const {
+            return [[::GFMultiPoint alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const Box & v) const {
+            return [[::GFBox alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const LineString & v) const {
+            return [[::GFLineString alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const Ring & v) const {
+            return [[::GFRing alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const MultiLineString & v) const {
+            return [[::GFMultiLineString alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const Polygon & v) const {
+            return [[::GFPolygon alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const MultiPolygon & v) const {
+            return [[::GFMultiPolygon alloc] initWithCPPGeometryVariant: v];;
+        }
+        GFGeometry * operator()(const GeometryCollection & v) const {
+            return [[::GFGeometryCollection alloc] initWithCPPGeometryVariant: v];;
+        }
+    };
 }
 
 #endif // __GFGeometryProtected_hpp

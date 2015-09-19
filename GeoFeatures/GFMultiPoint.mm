@@ -27,12 +27,12 @@
 #include "GFGeometry+Protected.hpp"
 #include "GFPoint+Primitives.hpp"
 
-#include "geofeatures/internal/MultiPoint.hpp"
-#include "geofeatures/internal/GeometryVariant.hpp"
+#include "internal/geofeatures/MultiPoint.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
 @implementation GFMultiPoint
 

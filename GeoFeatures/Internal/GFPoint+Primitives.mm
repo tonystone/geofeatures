@@ -21,11 +21,11 @@
 #import "GFPoint+Primitives.hpp"
 #import <MapKit/MapKit.h>
 
-#include "geofeatures/internal/Point.hpp"
+#include "internal/geofeatures/Point.hpp"
 
-namespace gf = geofeatures::internal;
+namespace gf = geofeatures;
 
-gf::Point geofeatures::internal::GFPoint::pointWithGeoJSONCoordinates(NSArray * coordinates) {
+gf::Point geofeatures::GFPoint::pointWithGeoJSONCoordinates(NSArray * coordinates) {
 
     //
     // { "type": "Point",
@@ -40,7 +40,7 @@ gf::Point geofeatures::internal::GFPoint::pointWithGeoJSONCoordinates(NSArray * 
     }
 }
 
-NSArray * geofeatures::internal::GFPoint::geoJSONCoordinatesWithPoint(const gf::Point & point) {
+NSArray * geofeatures::GFPoint::geoJSONCoordinatesWithPoint(const gf::Point & point) {
     double longitude;
     double latitude;
 
@@ -54,7 +54,7 @@ NSArray * geofeatures::internal::GFPoint::geoJSONCoordinatesWithPoint(const gf::
     return @[@(longitude),@(latitude)];
 }
 
-id <MKOverlay> geofeatures::internal::GFPoint::mkOverlayWithPoint(const gf::Point & point) {
+id <MKOverlay> geofeatures::GFPoint::mkOverlayWithPoint(const gf::Point & point) {
     MKCircle * mkCircle = nil;
 
     try {

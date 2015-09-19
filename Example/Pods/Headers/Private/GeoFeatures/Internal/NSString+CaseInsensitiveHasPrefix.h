@@ -1,1 +1,1 @@
-../../../../../../GeoFeatures/Internal/NSString+CaseInsensitiveHasPrefix.h
+../../../../../../GeoFeatures/internal/NSString+CaseInsensitiveHasPrefix.h
