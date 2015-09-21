@@ -88,6 +88,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFMultiPolygon *) [[self class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
+    }
+
 #pragma mark - Querying a GFMultiPolygon
 
     - (NSUInteger)count {

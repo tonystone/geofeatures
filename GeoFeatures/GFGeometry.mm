@@ -71,12 +71,7 @@ namespace gf = geofeatures;
     }
 
     - (id) copyWithZone:(struct _NSZone *)zone {
-        GFGeometry *copy = (GFGeometry *) [[[self class] allocWithZone:zone] init];
-
-        if (copy != nil) {
-            copy->_members = new GFMembers(self->_members->geometryVariant);
-        }
-        return copy;
+        return (GFGeometry *) [[[self class] allocWithZone:zone] init];
     }
 
     - (BOOL) isValid {

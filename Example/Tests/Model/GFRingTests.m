@@ -52,6 +52,10 @@ void __attribute__((constructor)) staticInitializer() {
         XCTAssertThrows([[GFRing alloc] initWithWKT: @"INVALID()"]);
     }
 
+    - (void) testCopy {
+        XCTAssertEqualObjects([[[GFRing geometryWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] copy] toWKTString], @"LINESTRING(20 0,20 10,40 10,40 0,20 0)");
+    }
+
     - (void) testDescription {
 
         // Currently we only check if it returns something and its not nill

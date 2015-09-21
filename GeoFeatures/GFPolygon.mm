@@ -74,6 +74,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFPolygon *) [[self class] allocWithZone: zone] initWithCPPPolygon: _polygon];
+    }
+
     - (GFRing *) outerRing {
         return [[GFRing alloc] initWithCPPRing: _polygon.outer()];
     }

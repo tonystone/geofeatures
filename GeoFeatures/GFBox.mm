@@ -103,6 +103,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFBox *)[[self class] allocWithZone:zone] initWithCPPBox: _box];
+    }
+
     - (GFPoint *) minCorner {
         return [[GFPoint alloc] initWithCPPPoint: _box.minCorner()];
     }

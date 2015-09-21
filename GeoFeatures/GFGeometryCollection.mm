@@ -56,6 +56,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFGeometryCollection *)[[self class] allocWithZone:zone] initWithCPPGeometryCollection: _geometryCollection];
+    }
+
     - (NSUInteger)count {
         return _geometryCollection.size();
     }

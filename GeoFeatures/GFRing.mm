@@ -94,6 +94,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFRing *) [[self class] allocWithZone: zone] initWithCPPRing: _ring];
+    }
+
 #pragma mark - Querying a GFLineSting
 
     - (NSUInteger) count {

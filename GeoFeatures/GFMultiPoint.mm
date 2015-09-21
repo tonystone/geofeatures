@@ -76,6 +76,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFMultiPoint *) [[self class] allocWithZone: zone] initWithCPPMultiPoint: _multiPoint];
+    }
+
 #pragma mark - Querying a GFMultiPoint
 
     - (NSUInteger)count {

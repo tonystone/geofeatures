@@ -83,6 +83,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFPoint *) [[self class] allocWithZone: zone] initWithCPPPoint: _point];
+    }
+
     - (double) x {
         return _point.get<0>();
     }
