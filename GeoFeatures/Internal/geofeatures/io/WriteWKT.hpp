@@ -82,7 +82,7 @@ namespace geofeatures {
 
                     bool first = true;
 
-                    for (const auto it = wkt.geometryCollection.begin();  it != wkt.geometryCollection.end(); ++it ) {
+                    for (auto it = wkt.geometryCollection.begin();  it != wkt.geometryCollection.end(); ++it ) {
                         if (!first) {
                             os << ",";
                         }
