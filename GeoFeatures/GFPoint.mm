@@ -22,12 +22,11 @@
 *
 */
 
-#import "GFPoint.h"
-
-#include "GFPoint+Primitives.hpp"
-#include "GFGeometry+Protected.hpp"
+#include "GFPoint+Protected.hpp"
+#include "GFPOint+Primitives.hpp"
 
 #include "internal/geofeatures/Point.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
@@ -36,75 +35,92 @@ namespace gf = geofeatures;
 /**
  * @class       GFPoint
  *
- * @brief       A brief description.
+ * @brief       A 2 dimensional point.
  *
- * Here typically goes a more extensive explanation of what the header
- * defines. Doxygens tags are words preceeded by either a backslash @\
- * or by an at symbol @@.
  *
  * @author      Tony Stone
  * @date        6/8/15
  */
-@implementation GFPoint
-
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::Point()];
-        return self;
+@implementation GFPoint {
+        gf::Point _point;
     }
 
     - (instancetype) initWithX:(double)x y:(double)y {
-        self = [super initWithCPPGeometryVariant: gf::Point(x,y)];
+
+        if (self = [super init]) {
+            _point.set<0>(x);
+            _point.set<1>(y);
+        }
         return self;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
-        try {
-            gf::Point point;
+        if (self = [super init]) {
+            try {
+                
+                boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], _point);
 
-            boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], point);
-
-            self = [super initWithCPPGeometryVariant: point];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            }
         }
         return self;
     }
 
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
+        NSParameterAssert(jsonDictionary != nil);
 
-        id coordinates = jsonDictionary[@"coordinates"];
-
-        if (!coordinates || ![coordinates isKindOfClass: [NSArray  class]]) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type."  userInfo: nil];
+        if (self = [super init]) {
+            id coordinates = jsonDictionary[@"coordinates"];
+            
+            if (!coordinates || ![coordinates isKindOfClass: [NSArray  class]]) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type."  userInfo: nil];
+            }
+            _point = gf::GFPoint::pointWithGeoJSONCoordinates(coordinates);
         }
-
-        self = [super initWithCPPGeometryVariant: gf::GFPoint::pointWithGeoJSONCoordinates(coordinates)];
         return self;
     }
 
     - (double) x {
-        const auto& point = boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant);
-
-        return point.get<0>();
+        return _point.get<0>();
     }
 
     - (double) y {
-        const auto& point = boost::polymorphic_strict_get<gf::Point>(_members->geometryVariant);
-
-        return point.get<1>();
+        return _point.get<1>();
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-
-        return @{@"type": @"Point", @"coordinates": gf::GFPoint::geoJSONCoordinatesWithPoint(boost::polymorphic_strict_get <gf::Point>(_members->geometryVariant))};
+        return @{@"type": @"Point", @"coordinates": gf::GFPoint::geoJSONCoordinatesWithPoint(_point)};
     }
 
     - (NSArray *) mkMapOverlays {
+        return @[gf::GFPoint::mkOverlayWithPoint(_point)];
+    }
 
-        return @[gf::GFPoint::mkOverlayWithPoint(boost::polymorphic_strict_get <gf::Point>(_members->geometryVariant))];
+@end
+
+@implementation GFPoint (Protected)
+
+    - (instancetype) initWithCPPPoint: (gf::Point) aPoint {
+        
+        if (self = [super init]) {
+            _point = aPoint;
+        }
+        return self;
+    }
+
+    - (gf::Point &) cppPointReference {
+        return _point;
+    }
+
+    - (const gf::Point &) cppPointConstReference {
+        return _point;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_point);
     }
 
 @end

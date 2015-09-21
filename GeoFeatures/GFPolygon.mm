@@ -21,44 +21,18 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
-#import "GFPolygon.h"
-#import "GFRing.h"
-#import <MapKit/MapKit.h>
-
-#include "GFGeometry+Protected.hpp"
+#include "GFPolygon+Protected.hpp"
 #include "GFPolygon+Primitives.hpp"
+#include "GFRing+Protected.hpp"
+#include "GFGeometryCollection+Protected.hpp"
 
 #include "internal/geofeatures/Polygon.hpp"
-#import "GFGeometryCollection.h"
+#include "internal/geofeatures/GeometryCollection.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
-
 namespace gf = geofeatures;
-
-namespace geofeatures {
-    namespace internal {
-
-        class AddGeometry : public  boost::static_visitor<void> {
-
-        public:
-            inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
-
-            template <typename T>
-            void operator()(const T & v) const {
-                geometryCollection.push_back(v);
-            }
-
-            void operator()(const gf::GeometryCollection & v)  const {
-                ;   // Do nothing
-            }
-
-        private:
-            gf::GeometryCollection & geometryCollection;
-        };
-    }
-}
 
 /**
  * @class       GFPolygon
@@ -68,25 +42,20 @@ namespace geofeatures {
  * @author      Tony Stone
  * @date        6/6/15
  */
-@implementation GFPolygon
-
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::Polygon()];
-        return self;
+@implementation GFPolygon {
+        gf::Polygon _polygon;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
-        try {
-            gf::Polygon polygon;
+        if (self = [super init]) {
+            try {
+                boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], _polygon);
 
-            boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], polygon);
-
-            self = [super initWithCPPGeometryVariant: polygon];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
+            }
         }
         return self;
     }
@@ -94,57 +63,62 @@ namespace geofeatures {
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
-        id coordinates = jsonDictionary[@"coordinates"];
+        if (self = [super init]) {
+            id coordinates = jsonDictionary[@"coordinates"];
 
-        if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
+            if (!coordinates || ![coordinates isKindOfClass: [NSArray class]]) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo: nil];
+            }
+            _polygon = gf::GFPolygon::polygonWithGeoJSONCoordinates(coordinates);
         }
-
-        self = [super initWithCPPGeometryVariant: gf::GFPolygon::polygonWithGeoJSONCoordinates(coordinates)];
         return self;
     }
 
     - (GFRing *) outerRing {
-        GFRing * ring = nil;
-
-        try {
-            const auto& polygon = boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant);
-
-            ring = [[GFRing alloc] initWithCPPGeometryVariant: polygon.outer()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-        return ring;
+        return [[GFRing alloc] initWithCPPRing: _polygon.outer()];
     }
 
     - (GFGeometryCollection *) innerRings {
-        GFGeometryCollection * innerRings = nil;
+        gf::GeometryCollection geometryCollection;
 
-        try {
-            const auto& polygon = boost::polymorphic_strict_get<gf::Polygon>(_members->geometryVariant);
-            const auto& inners  = polygon.inners();
+        const auto& inners  = _polygon.inners();
 
-            gf::GeometryCollection geometryCollection;
-
-            for (auto it = inners.begin(); it != inners.end(); ++it) {
-                geometryCollection.push_back(*it);
-            }
-
-            innerRings = [[GFGeometryCollection alloc] initWithCPPGeometryVariant: geometryCollection];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        for (auto it = inners.begin(); it != inners.end(); ++it) {
+            geometryCollection.push_back(*it);
         }
-        return innerRings;
+        return [[GFGeometryCollection alloc] initWithCPPGeometryCollection: geometryCollection];
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        return @{@"type": @"Polygon", @"coordinates": gf::GFPolygon::geoJSONCoordinatesWithPolygon(boost::polymorphic_strict_get <gf::Polygon>(_members->geometryVariant))};
+        return @{@"type": @"Polygon", @"coordinates": gf::GFPolygon::geoJSONCoordinatesWithPolygon(_polygon)};
     }
 
     - (NSArray *) mkMapOverlays {
-        return @[gf::GFPolygon::mkOverlayWithPolygon(boost::polymorphic_strict_get <gf::Polygon>(_members->geometryVariant))];
+        return @[gf::GFPolygon::mkOverlayWithPolygon(_polygon)];
+    }
+
+@end
+
+@implementation GFPolygon (Protected)
+
+    - (instancetype) initWithCPPPolygon: (gf::Polygon) aPolygon {
+
+        if (self = [super init]) {
+            _polygon = aPolygon;
+        }
+        return self;
+    }
+
+    - (gf::Polygon &) cppPolygonReference {
+        return _polygon;
+    }
+
+    - (const gf::Polygon &) cppPolygonConstReference {
+        return _polygon;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_polygon);
     }
 
 @end

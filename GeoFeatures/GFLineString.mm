@@ -22,11 +22,13 @@
 *
 */
 
+#include "GFLineString+Protected.hpp"
 #include "GFLineString+Primitives.hpp"
-#include "GFGeometry+Protected.hpp"
-#include "GFPoint.h"
+#include "GFPoint+Protected.hpp"
 
+#include "internal/geofeatures/Point.hpp"
 #include "internal/geofeatures/LineString.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
@@ -34,25 +36,20 @@
 
 namespace gf = geofeatures;
 
-@implementation GFLineString
-
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::LineString()];
-        return self;
+@implementation GFLineString {
+        gf::LineString _lineString;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
-        try {
-            gf::LineString lineString;
-
-            boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], lineString);
-
-            self = [super initWithCPPGeometryVariant: lineString];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        if (self = [super init]) {
+            try {
+                boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], _lineString);
+                
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            }
         }
         return self;
     }
@@ -60,109 +57,103 @@ namespace gf = geofeatures;
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
-        id coordinates = jsonDictionary[@"coordinates"];
-        
-        if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
-        }
+        if (self = [super init]) {
+            id coordinates = jsonDictionary[@"coordinates"];
+            
+            if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
+            }
+            
+            _lineString = gf::GFLineString::lineStringWithGeoJSONCoordinates(coordinates);
 
-        self = [super initWithCPPGeometryVariant: gf::GFLineString::lineStringWithGeoJSONCoordinates(coordinates)];
+        }
         return self;
     }
 
 #pragma mark - Querying a GFLineSting
 
     - (NSUInteger) count {
-
-        try {
-            auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
-
-            return lineString.size();
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
+        return _lineString.size();
     }
 
     - (GFPoint *) pointAtIndex: (NSUInteger) index {
 
-        try {
-            auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
-
-            unsigned long size = lineString.size();
-
-            if (size == 0 || index > (size -1)) {
-                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
-            }
-
-            return [[GFPoint alloc] initWithCPPGeometryVariant: lineString.at(index)];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        auto size = _lineString.size();
+        
+        if (size == 0 || index > (size -1)) {
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _lineString.size()];
         }
+        //
+        // Note: Unless the container is mutating, the access
+        //       below should not throw because we've already
+        //       checked for out_of_rang above.
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _lineString.at(index)];
     }
 
     - (GFPoint *) firstPoint {
 
-        try {
-            auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
-
-            if (lineString.size() == 0) {
-                return nil;
-            }
-
-            return [[GFPoint alloc] initWithCPPGeometryVariant: lineString.front()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (_lineString.size() == 0) {
+            return nil;
         }
+        return [[GFPoint alloc] initWithCPPPoint: _lineString.front()];
     }
 
     - (GFPoint *) lastPoint {
 
-        try {
-            auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
-
-            if (lineString.size() == 0) {
-                return nil;
-            }
-            return [[GFPoint alloc] initWithCPPGeometryVariant: lineString.back()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (_lineString.size() == 0) {
+            return nil;
         }
+        return [[GFPoint alloc] initWithCPPPoint: _lineString.back()];
     }
 
 #pragma mark - Indexed Subscripting
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto& lineString = boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant);
+        auto size = _lineString.size();
 
-        if (index >= lineString.size())
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, lineString.size()];
-
-        return [[GFPoint alloc] initWithCPPGeometryVariant: lineString[index]];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _lineString.size()];
+        }
+        //
+        // Note: Unless the container is mutating, the access
+        //       below should not throw because we've already
+        //       checked for out_of_rang above.
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _lineString.at(index)];
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-
-        try {
-            return @{@"type": @"LineString", @"coordinates":  gf::GFLineString::geoJSONCoordinatesWithLineString(boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant))};
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
+        return @{@"type": @"LineString", @"coordinates": gf::GFLineString::geoJSONCoordinatesWithLineString(_lineString)};
     }
 
     - (NSArray *) mkMapOverlays {
+        return @[gf::GFLineString::mkOverlayWithLineString(_lineString)];
+    }
 
-        try {
-            return @[gf::GFLineString::mkOverlayWithLineString(boost::polymorphic_strict_get<gf::LineString>(_members->geometryVariant))];
+@end
 
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+@implementation GFLineString (Protected)
+
+    - (instancetype) initWithCPPLineString: (gf::LineString) aLineString {
+
+        if (self = [super init]) {
+            _lineString = aLineString;
         }
+        return self;
+    }
+
+    - (gf::LineString &) cppLineStringReference {
+        return _lineString;
+    }
+
+    - (const gf::LineString &) cppLineStringConstReference {
+        return _lineString;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_lineString);
     }
 
 @end

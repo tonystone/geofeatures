@@ -22,6 +22,8 @@
 *
 */
 
+#pragma once
+
 #ifndef __Point_HPP_
 #define __Point_HPP_
 

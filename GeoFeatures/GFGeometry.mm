@@ -115,7 +115,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *)centroid {
         try {
-            return [[GFPoint alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::CentroidOperation(), _members->geometryVariant)];
+            return [[GFPoint alloc] initWithCPPPoint: boost::apply_visitor(gf::operators::CentroidOperation(), _members->geometryVariant)];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
@@ -124,8 +124,8 @@ namespace gf = geofeatures;
 
     - (GFBox *)boundingBox {
         try {
-            return [[GFBox alloc] initWithCPPGeometryVariant: boost::apply_visitor(gf::operators::BoundingBoxOperation(), _members->geometryVariant)];
-            
+            return [[GFBox alloc] initWithCPPBox: boost::apply_visitor(gf::operators::BoundingBoxOperation(), _members->geometryVariant)];
+
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
@@ -177,6 +177,10 @@ namespace gf = geofeatures;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 

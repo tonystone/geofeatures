@@ -21,10 +21,8 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
-#import "GFMultiPoint.h"
-
-#include "GFGeometry+Protected.hpp"
+#include "GFMultiPoint+Protected.hpp"
+#include "GFPoint+Protected.hpp"
 #include "GFPoint+Primitives.hpp"
 
 #include "internal/geofeatures/MultiPoint.hpp"
@@ -34,27 +32,22 @@
 
 namespace gf = geofeatures;
 
-@implementation GFMultiPoint
+@implementation GFMultiPoint {
+        gf::MultiPoint _multiPoint;
+    }
 
 #pragma mark - Construction
 
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::MultiPoint()];
-        return self;
-    }
-
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
+        
+        if (self = [super init]) {
+            try {
+                boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], _multiPoint);
 
-        try {
-            gf::MultiPoint multiPoint;
-
-            boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], multiPoint);
-
-            self = [super initWithCPPGeometryVariant: multiPoint];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
+            }
         }
         return self;
     }
@@ -62,107 +55,103 @@ namespace gf = geofeatures;
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
-        id coordinates = jsonDictionary[@"coordinates"];
+        if (self = [super init]) {
 
-        if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
-        }
-        //
-        // Note: Coordinates of a MultiPoint are an array of positions
-        //
-        // { "type": "MultiPoint",
-        //      "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
-        // }
-        //
-        gf::MultiPoint multiPoint;
+            id coordinates = jsonDictionary[@"coordinates"];
 
-        try {
-            for (NSArray * coordinate in coordinates) {
-                multiPoint.push_back(gf::GFPoint::pointWithGeoJSONCoordinates(coordinate));
+            if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
+                @throw [NSException exceptionWithName:@"Invalid GeoJSON" reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
             }
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+            //
+            // Note: Coordinates of a MultiPoint are an array of positions
+            //
+            // { "type": "MultiPoint",
+            //      "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+            // }
+            //
+            for (NSArray * coordinate in coordinates) {
+                _multiPoint.push_back(gf::GFPoint::pointWithGeoJSONCoordinates(coordinate));
+            }
         }
-
-        self = [super initWithCPPGeometryVariant: multiPoint];
         return self;
     }
 
 #pragma mark - Querying a GFMultiPoint
 
     - (NSUInteger)count {
-
-        try {
-            const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
-
-            return multiPoint.size();
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
+        return _multiPoint.size();
     }
 
     - (GFPoint *) geometryAtIndex: (NSUInteger) index {
 
-        try {
-            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+        auto size = _multiPoint.size();
 
-            unsigned long size = multiPoint.size();
-
-            if (size == 0 || index > (size -1)) {
-                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
-            }
-
-            return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint.at(index)];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
         }
+        //
+        // Note: Unless the container is mutating, the access
+        //       below should not throw because we've already
+        //       checked for out_of_rang above.
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _multiPoint.at(index)];
     }
 
     - (GFPoint *) firstGeometry {
 
-        try {
-            const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
-
-            if (multiPoint.size() == 0) {
-                return nil;
-            }
-
-            return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint.front()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (_multiPoint.size() == 0) {
+            return nil;
         }
+        return [[GFPoint alloc] initWithCPPPoint: _multiPoint.front()];
     }
 
     - (GFPoint *) lastGeometry {
 
-        try {
-            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
-
-            if (multiPoint.size() == 0) {
-                return nil;
-            }
-
-            return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint.back()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (_multiPoint.size() == 0) {
+            return nil;
         }
+        return [[GFPoint alloc] initWithCPPPoint: _multiPoint.back()];
     }
 
 #pragma mark - Indexed Subscripting
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        const auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
+        auto size = _multiPoint.size();
 
-        if (index >= multiPoint.size())
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, multiPoint.size()];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+        }
+        //
+        // Note: Unless the container is mutating, the access
+        //       below should not throw because we've already
+        //       checked for out_of_rang above.
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _multiPoint.at(index)];
+    }
 
-        return [[GFPoint alloc] initWithCPPGeometryVariant: multiPoint[index]];
+@end
+
+@implementation GFMultiPoint (Protected)
+
+    - (instancetype) initWithCPPMultiPoint: (gf::MultiPoint) aMultiPoint {
+
+        if (self = [super init]) {
+            _multiPoint = aMultiPoint;
+        }
+        return self;
+    }
+
+    - (gf::MultiPoint &) cppMultiPointReference {
+        return _multiPoint;
+    }
+
+    - (const gf::MultiPoint &) cppMultiPointConstReference {
+        return _multiPoint;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_multiPoint);
     }
 
 #pragma mark - GeoJSON Output
@@ -170,14 +159,8 @@ namespace gf = geofeatures;
     - (NSDictionary *)toGeoJSONGeometry {
         NSMutableArray * points = [[NSMutableArray alloc] init];
 
-        try {
-            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
-
-            for (auto it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
-                [points addObject: gf::GFPoint::geoJSONCoordinatesWithPoint(*it)];
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        for (auto it = _multiPoint.begin();  it != _multiPoint.end(); ++it ) {
+            [points addObject: gf::GFPoint::geoJSONCoordinatesWithPoint(*it)];
         }
         return @{@"type": @"MultiPoint", @"coordinates": points};
     }
@@ -187,15 +170,8 @@ namespace gf = geofeatures;
     - (NSArray *)mkMapOverlays {
         NSMutableArray * mkPolygons = [[NSMutableArray alloc] init];
 
-        try {
-
-            auto& multiPoint = boost::polymorphic_strict_get<gf::MultiPoint>(_members->geometryVariant);
-
-            for (auto it = multiPoint.vector::begin();  it != multiPoint.vector::end(); ++it ) {
-                [mkPolygons addObject: gf::GFPoint::mkOverlayWithPoint(*it)];
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        for (auto it = _multiPoint.begin();  it != _multiPoint.end(); ++it ) {
+            [mkPolygons addObject: gf::GFPoint::mkOverlayWithPoint(*it)];
         }
         return mkPolygons;
     }

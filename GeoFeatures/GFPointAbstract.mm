@@ -23,7 +23,6 @@
 */
 
 #import "GFPointAbstract.h"
-#import <MapKit/MapKit.h>
 
 @implementation GFPointAbstract
 

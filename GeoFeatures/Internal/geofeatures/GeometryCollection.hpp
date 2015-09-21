@@ -41,18 +41,21 @@
 
 namespace geofeatures {
 
+        class GeometryCollection;
+
         /**
         * Variant type of contained objects
         */
-        typedef boost::variant<
-                geofeatures::Point,
-                geofeatures::MultiPoint,
-                geofeatures::Box,
-                geofeatures::LineString,
-                geofeatures::MultiLineString,
-                geofeatures::Ring,
-                geofeatures::Polygon,
-                geofeatures::MultiPolygon>  GeometryCollectionVariantType;
+        typedef boost::variant <
+                        geofeatures::Point,
+                        geofeatures::MultiPoint,
+                        geofeatures::Box,
+                        geofeatures::LineString,
+                        geofeatures::MultiLineString,
+                        geofeatures::Ring,
+                        geofeatures::Polygon,
+                        geofeatures::MultiPolygon,
+                        boost::recursive_wrapper<geofeatures::GeometryCollection>>  GeometryCollectionVariantType;
 
         /**
         * Base type for GeometryCollection class

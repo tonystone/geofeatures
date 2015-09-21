@@ -19,8 +19,8 @@
 */
 #pragma once
 
-#ifndef __GFLineStringProtected_hpp
-#define __GFLineStringProtected_hpp
+#ifndef __GFLineStringPrimitives_hpp
+#define __GFLineStringPrimitives_hpp
 
 #import <MapKit/MapKit.h>
 
@@ -48,4 +48,4 @@ namespace geofeatures {
     }
 }
 
-#endif // __GFLineStringProtected_hpp
+#endif // __GFLineStringPrimitives_hpp
