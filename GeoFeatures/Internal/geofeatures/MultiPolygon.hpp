@@ -21,6 +21,8 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
+
 #ifndef __MultiPolygon_HPP_
 #define __MultiPolygon_HPP_
 

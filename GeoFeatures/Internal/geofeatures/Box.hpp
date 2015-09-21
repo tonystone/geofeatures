@@ -21,7 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
+#pragma once
 
 #ifndef __Box_HPP_
 #define __Box_HPP_
