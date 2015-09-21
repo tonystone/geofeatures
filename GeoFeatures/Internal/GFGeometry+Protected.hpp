@@ -52,17 +52,6 @@ namespace gf = geofeatures;
 
 @end
 
-/*
- * @Note GFMembers structure is intentionally in the global namespace
- */
-struct GFMembers {
-    public:
-        GFMembers() {};
-        GFMembers(geofeatures::GeometryVariant aGeometryVariant) : geometryVariant(aGeometryVariant) {};
-
-        geofeatures::GeometryVariant geometryVariant;
-};
-
 namespace geofeatures {
 
     /** static_visitor to transform the variant type to an ObjC type
