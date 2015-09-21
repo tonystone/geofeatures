@@ -52,6 +52,17 @@ namespace geofeatures {
                 geofeatures::MultiPolygon,
                 geofeatures::GeometryCollection>  GeometryVariant;
 
+    typedef boost::variant<
+                geofeatures::Point *,
+                geofeatures::MultiPoint *,
+                geofeatures::Box *,
+                geofeatures::LineString *,
+                geofeatures::MultiLineString *,
+                geofeatures::Ring *,
+                geofeatures::Polygon *,
+                geofeatures::MultiPolygon *,
+                geofeatures::GeometryCollection *>  GeometryPtrVariant;
+
 }   // namespace geofeatures
 
 #endif //__GeometryVariant_HPP_

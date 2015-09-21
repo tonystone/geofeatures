@@ -166,6 +166,10 @@ namespace gf = geofeatures;
         return gf::GeometryVariant(_multiPolygon);
     }
 
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_multiPolygon);
+    }
+
 #pragma mark - GeoJSON Output
 
     - (NSDictionary *) toGeoJSONGeometry {

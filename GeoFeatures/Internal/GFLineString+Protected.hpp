@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPLineString: (gf::LineString) aLineString;
 
-    /**
-     * @returns A reference to the internal LineString implementation.
-     */
-    - (gf::LineString &) cppLineStringReference;
-
-    /**
-     * @returns A reference to the internal LineString implementation.
-     */
-    - (const gf::LineString &) cppLineStringConstReference;
-
 @end
 
 #endif // __GFLineStringProtected_hpp

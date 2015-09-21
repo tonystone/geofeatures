@@ -151,4 +151,8 @@ namespace gf = geofeatures;
         return gf::GeometryVariant(_geometryCollection);
     }
 
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_geometryCollection);
+    }
+
 @end

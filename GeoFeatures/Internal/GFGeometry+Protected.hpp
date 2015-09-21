@@ -45,11 +45,10 @@ namespace gf = geofeatures;
 
 @interface GFGeometry (Protected)
 
-    - (instancetype) initWithCPPGeometryVariant: (geofeatures::GeometryVariant) geometryVariant;
-
     - (instancetype) initWithWKT: (NSString *) wkt;
 
-    - (gf::GeometryVariant) cppGeometryVariant;
+    - (gf::GeometryVariant)    cppGeometryVariant;
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant;
 
 @end
 

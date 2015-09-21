@@ -31,8 +31,6 @@
 @class GFPoint;
 @class GFBox;
 
-struct GFMembers;
-
 /**
  * @class       GFGeometry
  *
@@ -46,9 +44,7 @@ struct GFMembers;
  * @author      Tony Stone
  * @date        6/14/15
  */
-@interface GFGeometry : NSObject <NSCoding, NSCopying> {
-        struct GFMembers * _members;
-    }
+@interface GFGeometry : NSObject <NSCoding, NSCopying>
 
     /** Checks if a geometry is valid.
     */

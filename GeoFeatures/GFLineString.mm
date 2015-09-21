@@ -65,7 +65,6 @@ namespace gf = geofeatures;
             }
             
             _lineString = gf::GFLineString::lineStringWithGeoJSONCoordinates(coordinates);
-
         }
         return self;
     }
@@ -154,6 +153,10 @@ namespace gf = geofeatures;
 
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_lineString);
+    }
+
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_lineString);
     }
 
 @end

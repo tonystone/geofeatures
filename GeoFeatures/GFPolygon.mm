@@ -121,5 +121,9 @@ namespace gf = geofeatures;
         return gf::GeometryVariant(_polygon);
     }
 
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_polygon);
+    }
+
 @end
 

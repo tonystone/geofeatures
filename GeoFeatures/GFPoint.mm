@@ -123,4 +123,8 @@ namespace gf = geofeatures;
         return gf::GeometryVariant(_point);
     }
 
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_point);
+    }
+
 @end

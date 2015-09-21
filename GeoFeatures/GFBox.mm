@@ -166,4 +166,8 @@ namespace gf = geofeatures;
         return gf::GeometryVariant(_box);
     }
 
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_box);
+    }
+
 @end

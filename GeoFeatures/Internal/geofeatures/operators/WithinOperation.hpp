@@ -39,93 +39,93 @@ namespace geofeatures {
         public:
             // Point
             template <typename T>
-            bool operator()(const Point & lhs, const T & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Point * lhs, const T * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const Point & lhs, const GeometryCollection & rhs) const {
+            bool operator()(const Point * lhs, const GeometryCollection * rhs) const {
                 return false;
             }
 
             // LineString
-            bool operator()(const LineString & lhs, const LineString & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const LineString * lhs, const LineString * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const LineString & lhs, const Ring & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const LineString * lhs, const Ring * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const LineString & lhs, const Polygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const LineString * lhs, const Polygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const LineString & lhs, const MultiLineString & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const LineString * lhs, const MultiLineString * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const LineString & lhs, const MultiPolygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const LineString * lhs, const MultiPolygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
             // MultiLineString
-            bool operator()(const MultiLineString & lhs, const Ring & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiLineString * lhs, const Ring * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const MultiLineString & lhs, const Polygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiLineString * lhs, const Polygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const MultiLineString & lhs, const MultiPolygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiLineString * lhs, const MultiPolygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const MultiLineString & lhs, const LineString & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiLineString * lhs, const LineString * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
             // Ring
-            bool operator()(const Ring & lhs, const Ring & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Ring * lhs, const Ring * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const Ring & lhs, const Polygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Ring * lhs, const Polygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const Ring & lhs, const MultiPolygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Ring * lhs, const MultiPolygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
             // Polygon
-            bool operator()(const Polygon & lhs, const Ring & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Polygon * lhs, const Ring * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const Polygon & lhs, const Polygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Polygon * lhs, const Polygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const Polygon & lhs, const MultiPolygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const Polygon * lhs, const MultiPolygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
             // MultiPolygon
-            bool operator()(const MultiPolygon & lhs, const Ring & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiPolygon * lhs, const Ring * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const MultiPolygon & lhs, const Polygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiPolygon * lhs, const Polygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const MultiPolygon & lhs, const MultiPolygon & rhs) const {
-                return boost::geometry::within(lhs, rhs);
+            bool operator()(const MultiPolygon * lhs, const MultiPolygon * rhs) const {
+                return boost::geometry::within(*lhs, *rhs);
             }
 
             template <typename T, typename U>
-            bool operator()( const T & lhs, const U & rhs) const
+            bool operator()(const T * lhs, const U * rhs) const
             {
                 return false;
             }

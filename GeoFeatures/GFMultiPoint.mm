@@ -154,6 +154,10 @@ namespace gf = geofeatures;
         return gf::GeometryVariant(_multiPoint);
     }
 
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_multiPoint);
+    }
+
 #pragma mark - GeoJSON Output
 
     - (NSDictionary *)toGeoJSONGeometry {

@@ -50,8 +50,8 @@ namespace gf = geofeatures;
 
                 boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], points);
 
-                gf::Ring ring(points);
-                boost::geometry::correct(ring);
+                _ring = gf::Ring(points);
+                boost::geometry::correct(_ring);
 
             } catch (std::exception const & e) {
                 @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
@@ -86,10 +86,9 @@ namespace gf = geofeatures;
             //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
             //  }
             //
-            gf::Ring ring;
 
             for (NSArray * coordinate in coordinates) {
-                ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+                _ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
             }
         }
         return self;
@@ -217,6 +216,10 @@ namespace gf = geofeatures;
 
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_ring);
+    }
+
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_ring);
     }
 
 @end

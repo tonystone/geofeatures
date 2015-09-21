@@ -38,11 +38,11 @@ namespace geofeatures {
 
         public:
             template <typename T>
-            double operator()(const T & v) const {
-                return boost::geometry::perimeter(v);
+            double operator()(const T * v) const {
+                return boost::geometry::perimeter(*v);
             }
 
-            double operator()(const GeometryCollection & v) const {
+            double operator()(const GeometryCollection * v) const {
                 return 0.0;
             }
         };
