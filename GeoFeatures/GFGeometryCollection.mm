@@ -139,14 +139,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::GeometryCollection &) cppGeometryCollectionReference {
-        return _geometryCollection;
-    }
-
-    - (const gf::GeometryCollection &) cppGeometryCollectionConstReference {
-        return _geometryCollection;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_geometryCollection);
     }

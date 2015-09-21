@@ -38,16 +38,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPRing: (gf::Ring) aRing;
 
-    /**
-     * @returns A reference to the internal Ring implementation.
-     */
-    - (gf::Ring &) cppRingReference;
-
-    /**
-     * @returns A reference to the internal Ring implementation.
-     */
-    - (const gf::Ring &) cppRingConstReference;
-
 @end
 
 #endif // __GFRingProtected_hpp

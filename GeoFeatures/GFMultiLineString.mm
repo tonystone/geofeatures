@@ -145,14 +145,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::MultiLineString &) cppMultiLineStringReference {
-        return _multiLineString;
-    }
-
-    - (const gf::MultiLineString &) cppMultiLineStringConstReference {
-        return _multiLineString;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_multiLineString);
     }

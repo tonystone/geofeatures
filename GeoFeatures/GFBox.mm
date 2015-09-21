@@ -154,14 +154,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::Box &) cppBoxReference {
-        return _box;
-    }
-
-    - (const gf::Box &) cppBoxConstReference {
-        return _box;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_box);
     }

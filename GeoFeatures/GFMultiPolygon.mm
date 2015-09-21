@@ -154,14 +154,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::MultiPolygon &) cppMultiPolygonReference {
-        return _multiPolygon;
-    }
-
-    - (const gf::MultiPolygon &) cppMultiPolygonConstReference {
-        return _multiPolygon;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_multiPolygon);
     }

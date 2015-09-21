@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPMultiLineString: (gf::MultiLineString) aMultiLineString;
 
-    /**
-     * @returns A reference to the internal MultiLineString implementation.
-     */
-    - (gf::MultiLineString &) cppMultiLineStringReference;
-
-    /**
-     * @returns A reference to the internal MultiLineString implementation.
-     */
-    - (const gf::MultiLineString &) cppMultiLineStringConstReference;
-
 @end
 
 #endif // __GFMultiLineStringProtected_hpp

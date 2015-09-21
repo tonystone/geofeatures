@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPMultiPoint: (gf::MultiPoint) aMultiPoint;
 
-    /**
-     * @returns A reference to the internal MultiPoint implementation.
-     */
-    - (gf::MultiPoint &) cppMultiPointReference;
-
-    /**
-     * @returns A reference to the internal MultiPoint implementation.
-     */
-    - (const gf::MultiPoint &) cppMultiPointConstReference;
-
 @end
 
 #endif // __GFMultiPointProtected_hpp

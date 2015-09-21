@@ -109,14 +109,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::Polygon &) cppPolygonReference {
-        return _polygon;
-    }
-
-    - (const gf::Polygon &) cppPolygonConstReference {
-        return _polygon;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_polygon);
     }

@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPMultiPolygon: (gf::MultiPolygon) aMultiPolygon;
 
-    /**
-     * @returns A reference to the internal MultiPolygon implementation.
-     */
-    - (gf::MultiPolygon &) cppMultiPolygonReference;
-
-    /**
-     * @returns A reference to the internal MultiPolygon implementation.
-     */
-    - (const gf::MultiPolygon &) cppMultiPolygonConstReference;
-
 @end
 
 #endif // __GFMultiPolygonProtected_hpp

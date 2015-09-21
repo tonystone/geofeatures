@@ -143,14 +143,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::LineString &) cppLineStringReference {
-        return _lineString;
-    }
-
-    - (const gf::LineString &) cppLineStringConstReference {
-        return _lineString;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_lineString);
     }

@@ -206,14 +206,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::Ring &) cppRingReference {
-        return _ring;
-    }
-
-    - (const gf::Ring &) cppRingConstReference {
-        return _ring;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_ring);
     }

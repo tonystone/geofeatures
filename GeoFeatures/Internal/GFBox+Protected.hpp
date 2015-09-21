@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPBox: (gf::Box) aBox;
 
-    /**
-     * @returns A reference to the internal Box implementation.
-     */
-    - (gf::Box &) cppBoxReference;
-
-    /**
-     * @returns A const reference to the internal Box implementation.
-     */
-    - (const gf::Box &) cppBoxConstReference;
-
 @end
 
 #endif // __GFBoxProtected_hpp

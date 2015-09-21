@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection) aGeometryCollection;
 
-    /**
-     * @returns A reference to the internal GeometryCollection implementation.
-     */
-    - (gf::GeometryCollection &) cppGeometryCollectionReference;
-
-    /**
-     * @returns A reference to the internal GeometryCollection implementation.
-     */
-    - (const gf::GeometryCollection &) cppGeometryCollectionConstReference;
-
 @end
 
 #endif // __GFGeometryCollectionProtected_hpp

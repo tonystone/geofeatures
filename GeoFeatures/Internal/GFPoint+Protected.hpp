@@ -39,16 +39,6 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPPoint: (gf::Point) aPoint;
 
-    /**
-     * @returns A reference to the internal Point implementation.
-     */
-    - (gf::Point &) cppPointReference;
-
-    /**
-     * @returns A reference to the internal Point implementation.
-     */
-    - (const gf::Point &) cppPointConstReference;
-
 @end
 
 #endif // __GFPointProtected_hpp

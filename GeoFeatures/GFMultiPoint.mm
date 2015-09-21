@@ -142,14 +142,6 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (gf::MultiPoint &) cppMultiPointReference {
-        return _multiPoint;
-    }
-
-    - (const gf::MultiPoint &) cppMultiPointConstReference {
-        return _multiPoint;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_multiPoint);
     }
