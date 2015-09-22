@@ -69,7 +69,7 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     }
 
     - (void) testCopy {
-        XCTAssertEqualObjects([[[GFMultiPolygon geometryWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] copy] toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] copy] toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
     }
 
     - (void) testToGeoJSONGeometry {

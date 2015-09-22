@@ -50,7 +50,7 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     }
 
     - (void) testCopy {
-        XCTAssertEqualObjects([[[GFPoint geometryWithWKT: @"POINT(103 2)"] copy] toWKTString], @"POINT(103 2)");
+        XCTAssertEqualObjects([[[[GFPoint alloc] initWithWKT: @"POINT(103 2)"] copy] toWKTString], @"POINT(103 2)");
     }
 
     - (void) testX {

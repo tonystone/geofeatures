@@ -51,7 +51,7 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     }
 
     - (void) testCopy {
-        XCTAssertEqualObjects([[[GFLineString geometryWithWKT: @"LINESTRING(100 0,101 1)"] copy] toWKTString], @"LINESTRING(100 0,101 1)");
+        XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(100 0,101 1)"] copy] toWKTString], @"LINESTRING(100 0,101 1)");
     }
 
     - (void) testToGeoJSONGeometry {

@@ -51,7 +51,7 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     }
 
     - (void) testCopy {
-        XCTAssertEqualObjects([[[GFMultiPoint geometryWithWKT: @"MULTIPOINT((100 0),(101 1))"] copy] toWKTString], @"MULTIPOINT((100 0),(101 1))");
+        XCTAssertEqualObjects([[[[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((100 0),(101 1))"] copy] toWKTString], @"MULTIPOINT((100 0),(101 1))");
     }
 
     - (void) testToGeoJSONGeometry {

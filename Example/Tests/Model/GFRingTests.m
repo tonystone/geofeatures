@@ -53,7 +53,7 @@ void __attribute__((constructor)) staticInitializer() {
     }
 
     - (void) testCopy {
-        XCTAssertEqualObjects([[[GFRing geometryWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] copy] toWKTString], @"LINESTRING(20 0,20 10,40 10,40 0,20 0)");
+        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] copy] toWKTString], @"LINESTRING(20 0,20 10,40 10,40 0,20 0)");
     }
 
     - (void) testDescription {
