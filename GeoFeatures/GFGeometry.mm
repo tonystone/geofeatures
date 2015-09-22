@@ -71,7 +71,7 @@ namespace gf = geofeatures;
     }
 
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return (GFGeometry *) [[[self class] allocWithZone:zone] init];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
 
     - (BOOL) isValid {

@@ -124,10 +124,7 @@
     }
 
     - (void) testCopy {
-    
-        GFGeometry * geometry = [GFGeometry geometryWithWKT: @"POINT(1 1)"];
-        
-        XCTAssertEqualObjects([[geometry copy] toWKTString], @"POINT(1 1)");
+        XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] copy], NSException, NSInternalInconsistencyException);
     }
 
     - (void) testOverriddenMethods {
