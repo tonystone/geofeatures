@@ -176,13 +176,6 @@ namespace gf = geofeatures;
 
 @implementation GFGeometry (Protected)
 
-    // Designated initializer
-    - (instancetype) initWithCPPGeometryVariant: (gf::GeometryVariant) geometryVariant {
-        NSAssert(![self isMemberOfClass: [GFGeometry class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        self = [super init];
-        return self;
-    }
-
     - (instancetype) initWithWKT:(NSString *)wkt {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
