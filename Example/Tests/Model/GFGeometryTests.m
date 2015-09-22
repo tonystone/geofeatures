@@ -127,9 +127,13 @@
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] copy], NSException, NSInternalInconsistencyException);
     }
 
-    - (void) testOverriddenMethods {
+    - (void) testToGeoJSONGeometry {
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] toGeoJSONGeometry], NSException, NSInternalInconsistencyException);
+    }
+
+    - (void) testMKMapOverlays {
         XCTAssertThrowsSpecificNamed([[[GFGeometryTestSubClass alloc] init] mkMapOverlays], NSException, NSInternalInconsistencyException);
     }
+
 
 @end
