@@ -105,7 +105,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) firstGeometry {
 
-        if (_multiPoint.size() == 0) {
+        if (_multiPoint.empty()) {
             return nil;
         }
         return [[GFPoint alloc] initWithCPPPoint: _multiPoint.front()];
@@ -113,7 +113,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) lastGeometry {
 
-        if (_multiPoint.size() == 0) {
+        if (_multiPoint.empty()) {
             return nil;
         }
         return [[GFPoint alloc] initWithCPPPoint: _multiPoint.back()];

@@ -117,7 +117,7 @@ namespace gf = geofeatures;
 
     - (GFPolygon *) firstGeometry {
 
-        if (_multiPolygon.size() == 0) {
+        if (_multiPolygon.empty()) {
             return nil;
         }
         return [[GFPolygon alloc] initWithCPPPolygon: _multiPolygon.front()];
@@ -125,7 +125,7 @@ namespace gf = geofeatures;
 
     - (GFPolygon *) lastGeometry {
 
-        if (_multiPolygon.size() == 0) {
+        if (_multiPolygon.empty()) {
             return nil;
         }
         return [[GFPolygon alloc] initWithCPPPolygon: _multiPolygon.back()];

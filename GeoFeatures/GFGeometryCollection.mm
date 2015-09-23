@@ -83,7 +83,7 @@ namespace gf = geofeatures;
 
     - (id) firstGeometry {
 
-        if (_geometryCollection.size() > 0) {
+        if (!_geometryCollection.empty()) {
             return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.front());
         }
         return nil;
@@ -91,7 +91,7 @@ namespace gf = geofeatures;
 
     - (id) lastGeometry {
 
-        if (_geometryCollection.size() > 0) {
+        if (!_geometryCollection.empty()) {
             return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.back());
         }
         return nil;

@@ -98,7 +98,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) firstPoint {
 
-        if (_lineString.size() == 0) {
+        if (_lineString.empty()) {
             return nil;
         }
         return [[GFPoint alloc] initWithCPPPoint: _lineString.front()];
@@ -106,7 +106,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) lastPoint {
 
-        if (_lineString.size() == 0) {
+        if (_lineString.empty()) {
             return nil;
         }
         return [[GFPoint alloc] initWithCPPPoint: _lineString.back()];

@@ -108,7 +108,7 @@ namespace gf = geofeatures;
 
     - (GFLineString *) firstGeometry {
 
-        if (_multiLineString.size() == 0) {
+        if (_multiLineString.empty()) {
             return nil;
         }
         return [[GFLineString alloc] initWithCPPLineString: _multiLineString.front()];
@@ -116,7 +116,7 @@ namespace gf = geofeatures;
 
     - (GFLineString *) lastGeometry {
 
-        if (_multiLineString.size() == 0) {
+        if (_multiLineString.empty()) {
             return nil;
         }
         return [[GFLineString alloc] initWithCPPLineString: _multiLineString.back()];

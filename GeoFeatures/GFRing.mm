@@ -123,7 +123,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) firstPoint {
 
-        if (_ring.size() == 0) {
+        if (_ring.empty()) {
             return nil;
         }
         return [[GFPoint alloc] initWithCPPPoint: _ring.front()];
@@ -131,7 +131,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) lastPoint {
 
-        if (_ring.size() == 0) {
+        if (_ring.empty()) {
             return nil;
         }
         return [[GFPoint alloc] initWithCPPPoint: _ring.back()];
