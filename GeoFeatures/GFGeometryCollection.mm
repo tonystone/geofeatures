@@ -72,11 +72,13 @@ namespace gf = geofeatures;
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
         }
         //
-        // Note: Unless the container is mutating, the access
-        //       below should not throw because we've already
-        //       checked for out_of_rang above.
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
         //
-        return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.at(index));
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection[index]);
     }
 
     - (id) firstGeometry {
@@ -124,11 +126,13 @@ namespace gf = geofeatures;
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
         }
         //
-        // Note: Unless the container is mutating, the access
-        //       below should not throw because we've already
-        //       checked for out_of_rang above.
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
         //
-        return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.at(index));
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection[index]);
     }
 
 @end

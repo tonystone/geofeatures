@@ -112,11 +112,13 @@ namespace gf = geofeatures;
             @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
         }
         //
-        // Note: Unless the container is mutating, the access
-        //       below should not throw because we've already
-        //       checked for out_of_rang above.
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
         //
-        return [[GFPoint alloc] initWithCPPPoint: _ring.at(index)];
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _ring[index]];
     }
 
     - (GFPoint *) firstPoint {
@@ -145,11 +147,13 @@ namespace gf = geofeatures;
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
         }
         //
-        // Note: Unless the container is mutating, the access
-        //       below should not throw because we've already
-        //       checked for out_of_rang above.
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
         //
-        return [[GFPoint alloc] initWithCPPPoint: _ring.at(index)];
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _ring[index]];
     }
 
     - (NSDictionary *) toGeoJSONGeometry {

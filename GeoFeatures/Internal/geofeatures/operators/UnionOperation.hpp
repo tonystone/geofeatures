@@ -146,7 +146,7 @@ namespace geofeatures {
                 boost::geometry::union_(*lhs, *rhs, output);
 
                 if (output.size() == 1)
-                    return output.at(0);
+                    return output[0];
                 else if (output.size() > 1)
                     return output;
 

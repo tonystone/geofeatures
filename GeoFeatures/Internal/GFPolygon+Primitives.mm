@@ -69,7 +69,7 @@ gf::Polygon geofeatures::GFPolygon::polygonWithGeoJSONCoordinates(NSArray * coor
         // Now the innerRings if any
         //
         for (NSUInteger x = 1; x < [coordinates count]; x++) {
-            auto& innerRing = polygon.inners().at(x - 1);
+            auto& innerRing = polygon.inners()[x - 1];
 
             for (NSArray * coordinate in coordinates[x]) {
                 innerRing.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
@@ -97,7 +97,7 @@ NSArray * geofeatures::GFPolygon::geoJSONCoordinatesWithPolygon(const gf::Polygo
         // Created the outer ring
         NSMutableArray * outerRingArray = [[NSMutableArray alloc] init];
         for (auto i = 0; i < outerCoordinateCount; i++) {
-            const auto& point = polygon.outer().at(i);
+            const auto& point = polygon.outer()[i];
 
             double longitude = point.get<0>();
             double latitude  = point.get<1>();
@@ -108,7 +108,7 @@ NSArray * geofeatures::GFPolygon::geoJSONCoordinatesWithPolygon(const gf::Polygo
 
         // Now the inner rings
         for (auto x = 0; x < polygon.inners().size(); x++) {
-            const auto& innerRing = polygon.inners().at(x);
+            const auto& innerRing = polygon.inners()[x];
 
             NSMutableArray * innerRingArray = [[NSMutableArray alloc] init];
 
@@ -116,7 +116,7 @@ NSArray * geofeatures::GFPolygon::geoJSONCoordinatesWithPolygon(const gf::Polygo
 
             // Created the outer ring
             for (auto i = 0; i < innerPointCount; i++) {
-                const auto& point = innerRing.at(i);
+                const auto& point = innerRing[i];
 
                 double longitude = point.get<0>();
                 double latitude  = point.get<1>();
@@ -143,7 +143,7 @@ id <MKOverlay> geofeatures::GFPolygon::mkOverlayWithPolygon(const gf::Polygon & 
         CLLocationCoordinate2D * outerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * outerCoordinateCount);
 
         for (auto i = 0; i < outerCoordinateCount; i++) {
-            const auto& point = polygon.outer().at(i);
+            const auto& point = polygon.outer()[i];
 
             outerCoordinates[i].longitude = point.get<0>();
             outerCoordinates[i].latitude  = point.get<1>();
@@ -156,13 +156,13 @@ id <MKOverlay> geofeatures::GFPolygon::mkOverlayWithPolygon(const gf::Polygon & 
         //
         for (auto x = 0; x < polygon.inners().size(); x++) {
 
-            const auto& innerRing = polygon.inners().at(x);
+            const auto& innerRing = polygon.inners()[x];
 
             size_t innerCoordinateCount = innerRing.size();
             CLLocationCoordinate2D * innerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * innerCoordinateCount);
 
             for (size_t i = 0; i < innerCoordinateCount; i++) {
-                const auto& point = innerRing.at(i);
+                const auto& point = innerRing[i];
 
                 innerCoordinates[i].longitude = point.get<0>();
                 innerCoordinates[i].latitude  = point.get<1>();
