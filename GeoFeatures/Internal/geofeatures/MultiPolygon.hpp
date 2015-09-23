@@ -21,6 +21,8 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
+
 #ifndef __MultiPolygon_HPP_
 #define __MultiPolygon_HPP_
 
@@ -54,8 +56,8 @@ namespace geofeatures {
 
     public:
 
-        inline MultiPolygon () : Geometry(), MultiPolygonBaseType() {}
-        inline MultiPolygon (MultiPolygonBaseType & polygons) : Geometry(), MultiPolygonBaseType(polygons) {}
+        inline MultiPolygon () noexcept : Geometry(), MultiPolygonBaseType() {}
+        inline MultiPolygon (MultiPolygonBaseType & polygons) noexcept : Geometry(), MultiPolygonBaseType(polygons) {}
 
         inline virtual ~MultiPolygon() {};
     };

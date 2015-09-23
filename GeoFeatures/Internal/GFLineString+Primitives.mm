@@ -88,7 +88,7 @@ id <MKOverlay> geofeatures::GFLineString::mkOverlayWithLineString(const gf::Line
         CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
 
         for (std::size_t i = 0; i < pointCount; i++) {
-            const auto& point = linestring.at(i);
+            const auto& point = linestring[i];
 
             coordinates[i].longitude = point.get<0>();
             coordinates[i].latitude  = point.get<1>();

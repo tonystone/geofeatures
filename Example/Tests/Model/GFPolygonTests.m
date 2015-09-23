@@ -60,6 +60,10 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertThrows([[GFPolygon alloc] initWithWKT: @"INVALID()"]);
     }
 
+    - (void) testCopy {
+        XCTAssertEqualObjects([[[GFPolygon geometryWithWKT: @"POLYGON((98 0,101 1,101 0,98 1,98 0))"] copy] toWKTString], @"POLYGON((98 0,101 1,101 0,98 1,98 0))");
+    }
+
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }

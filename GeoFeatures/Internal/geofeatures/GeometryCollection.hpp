@@ -41,18 +41,21 @@
 
 namespace geofeatures {
 
+        class GeometryCollection;
+
         /**
         * Variant type of contained objects
         */
-        typedef boost::variant<
-                geofeatures::Point,
-                geofeatures::MultiPoint,
-                geofeatures::Box,
-                geofeatures::LineString,
-                geofeatures::MultiLineString,
-                geofeatures::Ring,
-                geofeatures::Polygon,
-                geofeatures::MultiPolygon>  GeometryCollectionVariantType;
+        typedef boost::variant <
+                        geofeatures::Point,
+                        geofeatures::MultiPoint,
+                        geofeatures::Box,
+                        geofeatures::LineString,
+                        geofeatures::MultiLineString,
+                        geofeatures::Ring,
+                        geofeatures::Polygon,
+                        geofeatures::MultiPolygon,
+                        boost::recursive_wrapper<geofeatures::GeometryCollection>>  GeometryCollectionVariantType;
 
         /**
         * Base type for GeometryCollection class
@@ -70,9 +73,9 @@ namespace geofeatures {
         class GeometryCollection : public Geometry, public GeometryCollectionBaseType {
 
         public:
-            inline GeometryCollection() : Geometry(), GeometryCollectionBaseType() {}
-            inline GeometryCollection(GeometryCollectionBaseType const & other) : Geometry(), GeometryCollectionBaseType(other) {}
-            inline virtual ~GeometryCollection() {}
+            inline GeometryCollection() noexcept : Geometry(), GeometryCollectionBaseType() {}
+            inline GeometryCollection(GeometryCollectionBaseType const & other) noexcept : Geometry(), GeometryCollectionBaseType(other) {}
+            inline virtual ~GeometryCollection() noexcept {}
         };
 
         /** @defgroup BoostRangeIterators

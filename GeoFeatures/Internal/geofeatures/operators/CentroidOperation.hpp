@@ -38,11 +38,11 @@ namespace geofeatures {
 
         public:
             template <typename T>
-            Point operator()(const T & v) const {
-                return boost::geometry::return_centroid<Point>(v);
+            Point operator()(const T * v) const {
+                return boost::geometry::return_centroid<Point>(*v);
             }
 
-            Point operator()(const GeometryCollection & v) const {
+            Point operator()(const GeometryCollection  * v) const {
                 return Point();
             }
         };

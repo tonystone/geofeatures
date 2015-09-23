@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
 #ifndef __LineString_HPP_
 #define __LineString_HPP_
@@ -55,11 +56,13 @@ namespace geofeatures {
     class LineString : public Geometry, public LineStringBaseType {
 
     public:
-        inline LineString() : Geometry(), LineStringBaseType() {}
-        LineString(LineStringBaseType &other) : Geometry(), LineStringBaseType(other) {}
-        LineString(LineStringBaseType const &other) : Geometry(), LineStringBaseType(other) {}
+        inline LineString() noexcept : Geometry(), LineStringBaseType() {}
+        LineString(LineString &other) noexcept : Geometry(), LineStringBaseType(other) {}
+        LineString(LineString const &other) noexcept : Geometry(), LineStringBaseType(other) {}
+        LineString(LineStringBaseType &other) noexcept : Geometry(), LineStringBaseType(other) {}
+        LineString(LineStringBaseType const &other) noexcept : Geometry(), LineStringBaseType(other) {}
 
-        inline virtual ~LineString() {};
+        inline virtual ~LineString() noexcept {};
     };
 
 }   // namespace geofeatures

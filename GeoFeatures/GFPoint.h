@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"

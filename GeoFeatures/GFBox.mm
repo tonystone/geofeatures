@@ -21,13 +21,11 @@
 *  MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
-#import "GFBox.h"
-#import "GFPoint.h"
-
-#include "GFGeometry+Protected.hpp"
+#include "GFBox+Protected.hpp"
+#include "GFPoint+Protected.hpp"
 
 #include "internal/geofeatures/Box.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
@@ -41,27 +39,22 @@ namespace gf = geofeatures;
  * @author      Tony Stone
  * @date        6/8/15
  */
-@implementation GFBox
 
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::Box()];
-        return self;
+@implementation GFBox {
+        gf::Box _box;
     }
 
     - (instancetype) initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
-        try {
-            gf::Box box;
+        NSParameterAssert(minCorner != nil);
+        NSParameterAssert(maxCorner != nil);
+        
+        if (self = [super init]) {
 
-            box.minCorner().set<0>([minCorner x]);
-            box.minCorner().set<1>([minCorner y]);
+            _box.minCorner().set<0>([minCorner x]);
+            _box.minCorner().set<1>([minCorner y]);
 
-            box.maxCorner().set<0>([minCorner x]);
-            box.maxCorner().set<1>([minCorner y]);
-
-            self = [super initWithCPPGeometryVariant: box];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+            _box.maxCorner().set<0>([minCorner x]);
+            _box.maxCorner().set<1>([minCorner y]);
         }
         return self;
     }
@@ -69,29 +62,29 @@ namespace gf = geofeatures;
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
-        try {
-            gf::Box box;
-
-            boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], box);
-
-            self = [super initWithCPPGeometryVariant: box];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        if (self = [super init]) {
+        
+            try {
+                boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], _box);
+                
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            }
         }
         return self;
     }
 
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
-
-        try {
-
+        NSParameterAssert(jsonDictionary != nil);
+        
+        if (self = [super init]) {
+        
             id coordinates = jsonDictionary[@"coordinates"];
-
+            
             if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
             }
-
+            
             /*
              * Coordinates of a Box are an array of two Point coordinates. The first
              * element in the array represents the minimum corner point (minx, miny).
@@ -104,62 +97,73 @@ namespace gf = geofeatures;
              */
             gf::Point minCorner([coordinates[0][0] doubleValue], [coordinates[0][1] doubleValue]);
             gf::Point maxCorner([coordinates[1][0] doubleValue], [coordinates[1][1] doubleValue]);
-
-            self = [super initWithCPPGeometryVariant: gf::Box(minCorner, maxCorner)];
-
-        } catch (std::exception &e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            
+            _box = gf::Box(minCorner,maxCorner);
         }
         return self;
     }
 
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFBox *)[[self class] allocWithZone:zone] initWithCPPBox: _box];
+    }
+
     - (GFPoint *) minCorner {
-        return [[GFPoint alloc] initWithCPPGeometryVariant: boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant).minCorner()];
+        return [[GFPoint alloc] initWithCPPPoint: _box.minCorner()];
     }
 
     - (GFPoint *) maxCorner {
-
-        return [[GFPoint alloc] initWithCPPGeometryVariant: boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant).maxCorner()];
+        return [[GFPoint alloc] initWithCPPPoint: _box.maxCorner()];
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
 
-        try {
-            const auto& box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
+        double minCornerX = _box.minCorner().get<0>();
+        double minCornerY = _box.minCorner().get<1>();
+        double maxCornerX = _box.maxCorner().get<0>();
+        double maxCornerY = _box.maxCorner().get<1>();
 
-            double minCornerX = box.minCorner().get<0>();
-            double minCornerY = box.minCorner().get<1>();
-            double maxCornerX = box.maxCorner().get<0>();
-            double maxCornerY = box.maxCorner().get<1>();
-
-            return @{@"type": @"Box", @"coordinates": @[@[@(minCornerX),@(minCornerY)],@[@(maxCornerX),@(maxCornerY)]]};
-
-        } catch (std::exception &e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
+        return @{@"type": @"Box", @"coordinates": @[@[@(minCornerX),@(minCornerY)],@[@(maxCornerX),@(maxCornerY)]]};
     }
 
     - (NSArray *)mkMapOverlays {
-        const auto& box = boost::polymorphic_strict_get<gf::Box>(_members->geometryVariant);
-
         CLLocationCoordinate2D coordinates[5];
 
-        coordinates[0].longitude = box.minCorner().get<0>();
-        coordinates[0].latitude  = box.minCorner().get<1>();
+        coordinates[0].longitude = _box.minCorner().get<0>();
+        coordinates[0].latitude  = _box.minCorner().get<1>();
 
-        coordinates[1].longitude = box.maxCorner().get<0>();
-        coordinates[1].latitude  = box.minCorner().get<1>();
+        coordinates[1].longitude = _box.maxCorner().get<0>();
+        coordinates[1].latitude  = _box.minCorner().get<1>();
 
-        coordinates[2].longitude = box.maxCorner().get<0>();
-        coordinates[2].latitude  = box.maxCorner().get<1>();
+        coordinates[2].longitude = _box.maxCorner().get<0>();
+        coordinates[2].latitude  = _box.maxCorner().get<1>();
 
-        coordinates[3].longitude = box.minCorner().get<0>();
-        coordinates[3].latitude  = box.maxCorner().get<1>();
+        coordinates[3].longitude = _box.minCorner().get<0>();
+        coordinates[3].latitude  = _box.maxCorner().get<1>();
 
-        coordinates[4].longitude = box.minCorner().get<0>();
-        coordinates[4].latitude  = box.minCorner().get<1>();
+        coordinates[4].longitude = _box.minCorner().get<0>();
+        coordinates[4].latitude  = _box.minCorner().get<1>();
 
         return @[[MKPolygon polygonWithCoordinates:coordinates count:5]];
+    }
+
+@end
+
+@implementation GFBox (Protected)
+
+    - (instancetype) initWithCPPBox: (gf::Box) aBox {
+        
+        if (self = [super init]) {
+            _box = aBox;
+        }
+        return self;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_box);
+    }
+
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_box);
     }
 
 @end

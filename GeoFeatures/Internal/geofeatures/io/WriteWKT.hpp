@@ -57,6 +57,14 @@ namespace geofeatures {
 
                         return stringStream.str();
                     }
+                    std::string operator()(const geofeatures::GeometryCollection & v) const {
+                        
+                        std::stringstream stringStream;
+                        // TODO: Write to wkt string for GeometryCollection
+                        stringStream << "";
+                        
+                        return stringStream.str();
+                    }
                 };
 
                 const Geometry & geometryCollection;
@@ -74,7 +82,7 @@ namespace geofeatures {
 
                     bool first = true;
 
-                    for (geofeatures::GeometryCollection::vector::const_iterator it = wkt.geometryCollection.begin();  it != wkt.geometryCollection.end(); ++it ) {
+                    for (auto it = wkt.geometryCollection.begin();  it != wkt.geometryCollection.end(); ++it ) {
                         if (!first) {
                             os << ",";
                         }

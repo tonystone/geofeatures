@@ -26,17 +26,46 @@
 
 @implementation GFGeometryCollectionTests
 
-    - (void)testConstruction {
+    - (void)testInit {
         XCTAssertNoThrow([[GFGeometryCollection alloc] init]);
         XCTAssertNotNil([[GFGeometryCollection alloc] init]);
-        
+    }
+
+    - (void) testInitWithArrayEmpty {
         XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: @[]]);
         XCTAssertNotNil ([[GFGeometryCollection alloc] initWithArray: @[]]);
+    }
 
+    - (void) testInitWithArray {
+        XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: (@[
+                [[GFPoint alloc] initWithWKT: @"POINT(103 2)"],
+                [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"],
+                [[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"],
+                [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"],
+                [[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],
+                [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((100 0),(101 1))"],
+                [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"],
+                [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"]
+        ])]);
+        XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithArray: (@[
+                [[GFPoint alloc] initWithWKT: @"POINT(103 2)"],
+                [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"],
+                [[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"],
+//                [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"],  // Ring is returning a polygon
+                [[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],
+                [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((100 0),(101 1))"],
+                [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"],
+                [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"]
+        ])] toWKTString],
+                              //@"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),LINESTRING(20 0,20 10,40 10,40 0,20 0),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
+                          @"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"    
+                              );
+                
+                
 
-        XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: (@[[[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],[[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"]])]);
-        XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithArray: (@[[[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],[[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"]])] toWKTString], @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))");
+                }
 
+    - (void) testInitWithArrayThrows {
         XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: (@[ [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"]])], NSException, NSInvalidArgumentException);
         XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: @[[[NSObject alloc] init]]], NSException, NSInvalidArgumentException);
     }
@@ -44,6 +73,11 @@
     - (void)testFailedConstruction {
 //        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
         XCTAssertThrows([[GFGeometryCollection alloc] initWithWKT: @"INVALID()"]);
+    }
+
+    - (void) testCopy {
+        XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))"] \
+                                    copy] toWKTString], @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
     }
 
     - (void) testDescription {

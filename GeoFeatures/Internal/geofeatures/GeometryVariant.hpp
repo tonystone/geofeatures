@@ -21,7 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
+#pragma once
 
 #ifndef __GeometryVariant_HPP_
 #define __GeometryVariant_HPP_
@@ -51,6 +51,17 @@ namespace geofeatures {
                 geofeatures::Polygon,
                 geofeatures::MultiPolygon,
                 geofeatures::GeometryCollection>  GeometryVariant;
+
+    typedef boost::variant<
+                geofeatures::Point *,
+                geofeatures::MultiPoint *,
+                geofeatures::Box *,
+                geofeatures::LineString *,
+                geofeatures::MultiLineString *,
+                geofeatures::Ring *,
+                geofeatures::Polygon *,
+                geofeatures::MultiPolygon *,
+                geofeatures::GeometryCollection *>  GeometryPtrVariant;
 
 }   // namespace geofeatures
 

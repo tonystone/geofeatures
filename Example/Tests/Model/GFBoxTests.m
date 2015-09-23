@@ -56,6 +56,11 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertThrows([[GFBox alloc] initWithWKT: @"INVALID()"]);
     }
 
+    - (void) testCopy {
+        // NOte a box will always output as a polygon.
+        XCTAssertEqualObjects([[[[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"] copy] toWKTString], @"POLYGON((1 1,1 3,3 3,3 1,1 1))");
+    }
+
     - (void) testToGeoJSONGeometry  {
         XCTAssertEqualObjects([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }

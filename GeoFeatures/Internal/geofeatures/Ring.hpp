@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
 #ifndef __Ring_HPP_
 #define __Ring_HPP_
@@ -54,13 +55,13 @@ namespace geofeatures {
     class Ring : public Geometry, public RingBaseType {
 
     public:
-        inline Ring() : Geometry(), RingBaseType() {}
-        template <typename T>
-        inline Ring(T & other) : Geometry(), RingBaseType(other) {}
-        template <typename T>
-        inline Ring(T const & other) : Geometry(), RingBaseType(other) {}
+        inline Ring() noexcept : Geometry(), RingBaseType() {}
+        inline Ring(Ring & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring(Ring const & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring(RingBaseType & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring(RingBaseType const & other) noexcept : Geometry(), RingBaseType(other) {}
         
-        inline virtual ~Ring() {};
+        inline virtual ~Ring() noexcept {};
     };
 
     /** @defgroup BoostRangeIterators

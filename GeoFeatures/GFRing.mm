@@ -19,12 +19,13 @@
 *
 *   Created by Tony Stone on 08/29/15.
 */
+#include "GFRing+Protected.hpp"
+#include "GFPoint+Protected.hpp"
+#include "GFLineString+Protected.hpp"
 
-#import "GFRing.h"
-#include "GFPoint.h"
-
-#include "GFGeometry+Protected.hpp"
+#include "internal/geofeatures/Ring.hpp"
 #include "internal/geofeatures/LineString.hpp"
+#include "internal/geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
@@ -33,31 +34,28 @@
 
 namespace gf = geofeatures;
 
-@implementation GFRing
-
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::Ring()];
-        return self;
+@implementation GFRing {
+        gf::Ring _ring;
     }
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
 
-        try {
-            // We only accept a LineString for input but boost wants a polygon wkt so
-            // we use the LineString boost impl to parse our LineString wkt and then
-            // turn it into a Ring.
-            gf::LineString points;
+        if (self = [super init]) {
+            try {
+                // We only accept a LineString for input but boost wants a polygon wkt so
+                // we use the LineString boost impl to parse our LineString wkt and then
+                // turn it into a Ring.
+                gf::LineString points;
 
-            boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], points);
+                boost::geometry::read_wkt([wkt cStringUsingEncoding: NSUTF8StringEncoding], points);
 
-            gf::Ring ring(points);
-            boost::geometry::correct(ring);
+                _ring = gf::Ring(points);
+                boost::geometry::correct(_ring);
 
-            self = [super initWithCPPGeometryVariant: ring];
-
-        } catch (std::exception const & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            } catch (std::exception const & e) {
+                @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
+            }
         }
         return self;
     }
@@ -65,13 +63,12 @@ namespace gf = geofeatures;
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
-        id coordinates = jsonDictionary[@"coordinates"];
+        if (self = [super init]) {
+            id coordinates = jsonDictionary[@"coordinates"];
 
-        if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
-        }
-
-        try {
+            if (!coordinates || ![coordinates isKindOfClass: [NSArray class]]) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo: nil];
+            }
             //
             // Note: GeoJSON does not support a Ring so we
             //       accept a closed LineString
@@ -89,151 +86,140 @@ namespace gf = geofeatures;
             //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
             //  }
             //
-            gf::Ring ring;
 
             for (NSArray * coordinate in coordinates) {
-                ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+                _ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
             }
-            self =  [super initWithCPPGeometryVariant: ring];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
-
         return self;
+    }
+
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFRing *) [[self class] allocWithZone: zone] initWithCPPRing: _ring];
     }
 
 #pragma mark - Querying a GFLineSting
 
     - (NSUInteger) count {
-
-        try {
-            const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
-
-            return ring.size();
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
+        return _ring.size();
     }
 
     - (GFPoint *) pointAtIndex: (NSUInteger) index {
 
-        try {
-            const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
+        const auto size = _ring.size();
 
-            const auto size = ring.size();
-
-            if (size == 0 || index > (size -1)) {
-                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
-            }
-            return [[GFPoint alloc] initWithCPPGeometryVariant: ring.at(index)];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
         }
+        //
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
+        //
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _ring[index]];
     }
 
     - (GFPoint *) firstPoint {
 
-        try {
-            const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
-
-            if (ring.size() == 0) {
-                return nil;
-            }
-            return [[GFPoint alloc] initWithCPPGeometryVariant: ring.front()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (_ring.empty()) {
+            return nil;
         }
+        return [[GFPoint alloc] initWithCPPPoint: _ring.front()];
     }
 
     - (GFPoint *) lastPoint {
 
-        try {
-            const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
-
-            if (ring.size() == 0) {
-                return nil;
-            }
-            return [[GFPoint alloc] initWithCPPGeometryVariant: ring.back()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        if (_ring.empty()) {
+            return nil;
         }
+        return [[GFPoint alloc] initWithCPPPoint: _ring.back()];
     }
 
 #pragma mark - Indexed Subscripting
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        const auto& ring = boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
+        const auto size = _ring.size();
 
-        if (index >= ring.size())
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, ring.size()];
-
-        return [[GFPoint alloc] initWithCPPGeometryVariant: ring[index]];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+        }
+        //
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
+        //
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return [[GFPoint alloc] initWithCPPPoint: _ring[index]];
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        try {
-            const auto& ring =  boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
+        NSMutableArray * points = [[NSMutableArray alloc] init];
 
-            NSMutableArray * points = [[NSMutableArray alloc] init];
+        for (auto it = _ring.begin();  it != _ring.end(); ++it ) {
+            const double longitude = it->get<0>();
+            const double latitude  = it->get<1>();
 
-            for (auto it = ring.begin();  it != ring.end(); ++it ) {
-                const double longitude = it->get<0>();
-                const double latitude  = it->get<1>();
-
-                [points addObject:@[@(longitude),@(latitude)]];
-            }
-
-            // Note: GeoJSON does not support Rings soa lineString is used.
-            return @{@"type": @"LineString", @"coordinates": points};
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+            [points addObject:@[@(longitude),@(latitude)]];
         }
+        // Note: GeoJSON does not support Rings so lineString is used.
+        return @{@"type": @"LineString", @"coordinates": points};
     }
 
     - (NSArray *) mkMapOverlays {
 
         MKPolyline * mkPolyline = nil;
 
-        try {
-            const auto& ring =  boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant);
+        size_t pointCount = _ring.size();
+        CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
 
-            size_t pointCount = ring.size();
-            CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+        for (std::size_t i = 0; i < pointCount; i++) {
+            const gf::Point& point = _ring.at(i);
 
-            for (std::size_t i = 0; i < pointCount; i++) {
-                const gf::Point& point = ring.at(i);
-
-                coordinates[i].longitude = point.get<0>();
-                coordinates[i].latitude  = point.get<1>();
-            }
-
-            mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
-
-            free(coordinates);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+            coordinates[i].longitude = point.get<0>();
+            coordinates[i].latitude  = point.get<1>();
         }
+
+        mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
+
+        free(coordinates);
+
         return @[mkPolyline];
     }
 
     - (NSString *) toWKTString {
         try {
             std::stringstream stringStream;
-            stringStream << boost::geometry::wkt<gf::LineString>(boost::polymorphic_strict_get<gf::Ring>(_members->geometryVariant));
+            stringStream << boost::geometry::wkt<gf::LineString>(_ring);
 
             return [NSString stringWithFormat:@"%s", stringStream.str().c_str()];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+    }
+
+@end
+
+@implementation GFRing (Protected)
+
+    - (instancetype) initWithCPPRing: (gf::Ring) aRing {
+
+        if (self = [super init]) {
+            _ring = aRing;
+        }
+        return self;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_ring);
+    }
+
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_ring);
     }
 
 @end

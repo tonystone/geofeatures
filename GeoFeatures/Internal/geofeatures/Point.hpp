@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
 #ifndef __Point_HPP_
 #define __Point_HPP_
@@ -65,7 +66,7 @@ namespace geofeatures {
             values_[1] = y;
         }
 
-        inline virtual ~Point() {};
+        inline virtual ~Point() noexcept {};
 
         template <std::size_t K>
         inline CoordinateType const& get() const noexcept {

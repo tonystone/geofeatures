@@ -21,19 +21,8 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
-#import <Foundation/Foundation.h>
-#import "GFGeometryCollection.h"
-
+#include "GFGeometryCollection+Protected.hpp"
 #include "GFGeometry+Protected.hpp"
-#include "GFGeometry.h"
-#include "GFPoint.h"
-#include "GFMultiPoint.h"
-#include "GFBox.h"
-#include "GFLineString.h"
-#include "GFMultiLineString.h"
-#include "GFPolygon.h"
-#include "GFMultiPolygon.h"
 
 #include "internal/geofeatures/GeometryVariant.hpp"
 #include "internal/geofeatures/GeometryCollection.hpp"
@@ -42,49 +31,16 @@
 
 namespace gf = geofeatures;
 
-namespace geofeatures {
-
-    class AddGeometry : public  boost::static_visitor<void> {
-        
-    public:
-        inline AddGeometry(gf::GeometryCollection & geometryCollection) : geometryCollection(geometryCollection) {}
-        
-        template <typename T>
-        void operator()(const T & v) const {
-            geometryCollection.push_back(v);
-        }
-        
-        void operator()(const gf::GeometryCollection & v)  const {
-            ;   // Do nothing
-        }
-        
-    private:
-        gf::GeometryCollection & geometryCollection;
-    };
-}
-
-@implementation GFGeometryCollection
+@implementation GFGeometryCollection {
+        gf::GeometryCollection  _geometryCollection;
+    }
 
 #pragma mark - Public methods
-
-    - (instancetype) init {
-        self = [super initWithCPPGeometryVariant: gf::GeometryCollection()];
-        return self;
-    }
 
     - (instancetype)initWithArray:(NSArray *)array {
         NSParameterAssert(array != nil);
 
-        self = [super initWithCPPGeometryVariant: [self cppGeometryCollectionWithArray: array]];
-
-        return self;
-    }
-
-    - (gf::GeometryCollection) cppGeometryCollectionWithArray: (NSArray *) array {
-        NSParameterAssert(array != nil);
-
-        try {
-            gf::GeometryCollection geometryCollection;
+        if (self = [super init]) {
 
             for (GFGeometry * geometry in array) {
 
@@ -94,111 +50,109 @@ namespace geofeatures {
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
-                boost::apply_visitor(gf::AddGeometry(geometryCollection), geometry->_members->geometryVariant);
+                _geometryCollection.push_back([geometry cppGeometryVariant]);
             }
-            return geometryCollection;
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
         }
+        return self;
+    }
+
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFGeometryCollection *)[[self class] allocWithZone:zone] initWithCPPGeometryCollection: _geometryCollection];
     }
 
     - (NSUInteger)count {
-
-        try {
-            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
-
-            return geometryCollection.size();
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
+        return _geometryCollection.size();
     }
 
     - (id) geometryAtIndex: (NSUInteger) index {
 
-        try {
-            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
+        auto size = _geometryCollection.size();
 
-            if (index >= geometryCollection.size()) {
-                @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range." userInfo: nil];
-               
-            } else {
-                 return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection.at(index));
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
         }
-        return nil;
+        //
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
+        //
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection[index]);
     }
 
     - (id) firstGeometry {
 
-        try {
-            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
-
-            if (geometryCollection.size() > 0) {
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection.front());
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        if (!_geometryCollection.empty()) {
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.front());
         }
         return nil;
     }
 
     - (id) lastGeometry {
 
-        try {
-            auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);
-
-            if (geometryCollection.size() > 0) {
-
-                return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection.back());
-            }
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+        if (!_geometryCollection.empty()) {
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.back());
         }
         return nil;
     }
 
 #pragma mark - Protected methods
 
-    - (instancetype)initWithWKT:(NSString *) wktString {
+    - (instancetype)initWithWKT: (NSString *) wkt {
 
-        NSParameterAssert(wktString != nil);
-        
-        if ((self = [super initWithCPPGeometryVariant: [self parseWKT: wktString]])) {}
-        return self;
-    }
+        if (self = [super init]) {
+            try {
+                gf::io::readWKT([wkt cStringUsingEncoding: NSUTF8StringEncoding], _geometryCollection);
 
-    - (gf::GeometryCollection) parseWKT: (NSString *) wkt {
-        gf::GeometryCollection geometryCollection;
-        
-        try {
-            gf::io::readWKT([wkt cStringUsingEncoding:NSUTF8StringEncoding], geometryCollection);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
+            }
         }
-        
-        return geometryCollection;
+        return self;
     }
 
     - (NSDictionary *)toGeoJSONGeometry {
         return [super toGeoJSONGeometry];
     }
 
-
 #pragma mark - Indexed Subscripting
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto& geometryCollection = boost::polymorphic_strict_get<gf::GeometryCollection>(_members->geometryVariant);;
+        auto size = _geometryCollection.size();
 
-        if (index >= geometryCollection.size())
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, geometryCollection.size()];
+        if (size == 0 || index > (size -1)) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+        }
+        //
+        // Note: We use operator[] below because we've
+        //       already checked the bounds above.
+        //
+        //       Operator[] is also unchecked, will not throw,
+        //       and faster than at().
+        //
+        return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection[index]);
+    }
 
-        return boost::apply_visitor(gf::GFInstanceFromVariant(), geometryCollection[index]);
+@end
+
+@implementation GFGeometryCollection (Protected)
+
+    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection) aGeometryCollection {
+
+        if (self = [super init]) {
+            _geometryCollection = aGeometryCollection;
+        }
+        return self;
+    }
+
+    - (gf::GeometryVariant) cppGeometryVariant {
+        return gf::GeometryVariant(_geometryCollection);
+    }
+
+    - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
+        return gf::GeometryPtrVariant(&_geometryCollection);
     }
 
 @end

@@ -36,18 +36,18 @@ namespace geofeatures {
 
         public:
             template <typename T>
-            std::string operator()(const T & v) const {
+            std::string operator()(const T * v) const {
 
                 std::stringstream stringStream;
-                stringStream << boost::geometry::wkt<T>(v);
+                stringStream << boost::geometry::wkt<T>(*v);
 
                 return stringStream.str();
             }
 
-            std::string operator()(const GeometryCollection & v) const {
+            std::string operator()(const GeometryCollection * v) const {
 
                 std::stringstream stringStream;
-                stringStream << io::wkt<GeometryCollection>(v);
+                stringStream << io::wkt<GeometryCollection>(*v);
 
                 return stringStream.str();
             }

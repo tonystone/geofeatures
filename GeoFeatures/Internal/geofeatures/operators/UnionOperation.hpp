@@ -37,58 +37,58 @@ namespace geofeatures {
         class UnionOperation : public  boost::static_visitor<GeometryVariant> {
 
         public:
-            GeometryVariant operator()(const Point & lhs, const Point & rhs) const {
+            GeometryVariant operator()(const Point * lhs, const Point * rhs) const {
                 return singleTypeUnion<MultiPoint>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const Point & lhs, const MultiPoint & rhs) const {
+            GeometryVariant operator()(const Point * lhs, const MultiPoint * rhs) const {
                 return multiTypeUnion<MultiPoint>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const MultiPoint & lhs, const Point & rhs) const {
+            GeometryVariant operator()(const MultiPoint * lhs, const Point * rhs) const {
                 return multiTypeUnion<MultiPoint>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const MultiPoint & lhs, const MultiPoint & rhs) const {
+            GeometryVariant operator()(const MultiPoint * lhs, const MultiPoint * rhs) const {
                 return singleTypeUnion<MultiPoint>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const LineString & lhs, const LineString & rhs) const {
+            GeometryVariant operator()(const LineString * lhs, const LineString * rhs) const {
                 return singleTypeUnion<MultiLineString>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const LineString & lhs, const MultiLineString & rhs) const {
+            GeometryVariant operator()(const LineString * lhs, const MultiLineString * rhs) const {
                 return multiTypeUnion<MultiLineString>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const MultiLineString & lhs, const LineString & rhs) const {
+            GeometryVariant operator()(const MultiLineString * lhs, const LineString * rhs) const {
                 return multiTypeUnion<MultiLineString>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const MultiLineString & lhs, const MultiLineString & rhs) const {
+            GeometryVariant operator()(const MultiLineString * lhs, const MultiLineString * rhs) const {
                 return singleTypeUnion<MultiLineString>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const Polygon & lhs, const Polygon & rhs) const {
+            GeometryVariant operator()(const Polygon * lhs, const Polygon * rhs) const {
                 return singleTypeUnion<MultiPolygon>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const Polygon & lhs, const MultiPolygon & rhs) const {
+            GeometryVariant operator()(const Polygon * lhs, const MultiPolygon * rhs) const {
                 return multiTypeUnion<MultiPolygon>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const MultiPolygon & lhs, const Polygon & rhs) const {
+            GeometryVariant operator()(const MultiPolygon * lhs, const Polygon * rhs) const {
                 return multiTypeUnion<MultiPolygon>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const MultiPolygon & lhs, const MultiPolygon & rhs) const {
+            GeometryVariant operator()(const MultiPolygon * lhs, const MultiPolygon * rhs) const {
                 return singleTypeUnion<MultiPolygon>(lhs, rhs);
             }
 
-            GeometryVariant operator()(const Ring & lhs, const Ring & rhs) const {
+            GeometryVariant operator()(const Ring * lhs, const Ring * rhs) const {
                 std::vector<Ring> tmp;
 
-                boost::geometry::union_(lhs, rhs, tmp);
+                boost::geometry::union_(*lhs, *rhs, tmp);
 
                 if (tmp.size() == 1) {
                     return tmp.front();
@@ -105,59 +105,59 @@ namespace geofeatures {
             // For GeometryCollections the initial implemention of these
             // is a simple combination of the right and left hand sides.
             //
-            GeometryVariant operator()( const GeometryCollection & lhs, const GeometryCollection & rhs) const {
-                GeometryCollection output(lhs);
+            GeometryVariant operator()( const GeometryCollection * lhs, const GeometryCollection * rhs) const {
+                GeometryCollection output(*lhs);
 
-                std::for_each(rhs.begin(), rhs.end(), [&output](const GeometryCollectionVariantType & item) {
+                std::for_each(rhs->begin(), rhs->end(), [&output](const GeometryCollectionVariantType & item) {
                                   output.push_back(item);
                               });
                 return output;
             }
 
             template <typename T>
-            GeometryVariant operator()( const T & lhs, const GeometryCollection & rhs) const {
+            GeometryVariant operator()( const T * lhs, const GeometryCollection * rhs) const {
                 return this->operator()(rhs, lhs);  // Reverse order and chain to reverse order method
             }
 
             template <typename T>
-            GeometryVariant operator()( const GeometryCollection & lhs, const T & rhs) const {
-                GeometryCollection output(lhs);
+            GeometryVariant operator()( const GeometryCollection * lhs, const T * rhs) const {
+                GeometryCollection output(*lhs);
 
-                output.push_back(rhs);
+                output.push_back(*rhs);
 
                 return output;
             }
 
             template <typename T, typename U>
-            GeometryVariant operator()( const T & lhs, const U & rhs) const {
+            GeometryVariant operator()( const T * lhs, const U * rhs) const {
                 GeometryCollection collection;
 
-                collection.push_back(lhs);
-                collection.push_back(rhs);
+                collection.push_back(*lhs);
+                collection.push_back(*rhs);
 
                 return collection;
             }
 
         private:
             template <typename OT, typename T>
-            GeometryVariant singleTypeUnion( const T & lhs, const T & rhs) const {
+            GeometryVariant singleTypeUnion( const T * lhs, const T * rhs) const {
                 OT output{};
 
-                boost::geometry::union_(lhs, rhs, output);
+                boost::geometry::union_(*lhs, *rhs, output);
 
                 if (output.size() == 1)
-                    return output.at(0);
+                    return output[0];
                 else if (output.size() > 1)
                     return output;
 
-                return T(lhs);
+                return T(*lhs);
             }
 
             template <typename OT, typename T, typename U>
-            GeometryVariant multiTypeUnion( const T & lhs, const U & rhs) const {
+            GeometryVariant multiTypeUnion( const T * lhs, const U * rhs) const {
                 OT output{};
 
-                boost::geometry::union_(lhs, rhs, output);
+                boost::geometry::union_(*lhs, *rhs, output);
 
                 return output;
             }

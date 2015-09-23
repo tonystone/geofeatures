@@ -50,6 +50,10 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertThrows([[GFMultiLineString alloc] initWithWKT: @"INVALID()"]);
     }
 
+    - (void) testCopy {
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"] copy] toWKTString], @"MULTILINESTRING((100 0,101 1),(102 2,103 3))");
+    }
+
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }

@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
 #ifndef __Polygon_HPP_
 #define __Polygon_HPP_
@@ -58,18 +59,18 @@ namespace geofeatures {
         typedef Ring RingType;
         typedef std::vector<RingType> InnerContainerType;
 
-        inline Polygon () : Geometry(), outer_(), inners_() {}
-        inline Polygon (Polygon const & other) :  Geometry(), outer_(other.outer_), inners_(other.inners_) {}
-        inline Polygon (Polygon & other)       :  Geometry(), outer_(other.outer_), inners_(other.inners_) {}
+        inline Polygon () noexcept : Geometry(), outer_(), inners_() {}
+        inline Polygon (Polygon const & other) noexcept :  Geometry(), outer_(other.outer_), inners_(other.inners_) {}
+        inline Polygon (Polygon & other)       noexcept :  Geometry(), outer_(other.outer_), inners_(other.inners_) {}
 
-        inline virtual ~Polygon() {}
+        inline virtual ~Polygon() noexcept {}
 
     public:
-        inline RingType const & outer () const { return outer_; }
-        inline InnerContainerType const & inners () const { return inners_; }
+        inline RingType const & outer () const noexcept { return outer_; }
+        inline InnerContainerType const & inners () const noexcept { return inners_; }
 
-        inline RingType & outer () { return outer_; }
-        inline InnerContainerType & inners () { return inners_; }
+        inline RingType & outer () noexcept { return outer_; }
+        inline InnerContainerType & inners () noexcept { return inners_; }
 
     private:
         RingType outer_;

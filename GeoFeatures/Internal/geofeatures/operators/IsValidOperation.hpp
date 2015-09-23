@@ -34,15 +34,15 @@
 namespace geofeatures {
     namespace operators {
 
-        class IsValidOperation : public  boost::static_visitor<bool> {
+        class IsValidOperation : public boost::static_visitor<bool> {
 
         public:
             template <typename T>
-            bool operator()(const T & v) const {
-                return boost::geometry::is_valid(v);
+            bool operator()(const T * v) const {
+                return boost::geometry::is_valid(*v);
             }
 
-            bool operator()(const GeometryCollection & v) const {
+            bool operator()(const GeometryCollection * v) const {
                 return true;
             }
         };

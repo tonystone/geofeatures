@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
 #ifndef __MultiPoint_HPP_
 #define __MultiPoint_HPP_
@@ -57,8 +58,8 @@ namespace geofeatures {
     class MultiPoint : public Geometry, public MultiPointBaseType {
 
     public:
-        inline MultiPoint() : Geometry(), MultiPointBaseType() {}
-        inline virtual ~MultiPoint() {};
+        inline MultiPoint() noexcept : Geometry(), MultiPointBaseType() {}
+        inline virtual ~MultiPoint() noexcept {};
     };
 
     /** @defgroup BoostRangeIterators

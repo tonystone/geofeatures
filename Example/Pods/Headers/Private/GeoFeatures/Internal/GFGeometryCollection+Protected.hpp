@@ -1,0 +1,1 @@
+../../../../../../GeoFeatures/internal/GFGeometryCollection+Protected.hpp

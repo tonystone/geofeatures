@@ -1,7 +1,6 @@
 /**
-*   Geometry.hpp
+*   GFLineString+Protected.hpp
 *
-*   Copyright 2015 The Climate Corporation
 *   Copyright 2015 Tony Stone
 *
 *   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,34 +15,30 @@
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
 *
-*   Created by Tony Stone on 6/9/15.
-*
-*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
-*
+*   Created by Tony Stone on 9/7/15.
 */
 #pragma once
 
-#ifndef __Geometry_HPP_
-#define __Geometry_HPP_
+#ifndef __GFLineStringProtected_hpp
+#define __GFLineStringProtected_hpp
+
+#import <Foundation/Foundation.h>
+#import "GFLineString.h"
 
 namespace geofeatures {
+    // Forward declarations
+    class LineString;
+}
+
+namespace  gf = geofeatures;
+
+@interface GFLineString (Protected)
 
     /**
-     * @class       Geometry
-     *
-     * @brief       Base abstract type for all Geometric types.
-     *
-     * @author      Tony Stone
-     * @date        6/10/15
+     * Initialize this GFLineString with an internal LineString implementation.
      */
-    class Geometry {
+    - (instancetype) initWithCPPLineString: (gf::LineString) aLineString;
 
-    public:
-        inline Geometry() noexcept  {}
-        inline virtual ~Geometry() noexcept {};
+@end
 
-    };
-
-}   // namespace geofeatures
-
-#endif //__Geometry_HPP_
+#endif // __GFLineStringProtected_hpp
