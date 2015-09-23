@@ -58,8 +58,8 @@ namespace geofeatures {
     class MultiPoint : public Geometry, public MultiPointBaseType {
 
     public:
-        inline MultiPoint() : Geometry(), MultiPointBaseType() {}
-        inline virtual ~MultiPoint() {};
+        inline MultiPoint() noexcept : Geometry(), MultiPointBaseType() {}
+        inline virtual ~MultiPoint() noexcept {};
     };
 
     /** @defgroup BoostRangeIterators

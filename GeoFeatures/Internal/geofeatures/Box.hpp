@@ -53,21 +53,16 @@ namespace geofeatures {
     class Box : public Geometry {
 
     public:
-        inline Box() : Geometry(), minCorner_(), maxCorner_() {}
         // construction/destruction
-        inline Box(Point const& minCorner, Point const& maxCorner)
-        {
-            // Convert to the coordinate system of this box
-            boost::geometry::convert(minCorner, minCorner_);
-            boost::geometry::convert(maxCorner, maxCorner_);
-        }
-        inline virtual ~Box() {};
+        inline Box() noexcept : Geometry(), minCorner_(), maxCorner_() {}
+        inline Box(Point const& minCorner, Point const& maxCorner) noexcept : Geometry(), minCorner_(minCorner), maxCorner_(maxCorner) {}
+        inline virtual ~Box() noexcept {};
 
-        inline Point const& minCorner() const { return minCorner_; }
-        inline Point const& maxCorner() const { return maxCorner_; }
+        inline Point const& minCorner() const noexcept { return minCorner_; }
+        inline Point const& maxCorner() const noexcept { return maxCorner_; }
 
-        inline Point& minCorner() { return minCorner_; }
-        inline Point& maxCorner() { return maxCorner_; }
+        inline Point& minCorner() noexcept { return minCorner_; }
+        inline Point& maxCorner() noexcept { return maxCorner_; }
 
     private:
         Point minCorner_;

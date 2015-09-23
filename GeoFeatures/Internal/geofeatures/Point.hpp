@@ -66,7 +66,7 @@ namespace geofeatures {
             values_[1] = y;
         }
 
-        inline virtual ~Point() {};
+        inline virtual ~Point() noexcept {};
 
         template <std::size_t K>
         inline CoordinateType const& get() const noexcept {

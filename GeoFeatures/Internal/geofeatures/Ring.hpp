@@ -55,11 +55,13 @@ namespace geofeatures {
     class Ring : public Geometry, public RingBaseType {
 
     public:
-        inline Ring() : Geometry(), RingBaseType() {}
-        inline Ring(RingBaseType & other) : Geometry(), RingBaseType(other) {}
-        inline Ring(RingBaseType const & other) : Geometry(), RingBaseType(other) {}
+        inline Ring() noexcept : Geometry(), RingBaseType() {}
+        inline Ring(Ring & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring(Ring const & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring(RingBaseType & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring(RingBaseType const & other) noexcept : Geometry(), RingBaseType(other) {}
         
-        inline virtual ~Ring() {};
+        inline virtual ~Ring() noexcept {};
     };
 
     /** @defgroup BoostRangeIterators

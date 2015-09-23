@@ -73,9 +73,9 @@ namespace geofeatures {
         class GeometryCollection : public Geometry, public GeometryCollectionBaseType {
 
         public:
-            inline GeometryCollection() : Geometry(), GeometryCollectionBaseType() {}
-            inline GeometryCollection(GeometryCollectionBaseType const & other) : Geometry(), GeometryCollectionBaseType(other) {}
-            inline virtual ~GeometryCollection() {}
+            inline GeometryCollection() noexcept : Geometry(), GeometryCollectionBaseType() {}
+            inline GeometryCollection(GeometryCollectionBaseType const & other) noexcept : Geometry(), GeometryCollectionBaseType(other) {}
+            inline virtual ~GeometryCollection() noexcept {}
         };
 
         /** @defgroup BoostRangeIterators

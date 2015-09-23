@@ -56,8 +56,8 @@ namespace geofeatures {
 
     public:
 
-        inline MultiPolygon () : Geometry(), MultiPolygonBaseType() {}
-        inline MultiPolygon (MultiPolygonBaseType & polygons) : Geometry(), MultiPolygonBaseType(polygons) {}
+        inline MultiPolygon () noexcept : Geometry(), MultiPolygonBaseType() {}
+        inline MultiPolygon (MultiPolygonBaseType & polygons) noexcept : Geometry(), MultiPolygonBaseType(polygons) {}
 
         inline virtual ~MultiPolygon() {};
     };

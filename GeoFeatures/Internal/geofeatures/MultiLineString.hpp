@@ -53,8 +53,8 @@ namespace geofeatures {
     class MultiLineString : public Geometry, public MultiLineStringBaseType {
 
     public:
-        inline MultiLineString () : Geometry(), MultiLineStringBaseType() {}
-        inline virtual ~MultiLineString() {};
+        inline MultiLineString () noexcept : Geometry(), MultiLineStringBaseType() {}
+        inline virtual ~MultiLineString() noexcept {};
     };
 
     /** @defgroup BoostRangeIterators

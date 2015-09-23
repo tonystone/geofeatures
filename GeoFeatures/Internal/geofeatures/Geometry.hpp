@@ -39,7 +39,9 @@ namespace geofeatures {
     class Geometry {
 
     public:
-        inline virtual ~Geometry() {};
+        inline Geometry() noexcept  {}
+        inline virtual ~Geometry() noexcept {};
+
     };
 
 }   // namespace geofeatures
