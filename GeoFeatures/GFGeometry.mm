@@ -206,10 +206,6 @@ namespace gf = geofeatures;
 
             return [[GFMultiPoint alloc] initWithWKT: wkt];
 
-        } else if ([wkt hasPrefix: @"BOX" caseInsensitive: YES]) {
-
-            return [[GFBox alloc] initWithWKT: wkt];
-
         } else if ([wkt hasPrefix: @"LINESTRING" caseInsensitive: YES]) {
 
             return [[GFLineString alloc] initWithWKT: wkt];
@@ -227,6 +223,10 @@ namespace gf = geofeatures;
             return [[GFMultiPolygon alloc] initWithWKT: wkt];
         }
 
+        //
+        // Note: there is no else if for Box because box would be unreachable since
+        //       currently Box is a Polygon representation.
+        //
         @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid WKT, %@ not supported.", wkt] userInfo:nil];
     }
 
