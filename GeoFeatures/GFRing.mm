@@ -109,7 +109,7 @@ namespace gf = geofeatures;
         const auto size = _ring.size();
 
         if (size == 0 || index > (size -1)) {
-            @throw [NSException exceptionWithName: NSRangeException reason: @"Index out of range" userInfo: nil];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
         }
         //
         // Note: We use operator[] below because we've
