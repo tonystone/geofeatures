@@ -77,5 +77,11 @@
         XCTAssertThrowsSpecificNamed([polygon setInnerRings: geometryCollection], NSException, NSInvalidArgumentException);
     }
 
+    - (void) testInnerRings_WithNilRings {
+        GFMutablePolygon * polygon = [[GFMutablePolygon alloc] init];
+
+        XCTAssertThrowsSpecificNamed([polygon setInnerRings: nil], NSException, NSInvalidArgumentException);
+    }
+
 @end
 
