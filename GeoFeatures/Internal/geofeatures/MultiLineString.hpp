@@ -55,6 +55,8 @@ namespace geofeatures {
     public:
         inline MultiLineString () noexcept : Geometry(), MultiLineStringBaseType() {}
         inline virtual ~MultiLineString() noexcept {};
+
+        using MultiLineStringBaseType::clear;
     };
 
     /** @defgroup BoostRangeIterators

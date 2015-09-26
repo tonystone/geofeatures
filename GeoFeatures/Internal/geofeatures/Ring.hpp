@@ -62,6 +62,8 @@ namespace geofeatures {
         inline Ring(RingBaseType const & other) noexcept : Geometry(), RingBaseType(other) {}
         
         inline virtual ~Ring() noexcept {};
+
+        using RingBaseType::clear;
     };
 
     /** @defgroup BoostRangeIterators

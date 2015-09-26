@@ -21,7 +21,6 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
 
@@ -102,5 +101,29 @@
      * @returns A collection of inner GFRings of this polygon.
      */
     - (GFGeometryCollection *) innerRings;
+
+@end
+
+/**
+* @class       GFMutablePolygon
+*
+* @brief       A a mutable representation of GFPolygon.
+*
+* @author      Tony Stone
+* @date        9/24/15
+*/
+@interface GFMutablePolygon : GFPolygon
+
+    /**
+     * Set the outer GFRing of this GFMutablePolygon.
+     */
+    - (void) setOutRing: (GFRing *) outerRing;
+
+    /**
+     * Set the inner GFRings of this GFMutablePolygon.
+     *
+     * @throws An NSInvalidArgumentException if all the Geometries in the collections are not GFRings.
+     */
+    - (void) setInnerRings: (GFGeometryCollection *) aRingCollection;
 
 @end

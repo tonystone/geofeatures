@@ -21,7 +21,6 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import "GFGeometryCollection.h"
 
@@ -149,3 +148,38 @@
 
 @end
 
+
+/**
+ * @class       GFMutableLineString
+ *
+ * @brief       A mutable version GFLineString.
+ *
+ * @author      Tony Stone
+ * @date        9/23/15
+ */
+@interface GFMutableLineString : GFLineString
+
+    /** Inserts a given GFPoint at the end of the GFMutableLineString.
+     *
+     * @throws An NSInvalidArgumentException if aPoint is nil.
+     */
+    - (void) addPoint: (GFPoint *) aPoint;
+
+    /** Inserts a given GFPoint into the GFMutableLineString’s contents at a given index.
+     *
+     * @throws An NSRangeException if index is greater than the number of elements in the GFMutableLineString.
+     * @throws An NSInvalidArgumentException if aPoint is nil.
+     */
+    - (void) insertPoint: (GFPoint *) aPoint atIndex: (NSUInteger) index;
+
+    /** Empties the GFMutableLineString of all its GFPoints.
+     */
+    - (void) removeAllPoints;
+
+    /** Removes the GFPoint at index.
+     *
+     * @throws An exception NSRangeException if index is beyond the end of the GFMutableLineString.
+     */
+    - (void) removePointAtIndex: (NSUInteger) index;
+
+@end

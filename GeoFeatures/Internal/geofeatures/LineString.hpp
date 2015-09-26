@@ -63,6 +63,8 @@ namespace geofeatures {
         LineString(LineStringBaseType const &other) noexcept : Geometry(), LineStringBaseType(other) {}
 
         inline virtual ~LineString() noexcept {};
+
+        using LineStringBaseType::clear;
     };
 
 }   // namespace geofeatures

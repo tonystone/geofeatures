@@ -35,6 +35,7 @@
 namespace gf = geofeatures;
 
 @implementation GFMultiPolygon {
+    @protected
         gf::MultiPolygon _multiPolygon;
     }
 
@@ -88,8 +89,16 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFMultiPolygon *) [[self class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
+        return [(GFMultiPolygon *) [[GFMultiPolygon class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
+    }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableMultiPolygon *) [[GFMutableMultiPolygon class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
     }
 
 #pragma mark - Querying a GFMultiPolygon
@@ -190,6 +199,40 @@ namespace gf = geofeatures;
             [mkPolygons addObject: gf::GFPolygon::mkOverlayWithPolygon(*it)];
         }
         return mkPolygons;
+    }
+
+@end
+
+@implementation GFMutableMultiPolygon
+
+    - (void) addGeometry: (GFPolygon *) aPolygon {
+        if (aPolygon == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
+        }
+        // TODO: Handle bad_alloc?
+        _multiPolygon.push_back([aPolygon cppConstPolygonReference]);
+    }
+
+    - (void) insertGeometry: (GFPolygon *) aPolygon atIndex: (NSUInteger) index {
+        if (aPolygon == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
+        }
+        if (index > _multiPolygon.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+        }
+        // TODO: Handle bad_alloc?
+        _multiPolygon.insert(_multiPolygon.begin() + index, [aPolygon cppConstPolygonReference]);
+    }
+
+    - (void) removeAllGeometries {
+        _multiPolygon.clear();
+    }
+
+    - (void) removeGeometryAtIndex: (NSUInteger) index {
+        if (index >= _multiPolygon.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+        }
+        _multiPolygon.erase(_multiPolygon.begin() + index);
     }
 
 @end

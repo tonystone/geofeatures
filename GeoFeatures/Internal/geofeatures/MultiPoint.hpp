@@ -60,6 +60,8 @@ namespace geofeatures {
     public:
         inline MultiPoint() noexcept : Geometry(), MultiPointBaseType() {}
         inline virtual ~MultiPoint() noexcept {};
+
+        using MultiPointBaseType::clear;
     };
 
     /** @defgroup BoostRangeIterators

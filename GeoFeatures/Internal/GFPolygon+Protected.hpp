@@ -39,6 +39,9 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPPolygon: (gf::Polygon) aPolygon;
 
+    - (const gf::Polygon &) cppConstPolygonReference;
+    - (gf::Polygon &)       cppPolygonReference;
+
 @end
 
 #endif // __GFPolygonProtected_hpp

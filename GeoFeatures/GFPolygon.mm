@@ -21,6 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#import "GFPolygon.h"
 #include "GFPolygon+Protected.hpp"
 #include "GFPolygon+Primitives.hpp"
 #include "GFRing+Protected.hpp"
@@ -43,8 +44,11 @@ namespace gf = geofeatures;
  * @date        6/6/15
  */
 @implementation GFPolygon {
+    @protected
         gf::Polygon _polygon;
     }
+
+#pragma mark - Construction
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
@@ -74,9 +78,19 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFPolygon *) [[self class] allocWithZone: zone] initWithCPPPolygon: _polygon];
+        return [(GFPolygon *) [[GFPolygon class] allocWithZone: zone] initWithCPPPolygon: _polygon];
     }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutablePolygon *) [[GFMutablePolygon class] allocWithZone: zone] initWithCPPPolygon: _polygon];
+    }
+
+#pragma mark - Querying a GFPolygon
 
     - (GFRing *) outerRing {
         return [[GFRing alloc] initWithCPPRing: _polygon.outer()];
@@ -113,6 +127,14 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (const gf::Polygon &) cppConstPolygonReference {
+        return _polygon;
+    }
+
+    - (gf::Polygon &) cppPolygonReference {
+        return _polygon;
+    }
+
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_polygon);
     }
@@ -122,4 +144,40 @@ namespace gf = geofeatures;
     }
 
 @end
+
+
+@implementation GFMutablePolygon
+
+    - (void) setOutRing: (GFRing *) outerRing {
+
+        if (outerRing == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"outerRing cannot be nil."];
+        }
+        _polygon.setOuter([outerRing cppConstRingReference]);
+    }
+
+    - (void) setInnerRings: (GFGeometryCollection *) aRingCollection {
+
+        if (aRingCollection == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aRingCollection cannot be nil."];
+        }
+
+        const auto rings = [aRingCollection cppConstGeometryCollectionReference];
+        //
+        // Loop through each element in the collection
+        // and apply the visitor to add it to the list.
+        //
+        for (auto it = rings.begin();  it != rings.end(); ++it ) {
+            auto variant = *it;
+
+            if (variant.type() == typeid(geofeatures::Ring)) {
+                _polygon.inners().push_back(boost::strict_get<geofeatures::Ring>(*it));
+            } else {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"All geometries in the innerRing collection must be of type GFRing." userInfo: nil];
+            }
+        }
+    }
+
+@end
+
 

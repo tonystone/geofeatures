@@ -60,6 +60,8 @@ namespace geofeatures {
         inline MultiPolygon (MultiPolygonBaseType & polygons) noexcept : Geometry(), MultiPolygonBaseType(polygons) {}
 
         inline virtual ~MultiPolygon() {};
+
+        using MultiPolygonBaseType::clear;
     };
 
     /** @defgroup BoostRangeIterators

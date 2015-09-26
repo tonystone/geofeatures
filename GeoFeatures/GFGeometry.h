@@ -21,7 +21,6 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
@@ -44,7 +43,7 @@
  * @author      Tony Stone
  * @date        6/14/15
  */
-@interface GFGeometry : NSObject <NSCoding, NSCopying>
+@interface GFGeometry : NSObject <NSCoding, NSCopying, NSMutableCopying>
 
     /** Checks if a geometry is valid.
     */

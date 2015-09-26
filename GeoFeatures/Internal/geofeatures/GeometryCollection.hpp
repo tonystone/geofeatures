@@ -76,6 +76,8 @@ namespace geofeatures {
             inline GeometryCollection() noexcept : Geometry(), GeometryCollectionBaseType() {}
             inline GeometryCollection(GeometryCollectionBaseType const & other) noexcept : Geometry(), GeometryCollectionBaseType(other) {}
             inline virtual ~GeometryCollection() noexcept {}
+
+            using GeometryCollectionBaseType::clear;
         };
 
         /** @defgroup BoostRangeIterators

@@ -35,8 +35,11 @@
 namespace gf = geofeatures;
 
 @implementation GFRing {
+    @protected
         gf::Ring _ring;
     }
+
+#pragma mark - Construction
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
@@ -94,10 +97,17 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFRing *) [[self class] allocWithZone: zone] initWithCPPRing: _ring];
+        return [(GFRing *) [[GFRing class] allocWithZone: zone] initWithCPPRing: _ring];
     }
 
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableRing *) [[GFMutableRing class] allocWithZone: zone] initWithCPPRing: _ring];
+    }
 #pragma mark - Querying a GFLineSting
 
     - (NSUInteger) count {
@@ -214,12 +224,57 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (const gf::Ring &) cppConstRingReference {
+        return _ring;
+    }
+
+    - (gf::Ring &) cppRingReference {
+        return _ring;
+    }
+
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_ring);
     }
 
     - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
         return gf::GeometryPtrVariant(&_ring);
+    }
+
+@end
+
+@implementation GFMutableRing
+
+    - (void) addPoint: (GFPoint *) aPoint {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        // TODO: Handle bad_alloc?
+        _ring.push_back(gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) insertPoint: (GFPoint *) aPoint atIndex: (NSUInteger) index {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        if (index > _ring.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+        }
+        // TODO: Handle bad_alloc?
+        _ring.insert(_ring.begin() + index, gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) removeAllPoints {
+        _ring.clear();
+    }
+
+    - (void) removePointAtIndex: (NSUInteger) index {
+
+        if (index >= _ring.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+        }
+        _ring.erase(_ring.begin() + index);
     }
 
 @end

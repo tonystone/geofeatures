@@ -23,6 +23,7 @@
 #define __GFLineStringProtected_hpp
 
 #import <Foundation/Foundation.h>
+#import <GeoFeatures/internal/geofeatures/LineString.hpp>
 #import "GFLineString.h"
 
 namespace geofeatures {
@@ -38,6 +39,9 @@ namespace  gf = geofeatures;
      * Initialize this GFLineString with an internal LineString implementation.
      */
     - (instancetype) initWithCPPLineString: (gf::LineString) aLineString;
+
+    - (const gf::LineString &) cppConstLineStringReference;
+    - (gf::LineString &)       cppLineStringReference;
 
 @end
 

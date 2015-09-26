@@ -21,7 +21,6 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import "GFGeometryCollection.h"
 
@@ -155,3 +154,39 @@
     - (id) objectAtIndexedSubscript: (NSUInteger) index;
 
 @end
+
+/**
+ * @class       GFMutableMultiLineString
+ *
+ * @brief       A mutable version GFMultiLineString.
+ *
+ * @author      Tony Stone
+ * @date        9/24/15
+ */
+@interface GFMutableMultiLineString : GFMultiLineString
+
+    /** Inserts a given GFLineString at the end of the GFMutableMultiLineString.
+     *
+     * @throws An NSInvalidArgumentException if GFLineString is nil.
+     */
+    - (void) addGeometry: (GFLineString *) aLineString;
+
+    /** Inserts a given GFLineString into the GFMutableMultiLineString’s contents at a given index.
+     *
+     * @throws An NSRangeException if index is greater than the number of elements in the GFMutableMultiLineString.
+     * @throws An NSInvalidArgumentException if GFLineString is nil.
+     */
+    - (void) insertGeometry: (GFLineString *) aLineString atIndex: (NSUInteger) index;
+
+    /** Empties the GFMutableMultiLineString of all its GFLineStrings.
+     */
+    - (void) removeAllGeometries;
+
+    /** Removes the GFLineString at index.
+     *
+     * @throws An exception NSRangeException if index is beyond the end of the GFMutableMultiLineString.
+     */
+    - (void) removeGeometryAtIndex: (NSUInteger) index;
+
+@end
+

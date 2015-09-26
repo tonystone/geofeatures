@@ -33,6 +33,7 @@
 namespace gf = geofeatures;
 
 @implementation GFMultiPoint {
+    @protected
         gf::MultiPoint _multiPoint;
     }
 
@@ -76,8 +77,16 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFMultiPoint *) [[self class] allocWithZone: zone] initWithCPPMultiPoint: _multiPoint];
+        return [(GFMultiPoint *) [[GFMultiPoint class] allocWithZone: zone] initWithCPPMultiPoint: _multiPoint];
+    }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableMultiPoint *) [[GFMutableMultiPoint class] allocWithZone: zone] initWithCPPMultiPoint: _multiPoint];
     }
 
 #pragma mark - Querying a GFMultiPoint
@@ -178,6 +187,43 @@ namespace gf = geofeatures;
             [mkPolygons addObject: gf::GFPoint::mkOverlayWithPoint(*it)];
         }
         return mkPolygons;
+    }
+
+@end
+
+@implementation GFMutableMultiPoint
+
+    - (void) addGeometry: (GFPoint *) aPoint {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        // TODO: Handle bad_alloc?
+        _multiPoint.push_back(gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) insertGeometry: (GFPoint *) aPoint atIndex: (NSUInteger) index {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        if (index > _multiPoint.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+        }
+        // TODO: Handle bad_alloc?
+        _multiPoint.insert(_multiPoint.begin() + index, gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) removeAllGeometries {
+        _multiPoint.clear();
+    }
+
+    - (void) removeGeometryAtIndex: (NSUInteger) index {
+
+        if (index >= _multiPoint.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+        }
+        _multiPoint.erase(_multiPoint.begin() + index);
     }
 
 @end

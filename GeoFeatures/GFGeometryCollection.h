@@ -116,5 +116,39 @@
      */
     - (id) objectAtIndexedSubscript: (NSUInteger) index;
 
+@end
+
+/**
+ * @class       GFMutableGeometryCollection
+ *
+ * @brief       A mutable version GFGeometryCollection.
+ *
+ * @author      Tony Stone
+ * @date        9/26/15
+ */
+@interface GFMutableGeometryCollection : GFGeometryCollection
+
+    /** Inserts a given GFGeometry at the end of the GFMutableGeometryCollection.
+     *
+     * @throws An NSInvalidArgumentException if GFGeometry is nil.
+     */
+    - (void) addGeometry: (id) aGeometry;
+
+    /** Inserts a given GFGeometry into the GFMutableGeometryCollection’s contents at a given index.
+     *
+     * @throws An NSRangeException if index is greater than the number of elements in the GFMutableGeometryCollection.
+     * @throws An NSInvalidArgumentException if GFGeometry is nil.
+     */
+    - (void) insertGeometry: (id) aGeometry atIndex: (NSUInteger) index;
+
+    /** Empties the GFMutableMultiPolygon of all its GFGeometries.
+     */
+    - (void) removeAllGeometries;
+
+    /** Removes the GFGeometry at index.
+     *
+     * @throws An exception NSRangeException if index is beyond the end of the GFMutableGeometryCollection.
+     */
+    - (void) removeGeometryAtIndex: (NSUInteger) index;
 
 @end

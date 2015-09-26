@@ -42,8 +42,11 @@ namespace gf = geofeatures;
  * @date        6/8/15
  */
 @implementation GFPoint {
+    @protected
         gf::Point _point;
     }
+
+#pragma mark - Construction
 
     - (instancetype) initWithX:(double)x y:(double)y {
 
@@ -83,9 +86,19 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFPoint *) [[self class] allocWithZone: zone] initWithCPPPoint: _point];
+        return [(GFPoint *) [[GFPoint class] allocWithZone: zone] initWithCPPPoint: _point];
     }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+       return [(GFMutablePoint *) [[GFMutablePoint class] allocWithZone: zone] initWithCPPPoint: _point];
+    }
+
+#pragma mark - Read Accessors
 
     - (double) x {
         return _point.get<0>();
@@ -124,3 +137,17 @@ namespace gf = geofeatures;
     }
 
 @end
+
+
+@implementation GFMutablePoint
+
+    - (void) setX: (double) x {
+        _point.set<0>(x);
+    }
+
+    - (void) setY: (double) y {
+        _point.set<1>(y);
+    }
+
+@end
+
