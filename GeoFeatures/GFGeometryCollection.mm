@@ -160,10 +160,6 @@ namespace gf = geofeatures;
         return _geometryCollection;
     }
 
-    - (gf::GeometryCollection &) cppGeometryCollectionReference {
-        return _geometryCollection;
-    }
-
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_geometryCollection);
     }

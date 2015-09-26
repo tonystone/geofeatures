@@ -41,7 +41,6 @@ namespace  gf = geofeatures;
     - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection) aGeometryCollection;
 
     - (const gf::GeometryCollection &) cppConstGeometryCollectionReference;
-    - (gf::GeometryCollection &)       cppGeometryCollectionReference;
 
 @end
 
