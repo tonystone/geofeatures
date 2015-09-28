@@ -91,6 +91,9 @@ namespace gf = geofeatures;
             //
 
             for (NSArray * coordinate in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
             }
         }
@@ -245,7 +248,9 @@ namespace gf = geofeatures;
         if (aPoint == nil) {
             [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _ring.push_back(gf::Point([aPoint x], [aPoint y]));
     }
 
@@ -257,7 +262,9 @@ namespace gf = geofeatures;
         if (index > _ring.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _ring.insert(_ring.begin() + index, gf::Point([aPoint x], [aPoint y]));
     }
 

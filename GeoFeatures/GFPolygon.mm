@@ -102,6 +102,9 @@ namespace gf = geofeatures;
         const auto& inners  = _polygon.inners();
 
         for (auto it = inners.begin(); it != inners.end(); ++it) {
+            // Note: geofeatures::<type>s will throw an "Objective-C" NSMallocException
+            // if they fail to allocate memory for the operation below so
+            // no C++ exception block is required.
             geometryCollection.push_back(*it);
         }
         return [[GFGeometryCollection alloc] initWithCPPGeometryCollection: geometryCollection];
@@ -167,6 +170,9 @@ namespace gf = geofeatures;
             auto variant = *it;
 
             if (variant.type() == typeid(geofeatures::Ring)) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _polygon.inners().push_back(boost::strict_get<geofeatures::Ring>(*it));
             } else {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"All geometries in the innerRing collection must be of type GFRing." userInfo: nil];

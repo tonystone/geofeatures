@@ -83,6 +83,9 @@ namespace gf = geofeatures;
             //  }
             //
             for (NSArray * polygon in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _multiPolygon.push_back(gf::GFPolygon::polygonWithGeoJSONCoordinates(polygon));
             }
         }
@@ -209,7 +212,9 @@ namespace gf = geofeatures;
         if (aPolygon == nil) {
             [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _multiPolygon.push_back([aPolygon cppConstPolygonReference]);
     }
 
@@ -220,7 +225,9 @@ namespace gf = geofeatures;
         if (index > _multiPolygon.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _multiPolygon.insert(_multiPolygon.begin() + index, [aPolygon cppConstPolygonReference]);
     }
 

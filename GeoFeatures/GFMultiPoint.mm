@@ -71,6 +71,9 @@ namespace gf = geofeatures;
             // }
             //
             for (NSArray * coordinate in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _multiPoint.push_back(gf::GFPoint::pointWithGeoJSONCoordinates(coordinate));
             }
         }
@@ -198,7 +201,9 @@ namespace gf = geofeatures;
         if (aPoint == nil) {
             [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _multiPoint.push_back(gf::Point([aPoint x], [aPoint y]));
     }
 
@@ -210,7 +215,9 @@ namespace gf = geofeatures;
         if (index > _multiPoint.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _multiPoint.insert(_multiPoint.begin() + index, gf::Point([aPoint x], [aPoint y]));
     }
 

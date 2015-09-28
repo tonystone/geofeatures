@@ -51,6 +51,9 @@ namespace gf = geofeatures;
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _geometryCollection.push_back([geometry cppGeometryVariant]);
             }
         }
@@ -181,7 +184,9 @@ namespace gf = geofeatures;
         if (![aGeometry isKindOfClass: [GFGeometry class]]) {
             [NSException raise: NSInvalidArgumentException format: @"Invalid class, aGeometry must be of type GFGeometry or a subclass of GFGeometry."];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _geometryCollection.push_back([aGeometry cppGeometryVariant]);
     }
 
@@ -196,7 +201,9 @@ namespace gf = geofeatures;
         if (![aGeometry isKindOfClass: [GFGeometry class]]) {
             [NSException raise: NSInvalidArgumentException format: @"Invalid class, aGeometry must be of type GFGeometry or a subclass of GFGeometry."];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _geometryCollection.insert(_geometryCollection.begin() + index, [aGeometry cppGeometryVariant]);
     }
 

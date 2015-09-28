@@ -75,6 +75,9 @@ namespace gf = geofeatures;
             //  }
             //
             for (NSArray * lineString in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _multiLineString.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(lineString));
             }
         }
@@ -201,7 +204,9 @@ namespace gf = geofeatures;
         if (aLineString == nil) {
             [NSException raise: NSInvalidArgumentException format: @"aLineString can not be nil."];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _multiLineString.push_back([aLineString cppConstLineStringReference]);
     }
 
@@ -212,7 +217,9 @@ namespace gf = geofeatures;
         if (index > _multiLineString.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
-        // TODO: Handle bad_alloc?
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
         _multiLineString.insert(_multiLineString.begin() + index, [aLineString cppConstLineStringReference]);
     }
 
