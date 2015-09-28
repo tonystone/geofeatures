@@ -161,7 +161,7 @@
      *
      * @since 1.1.0
      */
-    - (id) objectAtIndexedSubscript: (NSUInteger) index;
+    - (GFPolygon *) objectAtIndexedSubscript: (NSUInteger) index;
 
 @end
 

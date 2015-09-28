@@ -144,7 +144,7 @@
      *
      * @since 1.1.0
      */
-    - (id) objectAtIndexedSubscript: (NSUInteger) index;
+    - (GFPoint *) objectAtIndexedSubscript: (NSUInteger) index;
 
 @end
 

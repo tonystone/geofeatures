@@ -152,7 +152,7 @@ namespace gf = geofeatures;
 
 #pragma mark - Indexed Subscripting
 
-    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+    - (GFPoint *) objectAtIndexedSubscript: (NSUInteger) index {
 
         const auto size = _ring.size();
 
