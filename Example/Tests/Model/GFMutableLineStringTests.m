@@ -128,6 +128,53 @@
         XCTAssertThrowsSpecificNamed([lineString removePointAtIndex: 1], NSException, NSRangeException);
     }
 
+#pragma mark - Indexed Subscripting Tests
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPointAndValidIndex {
+
+        GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
+
+        lineString[0] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"];
+
+        XCTAssertEqualObjects([lineString toWKTString], @"LINESTRING(1 1)");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_With3ValidPointAndValidIndex {
+
+        GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
+
+        lineString[0] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"];
+        lineString[1] = [[GFPoint alloc] initWithWKT: @"POINT(2 2)"];
+        lineString[2] = [[GFPoint alloc] initWithWKT: @"POINT(3 3)"];
+
+        XCTAssertEqualObjects([lineString toWKTString], @"LINESTRING(1 1,2 2,3 3)");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithReassignValidPointAndValidIndex {
+
+        GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
+
+        lineString[0] = [[GFPoint alloc] initWithWKT: @"POINT(3 3)"];
+        lineString[1] = [[GFPoint alloc] initWithWKT: @"POINT(2 2)"];
+
+        lineString[0] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"];
+
+        XCTAssertEqualObjects([lineString toWKTString], @"LINESTRING(1 1,2 2)");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithNilPointAndValidIndex {
+
+        GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
+
+        XCTAssertThrowsSpecificNamed((lineString[0] = nil), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPointAndInvalidIndex {
+
+        GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
+
+        XCTAssertThrowsSpecificNamed((lineString[1] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"]), NSException, NSRangeException);
+    }
 
 @end
 

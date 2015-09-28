@@ -182,4 +182,26 @@
      */
     - (void) removeGeometryAtIndex: (NSUInteger) index;
 
+    /** Sets the GFPoint at the given index.
+     *
+     * @param aPoint The GFPoint with which to replace the GFPoint at index in the GFMutableMultiPoint. This value must not be nil.
+     * @param index  The index of the GFPoint to be replaced. This value must not exceed the bounds of the GFMutableMultiPoint.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMutableMultiPoint * multiPoint = [[GFMutableMultiPoint alloc] init];
+     *
+     *    multiPoint[0] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"];
+     *    multiPoint[1] = [[GFPoint alloc] initWithWKT: @"POINT(2 2)"];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.3.0
+     */
+    - (void) setObject: (GFPoint *) aPoint atIndexedSubscript:(NSUInteger) index;
+
 @end

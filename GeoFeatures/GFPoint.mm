@@ -128,6 +128,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (const gf::Point &) cppConstPointReference {
+        return _point;
+    }
+
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_point);
     }

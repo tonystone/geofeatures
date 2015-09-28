@@ -141,5 +141,62 @@
     }
 
 
+#pragma mark - Indexed Subscripting Tests
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPolygonAndValidIndex {
+
+        GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+
+        geometryCollection[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((20 0,20 10,40 10,40 0,20 0))"];
+
+        XCTAssertEqualObjects([geometryCollection toWKTString], @"GEOMETRYCOLLECTION(POLYGON((20 0,20 10,40 10,40 0,20 0)))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_With3ValidPolygonsAndValidIndex {
+
+        GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+
+        geometryCollection[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((20 0,20 10,40 10,40 0,20 0))"];
+        geometryCollection[1] = [[GFPoint alloc] initWithWKT: @"POINT(103 2)"];
+        geometryCollection[2] = [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"];
+        geometryCollection[3] = [[GFLineString alloc] initWithWKT: @"LINESTRING(5 0,10 0,5 -5,5 0)"];
+
+        XCTAssertEqualObjects([geometryCollection toWKTString], @"GEOMETRYCOLLECTION(POLYGON((20 0,20 10,40 10,40 0,20 0)),POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(5 0,10 0,5 -5,5 0))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithReassignValidPolygonAndValidIndex {
+
+        GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+
+        geometryCollection[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((4 4,4 7,7 7,7 4,4 4))"];
+        geometryCollection[1] = [[GFPolygon alloc] initWithWKT: @"POLYGON((5 5,5 8,8 8,8 5,5 5))"];
+
+        geometryCollection[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((20 0,20 10,40 10,40 0,20 0))"];
+
+        XCTAssertEqualObjects([geometryCollection toWKTString], @"GEOMETRYCOLLECTION(POLYGON((20 0,20 10,40 10,40 0,20 0)),POLYGON((5 5,5 8,8 8,8 5,5 5)))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithNilPolygonAndValidIndex {
+
+        GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+
+        XCTAssertThrowsSpecificNamed((geometryCollection[0] = nil), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithInvalidObjectTypeAndValidIndex {
+
+        GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+
+        XCTAssertThrowsSpecificNamed((geometryCollection[0] = [[NSObject alloc] init]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPolygonAndInvalidIndex {
+
+        GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+
+        XCTAssertThrowsSpecificNamed((geometryCollection[1] = [[GFPolygon alloc] init]), NSException, NSRangeException);
+    }
+
+
 @end
 

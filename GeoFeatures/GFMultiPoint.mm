@@ -233,4 +233,22 @@ namespace gf = geofeatures;
         _multiPoint.erase(_multiPoint.begin() + index);
     }
 
+    - (void) setObject: (GFPoint *) aPoint atIndexedSubscript: (NSUInteger) index {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        if (index > _multiPoint.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        if (index == _multiPoint.size()) {
+            _multiPoint.push_back([aPoint cppConstPointReference]);
+        } else {
+            _multiPoint[index] = [aPoint cppConstPointReference];
+        }
+    }
+
 @end

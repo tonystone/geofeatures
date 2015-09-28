@@ -218,4 +218,25 @@ namespace gf = geofeatures;
         _geometryCollection.erase(_geometryCollection.begin() + index);
     }
 
+    - (void) setObject: (id) aGeometry atIndexedSubscript: (NSUInteger) index {
+
+        if (aGeometry == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aGeometry can not be nil."];
+        }
+        if (index > _geometryCollection.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
+        }
+        if (![aGeometry isKindOfClass: [GFGeometry class]]) {
+            [NSException raise: NSInvalidArgumentException format: @"Invalid class, aGeometry must be of type GFGeometry or a subclass of GFGeometry."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        if (index == _geometryCollection.size()) {
+            _geometryCollection.push_back([aGeometry cppGeometryVariant]);
+        } else {
+            _geometryCollection[index] = [aGeometry cppGeometryVariant];
+        }
+    }
+
 @end

@@ -128,6 +128,55 @@
         XCTAssertThrowsSpecificNamed([multiPolygon removeGeometryAtIndex: 1], NSException, NSRangeException);
     }
 
+#pragma mark - Indexed Subscripting Tests
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPolygonAndValidIndex {
+
+        GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
+
+        multiPolygon[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((20 0,20 10,40 10,40 0,20 0))"];
+
+        XCTAssertEqualObjects([multiPolygon toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_With3ValidPolygonsAndValidIndex {
+
+        GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
+
+        multiPolygon[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((20 0,20 10,40 10,40 0,20 0))"];
+        multiPolygon[1] = [[GFPolygon alloc] initWithWKT: @"POLYGON((5 5,5 8,8 8,8 5,5 5))"];
+        multiPolygon[2] = [[GFPolygon alloc] initWithWKT: @"POLYGON((4 4,4 7,7 7,7 4,4 4))"];
+
+        XCTAssertEqualObjects([multiPolygon toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)),((4 4,4 7,7 7,7 4,4 4)))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithReassignValidPolygonAndValidIndex {
+
+        GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
+
+        multiPolygon[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((4 4,4 7,7 7,7 4,4 4))"];
+        multiPolygon[1] = [[GFPolygon alloc] initWithWKT: @"POLYGON((5 5,5 8,8 8,8 5,5 5))"];
+
+        multiPolygon[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((20 0,20 10,40 10,40 0,20 0))"];
+
+        XCTAssertEqualObjects([multiPolygon toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithNilPolygonAndValidIndex {
+
+        GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
+
+        XCTAssertThrowsSpecificNamed((multiPolygon[0] = nil), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPolygonAndInvalidIndex {
+
+        GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
+
+        XCTAssertThrowsSpecificNamed((multiPolygon[1] = [[GFPolygon alloc] init]), NSException, NSRangeException);
+    }
+
+
 
 @end
 

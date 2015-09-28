@@ -188,5 +188,27 @@
      */
     - (void) removeGeometryAtIndex: (NSUInteger) index;
 
+    /** Sets the GFLineString at the given index.
+     *
+     * @param aLineString The GFLineString with which to replace the GFLineString at index in the GFMutableMultiLineString. This value must not be nil.
+     * @param index  The index of the GFLineString to be replaced. This value must not exceed the bounds of the GFMutableMultiLineString.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
+     *
+     *    multiLineString[0] = [[GFLineString alloc] initWithWKT: @"LINESTRING(1 1,2 2,3 3)"];
+     *    multiLineString[1] = [[GFLineString alloc] initWithWKT: @"LINESTRING(2 2,103 1)"];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.3.0
+     */
+    - (void) setObject: (GFLineString *) aLineString atIndexedSubscript:(NSUInteger) index;
+
 @end
 

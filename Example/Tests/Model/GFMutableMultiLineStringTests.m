@@ -128,6 +128,53 @@
         XCTAssertThrowsSpecificNamed([multiLineString removeGeometryAtIndex: 1], NSException, NSRangeException);
     }
 
+#pragma mark - Indexed Subscripting Tests
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidLineStringAndValidIndex {
+
+        GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
+
+        multiLineString[0] = [[GFLineString alloc] initWithWKT: @"LINESTRING(0 0,5 0)"];
+
+        XCTAssertEqualObjects([multiLineString toWKTString], @"MULTILINESTRING((0 0,5 0))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_With3ValidLineStringsAndValidIndex {
+
+        GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
+
+        multiLineString[0] = [[GFLineString alloc] initWithWKT: @"LINESTRING(0 0,5 0)"];
+        multiLineString[1] = [[GFLineString alloc] initWithWKT: @"LINESTRING(5 0,10 0,5 -5,5 0)"];
+        multiLineString[2] = [[GFLineString alloc] initWithWKT: @"LINESTRING(1 1,2 2,3 3)"];
+
+        XCTAssertEqualObjects([multiLineString toWKTString], @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(1 1,2 2,3 3))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithReassignValidLineStringAndValidIndex {
+
+        GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
+
+        multiLineString[0] = [[GFLineString alloc] initWithWKT: @"LINESTRING(1 1,2 2,3 3)"];
+        multiLineString[1] = [[GFLineString alloc] initWithWKT: @"LINESTRING(5 0,10 0,5 -5,5 0)"];
+
+        multiLineString[0] = [[GFLineString alloc] initWithWKT: @"LINESTRING(0 0,5 0)"];
+
+        XCTAssertEqualObjects([multiLineString toWKTString], @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithNilLineStringAndValidIndex {
+
+        GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
+
+        XCTAssertThrowsSpecificNamed((multiLineString[0] = nil), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidLineStringAndInvalidIndex {
+
+        GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
+
+        XCTAssertThrowsSpecificNamed((multiLineString[1] = [[GFLineString alloc] init]), NSException, NSRangeException);
+    }
 
 @end
 
