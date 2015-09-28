@@ -280,4 +280,22 @@ namespace gf = geofeatures;
         _ring.erase(_ring.begin() + index);
     }
 
+    - (void) setObject: (GFPoint *) aPoint atIndexedSubscript: (NSUInteger) index {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        if (index > _ring.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        if (index == _ring.size()) {
+            _ring.push_back([aPoint cppConstPointReference]);
+        } else {
+            _ring[index] = [aPoint cppConstPointReference];
+        }
+    }
+
 @end

@@ -148,6 +148,55 @@
         XCTAssertThrowsSpecificNamed([ring removePointAtIndex: 1], NSException, NSRangeException);
     }
 
+#pragma mark - Indexed Subscripting Tests
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPointAndValidIndex {
+
+        GFMutableRing * ring = [[GFMutableRing alloc] init];
+
+        ring[0] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"];
+
+        XCTAssertEqualObjects([ring toWKTString], @"LINESTRING(1 1)");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_With5ValidPointAndValidIndex {
+
+        GFMutableRing * ring = [[GFMutableRing alloc] init];
+
+        ring[0] = [[GFPoint alloc] initWithWKT: @"POINT(20 0)"];
+        ring[1] = [[GFPoint alloc] initWithWKT: @"POINT(20 10)"];
+        ring[2] = [[GFPoint alloc] initWithWKT: @"POINT(40 10)"];
+        ring[3] = [[GFPoint alloc] initWithWKT: @"POINT(40 0)"];
+        ring[4] = [[GFPoint alloc] initWithWKT: @"POINT(20 0)"];
+
+        XCTAssertEqualObjects([ring toWKTString], @"LINESTRING(20 0,20 10,40 10,40 0,20 0)");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithReassignValidPointAndValidIndex {
+
+        GFMutableRing * ring = [[GFMutableRing alloc] init];
+
+        ring[0] = [[GFPoint alloc] initWithWKT: @"POINT(3 3)"];
+        ring[1] = [[GFPoint alloc] initWithWKT: @"POINT(2 2)"];
+
+        ring[0] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"];
+
+        XCTAssertEqualObjects([ring toWKTString], @"LINESTRING(1 1,2 2)");
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithNilPointAndValidIndex {
+
+        GFMutableRing * ring = [[GFMutableRing alloc] init];
+
+        XCTAssertThrowsSpecificNamed((ring[0] = nil), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testSetObjectAtIndexedSubscript_WithValidPointAndInvalidIndex {
+
+        GFMutableRing * ring = [[GFMutableRing alloc] init];
+
+        XCTAssertThrowsSpecificNamed((ring[1] = [[GFPoint alloc] initWithWKT: @"POINT(1 1)"]), NSException, NSRangeException);
+    }
 
 @end
 

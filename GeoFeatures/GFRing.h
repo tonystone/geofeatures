@@ -134,4 +134,29 @@
      */
     - (void) removePointAtIndex: (NSUInteger) index;
 
+    /** Sets the GFPoint at the given index.
+     *
+     * @param aPoint The GFPoint with which to replace the GFPoint at index in the GFMutableRing. This value must not be nil.
+     * @param index  The index of the GFPoint to be replaced. This value must not exceed the bounds of the GFMutableRing.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMutableRing * ring = [[GFMutableRing alloc] init];
+     *
+     *   ring[0] = [[GFPoint alloc] initWithWKT: @"POINT(20 0)"];
+     *   ring[1] = [[GFPoint alloc] initWithWKT: @"POINT(20 10)"];
+     *   ring[2] = [[GFPoint alloc] initWithWKT: @"POINT(40 10)"];
+     *   ring[3] = [[GFPoint alloc] initWithWKT: @"POINT(40 0)"];
+     *   ring[4] = [[GFPoint alloc] initWithWKT: @"POINT(20 0)"];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.3.0
+     */
+    - (void) setObject: (GFPoint *) aPoint atIndexedSubscript:(NSUInteger) index;
+
 @end
