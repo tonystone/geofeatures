@@ -234,4 +234,22 @@ namespace gf = geofeatures;
         _multiLineString.erase(_multiLineString.begin() + index);
     }
 
+    - (void) setObject: (GFLineString *) aLineString atIndexedSubscript: (NSUInteger) index {
+
+        if (aLineString == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aLineString can not be nil."];
+        }
+        if (index > _multiLineString.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        if (index == _multiLineString.size()) {
+            _multiLineString.push_back([aLineString cppConstLineStringReference]);
+        } else {
+            _multiLineString[index] = [aLineString cppConstLineStringReference];
+        }
+    }
+
 @end
