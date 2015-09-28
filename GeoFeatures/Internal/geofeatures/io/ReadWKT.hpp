@@ -37,15 +37,15 @@
 namespace geofeatures {
     namespace io {
 
-        template <typename Geometry, typename = typename std::enable_if<std::is_same<Geometry,GeometryCollection>::value>::type>
+        template <typename Geometry, typename = typename std::enable_if<std::is_same<Geometry,GeometryCollection<>>::value>::type>
         inline void readWKT(std::string const &wkt, Geometry &geometryCollection)
         {
             if (!boost::istarts_with(wkt, "GEOMETRYCOLLECTION")) {
                 throw std::invalid_argument("Should start with 'GEOMETRYCOLLECTION'' in (" + wkt + ")");
             }
 
-            GeometryCollectionVariantType (*geometry)(std::string & wkt) =
-                    [](std::string & wkt) -> GeometryCollectionVariantType {
+            GeometryCollection<>::value_type (*geometry)(std::string & wkt) =
+                    [](std::string & wkt) -> GeometryCollection<>::value_type {
 
                         if (boost::istarts_with(wkt, "POINT")) {
                             geofeatures::Point geometry;
@@ -84,7 +84,7 @@ namespace geofeatures {
 
                             return geometry;
                         }
-                        return GeometryCollectionVariantType();
+                        return GeometryCollection<>::value_type();
                     };
 
             std::regex words_regex("\\b(EMPTY|POINT|MULTIPOINT|LINESTRING|MULTILINESTRING|POLYGON)", std::regex_constants::icase);

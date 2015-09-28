@@ -43,7 +43,7 @@ namespace geofeatures {
                 return boost::geometry::within(*lhs, *rhs);
             }
 
-            bool operator()(const Point * lhs, const GeometryCollection * rhs) const {
+            bool operator()(const Point * lhs, const GeometryCollection<> * rhs) const {
                 return false;
             }
 

@@ -57,7 +57,7 @@ namespace geofeatures {
 
                         return stringStream.str();
                     }
-                    std::string operator()(const geofeatures::GeometryCollection & v) const {
+                    std::string operator()(const geofeatures::GeometryCollection<> & v) const {
                         
                         std::stringstream stringStream;
                         // TODO: Write to wkt string for GeometryCollection
@@ -72,7 +72,7 @@ namespace geofeatures {
                 friend std::ostream& operator<<(std::ostream& os, const geofeatures::io::wkt<Geometry>& wkt);
             };
 
-            inline std::ostream& operator<<(std::ostream& os, const geofeatures::io::wkt<geofeatures::GeometryCollection>& wkt)
+            inline std::ostream& operator<<(std::ostream& os, const geofeatures::io::wkt<geofeatures::GeometryCollection<>>& wkt)
             {
                 os << "GEOMETRYCOLLECTION";
 
@@ -86,7 +86,7 @@ namespace geofeatures {
                         if (!first) {
                             os << ",";
                         }
-                        os << boost::apply_visitor(geofeatures::io::wkt<geofeatures::GeometryCollection>::variantToString(), *it);
+                        os << boost::apply_visitor(geofeatures::io::wkt<geofeatures::GeometryCollection<>>::variantToString(), *it);
                         first = false;
                     }
                     os << ")";

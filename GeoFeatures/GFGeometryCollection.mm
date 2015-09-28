@@ -33,7 +33,7 @@ namespace gf = geofeatures;
 
 @implementation GFGeometryCollection {
     @protected
-        gf::GeometryCollection  _geometryCollection;
+        gf::GeometryCollection<>  _geometryCollection;
     }
 
 #pragma mark - Construction
@@ -148,7 +148,7 @@ namespace gf = geofeatures;
 
 @implementation GFGeometryCollection (Protected)
 
-    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection) aGeometryCollection {
+    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection<>) aGeometryCollection {
 
         if (self = [super init]) {
             _geometryCollection = aGeometryCollection;
@@ -156,7 +156,7 @@ namespace gf = geofeatures;
         return self;
     }
 
-    - (const gf::GeometryCollection &) cppConstGeometryCollectionReference {
+    - (const gf::GeometryCollection<> &) cppConstGeometryCollectionReference {
         return _geometryCollection;
     }
 

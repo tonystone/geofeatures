@@ -21,7 +21,7 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
+#pragma once
 
 #ifndef __GeometryCollection_HPP_
 #define __GeometryCollection_HPP_
@@ -36,59 +36,47 @@
 #include "Polygon.hpp"
 #include "MultiPolygon.hpp"
 
+#include "Collection.hpp"
+#include "Allocator.hpp"
+
 #include <boost/variant.hpp>
 #include <vector>
 
 namespace geofeatures {
 
-        class GeometryCollection;
+    template <typename T, typename Allocator>
+    class GeometryCollection;
+    
+    /**
+    * @class       GeometryCollection
+    *
+    * @brief       A Collection of Geometries.
+    *
+    * @author      Tony Stone
+    * @date        6/9/15
+     *
+    */
+    template <typename T = boost::make_recursive_variant<
+            geofeatures::Point,
+            geofeatures::MultiPoint,
+            geofeatures::Box,
+            geofeatures::LineString,
+            geofeatures::MultiLineString,
+            geofeatures::Ring,
+            geofeatures::Polygon,
+            geofeatures::MultiPolygon,
+            GeometryCollection<boost::recursive_variant_,geofeatures::Allocator<boost::recursive_variant_>>>::type, typename Allocator = geofeatures::Allocator<T>>
+    class GeometryCollection : public Geometry, public Collection <T, Allocator> {
 
-        /**
-        * Variant type of contained objects
-        */
-        typedef boost::variant <
-                        geofeatures::Point,
-                        geofeatures::MultiPoint,
-                        geofeatures::Box,
-                        geofeatures::LineString,
-                        geofeatures::MultiLineString,
-                        geofeatures::Ring,
-                        geofeatures::Polygon,
-                        geofeatures::MultiPolygon,
-                        boost::recursive_wrapper<geofeatures::GeometryCollection>>  GeometryCollectionVariantType;
+    private:
+        typedef Collection <T, Allocator> BaseType;
 
-        /**
-        * Base type for GeometryCollection class
-        */
-        typedef std::vector<GeometryCollectionVariantType> GeometryCollectionBaseType;
 
-        /**
-        * @class       GeometryCollection
-        *
-        * @brief       A Collection of Geometries.
-        *
-        * @author      Tony Stone
-        * @date        6/9/15
-        */
-        class GeometryCollection : public Geometry, public GeometryCollectionBaseType {
-
-        public:
-            inline GeometryCollection() noexcept : Geometry(), GeometryCollectionBaseType() {}
-            inline GeometryCollection(GeometryCollectionBaseType const & other) noexcept : Geometry(), GeometryCollectionBaseType(other) {}
-            inline virtual ~GeometryCollection() noexcept {}
-
-            using GeometryCollectionBaseType::clear;
-        };
-
-        /** @defgroup BoostRangeIterators
-        *
-        * @{
-        */
-        inline GeometryCollectionBaseType::iterator range_begin(GeometryCollection& gc) {return gc.begin();}
-        inline GeometryCollectionBaseType::iterator range_end(GeometryCollection& gc) {return gc.end();}
-        inline GeometryCollectionBaseType::const_iterator range_begin(const GeometryCollection& gc) {return gc.begin();}
-        inline GeometryCollectionBaseType::const_iterator range_end(const GeometryCollection& gc) {return gc.end();}
-        /** @} */
+    public:
+        inline GeometryCollection() noexcept : Geometry(), BaseType() {}
+        inline GeometryCollection(const GeometryCollection & other) noexcept : Geometry(), BaseType(other) {}
+        inline virtual ~GeometryCollection() noexcept {}
+    };
 
 }   // namespace geofeatures
 
