@@ -151,4 +151,26 @@
      */
     - (void) removeGeometryAtIndex: (NSUInteger) index;
 
+    /** Sets the GFGeometry at the given index.
+     *
+     * @param aGeometry The GFGeometry with which to replace the GFGeometry at index in the GFMutableGeometryCollection. This value must not be nil.
+     * @param index  The index of the GFGeometry to be replaced. This value must not exceed the bounds of the GFMutableGeometryCollection.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
+     *
+     *    geometryCollection[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,0 90,90 90,90 0,0 0))"];
+     *    geometryCollection[1] = [[GFLineString alloc] initWithWKT: @"LINESTRING(1 1,2 2,3 3)"];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.3.0
+     */
+    - (void) setObject: (id) aGeometry atIndexedSubscript:(NSUInteger) index;
+
 @end
