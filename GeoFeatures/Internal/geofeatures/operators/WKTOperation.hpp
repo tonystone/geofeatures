@@ -44,10 +44,10 @@ namespace geofeatures {
                 return stringStream.str();
             }
 
-            std::string operator()(const GeometryCollection * v) const {
+            std::string operator()(const GeometryCollection<> * v) const {
 
                 std::stringstream stringStream;
-                stringStream << io::wkt<GeometryCollection>(*v);
+                stringStream << io::wkt<GeometryCollection<>>(*v);
 
                 return stringStream.str();
             }

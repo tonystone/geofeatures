@@ -32,7 +32,7 @@
 namespace gf = geofeatures;
 
 @implementation GFGeometryCollection {
-        gf::GeometryCollection  _geometryCollection;
+        gf::GeometryCollection<>  _geometryCollection;
     }
 
 #pragma mark - Public methods
@@ -139,7 +139,7 @@ namespace gf = geofeatures;
 
 @implementation GFGeometryCollection (Protected)
 
-    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection) aGeometryCollection {
+    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection<>) aGeometryCollection {
 
         if (self = [super init]) {
             _geometryCollection = aGeometryCollection;

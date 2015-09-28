@@ -25,10 +25,8 @@
 #import <Foundation/Foundation.h>
 #import "GFGeometryCollection.h"
 
-namespace geofeatures {
-    // Forward declarations
-    class GeometryCollection;
-}
+// Note: we must specifically include GeometryCollection.hpp here instead of forward declaring GeometryCollection
+#include "GeometryCollection.hpp"
 
 namespace  gf = geofeatures;
 
@@ -37,7 +35,7 @@ namespace  gf = geofeatures;
     /**
      * Initialize this GFGeometryCollection with an internal GeometryCollection implementation.
      */
-    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection) aGeometryCollection;
+    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection<>) aGeometryCollection;
 
 @end
 

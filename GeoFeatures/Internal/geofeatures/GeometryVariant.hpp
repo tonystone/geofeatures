@@ -50,7 +50,7 @@ namespace geofeatures {
                 geofeatures::Ring,
                 geofeatures::Polygon,
                 geofeatures::MultiPolygon,
-                geofeatures::GeometryCollection>  GeometryVariant;
+                geofeatures::GeometryCollection<>>  GeometryVariant;
 
     typedef boost::variant<
                 geofeatures::Point *,
@@ -61,7 +61,7 @@ namespace geofeatures {
                 geofeatures::Ring *,
                 geofeatures::Polygon *,
                 geofeatures::MultiPolygon *,
-                geofeatures::GeometryCollection *>  GeometryPtrVariant;
+                geofeatures::GeometryCollection<> *>  GeometryPtrVariant;
 
 }   // namespace geofeatures
 

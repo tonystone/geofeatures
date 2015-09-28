@@ -28,6 +28,7 @@
 
 #include "Geometry.hpp"
 #include "Point.hpp"
+#include "Collection.hpp"
 
 #include <boost/concept/requires.hpp>
 
@@ -43,11 +44,6 @@ namespace geofeatures {
     class Point;
 
     /**
-    * Base type for Ring class
-    */
-    typedef std::vector<geofeatures::Point> MultiPointBaseType;
-
-    /**
     * @class       MultiPoint
     *
     * @brief       A Collection of Points.
@@ -55,22 +51,15 @@ namespace geofeatures {
     * @author      Tony Stone
     * @date        6/9/15
     */
-    class MultiPoint : public Geometry, public MultiPointBaseType {
+    class MultiPoint : public Geometry, public Collection <geofeatures::Point> {
+
+    private:
+        typedef Collection <geofeatures::Point> BaseType;
 
     public:
-        inline MultiPoint() noexcept : Geometry(), MultiPointBaseType() {}
+        inline MultiPoint() noexcept : Geometry(), BaseType() {}
         inline virtual ~MultiPoint() noexcept {};
     };
-
-    /** @defgroup BoostRangeIterators
-    *
-    * @{
-    */
-    inline MultiPointBaseType::iterator range_begin(MultiPoint& mp) {return mp.begin();}
-    inline MultiPointBaseType::iterator range_end(MultiPoint& mp) {return mp.end();}
-    inline MultiPointBaseType::const_iterator range_begin(const MultiPoint& mp) {return mp.begin();}
-    inline MultiPointBaseType::const_iterator range_end(const MultiPoint& mp) {return mp.end();}
-    /** @} */
     
 }   // namespace geofeatures
 
@@ -87,11 +76,11 @@ namespace geofeatures_boost {
 
     template<>
     struct range_iterator<geofeatures::MultiPoint>
-    { typedef geofeatures::MultiPointBaseType::iterator type; };
+    { typedef typename geofeatures::MultiPoint::iterator type; };
 
     template<>
     struct range_const_iterator<geofeatures::MultiPoint>
-    { typedef geofeatures::MultiPointBaseType::const_iterator type; };
+    { typedef typename geofeatures::MultiPoint::const_iterator type; };
 
 } // namespace boost
 

@@ -42,7 +42,7 @@ namespace geofeatures {
                 return boost::geometry::area(*v);
             }
 
-            double operator()(const GeometryCollection * v) const {
+            double operator()(const GeometryCollection<> * v) const {
                 return 0.0;
             }
 

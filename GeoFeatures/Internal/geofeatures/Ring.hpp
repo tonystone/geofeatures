@@ -28,6 +28,7 @@
 
 #include "Geometry.hpp"
 #include "Point.hpp"
+#include "Collection.hpp"
 
 #include <boost/geometry/core/closure.hpp>
 #include <boost/geometry/core/point_order.hpp>
@@ -40,11 +41,6 @@
 namespace geofeatures {
 
     /**
-    * Base type for Ring class
-    */
-    typedef std::vector<geofeatures::Point> RingBaseType;
-
-    /**
      * @class       Ring
      *
      * @brief       A Ring of Points.
@@ -52,27 +48,20 @@ namespace geofeatures {
      * @author      Tony Stone
      * @date        6/9/15
      */
-    class Ring : public Geometry, public RingBaseType {
+    class Ring : public Geometry, public Collection <geofeatures::Point> {
+
+    private:
+        typedef Collection <geofeatures::Point> BaseType;
 
     public:
-        inline Ring() noexcept : Geometry(), RingBaseType() {}
-        inline Ring(Ring & other) noexcept : Geometry(), RingBaseType(other) {}
-        inline Ring(Ring const & other) noexcept : Geometry(), RingBaseType(other) {}
-        inline Ring(RingBaseType & other) noexcept : Geometry(), RingBaseType(other) {}
-        inline Ring(RingBaseType const & other) noexcept : Geometry(), RingBaseType(other) {}
+        inline Ring() noexcept : Geometry(), BaseType() {}
+        inline Ring(Ring & other) noexcept : Geometry(), BaseType(other) {}
+        inline Ring(Ring const & other) noexcept : Geometry(), BaseType(other) {}
+        inline Ring(BaseType & other) noexcept : Geometry(), BaseType(other) {}
+        inline Ring(BaseType const & other) noexcept : Geometry(), BaseType(other) {}
         
         inline virtual ~Ring() noexcept {};
     };
-
-    /** @defgroup BoostRangeIterators
-    *
-    * @{
-    */
-    inline geofeatures::RingBaseType::iterator range_begin(Ring& r) {return r.begin();}
-    inline geofeatures::RingBaseType::iterator range_end(Ring& r) {return r.end();}
-    inline geofeatures::RingBaseType::const_iterator range_begin(const Ring& r) {return r.begin();}
-    inline geofeatures::RingBaseType::const_iterator range_end(const Ring& r) {return r.end();}
-    /** @} */
     
 }   // namespace geofeatures
 
@@ -99,11 +88,11 @@ namespace geofeatures_boost {
 
     template<>
     struct range_iterator<geofeatures::Ring>
-    { typedef geofeatures::RingBaseType::iterator type; };
+    { typedef typename geofeatures::Ring::iterator type; };
 
     template<>
     struct range_const_iterator<geofeatures::Ring>
-    { typedef geofeatures::RingBaseType::const_iterator type; };
+    { typedef typename geofeatures::Ring::const_iterator type; };
 
 } // namespace boost
 

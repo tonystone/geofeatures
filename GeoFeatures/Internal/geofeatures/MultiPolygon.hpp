@@ -28,6 +28,7 @@
 
 #include "Geometry.hpp"
 #include "Polygon.hpp"
+#include "Collection.hpp"
 
 #include <boost/geometry/core/access.hpp>
 #include <boost/geometry/core/coordinate_type.hpp>
@@ -40,11 +41,6 @@
 namespace geofeatures {
 
     /**
-    * Base type for MultiPolygon class
-    */
-    typedef std::vector<geofeatures::Polygon> MultiPolygonBaseType;
-
-    /**
     * @class       MultiPolygon
     *
     * @brief       A Collection of Polygons.
@@ -52,25 +48,19 @@ namespace geofeatures {
     * @author      Tony Stone
     * @date        6/9/15
     */
-    class MultiPolygon : public Geometry, public MultiPolygonBaseType {
+    class MultiPolygon : public Geometry, public Collection <geofeatures::Polygon> {
+
+    private:
+        typedef Collection <geofeatures::Polygon> BaseType;
 
     public:
 
-        inline MultiPolygon () noexcept : Geometry(), MultiPolygonBaseType() {}
-        inline MultiPolygon (MultiPolygonBaseType & polygons) noexcept : Geometry(), MultiPolygonBaseType(polygons) {}
+        inline MultiPolygon () noexcept : Geometry(), BaseType() {}
+        inline MultiPolygon (BaseType & polygons) noexcept : Geometry(), BaseType(polygons) {}
 
         inline virtual ~MultiPolygon() {};
     };
 
-    /** @defgroup BoostRangeIterators
-    *
-    * @{
-    */
-    inline MultiPolygonBaseType::iterator range_begin(MultiPolygon& mp) {return mp.begin();}
-    inline MultiPolygonBaseType::iterator range_end(MultiPolygon& mp) {return mp.end();}
-    inline MultiPolygonBaseType::const_iterator range_begin(const MultiPolygon& mp) {return mp.begin();}
-    inline MultiPolygonBaseType::const_iterator range_end(const MultiPolygon& mp) {return mp.end();}
-    /** @} */
 
 }   // namespace geofeatures
 
@@ -87,11 +77,11 @@ namespace geofeatures_boost {
 
     template<>
     struct range_iterator<geofeatures::MultiPolygon>
-    { typedef geofeatures::MultiPolygonBaseType::iterator type; };
+    { typedef typename geofeatures::MultiPolygon::iterator type; };
 
     template<>
     struct range_const_iterator<geofeatures::MultiPolygon>
-    { typedef geofeatures::MultiPolygonBaseType::const_iterator type; };
+    { typedef typename geofeatures::MultiPolygon::const_iterator type; };
 
 } // namespace boost
 
