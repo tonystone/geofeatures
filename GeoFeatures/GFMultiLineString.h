@@ -190,7 +190,7 @@
 
     /** Sets the GFLineString at the given index.
      *
-     * @param aLineString The GFLineString with which to replace the GFLineString at index index in the GFMutableMultiLineString. This value must not be nil.
+     * @param aLineString The GFLineString with which to replace the GFLineString at index in the GFMutableMultiLineString. This value must not be nil.
      * @param index  The index of the GFLineString to be replaced. This value must not exceed the bounds of the GFMutableMultiLineString.
      *
      * Example:

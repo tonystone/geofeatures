@@ -184,7 +184,7 @@
 
     /** Sets the GFPoint at the given index.
      *
-     * @param aPoint The GFPoint with which to replace the GFPoint at index index in the GFMutableMultiPoint. This value must not be nil.
+     * @param aPoint The GFPoint with which to replace the GFPoint at index in the GFMutableMultiPoint. This value must not be nil.
      * @param index  The index of the GFPoint to be replaced. This value must not exceed the bounds of the GFMutableMultiPoint.
      *
      * Example:
