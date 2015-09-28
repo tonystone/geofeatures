@@ -93,7 +93,7 @@ namespace gf = geofeatures;
         auto size = _geometryCollection.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -132,7 +132,7 @@ namespace gf = geofeatures;
         auto size = _geometryCollection.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -191,7 +191,7 @@ namespace gf = geofeatures;
             [NSException raise: NSInvalidArgumentException format: @"aGeometry can not be nil."];
         }
         if (index > _geometryCollection.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         if (![aGeometry isKindOfClass: [GFGeometry class]]) {
             [NSException raise: NSInvalidArgumentException format: @"Invalid class, aGeometry must be of type GFGeometry or a subclass of GFGeometry."];
@@ -206,7 +206,7 @@ namespace gf = geofeatures;
 
     - (void) removeGeometryAtIndex: (NSUInteger) index {
         if (index >= _geometryCollection.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         _geometryCollection.erase(_geometryCollection.begin() + index);
     }

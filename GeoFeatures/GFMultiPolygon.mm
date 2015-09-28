@@ -112,7 +112,7 @@ namespace gf = geofeatures;
         auto size = _multiPolygon.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) (unsigned long) (unsigned long) _multiPolygon.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -147,7 +147,7 @@ namespace gf = geofeatures;
         auto size = _multiPolygon.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -218,7 +218,7 @@ namespace gf = geofeatures;
             [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
         }
         if (index > _multiPolygon.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
         }
         // TODO: Handle bad_alloc?
         _multiPolygon.insert(_multiPolygon.begin() + index, [aPolygon cppConstPolygonReference]);
@@ -230,7 +230,7 @@ namespace gf = geofeatures;
 
     - (void) removeGeometryAtIndex: (NSUInteger) index {
         if (index >= _multiPolygon.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
         }
         _multiPolygon.erase(_multiPolygon.begin() + index);
     }

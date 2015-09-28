@@ -104,7 +104,7 @@ namespace gf = geofeatures;
         auto size = _multiLineString.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiLineString.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -139,7 +139,7 @@ namespace gf = geofeatures;
         auto size = _multiLineString.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiLineString.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -210,7 +210,7 @@ namespace gf = geofeatures;
             [NSException raise: NSInvalidArgumentException format: @"aLineString can not be nil."];
         }
         if (index > _multiLineString.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiLineString.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         // TODO: Handle bad_alloc?
         _multiLineString.insert(_multiLineString.begin() + index, [aLineString cppConstLineStringReference]);
@@ -222,7 +222,7 @@ namespace gf = geofeatures;
 
     - (void) removeGeometryAtIndex: (NSUInteger) index {
         if (index >= _multiLineString.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiLineString.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         _multiLineString.erase(_multiLineString.begin() + index);
     }

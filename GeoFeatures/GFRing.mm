@@ -119,7 +119,7 @@ namespace gf = geofeatures;
         const auto size = _ring.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -154,7 +154,7 @@ namespace gf = geofeatures;
         const auto size = _ring.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -255,7 +255,7 @@ namespace gf = geofeatures;
             [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
         }
         if (index > _ring.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
         // TODO: Handle bad_alloc?
         _ring.insert(_ring.begin() + index, gf::Point([aPoint x], [aPoint y]));
@@ -268,7 +268,7 @@ namespace gf = geofeatures;
     - (void) removePointAtIndex: (NSUInteger) index {
 
         if (index >= _ring.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
         _ring.erase(_ring.begin() + index);
     }

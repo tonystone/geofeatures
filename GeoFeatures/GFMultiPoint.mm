@@ -100,7 +100,7 @@ namespace gf = geofeatures;
         auto size = _multiPoint.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -135,7 +135,7 @@ namespace gf = geofeatures;
         auto size = _multiPoint.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -208,7 +208,7 @@ namespace gf = geofeatures;
             [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
         }
         if (index > _multiPoint.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
         // TODO: Handle bad_alloc?
         _multiPoint.insert(_multiPoint.begin() + index, gf::Point([aPoint x], [aPoint y]));
@@ -221,7 +221,7 @@ namespace gf = geofeatures;
     - (void) removeGeometryAtIndex: (NSUInteger) index {
 
         if (index >= _multiPoint.size()) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPoint.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
         _multiPoint.erase(_multiPoint.begin() + index);
     }
