@@ -27,6 +27,7 @@
 
 #include "internal/geofeatures/MultiLineString.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"
+#import "GFGeometry+Protected.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 #include <vector>
@@ -34,6 +35,7 @@
 namespace gf = geofeatures;
 
 @implementation GFMultiLineString {
+    @protected
         gf::MultiLineString _multiLineString;
     }
 
@@ -73,14 +75,25 @@ namespace gf = geofeatures;
             //  }
             //
             for (NSArray * lineString in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _multiLineString.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(lineString));
             }
         }
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFMultiLineString *) [[self class] allocWithZone: zone] initWithCPPMultiLineString: _multiLineString];
+        return [(GFMultiLineString *) [[GFMultiLineString class] allocWithZone: zone] initWithCPPMultiLineString: _multiLineString];
+    }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableMultiLineString *) [[GFMutableMultiLineString class] allocWithZone: zone] initWithCPPMultiLineString: _multiLineString];
     }
 
 #pragma mark - Querying a GFMultiLineString
@@ -94,7 +107,7 @@ namespace gf = geofeatures;
         auto size = _multiLineString.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiLineString.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -129,7 +142,7 @@ namespace gf = geofeatures;
         auto size = _multiLineString.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiLineString.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -183,5 +196,42 @@ namespace gf = geofeatures;
         return mkOverlays;
     }
 
+@end
+
+@implementation GFMutableMultiLineString
+
+    - (void) addGeometry: (GFLineString *) aLineString {
+        if (aLineString == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aLineString can not be nil."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _multiLineString.push_back([aLineString cppConstLineStringReference]);
+    }
+
+    - (void) insertGeometry: (GFLineString *) aLineString atIndex: (NSUInteger) index {
+        if (aLineString == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aLineString can not be nil."];
+        }
+        if (index > _multiLineString.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _multiLineString.insert(_multiLineString.begin() + index, [aLineString cppConstLineStringReference]);
+    }
+
+    - (void) removeAllGeometries {
+        _multiLineString.clear();
+    }
+
+    - (void) removeGeometryAtIndex: (NSUInteger) index {
+        if (index >= _multiLineString.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
+        }
+        _multiLineString.erase(_multiLineString.begin() + index);
+    }
 
 @end

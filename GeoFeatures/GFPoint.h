@@ -21,10 +21,15 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-#pragma once
-
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
+
+
+//
+// Forward declarations
+//
+@class GFMutablePoint;
+
 
 /**
 * @class       GFPoint
@@ -34,7 +39,7 @@
 * @author      Tony Stone
 * @date        6/14/15
 */
-@interface GFPoint : GFGeometry
+@interface GFPoint : GFGeometry <NSMutableCopying>
 
     /**
     * Initialize this GFPoint with the x,y coordinates
@@ -100,5 +105,28 @@
     * Get the point's Y value.
     */
     - (double) y;
+
+@end
+
+
+/**
+* @class       GFMutablePoint
+*
+* @brief       A mutable 2 dimensional point with x,y coordinates.
+*
+* @author      Tony Stone
+* @date        9/10/15
+*/
+@interface GFMutablePoint : GFPoint
+
+    /**
+     * Set the point's X value.
+     */
+    - (void) setX: (double) x;
+
+    /**
+     * Set the point's Y value.
+     */
+    - (void) setY: (double) y;
 
 @end

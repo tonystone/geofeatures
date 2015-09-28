@@ -72,6 +72,9 @@ namespace geofeatures {
         inline RingType & outer () noexcept { return outer_; }
         inline InnerContainerType & inners () noexcept { return inners_; }
 
+        inline void setOuter(const RingType & outer) noexcept { outer_ = outer; }
+        inline void setInners(const InnerContainerType & inners) noexcept { inners_ = inners; }
+
     private:
         RingType outer_;
         InnerContainerType inners_;

@@ -60,6 +60,8 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCoding
+
     - (void)encodeWithCoder:(NSCoder *)coder {
         [coder encodeObject: [self toWKTString] forKey: @"WKT"];
     }
@@ -70,9 +72,19 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo:nil];
     }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException reason: [NSString stringWithFormat: @"%@#%@ must be overriden by the subclass.", NSStringFromClass([self class]), NSStringFromSelector(_cmd)] userInfo: nil];
+    }
+
+#pragma mark - Public Interface
 
     - (BOOL) isValid {
         try {

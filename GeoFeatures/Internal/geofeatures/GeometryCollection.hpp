@@ -71,6 +71,7 @@ namespace geofeatures {
     private:
         typedef Collection <T, Allocator> BaseType;
 
+
     public:
         inline GeometryCollection() noexcept : Geometry(), BaseType() {}
         inline GeometryCollection(const GeometryCollection & other) noexcept : Geometry(), BaseType(other) {}

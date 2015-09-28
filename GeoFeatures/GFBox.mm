@@ -39,10 +39,12 @@ namespace gf = geofeatures;
  * @author      Tony Stone
  * @date        6/8/15
  */
-
 @implementation GFBox {
+    @protected
         gf::Box _box;
     }
+
+#pragma mark - Construction
 
     - (instancetype) initWithMinCorner:(GFPoint *) minCorner maxCorner:(GFPoint *) maxCorner {
         NSParameterAssert(minCorner != nil);
@@ -53,8 +55,8 @@ namespace gf = geofeatures;
             _box.minCorner().set<0>([minCorner x]);
             _box.minCorner().set<1>([minCorner y]);
 
-            _box.maxCorner().set<0>([minCorner x]);
-            _box.maxCorner().set<1>([minCorner y]);
+            _box.maxCorner().set<0>([maxCorner x]);
+            _box.maxCorner().set<1>([maxCorner y]);
         }
         return self;
     }
@@ -103,9 +105,19 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFBox *)[[self class] allocWithZone:zone] initWithCPPBox: _box];
+        return [(GFBox *)[[GFBox class] allocWithZone:zone] initWithCPPBox: _box];
     }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableBox *) [[GFMutableBox class] allocWithZone:zone] initWithCPPBox: _box];
+    }
+
+#pragma mark - Read Accessors
 
     - (GFPoint *) minCorner {
         return [[GFPoint alloc] initWithCPPPoint: _box.minCorner()];
@@ -164,6 +176,21 @@ namespace gf = geofeatures;
 
     - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
         return gf::GeometryPtrVariant(&_box);
+    }
+
+@end
+
+
+@implementation GFMutableBox : GFBox
+
+    - (void) setMinCorner: (GFPoint *) minCorner {
+        _box.minCorner().set<0>([minCorner x]);
+        _box.minCorner().set<1>([minCorner y]);
+    }
+
+    - (void) setMaxCorner: (GFPoint *) maxCorner {
+        _box.maxCorner().set<0>([maxCorner x]);
+        _box.maxCorner().set<1>([maxCorner y]);
     }
 
 @end

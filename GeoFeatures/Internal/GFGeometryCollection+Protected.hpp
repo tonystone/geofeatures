@@ -23,6 +23,7 @@
 #define __GFGeometryCollectionProtected_hpp
 
 #import <Foundation/Foundation.h>
+#import <GeoFeatures/internal/geofeatures/GeometryCollection.hpp>
 #import "GFGeometryCollection.h"
 
 // Note: we must specifically include GeometryCollection.hpp here instead of forward declaring GeometryCollection
@@ -36,6 +37,8 @@ namespace  gf = geofeatures;
      * Initialize this GFGeometryCollection with an internal GeometryCollection implementation.
      */
     - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection<>) aGeometryCollection;
+
+    - (const gf::GeometryCollection<> &) cppConstGeometryCollectionReference;
 
 @end
 

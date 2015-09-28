@@ -21,7 +21,6 @@
 *  MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
 
@@ -119,5 +118,27 @@
     * @return The maxCorner GFPoint from this GFBox
     */
     - (GFPoint *) maxCorner;
+
+@end
+
+/**
+* @class       GFMutableBox
+*
+* @brief       GFMutableBox represents a mutable GFBox.
+*
+* @author      Tony Stone
+* @date        9/23/15
+*/
+@interface GFMutableBox : GFBox
+
+    /**
+     * Set the minCorner GFPoint of this GFMutableBox.
+     */
+    - (void) setMinCorner: (GFPoint *) minCorner;
+
+    /**
+     * Set the maxCorner GFPoint of this GFMutableBox
+     */
+    - (void) setMaxCorner: (GFPoint *) maxCorner;
 
 @end

@@ -17,7 +17,6 @@
 *
 *   Created by Tony Stone on 08/29/15.
 */
-
 #import <Foundation/Foundation.h>
 #import "GFLineString.h"
 
@@ -99,5 +98,40 @@
     * @endparblock
     */
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+
+@end
+
+/**
+ * @class       GFMutableRing
+ *
+ * @brief       A mutable version GFRing.
+ *
+ * @author      Tony Stone
+ * @date        9/24/15
+ */
+@interface GFMutableRing : GFRing
+
+    /** Inserts a given GFPoint at the end of the GFMutableRing.
+     *
+     * @throws An NSInvalidArgumentException if aPoint is nil.
+     */
+    - (void) addPoint: (GFPoint *) aPoint;
+
+    /** Inserts a given GFPoint into the GFMutableRing’s contents at a given index.
+     *
+     * @throws An NSRangeException if index is greater than the number of elements in the GFMutableRing.
+     * @throws An NSInvalidArgumentException if aPoint is nil.
+     */
+    - (void) insertPoint: (GFPoint *) aPoint atIndex: (NSUInteger) index;
+
+    /** Empties the GFMutableRing of all its GFPoints.
+     */
+    - (void) removeAllPoints;
+
+    /** Removes the GFPoint at index.
+     *
+     * @throws An exception NSRangeException if index is beyond the end of the GFMutableRing.
+     */
+    - (void) removePointAtIndex: (NSUInteger) index;
 
 @end

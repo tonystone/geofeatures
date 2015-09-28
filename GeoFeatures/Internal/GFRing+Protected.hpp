@@ -38,6 +38,8 @@ namespace  gf = geofeatures;
      */
     - (instancetype) initWithCPPRing: (gf::Ring) aRing;
 
+    - (const gf::Ring &) cppConstRingReference;
+
 @end
 
 #endif // __GFRingProtected_hpp

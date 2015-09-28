@@ -21,7 +21,6 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import "GFGeometryCollection.h"
 
@@ -163,5 +162,41 @@
      * @since 1.1.0
      */
     - (id) objectAtIndexedSubscript: (NSUInteger) index;
+
+@end
+
+
+/**
+ * @class       GFMutableMultiPolygon
+ *
+ * @brief       A mutable version GFMultiPolygon.
+ *
+ * @author      Tony Stone
+ * @date        9/24/15
+ */
+@interface GFMutableMultiPolygon : GFMultiPolygon
+
+    /** Inserts a given GFPolygon at the end of the GFMutableMultiPolygon.
+     *
+     * @throws An NSInvalidArgumentException if GFPolygon is nil.
+     */
+    - (void) addGeometry: (GFPolygon *) aPolygon;
+
+    /** Inserts a given GFPolygon into the GFMutableMultiPolygon’s contents at a given index.
+     *
+     * @throws An NSRangeException if index is greater than the number of elements in the GFMutableMultiPolygon.
+     * @throws An NSInvalidArgumentException if GFPolygon is nil.
+     */
+    - (void) insertGeometry: (GFPolygon *) aPolygon atIndex: (NSUInteger) index;
+
+    /** Empties the GFMutableMultiPolygon of all its GFPolygons.
+     */
+    - (void) removeAllGeometries;
+
+    /** Removes the GFPolygon at index.
+     *
+     * @throws An exception NSRangeException if index is beyond the end of the GFMutableMultiPolygon.
+     */
+    - (void) removeGeometryAtIndex: (NSUInteger) index;
 
 @end

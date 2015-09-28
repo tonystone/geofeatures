@@ -35,6 +35,7 @@
 namespace gf = geofeatures;
 
 @implementation GFMultiPolygon {
+    @protected
         gf::MultiPolygon _multiPolygon;
     }
 
@@ -82,14 +83,25 @@ namespace gf = geofeatures;
             //  }
             //
             for (NSArray * polygon in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _multiPolygon.push_back(gf::GFPolygon::polygonWithGeoJSONCoordinates(polygon));
             }
         }
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFMultiPolygon *) [[self class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
+        return [(GFMultiPolygon *) [[GFMultiPolygon class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
+    }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableMultiPolygon *) [[GFMutableMultiPolygon class] allocWithZone: zone] initWithCPPMultiPolygon: _multiPolygon];
     }
 
 #pragma mark - Querying a GFMultiPolygon
@@ -103,7 +115,7 @@ namespace gf = geofeatures;
         auto size = _multiPolygon.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) (unsigned long) (unsigned long) _multiPolygon.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -138,7 +150,7 @@ namespace gf = geofeatures;
         auto size = _multiPolygon.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _multiPolygon.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -190,6 +202,44 @@ namespace gf = geofeatures;
             [mkPolygons addObject: gf::GFPolygon::mkOverlayWithPolygon(*it)];
         }
         return mkPolygons;
+    }
+
+@end
+
+@implementation GFMutableMultiPolygon
+
+    - (void) addGeometry: (GFPolygon *) aPolygon {
+        if (aPolygon == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _multiPolygon.push_back([aPolygon cppConstPolygonReference]);
+    }
+
+    - (void) insertGeometry: (GFPolygon *) aPolygon atIndex: (NSUInteger) index {
+        if (aPolygon == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
+        }
+        if (index > _multiPolygon.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _multiPolygon.insert(_multiPolygon.begin() + index, [aPolygon cppConstPolygonReference]);
+    }
+
+    - (void) removeAllGeometries {
+        _multiPolygon.clear();
+    }
+
+    - (void) removeGeometryAtIndex: (NSUInteger) index {
+        if (index >= _multiPolygon.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
+        }
+        _multiPolygon.erase(_multiPolygon.begin() + index);
     }
 
 @end

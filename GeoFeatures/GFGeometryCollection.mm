@@ -32,10 +32,11 @@
 namespace gf = geofeatures;
 
 @implementation GFGeometryCollection {
+    @protected
         gf::GeometryCollection<>  _geometryCollection;
     }
 
-#pragma mark - Public methods
+#pragma mark - Construction
 
     - (instancetype)initWithArray:(NSArray *)array {
         NSParameterAssert(array != nil);
@@ -50,15 +51,41 @@ namespace gf = geofeatures;
                 if (![geometry isKindOfClass: [GFGeometry class]]) {
                     @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
                 }
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _geometryCollection.push_back([geometry cppGeometryVariant]);
             }
         }
         return self;
     }
 
-    - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFGeometryCollection *)[[self class] allocWithZone:zone] initWithCPPGeometryCollection: _geometryCollection];
+    - (instancetype)initWithWKT: (NSString *) wkt {
+
+        if (self = [super init]) {
+            try {
+                gf::io::readWKT([wkt cStringUsingEncoding: NSUTF8StringEncoding], _geometryCollection);
+
+            } catch (std::exception & e) {
+                @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
+            }
+        }
+        return self;
     }
+
+#pragma mark - NSCopying
+
+    - (id) copyWithZone:(struct _NSZone *)zone {
+        return [(GFGeometryCollection *) [[GFGeometryCollection class] allocWithZone: zone] initWithCPPGeometryCollection: _geometryCollection];
+    }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableGeometryCollection *) [[GFMutableGeometryCollection class] allocWithZone: zone] initWithCPPGeometryCollection: _geometryCollection];
+    }
+
+#pragma mark - Querying a GFGeometryCollection
 
     - (NSUInteger)count {
         return _geometryCollection.size();
@@ -69,7 +96,7 @@ namespace gf = geofeatures;
         auto size = _geometryCollection.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -97,21 +124,6 @@ namespace gf = geofeatures;
         return nil;
     }
 
-#pragma mark - Protected methods
-
-    - (instancetype)initWithWKT: (NSString *) wkt {
-
-        if (self = [super init]) {
-            try {
-                gf::io::readWKT([wkt cStringUsingEncoding: NSUTF8StringEncoding], _geometryCollection);
-
-            } catch (std::exception & e) {
-                @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
-            }
-        }
-        return self;
-    }
-
     - (NSDictionary *)toGeoJSONGeometry {
         return [super toGeoJSONGeometry];
     }
@@ -123,7 +135,7 @@ namespace gf = geofeatures;
         auto size = _geometryCollection.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _geometryCollection.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -147,12 +159,63 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (const gf::GeometryCollection<> &) cppConstGeometryCollectionReference {
+        return _geometryCollection;
+    }
+
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_geometryCollection);
     }
 
     - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
         return gf::GeometryPtrVariant(&_geometryCollection);
+    }
+
+@end
+
+
+@implementation GFMutableGeometryCollection
+
+    - (void) addGeometry: (id) aGeometry {
+
+        if (aGeometry == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aGeometry can not be nil."];
+        }
+        if (![aGeometry isKindOfClass: [GFGeometry class]]) {
+            [NSException raise: NSInvalidArgumentException format: @"Invalid class, aGeometry must be of type GFGeometry or a subclass of GFGeometry."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _geometryCollection.push_back([aGeometry cppGeometryVariant]);
+    }
+
+    - (void) insertGeometry: (id) aGeometry atIndex: (NSUInteger) index {
+
+        if (aGeometry == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aGeometry can not be nil."];
+        }
+        if (index > _geometryCollection.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
+        }
+        if (![aGeometry isKindOfClass: [GFGeometry class]]) {
+            [NSException raise: NSInvalidArgumentException format: @"Invalid class, aGeometry must be of type GFGeometry or a subclass of GFGeometry."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _geometryCollection.insert(_geometryCollection.begin() + index, [aGeometry cppGeometryVariant]);
+    }
+
+    - (void) removeAllGeometries {
+        _geometryCollection.clear();
+    }
+
+    - (void) removeGeometryAtIndex: (NSUInteger) index {
+        if (index >= _geometryCollection.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
+        }
+        _geometryCollection.erase(_geometryCollection.begin() + index);
     }
 
 @end

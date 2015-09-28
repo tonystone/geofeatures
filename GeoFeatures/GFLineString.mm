@@ -37,8 +37,11 @@
 namespace gf = geofeatures;
 
 @implementation GFLineString {
+    @protected
         gf::LineString _lineString;
     }
+
+#pragma mark - Construction
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
@@ -69,8 +72,16 @@ namespace gf = geofeatures;
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFLineString *)[[self class] allocWithZone:zone] initWithCPPLineString: _lineString];
+        return [(GFLineString *) [[GFLineString class] allocWithZone: zone] initWithCPPLineString: _lineString];
+    }
+
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableLineString *) [[GFMutableLineString class] allocWithZone: zone] initWithCPPLineString: _lineString];
     }
 
 #pragma mark - Querying a GFLineSting
@@ -84,7 +95,7 @@ namespace gf = geofeatures;
         auto size = _lineString.size();
         
         if (size == 0 || index > (size -1)) {
-            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, _lineString.size()];
+            [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _lineString.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -119,7 +130,7 @@ namespace gf = geofeatures;
         auto size = _lineString.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _lineString.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _lineString.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -151,6 +162,10 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (const gf::LineString &) cppConstLineStringReference {
+        return _lineString;
+    }
+
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_lineString);
     }
@@ -160,3 +175,45 @@ namespace gf = geofeatures;
     }
 
 @end
+
+@implementation GFMutableLineString
+
+    - (void) addPoint: (GFPoint *) aPoint {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _lineString.push_back(gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) insertPoint: (GFPoint *) aPoint atIndex: (NSUInteger) index {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        if (index > _lineString.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _lineString.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _lineString.insert(_lineString.begin() + index, gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) removeAllPoints {
+        _lineString.clear();
+    }
+
+    - (void) removePointAtIndex: (NSUInteger) index {
+
+        if (index >= _lineString.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _lineString.size()];
+        }
+        _lineString.erase(_lineString.begin() + index);
+    }
+
+@end
+

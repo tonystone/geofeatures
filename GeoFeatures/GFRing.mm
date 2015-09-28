@@ -35,8 +35,11 @@
 namespace gf = geofeatures;
 
 @implementation GFRing {
+    @protected
         gf::Ring _ring;
     }
+
+#pragma mark - Construction
 
     - (instancetype) initWithWKT:(NSString *)wkt {
         NSParameterAssert(wkt != nil);
@@ -88,16 +91,26 @@ namespace gf = geofeatures;
             //
 
             for (NSArray * coordinate in coordinates) {
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
                 _ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
             }
         }
         return self;
     }
 
+#pragma mark - NSCopying
+
     - (id) copyWithZone:(struct _NSZone *)zone {
-        return [(GFRing *) [[self class] allocWithZone: zone] initWithCPPRing: _ring];
+        return [(GFRing *) [[GFRing class] allocWithZone: zone] initWithCPPRing: _ring];
     }
 
+#pragma mark - NSMutableCopying
+
+    - (id) mutableCopyWithZone: (NSZone *) zone {
+        return [(GFMutableRing *) [[GFMutableRing class] allocWithZone: zone] initWithCPPRing: _ring];
+    }
 #pragma mark - Querying a GFLineSting
 
     - (NSUInteger) count {
@@ -109,7 +122,7 @@ namespace gf = geofeatures;
         const auto size = _ring.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -144,7 +157,7 @@ namespace gf = geofeatures;
         const auto size = _ring.size();
 
         if (size == 0 || index > (size -1)) {
-            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, _ring.size()];
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
         }
         //
         // Note: We use operator[] below because we've
@@ -214,12 +227,57 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (const gf::Ring &) cppConstRingReference {
+        return _ring;
+    }
+
     - (gf::GeometryVariant) cppGeometryVariant {
         return gf::GeometryVariant(_ring);
     }
 
     - (gf::GeometryPtrVariant) cppGeometryPtrVariant {
         return gf::GeometryPtrVariant(&_ring);
+    }
+
+@end
+
+@implementation GFMutableRing
+
+    - (void) addPoint: (GFPoint *) aPoint {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _ring.push_back(gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) insertPoint: (GFPoint *) aPoint atIndex: (NSUInteger) index {
+
+        if (aPoint == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPoint can not be nil."];
+        }
+        if (index > _ring.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        _ring.insert(_ring.begin() + index, gf::Point([aPoint x], [aPoint y]));
+    }
+
+    - (void) removeAllPoints {
+        _ring.clear();
+    }
+
+    - (void) removePointAtIndex: (NSUInteger) index {
+
+        if (index >= _ring.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _ring.size()];
+        }
+        _ring.erase(_ring.begin() + index);
     }
 
 @end

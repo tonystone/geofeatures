@@ -18,6 +18,7 @@ GeoFeatures is a lightweight, high performance geometry library for Objective-C.
 - Easy to use.
 - Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, Box and GeometryCollection implementations.
 - Area, Length, BoundingBox, Centroid, Perimeter, Union, and Within (point in polygon) algorithms.  More coming soon.
+- Immutable and mutable versions of all classes (e.g. `GFPolygon` and `GFMutablePolygon`).
 - [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
 - [GeoJSON] (http://geojson.org/) input and output.
 - MapKit representations and drawing.

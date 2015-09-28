@@ -21,7 +21,6 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
-
 #import <Foundation/Foundation.h>
 #import "GFGeometryCollection.h"
 
@@ -146,5 +145,41 @@
      * @since 1.1.0
      */
     - (id) objectAtIndexedSubscript: (NSUInteger) index;
+
+@end
+
+
+/**
+ * @class       GFMutableMultiPoint
+ *
+ * @brief       A mutable version GFMultiPoint.
+ *
+ * @author      Tony Stone
+ * @date        9/24/15
+ */
+@interface GFMutableMultiPoint : GFMultiPoint
+
+    /** Inserts a given GFPoint at the end of the GFMutableMultiPoint.
+     *
+     * @throws An NSInvalidArgumentException if aPoint is nil.
+     */
+    - (void) addGeometry: (GFPoint *) aPoint;
+
+    /** Inserts a given GFPoint into the GFMutableMultiPoint’s contents at a given index.
+     *
+     * @throws An NSRangeException if index is greater than the number of elements in the GFMutableMultiPoint.
+     * @throws An NSInvalidArgumentException if aPoint is nil.
+     */
+    - (void) insertGeometry: (GFPoint *) aPoint atIndex: (NSUInteger) index;
+
+    /** Empties the GFMutableMultiPoint of all its GFPoints.
+     */
+    - (void) removeAllGeometries;
+
+    /** Removes the GFPoint at index.
+     *
+     * @throws An exception NSRangeException if index is beyond the end of the GFMutableMultiPoint.
+     */
+    - (void) removeGeometryAtIndex: (NSUInteger) index;
 
 @end
