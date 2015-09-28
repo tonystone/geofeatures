@@ -137,7 +137,7 @@ namespace gf = geofeatures;
 
 #pragma mark - Indexed Subscripting
 
-    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+    - (GFLineString *) objectAtIndexedSubscript: (NSUInteger) index {
 
         auto size = _multiLineString.size();
 

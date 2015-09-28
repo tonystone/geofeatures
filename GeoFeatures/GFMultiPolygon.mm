@@ -145,7 +145,7 @@ namespace gf = geofeatures;
 
 #pragma mark - Indexed Subscripting
 
-    - (id) objectAtIndexedSubscript: (NSUInteger) index {
+    - (GFPolygon *) objectAtIndexedSubscript: (NSUInteger) index {
 
         auto size = _multiPolygon.size();
 
