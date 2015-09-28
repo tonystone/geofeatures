@@ -199,4 +199,26 @@
      */
     - (void) removeGeometryAtIndex: (NSUInteger) index;
 
+    /** Sets the GFPolygon at the given index.
+     *
+     * @param aPolygon The GFPolygon with which to replace the GFPolygon at index in the GFMutableMultiPolygon. This value must not be nil.
+     * @param index  The index of the GFPolygon to be replaced. This value must not exceed the bounds of the GFMutableMultiPolygon.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *    GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
+     *
+     *    multiPolygon[0] = [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,0 90,90 90,90 0,0 0))"];
+     *    multiPolygon[1] = [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,0 80,80 80,80 0,0 0))"];
+     * }
+     * @endcode
+     *
+     * @throws NSException If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an NSRangeException is raised.
+     *
+     * @since 1.3.0
+     */
+    - (void) setObject: (GFPolygon *) aPolygon atIndexedSubscript:(NSUInteger) index;
+
 @end

@@ -242,4 +242,22 @@ namespace gf = geofeatures;
         _multiPolygon.erase(_multiPolygon.begin() + index);
     }
 
+    - (void) setObject: (GFPolygon *) aPolygon atIndexedSubscript: (NSUInteger) index {
+
+        if (aPolygon == nil) {
+            [NSException raise: NSInvalidArgumentException format: @"aPolygon can not be nil."];
+        }
+        if (index > _multiPolygon.size()) {
+            [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
+        }
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        if (index == _multiPolygon.size()) {
+            _multiPolygon.push_back([aPolygon cppConstPolygonReference]);
+        } else {
+            _multiPolygon[index] = [aPolygon cppConstPolygonReference];
+        }
+    }
+
 @end
