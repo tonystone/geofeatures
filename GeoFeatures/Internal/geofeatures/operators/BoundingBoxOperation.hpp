@@ -42,7 +42,7 @@ namespace geofeatures {
                 return boost::geometry::return_envelope<geofeatures::Box>(*v);
             }
 
-            geofeatures::Box operator()(const GeometryCollection * v) const {
+            geofeatures::Box operator()(const GeometryCollection<> * v) const {
                 // zero size box
                 return geofeatures::Box(geofeatures::Point(),geofeatures::Point());
             }

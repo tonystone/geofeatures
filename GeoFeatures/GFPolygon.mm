@@ -83,7 +83,7 @@ namespace gf = geofeatures;
     }
 
     - (GFGeometryCollection *) innerRings {
-        gf::GeometryCollection geometryCollection;
+        gf::GeometryCollection<> geometryCollection;
 
         const auto& inners  = _polygon.inners();
 

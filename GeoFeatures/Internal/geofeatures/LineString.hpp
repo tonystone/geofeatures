@@ -28,6 +28,7 @@
 
 #include "Geometry.hpp"
 #include "Point.hpp"
+#include "Collection.hpp"
 
 #include <boost/concept/assert.hpp>
 #include <boost/range.hpp>
@@ -36,14 +37,9 @@
 #include <boost/geometry/core/tags.hpp>
 
 #include <boost/geometry/geometries/concepts/point_concept.hpp>
-#include <vector>
+
 
 namespace geofeatures {
-
-    /**
-    * Base type for LineString class
-    */
-    typedef std::vector<geofeatures::Point> LineStringBaseType;
 
     /**
     * @class       LineString
@@ -53,14 +49,17 @@ namespace geofeatures {
     * @author      Tony Stone
     * @date        6/9/15
     */
-    class LineString : public Geometry, public LineStringBaseType {
+    class LineString : public Geometry, public Collection <geofeatures::Point> {
+
+    private:
+        typedef Collection <geofeatures::Point> BaseType;
 
     public:
-        inline LineString() noexcept : Geometry(), LineStringBaseType() {}
-        LineString(LineString &other) noexcept : Geometry(), LineStringBaseType(other) {}
-        LineString(LineString const &other) noexcept : Geometry(), LineStringBaseType(other) {}
-        LineString(LineStringBaseType &other) noexcept : Geometry(), LineStringBaseType(other) {}
-        LineString(LineStringBaseType const &other) noexcept : Geometry(), LineStringBaseType(other) {}
+        inline LineString() noexcept : Geometry(), BaseType() {}
+        LineString(LineString &other) noexcept : Geometry(), BaseType(other) {}
+        LineString(LineString const &other) noexcept : Geometry(), BaseType(other) {}
+        LineString(BaseType &other) noexcept : Geometry(), BaseType(other) {}
+        LineString(BaseType const &other) noexcept : Geometry(), BaseType(other) {}
 
         inline virtual ~LineString() noexcept {};
     };

@@ -42,7 +42,7 @@ namespace geofeatures {
                 return boost::geometry::is_valid(*v);
             }
 
-            bool operator()(const GeometryCollection * v) const {
+            bool operator()(const GeometryCollection<> * v) const {
                 return true;
             }
         };

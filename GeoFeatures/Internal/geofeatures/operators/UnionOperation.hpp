@@ -94,7 +94,7 @@ namespace geofeatures {
                     return tmp.front();
                 }
 
-                GeometryCollection output;
+                GeometryCollection<> output;
                 for (auto it = tmp.begin(); it != tmp.end(); ++it) {
                     output.push_back(*it);
                 }
@@ -105,23 +105,23 @@ namespace geofeatures {
             // For GeometryCollections the initial implemention of these
             // is a simple combination of the right and left hand sides.
             //
-            GeometryVariant operator()( const GeometryCollection * lhs, const GeometryCollection * rhs) const {
-                GeometryCollection output(*lhs);
+            GeometryVariant operator()( const GeometryCollection<> * lhs, const GeometryCollection<> * rhs) const {
+                GeometryCollection<> output(*lhs);
 
-                std::for_each(rhs->begin(), rhs->end(), [&output](const GeometryCollectionVariantType & item) {
+                std::for_each(rhs->begin(), rhs->end(), [&output](const GeometryCollection<>::value_type & item) {
                                   output.push_back(item);
                               });
                 return output;
             }
 
             template <typename T>
-            GeometryVariant operator()( const T * lhs, const GeometryCollection * rhs) const {
+            GeometryVariant operator()( const T * lhs, const GeometryCollection<> * rhs) const {
                 return this->operator()(rhs, lhs);  // Reverse order and chain to reverse order method
             }
 
             template <typename T>
-            GeometryVariant operator()( const GeometryCollection * lhs, const T * rhs) const {
-                GeometryCollection output(*lhs);
+            GeometryVariant operator()( const GeometryCollection<> * lhs, const T * rhs) const {
+                GeometryCollection<> output(*lhs);
 
                 output.push_back(*rhs);
 
@@ -130,7 +130,7 @@ namespace geofeatures {
 
             template <typename T, typename U>
             GeometryVariant operator()( const T * lhs, const U * rhs) const {
-                GeometryCollection collection;
+                GeometryCollection<> collection;
 
                 collection.push_back(*lhs);
                 collection.push_back(*rhs);

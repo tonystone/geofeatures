@@ -976,6 +976,9 @@
 		361F599C68C43B15B536FB94 /* dinkumware.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 89C0AD00CF453D72E1A48664 /* dinkumware.hpp */; };
 		362B12C07531F838FF62F071 /* distance_projected_point.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BF37345A33947E497703B154 /* distance_projected_point.hpp */; };
 		3661AA84FFCD3F2628777CF7 /* add_pointer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25C5961B733822241B05CEF2 /* add_pointer.hpp */; };
+		3669800B7250C3F13C815FF7 /* Allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 36698EA50878836D72179233 /* Allocator.hpp */; };
+		366982310B19662E795EDBA6 /* Collection.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 366980ED54EB5C95927F6627 /* Collection.hpp */; };
+		36698452B83F2236F561B94D /* Collection.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 366980ED54EB5C95927F6627 /* Collection.hpp */; };
 		3672B2037F8B7927A2F4C02F /* list_c.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B96D1D3207C4B95CF8C36E58 /* list_c.hpp */; };
 		36AC075AC5A3F5AA154A22E0 /* list_c.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BADEE0891224A41A3CAD4A25 /* list_c.hpp */; };
 		36B54501C4322908FF74DF52 /* register_mem_functions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F63ED36B8809DE2FA05A5692 /* register_mem_functions.hpp */; };
@@ -5366,6 +5369,8 @@
 		36288A71AB669836D0A96D88 /* cxx.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cxx.h; sourceTree = "<group>"; };
 		363169E7974875E97BD4CE30 /* move.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = move.hpp; sourceTree = "<group>"; };
 		36397A30E514E7D2B709C346 /* comma_if.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = comma_if.hpp; sourceTree = "<group>"; };
+		366980ED54EB5C95927F6627 /* Collection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Collection.hpp; sourceTree = "<group>"; };
+		36698EA50878836D72179233 /* Allocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Allocator.hpp; sourceTree = "<group>"; };
 		3673553179A9F2A1B877E834 /* apply.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = apply.hpp; sourceTree = "<group>"; };
 		36A555B9D13D20385553EE01 /* get_max_size.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = get_max_size.hpp; sourceTree = "<group>"; };
 		36A6219939F1C13A04AC3457 /* times.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = times.hpp; sourceTree = "<group>"; };
@@ -9397,6 +9402,8 @@
 				ED4F593912507EF359D577D1 /* Ring.hpp */,
 				434328B9A6B048592DE85DAA /* io */,
 				FE11A5316F2324570CB964AA /* operators */,
+				36698EA50878836D72179233 /* Allocator.hpp */,
+				366980ED54EB5C95927F6627 /* Collection.hpp */,
 			);
 			path = geofeatures;
 			sourceTree = "<group>";
@@ -13991,6 +13998,7 @@
 				B971E17D3D81FCDF4A539028 /* yield_k.hpp in Headers */,
 				826619C1F14C61B5E6A615FF /* z.h in Headers */,
 				D113AEE11124176CD77E82AB /* zos.h in Headers */,
+				36698452B83F2236F561B94D /* Collection.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16389,6 +16397,8 @@
 				39191A456CFF6872A83BF785 /* yield_k.hpp in Headers */,
 				2540BECB888BE2086BBDD53C /* z.h in Headers */,
 				E76FD18BF5E2848B5F0CB8CD /* zos.h in Headers */,
+				3669800B7250C3F13C815FF7 /* Allocator.hpp in Headers */,
+				366982310B19662E795EDBA6 /* Collection.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

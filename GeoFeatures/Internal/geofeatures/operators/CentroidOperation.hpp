@@ -42,7 +42,7 @@ namespace geofeatures {
                 return boost::geometry::return_centroid<Point>(*v);
             }
 
-            Point operator()(const GeometryCollection  * v) const {
+            Point operator()(const GeometryCollection<>  * v) const {
                 return Point();
             }
         };

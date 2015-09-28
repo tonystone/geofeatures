@@ -28,19 +28,15 @@
 
 #include "Geometry.hpp"
 #include "LineString.hpp"
+#include "Collection.hpp"
 
 #include <boost/concept/requires.hpp>
 
 #include <boost/geometry/core/tags.hpp>
 #include <boost/geometry/geometries/concepts/linestring_concept.hpp>
-#include <vector>
+
 
 namespace geofeatures {
-
-    /**
-    * Base type for MultiLineString class
-    */
-    typedef std::vector<geofeatures::LineString> MultiLineStringBaseType;
 
     /**
     * @class       MultiLineString
@@ -50,22 +46,15 @@ namespace geofeatures {
     * @author      Tony Stone
     * @date        6/9/15
     */
-    class MultiLineString : public Geometry, public MultiLineStringBaseType {
+    class MultiLineString : public Geometry, public Collection <geofeatures::LineString> {
+
+    private:
+        typedef Collection <geofeatures::LineString> BaseType;
 
     public:
-        inline MultiLineString () noexcept : Geometry(), MultiLineStringBaseType() {}
+        inline MultiLineString () noexcept : Geometry(), BaseType() {}
         inline virtual ~MultiLineString() noexcept {};
     };
-
-    /** @defgroup BoostRangeIterators
-    *
-    * @{
-    */
-    inline MultiLineStringBaseType::iterator range_begin(MultiLineString& mls) {return mls.begin();}
-    inline MultiLineStringBaseType::iterator range_end(MultiLineString& mls) {return mls.end();}
-    inline MultiLineStringBaseType::const_iterator range_begin(const MultiLineString& mls) {return mls.begin();}
-    inline MultiLineStringBaseType::const_iterator range_end(const MultiLineString& mls) {return mls.end();}
-    /** @} */
 
 }   // namespace geofeatures
 
@@ -82,11 +71,11 @@ namespace geofeatures_boost {
 
         template<>
         struct range_iterator<geofeatures::MultiLineString>
-        { typedef geofeatures::MultiLineStringBaseType::iterator type; };
+        { typedef typename geofeatures::MultiLineString::iterator type; };
 
         template<>
         struct range_const_iterator<geofeatures::MultiLineString>
-        { typedef geofeatures::MultiLineStringBaseType::const_iterator type; };
+        { typedef typename geofeatures::MultiLineString::const_iterator type; };
 
 } // namespace boost
 

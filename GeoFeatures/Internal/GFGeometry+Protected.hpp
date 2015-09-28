@@ -94,7 +94,7 @@ namespace geofeatures {
         GFGeometry * operator()(const MultiPolygon & v) const {
             return [[::GFMultiPolygon alloc] initWithCPPMultiPolygon: v];
         }
-        GFGeometry * operator()(const GeometryCollection & v) const {
+        GFGeometry * operator()(const GeometryCollection<> & v) const {
             return [[::GFGeometryCollection alloc] initWithCPPGeometryCollection: v];
         }
     };
