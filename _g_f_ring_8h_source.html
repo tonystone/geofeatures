@@ -108,23 +108,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">*   Created by Tony Stone on 08/29/15.</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#import &quot;GFLineString.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="interface_g_f_ring.html">   37</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_ring.html">GFRing</a> : <a class="code" href="interface_g_f_line_string.html">GFLineString</a> </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">@end</span></div>
-<div class="ttc" id="interface_g_f_ring_html"><div class="ttname"><a href="interface_g_f_ring.html">GFRing</a></div><div class="ttdoc">A GFRing (aka linear ring) is a closed line which should not be self intersecting. </div><div class="ttdef"><b>Definition:</b> GFRing.h:37</div></div>
-<div class="ttc" id="interface_g_f_line_string_html"><div class="ttname"><a href="interface_g_f_line_string.html">GFLineString</a></div><div class="ttdoc">A GFLineString is a collection of GFPoints. </div><div class="ttdef"><b>Definition:</b> GFLineString.h:39</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#import &quot;GFLineString.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="interface_g_f_ring.html">   36</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_ring.html">GFRing</a> : <a class="code" href="interface_g_f_line_string.html">GFLineString</a> </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="interface_g_f_mutable_ring.html">  112</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_mutable_ring.html">GFMutableRing</a> : <a class="code" href="interface_g_f_ring.html">GFRing</a></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    - (void) addPoint: (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) aPoint;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    - (void) insertPoint: (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) aPoint atIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    - (void) <a class="code" href="interface_g_f_mutable_ring.html#a98116745bd973cd9a206e289a9d501fb">removeAllPoints</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    - (void) removePointAtIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    - (void) setObject: (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) aPoint atIndexedSubscript:(NSUInteger) index;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keyword">@end</span></div>
+<div class="ttc" id="interface_g_f_mutable_ring_html_a98116745bd973cd9a206e289a9d501fb"><div class="ttname"><a href="interface_g_f_mutable_ring.html#a98116745bd973cd9a206e289a9d501fb">-[GFMutableRing removeAllPoints]</a></div><div class="ttdeci">void removeAllPoints()</div></div>
+<div class="ttc" id="interface_g_f_point_html"><div class="ttname"><a href="interface_g_f_point.html">GFPoint</a></div><div class="ttdoc">A 2 dimensional point with x,y coordinates. </div><div class="ttdef"><b>Definition:</b> GFPoint.h:42</div></div>
+<div class="ttc" id="interface_g_f_ring_html"><div class="ttname"><a href="interface_g_f_ring.html">GFRing</a></div><div class="ttdoc">A GFRing (aka linear ring) is a closed line which should not be self intersecting. </div><div class="ttdef"><b>Definition:</b> GFRing.h:36</div></div>
+<div class="ttc" id="interface_g_f_line_string_html"><div class="ttname"><a href="interface_g_f_line_string.html">GFLineString</a></div><div class="ttdoc">A GFLineString is a collection of GFPoints. </div><div class="ttdef"><b>Definition:</b> GFLineString.h:38</div></div>
+<div class="ttc" id="interface_g_f_mutable_ring_html"><div class="ttname"><a href="interface_g_f_mutable_ring.html">GFMutableRing</a></div><div class="ttdoc">A mutable version of GFRing. </div><div class="ttdef"><b>Definition:</b> GFRing.h:112</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 14 2015 16:26:28 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 29 2015 11:29:01 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
