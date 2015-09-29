@@ -37,7 +37,7 @@
     - (void) testSetOuterRing_WithValidRing {
         GFMutablePolygon * polygon = [[GFMutablePolygon alloc] init];
 
-        [polygon setOutRing: [[GFRing alloc] initWithWKT: @"LINESTRING(100 0,200 100,200 0,100 1,100 0)"]];
+        [polygon setOuterRing: [[GFRing alloc] initWithWKT: @"LINESTRING(100 0,200 100,200 0,100 1,100 0)"]];
 
         XCTAssertEqualObjects([polygon toWKTString], @"POLYGON((100 0,200 100,200 0,100 1,100 0))");
     }
@@ -45,7 +45,7 @@
     - (void) testSetOuterRing_WithEmptyRing {
         GFMutablePolygon * polygon = [[GFMutablePolygon alloc] init];
 
-        [polygon setOutRing: [[GFRing alloc] initWithWKT: @"LINESTRING()"]];
+        [polygon setOuterRing: [[GFRing alloc] initWithWKT: @"LINESTRING()"]];
 
         XCTAssertEqualObjects([polygon toWKTString], @"POLYGON(())");
     }
@@ -53,7 +53,7 @@
     - (void) testSetOuterRing_WithNilRing {
         GFMutablePolygon * polygon = [[GFMutablePolygon alloc] init];
 
-        XCTAssertThrowsSpecificNamed([polygon setOutRing: nil], NSException, NSInvalidArgumentException);
+        XCTAssertThrowsSpecificNamed([polygon setOuterRing: nil], NSException, NSInvalidArgumentException);
     }
 
     - (void) testInnerRings_WithValidRings {
@@ -62,7 +62,7 @@
                 [[GFRing alloc] initWithWKT: @"LINESTRING(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)"]
         ]];
 
-        [polygon setOutRing: [[GFRing alloc] initWithWKT: @"LINESTRING(100 0,200 100,200 0,100 1,100 0)"]];
+        [polygon setOuterRing: [[GFRing alloc] initWithWKT: @"LINESTRING(100 0,200 100,200 0,100 1,100 0)"]];
         [polygon setInnerRings: geometryCollection];
 
         XCTAssertEqualObjects([polygon toWKTString], @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.2 0.8,100.8 0.8,100.8 0.2,100.2 0.2))");
