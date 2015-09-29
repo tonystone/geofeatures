@@ -121,7 +121,7 @@
 /**
  * @class       GFMutableGeometryCollection
  *
- * @brief       A mutable version GFGeometryCollection.
+ * @brief       A mutable version of GFGeometryCollection.
  *
  * @author      Tony Stone
  * @date        9/26/15
@@ -141,7 +141,7 @@
      */
     - (void) insertGeometry: (id) aGeometry atIndex: (NSUInteger) index;
 
-    /** Empties the GFMutableMultiPolygon of all its GFGeometries.
+    /** Empties the GFMutableGeometryCollection of all its GFGeometries.
      */
     - (void) removeAllGeometries;
 

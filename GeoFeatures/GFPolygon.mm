@@ -147,7 +147,7 @@ namespace gf = geofeatures;
 
 @implementation GFMutablePolygon
 
-    - (void) setOutRing: (GFRing *) outerRing {
+    - (void) setOuterRing: (GFRing *) outerRing {
 
         if (outerRing == nil) {
             [NSException raise: NSInvalidArgumentException format: @"outerRing cannot be nil."];

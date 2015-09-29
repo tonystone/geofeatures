@@ -104,7 +104,7 @@
 /**
  * @class       GFMutableRing
  *
- * @brief       A mutable version GFRing.
+ * @brief       A mutable version of GFRing.
  *
  * @author      Tony Stone
  * @date        9/24/15

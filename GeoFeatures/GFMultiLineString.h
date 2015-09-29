@@ -158,7 +158,7 @@
 /**
  * @class       GFMutableMultiLineString
  *
- * @brief       A mutable version GFMultiLineString.
+ * @brief       A mutable version of GFMultiLineString.
  *
  * @author      Tony Stone
  * @date        9/24/15

@@ -117,7 +117,7 @@
     /**
      * Set the outer GFRing of this GFMutablePolygon.
      */
-    - (void) setOutRing: (GFRing *) outerRing;
+    - (void) setOuterRing: (GFRing *) outerRing;
 
     /**
      * Set the inner GFRings of this GFMutablePolygon.
