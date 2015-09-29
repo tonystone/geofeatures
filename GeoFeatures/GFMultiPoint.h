@@ -152,7 +152,7 @@
 /**
  * @class       GFMutableMultiPoint
  *
- * @brief       A mutable version GFMultiPoint.
+ * @brief       A mutable version of GFMultiPoint.
  *
  * @author      Tony Stone
  * @date        9/24/15

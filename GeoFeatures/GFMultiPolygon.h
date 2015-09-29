@@ -169,7 +169,7 @@
 /**
  * @class       GFMutableMultiPolygon
  *
- * @brief       A mutable version GFMultiPolygon.
+ * @brief       A mutable version of GFMultiPolygon.
  *
  * @author      Tony Stone
  * @date        9/24/15
