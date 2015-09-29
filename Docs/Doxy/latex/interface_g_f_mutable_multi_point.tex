@@ -1,0 +1,155 @@
+\hypertarget{interface_g_f_mutable_multi_point}{}\section{G\+F\+Mutable\+Multi\+Point Class Reference}
+\label{interface_g_f_mutable_multi_point}\index{G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}}
+
+
+A mutable version of \hyperlink{interface_g_f_multi_point}{G\+F\+Multi\+Point}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Multi\+Point.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Multi\+Point\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_multi_point__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Multi\+Point\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_multi_point__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_point_ac1a8493ed42f8d8b3962841310403f11}{add\+Geometry\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_point_a054095bfcbfdddfc29e0475702437272}{insert\+Geometry\+:at\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_point_a9f7115d35aa13393ee6ab6c6fc34db8d}{remove\+All\+Geometries}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_point_a1adb9a46ecac94fdb68b9b0b06929883}{remove\+Geometry\+At\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_point_a0dc5c591bc0db094fdbb27a2db1ddd24}{set\+Object\+:at\+Indexed\+Subscript\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mutable version of \hyperlink{interface_g_f_multi_point}{G\+F\+Multi\+Point}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/24/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_multi_point_ac1a8493ed42f8d8b3962841310403f11}{}\index{G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}!add\+Geometry\+:@{add\+Geometry\+:}}
+\index{add\+Geometry\+:@{add\+Geometry\+:}!G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}}
+\subsubsection[{add\+Geometry\+:(\+G\+F\+Point $\ast$a\+Point)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) add\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_point_ac1a8493ed42f8d8b3962841310403f11}
+Inserts a given \hyperlink{interface_g_f_point}{G\+F\+Point} at the end of the \hyperlink{interface_g_f_mutable_multi_point}{G\+F\+Mutable\+Multi\+Point}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if a\+Point is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_point_a054095bfcbfdddfc29e0475702437272}{}\index{G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}!insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}}
+\index{insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}!G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}}
+\subsubsection[{insert\+Geometry\+:at\+Index\+:(\+G\+F\+Point $\ast$a\+Point,[at\+Index] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) insert\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\item[{atIndex:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_point_a054095bfcbfdddfc29e0475702437272}
+Inserts a given \hyperlink{interface_g_f_point}{G\+F\+Point} into the G\+F\+Mutable\+Multi\+Point’s contents at a given index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Range\+Exception if index is greater than the number of elements in the \hyperlink{interface_g_f_mutable_multi_point}{G\+F\+Mutable\+Multi\+Point}. \\
+\hline
+{\em An} & N\+S\+Invalid\+Argument\+Exception if a\+Point is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_point_a9f7115d35aa13393ee6ab6c6fc34db8d}{}\index{G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}!remove\+All\+Geometries@{remove\+All\+Geometries}}
+\index{remove\+All\+Geometries@{remove\+All\+Geometries}!G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}}
+\subsubsection[{remove\+All\+Geometries()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+All\+Geometries 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_point_a9f7115d35aa13393ee6ab6c6fc34db8d}
+Empties the \hyperlink{interface_g_f_mutable_multi_point}{G\+F\+Mutable\+Multi\+Point} of all its G\+F\+Points. \hypertarget{interface_g_f_mutable_multi_point_a1adb9a46ecac94fdb68b9b0b06929883}{}\index{G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}!remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}}
+\index{remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}!G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}}
+\subsubsection[{remove\+Geometry\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+Geometry\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_point_a1adb9a46ecac94fdb68b9b0b06929883}
+Removes the \hyperlink{interface_g_f_point}{G\+F\+Point} at index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & exception N\+S\+Range\+Exception if index is beyond the end of the \hyperlink{interface_g_f_mutable_multi_point}{G\+F\+Mutable\+Multi\+Point}. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_point_a0dc5c591bc0db094fdbb27a2db1ddd24}{}\index{G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}!set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}}
+\index{set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}!G\+F\+Mutable\+Multi\+Point@{G\+F\+Mutable\+Multi\+Point}}
+\subsubsection[{set\+Object\+:at\+Indexed\+Subscript\+:(\+G\+F\+Point $\ast$a\+Point,[at\+Indexed\+Subscript] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Object\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\item[{atIndexedSubscript:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_point_a0dc5c591bc0db094fdbb27a2db1ddd24}
+Sets the \hyperlink{interface_g_f_point}{G\+F\+Point} at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Point} & The \hyperlink{interface_g_f_point}{G\+F\+Point} with which to replace the \hyperlink{interface_g_f_point}{G\+F\+Point} at index in the \hyperlink{interface_g_f_mutable_multi_point}{G\+F\+Mutable\+Multi\+Point}. This value must not be nil. \\
+\hline
+{\em index} & The index of the \hyperlink{interface_g_f_point}{G\+F\+Point} to be replaced. This value must not exceed the bounds of the \hyperlink{interface_g_f_mutable_multi_point}{G\+F\+Mutable\+Multi\+Point}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_mutable_multi_point}{GFMutableMultiPoint} * multiPoint = [[\hyperlink{interface_g_f_mutable_multi_point}{GFMutableMultiPoint} alloc] 
+      init];
+
+   multiPoint[0] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(1 1)"}];
+   multiPoint[1] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(2 2)"}];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+3.\+0 
+\end{DoxySince}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Multi\+Point.\+h\end{DoxyCompactItemize}

@@ -112,40 +112,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#import &quot;GFGeometryCollection.h&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// Forward declarations</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">@class</span> <a class="code" href="interface_g_f_point.html">GFPoint</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="interface_g_f_multi_point.html">   39</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_multi_point.html">GFMultiPoint</a> : <a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    - (NSUInteger) <a class="code" href="interface_g_f_multi_point.html#afb692f3668a3631fbec6739c7fd7bf2c">count</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) geometryAtIndex: (NSUInteger) index;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) <a class="code" href="interface_g_f_multi_point.html#a2f300bc57f0010bc65da0f151b916e33">firstGeometry</a>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) <a class="code" href="interface_g_f_multi_point.html#aa0c216ccbac49420bb8694fdb3311c6b">lastGeometry</a>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    - (id) objectAtIndexedSubscript: (NSUInteger) index;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#import &quot;GFGeometryCollection.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Forward declarations</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">@class</span> <a class="code" href="interface_g_f_point.html">GFPoint</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="interface_g_f_multi_point.html">   38</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_multi_point.html">GFMultiPoint</a> : <a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    - (NSUInteger) <a class="code" href="interface_g_f_multi_point.html#afb692f3668a3631fbec6739c7fd7bf2c">count</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) geometryAtIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) <a class="code" href="interface_g_f_multi_point.html#a2f300bc57f0010bc65da0f151b916e33">firstGeometry</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) <a class="code" href="interface_g_f_multi_point.html#aa0c216ccbac49420bb8694fdb3311c6b">lastGeometry</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    - (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) objectAtIndexedSubscript: (NSUInteger) index;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="interface_g_f_mutable_multi_point.html">  160</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_mutable_multi_point.html">GFMutableMultiPoint</a> : <a class="code" href="interface_g_f_multi_point.html">GFMultiPoint</a></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    - (void) addGeometry: (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) aPoint;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    - (void) insertGeometry: (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) aPoint atIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    - (void) <a class="code" href="interface_g_f_mutable_multi_point.html#a9f7115d35aa13393ee6ab6c6fc34db8d">removeAllGeometries</a>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    - (void) removeGeometryAtIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    - (void) setObject: (<a class="code" href="interface_g_f_point.html">GFPoint</a> *) aPoint atIndexedSubscript:(NSUInteger) index;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="keyword">@end</span></div>
 <div class="ttc" id="interface_g_f_geometry_collection_html"><div class="ttname"><a href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div><div class="ttdoc">A container class containing an array of GFGeometry objects. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:36</div></div>
-<div class="ttc" id="interface_g_f_point_html"><div class="ttname"><a href="interface_g_f_point.html">GFPoint</a></div><div class="ttdoc">A 2 dimensional point with x,y coordinates. </div><div class="ttdef"><b>Definition:</b> GFPoint.h:36</div></div>
-<div class="ttc" id="interface_g_f_multi_point_html"><div class="ttname"><a href="interface_g_f_multi_point.html">GFMultiPoint</a></div><div class="ttdoc">A collection of GFPoints. </div><div class="ttdef"><b>Definition:</b> GFMultiPoint.h:39</div></div>
+<div class="ttc" id="interface_g_f_point_html"><div class="ttname"><a href="interface_g_f_point.html">GFPoint</a></div><div class="ttdoc">A 2 dimensional point with x,y coordinates. </div><div class="ttdef"><b>Definition:</b> GFPoint.h:42</div></div>
+<div class="ttc" id="interface_g_f_multi_point_html"><div class="ttname"><a href="interface_g_f_multi_point.html">GFMultiPoint</a></div><div class="ttdoc">A collection of GFPoints. </div><div class="ttdef"><b>Definition:</b> GFMultiPoint.h:38</div></div>
 <div class="ttc" id="interface_g_f_multi_point_html_aa0c216ccbac49420bb8694fdb3311c6b"><div class="ttname"><a href="interface_g_f_multi_point.html#aa0c216ccbac49420bb8694fdb3311c6b">-[GFMultiPoint lastGeometry]</a></div><div class="ttdeci">GFPoint * lastGeometry()</div></div>
+<div class="ttc" id="interface_g_f_mutable_multi_point_html"><div class="ttname"><a href="interface_g_f_mutable_multi_point.html">GFMutableMultiPoint</a></div><div class="ttdoc">A mutable version of GFMultiPoint. </div><div class="ttdef"><b>Definition:</b> GFMultiPoint.h:160</div></div>
+<div class="ttc" id="interface_g_f_mutable_multi_point_html_a9f7115d35aa13393ee6ab6c6fc34db8d"><div class="ttname"><a href="interface_g_f_mutable_multi_point.html#a9f7115d35aa13393ee6ab6c6fc34db8d">-[GFMutableMultiPoint removeAllGeometries]</a></div><div class="ttdeci">void removeAllGeometries()</div></div>
 <div class="ttc" id="interface_g_f_multi_point_html_afb692f3668a3631fbec6739c7fd7bf2c"><div class="ttname"><a href="interface_g_f_multi_point.html#afb692f3668a3631fbec6739c7fd7bf2c">-[GFMultiPoint count]</a></div><div class="ttdeci">NSUInteger count()</div></div>
 <div class="ttc" id="interface_g_f_multi_point_html_a2f300bc57f0010bc65da0f151b916e33"><div class="ttname"><a href="interface_g_f_multi_point.html#a2f300bc57f0010bc65da0f151b916e33">-[GFMultiPoint firstGeometry]</a></div><div class="ttdeci">GFPoint * firstGeometry()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 14 2015 16:26:28 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 29 2015 11:29:01 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

@@ -1,6 +1,10 @@
 <map id="GFGeometryCollection" name="GFGeometryCollection">
-<area shape="rect" id="node6" href="$interface_g_f_multi_line_string.html" title="A collection of GFLineStrings. " alt="" coords="5,229,135,256"/>
-<area shape="rect" id="node7" href="$interface_g_f_multi_point.html" title="A collection of GFPoints. " alt="" coords="159,229,258,256"/>
-<area shape="rect" id="node8" href="$interface_g_f_multi_polygon.html" title="A collection of GFPolygons. " alt="" coords="282,229,399,256"/>
-<area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="159,80,258,107"/>
+<area shape="rect" id="node7" href="$interface_g_f_multi_line_string.html" title="A collection of GFLineStrings. " alt="" coords="52,225,180,251"/>
+<area shape="rect" id="node9" href="$interface_g_f_multi_point.html" title="A collection of GFPoints. " alt="" coords="228,225,326,251"/>
+<area shape="rect" id="node11" href="$interface_g_f_multi_polygon.html" title="A collection of GFPolygons. " alt="" coords="350,225,466,251"/>
+<area shape="rect" id="node13" href="$interface_g_f_mutable_geometry_collection.html" title="A mutable version of GFGeometryCollection. " alt="" coords="490,225,694,251"/>
+<area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="293,79,392,104"/>
+<area shape="rect" id="node8" href="$interface_g_f_mutable_multi_line_string.html" title="A mutable version of GFMultiLineString. " alt="" coords="5,299,181,324"/>
+<area shape="rect" id="node10" href="$interface_g_f_mutable_multi_point.html" title="A mutable version of GFMultiPoint. " alt="" coords="204,299,350,324"/>
+<area shape="rect" id="node12" href="$interface_g_f_mutable_multi_polygon.html" title="A mutable version of GFMultiPolygon. " alt="" coords="374,299,538,324"/>
 </map>

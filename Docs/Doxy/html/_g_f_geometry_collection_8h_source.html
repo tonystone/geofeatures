@@ -132,17 +132,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    - (id) objectAtIndexedSubscript: (NSUInteger) index;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="interface_g_f_mutable_geometry_collection.html">  129</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_mutable_geometry_collection.html">GFMutableGeometryCollection</a> : <a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    - (void) addGeometry: (<span class="keywordtype">id</span>) aGeometry;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    - (void) insertGeometry: (<span class="keywordtype">id</span>) aGeometry atIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    - (void) <a class="code" href="interface_g_f_mutable_geometry_collection.html#a2d260d5b39e15961283b27f6fa5f4cb1">removeAllGeometries</a>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    - (void) removeGeometryAtIndex: (NSUInteger) index;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    - (void) setObject: (<span class="keywordtype">id</span>) aGeometry atIndexedSubscript:(NSUInteger) index;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="keyword">@end</span></div>
 <div class="ttc" id="interface_g_f_geometry_collection_html_a89b3b6e2097cf5899a6d635ddcb95ef3"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a89b3b6e2097cf5899a6d635ddcb95ef3">-[GFGeometryCollection lastGeometry]</a></div><div class="ttdeci">id lastGeometry()</div></div>
-<div class="ttc" id="interface_g_f_geometry_html"><div class="ttname"><a href="interface_g_f_geometry.html">GFGeometry</a></div><div class="ttdoc">An abstract class that represents a geometric shape. </div><div class="ttdef"><b>Definition:</b> GFGeometry.h:49</div></div>
+<div class="ttc" id="interface_g_f_geometry_html"><div class="ttname"><a href="interface_g_f_geometry.html">GFGeometry</a></div><div class="ttdoc">An abstract class that represents a geometric shape. </div><div class="ttdef"><b>Definition:</b> GFGeometry.h:46</div></div>
+<div class="ttc" id="interface_g_f_mutable_geometry_collection_html_a2d260d5b39e15961283b27f6fa5f4cb1"><div class="ttname"><a href="interface_g_f_mutable_geometry_collection.html#a2d260d5b39e15961283b27f6fa5f4cb1">-[GFMutableGeometryCollection removeAllGeometries]</a></div><div class="ttdeci">void removeAllGeometries()</div></div>
 <div class="ttc" id="interface_g_f_geometry_collection_html_a020dd5245b572a391ccbd1ea92699240"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a020dd5245b572a391ccbd1ea92699240">-[GFGeometryCollection count]</a></div><div class="ttdeci">NSUInteger count()</div></div>
 <div class="ttc" id="interface_g_f_geometry_collection_html"><div class="ttname"><a href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div><div class="ttdoc">A container class containing an array of GFGeometry objects. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:36</div></div>
+<div class="ttc" id="interface_g_f_mutable_geometry_collection_html"><div class="ttname"><a href="interface_g_f_mutable_geometry_collection.html">GFMutableGeometryCollection</a></div><div class="ttdoc">A mutable version of GFGeometryCollection. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:129</div></div>
 <div class="ttc" id="interface_g_f_geometry_collection_html_a610f72a22d76a3ce6c9eaeb2dad35c0e"><div class="ttname"><a href="interface_g_f_geometry_collection.html#a610f72a22d76a3ce6c9eaeb2dad35c0e">-[GFGeometryCollection firstGeometry]</a></div><div class="ttdeci">id firstGeometry()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 14 2015 16:26:28 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 29 2015 11:29:01 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

@@ -1,0 +1,155 @@
+\hypertarget{interface_g_f_mutable_multi_line_string}{}\section{G\+F\+Mutable\+Multi\+Line\+String Class Reference}
+\label{interface_g_f_mutable_multi_line_string}\index{G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}}
+
+
+A mutable version of \hyperlink{interface_g_f_multi_line_string}{G\+F\+Multi\+Line\+String}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Multi\+Line\+String.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Multi\+Line\+String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_multi_line_string__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Multi\+Line\+String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_multi_line_string__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_line_string_adb3759e4cbd6c48eaa32046508753260}{add\+Geometry\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_line_string_a86fb48dc7d1f45c6ca713ad1692b22ff}{insert\+Geometry\+:at\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_line_string_ae25e7e5a7a8fc6991b3647ff7fe7b600}{remove\+All\+Geometries}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_line_string_a712b2e48823c1b6b488190118e662651}{remove\+Geometry\+At\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_line_string_aaca63dc6cfeccfb2adbaafb20e74942c}{set\+Object\+:at\+Indexed\+Subscript\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mutable version of \hyperlink{interface_g_f_multi_line_string}{G\+F\+Multi\+Line\+String}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/24/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_multi_line_string_adb3759e4cbd6c48eaa32046508753260}{}\index{G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}!add\+Geometry\+:@{add\+Geometry\+:}}
+\index{add\+Geometry\+:@{add\+Geometry\+:}!G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}}
+\subsubsection[{add\+Geometry\+:(\+G\+F\+Line\+String $\ast$a\+Line\+String)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) add\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Line\+String} $\ast$)}]{a\+Line\+String}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_line_string_adb3759e4cbd6c48eaa32046508753260}
+Inserts a given \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} at the end of the \hyperlink{interface_g_f_mutable_multi_line_string}{G\+F\+Mutable\+Multi\+Line\+String}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_line_string_a86fb48dc7d1f45c6ca713ad1692b22ff}{}\index{G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}!insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}}
+\index{insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}!G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}}
+\subsubsection[{insert\+Geometry\+:at\+Index\+:(\+G\+F\+Line\+String $\ast$a\+Line\+String,[at\+Index] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) insert\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Line\+String} $\ast$)}]{a\+Line\+String}
+\item[{atIndex:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_line_string_a86fb48dc7d1f45c6ca713ad1692b22ff}
+Inserts a given \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} into the G\+F\+Mutable\+Multi\+Line\+String’s contents at a given index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Range\+Exception if index is greater than the number of elements in the \hyperlink{interface_g_f_mutable_multi_line_string}{G\+F\+Mutable\+Multi\+Line\+String}. \\
+\hline
+{\em An} & N\+S\+Invalid\+Argument\+Exception if \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_line_string_ae25e7e5a7a8fc6991b3647ff7fe7b600}{}\index{G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}!remove\+All\+Geometries@{remove\+All\+Geometries}}
+\index{remove\+All\+Geometries@{remove\+All\+Geometries}!G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}}
+\subsubsection[{remove\+All\+Geometries()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+All\+Geometries 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_line_string_ae25e7e5a7a8fc6991b3647ff7fe7b600}
+Empties the \hyperlink{interface_g_f_mutable_multi_line_string}{G\+F\+Mutable\+Multi\+Line\+String} of all its G\+F\+Line\+Strings. \hypertarget{interface_g_f_mutable_multi_line_string_a712b2e48823c1b6b488190118e662651}{}\index{G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}!remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}}
+\index{remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}!G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}}
+\subsubsection[{remove\+Geometry\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+Geometry\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_line_string_a712b2e48823c1b6b488190118e662651}
+Removes the \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} at index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & exception N\+S\+Range\+Exception if index is beyond the end of the \hyperlink{interface_g_f_mutable_multi_line_string}{G\+F\+Mutable\+Multi\+Line\+String}. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_line_string_aaca63dc6cfeccfb2adbaafb20e74942c}{}\index{G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}!set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}}
+\index{set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}!G\+F\+Mutable\+Multi\+Line\+String@{G\+F\+Mutable\+Multi\+Line\+String}}
+\subsubsection[{set\+Object\+:at\+Indexed\+Subscript\+:(\+G\+F\+Line\+String $\ast$a\+Line\+String,[at\+Indexed\+Subscript] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Object\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Line\+String} $\ast$)}]{a\+Line\+String}
+\item[{atIndexedSubscript:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_line_string_aaca63dc6cfeccfb2adbaafb20e74942c}
+Sets the \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Line\+String} & The \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} with which to replace the \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} at index in the \hyperlink{interface_g_f_mutable_multi_line_string}{G\+F\+Mutable\+Multi\+Line\+String}. This value must not be nil. \\
+\hline
+{\em index} & The index of the \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String} to be replaced. This value must not exceed the bounds of the \hyperlink{interface_g_f_mutable_multi_line_string}{G\+F\+Mutable\+Multi\+Line\+String}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_mutable_multi_line_string}{GFMutableMultiLineString} * multiLineString = [[
+      \hyperlink{interface_g_f_mutable_multi_line_string}{GFMutableMultiLineString} alloc] init];
+
+   multiLineString[0] = [[\hyperlink{interface_g_f_line_string}{GFLineString} alloc] initWithWKT: \textcolor{stringliteral}{@"LINESTRING(1 1,2 2,3 3)"}];
+   multiLineString[1] = [[\hyperlink{interface_g_f_line_string}{GFLineString} alloc] initWithWKT: \textcolor{stringliteral}{@"LINESTRING(2 2,103 1)"}];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+3.\+0 
+\end{DoxySince}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Multi\+Line\+String.\+h\end{DoxyCompactItemize}

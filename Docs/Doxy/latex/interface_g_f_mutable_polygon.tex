@@ -1,0 +1,79 @@
+\hypertarget{interface_g_f_mutable_polygon}{}\section{G\+F\+Mutable\+Polygon Class Reference}
+\label{interface_g_f_mutable_polygon}\index{G\+F\+Mutable\+Polygon@{G\+F\+Mutable\+Polygon}}
+
+
+A a mutable representation of \hyperlink{interface_g_f_polygon}{G\+F\+Polygon}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Polygon.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Polygon\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_polygon__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Polygon\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_polygon__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_polygon_ac1c96257b0bee12c4981fa4d743d9991}{set\+Outer\+Ring\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_polygon_a65eed15c20f44d95af8d8d789407366c}{set\+Inner\+Rings\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A a mutable representation of \hyperlink{interface_g_f_polygon}{G\+F\+Polygon}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/24/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_polygon_ac1c96257b0bee12c4981fa4d743d9991}{}\index{G\+F\+Mutable\+Polygon@{G\+F\+Mutable\+Polygon}!set\+Outer\+Ring\+:@{set\+Outer\+Ring\+:}}
+\index{set\+Outer\+Ring\+:@{set\+Outer\+Ring\+:}!G\+F\+Mutable\+Polygon@{G\+F\+Mutable\+Polygon}}
+\subsubsection[{set\+Outer\+Ring\+:(\+G\+F\+Ring $\ast$outer\+Ring)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Outer\+Ring\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Ring} $\ast$)}]{outer\+Ring}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_polygon_ac1c96257b0bee12c4981fa4d743d9991}
+Set the outer \hyperlink{interface_g_f_ring}{G\+F\+Ring} of this \hyperlink{interface_g_f_mutable_polygon}{G\+F\+Mutable\+Polygon}. \hypertarget{interface_g_f_mutable_polygon_a65eed15c20f44d95af8d8d789407366c}{}\index{G\+F\+Mutable\+Polygon@{G\+F\+Mutable\+Polygon}!set\+Inner\+Rings\+:@{set\+Inner\+Rings\+:}}
+\index{set\+Inner\+Rings\+:@{set\+Inner\+Rings\+:}!G\+F\+Mutable\+Polygon@{G\+F\+Mutable\+Polygon}}
+\subsubsection[{set\+Inner\+Rings\+:(\+G\+F\+Geometry\+Collection $\ast$a\+Ring\+Collection)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Inner\+Rings\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry\+Collection} $\ast$)}]{a\+Ring\+Collection}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_polygon_a65eed15c20f44d95af8d8d789407366c}
+Set the inner G\+F\+Rings of this \hyperlink{interface_g_f_mutable_polygon}{G\+F\+Mutable\+Polygon}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if all the Geometries in the collections are not G\+F\+Rings. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Polygon.\+h\end{DoxyCompactItemize}

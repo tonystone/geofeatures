@@ -1,0 +1,155 @@
+\hypertarget{interface_g_f_mutable_line_string}{}\section{G\+F\+Mutable\+Line\+String Class Reference}
+\label{interface_g_f_mutable_line_string}\index{G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}}
+
+
+A mutable version of \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Line\+String.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Line\+String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_line_string__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Line\+String\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_line_string__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_line_string_a63a4a78093845c17233c1b3cce6465bd}{add\+Point\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_line_string_ab5072f8a3272ccae43c664856b18caee}{insert\+Point\+:at\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_line_string_aced95edba93ee37c02ecfdd738c17257}{remove\+All\+Points}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_line_string_a72d2128ac8c0ddbbc3967e64695a73b3}{remove\+Point\+At\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_line_string_a3bbd7b7419c84ebe57fcc799cac29cd0}{set\+Object\+:at\+Indexed\+Subscript\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mutable version of \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/23/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_line_string_a63a4a78093845c17233c1b3cce6465bd}{}\index{G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}!add\+Point\+:@{add\+Point\+:}}
+\index{add\+Point\+:@{add\+Point\+:}!G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}}
+\subsubsection[{add\+Point\+:(\+G\+F\+Point $\ast$a\+Point)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) add\+Point\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_line_string_a63a4a78093845c17233c1b3cce6465bd}
+Inserts a given \hyperlink{interface_g_f_point}{G\+F\+Point} at the end of the \hyperlink{interface_g_f_mutable_line_string}{G\+F\+Mutable\+Line\+String}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if a\+Point is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_line_string_ab5072f8a3272ccae43c664856b18caee}{}\index{G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}!insert\+Point\+:at\+Index\+:@{insert\+Point\+:at\+Index\+:}}
+\index{insert\+Point\+:at\+Index\+:@{insert\+Point\+:at\+Index\+:}!G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}}
+\subsubsection[{insert\+Point\+:at\+Index\+:(\+G\+F\+Point $\ast$a\+Point,[at\+Index] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) insert\+Point\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\item[{atIndex:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_line_string_ab5072f8a3272ccae43c664856b18caee}
+Inserts a given \hyperlink{interface_g_f_point}{G\+F\+Point} into the G\+F\+Mutable\+Line\+String’s contents at a given index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Range\+Exception if index is greater than the number of elements in the \hyperlink{interface_g_f_mutable_line_string}{G\+F\+Mutable\+Line\+String}. \\
+\hline
+{\em An} & N\+S\+Invalid\+Argument\+Exception if a\+Point is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_line_string_aced95edba93ee37c02ecfdd738c17257}{}\index{G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}!remove\+All\+Points@{remove\+All\+Points}}
+\index{remove\+All\+Points@{remove\+All\+Points}!G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}}
+\subsubsection[{remove\+All\+Points()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+All\+Points 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_line_string_aced95edba93ee37c02ecfdd738c17257}
+Empties the \hyperlink{interface_g_f_mutable_line_string}{G\+F\+Mutable\+Line\+String} of all its G\+F\+Points. \hypertarget{interface_g_f_mutable_line_string_a72d2128ac8c0ddbbc3967e64695a73b3}{}\index{G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}!remove\+Point\+At\+Index\+:@{remove\+Point\+At\+Index\+:}}
+\index{remove\+Point\+At\+Index\+:@{remove\+Point\+At\+Index\+:}!G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}}
+\subsubsection[{remove\+Point\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+Point\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_line_string_a72d2128ac8c0ddbbc3967e64695a73b3}
+Removes the \hyperlink{interface_g_f_point}{G\+F\+Point} at index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & exception N\+S\+Range\+Exception if index is beyond the end of the \hyperlink{interface_g_f_mutable_line_string}{G\+F\+Mutable\+Line\+String}. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_line_string_a3bbd7b7419c84ebe57fcc799cac29cd0}{}\index{G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}!set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}}
+\index{set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}!G\+F\+Mutable\+Line\+String@{G\+F\+Mutable\+Line\+String}}
+\subsubsection[{set\+Object\+:at\+Indexed\+Subscript\+:(\+G\+F\+Point $\ast$a\+Point,[at\+Indexed\+Subscript] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Object\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\item[{atIndexedSubscript:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_line_string_a3bbd7b7419c84ebe57fcc799cac29cd0}
+Sets the \hyperlink{interface_g_f_point}{G\+F\+Point} at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Point} & The \hyperlink{interface_g_f_point}{G\+F\+Point} with which to replace the \hyperlink{interface_g_f_point}{G\+F\+Point} at index in the \hyperlink{interface_g_f_mutable_line_string}{G\+F\+Mutable\+Line\+String}. This value must not be nil. \\
+\hline
+{\em index} & The index of the \hyperlink{interface_g_f_point}{G\+F\+Point} to be replaced. This value must not exceed the bounds of the \hyperlink{interface_g_f_mutable_line_string}{G\+F\+Mutable\+Line\+String}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_mutable_line_string}{GFMutableLineString} * lineString = [[\hyperlink{interface_g_f_mutable_line_string}{GFMutableLineString} alloc] 
+      init];
+
+   lineString[0] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(1 1)"}];
+   lineString[1] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(2 2)"}];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+3.\+0 
+\end{DoxySince}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Line\+String.\+h\end{DoxyCompactItemize}

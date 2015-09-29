@@ -1,0 +1,155 @@
+\hypertarget{interface_g_f_mutable_geometry_collection}{}\section{G\+F\+Mutable\+Geometry\+Collection Class Reference}
+\label{interface_g_f_mutable_geometry_collection}\index{G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}}
+
+
+A mutable version of \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Geometry\+Collection.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Geometry\+Collection\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_geometry_collection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Geometry\+Collection\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_geometry_collection__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_geometry_collection_addf8aa56e2b97984376a93a6f2e2c840}{add\+Geometry\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_geometry_collection_a457c530bc713c150036e75a0f76fc7e0}{insert\+Geometry\+:at\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_geometry_collection_a2d260d5b39e15961283b27f6fa5f4cb1}{remove\+All\+Geometries}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_geometry_collection_a8532baf7d75daa26227369cb26a41593}{remove\+Geometry\+At\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_geometry_collection_a7c8d7c0a97ee27b23e2dab6a14bc8dc2}{set\+Object\+:at\+Indexed\+Subscript\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mutable version of \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/26/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_geometry_collection_addf8aa56e2b97984376a93a6f2e2c840}{}\index{G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}!add\+Geometry\+:@{add\+Geometry\+:}}
+\index{add\+Geometry\+:@{add\+Geometry\+:}!G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}}
+\subsubsection[{add\+Geometry\+:(id a\+Geometry)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) add\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(id)}]{a\+Geometry}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_geometry_collection_addf8aa56e2b97984376a93a6f2e2c840}
+Inserts a given \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} at the end of the \hyperlink{interface_g_f_mutable_geometry_collection}{G\+F\+Mutable\+Geometry\+Collection}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_geometry_collection_a457c530bc713c150036e75a0f76fc7e0}{}\index{G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}!insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}}
+\index{insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}!G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}}
+\subsubsection[{insert\+Geometry\+:at\+Index\+:(id a\+Geometry,[at\+Index] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) insert\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(id)}]{a\+Geometry}
+\item[{atIndex:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_geometry_collection_a457c530bc713c150036e75a0f76fc7e0}
+Inserts a given \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} into the G\+F\+Mutable\+Geometry\+Collection’s contents at a given index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Range\+Exception if index is greater than the number of elements in the \hyperlink{interface_g_f_mutable_geometry_collection}{G\+F\+Mutable\+Geometry\+Collection}. \\
+\hline
+{\em An} & N\+S\+Invalid\+Argument\+Exception if \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_geometry_collection_a2d260d5b39e15961283b27f6fa5f4cb1}{}\index{G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}!remove\+All\+Geometries@{remove\+All\+Geometries}}
+\index{remove\+All\+Geometries@{remove\+All\+Geometries}!G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}}
+\subsubsection[{remove\+All\+Geometries()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+All\+Geometries 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_geometry_collection_a2d260d5b39e15961283b27f6fa5f4cb1}
+Empties the \hyperlink{interface_g_f_mutable_geometry_collection}{G\+F\+Mutable\+Geometry\+Collection} of all its G\+F\+Geometries. \hypertarget{interface_g_f_mutable_geometry_collection_a8532baf7d75daa26227369cb26a41593}{}\index{G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}!remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}}
+\index{remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}!G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}}
+\subsubsection[{remove\+Geometry\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+Geometry\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_geometry_collection_a8532baf7d75daa26227369cb26a41593}
+Removes the \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} at index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & exception N\+S\+Range\+Exception if index is beyond the end of the \hyperlink{interface_g_f_mutable_geometry_collection}{G\+F\+Mutable\+Geometry\+Collection}. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_geometry_collection_a7c8d7c0a97ee27b23e2dab6a14bc8dc2}{}\index{G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}!set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}}
+\index{set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}!G\+F\+Mutable\+Geometry\+Collection@{G\+F\+Mutable\+Geometry\+Collection}}
+\subsubsection[{set\+Object\+:at\+Indexed\+Subscript\+:(id a\+Geometry,[at\+Indexed\+Subscript] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Object\+: 
+\begin{DoxyParamCaption}
+\item[{(id)}]{a\+Geometry}
+\item[{atIndexedSubscript:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_geometry_collection_a7c8d7c0a97ee27b23e2dab6a14bc8dc2}
+Sets the \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Geometry} & The \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} with which to replace the \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} at index in the \hyperlink{interface_g_f_mutable_geometry_collection}{G\+F\+Mutable\+Geometry\+Collection}. This value must not be nil. \\
+\hline
+{\em index} & The index of the \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} to be replaced. This value must not exceed the bounds of the \hyperlink{interface_g_f_mutable_geometry_collection}{G\+F\+Mutable\+Geometry\+Collection}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_mutable_geometry_collection}{GFMutableGeometryCollection} * geometryCollection = [[
+      \hyperlink{interface_g_f_mutable_geometry_collection}{GFMutableGeometryCollection} alloc] init];
+
+   geometryCollection[0] = [[\hyperlink{interface_g_f_polygon}{GFPolygon} alloc] initWithWKT: \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"}];
+   geometryCollection[1] = [[\hyperlink{interface_g_f_line_string}{GFLineString} alloc] initWithWKT: \textcolor{stringliteral}{@"LINESTRING(1 1,2 2,3 3)"}];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+3.\+0 
+\end{DoxySince}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Geometry\+Collection.\+h\end{DoxyCompactItemize}
