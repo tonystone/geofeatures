@@ -121,7 +121,7 @@
 /**
  * @class       GFMutableGeometryCollection
  *
- * @brief       A mutable version GFGeometryCollection.
+ * @brief       A mutable version of GFGeometryCollection.
  *
  * @author      Tony Stone
  * @date        9/26/15

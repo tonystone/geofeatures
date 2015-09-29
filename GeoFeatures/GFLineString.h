@@ -152,7 +152,7 @@
 /**
  * @class       GFMutableLineString
  *
- * @brief       A mutable version GFLineString.
+ * @brief       A mutable version of GFLineString.
  *
  * @author      Tony Stone
  * @date        9/23/15
