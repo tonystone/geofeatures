@@ -141,7 +141,7 @@
      */
     - (void) insertGeometry: (id) aGeometry atIndex: (NSUInteger) index;
 
-    /** Empties the GFMutableMultiPolygon of all its GFGeometries.
+    /** Empties the GFMutableGeometryCollection of all its GFGeometries.
      */
     - (void) removeAllGeometries;
 
