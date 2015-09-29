@@ -57,6 +57,7 @@ namespace geofeatures {
         typedef boost::geometry::cs::cartesian CoordinateSystem;
 
     private:
+        static const std::size_t dimensionCount = 2;
         enum { cs_check = sizeof(CoordinateSystem) };
 
     public:
@@ -70,16 +71,18 @@ namespace geofeatures {
 
         template <std::size_t K>
         inline CoordinateType const& get() const noexcept {
+            static_assert(K < dimensionCount, "Index out of bounds");
             return values_[K];
         }
 
         template <std::size_t K>
         inline void set(CoordinateType const& value) noexcept {
+            static_assert(K < dimensionCount, "Index out of bounds");
             values_[K] = value;
         }
 
     private:
-        CoordinateType values_[2];
+        CoordinateType values_[dimensionCount];
     };
 
 }   // namespace geofeatures
