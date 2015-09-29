@@ -56,6 +56,7 @@
 		D4B06573DEB42CA9EEEE5D6D /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 025A40ABEA9934BA73DA8472 /* libPods-Tests.a */; };
 		EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C85B1B9F47F9002C8018 /* GFRingTests.m */; };
 		EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
+		EAFB8A7B1BBB52330041F69C /* new-mexico.json in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8A7A1BBB52330041F69C /* new-mexico.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		DB9F622A86B409D90D95038C /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDACAA67D4D19946EF05C148 /* Pods-GeoFeatures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures/Pods-GeoFeatures.release.xcconfig"; sourceTree = "<group>"; };
 		EA52C85B1B9F47F9002C8018 /* GFRingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFRingTests.m; sourceTree = "<group>"; };
+		EAFB8A7A1BBB52330041F69C /* new-mexico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "new-mexico.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EAFB8A7A1BBB52330041F69C /* new-mexico.json */,
 				6003F595195388D20070C39A /* GeoFeatures-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -389,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */,
+				EAFB8A7B1BBB52330041F69C /* new-mexico.json in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
