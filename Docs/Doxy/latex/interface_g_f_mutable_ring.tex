@@ -1,0 +1,157 @@
+\hypertarget{interface_g_f_mutable_ring}{}\section{G\+F\+Mutable\+Ring Class Reference}
+\label{interface_g_f_mutable_ring}\index{G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}}
+
+
+A mutable version of \hyperlink{interface_g_f_ring}{G\+F\+Ring}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Ring.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Ring\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_ring__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Ring\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_ring__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_ring_abd2affff7a9a5efa89ee892de6c34937}{add\+Point\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_ring_a483441f09297df754c2ca82f6ff10918}{insert\+Point\+:at\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_ring_a98116745bd973cd9a206e289a9d501fb}{remove\+All\+Points}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_ring_a82f12ae57ae5bb09e30b74ee76b98ab6}{remove\+Point\+At\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_ring_a5c8a28b004ceb9eb4204581215851441}{set\+Object\+:at\+Indexed\+Subscript\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mutable version of \hyperlink{interface_g_f_ring}{G\+F\+Ring}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/24/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_ring_abd2affff7a9a5efa89ee892de6c34937}{}\index{G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}!add\+Point\+:@{add\+Point\+:}}
+\index{add\+Point\+:@{add\+Point\+:}!G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}}
+\subsubsection[{add\+Point\+:(\+G\+F\+Point $\ast$a\+Point)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) add\+Point\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_ring_abd2affff7a9a5efa89ee892de6c34937}
+Inserts a given \hyperlink{interface_g_f_point}{G\+F\+Point} at the end of the \hyperlink{interface_g_f_mutable_ring}{G\+F\+Mutable\+Ring}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if a\+Point is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_ring_a483441f09297df754c2ca82f6ff10918}{}\index{G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}!insert\+Point\+:at\+Index\+:@{insert\+Point\+:at\+Index\+:}}
+\index{insert\+Point\+:at\+Index\+:@{insert\+Point\+:at\+Index\+:}!G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}}
+\subsubsection[{insert\+Point\+:at\+Index\+:(\+G\+F\+Point $\ast$a\+Point,[at\+Index] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) insert\+Point\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\item[{atIndex:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_ring_a483441f09297df754c2ca82f6ff10918}
+Inserts a given \hyperlink{interface_g_f_point}{G\+F\+Point} into the G\+F\+Mutable\+Ring’s contents at a given index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Range\+Exception if index is greater than the number of elements in the \hyperlink{interface_g_f_mutable_ring}{G\+F\+Mutable\+Ring}. \\
+\hline
+{\em An} & N\+S\+Invalid\+Argument\+Exception if a\+Point is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_ring_a98116745bd973cd9a206e289a9d501fb}{}\index{G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}!remove\+All\+Points@{remove\+All\+Points}}
+\index{remove\+All\+Points@{remove\+All\+Points}!G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}}
+\subsubsection[{remove\+All\+Points()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+All\+Points 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_ring_a98116745bd973cd9a206e289a9d501fb}
+Empties the \hyperlink{interface_g_f_mutable_ring}{G\+F\+Mutable\+Ring} of all its G\+F\+Points. \hypertarget{interface_g_f_mutable_ring_a82f12ae57ae5bb09e30b74ee76b98ab6}{}\index{G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}!remove\+Point\+At\+Index\+:@{remove\+Point\+At\+Index\+:}}
+\index{remove\+Point\+At\+Index\+:@{remove\+Point\+At\+Index\+:}!G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}}
+\subsubsection[{remove\+Point\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+Point\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_ring_a82f12ae57ae5bb09e30b74ee76b98ab6}
+Removes the \hyperlink{interface_g_f_point}{G\+F\+Point} at index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & exception N\+S\+Range\+Exception if index is beyond the end of the \hyperlink{interface_g_f_mutable_ring}{G\+F\+Mutable\+Ring}. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_ring_a5c8a28b004ceb9eb4204581215851441}{}\index{G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}!set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}}
+\index{set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}!G\+F\+Mutable\+Ring@{G\+F\+Mutable\+Ring}}
+\subsubsection[{set\+Object\+:at\+Indexed\+Subscript\+:(\+G\+F\+Point $\ast$a\+Point,[at\+Indexed\+Subscript] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Object\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Point} $\ast$)}]{a\+Point}
+\item[{atIndexedSubscript:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_ring_a5c8a28b004ceb9eb4204581215851441}
+Sets the \hyperlink{interface_g_f_point}{G\+F\+Point} at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Point} & The \hyperlink{interface_g_f_point}{G\+F\+Point} with which to replace the \hyperlink{interface_g_f_point}{G\+F\+Point} at index in the \hyperlink{interface_g_f_mutable_ring}{G\+F\+Mutable\+Ring}. This value must not be nil. \\
+\hline
+{\em index} & The index of the \hyperlink{interface_g_f_point}{G\+F\+Point} to be replaced. This value must not exceed the bounds of the \hyperlink{interface_g_f_mutable_ring}{G\+F\+Mutable\+Ring}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_mutable_ring}{GFMutableRing} * ring = [[\hyperlink{interface_g_f_mutable_ring}{GFMutableRing} alloc] init];
+
+  ring[0] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(20 0)"}];
+  ring[1] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(20 10)"}];
+  ring[2] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(40 10)"}];
+  ring[3] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(40 0)"}];
+  ring[4] = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: \textcolor{stringliteral}{@"POINT(20 0)"}];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+3.\+0 
+\end{DoxySince}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Ring.\+h\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
-\href{https://travis-ci.org/tonystone/geofeatures}{\tt !\mbox{[}Build Status\mbox{]}(https\+://travis-\/ci.\+org/tonystone/geofeatures.\+svg?branch=master)} \href{http://cocoapods.org/pods/GeoFeatures}{\tt !\mbox{[}Version\mbox{]}(https\+://img.\+shields.\+io/cocoapods/v/\+Geo\+Features.\+svg?style=flat)} \href{http://cocoapods.org/pods/GeoFeatures}{\tt !\mbox{[}License\mbox{]}(https\+://img.\+shields.\+io/cocoapods/l/\+Geo\+Features.\+svg?style=flat)} \href{http://cocoapods.org/pods/GeoFeatures}{\tt !\mbox{[}Platform\mbox{]}(https\+://img.\+shields.\+io/cocoapods/p/\+Geo\+Features.\+svg?style=flat)}
+\href{https://travis-ci.org/tonystone/geofeatures}{\tt !\mbox{[}Build Status\mbox{]}(https\+://travis-\/ci.\+org/tonystone/geofeatures.\+svg?branch=master)} \href{http://codecov.io/github/tonystone/geofeatures?branch=master}{\tt !\mbox{[}codecov.\+io\mbox{]}(http\+://codecov.\+io/github/tonystone/geofeatures/coverage.\+svg?branch=master)} \href{http://cocoapods.org/pods/GeoFeatures}{\tt !\mbox{[}Version\mbox{]}(https\+://img.\+shields.\+io/cocoapods/v/\+Geo\+Features.\+svg?style=flat)} \href{http://cocoapods.org/pods/GeoFeatures}{\tt !\mbox{[}License\mbox{]}(https\+://img.\+shields.\+io/cocoapods/l/\+Geo\+Features.\+svg?style=flat)} \href{http://cocoapods.org/pods/GeoFeatures}{\tt !\mbox{[}Platform\mbox{]}(https\+://img.\+shields.\+io/cocoapods/p/\+Geo\+Features.\+svg?style=flat)}
 
 \subsection*{Introduction}
 
@@ -13,10 +13,13 @@ Geo\+Features is a lightweight, high performance geometry library for Objective-
 \item Easy to use.
 \item Point, Multi\+Point, Line\+String, Multi\+Line\+String, Polygon, Multi\+Polygon, Box and Geometry\+Collection implementations.
 \item Area, Length, Bounding\+Box, Centroid, Perimeter, Union, and Within (point in polygon) algorithms. More coming soon.
+\item Immutable and mutable versions of all classes (e.\+g. {\ttfamily \hyperlink{interface_g_f_polygon}{G\+F\+Polygon}} and {\ttfamily \hyperlink{interface_g_f_mutable_polygon}{G\+F\+Mutable\+Polygon}}).
 \item \href{https://en.wikipedia.org/wiki/Well-known_text}{\tt W\+K\+T (Well-\/\+Known-\/\+Text)} input and output.
 \item \href{http://geojson.org/}{\tt Geo\+J\+S\+O\+N} input and output.
 \item Map\+Kit representations and drawing.
 \item Indexed Subscripting support for all collection types (e.\+g. {\ttfamily G\+E\+Point $\ast$ point = multi\+Point\mbox{[}0\mbox{]}}).
+\item {\bfseries Swift}\+: supports direct use in Swift applications.
+\item Cocoa\+Pod framework support (compile as Objective-\/\+C framework or static lib).
 \item Open Sourced under the the \href{http://www.apache.org/licenses/LICENSE-2.0.html}{\tt Apache License, Version 2.\+0}.
 \item Comprehensive doxygen documentation of the library available at \href{http://tonystone.github.io/geofeatures}{\tt github.\+io}.
 \item Implemented based on the popular and fast open source C++ boost geometry library.

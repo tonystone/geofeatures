@@ -1,0 +1,155 @@
+\hypertarget{interface_g_f_mutable_multi_polygon}{}\section{G\+F\+Mutable\+Multi\+Polygon Class Reference}
+\label{interface_g_f_mutable_multi_polygon}\index{G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}}
+
+
+A mutable version of \hyperlink{interface_g_f_multi_polygon}{G\+F\+Multi\+Polygon}.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Multi\+Polygon.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Mutable\+Multi\+Polygon\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_multi_polygon__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Mutable\+Multi\+Polygon\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_mutable_multi_polygon__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_polygon_a72cf980a6b07dfa272bf6e594fe02a9d}{add\+Geometry\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_polygon_a5b473f33c2d3c5c5bc02c137bf839ca0}{insert\+Geometry\+:at\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_polygon_a5001e5407d8f307dadd81e09dcd67476}{remove\+All\+Geometries}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_polygon_a5cd8e6bce7ce1d0a7c9c6338634f9e2f}{remove\+Geometry\+At\+Index\+:}
+\item 
+(void) -\/ \hyperlink{interface_g_f_mutable_multi_polygon_a24ca74cf71e84f8a9d9ab98246101a91}{set\+Object\+:at\+Indexed\+Subscript\+:}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mutable version of \hyperlink{interface_g_f_multi_polygon}{G\+F\+Multi\+Polygon}. 
+
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+9/24/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_mutable_multi_polygon_a72cf980a6b07dfa272bf6e594fe02a9d}{}\index{G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}!add\+Geometry\+:@{add\+Geometry\+:}}
+\index{add\+Geometry\+:@{add\+Geometry\+:}!G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}}
+\subsubsection[{add\+Geometry\+:(\+G\+F\+Polygon $\ast$a\+Polygon)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) add\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Polygon} $\ast$)}]{a\+Polygon}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_polygon_a72cf980a6b07dfa272bf6e594fe02a9d}
+Inserts a given \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} at the end of the \hyperlink{interface_g_f_mutable_multi_polygon}{G\+F\+Mutable\+Multi\+Polygon}.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Invalid\+Argument\+Exception if \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_polygon_a5b473f33c2d3c5c5bc02c137bf839ca0}{}\index{G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}!insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}}
+\index{insert\+Geometry\+:at\+Index\+:@{insert\+Geometry\+:at\+Index\+:}!G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}}
+\subsubsection[{insert\+Geometry\+:at\+Index\+:(\+G\+F\+Polygon $\ast$a\+Polygon,[at\+Index] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) insert\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Polygon} $\ast$)}]{a\+Polygon}
+\item[{atIndex:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_polygon_a5b473f33c2d3c5c5bc02c137bf839ca0}
+Inserts a given \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} into the G\+F\+Mutable\+Multi\+Polygon’s contents at a given index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & N\+S\+Range\+Exception if index is greater than the number of elements in the \hyperlink{interface_g_f_mutable_multi_polygon}{G\+F\+Mutable\+Multi\+Polygon}. \\
+\hline
+{\em An} & N\+S\+Invalid\+Argument\+Exception if \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} is nil. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_polygon_a5001e5407d8f307dadd81e09dcd67476}{}\index{G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}!remove\+All\+Geometries@{remove\+All\+Geometries}}
+\index{remove\+All\+Geometries@{remove\+All\+Geometries}!G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}}
+\subsubsection[{remove\+All\+Geometries()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+All\+Geometries 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_polygon_a5001e5407d8f307dadd81e09dcd67476}
+Empties the \hyperlink{interface_g_f_mutable_multi_polygon}{G\+F\+Mutable\+Multi\+Polygon} of all its G\+F\+Polygons. \hypertarget{interface_g_f_mutable_multi_polygon_a5cd8e6bce7ce1d0a7c9c6338634f9e2f}{}\index{G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}!remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}}
+\index{remove\+Geometry\+At\+Index\+:@{remove\+Geometry\+At\+Index\+:}!G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}}
+\subsubsection[{remove\+Geometry\+At\+Index\+:(\+N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) remove\+Geometry\+At\+Index\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_polygon_a5cd8e6bce7ce1d0a7c9c6338634f9e2f}
+Removes the \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} at index.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em An} & exception N\+S\+Range\+Exception if index is beyond the end of the \hyperlink{interface_g_f_mutable_multi_polygon}{G\+F\+Mutable\+Multi\+Polygon}. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_mutable_multi_polygon_a24ca74cf71e84f8a9d9ab98246101a91}{}\index{G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}!set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}}
+\index{set\+Object\+:at\+Indexed\+Subscript\+:@{set\+Object\+:at\+Indexed\+Subscript\+:}!G\+F\+Mutable\+Multi\+Polygon@{G\+F\+Mutable\+Multi\+Polygon}}
+\subsubsection[{set\+Object\+:at\+Indexed\+Subscript\+:(\+G\+F\+Polygon $\ast$a\+Polygon,[at\+Indexed\+Subscript] N\+S\+U\+Integer index)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) set\+Object\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Polygon} $\ast$)}]{a\+Polygon}
+\item[{atIndexedSubscript:(N\+S\+U\+Integer)}]{index}
+\end{DoxyParamCaption}
+}\label{interface_g_f_mutable_multi_polygon_a24ca74cf71e84f8a9d9ab98246101a91}
+Sets the \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} at the given index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Polygon} & The \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} with which to replace the \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} at index in the \hyperlink{interface_g_f_mutable_multi_polygon}{G\+F\+Mutable\+Multi\+Polygon}. This value must not be nil. \\
+\hline
+{\em index} & The index of the \hyperlink{interface_g_f_polygon}{G\+F\+Polygon} to be replaced. This value must not exceed the bounds of the \hyperlink{interface_g_f_mutable_multi_polygon}{G\+F\+Mutable\+Multi\+Polygon}.\\
+\hline
+\end{DoxyParams}
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \hyperlink{interface_g_f_mutable_multi_polygon}{GFMutableMultiPolygon} * multiPolygon = [[
+      \hyperlink{interface_g_f_mutable_multi_polygon}{GFMutableMultiPolygon} alloc] init];
+
+   multiPolygon[0] = [[\hyperlink{interface_g_f_polygon}{GFPolygon} alloc] initWithWKT: \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"}];
+   multiPolygon[1] = [[\hyperlink{interface_g_f_polygon}{GFPolygon} alloc] initWithWKT: \textcolor{stringliteral}{@"POLYGON((0 0,0 80,80 80,80 0,0 0))"}];
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & If index is beyond the end of the collection (that is, if index is greater than or equal to the value returned by count), an N\+S\+Range\+Exception is raised.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+1.\+3.\+0 
+\end{DoxySince}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Multi\+Polygon.\+h\end{DoxyCompactItemize}

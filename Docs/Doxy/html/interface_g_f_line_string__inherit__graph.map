@@ -1,4 +1,6 @@
 <map id="GFLineString" name="GFLineString">
-<area shape="rect" id="node6" href="$interface_g_f_ring.html" title="A GFRing (aka linear ring) is a closed line which should not be self intersecting. " alt="" coords="124,229,192,256"/>
-<area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
+<area shape="rect" id="node7" href="$interface_g_f_mutable_line_string.html" title="A mutable version of GFLineString. " alt="" coords="80,225,228,251"/>
+<area shape="rect" id="node8" href="$interface_g_f_ring.html" title="A GFRing (aka linear ring) is a closed line which should not be self intersecting. " alt="" coords="251,225,318,251"/>
+<area shape="rect" id="node2" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="170,79,268,104"/>
+<area shape="rect" id="node9" href="$interface_g_f_mutable_ring.html" title="A mutable version of GFRing. " alt="" coords="227,299,342,324"/>
 </map>

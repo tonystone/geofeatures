@@ -1,0 +1,5 @@
+<map id="GFMutableMultiPoint" name="GFMutableMultiPoint">
+<area shape="rect" id="node2" href="$interface_g_f_multi_point.html" title="A collection of GFPoints. " alt="" coords="170,225,268,251"/>
+<area shape="rect" id="node3" href="$interface_g_f_geometry_collection.html" title="A container class containing an array of GFGeometry objects. " alt="" coords="141,152,298,177"/>
+<area shape="rect" id="node4" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="170,79,268,104"/>
+</map>

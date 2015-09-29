@@ -107,11 +107,6 @@
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>a9d257cce05d031211e2cece24b5530e4</Anchor>
              </Node>
-             <Node>
-              <Name>_members</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>af3a4f3f6a6496401cf06070b171e9936</Anchor>
-             </Node>
             </Subnodes>
            </Node>
            <Node>
@@ -225,7 +220,7 @@
              <Node>
               <Name>objectAtIndexedSubscript:</Name>
               <Path>interface_g_f_line_string.html</Path>
-              <Anchor>a6278fa4d628e0eba39d8cfdb2ba0030e</Anchor>
+              <Anchor>a0711dbf3ae2b60f3f4d447578f544323</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -270,7 +265,7 @@
              <Node>
               <Name>objectAtIndexedSubscript:</Name>
               <Path>interface_g_f_multi_line_string.html</Path>
-              <Anchor>af890018703b1499460cc379a1f498ea0</Anchor>
+              <Anchor>a00496d2af8be614fe4cc11c6a6347591</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -311,7 +306,7 @@
              <Node>
               <Name>objectAtIndexedSubscript:</Name>
               <Path>interface_g_f_multi_point.html</Path>
-              <Anchor>ae63934c501b12fa80e6ddaa739af16d9</Anchor>
+              <Anchor>a003241a11b6d6da14364bb8a07c05a35</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -352,7 +347,241 @@
              <Node>
               <Name>objectAtIndexedSubscript:</Name>
               <Path>interface_g_f_multi_polygon.html</Path>
-              <Anchor>a9336b76baf557cba039569fcf0c5dcd0</Anchor>
+              <Anchor>ac0de2e4160cbb5e83522fc72502f681c</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableBox</Name>
+            <Path>interface_g_f_mutable_box.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>setMinCorner:</Name>
+              <Path>interface_g_f_mutable_box.html</Path>
+              <Anchor>a34716fae72276dc3076c357b861c147b</Anchor>
+             </Node>
+             <Node>
+              <Name>setMaxCorner:</Name>
+              <Path>interface_g_f_mutable_box.html</Path>
+              <Anchor>ade8de25f7be3c6578b426b72c5003ed3</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableGeometryCollection</Name>
+            <Path>interface_g_f_mutable_geometry_collection.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>addGeometry:</Name>
+              <Path>interface_g_f_mutable_geometry_collection.html</Path>
+              <Anchor>addf8aa56e2b97984376a93a6f2e2c840</Anchor>
+             </Node>
+             <Node>
+              <Name>insertGeometry:atIndex:</Name>
+              <Path>interface_g_f_mutable_geometry_collection.html</Path>
+              <Anchor>a457c530bc713c150036e75a0f76fc7e0</Anchor>
+             </Node>
+             <Node>
+              <Name>removeAllGeometries</Name>
+              <Path>interface_g_f_mutable_geometry_collection.html</Path>
+              <Anchor>a2d260d5b39e15961283b27f6fa5f4cb1</Anchor>
+             </Node>
+             <Node>
+              <Name>removeGeometryAtIndex:</Name>
+              <Path>interface_g_f_mutable_geometry_collection.html</Path>
+              <Anchor>a8532baf7d75daa26227369cb26a41593</Anchor>
+             </Node>
+             <Node>
+              <Name>setObject:atIndexedSubscript:</Name>
+              <Path>interface_g_f_mutable_geometry_collection.html</Path>
+              <Anchor>a7c8d7c0a97ee27b23e2dab6a14bc8dc2</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableLineString</Name>
+            <Path>interface_g_f_mutable_line_string.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>addPoint:</Name>
+              <Path>interface_g_f_mutable_line_string.html</Path>
+              <Anchor>a63a4a78093845c17233c1b3cce6465bd</Anchor>
+             </Node>
+             <Node>
+              <Name>insertPoint:atIndex:</Name>
+              <Path>interface_g_f_mutable_line_string.html</Path>
+              <Anchor>ab5072f8a3272ccae43c664856b18caee</Anchor>
+             </Node>
+             <Node>
+              <Name>removeAllPoints</Name>
+              <Path>interface_g_f_mutable_line_string.html</Path>
+              <Anchor>aced95edba93ee37c02ecfdd738c17257</Anchor>
+             </Node>
+             <Node>
+              <Name>removePointAtIndex:</Name>
+              <Path>interface_g_f_mutable_line_string.html</Path>
+              <Anchor>a72d2128ac8c0ddbbc3967e64695a73b3</Anchor>
+             </Node>
+             <Node>
+              <Name>setObject:atIndexedSubscript:</Name>
+              <Path>interface_g_f_mutable_line_string.html</Path>
+              <Anchor>a3bbd7b7419c84ebe57fcc799cac29cd0</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableMultiLineString</Name>
+            <Path>interface_g_f_mutable_multi_line_string.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>addGeometry:</Name>
+              <Path>interface_g_f_mutable_multi_line_string.html</Path>
+              <Anchor>adb3759e4cbd6c48eaa32046508753260</Anchor>
+             </Node>
+             <Node>
+              <Name>insertGeometry:atIndex:</Name>
+              <Path>interface_g_f_mutable_multi_line_string.html</Path>
+              <Anchor>a86fb48dc7d1f45c6ca713ad1692b22ff</Anchor>
+             </Node>
+             <Node>
+              <Name>removeAllGeometries</Name>
+              <Path>interface_g_f_mutable_multi_line_string.html</Path>
+              <Anchor>ae25e7e5a7a8fc6991b3647ff7fe7b600</Anchor>
+             </Node>
+             <Node>
+              <Name>removeGeometryAtIndex:</Name>
+              <Path>interface_g_f_mutable_multi_line_string.html</Path>
+              <Anchor>a712b2e48823c1b6b488190118e662651</Anchor>
+             </Node>
+             <Node>
+              <Name>setObject:atIndexedSubscript:</Name>
+              <Path>interface_g_f_mutable_multi_line_string.html</Path>
+              <Anchor>aaca63dc6cfeccfb2adbaafb20e74942c</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableMultiPoint</Name>
+            <Path>interface_g_f_mutable_multi_point.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>addGeometry:</Name>
+              <Path>interface_g_f_mutable_multi_point.html</Path>
+              <Anchor>ac1a8493ed42f8d8b3962841310403f11</Anchor>
+             </Node>
+             <Node>
+              <Name>insertGeometry:atIndex:</Name>
+              <Path>interface_g_f_mutable_multi_point.html</Path>
+              <Anchor>a054095bfcbfdddfc29e0475702437272</Anchor>
+             </Node>
+             <Node>
+              <Name>removeAllGeometries</Name>
+              <Path>interface_g_f_mutable_multi_point.html</Path>
+              <Anchor>a9f7115d35aa13393ee6ab6c6fc34db8d</Anchor>
+             </Node>
+             <Node>
+              <Name>removeGeometryAtIndex:</Name>
+              <Path>interface_g_f_mutable_multi_point.html</Path>
+              <Anchor>a1adb9a46ecac94fdb68b9b0b06929883</Anchor>
+             </Node>
+             <Node>
+              <Name>setObject:atIndexedSubscript:</Name>
+              <Path>interface_g_f_mutable_multi_point.html</Path>
+              <Anchor>a0dc5c591bc0db094fdbb27a2db1ddd24</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableMultiPolygon</Name>
+            <Path>interface_g_f_mutable_multi_polygon.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>addGeometry:</Name>
+              <Path>interface_g_f_mutable_multi_polygon.html</Path>
+              <Anchor>a72cf980a6b07dfa272bf6e594fe02a9d</Anchor>
+             </Node>
+             <Node>
+              <Name>insertGeometry:atIndex:</Name>
+              <Path>interface_g_f_mutable_multi_polygon.html</Path>
+              <Anchor>a5b473f33c2d3c5c5bc02c137bf839ca0</Anchor>
+             </Node>
+             <Node>
+              <Name>removeAllGeometries</Name>
+              <Path>interface_g_f_mutable_multi_polygon.html</Path>
+              <Anchor>a5001e5407d8f307dadd81e09dcd67476</Anchor>
+             </Node>
+             <Node>
+              <Name>removeGeometryAtIndex:</Name>
+              <Path>interface_g_f_mutable_multi_polygon.html</Path>
+              <Anchor>a5cd8e6bce7ce1d0a7c9c6338634f9e2f</Anchor>
+             </Node>
+             <Node>
+              <Name>setObject:atIndexedSubscript:</Name>
+              <Path>interface_g_f_mutable_multi_polygon.html</Path>
+              <Anchor>a24ca74cf71e84f8a9d9ab98246101a91</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutablePoint</Name>
+            <Path>interface_g_f_mutable_point.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>setX:</Name>
+              <Path>interface_g_f_mutable_point.html</Path>
+              <Anchor>ad705556de890f1bb59c50b94c45b74e5</Anchor>
+             </Node>
+             <Node>
+              <Name>setY:</Name>
+              <Path>interface_g_f_mutable_point.html</Path>
+              <Anchor>a6d91830cd1afe25ed7e1300f5e5d2f20</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutablePolygon</Name>
+            <Path>interface_g_f_mutable_polygon.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>setOuterRing:</Name>
+              <Path>interface_g_f_mutable_polygon.html</Path>
+              <Anchor>ac1c96257b0bee12c4981fa4d743d9991</Anchor>
+             </Node>
+             <Node>
+              <Name>setInnerRings:</Name>
+              <Path>interface_g_f_mutable_polygon.html</Path>
+              <Anchor>a65eed15c20f44d95af8d8d789407366c</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>GFMutableRing</Name>
+            <Path>interface_g_f_mutable_ring.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>addPoint:</Name>
+              <Path>interface_g_f_mutable_ring.html</Path>
+              <Anchor>abd2affff7a9a5efa89ee892de6c34937</Anchor>
+             </Node>
+             <Node>
+              <Name>insertPoint:atIndex:</Name>
+              <Path>interface_g_f_mutable_ring.html</Path>
+              <Anchor>a483441f09297df754c2ca82f6ff10918</Anchor>
+             </Node>
+             <Node>
+              <Name>removeAllPoints</Name>
+              <Path>interface_g_f_mutable_ring.html</Path>
+              <Anchor>a98116745bd973cd9a206e289a9d501fb</Anchor>
+             </Node>
+             <Node>
+              <Name>removePointAtIndex:</Name>
+              <Path>interface_g_f_mutable_ring.html</Path>
+              <Anchor>a82f12ae57ae5bb09e30b74ee76b98ab6</Anchor>
+             </Node>
+             <Node>
+              <Name>setObject:atIndexedSubscript:</Name>
+              <Path>interface_g_f_mutable_ring.html</Path>
+              <Anchor>a5c8a28b004ceb9eb4204581215851441</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -470,6 +699,12 @@
                <Node>
                 <Name>GFBox</Name>
                 <Path>interface_g_f_box.html</Path>
+                <Subnodes>
+                 <Node>
+                  <Name>GFMutableBox</Name>
+                  <Path>interface_g_f_mutable_box.html</Path>
+                 </Node>
+                </Subnodes>
                </Node>
                <Node>
                 <Name>GFGeometryCollection</Name>
@@ -478,14 +713,36 @@
                  <Node>
                   <Name>GFMultiLineString</Name>
                   <Path>interface_g_f_multi_line_string.html</Path>
+                  <Subnodes>
+                   <Node>
+                    <Name>GFMutableMultiLineString</Name>
+                    <Path>interface_g_f_mutable_multi_line_string.html</Path>
+                   </Node>
+                  </Subnodes>
                  </Node>
                  <Node>
                   <Name>GFMultiPoint</Name>
                   <Path>interface_g_f_multi_point.html</Path>
+                  <Subnodes>
+                   <Node>
+                    <Name>GFMutableMultiPoint</Name>
+                    <Path>interface_g_f_mutable_multi_point.html</Path>
+                   </Node>
+                  </Subnodes>
                  </Node>
                  <Node>
                   <Name>GFMultiPolygon</Name>
                   <Path>interface_g_f_multi_polygon.html</Path>
+                  <Subnodes>
+                   <Node>
+                    <Name>GFMutableMultiPolygon</Name>
+                    <Path>interface_g_f_mutable_multi_polygon.html</Path>
+                   </Node>
+                  </Subnodes>
+                 </Node>
+                 <Node>
+                  <Name>GFMutableGeometryCollection</Name>
+                  <Path>interface_g_f_mutable_geometry_collection.html</Path>
                  </Node>
                 </Subnodes>
                </Node>
@@ -494,8 +751,18 @@
                 <Path>interface_g_f_line_string.html</Path>
                 <Subnodes>
                  <Node>
+                  <Name>GFMutableLineString</Name>
+                  <Path>interface_g_f_mutable_line_string.html</Path>
+                 </Node>
+                 <Node>
                   <Name>GFRing</Name>
                   <Path>interface_g_f_ring.html</Path>
+                  <Subnodes>
+                   <Node>
+                    <Name>GFMutableRing</Name>
+                    <Path>interface_g_f_mutable_ring.html</Path>
+                   </Node>
+                  </Subnodes>
                  </Node>
                 </Subnodes>
                </Node>
@@ -506,6 +773,12 @@
                <Node>
                 <Name>GFPoint</Name>
                 <Path>interface_g_f_point.html</Path>
+                <Subnodes>
+                 <Node>
+                  <Name>GFMutablePoint</Name>
+                  <Path>interface_g_f_mutable_point.html</Path>
+                 </Node>
+                </Subnodes>
                </Node>
                <Node>
                 <Name>GFPointAbstract</Name>
@@ -514,6 +787,12 @@
                <Node>
                 <Name>GFPolygon</Name>
                 <Path>interface_g_f_polygon.html</Path>
+                <Subnodes>
+                 <Node>
+                  <Name>GFMutablePolygon</Name>
+                  <Path>interface_g_f_mutable_polygon.html</Path>
+                 </Node>
+                </Subnodes>
                </Node>
                <Node>
                 <Name>GFPolygonAbstract</Name>
@@ -530,6 +809,20 @@
              <Node>
               <Name>GFGeometry</Name>
               <Path>interface_g_f_geometry.html</Path>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>&lt;NSMutableCopying&gt;</Name>
+            <Path></Path>
+            <Subnodes>
+             <Node>
+              <Name>GFGeometry</Name>
+              <Path>interface_g_f_geometry.html</Path>
+             </Node>
+             <Node>
+              <Name>GFPoint</Name>
+              <Path>interface_g_f_point.html</Path>
              </Node>
             </Subnodes>
            </Node>

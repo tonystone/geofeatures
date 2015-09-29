@@ -1,4 +1,4 @@
 <map id="GFRing" name="GFRing">
-<area shape="rect" id="node2" href="$interface_g_f_line_string.html" title="A GFLineString is a collection of GFPoints. " alt="" coords="108,155,208,181"/>
-<area shape="rect" id="node3" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="109,80,207,107"/>
+<area shape="rect" id="node2" href="$interface_g_f_line_string.html" title="A GFLineString is a collection of GFPoints. " alt="" coords="169,152,269,177"/>
+<area shape="rect" id="node3" href="$interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. " alt="" coords="170,79,268,104"/>
 </map>
