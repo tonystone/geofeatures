@@ -104,9 +104,7 @@ namespace gf = geofeatures;
 
     - (GFLineString *) geometryAtIndex:(NSUInteger)index {
 
-        auto size = _multiLineString.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _multiLineString.size()) {
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         //
@@ -124,7 +122,7 @@ namespace gf = geofeatures;
         if (_multiLineString.empty()) {
             return nil;
         }
-        return [[GFLineString alloc] initWithCPPLineString: _multiLineString.front()];
+        return [[GFLineString alloc] initWithCPPLineString: *_multiLineString.begin()];
     }
 
     - (GFLineString *) lastGeometry {
@@ -132,16 +130,14 @@ namespace gf = geofeatures;
         if (_multiLineString.empty()) {
             return nil;
         }
-        return [[GFLineString alloc] initWithCPPLineString: _multiLineString.back()];
+        return [[GFLineString alloc] initWithCPPLineString: *(_multiLineString.end() - 1)];
     }
 
 #pragma mark - Indexed Subscripting
 
     - (GFLineString *) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto size = _multiLineString.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _multiLineString.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiLineString.size()];
         }
         //
