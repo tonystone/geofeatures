@@ -39,6 +39,8 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
 
 @implementation GFBoxTests
 
+#pragma mark - Test init
+
     - (void)testInit_NoThrow {
         XCTAssertNoThrow([[GFBox alloc] init]);
     }
@@ -46,6 +48,8 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     - (void)testInit_NotNil {
         XCTAssertNotNil([[GFBox alloc] init]);
     }
+
+#pragma mark - Test initWithMinCornerMaxCorner
 
     - (void) testInitWithMinCornerMaxCorner_NoThrow {
         XCTAssertNoThrow([[GFBox alloc] initWithMinCorner: [[GFPoint alloc] initWithX:100.0 y: 0.0] maxCorner: [[GFPoint alloc] initWithX: 101.0 y:1.0]]);
@@ -58,6 +62,8 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     - (void) testInitWithMinCornerMaxCorner_WithValidCorners {
         XCTAssertEqualObjects([[[GFBox alloc] initWithMinCorner: [[GFPoint alloc] initWithX: 1.0 y: 1.0] maxCorner: [[GFPoint alloc] initWithX: 3.0 y: 3.0]] toWKTString], @"POLYGON((1 1,1 3,3 3,3 1,1 1))");
     }
+
+#pragma mark - Test initGeoJSONGeometry
 
     - (void) testInitWithGeoJSONGeometry_NoThrow {
         XCTAssertNoThrow([[GFBox alloc] initWithGeoJSONGeometry: geoJSON1]);
@@ -75,6 +81,8 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertThrowsSpecificNamed([[GFBox alloc] initWithGeoJSONGeometry:  invalidGeoJSON], NSException, NSInvalidArgumentException);
     }
 
+#pragma mark - Test initWithWKT
+
     - (void)testInitWithWKT_WithValidWKT {
         XCTAssertEqualObjects([[[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"] toWKTString], @"POLYGON((1 1,1 3,3 3,3 1,1 1))");
     }
@@ -83,14 +91,20 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertThrows([[GFBox alloc] initWithWKT: @"INVALID()"]);
     }
 
+#pragma mark - Test copy
+
     - (void) testCopy {
         // NOte a box will always output as a polygon.
         XCTAssertEqualObjects([[[[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"] copy] toWKTString], @"POLYGON((1 1,1 3,3 3,3 1,1 1))");
     }
 
+#pragma mark - Test toGeoJSONGeometry
+
     - (void) testToGeoJSONGeometry  {
         XCTAssertEqualObjects([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
+
+#pragma mark - Test description
 
     - (void) testDescription_NotNil {
         XCTAssertNotNil([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON1] description]);
@@ -103,6 +117,8 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
     - (void) testDescription_WithGeoJSON2 {
         XCTAssertEqualObjects([[[GFBox alloc] initWithGeoJSONGeometry: geoJSON2] description], @"POLYGON((103 2,103 4,110 4,110 2,103 2))");
     }
+
+#pragma mark - Test mapOverlays
 
     - (void) testMapOverlays {
 
@@ -117,7 +133,6 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
 
         XCTAssertTrue   ([polygon pointCount] == 5);
         XCTAssertTrue   ([[polygon interiorPolygons] count] == 0);
-
     }
 
 @end
