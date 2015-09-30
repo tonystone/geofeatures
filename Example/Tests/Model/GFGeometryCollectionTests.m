@@ -26,17 +26,27 @@
 
 @implementation GFGeometryCollectionTests
 
-    - (void)testInit {
+#pragma mark - Test Init
+
+    - (void)testInit_NoThrow {
         XCTAssertNoThrow([[GFGeometryCollection alloc] init]);
+    }
+
+    - (void)testInit_NotNil {
         XCTAssertNotNil([[GFGeometryCollection alloc] init]);
     }
 
-    - (void) testInitWithArrayEmpty {
+#pragma mark - Test InitWithArry
+
+    - (void) testInitWithArray_WithEmptyArray_NoThrow {
         XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: @[]]);
+    }
+
+    - (void) testInitWithArray_WithEmptyArray_NotNil {
         XCTAssertNotNil ([[GFGeometryCollection alloc] initWithArray: @[]]);
     }
 
-    - (void) testInitWithArray {
+    - (void) testInitWithArray_WithValidArray_NoThrow {
         XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: (@[
                 [[GFPoint alloc] initWithWKT: @"POINT(103 2)"],
                 [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"],
@@ -47,6 +57,8 @@
                 [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"],
                 [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"]
         ])]);
+    }
+    - (void) testInitWithArray_WithValidArray {
         XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithArray: (@[
                 [[GFPoint alloc] initWithWKT: @"POINT(103 2)"],
                 [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"],
@@ -57,28 +69,34 @@
                 [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"],
                 [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"]
         ])] toWKTString],
-                              //@"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),LINESTRING(20 0,20 10,40 10,40 0,20 0),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
-                          @"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"    
-                              );
-                
-                
+        //@"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),LINESTRING(20 0,20 10,40 10,40 0,20 0),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
+                @"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
+        );
+    }
 
-                }
-
-    - (void) testInitWithArrayThrows {
+    - (void) testInitWithArray_WithInvalidArray {
         XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: (@[ [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"]])], NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithArray_WithInvalidObject {
         XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: @[[[NSObject alloc] init]]], NSException, NSInvalidArgumentException);
     }
 
-    - (void)testFailedConstruction {
+#pragma mark - Test InitWithWKT
+
+    - (void)testInitWithWKT_WithInvalidWKT {
 //        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
         XCTAssertThrows([[GFGeometryCollection alloc] initWithWKT: @"INVALID()"]);
     }
+
+#pragma mark - Test copy
 
     - (void) testCopy {
         XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))"] \
                                     copy] toWKTString], @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
     }
+
+#pragma mark - Test description
 
     - (void) testDescription {
         XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithWKT:
@@ -86,50 +104,90 @@
                 @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
     }
 
-#pragma mark - Querying Tests
+#pragma mark - Test count
 
-    - (void) testCount {
-
+    - (void) testCount_WithEmptyGeometryCollection {
         XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION()"] count], 0);
+    }
+
+    - (void) testCount_With1ElementGeometryCollection {
         XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)))"] count], 1);
+    }
+
+    - (void) testCount_With2ElementGeometryCollection {
         XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"] count], 2);
     }
 
-    - (void) testObjectAtIndex {
+#pragma mark - Test objectAtIndex
 
+    - (void) testObjectAtIndex_With2ElementGeometryCollectionAndIndex0 {
         XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"] geometryAtIndex: 0] toWKTString], @"POLYGON((120 0,120 90,210 90,210 0,120 0))");
-        XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(40 50,40 140)");
+    }
 
+    - (void) testObjectAtIndex_With2ElementGeometryCollectionAndIndex1 {
+        XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(40 50,40 140)");
+    }
+
+    - (void) testObjectAtIndex_With1ElementGeometryCollectionAndIndex1 {
         XCTAssertThrowsSpecificNamed(([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)))"] geometryAtIndex: 1]), NSException, NSRangeException);
     }
 
-    - (void) testFirstObject {
+#pragma mark - Test firstGeometry
 
+    - (void) testFirstGeometry_With2ElementGeometryCollection {
         XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"] firstGeometry] toWKTString], @"POLYGON((120 0,120 90,210 90,210 0,120 0))");
+    }
 
+    - (void) testFirstGeometry_WithEmptyGeometryCollection_NoThrow {
         XCTAssertNoThrow([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION()"] firstGeometry]);
+    }
+
+    - (void) testFirstGeometry_WithEmptyGeometryCollection  {
         XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION()"] firstGeometry], nil);
     }
 
-    - (void) testLastObject {
+#pragma mark - Test lastGeometry
 
+    - (void) testLastGeometry_With2ElementGeometryCollection {
         XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"] lastGeometry] toWKTString], @"LINESTRING(40 50,40 140)");
+    }
 
+    - (void) testLastGeometry_WithEmptyGeometryCollection_NoThrow {
         XCTAssertNoThrow([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION()"] lastGeometry]);
+    }
+
+    - (void) testLastGeometry_WithEmptyGeometryCollection {
         XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION()"] lastGeometry], nil);
     }
 
-#pragma mark - Indexed Subscript Tests
+#pragma mark - Test objectAtIndexedSubscript
 
-    - (void) testObjectAtIndexedSubscript {
+    - (void) testObjectAtIndexedSubscript_With2ElementGeometryCollectionAndIndexInRange {
 
         GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"];
 
         XCTAssertNoThrow(geometryCollection[0]);
         XCTAssertNoThrow(geometryCollection[1]);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementGeometryCollectionAndIndexOutOfRangeRange  {
+
+        GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"];
+
         XCTAssertThrowsSpecificNamed(geometryCollection[2], NSException, NSRangeException);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementGeometryCollectionAndIndex0  {
+
+        GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"];
 
         XCTAssertEqualObjects([geometryCollection[0] toWKTString], @"POLYGON((120 0,120 90,210 90,210 0,120 0))");
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementGeometryCollectionAndIndex1  {
+
+        GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"];
+
         XCTAssertEqualObjects([geometryCollection[1] toWKTString], @"LINESTRING(40 50,40 140)");
     }
 
