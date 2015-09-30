@@ -112,9 +112,7 @@ namespace gf = geofeatures;
 
     - (GFPolygon *) geometryAtIndex: (NSUInteger) index {
 
-        auto size = _multiPolygon.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _multiPolygon.size()) {
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) (unsigned long) (unsigned long) _multiPolygon.size()];
         }
         //
@@ -132,7 +130,7 @@ namespace gf = geofeatures;
         if (_multiPolygon.empty()) {
             return nil;
         }
-        return [[GFPolygon alloc] initWithCPPPolygon: _multiPolygon.front()];
+        return [[GFPolygon alloc] initWithCPPPolygon: *_multiPolygon.begin()];
     }
 
     - (GFPolygon *) lastGeometry {
@@ -140,16 +138,14 @@ namespace gf = geofeatures;
         if (_multiPolygon.empty()) {
             return nil;
         }
-        return [[GFPolygon alloc] initWithCPPPolygon: _multiPolygon.back()];
+        return [[GFPolygon alloc] initWithCPPPolygon: *(_multiPolygon.end() - 1)];
     }
 
 #pragma mark - Indexed Subscripting
 
     - (GFPolygon *) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto size = _multiPolygon.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _multiPolygon.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPolygon.size()];
         }
         //
