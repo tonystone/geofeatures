@@ -28,31 +28,42 @@
 
 @implementation GFWithinTests
 
-    - (void) testPoint {
+    - (void) testWithin_WithPointWithinPoint {
         WithinTest(GFPoint, @"POINT(4 1)", GFPoint, @"POINT(4 1)", true);
+    }
+
+    - (void) testWithin_WithPointOutsidePoint {
         WithinTest(GFPoint, @"POINT(0 0)", GFPoint, @"POINT(4 1)", false);
     }
 
-
-    - (void) testLineString {
+    - (void) testWithin_WithPointWithinLineString {
         WithinTest(GFPoint, @"POINT(0.5 0.5)", GFLineString, @"LINESTRING(0 0,1 1)", true);
+    }
+
+    - (void) testWithin_WithPointOutsideLineString {
         WithinTest(GFPoint, @"POINT(2 2)", GFLineString, @"LINESTRING(0 0,1 1)", false);
     }
 
-    - (void) testPolygon {
+    - (void) testWithin_WithPointWithinPolygon {
         WithinTest(GFPoint, @"POINT(4 1)", GFPolygon, @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
                    "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", true);
-        
-        WithinTest(GFLineString, @"LINESTRING(4 1,4 2)", GFPolygon, @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
-                   "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", true);
-        
-        WithinTest(GFLineString, @"LINESTRING(0 0,1 1)", GFPolygon, @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
-                   "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", false);
     }
 
+    - (void) testWithin_WithLineStringWithinPolygon {
+        WithinTest(GFLineString, @"LINESTRING(4 1,4 2)", GFPolygon, @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+                "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", true);
+    }
 
-    - (void) testRing {
+    - (void) testWithin_WithLineStringOutsidePolygon {
+        WithinTest(GFLineString, @"LINESTRING(0 0,1 1)", GFPolygon, @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+                "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", false);
+    }
+
+    - (void) testWithin_WithPointWithinRing {
         WithinTest(GFPoint, @"POINT(4 1)", GFRing, @"LINESTRING(2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)", true);
+    }
+
+    - (void) testWithin_WithPointOutsideRing {
         WithinTest(GFPoint, @"POINT(2 2)", GFRing, @"LINESTRING(0 0,1 1)", false);
     }
 

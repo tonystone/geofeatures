@@ -29,40 +29,67 @@
 @implementation GFIsValidTests
 
 
-    - (void) testPoint {
+    - (void) testIsValid_WithValidPoint0 {
         IsValidTest(GFPoint, @"POINT(0 0)", true);
+    }
+
+    - (void) testIsValid_WithValidPoint1 {
         IsValidTest(GFPoint, @"POINT(1 1)", true);
+    }
+
+    - (void) testIsValid_WithEmptyPoint {
         IsValidTest(GFPoint, @"POINT EMPTY", true);
     }
 
-    - (void) testMultiPoint {
+    - (void) testIsValid_WithValidMultiPoint {
         IsValidTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", true);
+    }
+
+    - (void) testIsValid_WithEmptyMultiPoint {
         IsValidTest(GFMultiPoint, @"MULTIPOINT EMPTY", true);
     }
 
-    - (void) testLineString {
+    - (void) testIsValid_WithValidLineString {
         IsValidTest(GFLineString, @"LINESTRING(0 0,1 1)", true);
+    }
+
+    - (void) testIsValid_WithEmptyLineString {
         IsValidTest(GFLineString, @"LINESTRING EMPTY", false);
     }
 
-    - (void) testMultiLineString {
+    - (void) testIsValid_WithValidMultiLineString {
         IsValidTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", true);
+    }
+
+    - (void) testIsValid_WithEmptyMultiLineString {
         IsValidTest(GFMultiLineString, @"MULTILINESTRING EMPTY", true);
     }
 
-    - (void) testPolygon {
+    - (void) testIsValid_WithValidPolygon {
         IsValidTest(GFPolygon, @"POLYGON((0 0,0 7,4 2,2 0,0 0))", true);
+    }
+
+    - (void) testIsValid_WithEmptyPolygon {
         IsValidTest(GFPolygon, @"POLYGON EMPTY", false);
     }
 
-    - (void) testMultiPolygon {
-        IsValidTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((0 0,0 7,4 2,2 0,0 0)))", false);
+    - (void) testIsValid_WithValidMultiPolygon {
         IsValidTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((10 10,10 17,14 12,12 10,10 10)))", true);
+    }
+
+    - (void) testIsValid_WithInvalidMultiPolygon {
+        IsValidTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((0 0,0 7,4 2,2 0,0 0)))", false);
+    }
+
+    - (void) testIsValid_WithEmptyMultiPolygon {
         IsValidTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", true);
     }
 
-    - (void) testRing {
+    - (void) testValid_WithRing {
         IsValidTest(GFRing, @"LINESTRING(0 0,0 7,4 2,2 0,0 0)", true);
+    }
+
+    - (void) testIsValid_WithEmptyRing {
         IsValidTest(GFRing, @"LINESTRING EMPTY", false);
     }
 
