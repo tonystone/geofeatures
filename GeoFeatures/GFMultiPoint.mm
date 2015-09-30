@@ -100,9 +100,7 @@ namespace gf = geofeatures;
 
     - (GFPoint *) geometryAtIndex: (NSUInteger) index {
 
-        auto size = _multiPoint.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _multiPoint.size()) {
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
         //
@@ -120,7 +118,7 @@ namespace gf = geofeatures;
         if (_multiPoint.empty()) {
             return nil;
         }
-        return [[GFPoint alloc] initWithCPPPoint: _multiPoint.front()];
+        return [[GFPoint alloc] initWithCPPPoint: *_multiPoint.begin()];
     }
 
     - (GFPoint *) lastGeometry {
@@ -128,16 +126,14 @@ namespace gf = geofeatures;
         if (_multiPoint.empty()) {
             return nil;
         }
-        return [[GFPoint alloc] initWithCPPPoint: _multiPoint.back()];
+        return [[GFPoint alloc] initWithCPPPoint: *(_multiPoint.end() - 1)];
     }
 
 #pragma mark - Indexed Subscripting
 
     - (GFPoint *) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto size = _multiPoint.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _multiPoint.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _multiPoint.size()];
         }
         //

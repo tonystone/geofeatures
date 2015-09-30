@@ -93,9 +93,7 @@ namespace gf = geofeatures;
 
     - (id) geometryAtIndex: (NSUInteger) index {
 
-        auto size = _geometryCollection.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _geometryCollection.size()) {
             [NSException raise:NSRangeException format:@"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         //
@@ -111,7 +109,7 @@ namespace gf = geofeatures;
     - (id) firstGeometry {
 
         if (!_geometryCollection.empty()) {
-            return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.front());
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), *_geometryCollection.begin());
         }
         return nil;
     }
@@ -119,7 +117,7 @@ namespace gf = geofeatures;
     - (id) lastGeometry {
 
         if (!_geometryCollection.empty()) {
-            return boost::apply_visitor(gf::GFInstanceFromVariant(), _geometryCollection.back());
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), *(_geometryCollection.end() - 1));
         }
         return nil;
     }
@@ -132,9 +130,7 @@ namespace gf = geofeatures;
 
     - (id) objectAtIndexedSubscript: (NSUInteger) index {
 
-        auto size = _geometryCollection.size();
-
-        if (size == 0 || index > (size -1)) {
+        if (index >= _geometryCollection.size()) {
             [NSException raise: NSRangeException format: @"Index %li is beyond bounds [0, %li].", (unsigned long) index, (unsigned long) _geometryCollection.size()];
         }
         //
