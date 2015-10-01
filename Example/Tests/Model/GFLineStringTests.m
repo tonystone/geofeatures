@@ -113,45 +113,45 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] count], 2);
     }
 
-#pragma mark - Test objectAtIndex
+#pragma mark - Test pointAtIndex
 
-    - (void) testObjectAtIndex_With2ElementLineStringAndIndex0 {
+    - (void) testPointAtIndex_With2ElementLineStringAndIndex0 {
         XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] pointAtIndex: 0] toWKTString], @"POINT(40 60)");
     }
 
-    - (void) testObjectAtIndex_With2ElementLineStringAndIndex1  {
+    - (void) testPointAtIndex_With2ElementLineStringAndIndex1  {
         XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] pointAtIndex: 1] toWKTString], @"POINT(120 110)");
     }
 
-    - (void) testObjectAtIndex_With1ElementLineStringAndOutOfRangeIndex  {
+    - (void) testPointAtIndex_With1ElementLineStringAndOutOfRangeIndex  {
         XCTAssertThrowsSpecificNamed(([[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60)"] pointAtIndex: 1]), NSException, NSRangeException);
     }
 
-#pragma mark - Test firstObject
+#pragma mark - Test firstPoint
 
-    - (void) testFirstObject_With2ElementLineString {
+    - (void) testFirstPoint_With2ElementLineString {
         XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] firstPoint] toWKTString], @"POINT(40 60)");
     }
 
-    - (void) testFirstObject_WithEmptyLineString_NoThrow {
+    - (void) testFirstPoint_WithEmptyLineString_NoThrow {
         XCTAssertNoThrow([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] firstPoint]);
     }
 
-    - (void) testFirstObject_WithEmptyLineString {
+    - (void) testFirstPoint_WithEmptyLineString {
         XCTAssertEqualObjects([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] firstPoint], nil);
     }
 
-#pragma mark - Test lastObject
+#pragma mark - Test lastPoint
 
-    - (void) testLastObject_With2ElementLineString  {
+    - (void) testLastPoint_With2ElementLineString  {
         XCTAssertEqualObjects([[[[GFLineString alloc] initWithWKT: @"LINESTRING(40 60,120 110)"] lastPoint] toWKTString], @"POINT(120 110)");
     }
 
-    - (void) testLastObject_WithEmptyLineString_NoThrow  {
+    - (void) testLastPoint_WithEmptyLineString_NoThrow  {
         XCTAssertNoThrow([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] lastPoint]);
     }
 
-    - (void) testLastObject_WithEmptyLineString  {
+    - (void) testLastPoint_WithEmptyLineString  {
         XCTAssertEqualObjects([[[GFLineString alloc] initWithWKT: @"LINESTRING()"] lastPoint], nil);
     }
 

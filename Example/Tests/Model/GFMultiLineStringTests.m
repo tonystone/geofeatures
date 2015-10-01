@@ -129,45 +129,45 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] count], 2);
     }
 
-#pragma mark - Test objectAtIndex
+#pragma mark - Test geometryAtIndex
 
-    - (void) testObjectAtIndex_With2ElementMultiLineStringAndIndex0 {
+    - (void) testGeometryAtIndex_With2ElementMultiLineStringAndIndex0 {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 0] toWKTString], @"LINESTRING(0 0,5 0)");
     }
 
-    - (void) testObjectAtIndex_With2ElementMultiLineStringAndIndex1 {
+    - (void) testGeometryAtIndex_With2ElementMultiLineStringAndIndex1 {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
     }
 
-    - (void) testObjectAtIndex_With2ElementMultiLineStringAndOutOfRangeIndex {
+    - (void) testGeometryAtIndex_With2ElementMultiLineStringAndOutOfRangeIndex {
         XCTAssertThrowsSpecificNamed(([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] geometryAtIndex: 1]), NSException, NSRangeException);
     }
 
 #pragma mark - Test firstGeometry
 
-    - (void) testFirstObject_With2ElementMultiLineString {
+    - (void) testFirstGeometry_With2ElementMultiLineString {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] firstGeometry] toWKTString], @"LINESTRING(0 0,5 0)");
     }
 
-    - (void) testFirstObject_WithEmptyMultiLineString_NoThrow {
+    - (void) testFirstGeometry_WithEmptyMultiLineString_NoThrow {
         XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry]);
     }
 
-    - (void) testFirstObject_WithEmptyMultiLineString {
+    - (void) testFirstGeometry_WithEmptyMultiLineString {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry], nil);
     }
 
 #pragma mark - Test lastGeometry
 
-    - (void) testLastObject_With2ElementMultiLineString {
+    - (void) testLastGeometry_With2ElementMultiLineString {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] lastGeometry] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
     }
 
-    - (void) testLastObject_WithEmptyMultiLineString_NoThrow {
+    - (void) testLastGeometry_WithEmptyMultiLineString_NoThrow {
         XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry]);
     }
 
-    - (void) testLastObject_WithEmptyMultiLineString {
+    - (void) testLastGeometry_WithEmptyMultiLineString {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry], nil);
     }
 

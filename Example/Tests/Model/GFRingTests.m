@@ -116,45 +116,45 @@ void __attribute__((constructor)) staticInitializer() {
         XCTAssertEqual([[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] count], 5);
     }
 
-#pragma mark - Test objectAtIndex
+#pragma mark - Test pointAtIndex
 
-    - (void) testObjectAtIndex_With5ElementLineRingAndIndex0 {
+    - (void) testPointAtIndex_With5ElementLineRingAndIndex0 {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 0] toWKTString], @"POINT(20 0)");
     }
 
-    - (void) testObjectAtIndex_With5ElementLineRingAndIndex1 {
+    - (void) testPointAtIndex_With5ElementLineRingAndIndex1 {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 1] toWKTString], @"POINT(20 10)");
     }
 
-    - (void) testObjectAtIndex_With5ElementLineRingAndOutOfRangeIndex {
+    - (void) testPointAtIndex_With5ElementLineRingAndOutOfRangeIndex {
         XCTAssertThrowsSpecificNamed(([[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 5]), NSException, NSRangeException);
     }
 
-#pragma mark - Test firstObject
+#pragma mark - Test firstPoint
 
-    - (void) testFirstObject_With5ElementLineRing {
+    - (void) testFirstPoint_With5ElementLineRing {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] firstPoint] toWKTString], @"POINT(20 0)");
     }
 
-    - (void) testFirstObject_With5ElementLineRing_NoThrow {
+    - (void) testFirstPoint_With5ElementLineRing_NoThrow {
         XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstPoint]);
     }
 
-    - (void) testFirstObject_WithEmptyLineRing {
+    - (void) testFirstPoint_WithEmptyLineRing {
         XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstPoint], nil);
     }
 
-#pragma mark - Test lastObject
+#pragma mark - Test lastPoint
 
-    - (void) testLastObject_With5ElementLineRing {
+    - (void) testLastPoint_With5ElementLineRing {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] lastPoint] toWKTString], @"POINT(20 0)");
     }
 
-    - (void) testLastObject_With5ElementLineRing_NoThrow  {
+    - (void) testLastPoint_With5ElementLineRing_NoThrow  {
         XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastPoint]);
     }
 
-    - (void) testLastObject_WithEmptyLineRing {
+    - (void) testLastPoint_WithEmptyLineRing {
         XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastPoint], nil);
     }
 
