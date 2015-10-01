@@ -42,34 +42,55 @@ void __attribute__((constructor)) staticInitializer() {
 
 @implementation GFRingTests
 
-    - (void)testConstruction {
+#pragma mark - Test init
+
+    - (void)testInit_NoThrow {
         XCTAssertNoThrow([[GFRing alloc] init]);
+    }
+
+    - (void)testInit_NotNil {
         XCTAssertNotNil([[GFRing alloc] init]);
     }
 
-    - (void)testFailedConstruction {
+    - (void)testInit {
+        XCTAssertEqualObjects([[[GFRing alloc] init] toWKTString], @"LINESTRING()");
+    }
+
+#pragma mark - Test initWithGeoJSONGeometry
+
+    - (void)testInitWithGeoJSONGeometry_WithInvalidGeoJSONGeometry {
         XCTAssertThrowsSpecificNamed(([[GFRing alloc] initWithGeoJSONGeometry: @{@"invalid": @{}}]), NSException, NSInvalidArgumentException);
+    }
+
+#pragma mark - Test initWithWKT
+
+    - (void)testInitWithWKT_WithInvalidWKT {
         XCTAssertThrows([[GFRing alloc] initWithWKT: @"INVALID()"]);
     }
+
+#pragma mark - Test copy
 
     - (void) testCopy {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] copy] toWKTString], @"LINESTRING(20 0,20 10,40 10,40 0,20 0)");
     }
 
-    - (void) testDescription {
+#pragma mark - Test description
 
-        // Currently we only check if it returns something and its not nill
-
+    - (void) testDescription_NotNil {
         XCTAssertNotNil([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] description]);
-        XCTAssertNotNil([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON2] description]);
-
-        XCTAssertTrue ([[[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] description] length] > 0);
-        XCTAssertTrue ([[[[GFRing alloc] initWithGeoJSONGeometry: geoJSON2] description] length] > 0);
     }
+
+    - (void) testDescription {
+        XCTAssertEqualObjects ([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] description],@"LINESTRING(100 0,101 1)");
+    }
+
+#pragma mark - Test toGeoJSONGeometry
 
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFRing alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
+
+#pragma mark - Test mapOverlays
 
     - (void) testMapOverlays {
     
@@ -85,50 +106,88 @@ void __attribute__((constructor)) staticInitializer() {
         XCTAssertTrue   ([polyline pointCount] == 2);
     }
 
-#pragma mark - Querying Tests
+#pragma mark - Test count
 
-    - (void) testCount {
-
+    - (void) testCount_WithEmptyRing {
         XCTAssertEqual([[[GFRing alloc] initWithWKT: @"LINESTRING()"] count], 0);
+    }
+
+    - (void) testCount_With5ElementRing {
         XCTAssertEqual([[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] count], 5);
     }
 
-    - (void) testObjectAtIndex {
+#pragma mark - Test objectAtIndex
 
+    - (void) testObjectAtIndex_With5ElementLineRingAndIndex0 {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 0] toWKTString], @"POINT(20 0)");
-        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 1] toWKTString], @"POINT(20 10)");
+    }
 
+    - (void) testObjectAtIndex_With5ElementLineRingAndIndex1 {
+        XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 1] toWKTString], @"POINT(20 10)");
+    }
+
+    - (void) testObjectAtIndex_With5ElementLineRingAndOutOfRangeIndex {
         XCTAssertThrowsSpecificNamed(([[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] pointAtIndex: 5]), NSException, NSRangeException);
     }
 
-    - (void) testFirstObject {
+#pragma mark - Test firstObject
 
+    - (void) testFirstObject_With5ElementLineRing {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] firstPoint] toWKTString], @"POINT(20 0)");
+    }
 
+    - (void) testFirstObject_With5ElementLineRing_NoThrow {
         XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstPoint]);
+    }
+
+    - (void) testFirstObject_WithEmptyLineRing {
         XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] firstPoint], nil);
     }
 
-    - (void) testLastObject {
+#pragma mark - Test lastObject
 
+    - (void) testLastObject_With5ElementLineRing {
         XCTAssertEqualObjects([[[[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"] lastPoint] toWKTString], @"POINT(20 0)");
+    }
 
+    - (void) testLastObject_With5ElementLineRing_NoThrow  {
         XCTAssertNoThrow([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastPoint]);
+    }
+
+    - (void) testLastObject_WithEmptyLineRing {
         XCTAssertEqualObjects([[[GFRing alloc] initWithWKT: @"LINESTRING()"] lastPoint], nil);
     }
 
-#pragma mark - Indexed Subscripting Tests
+#pragma mark - Test objectAtIndexedSubscript
 
-    - (void) testObjectAtIndexedSubscript {
-
+    - (void) testObjectAtIndexedSubscript_With2ElementRingAndIndex0_NoThrow {
         GFRing * ring = [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"];
 
         XCTAssertNoThrow(ring[0]);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementRingAndIndex1_NoThrow {
+        GFRing * ring = [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"];
+
         XCTAssertNoThrow(ring[1]);
-        XCTAssertThrowsSpecificNamed(ring[5], NSException, NSRangeException);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementRingAndIndex0 {
+        GFRing * ring = [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"];
 
         XCTAssertEqualObjects([ring[0] toWKTString], @"POINT(20 0)");
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementRingAndIndex1 {
+        GFRing * ring = [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"];
+
         XCTAssertEqualObjects([ring[1] toWKTString], @"POINT(20 10)");
+    }
+
+    - (void) testObjectAtIndexedSubscript_WithOutOfRangeIndex {
+        GFRing * ring = [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"];
+
+        XCTAssertThrowsSpecificNamed(ring[5], NSException, NSRangeException);
     }
 
 @end
