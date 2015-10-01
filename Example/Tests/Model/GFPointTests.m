@@ -50,6 +50,10 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertNotNil([[GFPoint alloc] init]);
     }
 
+    - (void) testInit {
+        XCTAssertEqualObjects([[[GFPoint alloc] init] toWKTString], @"POINT(0 0)");
+    }
+
 #pragma mark - Test initWithGeoJSONGeometry
 
     - (void) testInitWithGeoJSONGeometry_WithValidGeoJSON {
