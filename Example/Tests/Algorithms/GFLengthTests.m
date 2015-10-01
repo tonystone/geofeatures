@@ -29,40 +29,67 @@
 @implementation GFLengthTests
 
 
-    - (void) testPoint {
+    - (void) testLength_WithValidPoint1 {
         LengthTest(GFPoint, @"POINT(0 0)", 0.0);
+    }
+
+    - (void) testLength_WithValidPoint2 {
         LengthTest(GFPoint, @"POINT(1 1)", 0.0);
+    }
+
+    - (void) testLength_WithEmptyPoint {
         LengthTest(GFPoint, @"POINT EMPTY", 0.0);
     }
 
-    - (void) testMultiPoint {
+    - (void) testLength_WithValidMultiPoint {
         LengthTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", 0.0);
+    }
+
+    - (void) testLength_WithEmptyMultiPoint {
         LengthTest(GFMultiPoint, @"MULTIPOINT EMPTY", 0.0);
     }
 
-    - (void) testLineString {
+    - (void) testLength_WithValidLineString {
         LengthTest(GFLineString, @"LINESTRING(0 0,1 1)", 1.4142135623730951);
+    }
+
+    - (void) testLength_WithEmptyLineString {
         LengthTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
 
-    - (void) testMultiLineString {
+    - (void) testLength_WithValidMultiLineString {
         LengthTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 3.4142135623730949);
+    }
+
+    - (void) testLength_WithEmptyMultiLineString {
         LengthTest(GFMultiLineString, @"MULTILINESTRING EMPTY", 0.0);
     }
 
-    - (void) testPolygon {
+    - (void) testLength_WithValidPolygon {
         LengthTest(GFPolygon, @"POLYGON((0 0,1 1,1 0))", 0.0);
+    }
+
+    - (void) testLength_WithEmptyPolygon {
         LengthTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
-    - (void) testMultiPolygon {
+    - (void) testLength_WithValidMultiPolygon1 {
         LengthTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,1 1,1 0)),((0 0,1 1,1 0)))", 0.0);
+    }
+
+    - (void) testLength_WithValidMultiPolygon2 {
         LengthTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,1 1,1 0)),((0 0,1 1,1 0)))", 0.0);
+    }
+
+    - (void) testLength_WithEmptyMultiPolygon {
         LengthTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", 0.0);
     }
 
-    - (void) testRing {
+    - (void) testLength_WithValidRing {
         LengthTest(GFRing, @"LINESTRING(0 0,1 1,1 0,0 0)", 0.0);
+    }
+
+    - (void) testLength_WithEmptyRing {
         LengthTest(GFRing, @"LINESTRING EMPTY", 0.0);
     }
 

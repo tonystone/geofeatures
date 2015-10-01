@@ -29,51 +29,101 @@
 
 @implementation GFWKTTests
 
-    - (void) testPoint {
+    - (void) testToWKTString_WithPoint {
         WKTTest (GFPoint, @"POINT(1 1)");
+    }
+
+    // TODO:  Isn't an empty point POINT()?
+    - (void) testToWKTString_WithEmptyPoint1 {
         WKTTest2(GFPoint, @"POINT()", @"POINT(0 0)");
+    }
+
+    // TODO:  Isn't an empty point POINT()?
+    - (void) testToWKTString_WithEmptyPoint2 {
         WKTTest2(GFPoint, @"POINT EMPTY", @"POINT(0 0)");
     }
 
-    - (void) testMultiPoint {
+    - (void) testToWKTString_WithMultiPoint {
         WKTTest (GFMultiPoint, @"MULTIPOINT((1 1),(2 2))");
+    }
+
+    - (void) testToWKTString_WithEmptyMultiPoint1 {
         WKTTest (GFMultiPoint, @"MULTIPOINT()");
+    }
+
+    - (void) testToWKTString_WithEmptyMultiPoint2 {
         WKTTest2(GFMultiPoint, @"MULTIPOINT EMPTY", @"MULTIPOINT()");
     }
 
-    - (void) testLineString {
+    - (void) testToWKTString_WithLineString {
         WKTTest (GFLineString, @"LINESTRING(40 60,120 110)");
+    }
+
+    - (void) testToWKTString_WithEmptyLineString1 {
         WKTTest (GFLineString, @"LINESTRING()");
+    }
+
+    - (void) testToWKTString_WithEmptyLineString2 {
         WKTTest2(GFLineString, @"LINESTRING EMPTY", @"LINESTRING()");
     }
 
-    - (void) testMultiLineString {
+    - (void) testToWKTString_WithMultiLineString {
         WKTTest (GFMultiLineString, @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))");
+    }
+
+    - (void) testToWKTString_WithEmptyMultiLineString1 {
         WKTTest (GFMultiLineString, @"MULTILINESTRING()");
+    }
+
+    - (void) testToWKTString_WithEmptyMultiLineString2 {
         WKTTest2(GFMultiLineString, @"MULTILINESTRING EMPTY", @"MULTILINESTRING()");
     }
 
-    - (void) testPolygon {
+    - (void) testToWKTString_WithPolygon {
         WKTTest (GFPolygon, @"POLYGON((0 0,0 90,90 90,90 0,0 0))");
+    }
+
+    - (void) testToWKTString_WithEmptyPolygon1 {
         WKTTest2(GFPolygon, @"POLYGON()", @"POLYGON(())");
+    }
+
+    - (void) testToWKTString_WithEmptyPolygon2 {
         WKTTest2(GFPolygon, @"POLYGON EMPTY", @"POLYGON(())");
     }
 
-    - (void) testMultiPolygon {
+    - (void) testToWKTString_WithMultiPolygon {
         WKTTest (GFMultiPolygon, @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
+    }
+
+    - (void) testToWKTString_WithEmptyMultiPolygon1 {
         WKTTest (GFMultiPolygon, @"MULTIPOLYGON()");
+    }
+
+    - (void) testToWKTString_WithEmptyMultiPolygon2 {
         WKTTest2(GFMultiPolygon, @"MULTIPOLYGON EMPTY", @"MULTIPOLYGON()");
     }
 
-    - (void) testGeometryCollection {
+    - (void) testToWKTString_WithGeometryCollection {
         WKTTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
+    }
+
+    - (void) testToWKTString_WithEmptyGeometryCollection1 {
         WKTTest(GFGeometryCollection, @"GEOMETRYCOLLECTION()");
+    }
+
+    - (void) testToWKTString_WithEmptyGeometryCollection2 {
         WKTTest2(GFGeometryCollection, @"GEOMETRYCOLLECTION EMPTY", @"GEOMETRYCOLLECTION()");
     }
 
-    - (void) testRing {
+    - (void) testToWKTString_WithRing {
         WKTTest (GFRing, @"LINESTRING(40 60,120 110)");
+    }
+
+    - (void) testToWKTString_WithEmptyRing1 {
         WKTTest (GFRing, @"LINESTRING()");
+    }
+
+    - (void) testToWKTString_WithEmptyRing2 {
         WKTTest2(GFRing, @"LINESTRING EMPTY", @"LINESTRING()");
     }
 

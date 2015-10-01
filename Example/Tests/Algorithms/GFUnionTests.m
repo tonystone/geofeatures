@@ -28,34 +28,37 @@
 
 @implementation GFUnionTests
 
-    - (void) testPoint {
+    - (void) testUnion_WithPointAndPoint {
         UnionTest(GFPoint, @"POINT(1 1)", GFPoint, @"POINT(2 2)", @"MULTIPOINT((1 1),(2 2))");
+    }
+
+    - (void) testUnion_WithPointAndMultiPoint {
         UnionTest(GFPoint, @"POINT(40 60)", GFMultiPoint, @"MULTIPOINT((40 60),(40 60))", @"MULTIPOINT((40 60))");
     }
 
-    - (void) testPolygon {
+    - (void) testUnion_WithPolygonAndPolygon1 {
         UnionTest(GFPolygon, @"POLYGON((0 0,0 90,90 90,90 0,0 0))", \
                   GFPolygon, @"POLYGON((120 0,120 90,210 90,210 0,120 0))", \
                              @"MULTIPOLYGON(((0 0,0 90,90 90,90 0,0 0)),((120 0,120 90,210 90,210 0,120 0)))");
-        
+    }
+
+    - (void) testUnion_WithPolygonAndPolygon2 {
         UnionTest(GFPolygon, @"POLYGON((120 0,120 90,210 90,210 0,120 0))", \
                   GFPolygon, @"POLYGON((120 0,120 90,210 90,210 0,120 0))", \
                              @"POLYGON((120 90,210 90,210 0,120 0,120 90))");
     }
 
-    - (void) testMultiPolygon {
+    - (void) testUnion_WithMultiPolygonAndMultiPolygon {
         UnionTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 90,90 90,90 0,0 0)))", \
                   GFMultiPolygon, @"MULTIPOLYGON(((120 0,120 90,210 90,210 0,120 0)))", \
                                   @"MULTIPOLYGON(((0 0,0 90,90 90,90 0,0 0)),((120 0,120 90,210 90,210 0,120 0)))");
     }
 
     // TODO: Requires more testing
-    - (void) testRing {
+    - (void) testUnion_WithRingAndRing {
         UnionTest(GFRing, @"LINESTRING(210 90,210 0,120 0,120 90,210 90)", \
                   GFRing, @"LINESTRING(210 90,210 0,120 0,120 90,210 90)", \
                           @"LINESTRING(210 0,120 0,120 90,210 90,210 0)");
-
     }
-
 
 @end

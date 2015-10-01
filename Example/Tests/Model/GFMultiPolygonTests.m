@@ -58,27 +58,59 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
 
 @implementation GFMultiPolygonTests
 
-    - (void)testConstruction {
+#pragma mark - Test init
+
+    - (void)testInit_NoThrow {
         XCTAssertNoThrow([[GFMultiPolygon alloc] init]);
+    }
+
+    - (void)testInit_NotNil {
         XCTAssertNotNil([[GFMultiPolygon alloc] init]);
     }
 
-    - (void)testFailedConstruction {
+    - (void)testInit {
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] init] toWKTString], @"MULTIPOLYGON()");
+    }
+
+#pragma mark - Test initWithGeoJSONGeometry
+
+    - (void) testInitWIthGeoJSONGeometry_WithValidGeoJSONGeometry {
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toWKTString], @"MULTIPOLYGON(((102 2,102 3,103 3,103 2,102 2)),((100 0,101 1,100 1,101 0,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)))");
+    }
+
+    - (void)testInitWithGeoJSONGeometry_WithInvalidGeoJSONGeometry {
         XCTAssertThrowsSpecificNamed([[GFMultiPolygon alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
+    }
+
+#pragma mark - Test initWithWKT
+
+    - (void) testInitWithWKT_WithValidWKT {
+        XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
+    }
+
+    - (void)testInitWithWKT_WithInvalidWKT {
         XCTAssertThrows([[GFMultiPolygon alloc] initWithWKT: @"INVALID()"]);
     }
+
+#pragma mark - Test copy
 
     - (void) testCopy {
         XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] copy] toWKTString], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
     }
 
+#pragma mark - Test toGeoJSONGeometry
+
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
+#pragma mark - Test description
+
     - (void) testDescription {
         XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] description], @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))");
     }
+
+#pragma mark - Test mapOverlays
 
     - (void) testMapOverlays {
         
@@ -104,51 +136,92 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         }
     }
 
-#pragma mark - Querying Tests
+#pragma mark - Test count
 
-    - (void) testCount {
-
+    - (void) testCount_WithEmptyMultiPolygon {
         XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] count], 0);
+    }
+
+    - (void) testCount_With1ElementMultiPolygon {
         XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))"] count], 1);
+    }
+
+    - (void) testCount_With2ElementMultiPolygon {
         XCTAssertEqual([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] count], 2);
     }
 
-    - (void) testObjectAtIndex {
+#pragma mark - Test geometryAtIndex
 
+    - (void) testGeometryAtIndex_With2ElementMultiPolygonAndIndex0 {
         XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 0] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
-        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 1] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+    }
 
+    - (void) testGeometryAtIndex_With2ElementMultiPolygonAndIndex1 {
+        XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] geometryAtIndex: 1] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+    }
+
+    - (void) testGeometryAtIndex_With2ElementMultiPolygonAndOutOfRangeIndex {
         XCTAssertThrowsSpecificNamed(([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)))"] geometryAtIndex: 1]), NSException, NSRangeException);
     }
 
-    - (void) testFirstObject {
+#pragma mark - Test firstGeometry
 
+    - (void) testFirstGeometry_With2ElementMultiPolygon {
         XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] firstGeometry] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+    }
 
+    - (void) testFirstGeometry_WithEmptyMultiPolygon_NoThrow {
         XCTAssertNoThrow([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] firstGeometry]);
+    }
+
+    - (void) testFirstGeometry_WithEmptyMultiPolygon {
         XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] firstGeometry], nil);
     }
 
-    - (void) testLastObject {
+#pragma mark - Test lastGeometry
 
+    - (void) testLastGeometry_With2ElementMultiPolygon {
         XCTAssertEqualObjects([[[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"] lastGeometry] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+    }
 
+    - (void) testLastGeometry_WithEmptyMultiPolygon_NoThrow {
         XCTAssertNoThrow([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] lastGeometry]);
+    }
+
+    - (void) testLastGeometry_WithEmptyMultiPolygon {
         XCTAssertEqualObjects([[[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON()"] lastGeometry], nil);
     }
 
-#pragma mark - Indexed Subscripting Tests
+#pragma mark - Test objectAtIndexedSubscript
 
-    - (void) testObjectAtIndexedSubscript {
-
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiPolygonAndIndex0_NoThrow {
         GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
 
         XCTAssertNoThrow(multiPolygon[0]);
-        XCTAssertNoThrow(multiPolygon[1]);
-        XCTAssertThrowsSpecificNamed(multiPolygon[2], NSException, NSRangeException);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiPolygonAndIndex0 {
+        GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
 
         XCTAssertEqualObjects([multiPolygon[0] toWKTString], @"POLYGON((20 0,20 10,40 10,40 0,20 0))");
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiPolygonAndIndex1_NoThrow {
+        GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
+
+        XCTAssertNoThrow(multiPolygon[1]);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiPolygonAndIndex1 {
+        GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
+
         XCTAssertEqualObjects([multiPolygon[1] toWKTString], @"POLYGON((5 5,5 8,8 8,8 5,5 5))");
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiPolygonAndOutOfRangeIndex {
+        GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"];
+
+        XCTAssertThrowsSpecificNamed(multiPolygon[2], NSException, NSRangeException);
     }
 
 @end

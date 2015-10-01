@@ -28,39 +28,63 @@
 
 @implementation GFPerimeterTests
 
-    - (void) testPoint {
+    - (void) testPerimeter_WithValidPoint1 {
         PerimeterTest(GFPoint, @"POINT(0 0)", 0.0);
+    }
+
+    - (void) testPerimeter_WithValidPoint2 {
         PerimeterTest(GFPoint, @"POINT(1 1)", 0.0);
+    }
+
+    - (void) testPerimeter_WithEmptyPoint {
         PerimeterTest(GFPoint, @"POINT EMPTY", 0.0);
     }
 
-    - (void) testMultiPoint {
+    - (void) testPerimeter_WithValidMultiPoint {
         PerimeterTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", 0.0);
+    }
+
+    - (void) testPerimeter_WithEmptyMultiPoint {
         PerimeterTest(GFMultiPoint, @"MULTIPOINT EMPTY", 0.0);
     }
 
-    - (void) testLineString {
+    - (void) testPerimeter_WithValidLineString {
         PerimeterTest(GFLineString, @"LINESTRING(0 0,1 1)", 0.0);
+    }
+
+    - (void) testPerimeter_WithEmptyLineString {
         PerimeterTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
 
-    - (void) testMultiLineString {
+    - (void) testPerimeter_WithValidMultiLineString {
         PerimeterTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 0.0);
+    }
+
+    - (void) testPerimeter_WithEmptyMultiLineString {
         PerimeterTest(GFMultiLineString, @"MULTILINESTRING EMPTY", 0.0);
     }
 
-    - (void) testPolygon {
+    - (void) testPerimeter_WithValidPolygon {
         PerimeterTest(GFPolygon, @"POLYGON((0 0,0 4,4 4,4 0,0 0),(1 1,2 1,2 2,1 2,1 1))", 20);
+    }
+
+    - (void) testPerimeter_WithEmptyPolygon {
         PerimeterTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
-    - (void) testMultiPolygon {
+    - (void) testPerimeter_WithValidMultiPolygon {
         PerimeterTest(GFMultiPolygon, @"MULTIPOLYGON(((0 0,0 1,1 0,0 0)))", 1.0 + 1.0 + sqrt(2.0));
+    }
+
+    - (void) testPerimeter_WithEmptyMultiPolygon {
         PerimeterTest(GFMultiPolygon, @"MULTIPOLYGON EMPTY", 0.0);
     }
 
-    - (void) testRing {
+    - (void) testPerimeter_WithValidRing {
         PerimeterTest(GFRing, @"LINESTRING(0 0,0 1,1 1,1 0,0 0)", 4);
+    }
+
+    - (void) testPerimeter_WithEmptyRing {
         PerimeterTest(GFRing, @"LINESTRING EMPTY", 0.0);
     }
 

@@ -28,6 +28,32 @@ bool closeAtTolerance (double left, double right, double tolerance);
 
 #define BoundingBoxTest(T, wkt, x1, y1, x2, y2) XCTAssertTrue([self checkValidBoundingBox: ([[T alloc] initWithWKT: (wkt)]) minX: x1 minY: y1 maxX: x2 maxY: y2])
 
+//
+// Test Support
+//
+// Adapted from the C++ boost test classes
+double safeDoubleDivision(double d1, double d2 )
+{
+    // Overflow.
+    if( (d2 < (double) 1)  && (d1 > d2 * DBL_MAX) )
+        return DBL_MAX;
+
+    // Underflow.
+    if( (d1 == (double) 0) || ((d2 > (double) 1) && (d1 < d2* DBL_MIN)) )
+        return (double) 0;
+
+    return d1/d2;
+}
+
+// Adapted from the C++ boost test classes
+bool closeAtTolerance (double left, double right, double tolerance) {
+    double diff = fabs( left - right );
+    double d1   = safeDoubleDivision(diff, fabs(right));
+    double d2   = safeDoubleDivision(diff, fabs(left));
+
+    return (d1 <= fabs(tolerance) && d2 <= fabs(tolerance));
+}
+
 @implementation GFBoundingBoxTests
 
     - (BOOL) checkValidBoundingBox: (GFGeometry *) geometry minX: (double) minX minY: (double) minY maxX: (double) maxX maxY: (double) maxY {
@@ -45,51 +71,30 @@ bool closeAtTolerance (double left, double right, double tolerance);
         return true;
     }
 
-    - (void) testPoint {
+    - (void) testBoundingBox_WithPoint {
         BoundingBoxTest(GFPoint, @"POINT(1 1)", 1, 1, 1, 1);
     }
 
-    - (void) testBox {
+    - (void) testBoundingBox_WithBox {
         BoundingBoxTest(GFBox, @"BOX(1 1,3 3)", 1, 1, 3, 3);
     }
 
-    - (void) testLineString {
+    - (void) testBoundingBox_WithLineString {
         BoundingBoxTest(GFLineString, @"LINESTRING(1 1,2 2)", 1,  1, 2, 2);
     }
 
-    - (void) testPolygon {
+    - (void) testBoundingBox_WithPolygon1 {
         BoundingBoxTest(GFPolygon, @"POLYGON((1 1,1 3,3 3,3 1,1 1))", 1, 1, 3, 3);
+    }
+
+    - (void) testBoundingBox_WithPolygon2 {
         BoundingBoxTest(GFPolygon, @"POLYGON((4 1,0 7,7 9,4 1))", 0, 1, 7, 9);
     }
 
-    - (void) testRing {
+    - (void) testBoundingBox_WithRing {
         BoundingBoxTest(GFRing, @"LINESTRING(1 1,1 3,3 3,3 1,1 1)", 1,  1, 3, 3);
     }
 
 @end
 
-//
-// Test Support
-//
-// Adapted from the C++ boost test classes
-double safeDoubleDivision(double d1, double d2 )
-{
-    // Overflow.
-    if( (d2 < (double) 1)  && (d1 > d2 * DBL_MAX) )
-        return DBL_MAX;
-    
-    // Underflow.
-    if( (d1 == (double) 0) || ((d2 > (double) 1) && (d1 < d2* DBL_MIN)) )
-        return (double) 0;
-    
-    return d1/d2;
-}
 
-// Adapted from the C++ boost test classes
-bool closeAtTolerance (double left, double right, double tolerance) {
-    double diff = fabs( left - right );
-    double d1   = safeDoubleDivision(diff, fabs(right));
-    double d2   = safeDoubleDivision(diff, fabs(left));
-    
-    return (d1 <= fabs(tolerance) && d2 <= fabs(tolerance));
-}

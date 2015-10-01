@@ -29,34 +29,54 @@
 @implementation GFAreaTests
 
 
-    - (void) testPoint {
+    - (void) testArea_WithPoint0 {
         AreaTest(GFPoint, @"POINT(0 0)", 0.0);
+    }
+
+    - (void) testArea_WithPoint1 {
         AreaTest(GFPoint, @"POINT(1 1)", 0.0);
+    }
+
+    - (void) testArea_WithEmptyPoint {
         AreaTest(GFPoint, @"POINT EMPTY", 0.0);
     }
 
-    - (void) testMultiPoint {
+    - (void) testArea_WithSimpleMultiPoint {
         AreaTest(GFMultiPoint, @"MULTIPOINT(0 0,1 1)", 0.0);
+    }
+
+    - (void) testArea_WithEmptyMultiPoint {
         AreaTest(GFMultiPoint, @"MULTIPOINT EMPTY", 0.0);
     }
 
-    - (void) testLineString {
+    - (void) testArea_WithSimpleLineString {
         AreaTest(GFLineString, @"LINESTRING(0 0,1 1)", 0.0);
+    }
+    - (void) testArea_WithEmtptyLineString {
         AreaTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
 
-    - (void) testMultiLineString {
+    - (void) testArea_WithSimpleMultiLineString {
         AreaTest(GFMultiLineString, @"MULTILINESTRING((0 0,1 1),(-1 0,1 0))", 0.0);
+    }
+
+    - (void) testArea_WithEmptyMultiLineString {
         AreaTest(GFMultiLineString, @"MULTILINESTRING EMPTY", 0.0);
     }
 
-    - (void) testPolygon {
+    - (void) testArea_WithSimplePolygon {
         AreaTest(GFPolygon, @"POLYGON((0 0,0 7,4 2,2 0,0 0))", 16);
+    }
+
+    - (void) testArea_WithEmptyPolygon {
         AreaTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
-    - (void) testRing {
+    - (void) testArea_WithSimpleRing {
         AreaTest(GFRing, @"LINESTRING(0 0,0 7,4 2,2 0,0 0)", 16);
+    }
+
+    - (void) testArea_WithEmptying {
         AreaTest(GFRing, @"LINESTRING EMPTY", 0.0);
     }
 

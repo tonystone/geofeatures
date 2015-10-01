@@ -49,29 +49,63 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
 
 @implementation GFPolygonTests
 
-    - (void)testConstruction {
+#pragma mark - Test init
 
-        XCTAssertNotNil([[GFPolygon alloc] init]);
+    - (void)testInit_NoThrow {
+        XCTAssertNoThrow([[GFPolygon alloc] init]);
+    }
+
+    - (void)testInit_NotNil {
         XCTAssertNotNil([[GFPolygon alloc] init]);
     }
 
-    - (void)testFailedConstruction {
+    - (void) testInit {
+        XCTAssertEqualObjects([[[GFPolygon alloc] init] toWKTString], @"POLYGON(())");
+    }
+
+#pragma mark - Test initWithGeoJSONGeometry
+
+    - (void)testInitWithGeoJSONGeometry_WithValidGeoJSONGeometry  {
+        XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toWKTString], @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))");
+    }
+
+    - (void)testInitWithGeoJSONGeometry_WithInvalidGeoJSONGeometry  {
         XCTAssertThrowsSpecificNamed([[GFPolygon alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
+    }
+
+#pragma mark - Test initWithWKT
+
+    - (void) testInitWIthWKT_WithValidWKT {
+        XCTAssertEqualObjects([[[GFPolygon alloc] initWithWKT: @"POLYGON((98 0,101 1,101 0,98 1,98 0))"] toWKTString],@"POLYGON((98 0,101 1,101 0,98 1,98 0))");
+    }
+
+    - (void)testInitWithWKT_WithInvalidWKT {
         XCTAssertThrows([[GFPolygon alloc] initWithWKT: @"INVALID()"]);
     }
 
+#pragma mark - Test copy
+
     - (void) testCopy {
-        XCTAssertEqualObjects([[[GFPolygon geometryWithWKT: @"POLYGON((98 0,101 1,101 0,98 1,98 0))"] copy] toWKTString], @"POLYGON((98 0,101 1,101 0,98 1,98 0))");
+        XCTAssertEqualObjects([[[[GFPolygon alloc] initWithWKT: @"POLYGON((98 0,101 1,101 0,98 1,98 0))"] copy] toWKTString], @"POLYGON((98 0,101 1,101 0,98 1,98 0))");
     }
+
+#pragma mark - Test toGeoJSONGeometry
 
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
-    - (void) testDescription {
+#pragma mark - Test description
+
+    - (void) testDescription_WithGeoJSON1 {
         XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON1] description], @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))");
+    }
+
+    - (void) testDescription_WithGeoJSON2 {
         XCTAssertEqualObjects([[[GFPolygon alloc] initWithGeoJSONGeometry: geoJSON2] description], @"POLYGON((98 0,101 1,101 0,98 1,98 0))");
     }
+
+#pragma mark - Test mapOverlays
 
     - (void) testMapOverlays {
     
@@ -89,9 +123,13 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         
     }
 
+#pragma mark - Test outerRing
+
     - (void) testOuterRing {
         XCTAssertEqualObjects([[[[GFPolygon alloc] initWithWKT: @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))"] outerRing] toWKTString], @"LINESTRING(100 0,200 100,200 0,100 1,100 0)");
     }
+
+#pragma mark - Test innerRings
 
     - (void) testInnerRings {
         XCTAssertEqualObjects([[[[[GFPolygon alloc] initWithWKT: @"POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))"] innerRings] firstGeometry] toWKTString], @"LINESTRING(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)");

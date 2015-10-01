@@ -39,29 +39,63 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
 
 @implementation GFMultiLineStringTests
 
-    - (void)testConstruction {
+#pragma mark - Test init
 
+    - (void)testInit_NoThrow {
         XCTAssertNoThrow([[GFMultiLineString alloc] init]);
+    }
+
+    - (void)testInit_NotNil {
         XCTAssertNotNil([[GFMultiLineString alloc] init]);
     }
 
-    - (void)testFailedConstruction {
+    - (void)testInit {
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] init] toWKTString], @"MULTILINESTRING()");
+    }
+
+#pragma mark - Test initWithGeoJSONGeometry
+
+    - (void) testInitWithGeoJSONGeometry_WithValidGeoJSON {
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] toWKTString], @"MULTILINESTRING((100 0,101 1),(102 2,103 3))");
+    }
+
+    - (void)testInitWithGeoJSONGeometry_WithInvalidGeoJSON {
         XCTAssertThrowsSpecificNamed([[GFMultiLineString alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
+    }
+
+#pragma mark - Test initWithWKT
+
+    - (void) testInitWithWKT_WithValidWKT {
+        XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"] toWKTString], @"MULTILINESTRING((100 0,101 1),(102 2,103 3))");
+    }
+
+    - (void)testInitWithWKT_WithInvalidWKT {
         XCTAssertThrows([[GFMultiLineString alloc] initWithWKT: @"INVALID()"]);
     }
+
+#pragma mark - Test copy
 
     - (void) testCopy {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"] copy] toWKTString], @"MULTILINESTRING((100 0,101 1),(102 2,103 3))");
     }
 
+#pragma mark - Test toGeoJSONGeometry
+
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
-    - (void) testDescription {
+#pragma mark - Test description
+
+    - (void) testDescription_WithGeoJSON1 {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON1] description], @"MULTILINESTRING((100 0,101 1),(102 2,103 3))");
+    }
+
+    - (void) testDescription_WithGeoJSON2 {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithGeoJSONGeometry: geoJSON2] description], @"MULTILINESTRING((103 2,101 1),(102 2,103 3))");
     }
+
+#pragma mark - Test mapOverlays
 
     - (void) testMapOverlays {
         
@@ -81,52 +115,92 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         }
     }
 
-#pragma mark - Querying Tests
+#pragma mark - Test count
 
-    - (void) testCount {
-
+    - (void) testCount_WithEmptyMultiLineString {
         XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] count], 0);
+    }
+
+    - (void) testCount_With1ElementMultiLineString {
         XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] count], 1);
+    }
+
+    - (void) testCount_With2ElementMultiLineString {
         XCTAssertEqual([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] count], 2);
     }
 
-    - (void) testObjectAtIndex {
+#pragma mark - Test geometryAtIndex
 
+    - (void) testGeometryAtIndex_With2ElementMultiLineStringAndIndex0 {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 0] toWKTString], @"LINESTRING(0 0,5 0)");
-        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+    }
 
+    - (void) testGeometryAtIndex_With2ElementMultiLineStringAndIndex1 {
+        XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] geometryAtIndex: 1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+    }
+
+    - (void) testGeometryAtIndex_With2ElementMultiLineStringAndOutOfRangeIndex {
         XCTAssertThrowsSpecificNamed(([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0))"] geometryAtIndex: 1]), NSException, NSRangeException);
     }
 
-    - (void) testFirstObject {
+#pragma mark - Test firstGeometry
 
+    - (void) testFirstGeometry_With2ElementMultiLineString {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] firstGeometry] toWKTString], @"LINESTRING(0 0,5 0)");
+    }
 
+    - (void) testFirstGeometry_WithEmptyMultiLineString_NoThrow {
         XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry]);
+    }
+
+    - (void) testFirstGeometry_WithEmptyMultiLineString {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] firstGeometry], nil);
     }
 
-    - (void) testLastObject {
+#pragma mark - Test lastGeometry
 
+    - (void) testLastGeometry_With2ElementMultiLineString {
         XCTAssertEqualObjects([[[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"] lastGeometry] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
+    }
 
+    - (void) testLastGeometry_WithEmptyMultiLineString_NoThrow {
         XCTAssertNoThrow([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry]);
+    }
+
+    - (void) testLastGeometry_WithEmptyMultiLineString {
         XCTAssertEqualObjects([[[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING()"] lastGeometry], nil);
     }
 
-#pragma mark - Indexed Subscript Tests
+#pragma mark - Test objectAtIndexedSubscript
 
-    - (void) testObjectAtIndexedSubscript {
-
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiLineStringAndIndex0_NoThrow {
         GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];
 
         XCTAssertNoThrow(multiLineString[0]);
-        XCTAssertNoThrow(multiLineString[1]);
-        XCTAssertThrowsSpecificNamed(multiLineString[2], NSException, NSRangeException);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiLineStringAndIndex0 {
+        GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];
 
         XCTAssertEqualObjects([multiLineString[0] toWKTString], @"LINESTRING(0 0,5 0)");
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiLineStringAndIndex1_NoThrow {
+        GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];
+
+        XCTAssertNoThrow(multiLineString[1]);
+    }
+
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiLineStringAndIndex1 {
+        GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];
+
         XCTAssertEqualObjects([multiLineString[1] toWKTString], @"LINESTRING(5 0,10 0,5 -5,5 0)");
     }
 
+    - (void) testObjectAtIndexedSubscript_With2ElementMultiLineStringAndOutOfRangeIndex {
+        GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0))"];
+
+        XCTAssertThrowsSpecificNamed(multiLineString[2], NSException, NSRangeException);
+    }
 
 @end
