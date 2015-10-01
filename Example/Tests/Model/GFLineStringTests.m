@@ -49,6 +49,11 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertNotNil([[GFLineString alloc] init]);
     }
 
+    - (void) testInit {
+        XCTAssertEqualObjects([[[GFLineString alloc] init] toWKTString], @"LINESTRING()");
+    }
+
+
 #pragma mark - Test initWithGeoJSONGeometry
 
     - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON {

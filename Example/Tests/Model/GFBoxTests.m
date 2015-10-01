@@ -49,6 +49,10 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
         XCTAssertNotNil([[GFBox alloc] init]);
     }
 
+    - (void) testInit {
+        XCTAssertEqualObjects([[[GFBox alloc] init] toWKTString], @"POLYGON((0 0,0 0,0 0,0 0,0 0))");
+    }
+
 #pragma mark - Test initWithMinCornerMaxCorner
 
     - (void) testInitWithMinCornerMaxCorner_NoThrow {
