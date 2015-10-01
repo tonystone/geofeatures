@@ -40,40 +40,85 @@ static __attribute__((constructor(101),used,visibility("internal"))) void static
 
 @implementation GFPointTests
 
-    - (void)testConstruction {
+#pragma mark - Test init
 
+    - (void)testInit_NoThrow {
         XCTAssertNoThrow([[GFPoint alloc] init]);
-        XCTAssertNotNil([[GFPoint alloc] init]);
+    }
 
+    - (void)testInit_NotNil {
+        XCTAssertNotNil([[GFPoint alloc] init]);
+    }
+
+#pragma mark - Test initWithGeoJSONGeometry
+
+    - (void) testInitWithGeoJSONGeometry_WithValidGeoJSON {
+        XCTAssertEqualObjects([[[GFPoint alloc] initWithGeoJSONGeometry: geoJSON1] toWKTString], @"POINT(100 0)");
+    }
+
+    - (void)testInitWithGeoJSONGeometry_WithInvalidGeoJSON {
+        XCTAssertThrowsSpecificNamed([[GFPoint alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
+    }
+
+#pragma mark - Test initWithWKT
+
+    - (void) testInitWithWKT_WithValidWKT {
+        XCTAssertEqualObjects([[[GFPoint alloc] initWithWKT: @"POINT(100 0)"] toWKTString], @"POINT(100 0)");
+    }
+
+    - (void) testInitWithWKT_WithEmptyWKT {
+        XCTAssertEqualObjects([[[GFPoint alloc] initWithWKT: @"POINT EMPTY"] toWKTString], @"POINT(0 0)");
+    }
+
+    - (void)testInitWithWKT_WithInvalidWKT {
+        XCTAssertThrows([[GFPoint alloc] initWithWKT: @"INVALID()"]);
+    }
+
+#pragma mark - Test initWithXY
+
+    - (void)testInitWithXY_NoThrow {
         XCTAssertNoThrow([[GFPoint alloc] initWithX: 100.0 y:  0.0]);
+    }
+
+    - (void)testInitWithXY_NotNil {
         XCTAssertNotNil([[GFPoint alloc] initWithX: 103.0 y:  2.0]);
     }
+
+#pragma mark - Test copy
 
     - (void) testCopy {
         XCTAssertEqualObjects([[[[GFPoint alloc] initWithWKT: @"POINT(103 2)"] copy] toWKTString], @"POINT(103 2)");
     }
 
+#pragma mark - Test x
+
     - (void) testX {
         XCTAssertEqual([[[GFPoint alloc] initWithX: 103.0 y:  2.0] x], 103.0);
     }
+
+#pragma mark - Test y
 
     - (void) testY {
         XCTAssertEqual([[[GFPoint alloc] initWithX: 103.0 y:  2.0] y], 2.0);
     }
 
-    - (void)testFailedConstruction {
-        XCTAssertThrowsSpecificNamed([[GFPoint alloc] initWithGeoJSONGeometry:  @{@"invalid": @{}}], NSException, NSInvalidArgumentException);
-        XCTAssertThrows([[GFPoint alloc] initWithWKT: @"INVALID()"]);
-    }
+#pragma mark - Test toGeoJSONGeometry
 
     - (void) testToGeoJSONGeometry {
         XCTAssertEqualObjects([[[GFPoint alloc] initWithGeoJSONGeometry: geoJSON1] toGeoJSONGeometry], geoJSON1);
     }
 
-    - (void) testDescription {
+#pragma mark - Test description
+
+    - (void) testDescription_WithGeoJSON1 {
         XCTAssertEqualObjects([[[GFPoint alloc] initWithGeoJSONGeometry: geoJSON1] description], @"POINT(100 0)");
+    }
+
+    - (void) testDescription_WithGeoJSON2 {
         XCTAssertEqualObjects([[[GFPoint alloc] initWithGeoJSONGeometry: geoJSON2] description], @"POINT(103 2)");
     }
+
+#pragma mark - Test mapOverlays
 
     - (void) testMapOverlays {
     
