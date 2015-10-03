@@ -19,8 +19,8 @@
 */
 #pragma once
 
-#ifndef __GFPointPrimitives_hpp
-#define __GFPointPrimitives_hpp
+#ifndef __GFPolygonPrimitives_hpp
+#define __GFPolygonPrimitives_hpp
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
@@ -42,4 +42,4 @@ namespace geofeatures {
     }
 }
 
-#endif // __GFPointPrimitives_hpp
+#endif // __GFPolygonPrimitives_hpp
