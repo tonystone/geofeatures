@@ -31,75 +31,60 @@ namespace gf = geofeatures;
 // Protected free functions
 //
 gf::LineString geofeatures::GFLineString::lineStringWithGeoJSONCoordinates(NSArray * coordinates) {
+    //
+    // For type "LineString", the "coordinates" member must
+    // be an array of two or more positions.
+    //
+    // A LinearRing is closed LineString with 4 or more positions.
+    // The first and last positions are equivalent (they represent
+    // equivalent points). Though a LinearRing is not explicitly
+    // represented as a GeoJSON geometry type, it is referred to
+    // in the LineString geometry type definition.
+    //
+    //  { "type": "LineString",
+    //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+    //  }
+    //
+    gf::LineString linestring = {};
 
-    try {
-        //
-        // For type "LineString", the "coordinates" member must
-        // be an array of two or more positions.
-        //
-        // A LinearRing is closed LineString with 4 or more positions.
-        // The first and last positions are equivalent (they represent
-        // equivalent points). Though a LinearRing is not explicitly
-        // represented as a GeoJSON geometry type, it is referred to
-        // in the LineString geometry type definition.
-        //
-        //  { "type": "LineString",
-        //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
-        //  }
-        //
-        gf::LineString linestring = {};
-
-        for (NSArray * coordinate in coordinates) {
-            linestring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
-        }
-        // Make sure this linestring is correct.
-        boost::geometry::correct(linestring);
-
-        return linestring;
-
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+    for (NSArray * coordinate in coordinates) {
+        linestring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
     }
+    // Make sure this linestring is correct.
+    boost::geometry::correct(linestring);
+
+    return linestring;
 }
 
-NSArray * geofeatures::GFLineString::geoJSONCoordinatesWithLineString(const gf::LineString & linestring) {
+NSArray * geofeatures::GFLineString::geoJSONCoordinatesWithLineString(const gf::LineString & lineString) {
 
     NSMutableArray * points = [[NSMutableArray alloc] init];
 
-    try {
-        for (auto it = linestring.begin();  it != linestring.end(); ++it) {
-            const double longitude = it->get<0>();
-            const double latitude  = it->get<1>();
+    for (auto it = lineString.begin();  it != lineString.end(); ++it) {
+        const double longitude = it->get<0>();
+        const double latitude  = it->get<1>();
 
-            [points addObject:@[@(longitude),@(latitude)]];
-        }
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        [points addObject:@[@(longitude),@(latitude)]];
     }
     return points;
 }
 
-id <MKOverlay> geofeatures::GFLineString::mkOverlayWithLineString(const gf::LineString & linestring) {
+id <MKOverlay> geofeatures::GFLineString::mkOverlayWithLineString(const gf::LineString & lineString) {
 
-    MKPolyline * mkPolyline = nil;
 
-    try {
-        size_t pointCount = linestring.size();
-        CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+    size_t pointCount = lineString.size();
+    CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
 
-        for (std::size_t i = 0; i < pointCount; i++) {
-            const auto& point = linestring[i];
+    for (std::size_t i = 0; i < pointCount; i++) {
+        const auto& point = lineString[i];
 
-            coordinates[i].longitude = point.get<0>();
-            coordinates[i].latitude  = point.get<1>();
-        }
-
-        mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
-
-        free(coordinates);
-
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        coordinates[i].longitude = point.get<0>();
+        coordinates[i].latitude  = point.get<1>();
     }
+
+    MKPolyline * mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
+
+    free(coordinates);
+
     return mkPolyline;
 }
