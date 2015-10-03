@@ -26,47 +26,31 @@
 namespace gf = geofeatures;
 
 gf::Point geofeatures::GFPoint::pointWithGeoJSONCoordinates(NSArray * coordinates) {
-
     //
     // { "type": "Point",
     //      "coordinates": [100.0, 0.0]
     // }
     //
-    try {
-        return gf::Point([coordinates[0] doubleValue], [coordinates[1] doubleValue]);
+    return gf::Point([coordinates[0] doubleValue], [coordinates[1] doubleValue]);
 
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-    }
 }
 
 NSArray * geofeatures::GFPoint::geoJSONCoordinatesWithPoint(const gf::Point & point) {
-    double longitude;
-    double latitude;
+    double longitude = point.get<0>();
+    double latitude  = point.get<1>();
 
-    try {
-        longitude = point.get<0>();
-        latitude  = point.get<1>();
-
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-    }
     return @[@(longitude),@(latitude)];
 }
 
 id <MKOverlay> geofeatures::GFPoint::mkOverlayWithPoint(const gf::Point & point) {
     MKCircle * mkCircle = nil;
 
-    try {
-        CLLocationCoordinate2D centerPoint;
+    CLLocationCoordinate2D centerPoint;
 
-        centerPoint.longitude = point.get<0>();
-        centerPoint.latitude  = point.get<1>();
+    centerPoint.longitude = point.get<0>();
+    centerPoint.latitude  = point.get<1>();
 
-        mkCircle = [MKCircle circleWithCenterCoordinate: centerPoint radius: 5.0];
+    mkCircle = [MKCircle circleWithCenterCoordinate: centerPoint radius: 5.0];
 
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-    }
     return mkCircle;
 }
