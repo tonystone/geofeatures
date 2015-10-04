@@ -23,7 +23,6 @@
 */
 
 #include "GFLineString+Protected.hpp"
-#include "GFLineString+Primitives.hpp"
 #include "GFPoint+Protected.hpp"
 
 #include "internal/geofeatures/Point.hpp"
@@ -139,7 +138,7 @@ namespace gf = geofeatures;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        return @{@"type": @"LineString", @"coordinates": gf::GFLineString::geoJSONCoordinatesWithLineString(_lineString)};
+        return gf::GFLineString::geoJSONGeometryWithLineString(_lineString);
     }
 
     - (NSArray *) mkMapOverlays {
@@ -230,4 +229,72 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+//
+// Protected free functions
+//
+gf::LineString geofeatures::GFLineString::lineStringWithGeoJSONCoordinates(NSArray * coordinates) {
+    //
+    // For type "LineString", the "coordinates" member must
+    // be an array of two or more positions.
+    //
+    // A LinearRing is closed LineString with 4 or more positions.
+    // The first and last positions are equivalent (they represent
+    // equivalent points). Though a LinearRing is not explicitly
+    // represented as a GeoJSON geometry type, it is referred to
+    // in the LineString geometry type definition.
+    //
+    //  { "type": "LineString",
+    //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+    //  }
+    //
+    gf::LineString linestring = {};
+
+    for (NSArray * coordinate in coordinates) {
+        linestring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+    }
+    // Make sure this linestring is correct.
+    boost::geometry::correct(linestring);
+
+    return linestring;
+}
+
+NSDictionary * geofeatures::GFLineString::geoJSONGeometryWithLineString(const geofeatures::LineString & lineString) {
+    return @{@"type": @"LineString", @"coordinates": gf::GFLineString::geoJSONCoordinatesWithLineString(lineString)};
+}
+
+NSArray * geofeatures::GFLineString::geoJSONCoordinatesWithLineString(const gf::LineString & lineString) {
+
+    NSMutableArray * points = [[NSMutableArray alloc] init];
+
+    for (auto it = lineString.begin();  it != lineString.end(); ++it) {
+        const double longitude = it->get<0>();
+        const double latitude  = it->get<1>();
+
+        [points addObject:@[@(longitude),@(latitude)]];
+    }
+    return points;
+}
+
+id <MKOverlay> geofeatures::GFLineString::mkOverlayWithLineString(const gf::LineString & lineString) {
+
+
+    size_t pointCount = lineString.size();
+    CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+
+    for (std::size_t i = 0; i < pointCount; i++) {
+        const auto& point = lineString[i];
+
+        coordinates[i].longitude = point.get<0>();
+        coordinates[i].latitude  = point.get<1>();
+    }
+
+    MKPolyline * mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
+
+    free(coordinates);
+
+    return mkPolyline;
+}
 

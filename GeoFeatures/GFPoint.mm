@@ -23,7 +23,6 @@
 */
 
 #include "GFPoint+Protected.hpp"
-#include "GFPOint+Primitives.hpp"
 
 #include "internal/geofeatures/Point.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"
@@ -109,7 +108,7 @@ namespace gf = geofeatures;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        return @{@"type": @"Point", @"coordinates": gf::GFPoint::geoJSONCoordinatesWithPoint(_point)};
+        return gf::GFPoint::geoJSONGeometryWithPoint(_point);
     }
 
     - (NSArray *) mkMapOverlays {
@@ -154,4 +153,39 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+gf::Point geofeatures::GFPoint::pointWithGeoJSONCoordinates(NSArray * coordinates) {
+    //
+    // { "type": "Point",
+    //      "coordinates": [100.0, 0.0]
+    // }
+    //
+    return gf::Point([coordinates[0] doubleValue], [coordinates[1] doubleValue]);
+}
+
+NSDictionary * geofeatures::GFPoint::geoJSONGeometryWithPoint(const geofeatures::Point & point) {
+    return @{@"type": @"Point", @"coordinates": geoJSONCoordinatesWithPoint(point)};
+}
+
+NSArray * geofeatures::GFPoint::geoJSONCoordinatesWithPoint(const gf::Point & point) {
+    double longitude = point.get<0>();
+    double latitude  = point.get<1>();
+
+    return @[@(longitude),@(latitude)];
+}
+
+id <MKOverlay> geofeatures::GFPoint::mkOverlayWithPoint(const gf::Point & point) {
+    MKCircle * mkCircle = nil;
+
+    CLLocationCoordinate2D centerPoint;
+
+    centerPoint.longitude = point.get<0>();
+    centerPoint.latitude  = point.get<1>();
+
+    mkCircle = [MKCircle circleWithCenterCoordinate: centerPoint radius: 5.0];
+
+    return mkCircle;
+}
 
