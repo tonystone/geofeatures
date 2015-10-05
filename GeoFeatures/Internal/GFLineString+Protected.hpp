@@ -31,17 +31,42 @@ namespace geofeatures {
     class LineString;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFLineString (Protected)
 
     /**
      * Initialize this GFLineString with an internal LineString implementation.
      */
-    - (instancetype) initWithCPPLineString: (gf::LineString) aLineString;
+    - (instancetype) initWithCPPLineString: (geofeatures::LineString) aLineString;
 
-    - (const gf::LineString &) cppConstLineStringReference;
+    - (const geofeatures::LineString &) cppConstLineStringReference;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFLineString {
+
+        /**
+         * @returns geofeatures::LineString represented by the GeoJSON coordinates
+         */
+        geofeatures::LineString lineStringWithGeoJSONCoordinates(NSArray * coordinates);
+
+        /**
+         * @returns the GeoJSON Geometry for the geofeatures::LineString
+         */
+        NSDictionary * geoJSONGeometryWithLineString(const geofeatures::LineString & linestring);
+
+        /**
+         * @returns the GeoJSON coordinates for the geofeatures::LineString
+         */
+        NSArray * geoJSONCoordinatesWithLineString(const geofeatures::LineString & lineString);
+
+        /**
+         * @returns An object that implements the MKOverlay protocol that represents the geofeatures::LineString
+         */
+        id <MKOverlay> mkOverlayWithLineString(const geofeatures::LineString & lineString);
+    }
+}
+
 
 #endif // __GFLineStringProtected_hpp

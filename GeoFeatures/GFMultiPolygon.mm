@@ -23,7 +23,6 @@
 */
 #include "GFMultiPolygon+Protected.hpp"
 #include "GFPolygon+Protected.hpp"
-#include "GFPolygon+Primitives.hpp"
 
 #include "internal/geofeatures/MultiPolygon.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"

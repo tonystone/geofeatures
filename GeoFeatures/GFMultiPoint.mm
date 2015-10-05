@@ -23,7 +23,6 @@
 */
 #include "GFMultiPoint+Protected.hpp"
 #include "GFPoint+Protected.hpp"
-#include "GFPoint+Primitives.hpp"
 
 #include "internal/geofeatures/MultiPoint.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"

@@ -30,17 +30,29 @@ namespace geofeatures {
     class Polygon;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFPolygon (Protected)
 
     /**
      * Initialize this GFPolygon with an internal Polygon implementation.
      */
-    - (instancetype) initWithCPPPolygon: (gf::Polygon) aPolygon;
+    - (instancetype) initWithCPPPolygon: (geofeatures::Polygon) aPolygon;
 
-    - (const gf::Polygon &) cppConstPolygonReference;
+    - (const geofeatures::Polygon &) cppConstPolygonReference;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFPolygon {
+
+        geofeatures::Polygon polygonWithGeoJSONCoordinates(NSArray * coordinates);
+
+        NSDictionary * geoJSONGeometryWithPolygon(const geofeatures::Polygon & polygon);
+
+        NSArray * geoJSONCoordinatesWithPolygon(const geofeatures::Polygon & polygon);
+
+        id <MKOverlay> mkOverlayWithPolygon(const geofeatures::Polygon & polygon);
+    }
+}
 
 #endif // __GFPolygonProtected_hpp

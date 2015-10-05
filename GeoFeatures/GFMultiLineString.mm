@@ -23,7 +23,6 @@
 */
 #include "GFMultiLineString+Protected.hpp"
 #include "GFLineString+Protected.hpp"
-#include "GFLineString+Primitives.hpp"
 
 #include "internal/geofeatures/MultiLineString.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"

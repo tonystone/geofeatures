@@ -30,15 +30,25 @@ namespace geofeatures {
     class MultiLineString;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFMultiLineString (Protected)
 
     /**
      * Initialize this GFMultiLineString with an internal MultiLineString implementation.
      */
-    - (instancetype) initWithCPPMultiLineString: (gf::MultiLineString) aMultiLineString;
+    - (instancetype) initWithCPPMultiLineString: (geofeatures::MultiLineString) aMultiLineString;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFMultiLineString {
+
+        geofeatures::MultiLineString multiLineStringWithGeoJSONCoordinates(NSArray * coordinates);
+
+        NSDictionary * geoJSONGeometryWithMultiLineString(const geofeatures::MultiLineString & multiLineString);
+
+        NSArray * geoJSONCoordinatesWithMultiLineString(const geofeatures::MultiLineString & multiLineString);
+    }
+}
 
 #endif // __GFMultiLineStringProtected_hpp
