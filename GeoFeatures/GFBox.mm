@@ -86,21 +86,7 @@ namespace gf = geofeatures;
             if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
             }
-            
-            /*
-             * Coordinates of a Box are an array of two Point coordinates. The first
-             * element in the array represents the minimum corner point (minx, miny).
-             * The second element in the array represents the maximum corner point (maxx, maxy).
-             *
-             *  {
-             *      "type": "Box",
-             *      "coordinates": [[100.0, 0.0], [101.0, 1.0]]
-             *  }
-             */
-            gf::Point minCorner([coordinates[0][0] doubleValue], [coordinates[0][1] doubleValue]);
-            gf::Point maxCorner([coordinates[1][0] doubleValue], [coordinates[1][1] doubleValue]);
-            
-            _box = gf::Box(minCorner,maxCorner);
+            _box = gf::GFBox::boxWithGeoJSONCoordinates(coordinates);
         }
         return self;
     }
@@ -128,34 +114,11 @@ namespace gf = geofeatures;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-
-        double minCornerX = _box.minCorner().get<0>();
-        double minCornerY = _box.minCorner().get<1>();
-        double maxCornerX = _box.maxCorner().get<0>();
-        double maxCornerY = _box.maxCorner().get<1>();
-
-        return @{@"type": @"Box", @"coordinates": @[@[@(minCornerX),@(minCornerY)],@[@(maxCornerX),@(maxCornerY)]]};
+        return gf::GFBox::geoJSONGeometryWithBox(_box);
     }
 
     - (NSArray *)mkMapOverlays {
-        CLLocationCoordinate2D coordinates[5];
-
-        coordinates[0].longitude = _box.minCorner().get<0>();
-        coordinates[0].latitude  = _box.minCorner().get<1>();
-
-        coordinates[1].longitude = _box.maxCorner().get<0>();
-        coordinates[1].latitude  = _box.minCorner().get<1>();
-
-        coordinates[2].longitude = _box.maxCorner().get<0>();
-        coordinates[2].latitude  = _box.maxCorner().get<1>();
-
-        coordinates[3].longitude = _box.minCorner().get<0>();
-        coordinates[3].latitude  = _box.maxCorner().get<1>();
-
-        coordinates[4].longitude = _box.minCorner().get<0>();
-        coordinates[4].latitude  = _box.minCorner().get<1>();
-
-        return @[[MKPolygon polygonWithCoordinates:coordinates count:5]];
+        return @[gf::GFBox::mkOverlayWithBox(_box)];
     }
 
 @end
@@ -180,7 +143,6 @@ namespace gf = geofeatures;
 
 @end
 
-
 @implementation GFMutableBox : GFBox
 
     - (void) setMinCorner: (GFPoint *) minCorner {
@@ -194,3 +156,58 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+gf::Box geofeatures::GFBox::boxWithGeoJSONCoordinates(NSArray * coordinates) {
+
+    /*
+     * Coordinates of a Box are an array of two Point coordinates. The first
+     * element in the array represents the minimum corner point (minx, miny).
+     * The second element in the array represents the maximum corner point (maxx, maxy).
+     *
+     *  {
+     *      "type": "Box",
+     *      "coordinates": [[100.0, 0.0], [101.0, 1.0]]
+     *  }
+     */
+    gf::Point minCorner([coordinates[0][0] doubleValue], [coordinates[0][1] doubleValue]);
+    gf::Point maxCorner([coordinates[1][0] doubleValue], [coordinates[1][1] doubleValue]);
+
+    return gf::Box(minCorner,maxCorner);
+}
+
+NSDictionary * geofeatures::GFBox::geoJSONGeometryWithBox(const geofeatures::Box & box) {
+    return @{@"type": @"Box", @"coordinates": geoJSONCoordinatesWithBox(box)};
+}
+
+NSArray * geofeatures::GFBox::geoJSONCoordinatesWithBox(const gf::Box & box) {
+
+    double minCornerX = box.minCorner().get<0>();
+    double minCornerY = box.minCorner().get<1>();
+    double maxCornerX = box.maxCorner().get<0>();
+    double maxCornerY = box.maxCorner().get<1>();
+
+    return @[@[@(minCornerX),@(minCornerY)],@[@(maxCornerX),@(maxCornerY)]];
+}
+
+id <MKOverlay> geofeatures::GFBox::mkOverlayWithBox(const gf::Box & box) {
+    CLLocationCoordinate2D coordinates[5];
+
+    coordinates[0].longitude = box.minCorner().get<0>();
+    coordinates[0].latitude  = box.minCorner().get<1>();
+
+    coordinates[1].longitude = box.maxCorner().get<0>();
+    coordinates[1].latitude  = box.minCorner().get<1>();
+
+    coordinates[2].longitude = box.maxCorner().get<0>();
+    coordinates[2].latitude  = box.maxCorner().get<1>();
+
+    coordinates[3].longitude = box.minCorner().get<0>();
+    coordinates[3].latitude  = box.maxCorner().get<1>();
+
+    coordinates[4].longitude = box.minCorner().get<0>();
+    coordinates[4].latitude  = box.minCorner().get<1>();
+
+    return [MKPolygon polygonWithCoordinates:coordinates count:5];
+}

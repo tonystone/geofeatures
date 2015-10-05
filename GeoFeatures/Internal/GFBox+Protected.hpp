@@ -30,15 +30,27 @@ namespace geofeatures {
     class Box;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFBox (Protected)
 
     /**
      * Initialize this GFBox with an internal Box implementation.
      */
-    - (instancetype) initWithCPPBox: (gf::Box) aBox;
+    - (instancetype) initWithCPPBox: (geofeatures::Box) aBox;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFBox {
+
+        geofeatures::Box boxWithGeoJSONCoordinates(NSArray * coordinates);
+
+        NSDictionary * geoJSONGeometryWithBox(const geofeatures::Box & box);
+
+        NSArray * geoJSONCoordinatesWithBox(const geofeatures::Box & box);
+
+        id <MKOverlay> mkOverlayWithBox(const geofeatures::Box & box);
+    }
+}
 
 #endif // __GFBoxProtected_hpp
