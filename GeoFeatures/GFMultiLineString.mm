@@ -26,7 +26,6 @@
 
 #include "internal/geofeatures/MultiLineString.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"
-#import "GFGeometry+Protected.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 #include <vector>
@@ -63,22 +62,7 @@ namespace gf = geofeatures;
             if (!coordinates || ![coordinates isKindOfClass: [NSArray class]]) {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo: nil];
             }
-            //
-            // Coordinates of a MultiLineString are an array of LineString coordinate arrays:
-            //
-            //  { "type": "MultiLineString",
-            //              "coordinates": [
-            //                      [ [100.0, 0.0], [101.0, 1.0] ],
-            //                      [ [102.0, 2.0], [103.0, 3.0] ]
-            //      ]
-            //  }
-            //
-            for (NSArray * lineString in coordinates) {
-                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
-                // NSMallocException if they fail to allocate memory for the operation below
-                // so no C++ exception block is required.
-                _multiLineString.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(lineString));
-            }
+            _multiLineString = gf::GFMultiLineString::multiLineStringWithGeoJSONCoordinates(coordinates);
         }
         return self;
     }
@@ -172,12 +156,7 @@ namespace gf = geofeatures;
 #pragma mark - GeoJSON Output
 
     - (NSDictionary *)toGeoJSONGeometry {
-        NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
-
-        for (auto it = _multiLineString.begin();  it != _multiLineString.end(); ++it ) {
-            [lineStrings addObject: gf::GFLineString::geoJSONCoordinatesWithLineString(*it)];
-        }
-        return @{@"type": @"MultiLineString", @"coordinates": lineStrings};
+        return gf::GFMultiLineString::geoJSONGeometryWithMultiLineString(_multiLineString);
     }
 
 #pragma mark - MapKit
@@ -248,3 +227,31 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+geofeatures::MultiLineString geofeatures::GFMultiLineString::multiLineStringWithGeoJSONCoordinates(NSArray * coordinates) {
+    gf::MultiLineString multiLineString;
+
+    for (NSArray * coordinate in coordinates) {
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        multiLineString.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(coordinate));
+    }
+    return multiLineString;
+}
+
+NSDictionary * geofeatures::GFMultiLineString::geoJSONGeometryWithMultiLineString(const geofeatures::MultiLineString & multiLineString) {
+    return @{@"type": @"MultiLineString", @"coordinates": geoJSONCoordinatesWithMultiLineString(multiLineString)};
+}
+
+NSArray * geofeatures::GFMultiLineString::geoJSONCoordinatesWithMultiLineString(const geofeatures::MultiLineString & multiLineString) {
+    NSMutableArray * lineStrings = [[NSMutableArray alloc] init];
+
+    for (auto it = multiLineString.begin();  it != multiLineString.end(); ++it ) {
+        [lineStrings addObject: gf::GFLineString::geoJSONCoordinatesWithLineString(*it)];
+    }
+    return lineStrings;
+
+}

@@ -99,7 +99,7 @@ void __attribute__((constructor)) staticInitializer() {
         XCTAssertNotNil (mapOverlays);
         XCTAssertTrue   ([mapOverlays count] == 1);
         
-        XCTAssertTrue   ([[mapOverlays lastObject] isKindOfClass: [MKPolyline class]]);
+        XCTAssertTrue   ([[mapOverlays lastObject] isKindOfClass: [MKPolygon class]]);
         
         MKPolyline * polyline = (MKPolyline *) [mapOverlays lastObject];
         

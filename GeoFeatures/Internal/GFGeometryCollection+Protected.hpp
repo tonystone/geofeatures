@@ -29,17 +29,29 @@
 // Note: we must specifically include GeometryCollection.hpp here instead of forward declaring GeometryCollection
 #include "GeometryCollection.hpp"
 
-namespace  gf = geofeatures;
-
 @interface GFGeometryCollection (Protected)
 
     /**
      * Initialize this GFGeometryCollection with an internal GeometryCollection implementation.
      */
-    - (instancetype) initWithCPPGeometryCollection: (gf::GeometryCollection<>) aGeometryCollection;
+    - (instancetype) initWithCPPGeometryCollection: (geofeatures::GeometryCollection<>) aGeometryCollection;
 
-    - (const gf::GeometryCollection<> &) cppConstGeometryCollectionReference;
+    - (const geofeatures::GeometryCollection<> &) cppConstGeometryCollectionReference;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFGeometryCollection {
+
+        geofeatures::GeometryCollection<> geometryCollectionWithGeoJSONGeometries(NSArray * geometries);
+
+        NSDictionary * geoJSONGeometryWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection);
+
+        NSArray * geoJSONGeometriesWithGeometryCollection(const geofeatures::GeometryCollection <> & geometryCollection);
+
+        id <MKOverlay> mkOverlayWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection);
+    }
+}
 
 #endif // __GFGeometryCollectionProtected_hpp

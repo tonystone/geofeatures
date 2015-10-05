@@ -64,29 +64,7 @@ namespace gf = geofeatures;
             if (!coordinates || ![coordinates isKindOfClass: [NSArray class]]) {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo: nil];
             }
-            //
-            // Note: Coordinates of a MultiPolygon are an
-            // array of Polygon coordinate arrays:
-            //
-            //
-            //  { "type": "MultiPolygon",
-            //       "coordinates": [
-            //            [
-            //              [[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]
-            //            ],
-            //            [
-            //              [[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-            //              [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
-            //            ]
-            //         ]
-            //  }
-            //
-            for (NSArray * polygon in coordinates) {
-                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
-                // NSMallocException if they fail to allocate memory for the operation below
-                // so no C++ exception block is required.
-                _multiPolygon.push_back(gf::GFPolygon::polygonWithGeoJSONCoordinates(polygon));
-            }
+            _multiPolygon = gf::GFMultiPolygon::multiPolygonWithGeoJSONCoordinates(coordinates);
         }
         return self;
     }
@@ -180,12 +158,7 @@ namespace gf = geofeatures;
 #pragma mark - GeoJSON Output
 
     - (NSDictionary *) toGeoJSONGeometry {
-        NSMutableArray * polygons = [[NSMutableArray alloc] init];
-
-        for (auto it = _multiPolygon.begin();  it != _multiPolygon.end(); ++it ) {
-            [polygons addObject: gf::GFPolygon::geoJSONCoordinatesWithPolygon(*it)];
-        }
-        return @{@"type": @"MultiPolygon", @"coordinates": polygons};
+        return gf::GFMultiPolygon::geoJSONGeometryWithMultiPolygon(_multiPolygon);
     }
 
 #pragma mark - MapKit
@@ -256,3 +229,31 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+gf::MultiPolygon geofeatures::GFMultiPolygon::multiPolygonWithGeoJSONCoordinates(NSArray * coordinates) {
+
+    gf::MultiPolygon multiPolygon;
+
+    for (NSArray * polygon in coordinates) {
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        multiPolygon.push_back(gf::GFPolygon::polygonWithGeoJSONCoordinates(polygon));
+    }
+    return multiPolygon;
+}
+
+NSDictionary * geofeatures::GFMultiPolygon::geoJSONGeometryWithMultiPolygon(const geofeatures::MultiPolygon & multiPolygon) {
+    return @{@"type": @"MultiPolygon", @"coordinates": gf::GFMultiPolygon::geoJSONCoordinatesWithMultiPolygon(multiPolygon)};
+}
+
+NSArray * geofeatures::GFMultiPolygon::geoJSONCoordinatesWithMultiPolygon(const geofeatures::MultiPolygon & multiPolygon) {
+    NSMutableArray * polygons = [[NSMutableArray alloc] init];
+
+    for (auto it = multiPolygon.begin();  it != multiPolygon.end(); ++it ) {
+        [polygons addObject: gf::GFPolygon::geoJSONCoordinatesWithPolygon(*it)];
+    }
+    return polygons;
+}
