@@ -27,14 +27,33 @@
 
 #include "GeometryVariant.hpp"
 #include <boost/geometry/io/wkt/wkt.hpp>
-#include "WriteWKT.hpp"
 
 namespace geofeatures {
     namespace operators {
 
-        class WKTOperation : public  boost::static_visitor<std::string> {
+        /**
+         * @class       WKTOperation
+         *
+         * @brief       Operation to convert any geofeatures model type into a wkt string.
+         *
+         * @author      Tony Stone
+         * @date        10/4/15
+         */
+        struct  WKTOperation : public  boost::static_visitor<std::string> {
 
-        public:
+            //
+            // Internal class to convert from GeometryCollection variant
+            // to the GeometryPtrVariant type.
+            //
+            struct VariantToPtrVariant : public boost::static_visitor<GeometryPtrVariant> {
+
+                template <typename T>
+                GeometryPtrVariant operator()(const T & v) const {
+                    return GeometryPtrVariant(&v);
+                }
+            };
+
+            // WKT operation methods
             template <typename T>
             std::string operator()(const T * v) const {
 
@@ -44,11 +63,54 @@ namespace geofeatures {
                 return stringStream.str();
             }
 
+            std::string operator()(const Ring * v) const {
+                // Ring is currently getting special treatment
+                // because we want it to be represented as
+                // a LineString in WKT terms.
+                //
+                // Boost will product a Polygon if sent through
+                // as a Ring type.
+                //
+                gf::LineString lineString(*v);
+
+                std::stringstream stringStream;
+                stringStream << boost::geometry::wkt<gf::LineString>(lineString);
+
+                return stringStream.str();
+            }
+
             std::string operator()(const GeometryCollection<> * v) const {
 
                 std::stringstream stringStream;
-                stringStream << io::wkt<GeometryCollection<>>(*v);
+                stringStream << "GEOMETRYCOLLECTION";
 
+                if ((*v).size() > 0) {
+                    stringStream << "(";
+
+                    bool first = true;
+                    auto variantToPtrVariantVisitor = VariantToPtrVariant();
+                    auto wktOperationVisitor        = WKTOperation();
+
+                    auto variantToPrVariant         = boost::apply_visitor(variantToPtrVariantVisitor);
+                    auto variantToWKT               = boost::apply_visitor(wktOperationVisitor);
+
+                    for (auto it = (*v).begin();  it != (*v).end(); ++it ) {
+                        gf::GeometryPtrVariant ptrVariant = variantToPrVariant(*it);
+
+                        if (!first) {
+                            stringStream << ",";
+                        }
+                        //
+                        // Recursively call ourself for
+                        // each variant in the collection.
+                        //
+                        stringStream << variantToWKT(ptrVariant);
+                        first = false;
+                    }
+                    stringStream << ")";
+                } else {
+                    stringStream << "()";  // EMPTY
+                }
                 return stringStream.str();
             }
         };

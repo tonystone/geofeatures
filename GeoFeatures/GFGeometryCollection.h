@@ -51,6 +51,29 @@
     - (instancetype) initWithWKT:(NSString *)wkt;
 
     /**
+     * Initialize this GFGeometryCollection with the given GeoJSON dictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * Example:
+     *
+     * @code
+     *       {
+     *          "type": "GeometryCollection",
+     *          "geometries": [
+     *               { "type": "Point",
+     *                 "coordinates": [100.0, 0.0]
+     *               },
+     *               { "type": "LineString",
+     *                 "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+     *               }
+     *           ]
+     *       }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
 
     /**
      *

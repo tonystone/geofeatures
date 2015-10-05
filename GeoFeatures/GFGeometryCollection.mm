@@ -24,6 +24,15 @@
 #include "GFGeometryCollection+Protected.hpp"
 #include "GFGeometry+Protected.hpp"
 
+#include "internal/GFPoint+Protected.hpp"
+#include "internal/GFLineString+Protected.hpp"
+#include "internal/GFRing+Protected.hpp"
+#include "internal/GFBox+Protected.hpp"
+#include "internal/GFPolygon+Protected.hpp"
+#include "internal/GFMultiPoint+Protected.hpp"
+#include "internal/GFMultiLineString+Protected.hpp"
+#include "internal/GFMultiPolygon+Protected.hpp"
+
 #include "internal/geofeatures/GeometryVariant.hpp"
 #include "internal/geofeatures/GeometryCollection.hpp"
 
@@ -38,28 +47,6 @@ namespace gf = geofeatures;
 
 #pragma mark - Construction
 
-    - (instancetype)initWithArray:(NSArray *)array {
-        NSParameterAssert(array != nil);
-
-        if (self = [super init]) {
-
-            for (GFGeometry * geometry in array) {
-
-                if ([geometry isMemberOfClass: [GFGeometryCollection class]]) {
-                    @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  GFGeometryCollections can not contain other GFGeometryCollections.", NSStringFromClass([self class])] userInfo: nil];
-                }
-                if (![geometry isKindOfClass: [GFGeometry class]]) {
-                    @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
-                }
-                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
-                // NSMallocException if they fail to allocate memory for the operation below
-                // so no C++ exception block is required.
-                _geometryCollection.push_back([geometry cppGeometryVariant]);
-            }
-        }
-        return self;
-    }
-
     - (instancetype)initWithWKT: (NSString *) wkt {
 
         if (self = [super init]) {
@@ -68,6 +55,45 @@ namespace gf = geofeatures;
 
             } catch (std::exception & e) {
                 @throw [NSException exceptionWithName: @"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo: nil];
+            }
+        }
+        return self;
+    }
+
+    - (instancetype) initWithGeoJSONGeometry: (NSDictionary *) jsonDictionary {
+        NSParameterAssert(jsonDictionary != nil);
+
+        if (self = [super init]) {
+            id type = jsonDictionary[@"type"];
+
+            if (!type || ![type isKindOfClass: [NSString class]] || ![[type lowercaseString] isEqualToString: @"geometrycollection"]) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, incorrect type or type missing." userInfo: nil];
+            }
+
+            id geometries = jsonDictionary[@"geometries"];
+
+            if (!geometries || ![geometries isKindOfClass: [NSArray class]]) {
+                @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no geometries found or geometries of an invalid type." userInfo: nil];
+            }
+            _geometryCollection = gf::GFGeometryCollection::geometryCollectionWithGeoJSONGeometries(geometries);
+        }
+        return self;
+    }
+
+    - (instancetype)initWithArray:(NSArray *)array {
+        NSParameterAssert(array != nil);
+
+        if (self = [super init]) {
+
+            for (GFGeometry * geometry in array) {
+
+                if (![geometry isKindOfClass: [GFGeometry class]]) {
+                    @throw [NSException exceptionWithName: NSInvalidArgumentException reason:[NSString stringWithFormat: @"Invalid class in array for initialization of %@.  All array elements must be a GFGeometry or subclass of GFGeometry.", NSStringFromClass([self class])] userInfo: nil];
+                }
+                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+                // NSMallocException if they fail to allocate memory for the operation below
+                // so no C++ exception block is required.
+                _geometryCollection.push_back([geometry cppGeometryVariant]);
             }
         }
         return self;
@@ -122,8 +148,8 @@ namespace gf = geofeatures;
         return nil;
     }
 
-    - (NSDictionary *)toGeoJSONGeometry {
-        return [super toGeoJSONGeometry];
+    - (NSDictionary *) toGeoJSONGeometry {
+       return geofeatures::GFGeometryCollection::geoJSONGeometryWithGeometryCollection(_geometryCollection);
     }
 
 #pragma mark - Indexed Subscripting
@@ -236,3 +262,117 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+namespace geofeatures {
+
+    namespace GFGeometryCollection {
+        /**
+         * static_visitor to transform the variant type into a GeoJSON Array of coordinates.
+         */
+        class GeoJSONGeometryFromVariant : public  boost::static_visitor<NSDictionary *> {
+
+        public:
+            template <typename T>
+            NSDictionary * operator()(const T & v) const {
+                return nil;
+            }
+            NSDictionary * operator()(const gf::Point & v) const {
+                return gf::GFPoint::geoJSONGeometryWithPoint(v);
+            }
+            NSDictionary * operator()(const gf::MultiPoint & v) const {
+                return gf::GFMultiPoint::geoJSONGeometryWithMultiPoint(v);
+            }
+            NSDictionary * operator()(const gf::Box & v) const {
+                return gf::GFBox::geoJSONGeometryWithBox(v);
+            }
+            NSDictionary * operator()(const gf::LineString & v) const {
+                return gf::GFLineString::geoJSONGeometryWithLineString(v);
+            }
+            NSDictionary * operator()(const gf::Ring & v) const {
+                return gf::GFRing::geoJSONGeometryWithRing(v);
+            }
+            NSDictionary * operator()(const gf::MultiLineString & v) const {
+                return gf::GFMultiLineString::geoJSONGeometryWithMultiLineString(v);
+            }
+            NSDictionary * operator()(const gf::Polygon & v) const {
+                return gf::GFPolygon::geoJSONGeometryWithPolygon(v);
+            }
+            NSDictionary * operator()(const gf::MultiPolygon & v) const {
+                return gf::GFMultiPolygon::geoJSONGeometryWithMultiPolygon(v);
+            }
+            NSDictionary * operator()(const gf::GeometryCollection<> & v) const {
+                return geofeatures::GFGeometryCollection::geoJSONGeometryWithGeometryCollection(v);
+            }
+        };
+    }
+}
+
+geofeatures::GeometryCollection<> geofeatures::GFGeometryCollection::geometryCollectionWithGeoJSONGeometries(NSArray * geometries) {
+
+    GeometryCollection<> geometryCollection;
+    //
+    //     {
+    //         "type": "GeometryCollection",
+    //         "geometries": [
+    //              { "type": "Point",
+    //                "coordinates": [100.0, 0.0]
+    //              },
+    //              { "type": "LineString",
+    //                "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+    //              }
+    //         ]
+    //     }
+    //
+    for (NSDictionary * geometry in geometries) {
+        id type = [geometry[@"type"] lowercaseString];
+
+        if ([type isEqualToString: @"point"]) {
+
+            geometryCollection.push_back(gf::GFPoint::pointWithGeoJSONCoordinates(geometry[@"coordinates"]));
+
+        }  else if ([type isEqualToString: @"linestring"]) {
+
+            geometryCollection.push_back(gf::GFLineString::lineStringWithGeoJSONCoordinates(geometry[@"coordinates"]));
+
+        } else if ([type isEqualToString: @"polygon"]) {
+
+            geometryCollection.push_back(gf::GFPolygon::polygonWithGeoJSONCoordinates(geometry[@"coordinates"]));
+
+        } else if ([type isEqualToString: @"multipoint"]) {
+
+            geometryCollection.push_back(gf::GFMultiPoint::multiPointWithGeoJSONCoordinates(geometry[@"coordinates"]));
+
+        } else if ([type isEqualToString: @"multilinestring"]) {
+
+            geometryCollection.push_back(gf::GFMultiLineString::multiLineStringWithGeoJSONCoordinates(geometry[@"coordinates"]));
+
+        } else if ([type isEqualToString: @"multipolygon"]) {
+
+            geometryCollection.push_back(gf::GFMultiPolygon::multiPolygonWithGeoJSONCoordinates(geometry[@"coordinates"]));
+
+        } else if ([type isEqualToString: @"geometrycollection"]) {
+            geometryCollection.push_back(gf::GFGeometryCollection::geometryCollectionWithGeoJSONGeometries(geometry[@"geometries"]));
+        }
+    }
+    return geometryCollection;
+}
+
+NSDictionary * geofeatures::GFGeometryCollection::geoJSONGeometryWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
+    return @{@"type": @"GeometryCollection", @"geometries": geoJSONGeometriesWithGeometryCollection(geometryCollection)};
+}
+
+NSArray * geofeatures::GFGeometryCollection::geoJSONGeometriesWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
+    NSMutableArray * geometries = [[NSMutableArray alloc] init];
+
+    for (auto it = geometryCollection.begin();  it != geometryCollection.end(); ++it ) {
+        [geometries addObject: boost::apply_visitor(gf::GFGeometryCollection::GeoJSONGeometryFromVariant(), *it)];
+    }
+    return geometries;
+}
+
+id <MKOverlay> geofeatures::GFGeometryCollection::mkOverlayWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
+   return nil;
+}
+
