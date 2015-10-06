@@ -167,18 +167,6 @@ namespace gf = geofeatures;
         return @[gf::GFRing::mkOverlayWithRing(_ring)];
     }
 
-    - (NSString *) toWKTString {
-        try {
-            std::stringstream stringStream;
-            stringStream << boost::geometry::wkt<gf::LineString>(_ring);
-
-            return [NSString stringWithFormat:@"%s", stringStream.str().c_str()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
-    }
-
 @end
 
 @implementation GFRing (Protected)
