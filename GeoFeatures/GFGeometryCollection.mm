@@ -66,13 +66,17 @@ namespace gf = geofeatures;
         if (self = [super init]) {
             id type = jsonDictionary[@"type"];
 
-            if (!type || ![type isKindOfClass: [NSString class]] || ![[type lowercaseString] isEqualToString: @"geometrycollection"]) {
+            if (!type ||
+                ![type isKindOfClass: [NSString class]] ||
+                ![[type lowercaseString] isEqualToString: @"geometrycollection"]) {
+
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, incorrect type or type missing." userInfo: nil];
             }
 
             id geometries = jsonDictionary[@"geometries"];
 
-            if (!geometries || ![geometries isKindOfClass: [NSArray class]]) {
+            if (!geometries ||
+                ![geometries isKindOfClass: [NSArray class]]) {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"Invalid GeoJSON Geometry Object, no geometries found or geometries of an invalid type." userInfo: nil];
             }
             _geometryCollection = gf::GFGeometryCollection::geometryCollectionWithGeoJSONGeometries(geometries);
@@ -364,7 +368,7 @@ NSArray * geofeatures::GFGeometryCollection::geoJSONGeometriesWithGeometryCollec
     return geometries;
 }
 
-id <MKOverlay> geofeatures::GFGeometryCollection::mkOverlayWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
-   return nil;
-}
+//id <MKOverlay> geofeatures::GFGeometryCollection::mkOverlayWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
+//   return nil;
+//}
 
