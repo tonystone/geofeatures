@@ -210,36 +210,31 @@ gf::Polygon geofeatures::GFPolygon::polygonWithGeoJSONCoordinates(NSArray * coor
     //          ]
     // }
     //
-    try {
-        gf::Polygon polygon = {};
+    gf::Polygon polygon;
 
-        //
-        //  Get the outer ring
-        //
-        for (NSArray * coordinate in coordinates[0]) {
-            polygon.outer().push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
-        }
-
-        polygon.inners().resize([coordinates count] - 1);
-
-        //
-        // Now the innerRings if any
-        //
-        for (NSUInteger x = 1; x < [coordinates count]; x++) {
-            auto& innerRing = polygon.inners()[x - 1];
-
-            for (NSArray * coordinate in coordinates[x]) {
-                innerRing.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
-            }
-        }
-        // Make sure this polygon is closed.
-        boost::geometry::correct(polygon);
-
-        return polygon;
-
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+    //
+    //  Get the outer ring
+    //
+    for (NSArray * coordinate in coordinates[0]) {
+        polygon.outer().push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
     }
+
+    polygon.inners().resize([coordinates count] - 1);
+
+    //
+    // Now the innerRings if any
+    //
+    for (NSUInteger x = 1; x < [coordinates count]; x++) {
+        auto& innerRing = polygon.inners()[x - 1];
+
+        for (NSArray * coordinate in coordinates[x]) {
+            innerRing.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+        }
+    }
+    // Make sure this polygon is closed.
+    boost::geometry::correct(polygon);
+
+    return polygon;
 }
 
 NSDictionary * geofeatures::GFPolygon::geoJSONGeometryWithPolygon(const geofeatures::Polygon & polygon) {
@@ -249,46 +244,42 @@ NSDictionary * geofeatures::GFPolygon::geoJSONGeometryWithPolygon(const geofeatu
 NSArray * geofeatures::GFPolygon::geoJSONCoordinatesWithPolygon(const gf::Polygon & polygon)  {
 
     NSMutableArray * rings = [[NSMutableArray alloc] init];
+    NSUInteger currentRing = 0;
 
-    try {
-        NSUInteger currentRing = 0;
+    auto outerCoordinateCount = polygon.outer().size();
 
-        std::vector<gf::Point>::size_type outerCoordinateCount = polygon.outer().size();
+    // Created the outer ring
+    NSMutableArray * outerRingArray = [[NSMutableArray alloc] init];
+    for (auto i = 0; i < outerCoordinateCount; i++) {
+        const auto& point = polygon.outer()[i];
+
+        double longitude = point.get<0>();
+        double latitude  = point.get<1>();
+
+        outerRingArray[i] = @[@(longitude),@(latitude)];
+    }
+    rings[currentRing] = outerRingArray;
+
+    // Now the inner rings
+    for (auto x = 0; x < polygon.inners().size(); x++) {
+        const auto& innerRing = polygon.inners()[x];
+
+        NSMutableArray * innerRingArray = [[NSMutableArray alloc] init];
+
+        size_t innerPointCount = innerRing.size();
 
         // Created the outer ring
-        NSMutableArray * outerRingArray = [[NSMutableArray alloc] init];
-        for (auto i = 0; i < outerCoordinateCount; i++) {
-            const auto& point = polygon.outer()[i];
+        for (auto i = 0; i < innerPointCount; i++) {
+            const auto& point = innerRing[i];
 
             double longitude = point.get<0>();
             double latitude  = point.get<1>();
 
-            outerRingArray[i] = @[@(longitude),@(latitude)];
+            innerRingArray[i] = @[@(longitude),@(latitude)];
         }
-        rings[currentRing] = outerRingArray;
-
-        // Now the inner rings
-        for (auto x = 0; x < polygon.inners().size(); x++) {
-            const auto& innerRing = polygon.inners()[x];
-
-            NSMutableArray * innerRingArray = [[NSMutableArray alloc] init];
-
-            size_t innerPointCount = innerRing.size();
-
-            // Created the outer ring
-            for (auto i = 0; i < innerPointCount; i++) {
-                const auto& point = innerRing[i];
-
-                double longitude = point.get<0>();
-                double latitude  = point.get<1>();
-
-                innerRingArray[i] = @[@(longitude),@(latitude)];
-            }
-            rings[++currentRing] = innerRingArray;
-        }
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        rings[++currentRing] = innerRingArray;
     }
+
     return rings;
 }
 
@@ -296,51 +287,47 @@ id <MKOverlay> geofeatures::GFPolygon::mkOverlayWithPolygon(const gf::Polygon & 
 
     MKPolygon * mkPolygon = nil;
 
-    try {
-        //
-        //  Get the outer ring
-        //
-        size_t outerCoordinateCount = polygon.outer().size();
-        CLLocationCoordinate2D * outerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * outerCoordinateCount);
+    //
+    //  Get the outer ring
+    //
+    auto outerCoordinateCount = polygon.outer().size();
+    CLLocationCoordinate2D * outerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * outerCoordinateCount);
 
-        for (auto i = 0; i < outerCoordinateCount; i++) {
-            const auto& point = polygon.outer()[i];
+    for (auto i = 0; i < outerCoordinateCount; i++) {
+        const auto& point = polygon.outer()[i];
 
-            outerCoordinates[i].longitude = point.get<0>();
-            outerCoordinates[i].latitude  = point.get<1>();
-        }
-
-        NSMutableArray * innerPolygons = [[NSMutableArray alloc] initWithCapacity: polygon.inners().size()];
-
-        //
-        // Now the innerRings if any
-        //
-        for (auto x = 0; x < polygon.inners().size(); x++) {
-
-            const auto& innerRing = polygon.inners()[x];
-
-            size_t innerCoordinateCount = innerRing.size();
-            CLLocationCoordinate2D * innerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * innerCoordinateCount);
-
-            for (size_t i = 0; i < innerCoordinateCount; i++) {
-                const auto& point = innerRing[i];
-
-                innerCoordinates[i].longitude = point.get<0>();
-                innerCoordinates[i].latitude  = point.get<1>();
-            }
-            MKPolygon * innerPolygon = [MKPolygon polygonWithCoordinates: innerCoordinates count: innerCoordinateCount];
-
-            [innerPolygons addObject: innerPolygon];
-
-            free(innerCoordinates);
-        }
-        mkPolygon = [MKPolygon polygonWithCoordinates: outerCoordinates count: outerCoordinateCount interiorPolygons: innerPolygons];
-
-        free(outerCoordinates);
-
-    } catch (std::exception & e) {
-        @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        outerCoordinates[i].longitude = point.get<0>();
+        outerCoordinates[i].latitude  = point.get<1>();
     }
+
+    NSMutableArray * innerPolygons = [[NSMutableArray alloc] initWithCapacity: polygon.inners().size()];
+
+    //
+    // Now the innerRings if any
+    //
+    for (auto x = 0; x < polygon.inners().size(); x++) {
+
+        const auto& innerRing = polygon.inners()[x];
+
+        size_t innerCoordinateCount = innerRing.size();
+        CLLocationCoordinate2D * innerCoordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * innerCoordinateCount);
+
+        for (size_t i = 0; i < innerCoordinateCount; i++) {
+            const auto& point = innerRing[i];
+
+            innerCoordinates[i].longitude = point.get<0>();
+            innerCoordinates[i].latitude  = point.get<1>();
+        }
+        MKPolygon * innerPolygon = [MKPolygon polygonWithCoordinates: innerCoordinates count: innerCoordinateCount];
+
+        [innerPolygons addObject: innerPolygon];
+
+        free(innerCoordinates);
+    }
+    mkPolygon = [MKPolygon polygonWithCoordinates: outerCoordinates count: outerCoordinateCount interiorPolygons: innerPolygons];
+
+    free(outerCoordinates);
+
     return mkPolygon;
 }
 
