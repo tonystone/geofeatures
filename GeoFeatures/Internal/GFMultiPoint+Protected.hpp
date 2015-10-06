@@ -30,15 +30,25 @@ namespace geofeatures {
     class MultiPoint;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFMultiPoint (Protected)
 
     /**
      * Initialize this GFMultiPoint with an internal MultiPoint implementation.
      */
-    - (instancetype) initWithCPPMultiPoint: (gf::MultiPoint) aMultiPoint;
+    - (instancetype) initWithCPPMultiPoint: (geofeatures::MultiPoint) aMultiPoint;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFMultiPoint {
+
+        geofeatures::MultiPoint multiPointWithGeoJSONCoordinates(NSArray * coordinates);
+
+        NSDictionary * geoJSONGeometryWithMultiPoint(const geofeatures::MultiPoint & multiPoint);
+
+        NSArray * geoJSONCoordinatesWithMultiPoint(const geofeatures::MultiPoint & multiPoint);
+    }
+}
 
 #endif // __GFMultiPointProtected_hpp

@@ -23,7 +23,6 @@
 */
 #include "GFMultiPoint+Protected.hpp"
 #include "GFPoint+Protected.hpp"
-#include "GFPoint+Primitives.hpp"
 
 #include "internal/geofeatures/MultiPoint.hpp"
 #include "internal/geofeatures/GeometryVariant.hpp"
@@ -63,19 +62,7 @@ namespace gf = geofeatures;
             if (!coordinates || ![coordinates isKindOfClass:[NSArray class]]) {
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
             }
-            //
-            // Note: Coordinates of a MultiPoint are an array of positions
-            //
-            // { "type": "MultiPoint",
-            //      "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
-            // }
-            //
-            for (NSArray * coordinate in coordinates) {
-                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
-                // NSMallocException if they fail to allocate memory for the operation below
-                // so no C++ exception block is required.
-                _multiPoint.push_back(gf::GFPoint::pointWithGeoJSONCoordinates(coordinate));
-            }
+            _multiPoint = gf::GFMultiPoint::multiPointWithGeoJSONCoordinates(coordinates);
         }
         return self;
     }
@@ -169,12 +156,7 @@ namespace gf = geofeatures;
 #pragma mark - GeoJSON Output
 
     - (NSDictionary *)toGeoJSONGeometry {
-        NSMutableArray * points = [[NSMutableArray alloc] init];
-
-        for (auto it = _multiPoint.begin();  it != _multiPoint.end(); ++it ) {
-            [points addObject: gf::GFPoint::geoJSONCoordinatesWithPoint(*it)];
-        }
-        return @{@"type": @"MultiPoint", @"coordinates": points};
+        return gf::GFMultiPoint::geoJSONGeometryWithMultiPoint(_multiPoint);
     }
 
 #pragma mark - MapKit
@@ -248,3 +230,31 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+gf::MultiPoint geofeatures::GFMultiPoint::multiPointWithGeoJSONCoordinates(NSArray * coordinates) {
+    gf::MultiPoint multiPoint;
+
+    for (NSArray * coordinate in coordinates) {
+        // Note: geofeatures::<collection type> classes will throw an "Objective-C"
+        // NSMallocException if they fail to allocate memory for the operation below
+        // so no C++ exception block is required.
+        multiPoint.push_back(gf::GFPoint::pointWithGeoJSONCoordinates(coordinate));
+    }
+    return multiPoint;
+}
+
+NSDictionary * geofeatures::GFMultiPoint::geoJSONGeometryWithMultiPoint(const geofeatures::MultiPoint & multiPoint) {
+    return @{@"type": @"MultiPoint", @"coordinates": gf::GFMultiPoint::geoJSONCoordinatesWithMultiPoint(multiPoint)};
+}
+
+NSArray * geofeatures::GFMultiPoint::geoJSONCoordinatesWithMultiPoint(const geofeatures::MultiPoint & multiPoint) {
+
+    NSMutableArray * points = [[NSMutableArray alloc] init];
+
+    for (auto it = multiPoint.begin();  it != multiPoint.end(); ++it ) {
+        [points addObject: gf::GFPoint::geoJSONCoordinatesWithPoint(*it)];
+    }
+    return points;
+}

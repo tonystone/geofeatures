@@ -53,15 +53,15 @@ namespace geofeatures {
                 geofeatures::GeometryCollection<>>  GeometryVariant;
 
     typedef boost::variant<
-                geofeatures::Point *,
-                geofeatures::MultiPoint *,
-                geofeatures::Box *,
-                geofeatures::LineString *,
-                geofeatures::MultiLineString *,
-                geofeatures::Ring *,
-                geofeatures::Polygon *,
-                geofeatures::MultiPolygon *,
-                geofeatures::GeometryCollection<> *>  GeometryPtrVariant;
+                const geofeatures::Point *,
+                const geofeatures::MultiPoint *,
+                const geofeatures::Box *,
+                const geofeatures::LineString *,
+                const geofeatures::MultiLineString *,
+                const geofeatures::Ring *,
+                const geofeatures::Polygon *,
+                const geofeatures::MultiPolygon *,
+                const geofeatures::GeometryCollection<> *>  GeometryPtrVariant;
 
 }   // namespace geofeatures
 

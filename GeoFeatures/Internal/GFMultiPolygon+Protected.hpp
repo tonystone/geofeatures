@@ -30,15 +30,25 @@ namespace geofeatures {
     class MultiPolygon;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFMultiPolygon (Protected)
 
     /**
      * Initialize this GFMultiPolygon with an internal MultiPolygon implementation.
      */
-    - (instancetype) initWithCPPMultiPolygon: (gf::MultiPolygon) aMultiPolygon;
+    - (instancetype) initWithCPPMultiPolygon: (geofeatures::MultiPolygon) aMultiPolygon;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFMultiPolygon {
+
+        geofeatures::MultiPolygon multiPolygonWithGeoJSONCoordinates(NSArray * coordinates);
+
+        NSDictionary * geoJSONGeometryWithMultiPolygon(const geofeatures::MultiPolygon & multiPolygon);
+
+        NSArray * geoJSONCoordinatesWithMultiPolygon(const geofeatures::MultiPolygon & multiPolygon);
+    }
+}
 
 #endif // __GFMultiPolygonProtected_hpp

@@ -24,6 +24,44 @@
 @interface GFGeometryCollectionTests : XCTestCase
 @end
 
+static NSDictionary * geoJSON;
+static NSDictionary * invalidGeoJSON;
+
+static void __attribute__((constructor)) staticInitializer() {
+
+    geoJSON  = @{
+            @"type": @"GeometryCollection",
+            @"geometries": @[
+                    // Note: GeoJSON does not support a box type so we don't test it here.
+                    @{@"type": @"Point", @"coordinates": @[@(100.0), @(0.0)]},
+                    @{@"type": @"LineString", @"coordinates": @[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]]},
+                    @{@"type": @"Polygon",
+                            @"coordinates": @[
+                            @[ @[@(100.0), @(0.0)], @[@(200.0), @(100.0)],@[@(200.0), @(0.0)], @[@(100.0), @(1.0)], @[@(100.0), @(0.0)] ],
+                            @[ @[@(100.2), @(0.2)], @[@(100.8), @(0.2)],  @[@(100.8), @(0.8)], @[@(100.2), @(0.8)], @[@(100.2), @(0.2)] ]]
+                    },
+                    @{@"type": @"MultiPoint", @"coordinates": @[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]]},
+                    @{@"type": @"MultiLineString", @"coordinates": @[@[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]], @[@[@(102.0), @(2.0)],@[@(103.0), @(3.0)]]]},
+                    @{@"type": @"MultiPolygon",
+                            @"coordinates": @[
+                            @[
+                                    @[@[@(102.0), @(2.0)], @[@(102.0), @(3.0)], @[@(103.0), @(3.0)], @[@(103.0), @(2.0)], @[@(102.0), @(2.0)]]
+                            ],
+                            @[
+                                    @[@[@(100.0), @(0.0)], @[@(101.0), @(1.0)], @[@(100.0), @(1.0)], @[@(101.0), @(0.0)], @[@(100.0), @(0.0)]],
+                                    @[@[@(100.2), @(0.2)], @[@(100.8), @(0.2)], @[@(100.8), @(0.8)], @[@(100.2), @(0.8)], @[@(100.2), @(0.2)]]
+                            ]]
+                    },
+                    @{@"type": @"GeometryCollection",
+                            @"geometries": @[
+                            @{@"type": @"Point", @"coordinates": @[@(100.0), @(0.0)]},
+                            @{@"type": @"LineString", @"coordinates": @[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]]}
+                        ]
+                    }
+            ]
+    };
+}
+
 @implementation GFGeometryCollectionTests
 
 #pragma mark - Test Init
@@ -36,7 +74,41 @@
         XCTAssertNotNil([[GFGeometryCollection alloc] init]);
     }
 
-#pragma mark - Test InitWithArry
+#pragma mark - Test initGeoJSONGeometry
+
+    - (void) testInitWithGeoJSONGeometry_NoThrow {
+        XCTAssertNoThrow([[GFGeometryCollection alloc] initWithGeoJSONGeometry: geoJSON]);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_NotNil {
+        XCTAssertNotNil([[GFGeometryCollection alloc] initWithGeoJSONGeometry: geoJSON]);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithValidGeoJSON {
+        XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithGeoJSONGeometry: geoJSON] toWKTString], @"GEOMETRYCOLLECTION(POINT(100 0),LINESTRING(100 0,101 1),POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((102 2,102 3,103 3,103 2,102 2)),((100 0,101 1,100 1,101 0,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))),GEOMETRYCOLLECTION(POINT(100 0),LINESTRING(100 0,101 1)))");
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_NoType {
+        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"geometries": @{}}], NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_InvalidType {
+        XCTAssertThrowsSpecificNamed(([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"type": @"GFPoint", @"geometries": @{}}]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_InvalidTypeType {
+        XCTAssertThrowsSpecificNamed(([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"type": @(1), @"geometries": @{}}]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_InvalidGeometriesType {
+        XCTAssertThrowsSpecificNamed(([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"type": @"GeometryCollection", @"geometries": @(1)}]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_MissingGeometries {
+        XCTAssertThrowsSpecificNamed(([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"type": @"GeometryCollection"}]), NSException, NSInvalidArgumentException);
+    }
+
+#pragma mark - Test InitWithArray
 
     - (void) testInitWithArray_WithEmptyArray_NoThrow {
         XCTAssertNoThrow([[GFGeometryCollection alloc] initWithArray: @[]]);
@@ -63,19 +135,18 @@
                 [[GFPoint alloc] initWithWKT: @"POINT(103 2)"],
                 [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"],
                 [[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"],
-//                [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"],  // Ring is returning a polygon
+                [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"],  // Ring is returning a polygon
                 [[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],
                 [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((100 0),(101 1))"],
                 [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"],
                 [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"]
         ])] toWKTString],
-        //@"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),LINESTRING(20 0,20 10,40 10,40 0,20 0),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
-                @"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
+                @"GEOMETRYCOLLECTION(POINT(103 2),POLYGON((1 1,1 3,3 3,3 1,1 1)),LINESTRING(40 50,40 140),LINESTRING(20 0,20 10,40 10,40 0,20 0),POLYGON((120 0,120 90,210 90,210 0,120 0)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5))))"
         );
     }
 
     - (void) testInitWithArray_WithInvalidArray {
-        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: (@[ [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))"]])], NSException, NSInvalidArgumentException);
+        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithArray: (@[ [[NSObject alloc] init]])], NSException, NSInvalidArgumentException);
     }
 
     - (void) testInitWithArray_WithInvalidObject {
@@ -94,6 +165,55 @@
     - (void) testCopy {
         XCTAssertEqualObjects([[[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))"] \
                                     copy] toWKTString], @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
+    }
+
+#pragma mark - test toGeoJSONGeometry
+
+    - (void) testToGeoJSONGeometry {
+        XCTAssertEqualObjects(([[[GFGeometryCollection alloc] initWithArray:
+                @[
+                        [[GFPoint alloc] initWithWKT: @"POINT(103 2)"],
+                        [[GFBox alloc] initWithWKT: @"BOX(1 1,3 3)"],
+                        [[GFLineString alloc] initWithWKT: @"LINESTRING(40 50,40 140)"],
+                        [[GFRing alloc] initWithWKT: @"LINESTRING(20 0,20 10,40 10,40 0,20 0)"],
+                        [[GFPolygon alloc] initWithWKT: @"POLYGON((120 0,120 90,210 90,210 0,120 0))"],
+                        [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT((100 0),(101 1))"],
+                        [[GFMultiLineString alloc] initWithWKT: @"MULTILINESTRING((100 0,101 1),(102 2,103 3))"],
+                        [[GFMultiPolygon alloc] initWithWKT: @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))"],
+                        [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POINT(100 0),LINESTRING(100 0,101 1))"]
+                ]] toGeoJSONGeometry]),
+                (@{
+                        @"type": @"GeometryCollection",
+                        @"geometries": @[
+                                // Note: GeoJSON does not support a box type so we don't test it here.
+                                @{@"type": @"Point", @"coordinates": @[@(103.0), @(2.0)]},
+                                @{@"type": @"Box", @"coordinates": @[@[@(1.0), @(1.0)],@[@(3.0), @(3.0)]]},
+                                @{@"type": @"LineString", @"coordinates": @[@[@(40.0), @(50.0)],@[@(40.0), @(140.0)]]},
+                                @{@"type": @"LineString", @"coordinates": @[@[@(20.0), @(0.0)],@[@(20.0), @(10.0)],@[@(40.0), @(10.0)],@[@(40.0), @(0.0)],@[@(20.0), @(0.0)]]},
+                                @{@"type": @"Polygon",
+                                        @"coordinates": @[
+                                        @[ @[@(120.0), @(0.0)], @[@(120.0), @(90.0)],@[@(210.0), @(90.0)], @[@(210.0), @(0.0)], @[@(120.0), @(0.0)]]
+                                ]
+                                },
+                                @{@"type": @"MultiPoint", @"coordinates": @[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]]},
+                                @{@"type": @"MultiLineString", @"coordinates": @[@[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]], @[@[@(102.0), @(2.0)],@[@(103.0), @(3.0)]]]},
+                                @{@"type": @"MultiPolygon",
+                                        @"coordinates": @[
+                                        @[
+                                                @[@[@(20.0), @(0.0)], @[@(20.0), @(10.0)], @[@(40.0), @(10.0)], @[@(40.0), @(0.0)], @[@(20.0), @(0.0)]]
+                                        ],
+                                        @[
+                                                @[@[@(5.0), @(5.0)], @[@(5.0), @(8.0)], @[@(8.0), @(8.0)], @[@(8.0), @(5.0)], @[@(5.0), @(5.0)]]
+                                        ]]
+                                },
+                                @{@"type": @"GeometryCollection",
+                                        @"geometries": @[
+                                        @{@"type": @"Point", @"coordinates": @[@(100.0), @(0.0)]},
+                                        @{@"type": @"LineString", @"coordinates": @[@[@(100.0), @(0.0)],@[@(101.0), @(1.0)]]}
+                                ]
+                                }
+                        ]
+                }));
     }
 
 #pragma mark - Test description

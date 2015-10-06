@@ -89,13 +89,7 @@ namespace gf = geofeatures;
             //     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
             //  }
             //
-
-            for (NSArray * coordinate in coordinates) {
-                // Note: geofeatures::<collection type> classes will throw an "Objective-C"
-                // NSMallocException if they fail to allocate memory for the operation below
-                // so no C++ exception block is required.
-                _ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
-            }
+            _ring = gf::GFRing::ringWithGeoJSONCoordinates(coordinates);
         }
         return self;
     }
@@ -166,49 +160,11 @@ namespace gf = geofeatures;
     }
 
     - (NSDictionary *) toGeoJSONGeometry {
-        NSMutableArray * points = [[NSMutableArray alloc] init];
-
-        for (auto it = _ring.begin();  it != _ring.end(); ++it ) {
-            const double longitude = it->get<0>();
-            const double latitude  = it->get<1>();
-
-            [points addObject:@[@(longitude),@(latitude)]];
-        }
-        // Note: GeoJSON does not support Rings so lineString is used.
-        return @{@"type": @"LineString", @"coordinates": points};
+        return gf::GFRing::geoJSONGeometryWithRing(_ring);
     }
 
     - (NSArray *) mkMapOverlays {
-
-        MKPolyline * mkPolyline = nil;
-
-        size_t pointCount = _ring.size();
-        CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
-
-        for (std::size_t i = 0; i < pointCount; i++) {
-            const gf::Point& point = _ring.at(i);
-
-            coordinates[i].longitude = point.get<0>();
-            coordinates[i].latitude  = point.get<1>();
-        }
-
-        mkPolyline = [MKPolyline polylineWithCoordinates: coordinates count: pointCount];
-
-        free(coordinates);
-
-        return @[mkPolyline];
-    }
-
-    - (NSString *) toWKTString {
-        try {
-            std::stringstream stringStream;
-            stringStream << boost::geometry::wkt<gf::LineString>(_ring);
-
-            return [NSString stringWithFormat:@"%s", stringStream.str().c_str()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
+        return @[gf::GFRing::mkOverlayWithRing(_ring)];
     }
 
 @end
@@ -295,3 +251,56 @@ namespace gf = geofeatures;
     }
 
 @end
+
+#pragma mark - Primitives
+
+//
+// Protected free functions
+//
+gf::Ring geofeatures::GFRing::ringWithGeoJSONCoordinates(NSArray * coordinates) {
+    gf::Ring ring;
+
+    for (NSArray * coordinate in coordinates) {
+        ring.push_back(gf::Point([coordinate[0] doubleValue], [coordinate[1] doubleValue]));
+    }
+    // Make sure this ring is correct.
+    boost::geometry::correct(ring);
+
+    return ring;
+}
+
+NSDictionary * geofeatures::GFRing::geoJSONGeometryWithRing(const geofeatures::Ring & ring) {
+    return @{@"type": @"LineString", @"coordinates": gf::GFRing::geoJSONCoordinatesWithRing(ring)};
+}
+
+NSArray * geofeatures::GFRing::geoJSONCoordinatesWithRing(const gf::Ring & ring) {
+
+    NSMutableArray * points = [[NSMutableArray alloc] init];
+
+    for (auto it = ring.begin();  it != ring.end(); ++it) {
+        const double longitude = it->get<0>();
+        const double latitude  = it->get<1>();
+
+        [points addObject:@[@(longitude),@(latitude)]];
+    }
+    return points;
+}
+
+id <MKOverlay> geofeatures::GFRing::mkOverlayWithRing(const gf::Ring & ring) {
+
+    size_t pointCount = ring.size();
+    CLLocationCoordinate2D * coordinates = (CLLocationCoordinate2D *) malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+
+    for (std::size_t i = 0; i < pointCount; i++) {
+        const auto& point = ring[i];
+
+        coordinates[i].longitude = point.get<0>();
+        coordinates[i].latitude  = point.get<1>();
+    }
+
+    MKPolygon * mkPolygon = [MKPolygon polygonWithCoordinates: coordinates count: pointCount];
+
+    free(coordinates);
+
+    return mkPolygon;
+}

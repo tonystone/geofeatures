@@ -29,17 +29,42 @@ namespace geofeatures {
     //Farward declarations
     class Ring;
 }
-namespace  gf = geofeatures;
 
 @interface GFRing (Protected)
 
     /**
      * Initialize this GFRing with an internal Ring implementation.
      */
-    - (instancetype) initWithCPPRing: (gf::Ring) aRing;
+    - (instancetype) initWithCPPRing: (geofeatures::Ring) aRing;
 
-    - (const gf::Ring &) cppConstRingReference;
+    - (const geofeatures::Ring &) cppConstRingReference;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFRing {
+
+        /**
+         * @returns geofeatures::Ring represented by the GeoJSON coordinates
+         */
+        geofeatures::Ring ringWithGeoJSONCoordinates(NSArray * coordinates);
+
+        /**
+         * @returns the GeoJSON Geometry for the geofeatures::Ring
+         */
+        NSDictionary * geoJSONGeometryWithRing(const geofeatures::Ring & ring);
+
+        /**
+         * @returns the GeoJSON coordinates for the geofeatures::Ring
+         */
+        NSArray * geoJSONCoordinatesWithRing(const geofeatures::Ring & ring);
+
+        /**
+         * @returns An object that implements the MKOverlay protocol that represents the geofeatures::Ring
+         */
+        id <MKOverlay> mkOverlayWithRing(const geofeatures::Ring & ring);
+    }
+}
 
 #endif // __GFRingProtected_hpp

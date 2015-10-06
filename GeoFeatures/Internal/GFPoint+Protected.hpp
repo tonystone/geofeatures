@@ -30,17 +30,29 @@ namespace geofeatures {
     class Point;
 }
 
-namespace  gf = geofeatures;
-
 @interface GFPoint (Protected)
 
     /**
      * Initialize this GFPoint with an internal Point implementation.
      */
-    - (instancetype) initWithCPPPoint: (gf::Point) aPoint;
+    - (instancetype) initWithCPPPoint: (geofeatures::Point) aPoint;
 
-    - (const gf::Point &) cppConstPointReference;
+    - (const geofeatures::Point &) cppConstPointReference;
 
 @end
+
+namespace geofeatures {
+
+    namespace GFPoint {
+
+        geofeatures::Point pointWithGeoJSONCoordinates(NSArray * coordinates);
+
+        NSDictionary * geoJSONGeometryWithPoint(const geofeatures::Point & point);
+
+        NSArray * geoJSONCoordinatesWithPoint(const geofeatures::Point & point);
+
+        id <MKOverlay> mkOverlayWithPoint(const geofeatures::Point & point);
+    }
+}
 
 #endif // __GFPointProtected_hpp
