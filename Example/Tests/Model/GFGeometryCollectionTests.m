@@ -60,7 +60,6 @@ static void __attribute__((constructor)) staticInitializer() {
                     }
             ]
     };
-    invalidGeoJSON = @{@"type": @"GeometryCollection", @"coordinates": @{}};
 }
 
 @implementation GFGeometryCollectionTests
@@ -89,8 +88,16 @@ static void __attribute__((constructor)) staticInitializer() {
         XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithGeoJSONGeometry: geoJSON] toWKTString], @"GEOMETRYCOLLECTION(POINT(100 0),LINESTRING(100 0,101 1),POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)),MULTIPOLYGON(((102 2,102 3,103 3,103 2,102 2)),((100 0,101 1,100 1,101 0,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2))),GEOMETRYCOLLECTION(POINT(100 0),LINESTRING(100 0,101 1)))");
     }
 
-    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON {
-        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  invalidGeoJSON], NSException, NSInvalidArgumentException);
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_NoType {
+        XCTAssertThrowsSpecificNamed([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"geometries": @{}}], NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_InvalidType {
+        XCTAssertThrowsSpecificNamed(([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"type": @"GFPoint", @"geometries": @{}}]), NSException, NSInvalidArgumentException);
+    }
+
+    - (void) testInitWithGeoJSONGeometry_WithInvalidGeoJSON_InvalidTypeType {
+        XCTAssertThrowsSpecificNamed(([[GFGeometryCollection alloc] initWithGeoJSONGeometry:  @{@"type": @(1), @"geometries": @{}}]), NSException, NSInvalidArgumentException);
     }
 
 #pragma mark - Test InitWithArray
