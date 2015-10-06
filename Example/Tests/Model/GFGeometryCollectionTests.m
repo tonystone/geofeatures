@@ -152,6 +152,12 @@ static void __attribute__((constructor)) staticInitializer() {
                                     copy] toWKTString], @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
     }
 
+#pragma mark - test toGeoJSONGeometry
+
+    - (void) testToGeoJSONGeometry {
+        XCTAssertEqualObjects([[[GFGeometryCollection alloc] initWithGeoJSONGeometry: geoJSON] toGeoJSONGeometry], geoJSON);
+    }
+
 #pragma mark - Test description
 
     - (void) testDescription {
