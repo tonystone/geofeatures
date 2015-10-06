@@ -265,50 +265,6 @@ namespace gf = geofeatures;
 
 #pragma mark - Primitives
 
-namespace geofeatures {
-
-    namespace GFGeometryCollection {
-        /**
-         * static_visitor to transform the variant type into a GeoJSON Array of coordinates.
-         */
-        class GeoJSONGeometryFromVariant : public  boost::static_visitor<NSDictionary *> {
-
-        public:
-            template <typename T>
-            NSDictionary * operator()(const T & v) const {
-                return nil;
-            }
-            NSDictionary * operator()(const gf::Point & v) const {
-                return gf::GFPoint::geoJSONGeometryWithPoint(v);
-            }
-            NSDictionary * operator()(const gf::MultiPoint & v) const {
-                return gf::GFMultiPoint::geoJSONGeometryWithMultiPoint(v);
-            }
-            NSDictionary * operator()(const gf::Box & v) const {
-                return gf::GFBox::geoJSONGeometryWithBox(v);
-            }
-            NSDictionary * operator()(const gf::LineString & v) const {
-                return gf::GFLineString::geoJSONGeometryWithLineString(v);
-            }
-            NSDictionary * operator()(const gf::Ring & v) const {
-                return gf::GFRing::geoJSONGeometryWithRing(v);
-            }
-            NSDictionary * operator()(const gf::MultiLineString & v) const {
-                return gf::GFMultiLineString::geoJSONGeometryWithMultiLineString(v);
-            }
-            NSDictionary * operator()(const gf::Polygon & v) const {
-                return gf::GFPolygon::geoJSONGeometryWithPolygon(v);
-            }
-            NSDictionary * operator()(const gf::MultiPolygon & v) const {
-                return gf::GFMultiPolygon::geoJSONGeometryWithMultiPolygon(v);
-            }
-            NSDictionary * operator()(const gf::GeometryCollection<> & v) const {
-                return geofeatures::GFGeometryCollection::geoJSONGeometryWithGeometryCollection(v);
-            }
-        };
-    }
-}
-
 geofeatures::GeometryCollection<> geofeatures::GFGeometryCollection::geometryCollectionWithGeoJSONGeometries(NSArray * geometries) {
 
     GeometryCollection<> geometryCollection;
@@ -364,10 +320,46 @@ NSDictionary * geofeatures::GFGeometryCollection::geoJSONGeometryWithGeometryCol
 }
 
 NSArray * geofeatures::GFGeometryCollection::geoJSONGeometriesWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
+
+    /**
+     * static_visitor to transform the variant type into a GeoJSON Array of coordinates.
+    */
+    class GeoJSONGeometryFromVariant : public  boost::static_visitor<NSDictionary *> {
+
+    public:
+        NSDictionary * operator()(const gf::Point & v) const {
+            return gf::GFPoint::geoJSONGeometryWithPoint(v);
+        }
+        NSDictionary * operator()(const gf::MultiPoint & v) const {
+            return gf::GFMultiPoint::geoJSONGeometryWithMultiPoint(v);
+        }
+        NSDictionary * operator()(const gf::Box & v) const {
+            return gf::GFBox::geoJSONGeometryWithBox(v);
+        }
+        NSDictionary * operator()(const gf::LineString & v) const {
+            return gf::GFLineString::geoJSONGeometryWithLineString(v);
+        }
+        NSDictionary * operator()(const gf::Ring & v) const {
+            return gf::GFRing::geoJSONGeometryWithRing(v);
+        }
+        NSDictionary * operator()(const gf::MultiLineString & v) const {
+            return gf::GFMultiLineString::geoJSONGeometryWithMultiLineString(v);
+        }
+        NSDictionary * operator()(const gf::Polygon & v) const {
+            return gf::GFPolygon::geoJSONGeometryWithPolygon(v);
+        }
+        NSDictionary * operator()(const gf::MultiPolygon & v) const {
+            return gf::GFMultiPolygon::geoJSONGeometryWithMultiPolygon(v);
+        }
+        NSDictionary * operator()(const gf::GeometryCollection<> & v) const {
+            return geofeatures::GFGeometryCollection::geoJSONGeometryWithGeometryCollection(v);
+        }
+    };
+
     NSMutableArray * geometries = [[NSMutableArray alloc] init];
 
     for (auto it = geometryCollection.begin();  it != geometryCollection.end(); ++it ) {
-        [geometries addObject: boost::apply_visitor(gf::GFGeometryCollection::GeoJSONGeometryFromVariant(), *it)];
+        [geometries addObject: boost::apply_visitor(GeoJSONGeometryFromVariant(), *it)];
     }
     return geometries;
 }
