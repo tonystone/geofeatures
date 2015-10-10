@@ -119,6 +119,13 @@
      */
     - (BOOL) intersects;
 
+    /**
+     * Checks if self has at least one intersection with the other geometry.
+     *
+     * @returns true if self has at least one intersection with the other geometry.
+     */
+    - (BOOL) intersects: (GFGeometry *) other;
+
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
     *
     * @returns A new GFGeometry instance that represents the union of the self and other.
