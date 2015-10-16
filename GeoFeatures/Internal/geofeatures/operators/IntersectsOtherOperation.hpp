@@ -21,14 +21,39 @@
 #ifndef __GeoFeature_Intersects_Other_Operation_HPP_
 #define __GeoFeature_Intersects_Other_Operation_HPP_
 
-#include <boost/variant/variant.hpp>
+#include <boost/variant/apply_visitor.hpp>
+#include <boost/variant/static_visitor.hpp>
+#include <boost/variant/variant_fwd.hpp>
+
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/intersects.hpp>
+
+#include <boost/geometry/geometries/concepts/check.hpp>
+
+#include "internal/geofeatures/MultiPointView.hpp"
 
 #include "GeometryVariant.hpp"
 
 namespace geofeatures {
     namespace operators {
+        
+        /**
+         * Free function template to apply intersection to a multiType to
+         * another type.
+         */
+        template<typename T1, typename T2>
+        inline bool multiIntersects(const T1 * t1, const T2 * t2) {
+            //
+            // If any point in the item in the multi intersects the other geoemtry,
+            // we have an intersection.
+            //
+            for (auto it = t1->begin(); it != t1->end(); it++) {
+                if (boost::geometry::intersects(*it,*t2)) {
+                    return true;
+                }
+            }
+            return false;
+        };
 
         /**
          * @class       IntersectsSelfOperation
@@ -50,37 +75,43 @@ namespace geofeatures {
                     return GeometryPtrVariant(&v);
                 }
             };
-            //
-            // Intersects operation methods
-            //
-            bool operator()(const MultiPoint * lhs, const Ring * rhs) const {
-                return false;
-            }
-            bool operator()(const Ring * lhs, const MultiPoint * rhs) const {
-                return false;
-            }
-            
-            bool operator()(const Polygon * lhs, const MultiPoint * rhs) const {
-                return false;
-            }
-            bool operator()(const MultiPoint * lhs, const Polygon * rhs) const {
-                return false;
-            }
-            
-            bool operator()(const MultiPoint * lhs, const MultiPolygon * rhs) const {
-                return false;
-            }
-            bool operator()(const MultiPolygon * lhs, const MultiPoint * rhs) const {
-                return false;
-            }
-            
-            // Generic intersects that aere implemented by boost
+
+            // Generic intersects that are implemented by boost
             template <typename T, typename TO>
             bool operator()(const T * lhs, const TO * rhs) const {
                 return boost::geometry::intersects(*lhs,*rhs);
             }
 
-            // GeometryCollection intersects
+            //
+            // Intersects operation methods specific to 2 types
+            //
+            bool operator()(const MultiPoint * multiPoint, const Ring * ring) const {
+                return multiIntersects(multiPoint,ring);
+            }
+
+            bool operator()(const Ring * ring, const MultiPoint * multiPoint) const {
+                // reverse them and use the multiIntersect
+                return multiIntersects(multiPoint,ring);
+            }
+            
+            bool operator()(const Polygon * polygon, const MultiPoint * multiPoint) const {
+                // reverse them and use the multiIntersect
+                return multiIntersects(multiPoint,polygon);
+            }
+
+            bool operator()(const MultiPoint * multiPoint, const Polygon * polygon) const {
+                return multiIntersects(multiPoint,polygon);
+            }
+            
+            bool operator()(const MultiPoint * multiPoint, const MultiPolygon * multiPolygon) const {
+                return multiIntersects(multiPoint,multiPolygon);
+            }
+
+            bool operator()(const MultiPolygon * multiPolygon, const MultiPoint * multiPoint) const {
+                // reverse them and use the multiIntersect
+                return multiIntersects(multiPoint,multiPolygon);
+            }
+
             bool operator()(const GeometryCollection<> * lhs, const GeometryCollection<> * rhs) const {
                 auto variantToPtrVariantVisitor = VariantToPtrVariant();
                 auto intersectsOperationVisitor = IntersectsOtherOperation();
