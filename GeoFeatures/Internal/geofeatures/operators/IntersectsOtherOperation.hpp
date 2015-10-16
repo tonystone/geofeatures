@@ -30,8 +30,6 @@
 
 #include <boost/geometry/geometries/concepts/check.hpp>
 
-#include "internal/geofeatures/MultiPointView.hpp"
-
 #include "GeometryVariant.hpp"
 
 namespace geofeatures {
