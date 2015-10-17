@@ -58,7 +58,12 @@ namespace geofeatures {
 
     public:
         inline MultiPoint() noexcept : Geometry(), BaseType() {}
-        inline virtual ~MultiPoint() noexcept {};
+        
+        template <typename Iterator>
+        inline MultiPoint(Iterator begin, Iterator end) : BaseType(begin, end) {}
+        
+        inline MultiPoint(std::initializer_list<geofeatures::Point> l) : BaseType(l.begin(), l.end()) {}
+        inline virtual ~MultiPoint() noexcept {}
     };
     
 }   // namespace geofeatures
@@ -74,13 +79,6 @@ namespace geofeatures_boost {
         }
     } // namespace geometry::traits
 
-    template<>
-    struct range_iterator<geofeatures::MultiPoint>
-    { typedef typename geofeatures::MultiPoint::iterator type; };
-
-    template<>
-    struct range_const_iterator<geofeatures::MultiPoint>
-    { typedef typename geofeatures::MultiPoint::const_iterator type; };
 
 } // namespace boost
 
