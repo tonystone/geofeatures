@@ -65,6 +65,16 @@
         XCTAssertEqual([[[GFPoint alloc] initWithWKT:@"POINT(0 0)"] intersects: [[GFMultiPolygon alloc] initWithWKT:@"MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))"] ], true);
     }
 
+#pragma mark -
+
+    - (void) testIntersectsOther_Point_GeometryCollection_Polygon_Intersecting {
+        XCTAssertEqual([[[GFPoint alloc] initWithWKT: @"POINT(9 9)"] intersects: [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,0 10,10 10,10 0,0 0),(2 2,2 4,4 4,4 2,2 2)))"] ], true);
+    }
+
+    - (void) testIntersectsOther_Point__GeometryCollectionPolygon_NonIntersecting {
+        XCTAssertEqual([[[GFPoint alloc] initWithWKT: @"POINT(3 3)"] intersects: [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,0 10,10 10,10 0,0 0),(2 2,2 4,4 4,4 2,2 2)))"] ], false);
+    }
+
 #pragma mark - LineString
 #pragma mark -
 
@@ -88,15 +98,25 @@
         XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING(0 0,1 0,10 10)"] intersects: [[GFBox alloc] initWithWKT: @"BOX(1 2,3 5)"] ], true);
     }
 
+#pragma mark -
+
+    - (void) testIntersectsOther_LineString_GeometryCollection_Polygon_Intersecting {
+        XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING(1 1,2 2)"] intersects: [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,10 0,10 10,0 10,0 0)))"] ], true);
+    }
+
+    - (void) testIntersectsOther_LineString_GeometryCollection_Polygon_NonIntersecting {
+        XCTAssertEqual([[[GFLineString alloc] initWithWKT: @"LINESTRING(11 0,12 12)"] intersects: [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((0 0,10 0,10 10,0 10,0 0)))"] ], false);
+    }
+
 #pragma mark - Ring
 #pragma mark -
 
     - (void) testIntersectsOther_Ring_MultiPolygon_Intersecting {
-        XCTAssertEqual([[[GFRing alloc] initWithWKT:@"LINESTRING(1 1, 3 3, 2 5)"] intersects: [[GFMultiPolygon alloc] initWithWKT:@"MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)))"] ], true);
+        XCTAssertEqual([[[GFRing alloc] initWithWKT:@"LINESTRING(1 1, 3 3, 2 5,1 1)"] intersects: [[GFMultiPolygon alloc] initWithWKT:@"MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))"] ], true);
     }
 
     - (void) testIntersectsOther_Ring_MultiPolygon_NonIntersecting {
-        XCTAssertEqual([[[GFRing alloc] initWithWKT:@"LINESTRING(6 6, 7 6, 7 7, 6 7,6 6)"] intersects: [[GFMultiPolygon alloc] initWithWKT:@"MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)))"] ], true);
+        XCTAssertEqual([[[GFRing alloc] initWithWKT:@"LINESTRING(16 16,16 17, 17 17,17 16,16 16)"] intersects: [[GFMultiPolygon alloc] initWithWKT:@"MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))"] ], false);
     }
 
 #pragma mark -
@@ -107,6 +127,16 @@
 
     - (void) testIntersectsOther_Ring_MultiPoint_NonIntersecting {
         XCTAssertEqual([[[GFRing alloc] initWithWKT: @"LINESTRING(2 2,2 5, 5 5,5 2,2 2)"]  intersects: [[GFMultiPoint alloc] initWithWKT: @"MULTIPOINT(1 1,1 6,2 6,10 10)"]], false);
+    }
+
+#pragma mark -
+
+    - (void) testIntersectsOther_Ring__GeometryCollectionMultiPolygon_Intersecting {
+        XCTAssertEqual([[[GFRing alloc] initWithWKT:@"LINESTRING(1 1, 3 3, 2 5,1 1)"] intersects: [[GFGeometryCollection alloc] initWithWKT:@"GEOMETRYCOLLECTION(MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0))))"] ], true);
+    }
+
+    - (void) testIntersectsOther_Ring__GeometryCollectionMultiPolygon_NonIntersecting {
+        XCTAssertEqual([[[GFRing alloc] initWithWKT:@"LINESTRING(16 16, 17 16, 17 17, 16 17,16 16)"] intersects: [[GFGeometryCollection alloc] initWithWKT:@"GEOMETRYCOLLECTION(MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0))))"] ], false);
     }
 
 #pragma mark - Polygon
@@ -223,12 +253,32 @@
 #pragma mark - GeometryCollection
 #pragma mark -
 
-    - (void) testIntersectsOther_GeometryCollection_Point_Intersecting {
+    - (void) testIntersectsOther_GeometryCollection_Point_Polygon_Intersecting {
         XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POINT(9 9))"] intersects: [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,0 10,10 10,10 0,0 0),(2 2,2 4,4 4,4 2,2 2))"] ], true);
     }
 
-    - (void) testIntersectsOther_GeometryCollection_Point_NonIntersecting {
+    - (void) testIntersectsOther_GeometryCollection_Point_Polygon_NonIntersecting {
         XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POINT(3 3))"] intersects: [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,0 10,10 10,10 0,0 0),(2 2,2 4,4 4,4 2,2 2))"] ], false);
+    }
+
+#pragma mark -
+
+    - (void) testIntersectsOther_GeometryCollection_Point_LineString_Intersecting {
+        XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT:@"GEOMETRYCOLLECTION(POINT(1 1))"] intersects: [[GFLineString alloc] initWithWKT:@"LINESTRING(0 0,2 2,4 0)"] ], true);
+    }
+
+    - (void) testIntersectsOther_GeometryCollection_Point_LineString_NonIntersecting {
+        XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POINT(1 0))"] intersects: [[GFLineString alloc] initWithWKT: @"LINESTRING(0 0,2 2,4 0)"]], false);
+    }
+
+#pragma mark -
+
+    - (void) testIntersectsOther_GeometryCollection_LineString_Polygon_Intersecting {
+        XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(LINESTRING(1 1,2 2))"] intersects: [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,10 0,10 10,0 10,0 0))"] ], true);
+    }
+
+    - (void) testIntersectsOther_GeometryCollection_LineString_Polygon_NonIntersecting {
+        XCTAssertEqual([[[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(LINESTRING(11 0,12 12))"] intersects: [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,10 0,10 10,0 10,0 0))"] ], false);
     }
 
 @end
