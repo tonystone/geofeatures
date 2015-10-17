@@ -35,6 +35,8 @@ namespace geofeatures {
     class Collection : private std::vector<T, Allocator> {
 
     public:
+        using std::vector<T, Allocator>::vector;
+        
         inline virtual ~Collection() noexcept {}
 
         using typename std::vector<T, Allocator>::value_type;
