@@ -119,7 +119,7 @@ namespace geofeatures {
 
                 for (auto it = lhs->begin();  it != lhs->end(); ++it ) {
                     geofeatures::GeometryPtrVariant lhsPtrVariant = variantToPrVariant(*it);
-                    geofeatures::GeometryPtrVariant rhsPtrVariant(lhs);
+                    geofeatures::GeometryPtrVariant rhsPtrVariant(rhs);
 
                     if (intersects(lhsPtrVariant, rhsPtrVariant)) {
                         return true;
@@ -148,7 +148,7 @@ namespace geofeatures {
 
                 for (auto it = lhs->begin();  it != lhs->end(); ++it ) {
                     geofeatures::GeometryPtrVariant lhsPtrVariant = variantToPrVariant(*it);
-                    geofeatures::GeometryPtrVariant rhsPtrVariant(lhs);
+                    geofeatures::GeometryPtrVariant rhsPtrVariant(rhs);
 
                     if (intersects(lhsPtrVariant, rhsPtrVariant)) {
                         return true;
