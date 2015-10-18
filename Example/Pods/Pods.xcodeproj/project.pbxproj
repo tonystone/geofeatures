@@ -1936,7 +1936,7 @@
 		CA5E5A34573B986D487E22D6 /* num_interior_rings.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F3C0F5E50D239B247C36D355 /* num_interior_rings.hpp */; };
 		CA6580A66F7BB7B9722C169A /* point_concept.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A76929252942664EC4B6EA03 /* point_concept.hpp */; };
 		CAA5190E26EE76724B19640A /* make.h in Headers */ = {isa = PBXBuildFile; fileRef = 71A489A407DAD8D7FE5B44D1 /* make.h */; };
-		CAB6250F18D04FD5A3F44737 /* IntersectsOtherOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 127172979E17AD36BE542F39 /* IntersectsOtherOperation.hpp */; };
+		CAB6250F18D04FD5A3F44737 /* Intersects.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 127172979E17AD36BE542F39 /* Intersects.hpp */; };
 		CAEF5B8D633DE7823ECFE1F8 /* precision.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A9AAB5CCA2A11C8F237422C6 /* precision.hpp */; };
 		CAF84E6CA4B35AE401E367CD /* arith3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 00BAC1E68A7EB1959CF0A1C8 /* arith3.hpp */; };
 		CB062748AD787F944E04BB0C /* lower2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 93C540820E44ED09D5322891 /* lower2.hpp */; };
@@ -2619,7 +2619,7 @@
 		120B74D4B6A20F58667E5ACF /* sub_range.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = sub_range.hpp; sourceTree = "<group>"; };
 		120FBC9207911F19B92B857B /* div_base.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = div_base.hpp; sourceTree = "<group>"; };
 		1223DA6DAC40BFADA7E795F6 /* full_lambda.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = full_lambda.hpp; sourceTree = "<group>"; };
-		127172979E17AD36BE542F39 /* IntersectsOtherOperation.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = IntersectsOtherOperation.hpp; sourceTree = "<group>"; };
+		127172979E17AD36BE542F39 /* Intersects.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = Intersects.hpp; sourceTree = "<group>"; };
 		1273418F8082B4CEF344DF6B /* libcpp.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = libcpp.hpp; sourceTree = "<group>"; };
 		12C846CB4BA65F09A58CFED5 /* templated_streams.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = templated_streams.hpp; sourceTree = "<group>"; };
 		12CC5D0489CE7BFF4683DC5B /* plus.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = plus.hpp; sourceTree = "<group>"; };
@@ -8151,7 +8151,7 @@
 				2BB1A82FAF2392E6EF643C30 /* AreaOperation.hpp */,
 				5EF732BC54BA029E22558D01 /* BoundingBoxOperation.hpp */,
 				4179BF6BCA8383B6A18A53EB /* CentroidOperation.hpp */,
-				127172979E17AD36BE542F39 /* IntersectsOtherOperation.hpp */,
+				127172979E17AD36BE542F39 /* Intersects.hpp */,
 				7BCFC9C98CB49508BA771762 /* IntersectsSelfOperation.hpp */,
 				A2B319643BEB2A4895CC7BE4 /* IsValidOperation.hpp */,
 				5D4A7F36B14BDC18066698A6 /* LengthOperation.hpp */,
@@ -9192,7 +9192,7 @@
 				89582CAF9926A96BB6123727 /* Geometry.hpp in Headers */,
 				057D3BFC6E0853E4E40EFCC1 /* GeometryCollection.hpp in Headers */,
 				7B36CE8DBFBCE4872E7FBEEB /* GeometryVariant.hpp in Headers */,
-				CAB6250F18D04FD5A3F44737 /* IntersectsOtherOperation.hpp in Headers */,
+				CAB6250F18D04FD5A3F44737 /* Intersects.hpp in Headers */,
 				071E6AECDB22F8E37B304F28 /* IntersectsSelfOperation.hpp in Headers */,
 				4A3A77FC29095F3A2A70FD56 /* IsValidOperation.hpp in Headers */,
 				52B84C6293430A3640DC86EC /* LengthOperation.hpp in Headers */,

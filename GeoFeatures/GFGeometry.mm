@@ -38,7 +38,7 @@
 #include "internal/geofeatures/operators/WithinOperation.hpp"
 #include "internal/geofeatures/operators/IsValidOperation.hpp"
 #include "internal/geofeatures/operators/IntersectsSelfOperation.hpp"
-#include "internal/geofeatures/operators/IntersectsOtherOperation.hpp"
+#include "internal/geofeatures/operators/Intersects.hpp"
 
 #include <memory>
 
@@ -184,7 +184,7 @@ namespace gf = geofeatures;
             const auto variant        = [self cppGeometryPtrVariant];
             const auto otherVariant   = [other cppGeometryPtrVariant];
 
-            return boost::apply_visitor( gf::operators::IntersectsOtherOperation(), variant, otherVariant);
+            return gf::operators::intersects(variant, otherVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
