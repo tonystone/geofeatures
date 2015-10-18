@@ -34,24 +34,6 @@
 
 namespace geofeatures {
     namespace operators {
-        
-        /**
-         * Free function template to apply intersection to a multiType to
-         * another type.
-         */
-        template<typename T1, typename T2>
-        inline bool multiIntersects(const T1 * t1, const T2 * t2) {
-            //
-            // If any point in the item in the multi intersects the other geoemtry,
-            // we have an intersection.
-            //
-            for (auto it = t1->begin(); it != t1->end(); it++) {
-                if (boost::geometry::intersects(*it,*t2)) {
-                    return true;
-                }
-            }
-            return false;
-        };
 
         /**
          * @class       IntersectsSelfOperation
@@ -63,26 +45,35 @@ namespace geofeatures {
          */
         struct IntersectsOtherOperation : public  boost::static_visitor<bool> {
 
-            //
-            // Internal class to convert from GeometryCollection variant
-            // to the GeometryPtrVariant type.
-            //
-            struct VariantToPtrVariant : public boost::static_visitor<GeometryPtrVariant> {
-                template <typename T>
-                GeometryPtrVariant operator()(const T & v) const {
-                    return GeometryPtrVariant(&v);
-                }
-            };
-
-            // Generic intersects that are implemented by boost
+            /**
+             * Generic intersects that are implemented by boost
+             */
             template <typename T, typename TO>
             bool operator()(const T * lhs, const TO * rhs) const {
                 return boost::geometry::intersects(*lhs,*rhs);
             }
 
-            //
-            // Intersects operation methods specific to 2 types
-            //
+            /*
+             * Intersects operation methods specific to 2 types
+             */
+
+            /**
+             * Generic template for MultiType to single type intersects
+             */
+            template<typename MultiType, typename SingleType>
+            inline bool multiIntersects(const MultiType * multiType, const SingleType * singleType) const {
+                //
+                // If any point in the item in the multi intersects the other geometry,
+                // we have an intersection.
+                //
+                for (auto it = multiType->begin(); it != multiType->end(); it++) {
+                    if (boost::geometry::intersects(*it,*singleType)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
             bool operator()(const MultiPoint * multiPoint, const Ring * ring) const {
                 return multiIntersects(multiPoint,ring);
             }
@@ -111,11 +102,6 @@ namespace geofeatures {
             }
 
             bool operator()(const GeometryCollection<> * lhs, const GeometryCollection<> * rhs) const {
-                auto variantToPtrVariantVisitor = VariantToPtrVariant();
-                auto intersectsOperationVisitor = IntersectsOtherOperation();
-                
-                auto variantToPrVariant(boost::apply_visitor(variantToPtrVariantVisitor));
-                auto intersects(boost::apply_visitor(intersectsOperationVisitor));
 
                 for (auto it = lhs->begin();  it != lhs->end(); ++it ) {
                     geofeatures::GeometryPtrVariant lhsPtrVariant = variantToPrVariant(*it);
@@ -139,16 +125,10 @@ namespace geofeatures {
 
             template <typename T>
             bool operator()(const GeometryCollection<> * lhs, const T * rhs) const {
-                auto variantToPtrVariantVisitor = VariantToPtrVariant();
-                auto intersectsOperationVisitor = IntersectsOtherOperation();
-
-                auto variantToPrVariant(boost::apply_visitor(variantToPtrVariantVisitor));
-                auto intersects(boost::apply_visitor(intersectsOperationVisitor));
-
+                geofeatures::GeometryPtrVariant rhsPtrVariant(rhs);
 
                 for (auto it = lhs->begin();  it != lhs->end(); ++it ) {
                     geofeatures::GeometryPtrVariant lhsPtrVariant = variantToPrVariant(*it);
-                    geofeatures::GeometryPtrVariant rhsPtrVariant(rhs);
 
                     if (intersects(lhsPtrVariant, rhsPtrVariant)) {
                         return true;
@@ -158,15 +138,9 @@ namespace geofeatures {
             }
             template <typename T>
             bool operator()(const T * lhs, const GeometryCollection<> * rhs) const {
-                auto variantToPtrVariantVisitor = VariantToPtrVariant();
-                auto intersectsOperationVisitor = IntersectsOtherOperation();
-
-                auto variantToPrVariant(boost::apply_visitor(variantToPtrVariantVisitor));
-                auto intersects(boost::apply_visitor(intersectsOperationVisitor));
-
-
+                geofeatures::GeometryPtrVariant lhsPtrVariant(lhs);
+                
                 for (auto it = rhs->begin();  it != rhs->end(); ++it ) {
-                    geofeatures::GeometryPtrVariant lhsPtrVariant(lhs);
                     geofeatures::GeometryPtrVariant rhsPtrVariant  = variantToPrVariant(*it);
 
                     if (intersects(lhsPtrVariant, rhsPtrVariant)) {
@@ -175,6 +149,33 @@ namespace geofeatures {
                 }
                 return false;
             }
+
+            /**
+             * Constructor to initialize the visitor memmbers
+             */
+            IntersectsOtherOperation()
+                    : variantToPtrVariantVisitor(), variantToPrVariant(variantToPtrVariantVisitor), intersects(*this) {
+            }
+
+        private:
+            /**
+             * Internal class to convert from GeometryCollection variant
+             * to the GeometryPtrVariant type.
+             */
+            struct VariantToPtrVariant : public boost::static_visitor<GeometryPtrVariant> {
+                template <typename T>
+                GeometryPtrVariant operator()(const T & v) const {
+                    return GeometryPtrVariant(&v);
+                }
+            };
+
+            //
+            // Members
+            //
+            VariantToPtrVariant variantToPtrVariantVisitor;
+            
+            boost::apply_visitor_delayed_t<VariantToPtrVariant> variantToPrVariant;
+            boost::apply_visitor_delayed_t<IntersectsOtherOperation> intersects;
         };
     }   // namespace operators
 }   // namespace geofeatures
