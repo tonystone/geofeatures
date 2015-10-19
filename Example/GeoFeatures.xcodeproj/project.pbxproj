@@ -33,6 +33,7 @@
 		36698B38A8D25E4B5A17B997 /* GFEncodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698FF5EDACF80E61C3CF4F /* GFEncodingTest.m */; };
 		36698B39E7BD4166DACC5174 /* GFMutableLineStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366988818383A7B5D257634A /* GFMutableLineStringTests.m */; };
 		36698BE95B098F31453A03FA /* GFMultiPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698FECBDE3474A6A4A674D /* GFMultiPointTests.m */; };
+		36698C2EFE96F84BAC2C4850 /* GFIntersectsOtherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366989C6512C7EF6B0152DF4 /* GFIntersectsOtherTests.m */; };
 		36698C543E3CDDFEE9E5C515 /* GFLengthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669889FCA42261B4765B688 /* GFLengthTests.m */; };
 		36698C579150701AB2AC8F41 /* GFPerimeterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366988A210D230E2EF9F99E1 /* GFPerimeterTests.m */; };
 		36698E4F0A58568D0FBCBC4E /* GFMutablePointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366980E7C488CE8F26E24DEE /* GFMutablePointTests.m */; };
@@ -94,6 +95,7 @@
 		366988DBDEB7C3DC42539A22 /* GFMutableRingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutableRingTests.m; sourceTree = "<group>"; };
 		366988E551A3C1E342EC2434 /* GFMutableMultiLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutableMultiLineStringTests.m; sourceTree = "<group>"; };
 		36698907141EECAB15ED39DF /* GFPointTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPointTests.m; sourceTree = "<group>"; };
+		366989C6512C7EF6B0152DF4 /* GFIntersectsOtherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFIntersectsOtherTests.m; sourceTree = "<group>"; };
 		366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMultiLineStringTests.m; sourceTree = "<group>"; };
 		36698A3DCBEA9448744A277E /* GFMutableBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutableBoxTests.m; sourceTree = "<group>"; };
 		36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeometryCollectionTests.m; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				366988A210D230E2EF9F99E1 /* GFPerimeterTests.m */,
 				36698E4DA2252BF2E0933035 /* GFBoundingBoxTests.m */,
 				366980C6B5BA74C5C25BBC14 /* GFIntersectsSelfTests.m */,
+				366989C6512C7EF6B0152DF4 /* GFIntersectsOtherTests.m */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				366986ADEC171B7FE8B0B8D5 /* GFMutablePolygonTests.m in Sources */,
 				36698792FACB6885C5F50498 /* GFMutableGeometryCollectionTests.m in Sources */,
 				3669875511940A4AC1800BB0 /* GFIntersectsSelfTests.m in Sources */,
+				36698C2EFE96F84BAC2C4850 /* GFIntersectsOtherTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

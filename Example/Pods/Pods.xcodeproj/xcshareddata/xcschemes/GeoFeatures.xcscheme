@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0919F8D889086E50F1413C4"
+               BlueprintIdentifier = "3E3CE8EFB667B0E1ED547FCF"
                BuildableName = "libGeoFeatures.a"
                BlueprintName = "GeoFeatures"
                ReferencedContainer = "container:Pods.xcodeproj">

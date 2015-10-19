@@ -87,7 +87,7 @@ namespace geofeatures {
                         return GeometryCollection<>::value_type();
                     };
 
-            std::regex words_regex("\\b(EMPTY|POINT|MULTIPOINT|LINESTRING|MULTILINESTRING|POLYGON)", std::regex_constants::icase);
+            std::regex words_regex("\\b(EMPTY|POINT|MULTIPOINT|LINESTRING|MULTILINESTRING|POLYGON|MULTIPOLYGON)", std::regex_constants::icase);
 
             std::string::const_iterator collectionBegin = wkt.begin();
             std::string::const_iterator collectionEnd   = wkt.end();
