@@ -31,7 +31,7 @@
 #include "internal/geofeatures/operators/UnionOperation.hpp"
 #include "internal/geofeatures/operators/CentroidOperation.hpp"
 #include "internal/geofeatures/operators/LengthOperation.hpp"
-#include "internal/geofeatures/operators/AreaOperation.hpp"
+#include "internal/geofeatures/operators/Area.hpp"
 #include "internal/geofeatures/operators/BoundingBoxOperation.hpp"
 #include "internal/geofeatures/operators/PerimeterOperation.hpp"
 #include "internal/geofeatures/operators/WKTOperation.hpp"
@@ -102,8 +102,8 @@ namespace gf = geofeatures;
     - (double)area {
         try {
             const auto variant = [self cppGeometryPtrVariant];
-            
-            return boost::apply_visitor(gf::operators::AreaOperation(), variant);
+
+            return gf::operators::area(variant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];

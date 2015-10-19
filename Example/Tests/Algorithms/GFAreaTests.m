@@ -72,12 +72,41 @@
         AreaTest(GFPolygon, @"POLYGON EMPTY", 0.0);
     }
 
+    - (void) testArea_WithMultiPolygon {
+        AreaTest(GFMultiPolygon , @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((10 10,10 17,14 12,12 10,10 10)))", 32);
+    }
+
+    - (void) testArea_WithMultiPolygon_Intersecting {
+        AreaTest(GFMultiPolygon , @"MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((0 0,0 7,4 2,2 0,0 0)))", 32);
+    }
+
     - (void) testArea_WithSimpleRing {
         AreaTest(GFRing, @"LINESTRING(0 0,0 7,4 2,2 0,0 0)", 16);
     }
 
     - (void) testArea_WithEmptying {
         AreaTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
+
+    - (void) testArea_WithGeometryCollection_Polygon {
+        AreaTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(POLYGON((0 0,0 7,4 2,2 0,0 0)),POLYGON((10 10,10 17,14 12,12 10,10 10)))", 32);
+    }
+
+    - (void) testArea_WithGeometryCollection_Polygon_Intersecting {
+        AreaTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(POLYGON((0 0,0 7,4 2,2 0,0 0)),POLYGON((0 0,0 7,4 2,2 0,0 0)))", 32);
+    }
+
+    - (void) testArea_WithGeometryCollection_Ring {
+        XCTAssertEqual([[[GFGeometryCollection alloc] initWithArray: @[
+                                                                       [[GFRing alloc] initWithWKT:@"LINESTRING(0 0,0 7,4 2,2 0,0 0)"]
+                                                                       ] ] area],  16);
+    }
+
+    - (void) testArea_WithGeometryCollection_Ring_Polygon {
+        XCTAssertEqual(([[[GFGeometryCollection alloc] initWithArray: @[
+                                                                   [[GFRing alloc] initWithWKT:@"LINESTRING(0 0,0 7,4 2,2 0,0 0)"],
+                                                                   [[GFPolygon alloc] initWithWKT: @"POLYGON((0 0,0 7,4 2,2 0,0 0))"]
+                                                                   ]] area]),  32);
     }
 
 @end

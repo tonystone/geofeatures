@@ -646,7 +646,7 @@
 		3F806C2D82DD86E16EBB16C9 /* sp_counted_base_gcc_sparc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BA30EF93AB9E198E0F37A9A6 /* sp_counted_base_gcc_sparc.hpp */; };
 		3F92C7E2FBD14E942805A16C /* apply_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6340C2D947CE15FC57B8DD45 /* apply_fwd.hpp */; };
 		3FA2053938835B3CDB969E2F /* compaq.h in Headers */ = {isa = PBXBuildFile; fileRef = 31811352ECA4602ADF2336E9 /* compaq.h */; };
-		3FC57913725739E0A76E312A /* AreaOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2BB1A82FAF2392E6EF643C30 /* AreaOperation.hpp */; };
+		3FC57913725739E0A76E312A /* Area.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2BB1A82FAF2392E6EF643C30 /* Area.hpp */; };
 		3FD42D51A34DF1A6978DB629 /* condition.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8DFF7745B55240797EC7EF0C /* condition.hpp */; };
 		3FE21D954069CB584602245D /* bitxor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F5B0CA5072716DEAC816B796 /* bitxor.hpp */; };
 		3FE5522D5C4AC12FA9BBB422 /* dec.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9962D2FBDF64535345123EA9 /* dec.hpp */; };
@@ -2843,7 +2843,7 @@
 		2B1D1190E2DB3121F18D0C2F /* operator_bool.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = operator_bool.hpp; sourceTree = "<group>"; };
 		2B584B5BD7575548783266C4 /* find_format_store.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = find_format_store.hpp; sourceTree = "<group>"; };
 		2B80779BF80D23A5480A1ED4 /* not_equal.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = not_equal.hpp; sourceTree = "<group>"; };
-		2BB1A82FAF2392E6EF643C30 /* AreaOperation.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = AreaOperation.hpp; sourceTree = "<group>"; };
+		2BB1A82FAF2392E6EF643C30 /* Area.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = Area.hpp; sourceTree = "<group>"; };
 		2BBF19BC5B33F72FCD022037 /* list_c.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = list_c.hpp; sourceTree = "<group>"; };
 		2BC4F226D24EE3EB603ADB05 /* cstdint.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = cstdint.hpp; sourceTree = "<group>"; };
 		2BE3A30415FE4AE15C7C8004 /* list_c.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = list_c.hpp; sourceTree = "<group>"; };
@@ -8148,7 +8148,7 @@
 		C3C79C16DA95BA56488EFC3E /* operators */ = {
 			isa = PBXGroup;
 			children = (
-				2BB1A82FAF2392E6EF643C30 /* AreaOperation.hpp */,
+				2BB1A82FAF2392E6EF643C30 /* Area.hpp */,
 				5EF732BC54BA029E22558D01 /* BoundingBoxOperation.hpp */,
 				4179BF6BCA8383B6A18A53EB /* CentroidOperation.hpp */,
 				127172979E17AD36BE542F39 /* Intersects.hpp */,
@@ -9160,7 +9160,7 @@
 				DC511D8CD02A9F4A5E0D17EC /* 32.h in Headers */,
 				D0B7DFDF1AA28438E8807F28 /* 64.h in Headers */,
 				435CEE2048F39A6B7B5EA7A5 /* Allocator.hpp in Headers */,
-				3FC57913725739E0A76E312A /* AreaOperation.hpp in Headers */,
+				3FC57913725739E0A76E312A /* Area.hpp in Headers */,
 				85D92D73B282E255D9A68F09 /* BoundingBoxOperation.hpp in Headers */,
 				6834FC59ECFF297B87B1A618 /* Box.hpp in Headers */,
 				C6AF33C6AB57B41D9979EB12 /* CentroidOperation.hpp in Headers */,
