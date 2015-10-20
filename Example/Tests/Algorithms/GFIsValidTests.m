@@ -93,4 +93,15 @@
         IsValidTest(GFRing, @"LINESTRING EMPTY", false);
     }
 
+    - (void) testIsValid_WithGeometryCollection_AllValid {
+        IsValidTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(POINT(0 0),MULTIPOINT(0 0,1 1),LINESTRING(0 0,1 1),MULTILINESTRING((0 0,1 1),(-1 0,1 0)),POLYGON((0 0,0 7,4 2,2 0,0 0)),MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((10 10,10 17,14 12,12 10,10 10))))", true);
+    }
+
+    - (void) testIsValid_WithGeometryCollection_Invalid {
+        IsValidTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(POINT(0 0),MULTIPOINT(0 0,1 1),LINESTRING(),MULTILINESTRING((0 0,1 1),(-1 0,1 0)),POLYGON((0 0,0 7,4 2,2 0,0 0)),MULTIPOLYGON(((0 0,0 7,4 2,2 0,0 0)),((10 10,10 17,14 12,12 10,10 10))))", false);
+    }
+    - (void) testIsValid_WithGeometryCollection_Empty {
+        IsValidTest(GFGeometryCollection , @"GEOMETRYCOLLECTION EMPTY", true);
+    }
+
 @end
