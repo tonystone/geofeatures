@@ -753,7 +753,7 @@
 		49C0BDED21D2A8B4DE787BF3 /* repeat.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D7E6927F10DCBC90742EEFD8 /* repeat.hpp */; };
 		4A17FFE696956CDA3E79A80D /* is_union.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7781FBD38F249D6B99B56FD8 /* is_union.hpp */; };
 		4A2726F52F6B5E86B4ADDBA7 /* is_sequence.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F26C441A0DE4E24068A57135 /* is_sequence.hpp */; };
-		4A3A77FC29095F3A2A70FD56 /* IsValidOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A2B319643BEB2A4895CC7BE4 /* IsValidOperation.hpp */; };
+		4A3A77FC29095F3A2A70FD56 /* IsValid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A2B319643BEB2A4895CC7BE4 /* IsValid.hpp */; };
 		4A7283DB7745517300AE4403 /* type_traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FD6A8113140E9D576DAA1631 /* type_traits.hpp */; };
 		4A7C2C776AE9CD6AB2E4BCC4 /* has_binary_operator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 00E34F081CBF29B9EAA2471A /* has_binary_operator.hpp */; };
 		4A9F335211D543FBBEF44680 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EB8B90C990271C2547E6228 /* library.h */; };
@@ -3966,7 +3966,7 @@
 		A2306A2358A19BC296548F01 /* select_most_precise.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = select_most_precise.hpp; sourceTree = "<group>"; };
 		A2387B4DD9908C080CC7BBC0 /* set.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = set.hpp; sourceTree = "<group>"; };
 		A270CDEB20A78E804FFED291 /* numeric_op.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = numeric_op.hpp; sourceTree = "<group>"; };
-		A2B319643BEB2A4895CC7BE4 /* IsValidOperation.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = IsValidOperation.hpp; sourceTree = "<group>"; };
+		A2B319643BEB2A4895CC7BE4 /* IsValid.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = IsValid.hpp; sourceTree = "<group>"; };
 		A2B4292895E9AD4D9E320E48 /* has_post_decrement.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = has_post_decrement.hpp; sourceTree = "<group>"; };
 		A2D5F20E07715A0B3F9574A7 /* ring_concept.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = ring_concept.hpp; sourceTree = "<group>"; };
 		A2DFDE60BC99790E82F2853E /* calculate_null.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = calculate_null.hpp; sourceTree = "<group>"; };
@@ -8153,7 +8153,7 @@
 				4179BF6BCA8383B6A18A53EB /* CentroidOperation.hpp */,
 				127172979E17AD36BE542F39 /* Intersects.hpp */,
 				7BCFC9C98CB49508BA771762 /* IntersectsSelfOperation.hpp */,
-				A2B319643BEB2A4895CC7BE4 /* IsValidOperation.hpp */,
+				A2B319643BEB2A4895CC7BE4 /* IsValid.hpp */,
 				5D4A7F36B14BDC18066698A6 /* LengthOperation.hpp */,
 				A2F7295E5F928F0A63C612B7 /* PerimeterOperation.hpp */,
 				AD1487F87FDD53E9CD3E3256 /* UnionOperation.hpp */,
@@ -9194,7 +9194,7 @@
 				7B36CE8DBFBCE4872E7FBEEB /* GeometryVariant.hpp in Headers */,
 				CAB6250F18D04FD5A3F44737 /* Intersects.hpp in Headers */,
 				071E6AECDB22F8E37B304F28 /* IntersectsSelfOperation.hpp in Headers */,
-				4A3A77FC29095F3A2A70FD56 /* IsValidOperation.hpp in Headers */,
+				4A3A77FC29095F3A2A70FD56 /* IsValid.hpp in Headers */,
 				52B84C6293430A3640DC86EC /* LengthOperation.hpp in Headers */,
 				1C021C466CD8398C353CB6A8 /* LineString.hpp in Headers */,
 				8B893AEB500E22BC3A9705D5 /* MultiLineString.hpp in Headers */,
