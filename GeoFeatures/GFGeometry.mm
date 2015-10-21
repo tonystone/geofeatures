@@ -172,7 +172,7 @@ namespace gf = geofeatures;
         try {
             const auto variant = [self cppGeometryPtrVariant];
 
-            return boost::apply_visitor(gf::operators::IntersectsSelfOperation(), variant);
+            return gf::operators::intersects(variant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
