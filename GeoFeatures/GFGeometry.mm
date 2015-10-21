@@ -37,7 +37,6 @@
 #include "internal/geofeatures/operators/WKTOperation.hpp"
 #include "internal/geofeatures/operators/WithinOperation.hpp"
 #include "internal/geofeatures/operators/IsValid.hpp"
-#include "internal/geofeatures/operators/IntersectsSelfOperation.hpp"
 #include "internal/geofeatures/operators/Intersects.hpp"
 
 #include <memory>
