@@ -32,7 +32,7 @@
 #include "internal/geofeatures/operators/CentroidOperation.hpp"
 #include "internal/geofeatures/operators/LengthOperation.hpp"
 #include "internal/geofeatures/operators/Area.hpp"
-#include "BoundingBox.hpp"
+#include "internal/geofeatures/operators/BoundingBox.hpp"
 #include "internal/geofeatures/operators/PerimeterOperation.hpp"
 #include "internal/geofeatures/operators/WKTOperation.hpp"
 #include "internal/geofeatures/operators/WithinOperation.hpp"
