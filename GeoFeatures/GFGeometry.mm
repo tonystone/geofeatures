@@ -32,7 +32,7 @@
 #include "internal/geofeatures/operators/CentroidOperation.hpp"
 #include "internal/geofeatures/operators/LengthOperation.hpp"
 #include "internal/geofeatures/operators/Area.hpp"
-#include "internal/geofeatures/operators/BoundingBoxOperation.hpp"
+#include "BoundingBox.hpp"
 #include "internal/geofeatures/operators/PerimeterOperation.hpp"
 #include "internal/geofeatures/operators/WKTOperation.hpp"
 #include "internal/geofeatures/operators/WithinOperation.hpp"
@@ -146,7 +146,7 @@ namespace gf = geofeatures;
         try {
             const auto variant = [self cppGeometryPtrVariant];
             
-            return [[GFBox alloc] initWithCPPBox: boost::apply_visitor(gf::operators::BoundingBoxOperation(), variant)];
+            return [[GFBox alloc] initWithCPPBox: gf::operators::boundingBox(variant)];
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];

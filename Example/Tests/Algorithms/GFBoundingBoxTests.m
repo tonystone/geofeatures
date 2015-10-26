@@ -95,6 +95,29 @@ bool closeAtTolerance (double left, double right, double tolerance) {
         BoundingBoxTest(GFRing, @"LINESTRING(1 1,1 3,3 3,3 1,1 1)", 1,  1, 3, 3);
     }
 
+    - (void) testBoundingBox_WithGeometryCollection1 {
+        BoundingBoxTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(LINESTRING(1 1,1 3,3 3,3 1,1 1))", 1,  1, 3, 3);
+    }
+
+    - (void) testBoundingBox_WithGeometryCollection2 {
+        BoundingBoxTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(LINESTRING(1 1,1 3,3 3,3 1,1 1),POLYGON((1 1,1 3,3 3,3 1,1 1)))", 1,  1, 3, 3);
+    }
+
+    - (void) testBoundingBox_WithGeometryCollection3 {
+        BoundingBoxTest(GFGeometryCollection , @"GEOMETRYCOLLECTION(LINESTRING(1 1,1 3,3 3,3 1,1 1),POLYGON((1 1,1 3,3 3,3 1,1 1)),POLYGON((4 1,0 7,7 9,4 1)))", 0,  1, 7, 9);
+    }
+
+
+    - (void) testBoundingBox_WithGeometryCollection4 {
+        // NOTE: At the time this method was written, ReadWKT would not recurse and not create a GeometryCollection in a GeometryCollection
+        XCTAssertTrue([self checkValidBoundingBox: ([[GFGeometryCollection alloc] initWithArray: @[
+                [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(LINESTRING(1 1,1 3,3 3,3 1,1 1))"],
+                [[GFPolygon alloc] initWithWKT: @"POLYGON((1 1,1 3,3 3,3 1,1 1))"],
+                [[GFGeometryCollection alloc] initWithWKT: @"GEOMETRYCOLLECTION(POLYGON((4 1,0 7,7 9,4 1)))"]
+                ]]) minX: 0 minY: 1 maxX: 7 maxY: 9]);
+
+    }
+
 @end
 
 
