@@ -96,7 +96,7 @@ namespace geofeatures {
                  * Apply the detail implementation to the variant passed.
                  */
                 template <BOOST_VARIANT_ENUM_PARAMS(typename T1)>
-                static inline double apply(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
+                static inline bool apply(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
                 {
                     return boost::apply_visitor(Visitor(), variant);
                 }
@@ -108,7 +108,7 @@ namespace geofeatures {
      * area algorithm.
      */
     template <BOOST_VARIANT_ENUM_PARAMS(typename T1)>
-    inline double isValid(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
+    inline bool isValid(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
     {
         return detail::isValid::apply(variant);
     }
