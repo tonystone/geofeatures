@@ -2163,7 +2163,7 @@
 		E52A3603836809A0DD55BF56 /* ctti_type_index.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 216BDD4210C23FE1C7E2264F /* ctti_type_index.hpp */; };
 		E533F1DF8467740C7F79F1A8 /* arity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = C14A3AD2AB350DD45D55914D /* arity.hpp */; };
 		E565DCAF24325D5293ED18D7 /* list30.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 605967A923134553C4F9D154 /* list30.hpp */; };
-		E5B5F67DE901313E580EA76A /* BoundingBoxOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 856FA72FE939747A134876BE /* BoundingBoxOperation.hpp */; };
+		E5B5F67DE901313E580EA76A /* BoundingBox.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 856FA72FE939747A134876BE /* BoundingBox.hpp */; };
 		E5BDEDB3485BACC31052ADF7 /* side_info.hpp in Headers */ = {isa = PBXBuildFile; fileRef = AD031818A935A94579B048EA /* side_info.hpp */; };
 		E5D40AB59CA3507F21EEC6A3 /* multi_modify.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FE54ECE9E4BD056082A1A98 /* multi_modify.hpp */; };
 		E5F5AA3E3E673AE150A320D5 /* minus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 72EAAB6AD81C92FDE27D4396 /* minus.hpp */; };
@@ -3729,7 +3729,7 @@
 		84D04D07CFCC82E81CD24010 /* lambda_no_ctps.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = lambda_no_ctps.hpp; sourceTree = "<group>"; };
 		8500BA3A4E1C711485E89D49 /* insert_fwd.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = insert_fwd.hpp; sourceTree = "<group>"; };
 		8549B9897877E1ABF4E8B777 /* remove_extent.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = remove_extent.hpp; sourceTree = "<group>"; };
-		856FA72FE939747A134876BE /* BoundingBoxOperation.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = BoundingBoxOperation.hpp; sourceTree = "<group>"; };
+		856FA72FE939747A134876BE /* BoundingBox.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = BoundingBox.hpp; sourceTree = "<group>"; };
 		859DD511FA663805A3CB16CC /* conversion_traits.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = conversion_traits.hpp; sourceTree = "<group>"; };
 		859F0BD876C99183B2C00E2A /* divides.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = divides.hpp; sourceTree = "<group>"; };
 		85AB1FF23DADAF072F72CF9A /* quote.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = quote.hpp; sourceTree = "<group>"; };
@@ -6844,7 +6844,7 @@
 			isa = PBXGroup;
 			children = (
 				CC07EB983F7DAD3BF70AB0C6 /* Area.hpp */,
-				856FA72FE939747A134876BE /* BoundingBoxOperation.hpp */,
+				856FA72FE939747A134876BE /* BoundingBox.hpp */,
 				56A50EF9E58E54DDDA21F7AD /* CentroidOperation.hpp */,
 				F867894FA94A5330A18D28B0 /* Intersects.hpp */,
 				95761948F249663DF38D01E0 /* IsValid.hpp */,
@@ -9158,7 +9158,7 @@
 				2521F4C3E807A57477B68EDC /* 64.h in Headers */,
 				B10EBD148A2926B87C7776AB /* Allocator.hpp in Headers */,
 				4BED3F946FEA3C13571DFC8E /* Area.hpp in Headers */,
-				E5B5F67DE901313E580EA76A /* BoundingBoxOperation.hpp in Headers */,
+				E5B5F67DE901313E580EA76A /* BoundingBox.hpp in Headers */,
 				58D0B0BF93BBE20922CDCB0C /* Box.hpp in Headers */,
 				5ACC748D549477FFDF492F1C /* CentroidOperation.hpp in Headers */,
 				0911C23CA23A908417CAF162 /* Collection.hpp in Headers */,
