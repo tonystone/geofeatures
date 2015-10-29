@@ -100,4 +100,8 @@
                 "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", false);
     }
 
+    - (void) testWithin_WithEmptyPolygons {
+        WithinTest(GFPolygon, @"POLYGON()", GFPolygon, @"POLYGON()", false);
+    }
+
 @end

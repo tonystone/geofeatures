@@ -28,7 +28,6 @@
 
 @implementation GFCentroidTests
 
-
     - (void) testCentroid_WithPoint {
         CentroidTest(GFPoint, @"POINT(1 1)", @"POINT(1 1)");
     }
@@ -45,5 +44,10 @@
     - (void) testCentroid_WithRing {
         CentroidTest(GFRing, @"LINESTRING(2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)", @"POINT(4.06923 1.65056)");
     }
+
+    - (void) testCentroid_Empty_Polygon {
+        XCTAssertThrowsSpecificNamed([[[GFPolygon alloc] initWithWKT: @"POLYGON()"] centroid], NSException, @"Exception");
+    }
+
 
 @end
