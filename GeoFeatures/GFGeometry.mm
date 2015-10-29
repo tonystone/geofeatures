@@ -35,7 +35,7 @@
 #include "internal/geofeatures/operators/BoundingBox.hpp"
 #include "internal/geofeatures/operators/PerimeterOperation.hpp"
 #include "internal/geofeatures/operators/WKTOperation.hpp"
-#include "internal/geofeatures/operators/WithinOperation.hpp"
+#include "internal/geofeatures/operators/Within.hpp"
 #include "internal/geofeatures/operators/IsValid.hpp"
 #include "internal/geofeatures/operators/Intersects.hpp"
 
@@ -159,7 +159,7 @@ namespace gf = geofeatures;
             const auto variant        = [self cppGeometryPtrVariant];
             const auto otherVariant   = [other cppGeometryPtrVariant];
 
-            return boost::apply_visitor( gf::operators::WithinOperation(), variant, otherVariant);
+            return gf::operators::within(variant, otherVariant);
 
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];

@@ -67,4 +67,37 @@
         WithinTest(GFPoint, @"POINT(2 2)", GFRing, @"LINESTRING(0 0,1 1)", false);
     }
 
+    - (void) testWithin_WithPointWithinGeometryCollectionPoint {
+        WithinTest(GFPoint, @"POINT(4 1)", GFGeometryCollection, @"GEOMETRYCOLLECTION(POINT(4 1))", true);
+    }
+
+    - (void) testWithin_WithPointWithinGeometryCollectionLineString {
+        WithinTest(GFPoint, @"POINT(0.5 0.5)", GFGeometryCollection, @"GEOMETRYCOLLECTION(LINESTRING(0 0,1 1))", true);
+    }
+
+    - (void) testWithin_WithPointWithinGeometryCollectionPolygon {
+        WithinTest(GFPoint, @"POINT(4 1)", GFGeometryCollection, @"GEOMETRYCOLLECTION(POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+               "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0)))", true);
+    }
+
+    - (void) testWithin_WithLineStringWithinGeometryCollectionPolygon {
+        WithinTest(GFLineString, @"LINESTRING(4 1,4 2)", GFGeometryCollection, @"GEOMETRYCOLLECTION(POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+               "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0)))", true);
+    }
+
+    - (void) testWithin_WithGeometryCollectionLineStringWithinGeometryCollectionPolygon {
+        WithinTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(LINESTRING(4 1,4 2))", GFGeometryCollection, @"GEOMETRYCOLLECTION(POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+               "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0)))", true);
+    }
+
+    - (void) testWithin_WithGeometryCollectionLineStringWithinPolygon {
+        WithinTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(LINESTRING(4 1,4 2))", GFPolygon , @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+                "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", true);
+    }
+
+    - (void) testWithin_WithGeometryCollectionLineStringOutsidePolygon {
+        WithinTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(LINESTRING(0 0,1 1))", GFPolygon, @"POLYGON((2 1.3,2.4 1.7,2.8 1.8,3.4 1.2,3.7 1.6,3.4 2,4.1 3,5.3 2.6,5.4 1.2,4.9 0.8,2.9 0.7,2 1.3)"
+                "(4.0 2.0, 4.2 1.4, 4.8 1.9, 4.4 2.2, 4.0 2.0))", false);
+    }
+
 @end
