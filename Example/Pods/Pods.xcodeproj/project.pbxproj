@@ -2184,7 +2184,7 @@
 		E7CEFF6AF5D1765757559C98 /* amigaos.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DA70D2F169B92A8B94ED2A0 /* amigaos.h */; };
 		E7DD2C860720B60EFFFE9C2A /* buffer_point_square.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5945B7EDC87CC31C1BBCDBC5 /* buffer_point_square.hpp */; };
 		E7E1BD9DE30EF0025D775BA8 /* strategies.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 785E8BF71575BE82ECB493AB /* strategies.hpp */; };
-		E7FA0769DA478CF53C8B2E06 /* WithinOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50F327446176AF4C1F3C4FDA /* WithinOperation.hpp */; };
+		E7FA0769DA478CF53C8B2E06 /* Within.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 50F327446176AF4C1F3C4FDA /* Within.hpp */; };
 		E823C999AEF7751943A04EE5 /* for.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A16A185C48DBD3D51E04C15 /* for.hpp */; };
 		E846E1DCC6A9A87542408D05 /* GFRing.h in Headers */ = {isa = PBXBuildFile; fileRef = F3DD597673C72315AEB6354D /* GFRing.h */; };
 		E87797FD9ED92202CF4F05EA /* interoperable.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 968D22896E083A135AD89ED8 /* interoperable.hpp */; };
@@ -3220,7 +3220,7 @@
 		50E40183A7273492FE5CB254 /* MultiLineString.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = MultiLineString.hpp; sourceTree = "<group>"; };
 		50F1EFA9B4DC17FF6767D6DC /* list50_c.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = list50_c.hpp; sourceTree = "<group>"; };
 		50F27EF363DF6988B393AA19 /* bool.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = bool.hpp; sourceTree = "<group>"; };
-		50F327446176AF4C1F3C4FDA /* WithinOperation.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = WithinOperation.hpp; sourceTree = "<group>"; };
+		50F327446176AF4C1F3C4FDA /* Within.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = Within.hpp; sourceTree = "<group>"; };
 		510DBD90B24D26EC366673DE /* Pods-GeoFeatures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures.release.xcconfig"; sourceTree = "<group>"; };
 		51204BAB101969D21B1FF642 /* classification.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = classification.hpp; sourceTree = "<group>"; };
 		51221DDF7D2EC529FAC49F2B /* covered_by.hpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.h; path = covered_by.hpp; sourceTree = "<group>"; };
@@ -6852,7 +6852,7 @@
 				403B7FA9DCEC446EDE072702 /* PerimeterOperation.hpp */,
 				A98B352D4DC08333E851255D /* UnionOperation.hpp */,
 				7D8438A22A649FCF4CEC648F /* WKTOperation.hpp */,
-				50F327446176AF4C1F3C4FDA /* WithinOperation.hpp */,
+				50F327446176AF4C1F3C4FDA /* Within.hpp */,
 			);
 			path = operators;
 			sourceTree = "<group>";
@@ -9209,7 +9209,7 @@
 				ECA2F2AC6EB76CD2B4563941 /* Ring.hpp in Headers */,
 				2F6F8136F7B80DA1C5860F10 /* UnionOperation.hpp in Headers */,
 				D80E0155FBB93DE5141BBC32 /* WKTOperation.hpp in Headers */,
-				E7FA0769DA478CF53C8B2E06 /* WithinOperation.hpp in Headers */,
+				E7FA0769DA478CF53C8B2E06 /* Within.hpp in Headers */,
 				B236EFC6A027C02656761DE8 /* _cassert.h in Headers */,
 				87B61BF861E961075CDDD7DA /* _exception.h in Headers */,
 				0B8EDF606C431447EF10B401 /* _prefix.h in Headers */,
