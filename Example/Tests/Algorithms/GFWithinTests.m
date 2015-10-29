@@ -67,4 +67,8 @@
         WithinTest(GFPoint, @"POINT(2 2)", GFRing, @"LINESTRING(0 0,1 1)", false);
     }
 
+    - (void) testWithin_WithEmptyPolygons {
+        WithinTest(GFPolygon, @"POLYGON()", GFPolygon, @"POLYGON()", false);
+    }
+
 @end
