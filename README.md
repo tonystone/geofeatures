@@ -63,7 +63,7 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 ## Author
 
-Tony Stone
+Tony Stone ([https://github.com/tonystone] (https://github.com/tonystone))
 
 ## License
 
