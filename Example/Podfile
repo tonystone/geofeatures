@@ -2,10 +2,14 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-target 'GeoFeatures', :exclusive => true do
+target 'GeoFeatures-iOS', :exclusive => true do
+  platform :ios, '8.0'
+  
   pod "GeoFeatures", :path => "../"
 end
 
-target 'Tests', :exclusive => true do
+target 'GeoFeatures-iOS-Tests', :exclusive => true do
+  platform :ios, '8.0'
+  
   pod "GeoFeatures", :path => "../"
 end
