@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
     s.author            = "Tony Stone"
     s.source            = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
 
-    s.platform                  = :ios
     s.ios.deployment_target     = '6.0'
+    s.osx.deployment_target     = '10.7'
 
     s.requires_arc = true
 

@@ -13,3 +13,15 @@ target 'GeoFeatures-iOS-Tests', :exclusive => true do
   
   pod "GeoFeatures", :path => "../"
 end
+
+target 'GeoFeatures-OSX', :exclusive => true do
+    platform :osx, '10.10'
+    
+    pod "GeoFeatures", :path => "../"
+end
+
+target 'GeoFeatures-OSX-Tests', :exclusive => true do
+    platform :osx, '10.10'
+    
+    pod "GeoFeatures", :path => "../"
+end
