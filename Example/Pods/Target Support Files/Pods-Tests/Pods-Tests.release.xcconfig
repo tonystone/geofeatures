@@ -2,7 +2,8 @@ CLANG_CXX_LANGUAGE_STANDARD = c++0x
 CLANG_CXX_LIBRARY = libc++
 GCC_C_LANGUAGE_STANDARD = c11
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GeoFeatures"
-OTHER_CFLAGS = -D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0 $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GeoFeatures"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"GeoFeatures" -l"c++" -framework "MapKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = -D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0 $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/GeoFeatures.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -l"c++" -framework "GeoFeatures"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Tests
 PODS_ROOT = ${SRCROOT}/Pods

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F3B6AB9BAD09972D673AA82 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F0253BCB28D187EB8B0E15E /* Pods_Tests.framework */; };
 		3669808E58860FC07296186F /* GFGeometryCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */; };
 		366980C141A1F3E42C509EA0 /* LICENSE_BOOST_1_0 in Resources */ = {isa = PBXBuildFile; fileRef = 366984B0285B2E6759E2F690 /* LICENSE_BOOST_1_0 */; };
 		3669818022E70EFAFC22BCD0 /* GFWKTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366981225BFB9BEBE9A3B512 /* GFWKTTests.m */; };
@@ -40,7 +41,6 @@
 		36698E9C4BAAC6F65F5DA78C /* GFUnionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698619C66272CA2645EC9E /* GFUnionTests.m */; };
 		36698FD5E108DFA674C763AA /* GFMultiLineStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */; };
 		36698FECC754E03A94E03C85 /* GFMutableRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366988DBDEB7C3DC42539A22 /* GFMutableRingTests.m */; };
-		3F6E6928CF244C175B885BF2 /* libPods-GeoFeatures.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB577AB09437E49E282C7FC /* libPods-GeoFeatures.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -55,7 +55,7 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		D4B06573DEB42CA9EEEE5D6D /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 025A40ABEA9934BA73DA8472 /* libPods-Tests.a */; };
+		8E3973201B0823D9ADD5DF66 /* Pods_GeoFeatures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF990B987AFA12BFE7DB17F /* Pods_GeoFeatures.framework */; };
 		EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C85B1B9F47F9002C8018 /* GFRingTests.m */; };
 		EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
 		EAFB8A7B1BBB52330041F69C /* new-mexico.json in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8A7A1BBB52330041F69C /* new-mexico.json */; };
@@ -72,8 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		025A40ABEA9934BA73DA8472 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA5A55C83776B8C3B61FDAA /* Pods-GeoFeatures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures/Pods-GeoFeatures.debug.xcconfig"; sourceTree = "<group>"; };
+		1F0253BCB28D187EB8B0E15E /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22529FD0A77AEC89DC728E5F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		366980C6B5BA74C5C25BBC14 /* GFIntersectsSelfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFIntersectsSelfTests.m; sourceTree = "<group>"; };
 		366980E7C488CE8F26E24DEE /* GFMutablePointTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutablePointTests.m; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		6DB577AB09437E49E282C7FC /* libPods-GeoFeatures.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GeoFeatures.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E608FE775CD03F1294A9B08 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9DF7637309C9BB8D8AC49B41 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B5167E5171228242A1D08E37 /* GeoFeatures.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures.podspec; path = ../GeoFeatures.podspec; sourceTree = "<group>"; };
@@ -137,6 +136,7 @@
 		DDACAA67D4D19946EF05C148 /* Pods-GeoFeatures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures/Pods-GeoFeatures.release.xcconfig"; sourceTree = "<group>"; };
 		EA52C85B1B9F47F9002C8018 /* GFRingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFRingTests.m; sourceTree = "<group>"; };
 		EAFB8A7A1BBB52330041F69C /* new-mexico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "new-mexico.json"; sourceTree = "<group>"; };
+		ECF990B987AFA12BFE7DB17F /* Pods_GeoFeatures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				3F6E6928CF244C175B885BF2 /* libPods-GeoFeatures.a in Frameworks */,
+				8E3973201B0823D9ADD5DF66 /* Pods_GeoFeatures.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +158,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				D4B06573DEB42CA9EEEE5D6D /* libPods-Tests.a in Frameworks */,
+				2F3B6AB9BAD09972D673AA82 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,8 +252,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				6DB577AB09437E49E282C7FC /* libPods-GeoFeatures.a */,
-				025A40ABEA9934BA73DA8472 /* libPods-Tests.a */,
+				ECF990B987AFA12BFE7DB17F /* Pods_GeoFeatures.framework */,
+				1F0253BCB28D187EB8B0E15E /* Pods_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,6 +328,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				345C3F9211AF4400625D8AD8 /* Copy Pods Resources */,
+				DEB4F6513607E1AC69E16269 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -347,6 +348,7 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				E25F505B65AC93E07302AFD2 /* Copy Pods Resources */,
+				413B2AF7AEE04A764BD9C5D6 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -447,6 +449,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures/Pods-GeoFeatures-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		413B2AF7AEE04A764BD9C5D6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7AA6ABD1F2AD1F25DC96A56C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -460,6 +477,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DEB4F6513607E1AC69E16269 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures/Pods-GeoFeatures-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E25F505B65AC93E07302AFD2 /* Copy Pods Resources */ = {
