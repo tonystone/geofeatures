@@ -1,0 +1,6 @@
+framework module Pods_GeoFeatures_OSX_Tests {
+  umbrella header "Pods-GeoFeatures-OSX-Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
