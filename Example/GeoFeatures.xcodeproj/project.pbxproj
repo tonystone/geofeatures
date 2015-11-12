@@ -366,8 +366,7 @@
 				EADCE0371BF39FBA00BA10DA /* Main_iPhone.storyboard */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			name = "GeoFeatures-iOS";
-			path = GeoFeatures;
+			path = "GeoFeatures-iOS";
 			sourceTree = "<group>";
 		};
 		6003F594195388D20070C39A /* Supporting Files */ = {
