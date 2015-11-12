@@ -10,7 +10,12 @@ before_install:
     - pod setup --silent
     - pod repo update --silent
 
+env:
+  - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
+
 script:
+  - travis_wait pod lib lint
+  
   - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
   - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx          GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
