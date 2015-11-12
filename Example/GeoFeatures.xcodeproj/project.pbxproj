@@ -52,8 +52,6 @@
 		EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C85B1B9F47F9002C8018 /* GFRingTests.m */; };
 		EA7502151BF3B70400E8D89A /* Pods_GeoFeatures_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7502141BF3B70400E8D89A /* Pods_GeoFeatures_iOS_Tests.framework */; };
 		EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
-		EAD8909D1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EAD8909B1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.debug.xcconfig */; };
-		EAD8909E1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EAD8909C1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.release.xcconfig */; };
 		EAD891371BF3AFDF00BD4FAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD891361BF3AFDF00BD4FAC /* AppDelegate.swift */; };
 		EAD891391BF3AFDF00BD4FAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD891381BF3AFDF00BD4FAC /* Assets.xcassets */; };
 		EAD8913C1BF3AFDF00BD4FAC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD8913A1BF3AFDF00BD4FAC /* MainMenu.xib */; };
@@ -525,7 +523,7 @@
 			attributes = {
 				CLASSPREFIX = GF;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Tony Stone";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -566,12 +564,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAD8909E1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.release.xcconfig in Resources */,
 				EADCE0391BF39FBA00BA10DA /* Main_iPad.storyboard in Resources */,
 				EADCE0471BF3A02000BA10DA /* InfoPlist.strings in Resources */,
 				EADCE0401BF39FE300BA10DA /* new-mexico.json in Resources */,
 				EADCE03A1BF39FBA00BA10DA /* Main_iPhone.storyboard in Resources */,
-				EAD8909D1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.debug.xcconfig in Resources */,
 				EADCE0341BF39F8D00BA10DA /* Images.xcassets in Resources */,
 				366980C141A1F3E42C509EA0 /* LICENSE_BOOST_1_0 in Resources */,
 			);
@@ -963,6 +959,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1027,6 +1024,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "GeoFeatures-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1040,6 +1038,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "GeoFeatures-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1059,6 +1058,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "GeoFeatures-iOS-Tests/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoFeatures-iOS.app/GeoFeatures-iOS";
 				WRAPPER_EXTENSION = xctest;
@@ -1075,6 +1075,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				INFOPLIST_FILE = "GeoFeatures-iOS-Tests/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoFeatures-iOS.app/GeoFeatures-iOS";
 				WRAPPER_EXTENSION = xctest;

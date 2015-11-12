@@ -21,17 +21,25 @@
 #import <GeoFeatures/GFPolygonAbstract.h>
 #import <XCTest/XCTest.h>
 
-@interface GFPolygonAbstractTests : XCTestCase
-@end
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+@interface GFPolygonAbstractTestSubClass : GFPolygonAbstract
+@end
+@implementation GFPolygonAbstractTestSubClass
+@end
+
+@interface GFPolygonAbstractTests : XCTestCase
+@end
 
 @implementation GFPolygonAbstractTests
 
     - (void)testConstruction {
-
         XCTAssertThrows([[GFPolygonAbstract alloc] init]);
+    }
+
+    - (void)testConstruction_Subclass {
+        XCTAssertNotNil([[GFPolygonAbstractTestSubClass alloc] init]);
     }
 
 @end

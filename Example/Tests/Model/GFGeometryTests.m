@@ -40,7 +40,10 @@
 @interface GFGeometryTestSubClass : GFGeometry
 @end
 @implementation GFGeometryTestSubClass
-    - (instancetype) init {
+
+- (instancetype) init {
+        
+        self = [super init];
         return self;
     }
 @end

@@ -21,16 +21,25 @@
 #import <GeoFeatures/GFPointAbstract.h>
 #import <XCTest/XCTest.h>
 
-@interface GFPointAbstractTests : XCTestCase
-@end
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+@interface GFPointAbstractTestSubClass : GFPointAbstract
+@end
+@implementation GFPointAbstractTestSubClass
+@end
+
+@interface GFPointAbstractTests : XCTestCase
+@end
 
 @implementation GFPointAbstractTests
 
     - (void)testConstruction {
         XCTAssertThrows([[GFPointAbstract alloc] init]);
+    }
+
+    - (void)testConstruction_Subclass {
+        XCTAssertNotNil([[GFPointAbstractTestSubClass alloc] init]);
     }
 
 @end

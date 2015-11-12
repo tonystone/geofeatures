@@ -21,17 +21,25 @@
 #import <GeoFeatures/GFLineStringAbstract.h>
 #import <XCTest/XCTest.h>
 
-@interface GFLineStringAbstractTests : XCTestCase
-@end
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+@interface GFLineStringAbstractTestSubClass : GFLineStringAbstract
+@end
+@implementation GFLineStringAbstractTestSubClass
+@end
+
+@interface GFLineStringAbstractTests : XCTestCase
+@end
 
 @implementation GFLineStringAbstractTests
 
     - (void)testConstruction {
-
         XCTAssertThrows([[GFLineStringAbstract alloc] init]);
+    }
+
+    - (void)testConstruction_Subclass {
+        XCTAssertNotNil([[GFLineStringAbstractTestSubClass alloc] init]);
     }
 
 @end

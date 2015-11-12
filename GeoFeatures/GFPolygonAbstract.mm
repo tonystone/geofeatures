@@ -27,7 +27,9 @@
 
     - (instancetype) init {
         NSAssert(![self isMemberOfClass: [GFPolygonAbstract class]], @"Abstract class %@ can not be instantiated.  Please use one of the subclasses instead.", NSStringFromClass([self class]));
-        return nil;
+        
+        self = [super init];
+        return self;
     }
 
 @end
