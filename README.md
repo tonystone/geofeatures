@@ -15,19 +15,19 @@ GeoFeatures is a lightweight, high performance geometry library for Objective-C.
 
 ## Features
 
-- Easy to use.
-- Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, Box and GeometryCollection implementations.
-- Area, Length, BoundingBox, Centroid, Perimeter, Union, and Within (point in polygon) algorithms.  More coming soon.
-- Immutable and mutable versions of all classes (e.g. `GFPolygon` and `GFMutablePolygon`).
-- [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
-- [GeoJSON] (http://geojson.org/) input and output.
-- MapKit representations and drawing.
-- Indexed Subscripting support for all collection types (e.g. `GEPoint * point = multiPoint[0]`).
-- **Swift**: supports direct use in Swift applications.
-- CocoaPod framework support (compile as Objective-C framework or static lib).
-- Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
-- Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
-- Implemented based on the popular and fast open source C++ boost geometry library.
+- [x] Easy to use.
+- [x] Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, Box and GeometryCollection implementations.
+- [x] Area, Length, BoundingBox, Centroid, Perimeter, Union, and Within (point in polygon) algorithms.  More coming soon.
+- [x] Immutable and mutable versions of all classes (e.g. `GFPolygon` and `GFMutablePolygon`).
+- [x] [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
+- [x] [GeoJSON] (http://geojson.org/) input and output.
+- [x] MapKit representations and drawing.
+- [x] Indexed Subscripting support for all collection types (e.g. `GEPoint * point = multiPoint[0]`).
+- [x] **Swift**: supports direct use in Swift applications.
+- [x] CocoaPod framework support (compile as Objective-C framework or static lib).
+- [x] Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
+- [x] Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
+- [x] Implemented based on the popular and fast open source C++ boost geometry library.
  
 ## Documentation
 
