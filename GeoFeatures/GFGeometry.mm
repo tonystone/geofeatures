@@ -198,6 +198,8 @@ namespace gf = geofeatures;
             gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), variant, otherVariant));
 
             return boost::apply_visitor(gf::GFInstanceFromVariant(), result);
+        } catch (boost::geometry::overlay_invalid_input_exception & e) {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithUTF8String: e.what()]  userInfo: nil];
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
