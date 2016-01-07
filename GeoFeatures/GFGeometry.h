@@ -129,6 +129,8 @@
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
     *
     * @returns A new GFGeometry instance that represents the union of the self and other.
+    *
+    * @throws NSInvalidArgumentException if the one of the geometries is invalid.  You can test for an invalid geometry by calling isValid.
     */
     - (GFGeometry *) union_: (GFGeometry *)other;  // Note: called union_ because union is a reserved word
 
