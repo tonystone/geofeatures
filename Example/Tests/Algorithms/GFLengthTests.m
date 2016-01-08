@@ -53,6 +53,10 @@
         LengthTest(GFLineString, @"LINESTRING(0 0,1 1)", 1.4142135623730951);
     }
 
+    - (void) testLength_WithValidLineString2 {
+        LengthTest(GFLineString, @"LINESTRING(0 0,0 2)", 2.0);
+    }
+
     - (void) testLength_WithEmptyLineString {
         LengthTest(GFLineString, @"LINESTRING EMPTY", 0.0);
     }
@@ -91,6 +95,10 @@
 
     - (void) testLength_WithEmptyRing {
         LengthTest(GFRing, @"LINESTRING EMPTY", 0.0);
+    }
+
+    - (void) testLength_WithGoemetryCollection_LineString {
+        LengthTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(LINESTRING(0 0,0 2))", 2.0);
     }
 
 @end
