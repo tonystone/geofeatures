@@ -11,8 +11,7 @@ A container class containing an array of \hyperlink{interface_g_f_geometry}{G\+F
 
 
 
-Inheritance diagram for G\+F\+Geometry\+Collection\+:
-\nopagebreak
+Inheritance diagram for G\+F\+Geometry\+Collection\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for G\+F\+Geometry\+Collection\+:
 \end{figure}
 
 
-Collaboration diagram for G\+F\+Geometry\+Collection\+:
-\nopagebreak
+Collaboration diagram for G\+F\+Geometry\+Collection\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,6 +31,8 @@ Collaboration diagram for G\+F\+Geometry\+Collection\+:
 \begin{DoxyCompactItemize}
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a13156620e5298fe7d286bb800df4097b}{init\+With\+W\+K\+T\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}{init\+With\+Array\+:}
 \item 
@@ -86,6 +86,40 @@ Example\+:
 
 Reimplemented in \hyperlink{interface_g_f_multi_line_string_a23cca8dc30634c3ac23c8cfaca41c569}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a003eb1cee88057991c210dd0cd63ef7f}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a321e0b2c64e6dbe079205f1c58a17a2f}{G\+F\+Multi\+Polygon}.
 
+\hypertarget{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}
+Initialize this \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} with the given Geo\+J\+S\+O\+N dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"GeometryCollection"},
+   \textcolor{stringliteral}{"geometries"}: [
+        \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Point"},
+          \textcolor{stringliteral}{"coordinates"}: [100.0, 0.0]
+        \},
+        \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"LineString"},
+          \textcolor{stringliteral}{"coordinates"}: [ [101.0, 0.0], [102.0, 1.0] ]
+        \}
+    ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Reimplemented in \hyperlink{interface_g_f_multi_line_string_a35fba00c08f785e70b47dda5067f84f8}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a08bc62987b4e8c0435b00367dd617e00}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a2c8f29141e272aad174a9f65190d7cab}{G\+F\+Multi\+Polygon}.
+
 \hypertarget{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+Array\+:@{init\+With\+Array\+:}}
 \index{init\+With\+Array\+:@{init\+With\+Array\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
 \subsubsection[{init\+With\+Array\+:(\+N\+S\+Array $\ast$array)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Array\+: 
@@ -93,12 +127,7 @@ Reimplemented in \hyperlink{interface_g_f_multi_line_string_a23cca8dc30634c3ac23
 \item[{(N\+S\+Array $\ast$)}]{array}
 \end{DoxyParamCaption}
 }\label{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}
-Initialize this \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} with the N\+S\+Array of \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances.
-
-\begin{DoxyWarning}{Warning}
-The array must not contain another \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} instance. 
-\end{DoxyWarning}
-\hypertarget{interface_g_f_geometry_collection_a020dd5245b572a391ccbd1ea92699240}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!count@{count}}
+Initialize this \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} with the N\+S\+Array of \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances. \hypertarget{interface_g_f_geometry_collection_a020dd5245b572a391ccbd1ea92699240}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!count@{count}}
 \index{count@{count}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
 \subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+U\+Integer) count 
 \begin{DoxyParamCaption}

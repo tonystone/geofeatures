@@ -11,8 +11,7 @@ An abstract class that represents a geometric shape.
 
 
 
-Inheritance diagram for G\+F\+Geometry\+:
-\nopagebreak
+Inheritance diagram for G\+F\+Geometry\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for G\+F\+Geometry\+:
 \end{figure}
 
 
-Collaboration diagram for G\+F\+Geometry\+:
-\nopagebreak
+Collaboration diagram for G\+F\+Geometry\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -45,6 +43,10 @@ Collaboration diagram for G\+F\+Geometry\+:
 (\hyperlink{interface_g_f_box}{G\+F\+Box} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a808ba7daf6d4c3d742668ad3fe5d0f0e}{bounding\+Box}
 \item 
 (B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a832350c76f4a42a39889c9138108edd2}{within\+:}
+\item 
+(B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a3735ea20bc337cff79944bbe08f3bdf0}{intersects}
+\item 
+(B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a86d1a80435c6b838dfb8b1a22a17a0b8}{intersects\+:}
 \item 
 (\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a58c32fcf4a3932281498d1a1b25fb46b}{union\+\_\+\+:}
 \item 
@@ -185,6 +187,30 @@ Checks if the geometry is completely inside the other geometry.
 \begin{DoxyReturn}{Returns}
 True if self is within the other \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance. False otherwise. 
 \end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a3735ea20bc337cff79944bbe08f3bdf0}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!intersects@{intersects}}
+\index{intersects@{intersects}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{intersects()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\+O\+O\+L) intersects 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a3735ea20bc337cff79944bbe08f3bdf0}
+Checks if self has at least one intersection.
+
+\begin{DoxyReturn}{Returns}
+true if self has at least one intersection. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a86d1a80435c6b838dfb8b1a22a17a0b8}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!intersects\+:@{intersects\+:}}
+\index{intersects\+:@{intersects\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{intersects\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\+O\+O\+L) intersects\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a86d1a80435c6b838dfb8b1a22a17a0b8}
+Checks if self has at least one intersection with the other geometry.
+
+\begin{DoxyReturn}{Returns}
+true if self has at least one intersection with the other geometry. 
+\end{DoxyReturn}
 \hypertarget{interface_g_f_geometry_a58c32fcf4a3932281498d1a1b25fb46b}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!union\+\_\+\+:@{union\+\_\+\+:}}
 \index{union\+\_\+\+:@{union\+\_\+\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
 \subsubsection[{union\+\_\+\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) union\+\_\+\+: 
@@ -195,8 +221,13 @@ True if self is within the other \hyperlink{interface_g_f_geometry}{G\+F\+Geomet
 Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
 
 \begin{DoxyReturn}{Returns}
-A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the union of the self and other. 
+A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the union of the self and other.
 \end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Invalid\+Argument\+Exception} & if the one of the geometries is invalid. You can test for an invalid geometry by calling is\+Valid. \\
+\hline
+\end{DoxyExceptions}
 \hypertarget{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
 \subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 

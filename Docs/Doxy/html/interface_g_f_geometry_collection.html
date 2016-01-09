@@ -124,6 +124,8 @@ Collaboration diagram for GFGeometryCollection:</div>
 Instance Methods</h2></td></tr>
 <tr class="memitem:a13156620e5298fe7d286bb800df4097b"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry_collection.html#a13156620e5298fe7d286bb800df4097b">initWithWKT:</a></td></tr>
 <tr class="separator:a13156620e5298fe7d286bb800df4097b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8a317a694f82808d1e02e53e300f8f"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry_collection.html#adc8a317a694f82808d1e02e53e300f8f">initWithGeoJSONGeometry:</a></td></tr>
+<tr class="separator:adc8a317a694f82808d1e02e53e300f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a260bb3daa9d3324cb1cc2fa9ef3a61e9"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry_collection.html#a260bb3daa9d3324cb1cc2fa9ef3a61e9">initWithArray:</a></td></tr>
 <tr class="separator:a260bb3daa9d3324cb1cc2fa9ef3a61e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a020dd5245b572a391ccbd1ea92699240"><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry_collection.html#a020dd5245b572a391ccbd1ea92699240">count</a></td></tr>
@@ -151,6 +153,10 @@ Instance Methods</h2></td></tr>
 <tr class="separator:a808ba7daf6d4c3d742668ad3fe5d0f0e inherit pub_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a832350c76f4a42a39889c9138108edd2 inherit pub_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a832350c76f4a42a39889c9138108edd2">within:</a></td></tr>
 <tr class="separator:a832350c76f4a42a39889c9138108edd2 inherit pub_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3735ea20bc337cff79944bbe08f3bdf0 inherit pub_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a3735ea20bc337cff79944bbe08f3bdf0">intersects</a></td></tr>
+<tr class="separator:a3735ea20bc337cff79944bbe08f3bdf0 inherit pub_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86d1a80435c6b838dfb8b1a22a17a0b8 inherit pub_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a86d1a80435c6b838dfb8b1a22a17a0b8">intersects:</a></td></tr>
+<tr class="separator:a86d1a80435c6b838dfb8b1a22a17a0b8 inherit pub_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58c32fcf4a3932281498d1a1b25fb46b inherit pub_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_g_f_geometry.html">GFGeometry</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a58c32fcf4a3932281498d1a1b25fb46b">union_:</a></td></tr>
 <tr class="separator:a58c32fcf4a3932281498d1a1b25fb46b inherit pub_methods_interface_g_f_geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89a1dd53c1d9a51fd5b933fde28be5b7 inherit pub_methods_interface_g_f_geometry"><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a89a1dd53c1d9a51fd5b933fde28be5b7">toGeoJSONGeometry</a></td></tr>
@@ -199,6 +205,39 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="adc8a317a694f82808d1e02e53e300f8f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (instancetype) initWithGeoJSONGeometry: </td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&#160;</td>
+          <td class="paramname"><em>jsonDictionary</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialize this <a class="el" href="interface_g_f_geometry_collection.html" title="A container class containing an array of GFGeometry objects. ">GFGeometryCollection</a> with the given GeoJSON dictionary.</p>
+<dl class="section note"><dt>Note</dt><dd><p class="startdd"></p>
+<p>Example:</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">   <span class="stringliteral">&quot;type&quot;</span>: <span class="stringliteral">&quot;GeometryCollection&quot;</span>,</div>
+<div class="line">   <span class="stringliteral">&quot;geometries&quot;</span>: [</div>
+<div class="line">        { <span class="stringliteral">&quot;type&quot;</span>: <span class="stringliteral">&quot;Point&quot;</span>,</div>
+<div class="line">          <span class="stringliteral">&quot;coordinates&quot;</span>: [100.0, 0.0]</div>
+<div class="line">        },</div>
+<div class="line">        { <span class="stringliteral">&quot;type&quot;</span>: <span class="stringliteral">&quot;LineString&quot;</span>,</div>
+<div class="line">          <span class="stringliteral">&quot;coordinates&quot;</span>: [ [101.0, 0.0], [102.0, 1.0] ]</div>
+<div class="line">        }</div>
+<div class="line">    ]</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="interface_g_f_multi_line_string.html#a35fba00c08f785e70b47dda5067f84f8">GFMultiLineString</a>, <a class="el" href="interface_g_f_multi_point.html#a08bc62987b4e8c0435b00367dd617e00">GFMultiPoint</a>, and <a class="el" href="interface_g_f_multi_polygon.html#a2c8f29141e272aad174a9f65190d7cab">GFMultiPolygon</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a260bb3daa9d3324cb1cc2fa9ef3a61e9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -212,8 +251,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initialize this <a class="el" href="interface_g_f_geometry_collection.html" title="A container class containing an array of GFGeometry objects. ">GFGeometryCollection</a> with the NSArray of <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a> instances.</p>
-<dl class="section warning"><dt>Warning</dt><dd>The array must not contain another <a class="el" href="interface_g_f_geometry_collection.html" title="A container class containing an array of GFGeometry objects. ">GFGeometryCollection</a> instance. </dd></dl>
+<p>Initialize this <a class="el" href="interface_g_f_geometry_collection.html" title="A container class containing an array of GFGeometry objects. ">GFGeometryCollection</a> with the NSArray of <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a> instances. </p>
 
 </div>
 </div>
@@ -354,7 +392,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 29 2015 11:29:01 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 8 2016 15:17:08 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
