@@ -129,8 +129,6 @@ Inheritance diagram for GFGeometry:</div>
 Collaboration diagram for GFGeometry:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_g_f_geometry__coll__graph.png" border="0" usemap="#_g_f_geometry_coll__map" alt="Collaboration graph"/></div>
-<map name="_g_f_geometry_coll__map" id="_g_f_geometry_coll__map">
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -149,6 +147,10 @@ Instance Methods</h2></td></tr>
 <tr class="separator:a808ba7daf6d4c3d742668ad3fe5d0f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a832350c76f4a42a39889c9138108edd2"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a832350c76f4a42a39889c9138108edd2">within:</a></td></tr>
 <tr class="separator:a832350c76f4a42a39889c9138108edd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3735ea20bc337cff79944bbe08f3bdf0"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a3735ea20bc337cff79944bbe08f3bdf0">intersects</a></td></tr>
+<tr class="separator:a3735ea20bc337cff79944bbe08f3bdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86d1a80435c6b838dfb8b1a22a17a0b8"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a86d1a80435c6b838dfb8b1a22a17a0b8">intersects:</a></td></tr>
+<tr class="separator:a86d1a80435c6b838dfb8b1a22a17a0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58c32fcf4a3932281498d1a1b25fb46b"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_g_f_geometry.html">GFGeometry</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a58c32fcf4a3932281498d1a1b25fb46b">union_:</a></td></tr>
 <tr class="separator:a58c32fcf4a3932281498d1a1b25fb46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89a1dd53c1d9a51fd5b933fde28be5b7"><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_f_geometry.html#a89a1dd53c1d9a51fd5b933fde28be5b7">toGeoJSONGeometry</a></td></tr>
@@ -304,6 +306,41 @@ Class Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3735ea20bc337cff79944bbe08f3bdf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) intersects </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if self has at least one intersection.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if self has at least one intersection. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a86d1a80435c6b838dfb8b1a22a17a0b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) intersects: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_g_f_geometry.html">GFGeometry</a> *)&#160;</td>
+          <td class="paramname"><em>other</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if self has at least one intersection with the other geometry.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if self has at least one intersection with the other geometry. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a58c32fcf4a3932281498d1a1b25fb46b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -318,7 +355,13 @@ Class Methods</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.</p>
-<dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a> instance that represents the union of the self and other. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a> instance that represents the union of the self and other.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">NSInvalidArgumentException</td><td>if the one of the geometries is invalid. You can test for an invalid geometry by calling isValid. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -480,7 +523,7 @@ Class Methods</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 29 2015 11:29:01 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 8 2016 15:17:08 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

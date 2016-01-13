@@ -152,6 +152,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -302,6 +324,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -482,6 +526,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>initWithGeoJSONGeometry:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>adc8a317a694f82808d1e02e53e300f8f</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>initWithArray:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -621,6 +676,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -856,6 +933,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1006,6 +1105,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1252,6 +1373,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1490,6 +1633,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -1736,6 +1901,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1967,6 +2154,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -2110,6 +2319,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>initWithGeoJSONGeometry:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometryCollection</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry_collection.html</Path>
+    <Anchor>adc8a317a694f82808d1e02e53e300f8f</Anchor>
+    <DeclaredIn>GFGeometryCollection.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>initWithArray:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -2249,6 +2469,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -2535,6 +2777,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -2836,6 +3100,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -3129,6 +3415,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -3430,6 +3738,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -3661,6 +3991,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -3877,6 +4229,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -4167,6 +4541,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -4376,6 +4772,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -4526,6 +4944,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -4728,6 +5168,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>union_:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -4878,6 +5340,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>
@@ -5109,6 +5593,28 @@
     </TokenIdentifier>
     <Path>interface_g_f_geometry.html</Path>
     <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+    <DeclaredIn>GFGeometry.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>intersects:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>GFGeometry</Scope>
+    </TokenIdentifier>
+    <Path>interface_g_f_geometry.html</Path>
+    <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
     <DeclaredIn>GFGeometry.h</DeclaredIn>
   </Token>
   <Token>

@@ -88,6 +88,16 @@
               <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
              </Node>
              <Node>
+              <Name>intersects</Name>
+              <Path>interface_g_f_geometry.html</Path>
+              <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
+             </Node>
+             <Node>
+              <Name>intersects:</Name>
+              <Path>interface_g_f_geometry.html</Path>
+              <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
+             </Node>
+             <Node>
               <Name>union_:</Name>
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>a58c32fcf4a3932281498d1a1b25fb46b</Anchor>
@@ -150,6 +160,11 @@
               <Name>initWithWKT:</Name>
               <Path>interface_g_f_geometry_collection.html</Path>
               <Anchor>a13156620e5298fe7d286bb800df4097b</Anchor>
+             </Node>
+             <Node>
+              <Name>initWithGeoJSONGeometry:</Name>
+              <Path>interface_g_f_geometry_collection.html</Path>
+              <Anchor>adc8a317a694f82808d1e02e53e300f8f</Anchor>
              </Node>
              <Node>
               <Name>initWithArray:</Name>
