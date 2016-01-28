@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BA6D6D3D9DE620720BA08FE3'
+               BlueprintIdentifier = '49A69D21A7CB402D7F330828'
                BlueprintName = 'Pods-GeoFeatures-iOS-GeoFeatures'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'GeoFeatures.framework'>
