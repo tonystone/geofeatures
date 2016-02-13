@@ -2,7 +2,7 @@
   "name": "GeoFeatures2",
   "version": "0.1.0",
   "summary": "A lightweight, high performance geometry library for Swift",
-  "homepage": "https://github.com/tonystone/geofeatures2",
+  "homepage": "https://github.com/tonystone/geofeatures",
   "license": "Apache License, Version 2.0",
   "authors": {
     "Tony Stone": "https://github.com/tonystone"
