@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint GeoFeatures2.podspec' to ensure this is a
+# Be sure to run `pod lib lint GeoFeatures.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,34 +7,22 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "GeoFeatures2"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of GeoFeatures2."
+s.name             = "GeoFeatures2"
+s.version          = "0.1.0"
+s.summary          = "A lightweight, high performance geometry library for Swift"
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = <<-DESC
-                       DESC
+s.homepage         = "https://github.com/tonystone/geofeatures2"
+s.license          = 'Apache License, Version 2.0'
+s.author           = { "Tony Stone" => "https://github.com/tonystone" }
+s.source           = { :git => "https://github.com/tonystone/geofeatures2.git", :tag => s.version.to_s }
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/GeoFeatures2"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-  s.license          = 'MIT'
-  s.author           = "Tony Stone" 
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/GeoFeatures2.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+s.ios.deployment_target     = '5.0'
+s.osx.deployment_target     = '10.7'
+s.watchos.deployment_target = '2.0'
+s.tvos.deployment_target    = '9.0'
 
-  s.platform     = :ios, '8.0'
-  s.requires_arc = true
+s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'GeoFeatures2' => ['Pod/Assets/*.png']
-  }
+s.source_files = 'Pod/**/*'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
