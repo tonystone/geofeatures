@@ -1,25 +1,22 @@
 {
   "name": "GeoFeatures2",
   "version": "0.1.0",
-  "summary": "A short description of GeoFeatures2.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/GeoFeatures2",
-  "license": "MIT",
+  "summary": "A lightweight, high performance geometry library for Swift",
+  "homepage": "https://github.com/tonystone/geofeatures2",
+  "license": "Apache License, Version 2.0",
   "authors": {
-    "Tony Stone": "hatter24@gmail.com"
+    "Tony Stone": "https://github.com/tonystone"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/GeoFeatures2.git",
+    "git": "https://github.com/tonystone/geofeatures2.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "5.0",
+    "osx": "10.7",
+    "watchos": "2.0",
+    "tvos": "9.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "GeoFeatures2": [
-      "Pod/Assets/*.png"
-    ]
-  }
+  "source_files": "Pod/**/*"
 }

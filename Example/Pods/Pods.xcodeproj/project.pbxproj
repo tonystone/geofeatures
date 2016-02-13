@@ -7,128 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06B337F23B2507B513CDFCD6AF330C95 /* Pods-GeoFeatures2_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941BFDD3B54E76F804285CFFFB2AB71 /* Pods-GeoFeatures2_Tests-dummy.m */; };
-		0F2986B44811B207BA99A76B3AF0A964 /* GeoFeatures2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A707EB40857FF651FD47CBA13243438 /* GeoFeatures2-dummy.m */; };
-		1A816EAD5740E51C8A588568355013DA /* Pods-GeoFeatures2_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A1038FE54564471CC3D9FA9BA9E0A7F /* Pods-GeoFeatures2_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8538CB4903D76F1054C592341F25 /* Pods-GeoFeatures2_Example-dummy.m */; };
-		3B499F5E52EFF67F81A9DFAA40FAE075 /* Pods-GeoFeatures2_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E1E0F42E6562E32E2ABE79C0FC8A4D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		7A29A76573DBADA43139B58F1B203DE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		912287F8BC4731FA786A825227CAC267 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		A338960DE37F5838CCC1F98A31FF0775 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340308F070A54C5102BF66E7CC3CCD59 /* ReplaceMe.swift */; };
-		AB07044D972A9246CA198CCED3647020 /* GeoFeatures2.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9F7293B9F8EEE11A534DD2C92B6A39F7 /* GeoFeatures2.bundle */; };
-		E7CAB338FE666E87EE690E00FC59F961 /* GeoFeatures2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F8C457E2296FCF433B452FCFC50B05 /* GeoFeatures2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A78472C36CB4FE43DCDCA687B96FD5A /* Pods-GeoFeatures2_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CA3AA908C93FB343E33CA40CF9E9F82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		5A8695B089AD6AB98F840443410ECA10 /* Pods-GeoFeatures2_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B220BEF18312105563AF3D59D7E3924 /* Pods-GeoFeatures2_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941BFDD3B54E76F804285CFFFB2AB71 /* Pods-GeoFeatures2_Tests-dummy.m */; };
+		76E1F66D0DA3CC172D370AB89B57F928 /* Pods-GeoFeatures2_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8538CB4903D76F1054C592341F25 /* Pods-GeoFeatures2_Example-dummy.m */; };
+		F5E52E1A34ED0638D3A447891260C367 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0EBC826D34629CEC6D7DB0228C0C9AFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ACE0406A8D974F52EC0605341C6383C9;
-			remoteInfo = "GeoFeatures2-GeoFeatures2";
-		};
-		ACDDE935C21C3CAB87B6C50F2FC771C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AFC69AEE30F359F22AE1ABC0B062ED27;
-			remoteInfo = GeoFeatures2;
-		};
-		E968A1F6D61EDD723E81EE0CD3480033 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AFC69AEE30F359F22AE1ABC0B062ED27;
-			remoteInfo = GeoFeatures2;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Example-umbrella.h"; sourceTree = "<group>"; };
 		07547D2F13893830C1FCFD3BEA47F28E /* Pods-GeoFeatures2_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Example-frameworks.sh"; sourceTree = "<group>"; };
-		07F8C457E2296FCF433B452FCFC50B05 /* GeoFeatures2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GeoFeatures2-umbrella.h"; sourceTree = "<group>"; };
 		0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Tests-umbrella.h"; sourceTree = "<group>"; };
 		1941BFDD3B54E76F804285CFFFB2AB71 /* Pods-GeoFeatures2_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GeoFeatures2_Tests-dummy.m"; sourceTree = "<group>"; };
-		1EAB31B7A6509D509F0788E71FE88A16 /* GeoFeatures2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeoFeatures2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FDF15D5FB0F438B3C174E512E8F8449 /* Pods-GeoFeatures2_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		340308F070A54C5102BF66E7CC3CCD59 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		370E53CB906F1E6FE659B59E6AB874A4 /* Pods-GeoFeatures2_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GeoFeatures2_Tests.modulemap"; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		4580F9EA515A2DC54FDA21C0DF40C541 /* GeoFeatures2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GeoFeatures2-prefix.pch"; sourceTree = "<group>"; };
-		473C542A8518FC8D23047C5960046455 /* GeoFeatures2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GeoFeatures2.xcconfig; sourceTree = "<group>"; };
-		6A707EB40857FF651FD47CBA13243438 /* GeoFeatures2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GeoFeatures2-dummy.m"; sourceTree = "<group>"; };
-		76C4AC7A2434F0AB6A90832E5EEFD701 /* GeoFeatures2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GeoFeatures2.modulemap; sourceTree = "<group>"; };
+		417B8C416D4F51A531E7963C6BA7D9A5 /* Pods_GeoFeatures2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AE4673386EBA17588FDBF0C505D48D /* Pods-GeoFeatures2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		79B1B84D7679D48C0E05449A61C52E98 /* Pods-GeoFeatures2_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GeoFeatures2_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		826751624532276DE06416AAD4833C65 /* Pods-GeoFeatures2_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-resources.sh"; sourceTree = "<group>"; };
 		86B918EAAE5B4A36EC9931468FD3BCCA /* Pods-GeoFeatures2_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GeoFeatures2_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9A278F0E73A33E2C20658F4CBBB08F70 /* Pods-GeoFeatures2_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GeoFeatures2_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9F7293B9F8EEE11A534DD2C92B6A39F7 /* GeoFeatures2.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoFeatures2.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B07281D49FC010D594B3CBDC2A2DB00B /* Pods-GeoFeatures2_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Example-resources.sh"; sourceTree = "<group>"; };
-		B296A9E50C0D5097AAEB4189E2C84A11 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B52E8538CB4903D76F1054C592341F25 /* Pods-GeoFeatures2_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GeoFeatures2_Example-dummy.m"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C5E23C567B57D5B6584971515E0913AE /* Pods_GeoFeatures2_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C739B1A4D124E3A4152072EF97A59A19 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C80A78AD3A39859F0FB5F9D2D8E209B1 /* Pods-GeoFeatures2_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GeoFeatures2_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		C9902FA0BF81B03E8368DFBBF8537387 /* Pods_GeoFeatures2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D372DB76FBEC709A722F228480E3D100 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA37933ECF19B3510850786956868B3C /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
+		EEBD0DA670BAD320A53B8CCE71513482 /* Pods_GeoFeatures2_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12800ACBBA09FA0D85736915F680E46 /* Pods-GeoFeatures2_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		FFD35A803619C151D8C535A4853A6989 /* Pods-GeoFeatures2_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GeoFeatures2_Example.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		099432D3A14E8034FAE4DAEBC3F60DF6 /* Frameworks */ = {
+		1D161B1AB19C8989FDE78A106BFA8187 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				912287F8BC4731FA786A825227CAC267 /* Foundation.framework in Frameworks */,
+				F5E52E1A34ED0638D3A447891260C367 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1DEFB36FFFD93FBA3DD1CFD26125F3E9 /* Frameworks */ = {
+		FDD7979605051C6A6914F21A3608D17F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E1E0F42E6562E32E2ABE79C0FC8A4D1 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8F05EECA7AE87798FB86EB2A731CF208 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C74BBCA417B6D6F1E8F8A6CD73A53B16 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A29A76573DBADA43139B58F1B203DE8 /* Foundation.framework in Frameworks */,
+				4CA3AA908C93FB343E33CA40CF9E9F82 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		067A3B10294D535F0A84592C482499BF /* Development Pods */ = {
+		0FDF44635D6A1BAF4A1CD9ED36C08290 /* GeoFeatures2 */ = {
 			isa = PBXGroup;
 			children = (
-				2CDCE4C6630BAEAC55FAD542D085883F /* GeoFeatures2 */,
 			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		06FDE68373129BE971959D80F97D0211 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				340308F070A54C5102BF66E7CC3CCD59 /* ReplaceMe.swift */,
-			);
-			path = Classes;
+			name = GeoFeatures2;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		10FDC692168F6A8253FB27BE42AD389E /* Pods-GeoFeatures2_Tests */ = {
@@ -149,50 +88,24 @@
 			path = "Target Support Files/Pods-GeoFeatures2_Tests";
 			sourceTree = "<group>";
 		};
-		2CDCE4C6630BAEAC55FAD542D085883F /* GeoFeatures2 */ = {
-			isa = PBXGroup;
-			children = (
-				F721A60912B1FD0B216F7B92DD3F50A3 /* Pod */,
-				7A29D4ED5034EF2A85C8B92943F2F2DC /* Support Files */,
-			);
-			name = GeoFeatures2;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		74701AED49DFDCB3F1D7A278FE7A4168 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9F7293B9F8EEE11A534DD2C92B6A39F7 /* GeoFeatures2.bundle */,
-				1EAB31B7A6509D509F0788E71FE88A16 /* GeoFeatures2.framework */,
-				C5E23C567B57D5B6584971515E0913AE /* Pods_GeoFeatures2_Example.framework */,
-				C9902FA0BF81B03E8368DFBBF8537387 /* Pods_GeoFeatures2_Tests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7A29D4ED5034EF2A85C8B92943F2F2DC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				76C4AC7A2434F0AB6A90832E5EEFD701 /* GeoFeatures2.modulemap */,
-				473C542A8518FC8D23047C5960046455 /* GeoFeatures2.xcconfig */,
-				6A707EB40857FF651FD47CBA13243438 /* GeoFeatures2-dummy.m */,
-				4580F9EA515A2DC54FDA21C0DF40C541 /* GeoFeatures2-prefix.pch */,
-				07F8C457E2296FCF433B452FCFC50B05 /* GeoFeatures2-umbrella.h */,
-				B296A9E50C0D5097AAEB4189E2C84A11 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/GeoFeatures2";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				067A3B10294D535F0A84592C482499BF /* Development Pods */,
+				D69E4A760FBEC547428905012D9E8796 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				74701AED49DFDCB3F1D7A278FE7A4168 /* Products */,
+				8FBD81EA295C58073371CDE7151A5282 /* Products */,
 				BA2CF86948652C7EDB42513E34837F3D /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		8FBD81EA295C58073371CDE7151A5282 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEBD0DA670BAD320A53B8CCE71513482 /* Pods_GeoFeatures2_Example.framework */,
+				417B8C416D4F51A531E7963C6BA7D9A5 /* Pods_GeoFeatures2_Tests.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BA2CF86948652C7EDB42513E34837F3D /* Targets Support Files */ = {
@@ -220,6 +133,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		D69E4A760FBEC547428905012D9E8796 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0FDF44635D6A1BAF4A1CD9ED36C08290 /* GeoFeatures2 */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
 		E0B357837AE243C1DE01E0C44B294B20 /* Pods-GeoFeatures2_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,114 +159,60 @@
 			path = "Target Support Files/Pods-GeoFeatures2_Example";
 			sourceTree = "<group>";
 		};
-		F721A60912B1FD0B216F7B92DD3F50A3 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				06FDE68373129BE971959D80F97D0211 /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1D58F8B5943CB7449A75B7153A8A9D29 /* Headers */ = {
+		9C0911038F41B4C2B2973C38EBE20774 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B499F5E52EFF67F81A9DFAA40FAE075 /* Pods-GeoFeatures2_Tests-umbrella.h in Headers */,
+				5A8695B089AD6AB98F840443410ECA10 /* Pods-GeoFeatures2_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4AA8E939F0B499500E6D06CC54E02BF2 /* Headers */ = {
+		F226EFA6D0EEC3726354EB20376AAA09 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A816EAD5740E51C8A588568355013DA /* Pods-GeoFeatures2_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A4640BD09A6B8F33637C8E45B9DE84F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7CAB338FE666E87EE690E00FC59F961 /* GeoFeatures2-umbrella.h in Headers */,
+				2A78472C36CB4FE43DCDCA687B96FD5A /* Pods-GeoFeatures2_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6F42249F42322262C3BBDEA16622249A /* Pods-GeoFeatures2_Tests */ = {
+		8F54C9362B2ED975F23720E0537F2975 /* Pods-GeoFeatures2_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 841A3D72670F66352E8A9CA15DD27CAE /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Tests" */;
+			buildConfigurationList = A09DE00A70847F71F336993EBBD825CA /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Tests" */;
 			buildPhases = (
-				FFF97752C78BD5EE487FB44225B9A2D4 /* Sources */,
-				099432D3A14E8034FAE4DAEBC3F60DF6 /* Frameworks */,
-				1D58F8B5943CB7449A75B7153A8A9D29 /* Headers */,
+				F92EE9B9CCABFF7C9C49359186D9CF2D /* Sources */,
+				FDD7979605051C6A6914F21A3608D17F /* Frameworks */,
+				9C0911038F41B4C2B2973C38EBE20774 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				052307BC9CFBD63ADF2F65D55F942478 /* PBXTargetDependency */,
 			);
 			name = "Pods-GeoFeatures2_Tests";
 			productName = "Pods-GeoFeatures2_Tests";
-			productReference = C9902FA0BF81B03E8368DFBBF8537387 /* Pods_GeoFeatures2_Tests.framework */;
+			productReference = 417B8C416D4F51A531E7963C6BA7D9A5 /* Pods_GeoFeatures2_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8F1087B64099FA27905314F139630983 /* Pods-GeoFeatures2_Example */ = {
+		96A6E32CB69CA7105777D1EC0D91763D /* Pods-GeoFeatures2_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 331CE85B246FEC649E43DEB028E4AE6C /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Example" */;
+			buildConfigurationList = 54070C8C461C96D87282E61B05F78099 /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Example" */;
 			buildPhases = (
-				56105C4969B0CC95B56DBC4895140D2D /* Sources */,
-				C74BBCA417B6D6F1E8F8A6CD73A53B16 /* Frameworks */,
-				4AA8E939F0B499500E6D06CC54E02BF2 /* Headers */,
+				520974C7B1455B8CB411E87E3D560D0E /* Sources */,
+				1D161B1AB19C8989FDE78A106BFA8187 /* Frameworks */,
+				F226EFA6D0EEC3726354EB20376AAA09 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BBC7516C9AAE24DA94A5EEDC9C0E79B9 /* PBXTargetDependency */,
 			);
 			name = "Pods-GeoFeatures2_Example";
 			productName = "Pods-GeoFeatures2_Example";
-			productReference = C5E23C567B57D5B6584971515E0913AE /* Pods_GeoFeatures2_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		ACE0406A8D974F52EC0605341C6383C9 /* GeoFeatures2-GeoFeatures2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D5CA745699EF881F9732970627A6E932 /* Build configuration list for PBXNativeTarget "GeoFeatures2-GeoFeatures2" */;
-			buildPhases = (
-				174C5E1250315658F0D93F5479E7DBEB /* Sources */,
-				8F05EECA7AE87798FB86EB2A731CF208 /* Frameworks */,
-				67B3AD1560211776C6C15A7518EAE44E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "GeoFeatures2-GeoFeatures2";
-			productName = "GeoFeatures2-GeoFeatures2";
-			productReference = 9F7293B9F8EEE11A534DD2C92B6A39F7 /* GeoFeatures2.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
-		AFC69AEE30F359F22AE1ABC0B062ED27 /* GeoFeatures2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C195119C69463E95E2CE7E716F996856 /* Build configuration list for PBXNativeTarget "GeoFeatures2" */;
-			buildPhases = (
-				29A1E9935DDB272429DE26D4AB7AD481 /* Sources */,
-				1DEFB36FFFD93FBA3DD1CFD26125F3E9 /* Frameworks */,
-				E23E8B19306AB7EBDADDFA2F854933FA /* Resources */,
-				A4640BD09A6B8F33637C8E45B9DE84F4 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C5C31FF1AAEB68D513D8705D8C13C45A /* PBXTargetDependency */,
-			);
-			name = GeoFeatures2;
-			productName = GeoFeatures2;
-			productReference = 1EAB31B7A6509D509F0788E71FE88A16 /* GeoFeatures2.framework */;
+			productReference = EEBD0DA670BAD320A53B8CCE71513482 /* Pods_GeoFeatures2_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -365,93 +232,96 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 74701AED49DFDCB3F1D7A278FE7A4168 /* Products */;
+			productRefGroup = 8FBD81EA295C58073371CDE7151A5282 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AFC69AEE30F359F22AE1ABC0B062ED27 /* GeoFeatures2 */,
-				ACE0406A8D974F52EC0605341C6383C9 /* GeoFeatures2-GeoFeatures2 */,
-				8F1087B64099FA27905314F139630983 /* Pods-GeoFeatures2_Example */,
-				6F42249F42322262C3BBDEA16622249A /* Pods-GeoFeatures2_Tests */,
+				96A6E32CB69CA7105777D1EC0D91763D /* Pods-GeoFeatures2_Example */,
+				8F54C9362B2ED975F23720E0537F2975 /* Pods-GeoFeatures2_Tests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		67B3AD1560211776C6C15A7518EAE44E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E23E8B19306AB7EBDADDFA2F854933FA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AB07044D972A9246CA198CCED3647020 /* GeoFeatures2.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		174C5E1250315658F0D93F5479E7DBEB /* Sources */ = {
+		520974C7B1455B8CB411E87E3D560D0E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76E1F66D0DA3CC172D370AB89B57F928 /* Pods-GeoFeatures2_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29A1E9935DDB272429DE26D4AB7AD481 /* Sources */ = {
+		F92EE9B9CCABFF7C9C49359186D9CF2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F2986B44811B207BA99A76B3AF0A964 /* GeoFeatures2-dummy.m in Sources */,
-				A338960DE37F5838CCC1F98A31FF0775 /* ReplaceMe.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56105C4969B0CC95B56DBC4895140D2D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A1038FE54564471CC3D9FA9BA9E0A7F /* Pods-GeoFeatures2_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFF97752C78BD5EE487FB44225B9A2D4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				06B337F23B2507B513CDFCD6AF330C95 /* Pods-GeoFeatures2_Tests-dummy.m in Sources */,
+				6B220BEF18312105563AF3D59D7E3924 /* Pods-GeoFeatures2_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		052307BC9CFBD63ADF2F65D55F942478 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GeoFeatures2;
-			target = AFC69AEE30F359F22AE1ABC0B062ED27 /* GeoFeatures2 */;
-			targetProxy = ACDDE935C21C3CAB87B6C50F2FC771C1 /* PBXContainerItemProxy */;
-		};
-		BBC7516C9AAE24DA94A5EEDC9C0E79B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GeoFeatures2;
-			target = AFC69AEE30F359F22AE1ABC0B062ED27 /* GeoFeatures2 */;
-			targetProxy = E968A1F6D61EDD723E81EE0CD3480033 /* PBXContainerItemProxy */;
-		};
-		C5C31FF1AAEB68D513D8705D8C13C45A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "GeoFeatures2-GeoFeatures2";
-			target = ACE0406A8D974F52EC0605341C6383C9 /* GeoFeatures2-GeoFeatures2 */;
-			targetProxy = 0EBC826D34629CEC6D7DB0228C0C9AFA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
+		074D1472474A049212B21F3A5FBDC224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77AE4673386EBA17588FDBF0C505D48D /* Pods-GeoFeatures2_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_GeoFeatures2_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		077FC9D8AE91C3DBC7FF4C2CDBF4F243 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_GeoFeatures2_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		10DE1947DAC0ED28F6C0A9F9BD75D546 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -483,48 +353,6 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		24F597F6572F2847995CC7DF3F7006B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 473C542A8518FC8D23047C5960046455 /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		4BD69AB70131D04435EC51ACB479FFE6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_GeoFeatures2_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -567,35 +395,7 @@
 			};
 			name = Debug;
 		};
-		86E24F1E0C4FDF8871A00C1DFB1275C3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 473C542A8518FC8D23047C5960046455 /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GeoFeatures2/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GeoFeatures2/GeoFeatures2.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A5596D85E4BE8E84F965226BD26D15F2 /* Release */ = {
+		6F2F60D573EBC29746724ECEA0104521 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DA37933ECF19B3510850786956868B3C /* Pods-GeoFeatures2_Example.release.xcconfig */;
 			buildSettings = {
@@ -625,46 +425,7 @@
 			};
 			name = Release;
 		};
-		AC9ED67993F9A752B9627EE7EE2275C9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 473C542A8518FC8D23047C5960046455 /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GeoFeatures2/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GeoFeatures2/GeoFeatures2.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CFC8318D368F43D1DDB17294DE5511DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 473C542A8518FC8D23047C5960046455 /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		E62BF2E2BCC459F74DDFEFCFE02D0A22 /* Debug */ = {
+		74DAD0C274A56E632EC4ED63D1722F27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2FDF15D5FB0F438B3C174E512E8F8449 /* Pods-GeoFeatures2_Example.debug.xcconfig */;
 			buildSettings = {
@@ -688,38 +449,6 @@
 				PRODUCT_NAME = Pods_GeoFeatures2_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E675EB73F1CED9F1EF5AD6DD90BB6DC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77AE4673386EBA17588FDBF0C505D48D /* Pods-GeoFeatures2_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_GeoFeatures2_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -738,38 +467,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		331CE85B246FEC649E43DEB028E4AE6C /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Example" */ = {
+		54070C8C461C96D87282E61B05F78099 /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E62BF2E2BCC459F74DDFEFCFE02D0A22 /* Debug */,
-				A5596D85E4BE8E84F965226BD26D15F2 /* Release */,
+				74DAD0C274A56E632EC4ED63D1722F27 /* Debug */,
+				6F2F60D573EBC29746724ECEA0104521 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		841A3D72670F66352E8A9CA15DD27CAE /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Tests" */ = {
+		A09DE00A70847F71F336993EBBD825CA /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E675EB73F1CED9F1EF5AD6DD90BB6DC8 /* Debug */,
-				4BD69AB70131D04435EC51ACB479FFE6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C195119C69463E95E2CE7E716F996856 /* Build configuration list for PBXNativeTarget "GeoFeatures2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				86E24F1E0C4FDF8871A00C1DFB1275C3 /* Debug */,
-				AC9ED67993F9A752B9627EE7EE2275C9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D5CA745699EF881F9732970627A6E932 /* Build configuration list for PBXNativeTarget "GeoFeatures2-GeoFeatures2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				24F597F6572F2847995CC7DF3F7006B7 /* Debug */,
-				CFC8318D368F43D1DDB17294DE5511DA /* Release */,
+				074D1472474A049212B21F3A5FBDC224 /* Debug */,
+				077FC9D8AE91C3DBC7FF4C2CDBF4F243 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
