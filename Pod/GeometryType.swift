@@ -20,6 +20,16 @@
 import Swift
 
 /**
+Default Precision for all class
+*/
+let defaultPrecision = FloatingPrecision()
+
+/**
+Default CoordinateReferenceSystem
+*/
+let defaultCoordinateReferenceSystem = Cartisian()
+
+/**
 GeometryType
 
 A protocol that represents a geometric shape. GeometryType

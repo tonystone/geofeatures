@@ -19,7 +19,7 @@
  */
 import Swift
 
-public class WKBReader<RT: Geometry>  {
+public class WKBReader<RT: GeometryType>  {
     public typealias Byte = UInt8
 
     public func read(bytes: [Byte], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) -> RT? {

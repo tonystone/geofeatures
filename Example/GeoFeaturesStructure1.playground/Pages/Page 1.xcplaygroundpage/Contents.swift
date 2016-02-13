@@ -22,16 +22,13 @@ let polygon2 = Polygon(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[]))
 let polygon3 = Polygon(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[[(0.5,0.5), (0.5,6.5), (3.5,1.5), (1.5,0.5), (0.5,0.5)]]))
 
 // Geoemetry arrays can be constructed and used to create rthe collection types
-var geometryArray = [Point(coordinate: (1,1)), Polygon()]
-var pointArray: [Point]  = [Point(coordinate: (1,1)), Point(coordinate: (2,2))]
+var geometryArray: [GeometryType] = [Point(coordinate: (1,1)), Polygon()]
+var pointArray:    [GeometryType] = [Point(coordinate: (1,1)), Point(coordinate: (2,2))]
 
-var geometryCollection1 = GeometryCollection<Geometry>(elements: geometryArray)
-var geometryCollection2 = GeometryCollection<Geometry>(elements: pointArray as [Geometry])
+var geometryCollection1 = GeometryCollection(elements: geometryArray)
+var geometryCollection2 = GeometryCollection(elements: pointArray)
 
 //let multiPoint = MultiPoint(pointArray)
-
-// Comparison of Geometry type arrays
-let arraysMatch = [Point(coordinate: (1,1)), Polygon()] == [Point(coordinate: (1,1)), Polygon()]
 
 //  Iterate over a collection type
 for geometry in geometryCollection1 {
@@ -44,8 +41,8 @@ let polygon2IsEmpty            = Polygon(rings: ([(0,0), (0,7), (4,2), (2,0), (0
 let lineString1IsEmpty         = LineString().isEmpty()
 let lineString2IsEmpty         = LineString(coordinates:[(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)]).isEmpty()
 
-let geometryCollection1IsEmpty = GeometryCollection<Geometry>().isEmpty()
-let geometryCollection2IsEmpty = GeometryCollection<Geometry>(elements: [Point(coordinate: (1,1))]).isEmpty()
+let geometryCollection1IsEmpty = GeometryCollection().isEmpty()
+let geometryCollection2IsEmpty = GeometryCollection(elements: [Point(coordinate: (1,1))] as [GeometryType]).isEmpty()
 
 // Comparison of points
 let pointsMatch1 = Point(coordinate: (1.4, 2.3)) == Point(coordinate: (1.4, 2.3))
@@ -67,6 +64,6 @@ if let polygonFromWkt = WKTReader<Polygon>.read("POLYGON((0 0,0 90,90 90,90 0,0 
     }
 }
 
-if let geometryFromWkt = WKTReader<Geometry>.read("POLYGON((0 0,0 90,90 90,90 0,0 0))")  {
+if let geometryFromWkt = WKTReader<GeometryCollection>.read("POLYGON((0 0,0 90,90 90,90 0,0 0))")  {
     print(geometryFromWkt)
 }

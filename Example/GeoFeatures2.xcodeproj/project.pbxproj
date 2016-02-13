@@ -138,10 +138,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
-				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
 				EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */,
 				EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */,
+				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
+				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
 				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
 				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
 				EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */,
@@ -549,10 +549,7 @@
 			baseConfigurationReference = ECD05668FB877775EDD2C65A /* Pods-GeoFeatures2_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -570,10 +567,7 @@
 			baseConfigurationReference = A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";

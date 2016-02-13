@@ -29,17 +29,21 @@ import Swift
  
  This is also the Generic Base Collection type that stores a collection of GeometryTypes. It will be specialized for each type that implements it.
  */
-public class GeometryCollection<Element where Element : Geometry>: Geometry {
-
-    public convenience init() {
-        self.init()
+public struct GeometryCollection : GeometryCollectionType {
+    
+    public typealias Element = GeometryType
+    private var elements = ContiguousArray<Element>()
+    
+    public let dimension: Int
+    public let precision: Precision
+    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    
+    public init () {
+        self.dimension = 0
+        self.precision = defaultPrecision
     }
     
-    internal init(dimension: Int) {
-        super.init(dimension: dimension, precision: defaultPrecision)
-    }
-    
-    public convenience init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C) {
         var elements = ContiguousArray<Element>()
         
         elements.reserveCapacity(elements.count)
@@ -52,28 +56,36 @@ public class GeometryCollection<Element where Element : Geometry>: Geometry {
             
             elements.append(element)
         }
-        self.init(dimension: minDimension)
+        
+        self.dimension = minDimension
+        self.precision = defaultPrecision
         
         self.elements = elements
     }
+}
+
+extension GeometryCollection : GeometryType {
     
-    public override func isEmpty() -> Bool {
+    public func isEmpty() -> Bool {
         return self.elements.count == 0
     }
     
-    public override func equals(other: GeometryType) -> Bool {
+    public func equals(other: GeometryType) -> Bool {
         if let other = other as? GeometryCollection {
-            return self.elements.elementsEqual(other, isEquivalent: { (lhs: Geometry, rhs: Geometry) -> Bool in
+            return self.elements.elementsEqual(other, isEquivalent: { (lhs: GeometryType, rhs: GeometryType) -> Bool in
                 return lhs.equals(rhs)
             })
         }
         return false
     }
     
-    private var elements = ContiguousArray<Element>()
+    // TODO: Must be implenented.  Here just to test protocol
+    public func union(other: GeometryType) -> GeometryType {
+        return GeometryCollection()
+    }
 }
 
-// MARK:  Primary accessor methods
+// MARK:  GeometryCollectionType conformance
 
 extension GeometryCollection {
     
@@ -85,42 +97,42 @@ extension GeometryCollection {
         get { return self.elements.capacity }
     }
     
-    public func reserveCapacity(minimumCapacity: Int) {
+    public mutating func reserveCapacity(minimumCapacity: Int) {
         self.elements.reserveCapacity(minimumCapacity)
     }
     
-    public func append(newElement: Element) {
+    public mutating func append(newElement: Element) {
         self.elements.append(newElement)
     }
     
-    public  func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
+    mutating  public  func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
     
-    public func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
     
-    public func removeLast() -> Element {
+    public mutating func removeLast() -> Element {
         return self.elements.removeLast()
     }
     
-    public func insert(newElement: Element, atIndex i: Int) {
+    mutating   public func insert(newElement: Element, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
     
-    public func removeAtIndex(index: Int) -> Element {
+    mutating   public func removeAtIndex(index: Int) -> Element {
         return self.elements.removeAtIndex(index)
     }
     
-    public func removeAll(keepCapacity keepCapacity: Bool = true) {
+    mutating   public func removeAll(keepCapacity keepCapacity: Bool = true) {
         self.elements.removeAll(keepCapacity: keepCapacity)
     }
 }
 
 // MARK: CollectionType conformance
 
-extension GeometryCollection : CollectionType, MutableCollectionType,  _DestructorSafeContainer {
+extension GeometryCollection {
     
     public var startIndex : Int { return self.elements.startIndex }
     public var endIndex   : Int { return self.elements.endIndex }
@@ -156,16 +168,16 @@ extension GeometryCollection : CustomStringConvertible, CustomDebugStringConvert
 // MARK: Operators
 
 @warn_unused_result
-public func !=<T : CollectionType where T.Generator.Element : Geometry>(lhs: T, rhs: T) -> Bool { return false }
+public func !=<T : CollectionType where T.Generator.Element : GeometryType>(lhs: T, rhs: T) -> Bool { return false }
 
 @warn_unused_result
-public func +=<T : SequenceType where T.Generator.Element : Geometry>(lhs: T, rhs: T)  { }
+public func +=<T : SequenceType where T.Generator.Element : GeometryType>(lhs: T, rhs: T)  { }
 
 @warn_unused_result
-public func +=<T : CollectionType where T.Generator.Element : Geometry>(lhs: T, rhs: T)  { }
+public func +=<T : CollectionType where T.Generator.Element : GeometryType>(lhs: T, rhs: T)  { }
 
 @warn_unused_result
-public func -=<T : CollectionType where T.Generator.Element : Geometry>(lhs: T, rhs: T)  { }
+public func -=<T : CollectionType where T.Generator.Element : GeometryType>(lhs: T, rhs: T)  { }
 
 @warn_unused_result
-public func -=<T : SequenceType where T.Generator.Element : Geometry>(lhs: T, rhs: T)  { }
+public func -=<T : SequenceType where T.Generator.Element : GeometryType>(lhs: T, rhs: T)  { }

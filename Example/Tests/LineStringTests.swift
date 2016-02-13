@@ -99,7 +99,7 @@ class LineStringTests: XCTestCase {
     }
     
     func testSubscript_Set () {
-        let lineString = LineString(coordinates: [(10,10,10),(20,20,20)])
+        var lineString = LineString(coordinates: [(10,10,10),(20,20,20)])
         
         lineString[1] = (10,10,10)
         
@@ -109,7 +109,7 @@ class LineStringTests: XCTestCase {
     func testAppendContentsOf_LineString () {
         
         let lineString1 = LineString(coordinates: [(10,10,10),(20,20,20)])
-        let lineString2 = LineString()
+        var lineString2 = LineString()
         
         lineString2.appendContentsOf(lineString1)
         
@@ -119,7 +119,7 @@ class LineStringTests: XCTestCase {
     func testAppendContentsOf_Array () {
         
         let array      = [(10.0,10.0,10.0),(20.0,20.0,20.0)]
-        let lineString2 = LineString()
+        var lineString2 = LineString()
         
         lineString2.appendContentsOf(array)
         
@@ -153,7 +153,7 @@ class LineStringTests: XCTestCase {
     }
     
     func testAppend () {
-        let lineString = LineString()
+        var lineString = LineString()
         
         lineString.append((10,10,10))
         

@@ -26,21 +26,22 @@ import Swift
  segment.
  A Line is a LineString with exactly 2 Points.
  */
-public class LineString: Geometry {
+public struct LineString: LinearType {
     public typealias Element = Coordinate3D
     
-    internal init(dimension: Int, precision: Precision) {
-        assert(dimension <= 3)
+    public let dimension: Int
+    public let precision: Precision
+    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    
+    public init () {
+        self.dimension = 0
+        self.precision = defaultPrecision
+    }
+    
+    public init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(coordinates: C, precision: Precision = defaultPrecision) {
         
-        super.init(dimension: dimension, precision: precision)
-    }
-    
-    public convenience init () {
-        self.init(dimension: 0, precision: defaultPrecision)
-    }
-    
-    public convenience init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(coordinates: C, precision: Precision = defaultPrecision) {
-        self.init(dimension: 2, precision: precision)
+        self.dimension = 2
+        self.precision = precision
         
         self.coordinates.reserveCapacity(coordinates.count)
         
@@ -49,8 +50,10 @@ public class LineString: Geometry {
         while let (x, y) = generator.next() { self.coordinates.append(precision.convert((x,y, Double.NaN))) }
     }
     
-    public convenience init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(coordinates: C, precision: Precision = defaultPrecision) {
-        self.init(dimension: 2, precision: defaultPrecision)
+    public init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(coordinates: C, precision: Precision = defaultPrecision) {
+        
+        self.dimension = 3
+        self.precision = precision
         
         self.coordinates.reserveCapacity(coordinates.count)
         
@@ -58,12 +61,17 @@ public class LineString: Geometry {
         
         while let coordinate = generator.next() { self.coordinates.append(precision.convert(coordinate)) }
     }
+    
+    private var coordinates = ContiguousArray<Element>()
+}
 
-    public override func isEmpty() -> Bool {
+extension LineString : GeometryType {
+    
+    public func isEmpty() -> Bool {
         return self.coordinates.count == 0
     }
     
-    public override func equals(other: GeometryType) -> Bool {
+    public func equals(other: GeometryType) -> Bool {
         if let other = other as? LineString {
             return self.coordinates.elementsEqual(other, isEquivalent: { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
@@ -72,7 +80,10 @@ public class LineString: Geometry {
         return false
     }
     
-    private var coordinates = ContiguousArray<Element>()
+    // TODO: Must be implenented.  Here just to test protocol
+    public func union(other: GeometryType) -> GeometryType {
+        return LineString()
+    }
 }
 
 // MARK: Array conformance
@@ -87,15 +98,15 @@ extension LineString {
         get { return self.coordinates.capacity }
     }
     
-    public func reserveCapacity(minimumCapacity: Int) {
+    public mutating func reserveCapacity(minimumCapacity: Int) {
         self.coordinates.reserveCapacity(minimumCapacity)
     }
     
-    public func append(newElement: Element) {
+    public mutating func append(newElement: Element) {
         self.coordinates.append(self.precision.convert(newElement))
     }
     
-    public func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         
         var generator = newElements.generate()
         
@@ -104,19 +115,19 @@ extension LineString {
         }
     }
     
-    public func removeLast() -> Element {
+    public mutating func removeLast() -> Element {
         return self.coordinates.removeLast()
     }
     
-    public func insert(newElement: Element, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex i: Int) {
         self.coordinates.insert(self.precision.convert(newElement), atIndex: i)
     }
     
-    public func removeAtIndex(index: Int) -> Element {
+    public mutating func removeAtIndex(index: Int) -> Element {
         return self.coordinates.removeAtIndex(index)
     }
     
-    public func removeAll(keepCapacity keepCapacity: Bool = true) {
+    public mutating func removeAll(keepCapacity keepCapacity: Bool = true) {
         self.coordinates.removeAll(keepCapacity: keepCapacity)
     }
 }
