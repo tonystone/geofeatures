@@ -1,0 +1,25 @@
+{
+  "name": "GeoFeatures2",
+  "version": "0.1.0",
+  "summary": "A short description of GeoFeatures2.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/GeoFeatures2",
+  "license": "MIT",
+  "authors": {
+    "Tony Stone": "hatter24@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/GeoFeatures2.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "GeoFeatures2": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

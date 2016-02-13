@@ -1,0 +1,14 @@
+PODS:
+  - GeoFeatures2 (0.1.0)
+
+DEPENDENCIES:
+  - GeoFeatures2 (from `../`)
+
+EXTERNAL SOURCES:
+  GeoFeatures2:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GeoFeatures2: b65124925d545d0f2d84739d7f574e9bab2e64be
+
+COCOAPODS: 0.39.0
