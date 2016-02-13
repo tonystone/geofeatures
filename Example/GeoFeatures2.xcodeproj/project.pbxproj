@@ -12,9 +12,15 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		BF5C19E555F0BB8ED799E286 /* Pods_GeoFeatures2_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B88AC2CCDA7AA09BD031B8E /* Pods_GeoFeatures2_Example.framework */; };
 		DABEEBC540582F4C4AB425AA /* Pods_GeoFeatures2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E76E80829A6C416EFFD976 /* Pods_GeoFeatures2_Tests.framework */; };
+		EAB4C1C41C6F7CB600F288D1 /* Coordinate2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */; };
+		EAB4C1C51C6F7CBA00F288D1 /* Coordinate3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */; };
+		EAB4C1C61C6F7CBD00F288D1 /* FixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */; };
+		EAB4C1C71C6F7CC100F288D1 /* FloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */; };
+		EAB4C1C81C6F7CC500F288D1 /* LineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */; };
+		EAB4C1C91C6F7CC900F288D1 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */; };
+		EAB4C1CA1C6F7CCE00F288D1 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +48,16 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* GeoFeatures2_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoFeatures2_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD829F37916D32011B39AD57 /* GeoFeatures2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures2.podspec; path = ../GeoFeatures2.podspec; sourceTree = "<group>"; };
+		EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DTests.swift; sourceTree = "<group>"; };
+		EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DTests.swift; sourceTree = "<group>"; };
+		EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringTests.swift; sourceTree = "<group>"; };
+		EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTReaderTests.swift; sourceTree = "<group>"; };
+		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeaturesStructure1.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeaturesStructure1.playground; sourceTree = "<group>"; };
 		ECD05668FB877775EDD2C65A /* Pods-GeoFeatures2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6B35E10B1FEDBFEEA17571 /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +94,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for GeoFeatures2 */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -124,7 +138,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
+				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
+				EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */,
+				EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */,
+				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
+				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
+				EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -157,6 +177,14 @@
 				A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				EAB4C1CC1C6F7D7D00F288D1 /* GeoFeaturesStructure1.playground */,
+			);
+			name = Playgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,7 +396,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				EAB4C1C91C6F7CC900F288D1 /* PointTests.swift in Sources */,
+				EAB4C1C61C6F7CBD00F288D1 /* FixedPrecisionTests.swift in Sources */,
+				EAB4C1C51C6F7CBA00F288D1 /* Coordinate3DTests.swift in Sources */,
+				EAB4C1C81C6F7CC500F288D1 /* LineStringTests.swift in Sources */,
+				EAB4C1C71C6F7CC100F288D1 /* FloatingPrecisionTests.swift in Sources */,
+				EAB4C1C41C6F7CB600F288D1 /* Coordinate2DTests.swift in Sources */,
+				EAB4C1CA1C6F7CCE00F288D1 /* WKTReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
