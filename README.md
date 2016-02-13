@@ -20,10 +20,6 @@ it, simply add the following line to your Podfile:
 pod "GeoFeatures2"
 ```
 
-## Author
-
-Tony Stone, hatter24@gmail.com
-
 ## License
 
 GeoFeatures2 is available under the MIT license. See the LICENSE file for more info.
