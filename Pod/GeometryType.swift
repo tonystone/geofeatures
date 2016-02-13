@@ -30,19 +30,36 @@ Default CoordinateReferenceSystem
 let defaultCoordinateReferenceSystem = Cartisian()
 
 /**
-GeometryType
+ GeometryType
 
-A protocol that represents a geometric shape. GeometryType
-is the abstract type that is implenented by all geometry classes.
+ A protocol that represents a geometric shape. GeometryType
+ is the abstract type that is implenented by all geometry classes.
 */
 public protocol GeometryType {
 
+    /**
+        The dimension of this GeometryType which must be equal to or less than the coordinate dimension.
+    */
     var dimension: Int { get }
+    
+    /**
+        The Precision used to store the coordinates for this GeometryType
+    */
     var precision: Precision { get }
+    
+    /**
+        The Coordinate Reference System used in algorithms applied to this GeoemetryType
+    */
     var coordinateReferenceSystem: CoordinateReferenceSystem { get }
     
+    /**
+     - Returns true if this GeometryType is an empty Geometry.
+    */
     func isEmpty() -> Bool
 
+    /**
+     - Returns: true if this GeoemetryType instance is equal the other GeometryType instance.
+    */
     func equals(other: GeometryType) -> Bool
     
 //    func isSimple() -> Bool
