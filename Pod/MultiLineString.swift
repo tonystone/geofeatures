@@ -57,6 +57,8 @@ public struct MultiLineString: GeometryCollectionType  {
     }
 }
 
+// MARK: CollectionType & MutableCollectionType conformance
+
 extension MultiLineString {
     
     public var startIndex : Int { return self.elements.startIndex }
