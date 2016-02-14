@@ -22,78 +22,84 @@ import Swift
 public protocol GeometryCollectionType : CollectionType, MutableCollectionType, _DestructorSafeContainer {
     
     /**
-     GeoemetryCollectionType must define its Element
+        GeometryCollectionType must define its Element
      */
     typealias Element
     
     /**
-     GeoemetryCollectionType must be empty constructable
+        GeometryCollectionType must be empty constructable
      */
     init ()
     
     /**
-     GeoemetryCollectionType can be constructed from any CollectionType including Array as
-     long as it has an Element type equal the GeometryCollectionType Element and the Distance
-     is an Int type.
+        GeometryCollectionType can be constructed from any SequenceType as long as it has an
+        Element type equal the  Element.
+     */
+    init<C : SequenceType where C.Generator.Element == Element>(elements: C)
+    
+    /**
+        GeometryCollectionType can be constructed from any CollectionType including Array as
+        long as it has an Element type equal the GeometryCollectionType Element and the Distance
+        is an Int type.
      */
     init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C)
     
     /**
-     - Returns: The number of Geometry objects.
+        - Returns: The number of Geometry objects.
      */
     var count: Int { get }
     
     /**
-     - Returns: The current minimum capacity.
+        - Returns: The current minimum capacity.
      */
     var capacity: Int { get }
     
     /**
-     Reserve enough space to store `minimumCapacity` elements.
+        Reserve enough space to store `minimumCapacity` elements.
      
-     - Postcondition: `capacity >= minimumCapacity` and the array has
-     mutable contiguous storage.
+        - Postcondition: `capacity >= minimumCapacity` and the array has
+          mutable contiguous storage.
      */
     mutating func reserveCapacity(minimumCapacity: Int)
     
     /**
-     Append `newElement`.
+        Append `newElement`.
      */
     mutating func append(newElement: Element)
     
     /**
-     Append the elements of `newElements`.
+        Append the elements of `newElements`.
      */
     mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S)
     
     /**
-     Append the elements of `newElements`.
+        Append the elements of `newElements`.
      */
     mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C)
     
     /**
-     Remove an element from the end of the GeometryCollectionType.
+        Remove an element from the end of the GeometryCollectionType.
      
-     - Requires: `count > 0`.
+        - Requires: `count > 0`.
      */
     mutating func removeLast() -> Element
     
     /**
-     Insert `newElement` at index `i`.
+        Insert `newElement` at index `i`.
      
-     - Requires: `i <= count`.
+        - Requires: `i <= count`.
      */
     mutating func insert(newElement: Element, atIndex i: Int)
     
     /**
-     Remove and return the element at index `i`.
+        Remove and return the element at index `i`.
      */
     mutating func removeAtIndex(index: Int) -> Element
     
     /**
-     Remove all elements.
+        Remove all elements.
      
-     - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
+        - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
     mutating func removeAll(keepCapacity keepCapacity: Bool)
 }
