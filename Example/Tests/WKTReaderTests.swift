@@ -13,6 +13,13 @@ class WKTReaderTests: XCTestCase {
 
 
     func testRead_Point() {
-        XCTAssert(WKTReader<Point>.read("POINT(1,1,0)") != nil)
+        
+        do {
+            let point = try WKTReader.read("POINT(1,1,0)")
+            
+            XCTAssertEqual(point == Point(coordinate: (1.0, 1.0,0.0)), true)
+        } catch {
+            XCTFail("Parsing failed.")
+        }
     }
 }

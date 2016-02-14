@@ -19,9 +19,9 @@
  */
 import Swift
 
-public class GeoJSONReader<RT: GeometryType>  {
+public class GeoJSONReader  {
 
-    public func read(string: String, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) -> RT? {
-        return nil
+    public func read(string: String, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) throws -> GeometryType {
+        return GeometryCollection()
     }
 }

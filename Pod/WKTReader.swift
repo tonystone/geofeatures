@@ -19,9 +19,9 @@
  */
 import Swift
 
-public class WKTReader<RT: GeometryType> {
+public class WKTReader {
 
-    public class func read(string: String, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) -> RT? {
-        return nil
+    public class func read(string: String, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) throws -> GeometryType {
+        return GeometryCollection()
     }
 }
