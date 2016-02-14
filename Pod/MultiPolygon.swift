@@ -57,6 +57,8 @@ public struct MultiPolygon : GeometryCollectionType {
     }
 }
 
+// MARK: CollectionType & MutableCollectionType conformance
+
 extension MultiPolygon {
     
     public var startIndex : Int { return self.elements.startIndex }
