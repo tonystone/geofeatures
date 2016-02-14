@@ -6,7 +6,7 @@
 //
 
 /*
- *   MultiPoint.swift
+ *   ${Self}.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -27,22 +27,22 @@
 import Swift
 
 /**
-    MultiPoint
+    ${Self}
  
-    A MultiPoint is a collection of some number of Point objects.
+    A ${Self} is a collection of some number of ${Element} objects.
  
-    All the elements in a MultiPoint shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPoint.
+    All the elements in a ${Self} shall be in the same Spatial Reference System. This is also the Spatial Reference System for the ${Self}.
  */
-public struct MultiPoint : GeometryCollectionType {
+public struct ${Self} : GeometryCollectionType {
     
-    private var elements = ContiguousArray<Point>()
+    private var elements = ContiguousArray<${Element}>()
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
     
     /**
-        MultiPoint is empty constructable
+        ${Self} is empty constructable
      */
     public init () {
         self.dimension = 0
@@ -50,11 +50,11 @@ public struct MultiPoint : GeometryCollectionType {
     }
 
     /**
-        MultiPoint can be constructed from any SequenceType as long as it has an
-        Element type equal the Point Element.
+        ${Self} can be constructed from any SequenceType as long as it has an
+        Element type equal the ${Element} Element.
      */
-    public init<C : SequenceType where C.Generator.Element == Point>(elements: C) {
-        var elements = ContiguousArray<Point>()
+    public init<C : SequenceType where C.Generator.Element == ${Element}>(elements: C) {
+        var elements = ContiguousArray<${Element}>()
         
         elements.reserveCapacity(elements.count)
         
@@ -74,12 +74,12 @@ public struct MultiPoint : GeometryCollectionType {
     }
 
     /**
-        MultiPoint can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the Point Element and the Distance
+        ${Self} can be constructed from any CollectionType including Array as
+        long as it has an Element type equal the ${Element} Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Point, C.Index.Distance == Int>(elements: C) {
-        var elements = ContiguousArray<Point>()
+    public init<C : CollectionType where C.Generator.Element == ${Element}, C.Index.Distance == Int>(elements: C) {
+        var elements = ContiguousArray<${Element}>()
         
         elements.reserveCapacity(elements.count)
         
@@ -101,10 +101,10 @@ public struct MultiPoint : GeometryCollectionType {
 
 // MARK:  GeometryCollectionType conformance
 
-extension MultiPoint {
+extension ${Self} {
     
     /**
-        - Returns: The number of Point objects.
+        - Returns: The number of ${Element} objects.
      */
     public var count: Int {
         get { return self.elements.count }
@@ -127,53 +127,53 @@ extension MultiPoint {
     }
 
     /**
-        Append `newElement` to this MultiPoint.
+        Append `newElement` to this ${Self}.
      */
-    public mutating func append(newElement: Point) {
+    public mutating func append(newElement: ${Element}) {
         self.elements.append(newElement)
     }
 
     /**
-        Append the elements of `newElements` to this MultiPoint.
+        Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Point>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == ${Element}>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
-        Append the elements of `newElements` to this MultiPoint.
+        Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Point>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == ${Element}>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
-        Remove an element from the end of this MultiPoint.
+        Remove an element from the end of this ${Self}.
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> Point {
+    public mutating func removeLast() -> ${Element} {
         return self.elements.removeLast()
     }
 
     /**
-        Insert `newElement` at index `i` of this MultiPoint.
+        Insert `newElement` at index `i` of this ${Self}.
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Point, atIndex i: Int) {
+    public mutating func insert(newElement: ${Element}, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
-        Remove and return the element at index `i` of this MultiPoint.
+        Remove and return the element at index `i` of this ${Self}.
      */
-    public mutating func removeAtIndex(index: Int) -> Point {
+    public mutating func removeAtIndex(index: Int) -> ${Element} {
         return self.elements.removeAtIndex(index)
     }
 
     /**
-        Remove all elements of this MultiPoint.
+        Remove all elements of this ${Self}.
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
@@ -184,7 +184,7 @@ extension MultiPoint {
 
 // MARK: CollectionType conformance
 
-extension MultiPoint {
+extension ${Self} {
     
     /**
         Always zero, which is the index of the first element when non-empty.
@@ -196,24 +196,24 @@ extension MultiPoint {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> Point {
+    public subscript(position : Int) -> ${Element} {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<Point> {
+    public subscript(range: Range<Int>) -> ArraySlice<${Element}> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<Point>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<${Element}>> {
         return self.elements.generate()
     }
 }
 
 // MARK: CustomStringConvertible & CustomDebugStringConvertible protocol conformance
 
-extension MultiPoint : CustomStringConvertible, CustomDebugStringConvertible {
+extension ${Self} : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
         return "\(self.dynamicType)(\(self.elements.description))"
@@ -226,15 +226,15 @@ extension MultiPoint : CustomStringConvertible, CustomDebugStringConvertible {
 
 // MARK:  GeometryType conformance
 
-extension MultiPoint : GeometryType {
+extension ${Self} : GeometryType {
     
     public func isEmpty() -> Bool {
         return self.elements.count == 0
     }
     
     public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiPoint {
-            return self.elements.elementsEqual(other, isEquivalent: { (lhs: Point, rhs: Point) -> Bool in
+        if let other = other as? ${Self} {
+            return self.elements.elementsEqual(other, isEquivalent: { (lhs: ${Element}, rhs: ${Element}) -> Bool in
                 return lhs.equals(rhs)
             })
         }
@@ -247,3 +247,4 @@ extension MultiPoint : GeometryType {
     }
 }
 
+%end
