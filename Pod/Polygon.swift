@@ -86,6 +86,8 @@ public struct Polygon : ArialType {
     private var _innerRings = [RingType]()
 }
 
+// MARK: GeometryType conformance
+
 extension Polygon : GeometryType {
     
     public func isEmpty() -> Bool {
