@@ -59,6 +59,8 @@ public struct MultiPoint: GeometryCollectionType  {
     }
 }
 
+// MARK: CollectionType & MutableCollectionType conformance
+
 extension MultiPoint {
     
     public var startIndex : Int { return self.elements.startIndex }
