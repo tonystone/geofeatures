@@ -32,11 +32,18 @@ import Swift
     A LineString is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LineString: CoordinateCollectionType, LinearType {
+public struct LineString : GeometryType {
 
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+
+    private var coordinates = ContiguousArray<Coordinate3D>()
+}
+
+// MARK: CoordinateCollectionType conformance
+
+extension LineString  : CoordinateCollectionType  {
 
     /**
         LineString is empty constructable
@@ -59,7 +66,7 @@ public struct LineString: CoordinateCollectionType, LinearType {
         
         var generator = coordinates.generate()
         
-        while let (x, y) = generator.next() { self.coordinates.append(precision.convert((x,y, Double.NaN))) }
+        while let (x, y) = generator.next() { self.coordinates.append(self.precision.convert((x,y, Double.NaN))) }
     }
 
     /**
@@ -75,16 +82,9 @@ public struct LineString: CoordinateCollectionType, LinearType {
         
         var generator = coordinates.generate()
         
-        while let coordinate = generator.next() { self.coordinates.append(precision.convert(coordinate)) }
+        while let coordinate = generator.next() { self.coordinates.append(self.precision.convert(coordinate)) }
     }
     
-    private var coordinates = ContiguousArray<Coordinate3D>()
-}
-
-// MARK: Array conformance
-
-extension LineString {
-
     /**
         - Returns: The number of Coordinate3D objects.
      */
@@ -226,28 +226,5 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
     
     public func generate() -> IndexingGenerator<ContiguousArray<Coordinate3D>> {
         return self.coordinates.generate()
-    }
-}
-
-// MARK: GeometryType conformance
-
-extension LineString : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return self.coordinates.count == 0
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? LineString {
-            return self.coordinates.elementsEqual(other, isEquivalent: { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
-            })
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return GeometryCollection()
     }
 }

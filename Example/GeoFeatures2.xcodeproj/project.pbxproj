@@ -50,6 +50,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD829F37916D32011B39AD57 /* GeoFeatures2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures2.podspec; path = ../GeoFeatures2.podspec; sourceTree = "<group>"; };
+		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
+		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
 		EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DTests.swift; sourceTree = "<group>"; };
 		EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DTests.swift; sourceTree = "<group>"; };
 		EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedPrecisionTests.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				EA799B4C1C723DEF00397C2A /* Docs */,
 				EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for GeoFeatures2 */,
@@ -177,6 +180,15 @@
 				A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA799B4C1C723DEF00397C2A /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */,
+				EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */,
+			);
+			name = Docs;
 			sourceTree = "<group>";
 		};
 		EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */ = {

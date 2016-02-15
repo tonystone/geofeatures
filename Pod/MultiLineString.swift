@@ -33,30 +33,32 @@ import Swift
  
     All the elements in a MultiLineString shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiLineString.
  */
-public struct MultiLineString : GeometryCollectionType {
-    
-    private var elements = ContiguousArray<LineString>()
+public struct MultiLineString : GeometryType {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+
+    private var elements = ContiguousArray<LineString>()
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension MultiLineString : GeometryCollectionType {
     
     /**
-        MultiLineString is empty constructable
+     MultiLineString is empty constructable
      */
     public init () {
         self.dimension = 0
         self.precision = defaultPrecision
     }
-
+    
     /**
-        MultiLineString can be constructed from any SequenceType as long as it has an
-        Element type equal the LineString Element.
+     MultiLineString can be constructed from any SequenceType as long as it has an
+     Element type equal the LineString Element.
      */
     public init<C : SequenceType where C.Generator.Element == LineString>(elements: C) {
-        var elements = ContiguousArray<LineString>()
-        
-        elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -64,24 +66,20 @@ public struct MultiLineString : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-
+    
     /**
-        MultiLineString can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the LineString Element and the Distance
-        is an Int type.
+     MultiLineString can be constructed from any CollectionType including Array as
+     long as it has an Element type equal the LineString Element and the Distance
+     is an Int type.
      */
     public init<C : CollectionType where C.Generator.Element == LineString, C.Index.Distance == Int>(elements: C) {
-        var elements = ContiguousArray<LineString>()
         
-        elements.reserveCapacity(elements.count)
+        self.elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -89,19 +87,11 @@ public struct MultiLineString : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension MultiLineString {
     
     /**
         - Returns: The number of LineString objects.
@@ -221,29 +211,6 @@ extension MultiLineString : CustomStringConvertible, CustomDebugStringConvertibl
     
     public var debugDescription : String {
         return self.description
-    }
-}
-
-// MARK:  GeometryType conformance
-
-extension MultiLineString : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return self.elements.count == 0
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiLineString {
-            return self.elements.elementsEqual(other, isEquivalent: { (lhs: LineString, rhs: LineString) -> Bool in
-                return lhs.equals(rhs)
-            })
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return GeometryCollection()
     }
 }
 

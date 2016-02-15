@@ -26,7 +26,7 @@ import Swift
  x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
  have coordinate values for z.
  */
-public struct Point : LinearType {
+public struct Point : GeometryType {
     
     public let dimension: Int
     public let precision: Precision
@@ -54,25 +54,6 @@ public struct Point : LinearType {
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
     public var z: Double { get { return coordinate.z } }
-}
-
-extension Point : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return false    // Point can never be empty
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? Point {
-            return self.coordinate == other.coordinate
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return Point(coordinate: (0,0,0))
-    }
 }
 
 extension Point : CustomStringConvertible, CustomDebugStringConvertible {

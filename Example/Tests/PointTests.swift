@@ -33,9 +33,15 @@ class PointTests: XCTestCase {
     
     // MARK: Equal
     
-    func test3DEquals_IntZero() { XCTAssertEqual(Point(coordinate: (0,0,0)) == Point(coordinate: (0,0,0)), true) }
+    func test3DEquals_IntZero_True() { XCTAssertEqual(Point(coordinate: (0,0,0)) == Point(coordinate: (0,0,0)), true) }
     
-    func test2DEquals_IntZero() { XCTAssertEqual(Point(coordinate: (0,0)) == Point(coordinate: (0,0,Double.NaN)), true) }
+    func test3DEquals_IntOne_False() { XCTAssertEqual(Point(coordinate: (1,1,1)) == Point(coordinate: (2,2,2)), false) }
+    
+    func test2DEquals_IntOne_True() { XCTAssertEqual(Point(coordinate: (1,1)) == Point(coordinate: (1,1)), true) }
+    
+    func test2DEquals_IntOne_False() { XCTAssertEqual(Point(coordinate: (1,1)) == Point(coordinate: (2,2)), false) }
+    
+    func test2DEquals3D_IntOne_False () { XCTAssertEqual(Point(coordinate: (1,1)) == Point(coordinate: (1,1,Double.NaN)), false) }
     
     // MARK: isEmpty
     
