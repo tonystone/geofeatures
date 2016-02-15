@@ -22,17 +22,20 @@ import Swift
 /**
  Polygon
  */
-public struct Polygon : ArealType {
+public struct Polygon : GeometryType {
     
     public typealias RingType = LinearRing
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
-    
+
     public var outerRing:  RingType   { get { return _outerRing } }
     public var innerRings: [RingType] { get { return _innerRings } }
-    
+
+    private var _outerRing = RingType()
+    private var _innerRings = [RingType]()
+
     public init () {
         self.dimension = 0
         self.precision = defaultPrecision
@@ -80,32 +83,6 @@ public struct Polygon : ArealType {
         while let ring = innerRingsGenerator.next() {
             self._innerRings.append(RingType(coordinates: ring, precision: precision))
         }
-    }
-    
-    private var _outerRing = RingType()
-    private var _innerRings = [RingType]()
-}
-
-// MARK: GeometryType conformance
-
-extension Polygon : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return self._outerRing.count == 0
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? Polygon {
-            return self._outerRing.equals(other._outerRing) && self._innerRings.elementsEqual(other._innerRings, isEquivalent: { (lhs: LinearRing, rhs: LinearRing) -> Bool in
-                return lhs.equals(rhs)
-            })
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return Polygon()
     }
 }
 

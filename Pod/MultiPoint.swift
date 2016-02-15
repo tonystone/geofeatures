@@ -33,30 +33,32 @@ import Swift
  
     All the elements in a MultiPoint shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPoint.
  */
-public struct MultiPoint : GeometryCollectionType {
-    
-    private var elements = ContiguousArray<Point>()
+public struct MultiPoint : GeometryType {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+
+    private var elements = ContiguousArray<Point>()
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension MultiPoint : GeometryCollectionType {
     
     /**
-        MultiPoint is empty constructable
+     MultiPoint is empty constructable
      */
     public init () {
         self.dimension = 0
         self.precision = defaultPrecision
     }
-
+    
     /**
-        MultiPoint can be constructed from any SequenceType as long as it has an
-        Element type equal the Point Element.
+     MultiPoint can be constructed from any SequenceType as long as it has an
+     Element type equal the Point Element.
      */
     public init<C : SequenceType where C.Generator.Element == Point>(elements: C) {
-        var elements = ContiguousArray<Point>()
-        
-        elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -64,24 +66,20 @@ public struct MultiPoint : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-
+    
     /**
-        MultiPoint can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the Point Element and the Distance
-        is an Int type.
+     MultiPoint can be constructed from any CollectionType including Array as
+     long as it has an Element type equal the Point Element and the Distance
+     is an Int type.
      */
     public init<C : CollectionType where C.Generator.Element == Point, C.Index.Distance == Int>(elements: C) {
-        var elements = ContiguousArray<Point>()
         
-        elements.reserveCapacity(elements.count)
+        self.elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -89,19 +87,11 @@ public struct MultiPoint : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension MultiPoint {
     
     /**
         - Returns: The number of Point objects.
@@ -221,29 +211,6 @@ extension MultiPoint : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var debugDescription : String {
         return self.description
-    }
-}
-
-// MARK:  GeometryType conformance
-
-extension MultiPoint : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return self.elements.count == 0
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiPoint {
-            return self.elements.elementsEqual(other, isEquivalent: { (lhs: Point, rhs: Point) -> Bool in
-                return lhs.equals(rhs)
-            })
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return GeometryCollection()
     }
 }
 

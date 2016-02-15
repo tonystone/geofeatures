@@ -53,17 +53,22 @@ let pointsMatch2 = Point(coordinate: (1, 1)) == Point(coordinate: (1.4, 2.3))
 let unionResult1 = Polygon().union(Polygon())
 let unionResult2 = Point(coordinate: (1, 1)).union(Point(coordinate: (1, 1)))
 
+if let linearType = LineString() as? protocol<GeometryType, LinearType> {
+    print(linearType.dimension)
+} else {
+    print("Can't convert")
+}
 
 /**
 Readers and Writers
 */
 
-if let polygonFromWkt = WKTReader<Polygon>.read("POLYGON((0 0,0 90,90 90,90 0,0 0))")  {
-    for coordinate in polygonFromWkt.outerRing {
-        print(coordinate)
-    }
+do {
+    let polygonFromWkt = try WKTReader.read("POLYGON((0 0,0 90,90 90,90 0,0 0))")
+    
+    print(polygonFromWkt)
+} catch {
+   print(error)
 }
 
-if let geometryFromWkt = WKTReader<GeometryCollection>.read("POLYGON((0 0,0 90,90 90,90 0,0 0))")  {
-    print(geometryFromWkt)
-}
+

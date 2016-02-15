@@ -33,30 +33,32 @@ import Swift
  
     All the elements in a MultiPolygon shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPolygon.
  */
-public struct MultiPolygon : GeometryCollectionType {
-    
-    private var elements = ContiguousArray<Polygon>()
+public struct MultiPolygon : GeometryType {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+
+    private var elements = ContiguousArray<Polygon>()
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension MultiPolygon : GeometryCollectionType {
     
     /**
-        MultiPolygon is empty constructable
+     MultiPolygon is empty constructable
      */
     public init () {
         self.dimension = 0
         self.precision = defaultPrecision
     }
-
+    
     /**
-        MultiPolygon can be constructed from any SequenceType as long as it has an
-        Element type equal the Polygon Element.
+     MultiPolygon can be constructed from any SequenceType as long as it has an
+     Element type equal the Polygon Element.
      */
     public init<C : SequenceType where C.Generator.Element == Polygon>(elements: C) {
-        var elements = ContiguousArray<Polygon>()
-        
-        elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -64,24 +66,20 @@ public struct MultiPolygon : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-
+    
     /**
-        MultiPolygon can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the Polygon Element and the Distance
-        is an Int type.
+     MultiPolygon can be constructed from any CollectionType including Array as
+     long as it has an Element type equal the Polygon Element and the Distance
+     is an Int type.
      */
     public init<C : CollectionType where C.Generator.Element == Polygon, C.Index.Distance == Int>(elements: C) {
-        var elements = ContiguousArray<Polygon>()
         
-        elements.reserveCapacity(elements.count)
+        self.elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -89,19 +87,11 @@ public struct MultiPolygon : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension MultiPolygon {
     
     /**
         - Returns: The number of Polygon objects.
@@ -221,29 +211,6 @@ extension MultiPolygon : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var debugDescription : String {
         return self.description
-    }
-}
-
-// MARK:  GeometryType conformance
-
-extension MultiPolygon : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return self.elements.count == 0
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiPolygon {
-            return self.elements.elementsEqual(other, isEquivalent: { (lhs: Polygon, rhs: Polygon) -> Bool in
-                return lhs.equals(rhs)
-            })
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return GeometryCollection()
     }
 }
 

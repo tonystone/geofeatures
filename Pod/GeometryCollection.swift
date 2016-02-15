@@ -33,30 +33,32 @@ import Swift
  
     All the elements in a GeometryCollection shall be in the same Spatial Reference System. This is also the Spatial Reference System for the GeometryCollection.
  */
-public struct GeometryCollection : GeometryCollectionType {
-    
-    private var elements = ContiguousArray<GeometryType>()
+public struct GeometryCollection : GeometryType {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+
+    private var elements = ContiguousArray<GeometryType>()
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension GeometryCollection : GeometryCollectionType {
     
     /**
-        GeometryCollection is empty constructable
+     GeometryCollection is empty constructable
      */
     public init () {
         self.dimension = 0
         self.precision = defaultPrecision
     }
-
+    
     /**
-        GeometryCollection can be constructed from any SequenceType as long as it has an
-        Element type equal the GeometryType Element.
+     GeometryCollection can be constructed from any SequenceType as long as it has an
+     Element type equal the GeometryType Element.
      */
     public init<C : SequenceType where C.Generator.Element == GeometryType>(elements: C) {
-        var elements = ContiguousArray<GeometryType>()
-        
-        elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -64,24 +66,20 @@ public struct GeometryCollection : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-
+    
     /**
-        GeometryCollection can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the GeometryType Element and the Distance
-        is an Int type.
+     GeometryCollection can be constructed from any CollectionType including Array as
+     long as it has an Element type equal the GeometryType Element and the Distance
+     is an Int type.
      */
     public init<C : CollectionType where C.Generator.Element == GeometryType, C.Index.Distance == Int>(elements: C) {
-        var elements = ContiguousArray<GeometryType>()
         
-        elements.reserveCapacity(elements.count)
+        self.elements.reserveCapacity(elements.count)
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -89,19 +87,11 @@ public struct GeometryCollection : GeometryCollectionType {
         while let element = generator.next() {
             minDimension = min(minDimension, element.dimension)
             
-            elements.append(element)
+            self.elements.append(element)
         }
-        
         self.dimension = minDimension
         self.precision = defaultPrecision
-        
-        self.elements = elements
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension GeometryCollection {
     
     /**
         - Returns: The number of GeometryType objects.
@@ -221,29 +211,6 @@ extension GeometryCollection : CustomStringConvertible, CustomDebugStringConvert
     
     public var debugDescription : String {
         return self.description
-    }
-}
-
-// MARK:  GeometryType conformance
-
-extension GeometryCollection : GeometryType {
-    
-    public func isEmpty() -> Bool {
-        return self.elements.count == 0
-    }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? GeometryCollection {
-            return self.elements.elementsEqual(other, isEquivalent: { (lhs: GeometryType, rhs: GeometryType) -> Bool in
-                return lhs.equals(rhs)
-            })
-        }
-        return false
-    }
-    
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return GeometryCollection()
     }
 }
 
