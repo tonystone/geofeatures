@@ -19,6 +19,6 @@
  */
 import Swift
 
-public protocol ArialType {
+public protocol ArealType {
     
 }

@@ -25,7 +25,7 @@
 		721C7C892016D0F4FF1367B79031E10B /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B789A38E4186E113B5B1532AA88E9 /* LineString.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7A29A76573DBADA43139B58F1B203DE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		7F493F9D2DC4F6CBB4E811C74B8FE093 /* GeoFeatures2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9C46C0BB55129A127B2FECEEED884E /* GeoFeatures2-dummy.m */; };
-		8872BEAA5A6AD71C6F29BC414BD128BF /* ArialType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212675BF48F5AA3EFA8CC59FC1A633E /* ArialType.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8872BEAA5A6AD71C6F29BC414BD128BF /* ArealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212675BF48F5AA3EFA8CC59FC1A633E /* ArealType.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		912287F8BC4731FA786A825227CAC267 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		9C3BA8D3AB5B52F8A6CD4B9E2D778905 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE149D2A2C2D7726EC2AF34EC984AD3A /* Coordinate3D.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9E7636500B7738F58CEDB5EB471457C4 /* WKTReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74307892050DBC5359CDEB0976A7CF8B /* WKTReader.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -59,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Example-umbrella.h"; sourceTree = "<group>"; };
-		0212675BF48F5AA3EFA8CC59FC1A633E /* ArialType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArialType.swift; sourceTree = "<group>"; };
+		0212675BF48F5AA3EFA8CC59FC1A633E /* ArealType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArealType.swift; sourceTree = "<group>"; };
 		04FD6A56E2B321EB7D04C0251B2087D5 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		07547D2F13893830C1FCFD3BEA47F28E /* Pods-GeoFeatures2_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Example-frameworks.sh"; sourceTree = "<group>"; };
 		0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 			children = (
 				DE812CE0448F3830D34BEE9B6E17653E /* Pod */,
 				9D8F5E330963AFE957C071395E65936C /* Support Files */,
+				EA799B341C71308400397C2A /* Scripts */,
 			);
 			name = GeoFeatures2;
 			path = ../..;
@@ -250,7 +251,7 @@
 				BE149D2A2C2D7726EC2AF34EC984AD3A /* Coordinate3D.swift */,
 				AC72F3F09945F761F5FED8595306D904 /* GeometryType.swift */,
 				7F15C849E8E06A85B083B69A8DB9F0D4 /* LinearType.swift */,
-				0212675BF48F5AA3EFA8CC59FC1A633E /* ArialType.swift */,
+				0212675BF48F5AA3EFA8CC59FC1A633E /* ArealType.swift */,
 				EA799B311C7121AB00397C2A /* CoordinateCollection.swift.gyb */,
 				EA799B321C71274300397C2A /* CoordinateCollectionType.swift */,
 				EA799B2F1C70E08800397C2A /* GeometryCollection.swift.gyb */,
@@ -286,6 +287,14 @@
 			);
 			name = "Pods-GeoFeatures2_Example";
 			path = "Target Support Files/Pods-GeoFeatures2_Example";
+			sourceTree = "<group>";
+		};
+		EA799B341C71308400397C2A /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Scripts;
+			path = "Example/Pods/Target Support Files/GeoFeatures2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +367,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 167FF6A0D4B4BAFB06F74A7F4A16EAFE /* Build configuration list for PBXNativeTarget "GeoFeatures2" */;
 			buildPhases = (
+				EA799B361C71323A00397C2A /* ShellScript */,
 				2D475C31EDFBD41F9A7B6464CFB98636 /* Sources */,
 				3D1A459124C2BB8EC4FEC22FBE537616 /* Frameworks */,
 				5AFD8AB93B1FF5101E94871C949F64F5 /* Headers */,
@@ -399,12 +409,28 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EA799B361C71323A00397C2A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/python ${PROJECT_DIR}/../../Scripts/process_collection_templates.py";
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D475C31EDFBD41F9A7B6464CFB98636 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8872BEAA5A6AD71C6F29BC414BD128BF /* ArialType.swift in Sources */,
+				8872BEAA5A6AD71C6F29BC414BD128BF /* ArealType.swift in Sources */,
 				58465D96DFFDCCF8139966163753C408 /* Coordinate2D.swift in Sources */,
 				9C3BA8D3AB5B52F8A6CD4B9E2D778905 /* Coordinate3D.swift in Sources */,
 				C4FF04B7A3DE18F81C05851F59BF9BE9 /* CoordinateReferenceSystem.swift in Sources */,
