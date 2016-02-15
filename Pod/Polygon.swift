@@ -22,27 +22,29 @@ import Swift
 /**
  Polygon
  */
-public class Polygon : Geometry {
+public struct Polygon : ArealType {
     
     public typealias RingType = LinearRing
+    
+    public let dimension: Int
+    public let precision: Precision
+    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
     
     public var outerRing:  RingType   { get { return _outerRing } }
     public var innerRings: [RingType] { get { return _innerRings } }
     
-    public convenience init() {
-        self.init(dimension: 0, precision: defaultPrecision)
+    public init () {
+        self.dimension = 0
+        self.precision = defaultPrecision
     }
     
-    internal init(dimension: Int, precision: Precision) {
-        super.init(dimension: dimension, precision: precision)
-    }
-    
-    public convenience init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
+    public  init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
         self.init(outerRing: rings.0, innerRings: rings.1, precision: precision)
     }
     
-    public convenience init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
-        self.init(dimension: 2, precision: precision)
+    public  init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
+        self.dimension = 2
+        self.precision = defaultPrecision
         
         var outerRingsGenerator = outerRing.generate()
         
@@ -58,12 +60,13 @@ public class Polygon : Geometry {
         }
     }
     
-    public convenience init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
+    public  init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
         self.init(outerRing: rings.0, innerRings: rings.1, precision: precision)
     }
     
-    public convenience init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
-        self.init(dimension: 2, precision: precision)
+    public  init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
+        self.dimension = 3
+        self.precision = defaultPrecision
         
         var outerRingsGenerator = outerRing.generate()
         
@@ -79,11 +82,19 @@ public class Polygon : Geometry {
         }
     }
     
-    public override func isEmpty() -> Bool {
+    private var _outerRing = RingType()
+    private var _innerRings = [RingType]()
+}
+
+// MARK: GeometryType conformance
+
+extension Polygon : GeometryType {
+    
+    public func isEmpty() -> Bool {
         return self._outerRing.count == 0
     }
     
-    public override func equals(other: GeometryType) -> Bool {
+    public func equals(other: GeometryType) -> Bool {
         if let other = other as? Polygon {
             return self._outerRing.equals(other._outerRing) && self._innerRings.elementsEqual(other._innerRings, isEquivalent: { (lhs: LinearRing, rhs: LinearRing) -> Bool in
                 return lhs.equals(rhs)
@@ -92,8 +103,10 @@ public class Polygon : Geometry {
         return false
     }
     
-    private var _outerRing = RingType()
-    private var _innerRings = [RingType]()
+    // TODO: Must be implenented.  Here just to test protocol
+    public func union(other: GeometryType) -> GeometryType {
+        return Polygon()
+    }
 }
 
 // MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance

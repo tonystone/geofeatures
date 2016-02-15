@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import GeoFeatures2
+import GeoFeatures2
 
 class FloatingPrecisionTests: XCTestCase {
 
