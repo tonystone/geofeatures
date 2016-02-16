@@ -17,7 +17,7 @@ extension Point /* GeometryType Conformance */ {
     public func equals(other: GeometryType) -> Bool {
         if let other = other as? Point {
             if self.dimension == other.dimension {
-                return self.x == other.x && self.x == other.y && other.dimension == 2 ? true : (self.z == other.z)
+                return coordinateEquals(self.coordinate, other.coordinate, dimension: self.dimension)
             }
         }
         return false
