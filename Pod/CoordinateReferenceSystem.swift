@@ -26,7 +26,7 @@ import Swift
 */
 public protocol CoordinateReferenceSystem {}
 
-public struct Cartisian: CoordinateReferenceSystem {}
+public struct Cartesian: CoordinateReferenceSystem {}
 
 public struct Ellipsoidal: CoordinateReferenceSystem {}
 
