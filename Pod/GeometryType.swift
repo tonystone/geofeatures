@@ -27,7 +27,7 @@ let defaultPrecision = FloatingPrecision()
 /**
 Default CoordinateReferenceSystem
 */
-let defaultCoordinateReferenceSystem = Cartisian()
+let defaultCoordinateReferenceSystem = Cartesian()
 
 /**
  GeometryType
