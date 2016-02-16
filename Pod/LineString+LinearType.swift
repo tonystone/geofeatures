@@ -21,4 +21,23 @@ import Swift
 
 extension LineString : LinearType {
     
+    /**
+     The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
+     */
+    @warn_unused_result
+    public func length() -> Double {
+
+        var length = 0.0
+        
+        if self.coordinateReferenceSystem is Cartesian {
+            var generator = self.generate()
+            
+            if let c1 = generator.next() {
+                while let  c2 = generator.next() {
+                    length += sqrt(pow(abs(c1.x - c2.x), 2) + pow(abs(c1.y - c2.y), 2))
+                }
+            }
+        }
+        return self.precision.convert(length)
+    }
 }

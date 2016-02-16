@@ -153,8 +153,12 @@ public protocol GeometryType {
 //    func locateBetween(mStart :Double, mEnd :Double) -> GeometryType
 //    
 //    //: Analysis
-//    //public func distance(geometry: GeometryType, other: GeometryType) -> Distance
-//    //public func buffer(distance :Distance) : GeometryType
+//    @warn_unused_result
+//    public func distance(other: GeometryType) -> Distance
+//
+//    @warn_unused_result
+//    public func buffer(distance :Distance) : GeometryType
+//
 //    @warn_unused_result
 //    func convexHull() -> GeometryType
 //    
