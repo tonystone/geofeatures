@@ -28,21 +28,29 @@ public typealias Coordinate2D = (x: Double, y: Double)
 
 //: Mark: Equatable
 
-func == <T: protocol<Equatable, FloatingPointType>> (tuple1:(T,T),tuple2:(T,T)) -> Bool {
+internal func coordinateEquals<T : protocol<Comparable, FloatingPointType>>(tuple1: (T,T), _ tuple2: (T,T)) -> Bool {
     return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
 }
 
-func != <T: protocol<Comparable, FloatingPointType>> (tuple1:(T,T),tuple2:(T,T)) -> Bool {
-    return (tuple1.0 != tuple2.0) || (tuple1.1 != tuple2.1)
+internal func coordinateEquals<T : protocol<Comparable, IntegerType>>(tuple1: (T,T), _ tuple2: (T,T), dimension: Int) -> Bool {
+    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
 }
 
 //: Mark: Math
 
-func + (tuple1:(Double,Double),tuple2:(Double,Double)) -> (Double,Double) {
+internal func coordinateAdd(tuple1: (Double,Double), _ tuple2: (Double,Double)) -> (Double,Double)  {
     return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1)
 }
 
-func - (tuple1:(Double,Double),tuple2:(Double,Double)) -> (Double,Double) {
+internal func coordinateAdd(tuple1: (Int,Int), _ tuple2: (Int,Int)) -> (Int,Int)  {
+    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1)
+}
+
+internal func coordinateSubtract(tuple1: (Double,Double), _ tuple2: (Double,Double)) -> (Double,Double) {
+    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1)
+}
+
+internal func coordinateSubtract(tuple1: (Int,Int), _ tuple2: (Int,Int)) -> (Int,Int) {
     return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1)
 }
 
