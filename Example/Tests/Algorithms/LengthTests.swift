@@ -20,4 +20,8 @@ class LengthTests: XCTestCase {
         XCTAssertEqual(LineString(coordinates: [(0,0),(0,2)]).length(), 2.0)
     }
 
+    func testLength_Cartisian_Test3() {
+        XCTAssertEqual(LineString(coordinates: [(0,0),(7,0)]).length(), 7.0)
+    }
+    
 }
