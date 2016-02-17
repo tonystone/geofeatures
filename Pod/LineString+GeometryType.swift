@@ -21,7 +21,6 @@ import Swift
 
 extension LineString /* GeometryType conformance */ {
 
-
     public func isEmpty() -> Bool {
         return self.count == 0
     }
@@ -29,7 +28,7 @@ extension LineString /* GeometryType conformance */ {
     public func equals(other: GeometryType) -> Bool {
         if let other = other as? LineString {
             return self.elementsEqual(other, isEquivalent: { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
+                return coordinateEquals(lhs, rhs, dimension: self.dimension)
             })
         }
         return false

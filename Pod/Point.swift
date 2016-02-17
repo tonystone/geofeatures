@@ -32,7 +32,7 @@ public struct Point : GeometryType {
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
     
-    private let coordinate: Coordinate3D
+    internal let coordinate: Coordinate3D
     
     /**
      * Initialize this Point with the coordinates

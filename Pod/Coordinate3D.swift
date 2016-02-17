@@ -28,20 +28,28 @@ public typealias Coordinate3D = (x: Double, y: Double, z: Double)
 
 //: Mark: Equatable
 
-func == <T: protocol<Equatable, FloatingPointType>> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool {
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (tuple1.2.isNaN && tuple2.2.isNaN ? true : (tuple1.2 == tuple2.2))
+internal func coordinateEquals<T : protocol<Comparable, FloatingPointType>>(tuple1: (T,T,T), _ tuple2: (T,T,T), dimension: Int) -> Bool {
+    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (dimension == 3 ? (tuple1.2 == tuple2.2) : true)
 }
 
-func != <T: protocol<Comparable, FloatingPointType>> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool {
-    return (tuple1.0 != tuple2.0) || (tuple1.1 != tuple2.1) || (tuple1.2.isNaN && tuple2.2.isNaN ? false : (tuple1.2 != tuple2.2))
+internal func coordinateEquals<T : protocol<Comparable, IntegerType>>(tuple1: (T,T,T), _ tuple2: (T,T,T), dimension: Int) -> Bool {
+    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (dimension == 3 ? (tuple1.2 == tuple2.2) : true)
 }
 
 //: Mark: Math
 
-func +(tuple1:(Double,Double,Double),tuple2:(Double,Double,Double)) -> (Double,Double,Double)  {
-    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1, tuple1.2.isNaN || tuple2.2.isNaN ? Double.NaN : tuple1.2 + tuple2.2)
+internal func coordinateAdd(tuple1: (Double,Double,Double), _ tuple2: (Double,Double,Double), dimension: Int) -> (Double,Double,Double)  {
+    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1, (dimension == 3 ? tuple1.2 + tuple2.2 : Double.NaN))
 }
 
-func - (tuple1:(Double,Double,Double),tuple2:(Double,Double,Double)) -> (Double,Double,Double) {
-    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1, tuple1.2.isNaN || tuple2.2.isNaN ? Double.NaN : tuple1.2 - tuple2.2)
+internal func coordinateAdd(tuple1: (Int,Int,Int), _ tuple2: (Int,Int,Int), dimension: Int) -> (Int,Int,Int)  {
+    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1, (dimension == 3 ? tuple1.2 + tuple2.2 : 0))
+}
+
+internal func coordinateSubtract(tuple1: (Double,Double,Double), _ tuple2: (Double,Double,Double), dimension: Int) -> (Double,Double,Double) {
+    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1, (dimension == 3 ? tuple1.2 - tuple2.2 : Double.NaN))
+}
+
+internal func coordinateSubtract(tuple1: (Int,Int,Int), _ tuple2: (Int,Int,Int), dimension: Int) -> (Int,Int,Int) {
+    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1, (dimension == 3 ? tuple1.2 - tuple2.2 : 0))
 }

@@ -33,7 +33,7 @@ class LineStringTests: XCTestCase {
         XCTAssertEqual(
             (LineString(coordinates: [(10.0,10.0)]).elementsEqual([(10.0,10.0,Double.NaN)])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return lhs == rhs
+                    return coordinateEquals(lhs, rhs, dimension: 2)
             }
         ), true)
     }
@@ -44,7 +44,7 @@ class LineStringTests: XCTestCase {
         XCTAssertEqual(
             (LineString(coordinates: [(10.03,10.04)], precision: fixed).elementsEqual([(10.03,10.04,Double.NaN)])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return lhs == rhs
+                    return coordinateEquals(lhs, rhs, dimension: 2)
                 }
             ), true)
     }
@@ -55,7 +55,7 @@ class LineStringTests: XCTestCase {
         XCTAssertEqual(
             (LineString(coordinates: [(10.003,10.004)], precision: fixed).elementsEqual([(10.0,10.0,Double.NaN)])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return lhs == rhs
+                    return coordinateEquals(lhs, rhs, dimension: 2)
                 }
             ), true)
     }
@@ -65,7 +65,7 @@ class LineStringTests: XCTestCase {
         XCTAssertEqual(
             (LineString(coordinates: [(10.0,10.0,10.0)]).elementsEqual([(10.0,10.0,10.0)])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return lhs == rhs
+                    return coordinateEquals(lhs, rhs, dimension: 3)
                 }
             ), true)
     }
@@ -75,7 +75,7 @@ class LineStringTests: XCTestCase {
         XCTAssertEqual(
             (LineString(coordinates: [(10,10)]).elementsEqual([(10.0,10.0,Double.NaN)])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return lhs == rhs
+                    return coordinateEquals(lhs, rhs, dimension: 2)
                 }
             ), true)
     }
@@ -85,7 +85,7 @@ class LineStringTests: XCTestCase {
         XCTAssertEqual(
             (LineString(coordinates: [(10,10,10)]).elementsEqual([(10.0,10.0,10.0)])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return lhs == rhs
+                    return coordinateEquals(lhs, rhs, dimension: 3)
                 }
             ), true)
     }
@@ -95,7 +95,7 @@ class LineStringTests: XCTestCase {
     func testSubscript_Get () {
         let lineString = LineString(coordinates: [(10,10,10),(20,20,20)])
         
-        XCTAssertEqual(lineString[1] == (20,20,20), true)
+        XCTAssertEqual(coordinateEquals(lineString[1], (20,20,20), dimension: 3), true)
     }
     
     func testSubscript_Set () {
@@ -103,7 +103,7 @@ class LineStringTests: XCTestCase {
         
         lineString[1] = (10,10,10)
         
-        XCTAssertEqual(lineString[1] == (10,10,10), true)
+        XCTAssertEqual(coordinateEquals(lineString[1], (10,10,10), dimension: 3), true)
     }
     
     func testAppendContentsOf_LineString () {
@@ -124,7 +124,7 @@ class LineStringTests: XCTestCase {
         lineString2.appendContentsOf(array)
         
         XCTAssertEqual(lineString2.elementsEqual(array) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-            return lhs == rhs
+            return coordinateEquals(lineString2[1], (20,20,20), dimension: 3)
         }, true)
     }
     
@@ -159,7 +159,7 @@ class LineStringTests: XCTestCase {
         
         XCTAssertEqual(lineString.elementsEqual([(10.0,10.0,10.0)])
             { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
+                return coordinateEquals(lhs, rhs, dimension:  3)
         }, true)
     }
 
