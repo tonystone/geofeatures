@@ -19,9 +19,11 @@
  */
 import Swift
 
-public struct FixedPrecision : Precision {
+public struct FixedPrecision : Precision, Equatable, Hashable  {
     
     public let scale: Double
+    
+    public var hashValue: Int { get { return scale.hashValue } }
     
     public init(scale: Double) {
         self.scale = scale
@@ -49,3 +51,5 @@ extension FixedPrecision : CustomStringConvertible, CustomDebugStringConvertible
         return self.description
     }
 }
+
+
