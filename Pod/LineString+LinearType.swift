@@ -34,7 +34,7 @@ extension LineString : LinearType {
             
             if let c1 = generator.next() {
                 while let  c2 = generator.next() {
-                    length += sqrt(pow(abs(c1.x - c2.x), 2) + pow(abs(c1.y - c2.y), 2))
+                    length += sqrt(pow(abs(c1.x - c2.x), 2) + pow(abs(c1.y - c2.y), 2) + (self.dimension == 3 ? pow(abs(c1.z - c2.z), 2) : 0))
                 }
             }
         }
