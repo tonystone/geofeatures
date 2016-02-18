@@ -1,14 +1,18 @@
 PODS:
-  - GeoFeatures2 (0.1.0)
+  - GeoFeatures2 (0.1.0):
+    - GeoFeatures2/Geometry (= 0.1.0)
+  - GeoFeatures2/Geometry (0.1.0)
+  - GeoFeatures2/Visualization (0.1.0)
 
 DEPENDENCIES:
   - GeoFeatures2 (from `../`)
+  - GeoFeatures2/Visualization (from `../`)
 
 EXTERNAL SOURCES:
   GeoFeatures2:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GeoFeatures2: c2ee7d64e05e9dccf120fc6a3a195ff3dbdfcc2a
+  GeoFeatures2: 3cf3283443e4fad884109749131f603339f00b3b
 
 COCOAPODS: 0.39.0

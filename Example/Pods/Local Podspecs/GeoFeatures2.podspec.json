@@ -18,5 +18,15 @@
     "tvos": "9.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/**/*"
+  "default_subspecs": "Geometry",
+  "source_files": "Geometry/**/*",
+  "subspecs": [
+    {
+      "name": "Geometry"
+    },
+    {
+      "name": "Visualization",
+      "source_files": "Visualization/**/*"
+    }
+  ]
 }
