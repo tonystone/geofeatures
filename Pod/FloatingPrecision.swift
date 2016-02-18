@@ -19,7 +19,9 @@
  */
 import Swift
 
-public struct FloatingPrecision : Precision {
+public struct FloatingPrecision : Precision, Equatable, Hashable  {
+    
+    public var hashValue: Int { get { return 31.hashValue } }
     
     public init() {}
     
