@@ -21,4 +21,10 @@ import Swift
 
 public protocol LinearType {
     
+    /**
+        The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
+     */
+    @warn_unused_result
+    func length() -> Double
+    
 }

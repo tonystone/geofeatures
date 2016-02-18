@@ -1,6 +1,21 @@
 import Swift
 import GeoFeatures2
 
+let fixedPrecision1 = FixedPrecision(scale: 10)
+let fixedPrecision2 = FixedPrecision(scale: 10)
+let fixedPrecision3 = FixedPrecision(scale: 100)
+let fixedPrecision4 = FixedPrecision(scale: 31)
+
+let floatingPrecision1 = FloatingPrecision()
+let floatingPrecision2 = FloatingPrecision()
+
+let fixedEqual1 = fixedPrecision1 == fixedPrecision2
+let fixedEqual2 = fixedPrecision1 == fixedPrecision3
+
+let flaotingEqual1 = floatingPrecision1 == floatingPrecision2
+let fixedFloatingEqual1 = fixedPrecision1 == floatingPrecision1
+let fixedFloatingEqual2 = fixedPrecision4 == floatingPrecision1
+
 //: ## Usage scenarios
 // Simple Array of tubles used as coordinates
 let coordinates2d: [(Double, Double)]         = [(0,0), (0,7), (4,2), (2,0), (0,0)]
