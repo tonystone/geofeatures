@@ -22,7 +22,16 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target    = '9.0'
 
   s.requires_arc = true
+  s.default_subspec = 'Geometry'
 
-  s.source_files = 'Pod/**/*'
+  s.source_files = 'Geometry/**/*'
+
+  s.subspec 'Geometry' do |ss|
+    # Main spec
+  end
+
+  s.subspec 'Visualization' do |ss|
+    ss.source_files = 'Visualization/**/*'
+  end
 
 end

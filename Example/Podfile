@@ -3,10 +3,10 @@ use_frameworks!
 
 target 'GeoFeatures2_Example', :exclusive => true do
   pod 'GeoFeatures2', :path => '../'
+  pod 'GeoFeatures2/Visualization', :path => '../'
 end
 
 target 'GeoFeatures2_Tests', :exclusive => true do
   pod 'GeoFeatures2', :path => '../'
-
-  
+  pod 'GeoFeatures2/Visualization', :path => '../'
 end
