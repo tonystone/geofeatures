@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension LineString : LinearType {
+extension LineString : Curve {
     
     /**
      The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
@@ -32,9 +32,9 @@ extension LineString : LinearType {
         if self.coordinateReferenceSystem is Cartesian {
             var generator = self.generate()
             
-            if let c1 = generator.next() {
-                while let  c2 = generator.next() {
-                    length += sqrt(pow(abs(c1.x - c2.x), 2) + pow(abs(c1.y - c2.y), 2) + (self.dimension == 3 ? pow(abs(c1.z - c2.z), 2) : 0))
+            if let p1 = generator.next() {
+                while let  p2 = generator.next() {
+                    length += sqrt(pow(abs(p1.x - p2.x), 2) + pow(abs(p1.y - p2.y), 2) + (self.dimension == 3 ? pow(abs(p1.z - p2.z), 2) : 0))
                 }
             }
         }

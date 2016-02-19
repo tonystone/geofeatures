@@ -1,5 +1,5 @@
 /*
- *   LinearRing+ArealType.swift
+ *   LinearRing+Geometry.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,7 +19,23 @@
  */
 import Swift
 
-extension LinearRing : ArealType {
+extension LinearRing /* Geometry conformance */ {
     
+    public func isEmpty() -> Bool {
+        return self.count == 0
+    }
     
+    public func equals(other: Geometry) -> Bool {
+        if let other = other as? LinearRing {
+            return self.elementsEqual(other, isEquivalent: { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return coordinateEquals(lhs, rhs, dimension: self.dimension)
+            })
+        }
+        return false
+    }
+    
+    // TODO: Must be implenented.  Here just to test protocol
+    public func union(other: Geometry) -> Geometry {
+        return GeometryCollection()
+    }
 }

@@ -29,23 +29,18 @@ import Swift
 /**
     GeometryCollection
  
-    A GeometryCollection is a collection of some number of GeometryType objects.
+    A GeometryCollection is a collection of some number of Geometry objects.
  
     All the elements in a GeometryCollection shall be in the same Spatial Reference System. This is also the Spatial Reference System for the GeometryCollection.
  */
-public struct GeometryCollection : GeometryType {
+public struct GeometryCollection : Geometry {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
-    private var elements = ContiguousArray<GeometryType>()
-}
+    private var elements = ContiguousArray<Geometry>()
 
-// MARK:  GeometryCollectionType conformance
-
-extension GeometryCollection : GeometryCollectionType {
-    
     /**
      GeometryCollection is empty constructable
      */
@@ -56,9 +51,9 @@ extension GeometryCollection : GeometryCollectionType {
     
     /**
      GeometryCollection can be constructed from any SequenceType as long as it has an
-     Element type equal the GeometryType Element.
+     Element type equal the Geometry Element.
      */
-    public init<C : SequenceType where C.Generator.Element == GeometryType>(elements: C) {
+    public init<C : SequenceType where C.Generator.Element == Geometry>(elements: C) {
         
         var minDimension: Int = 3
         var generator         = elements.generate()
@@ -74,10 +69,10 @@ extension GeometryCollection : GeometryCollectionType {
     
     /**
      GeometryCollection can be constructed from any CollectionType including Array as
-     long as it has an Element type equal the GeometryType Element and the Distance
+     long as it has an Element type equal the Geometry Element and the Distance
      is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == GeometryType, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Geometry, C.Index.Distance == Int>(elements: C) {
         
         self.elements.reserveCapacity(elements.count)
         
@@ -92,9 +87,14 @@ extension GeometryCollection : GeometryCollectionType {
         self.dimension = minDimension
         self.precision = defaultPrecision
     }
-    
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension GeometryCollection : Collection {
+
     /**
-        - Returns: The number of GeometryType objects.
+        - Returns: The number of Geometry objects.
      */
     public var count: Int {
         get { return self.elements.count }
@@ -119,21 +119,21 @@ extension GeometryCollection : GeometryCollectionType {
     /**
         Append `newElement` to this GeometryCollection.
      */
-    public mutating func append(newElement: GeometryType) {
+    public mutating func append(newElement: Geometry) {
         self.elements.append(newElement)
     }
 
     /**
         Append the elements of `newElements` to this GeometryCollection.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == GeometryType>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Geometry>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
         Append the elements of `newElements` to this GeometryCollection.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == GeometryType>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Geometry>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
@@ -142,7 +142,7 @@ extension GeometryCollection : GeometryCollectionType {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> GeometryType {
+    public mutating func removeLast() -> Geometry {
         return self.elements.removeLast()
     }
 
@@ -151,14 +151,14 @@ extension GeometryCollection : GeometryCollectionType {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: GeometryType, atIndex i: Int) {
+    public mutating func insert(newElement: Geometry, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
         Remove and return the element at index `i` of this GeometryCollection.
      */
-    public mutating func removeAtIndex(index: Int) -> GeometryType {
+    public mutating func removeAtIndex(index: Int) -> Geometry {
         return self.elements.removeAtIndex(index)
     }
 
@@ -186,17 +186,17 @@ extension GeometryCollection {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> GeometryType {
+    public subscript(position : Int) -> Geometry {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<GeometryType> {
+    public subscript(range: Range<Int>) -> ArraySlice<Geometry> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<GeometryType>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Geometry>> {
         return self.elements.generate()
     }
 }

@@ -1,5 +1,5 @@
 /*
- *   GeometryType.swift
+ *   Geometry.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -30,20 +30,20 @@ Default CoordinateReferenceSystem
 let defaultCoordinateReferenceSystem = Cartesian()
 
 /**
- GeometryType
+ Geometry
 
- A protocol that represents a geometric shape. GeometryType
+ A protocol that represents a geometric shape. Geometry
  is the abstract type that is implenented by all geometry classes.
 */
-public protocol GeometryType {
+public protocol Geometry {
 
     /**
-        The dimension of this GeometryType which must be equal to or less than the coordinate dimension.
+        The dimension of this Geometry which must be equal to or less than the coordinate dimension.
     */
     var dimension: Int { get }
     
     /**
-        The Precision used to store the coordinates for this GeometryType
+        The Precision used to store the coordinates for this Geometry
     */
     var precision: Precision { get }
     
@@ -53,28 +53,28 @@ public protocol GeometryType {
     var coordinateReferenceSystem: CoordinateReferenceSystem { get }
     
     /**
-     - Returns true if this GeometryType is an empty Geometry.
+     - Returns true if this Geometry is an empty Geometry.
     */
     @warn_unused_result
     func isEmpty() -> Bool
 
     /**
-     - Returns: true if this GeoemetryType instance is equal the other GeometryType instance.
+     - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
      */
     @warn_unused_result
-    func ==(lhs: GeometryType, rhs: GeometryType) -> Bool
+    func ==(lhs: Geometry, rhs: Geometry) -> Bool
     
     /**
-     - Returns: true if this GeoemetryType instance is not equal the other GeometryType instance.
+     - Returns: true if this GeoemetryType instance is not equal the other Geometry instance.
      */
     @warn_unused_result
-    func !=(lhs: GeometryType, rhs: GeometryType) -> Bool
+    func !=(lhs: Geometry, rhs: Geometry) -> Bool
     
     /**
-     - Returns: true if this GeoemetryType instance is equal the other GeometryType instance.
+     - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
     */
     @warn_unused_result
-    func equals(other: GeometryType) -> Bool
+    func equals(other: Geometry) -> Bool
     
 //    /**
 //     - Returns:  true if this GeoemetryType instance has no anomalous geometric points, such
@@ -84,10 +84,10 @@ public protocol GeometryType {
 //    func isSimple() -> Bool
 //    
 //    /**
-//     The minimum bounding box for this GeometryType, returned as a GeometryType (Polygon).
+//     The minimum bounding box for this Geometry, returned as a Geometry (Polygon).
 //    */
 //    @warn_unused_result
-//    func envelop() -> GeometryType
+//    func envelop() -> Geometry
 //    
 //    //: ## Algorythms
 //    //: Query
@@ -95,94 +95,94 @@ public protocol GeometryType {
 //    - Returns: true if this geometric object is “spatially disjoint” from the other Geometry.
 //    */
 //    @warn_unused_result
-//    func disjoint(other: GeometryType) -> Bool
+//    func disjoint(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns: true if this geometric object “spatially intersects” the other Geometry.
 //     */
 //    @warn_unused_result
-//    func intersects(other: GeometryType) -> Bool
+//    func intersects(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns: true if this geometric object “spatially touches” the other Geometry.
 //     */
 //    @warn_unused_result
-//    func touches(other: GeometryType) -> Bool
+//    func touches(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns: true if this geometric object “spatially crosses’ the other Geometry.
 //     */
 //    @warn_unused_result
-//    func crosses(other: GeometryType) -> Bool
+//    func crosses(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns: true if this geometric object is “spatially within” the other Geometry.
 //     */
 //    @warn_unused_result
-//    func within(other: GeometryType) -> Bool
+//    func within(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns: true if this geometric object “spatially contains” the other Geometry
 //     */
 //    @warn_unused_result
-//    func contains(other: GeometryType) -> Bool
+//    func contains(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns: true if this geometric object “spatially overlaps” the other Geometry.
 //     */
 //    @warn_unused_result
-//    func overlaps(other: GeometryType) -> Bool
+//    func overlaps(other: Geometry) -> Bool
 //    
 //    /**
 //     - Returns true if this geometric object is spatially related to the other Geometry by testing for intersections between the interior, boundary and exterior of the two geometric objects as specified by the values in the intersectionPatternMatrix.
 //     - Returns: false if all the tested intersections are empty except exterior (this) intersect exterior (another).
 //     */
 //    @warn_unused_result
-//    func relate(other: GeometryType, matrix :String) -> Bool
+//    func relate(other: Geometry, matrix :String) -> Bool
 //    
 //    /**
 //     - Returns: A derived geometry collection value that matches the specified m coordinate value.
 //     */
 //    @warn_unused_result
-//    func locateAlong(mValue :Double) -> GeometryType
+//    func locateAlong(mValue :Double) -> Geometry
 //    
 //    /**
 //     - Returns: A derived geometry collection value that matches the specified range of m coordinate values inclusively.
 //     */
 //    @warn_unused_result
-//    func locateBetween(mStart :Double, mEnd :Double) -> GeometryType
+//    func locateBetween(mStart :Double, mEnd :Double) -> Geometry
 //    
 //    //: Analysis
 //    @warn_unused_result
-//    public func distance(other: GeometryType) -> Distance
+//    public func distance(other: Geometry) -> Distance
 //
 //    @warn_unused_result
-//    public func buffer(distance :Distance) : GeometryType
+//    public func buffer(distance :Distance) : Geometry
 //
 //    @warn_unused_result
-//    func convexHull() -> GeometryType
+//    func convexHull() -> Geometry
 //    
 //    @warn_unused_result
-//    func intersection(other: GeometryType) -> GeometryType
+//    func intersection(other: Geometry) -> Geometry
    
     @warn_unused_result
-    func union(other: GeometryType) ->  GeometryType
+    func union(other: Geometry) ->  Geometry
 
 //    @warn_unused_result
-//    func difference(other: GeometryType) -> GeometryType
+//    func difference(other: Geometry) -> Geometry
 //    
 //    @warn_unused_result
-//    func symDifference(other: GeometryType) -> GeometryType
+//    func symDifference(other: Geometry) -> Geometry
 }
 
 // MARK: Operators
 
 @warn_unused_result
-public func ==(lhs: GeometryType, rhs: GeometryType) -> Bool {
+public func ==(lhs: Geometry, rhs: Geometry) -> Bool {
     return lhs.equals(rhs)
 }
 
 @warn_unused_result
-public func !=(lhs: GeometryType, rhs: GeometryType) -> Bool {
+public func !=(lhs: Geometry, rhs: Geometry) -> Bool {
     return !lhs.equals(rhs)
 }

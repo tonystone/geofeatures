@@ -1,5 +1,5 @@
 /*
- *   Polygon+GeometryType.swift
+ *   GeometryCollection+Geometry.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,24 +19,25 @@
  */
 import Swift
 
-extension Polygon /* GeometryType conformance */ {
+// MARK:  Geometry conformance
 
+extension GeometryCollection /* Geometry conformance */ {
+    
     public func isEmpty() -> Bool {
-        return self.outerRing.count == 0
+        return self.count == 0
     }
-
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? Polygon {
-            return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, isEquivalent: { (lhs: LinearRing, rhs: LinearRing) -> Bool in
+    
+    public func equals(other: Geometry) -> Bool {
+        if let other = other as? GeometryCollection {
+            return self.elementsEqual(other, isEquivalent: { (lhs: Geometry, rhs: Geometry) -> Bool in
                 return lhs.equals(rhs)
             })
         }
         return false
     }
-
+    
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return Polygon()
+    public func union(other: Geometry) -> Geometry {
+        return GeometryCollection()
     }
 }
-

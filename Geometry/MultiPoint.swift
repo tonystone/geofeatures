@@ -33,19 +33,14 @@ import Swift
  
     All the elements in a MultiPoint shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPoint.
  */
-public struct MultiPoint : GeometryType {
+public struct MultiPoint : Geometry {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var elements = ContiguousArray<Point>()
-}
 
-// MARK:  GeometryCollectionType conformance
-
-extension MultiPoint : GeometryCollectionType {
-    
     /**
      MultiPoint is empty constructable
      */
@@ -92,7 +87,12 @@ extension MultiPoint : GeometryCollectionType {
         self.dimension = minDimension
         self.precision = defaultPrecision
     }
-    
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension MultiPoint : Collection {
+
     /**
         - Returns: The number of Point objects.
      */

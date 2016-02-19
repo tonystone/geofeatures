@@ -33,19 +33,14 @@ import Swift
  
     All the elements in a ${Self} shall be in the same Spatial Reference System. This is also the Spatial Reference System for the ${Self}.
  */
-public struct ${Self} : GeometryType {
+public struct ${Self} : Geometry {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var elements = ContiguousArray<${Element}>()
-}
 
-// MARK:  GeometryCollectionType conformance
-
-extension ${Self} : GeometryCollectionType {
-    
     /**
      ${Self} is empty constructable
      */
@@ -92,7 +87,12 @@ extension ${Self} : GeometryCollectionType {
         self.dimension = minDimension
         self.precision = defaultPrecision
     }
-    
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension ${Self} : Collection {
+
     /**
         - Returns: The number of ${Element} objects.
      */

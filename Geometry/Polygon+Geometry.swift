@@ -1,5 +1,5 @@
 /*
- *   MultiLineString+GeometryType.swift
+ *   Polygon+Geometry.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,24 +19,24 @@
  */
 import Swift
 
-extension MultiLineString  /* GeometryType conformance */  {
+extension Polygon /* Geometry conformance */ {
 
     public func isEmpty() -> Bool {
-        return self.count == 0
+        return self.outerRing.count == 0
     }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiLineString {
-            return self.elementsEqual(other, isEquivalent: { (lhs: LineString, rhs: LineString) -> Bool in
+
+    public func equals(other: Geometry) -> Bool {
+        if let other = other as? Polygon {
+            return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, isEquivalent: { (lhs: LinearRing, rhs: LinearRing) -> Bool in
                 return lhs.equals(rhs)
             })
         }
         return false
     }
-    
+
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
-        return GeometryCollection()
+    public func union(other: Geometry) -> Geometry {
+        return Polygon()
     }
 }
 

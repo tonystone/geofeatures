@@ -37,8 +37,8 @@ let polygon2 = Polygon(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[]))
 let polygon3 = Polygon(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[[(0.5,0.5), (0.5,6.5), (3.5,1.5), (1.5,0.5), (0.5,0.5)]]))
 
 // Geoemetry arrays can be constructed and used to create rthe collection types
-var geometryArray: [GeometryType] = [Point(coordinate: (1,1)), Polygon()]
-var pointArray:    [GeometryType] = [Point(coordinate: (1,1)), Point(coordinate: (2,2))]
+var geometryArray: [Geometry] = [Point(coordinate: (1,1)), Polygon()]
+var pointArray:    [Geometry] = [Point(coordinate: (1,1)), Point(coordinate: (2,2))]
 
 var geometryCollection1 = GeometryCollection(elements: geometryArray)
 var geometryCollection2 = GeometryCollection(elements: pointArray)
@@ -57,7 +57,7 @@ let lineString1IsEmpty         = LineString().isEmpty()
 let lineString2IsEmpty         = LineString(coordinates:[(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)]).isEmpty()
 
 let geometryCollection1IsEmpty = GeometryCollection().isEmpty()
-let geometryCollection2IsEmpty = GeometryCollection(elements: [Point(coordinate: (1,1))] as [GeometryType]).isEmpty()
+let geometryCollection2IsEmpty = GeometryCollection(elements: [Point(coordinate: (1,1))] as [Geometry]).isEmpty()
 
 // Comparison of points
 let pointsMatch1 = Point(coordinate: (1.4, 2.3)) == Point(coordinate: (1.4, 2.3))
@@ -68,7 +68,7 @@ let pointsMatch2 = Point(coordinate: (1, 1)) == Point(coordinate: (1.4, 2.3))
 let unionResult1 = Polygon().union(Polygon())
 let unionResult2 = Point(coordinate: (1, 1)).union(Point(coordinate: (1, 1)))
 
-if let linearType = LineString() as? protocol<GeometryType, LinearType> {
+if let linearType = LineString() as? protocol<Geometry, Curve> {
     print(linearType.dimension)
 } else {
     print("Can't convert")

@@ -32,18 +32,13 @@ import Swift
     A ${Self} is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct ${Self} : GeometryType {
+public struct ${Self} : Geometry {
 
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var coordinates = ContiguousArray<${Element3D}>()
-}
-
-// MARK: CoordinateCollectionType conformance
-
-extension ${Self}  : CoordinateCollectionType  {
 
     /**
         ${Self} is empty constructable
@@ -84,7 +79,12 @@ extension ${Self}  : CoordinateCollectionType  {
         
         while let coordinate = generator.next() { self.coordinates.append(self.precision.convert(coordinate)) }
     }
-    
+}
+
+// MARK: CoordinateCollectionType conformance
+
+extension ${Self}  : Collection  {
+
     /**
         - Returns: The number of ${Element3D} objects.
      */
@@ -127,12 +127,36 @@ extension ${Self}  : CoordinateCollectionType  {
     /**
         Append the elements of `newElements` to this ${Self}.
      */
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == ${Element2D}>(newElements: S) {
+        
+        var generator = newElements.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+        }
+    }
+
+    /**
+        Append the elements of `newElements` to this ${Self}.
+     */
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == ${Element2D}>(newElements: C) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
             self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+        }
+    }
+
+    /**
+        Append the elements of `newElements` to this ${Self}.
+     */
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == ${Element3D}>(newElements: S) {
+        
+        var generator = newElements.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(precision.convert(coordinate))
         }
     }
 
@@ -192,14 +216,6 @@ extension ${Self}  : CoordinateCollectionType  {
     }
 }
 
-// MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
-
-extension ${Self} : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
-    public var debugDescription : String { return self.description }
-}
-
 // MARK: CollectionType conformance
 
 extension ${Self} : CollectionType, MutableCollectionType, _DestructorSafeContainer {
@@ -227,4 +243,12 @@ extension ${Self} : CollectionType, MutableCollectionType, _DestructorSafeContai
     public func generate() -> IndexingGenerator<ContiguousArray<${Element3D}>> {
         return self.coordinates.generate()
     }
+}
+
+// MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
+
+extension ${Self} : CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
+    public var debugDescription : String { return self.description }
 }
