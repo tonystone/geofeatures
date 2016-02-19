@@ -1,5 +1,5 @@
 /*
- *   MultiPolygon+GeometryType.swift
+ *   LineString+Geometry.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,23 +19,23 @@
  */
 import Swift
 
-extension MultiPolygon  /* GeometryType conformance */  {
-    
+extension LineString /* Geometry conformance */ {
+
     public func isEmpty() -> Bool {
         return self.count == 0
     }
-    
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiPolygon {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Polygon, rhs: Polygon) -> Bool in
-                return lhs.equals(rhs)
+
+    public func equals(other: Geometry) -> Bool {
+        if let other = other as? LineString {
+            return self.elementsEqual(other, isEquivalent: { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return coordinateEquals(lhs, rhs, dimension: self.dimension)
             })
         }
         return false
     }
-    
+
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
+    public func union(other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

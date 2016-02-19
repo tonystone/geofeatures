@@ -32,18 +32,13 @@ import Swift
     A LinearRing is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LinearRing : GeometryType {
+public struct LinearRing : Geometry {
 
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var coordinates = ContiguousArray<Coordinate3D>()
-}
-
-// MARK: CoordinateCollectionType conformance
-
-extension LinearRing  : CoordinateCollectionType  {
 
     /**
         LinearRing is empty constructable
@@ -84,7 +79,12 @@ extension LinearRing  : CoordinateCollectionType  {
         
         while let coordinate = generator.next() { self.coordinates.append(self.precision.convert(coordinate)) }
     }
-    
+}
+
+// MARK: CoordinateCollectionType conformance
+
+extension LinearRing  : Collection  {
+
     /**
         - Returns: The number of Coordinate3D objects.
      */
@@ -127,12 +127,36 @@ extension LinearRing  : CoordinateCollectionType  {
     /**
         Append the elements of `newElements` to this LinearRing.
      */
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Coordinate2D>(newElements: S) {
+        
+        var generator = newElements.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+        }
+    }
+
+    /**
+        Append the elements of `newElements` to this LinearRing.
+     */
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Coordinate2D>(newElements: C) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
             self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+        }
+    }
+
+    /**
+        Append the elements of `newElements` to this LinearRing.
+     */
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Coordinate3D>(newElements: S) {
+        
+        var generator = newElements.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(precision.convert(coordinate))
         }
     }
 
@@ -192,14 +216,6 @@ extension LinearRing  : CoordinateCollectionType  {
     }
 }
 
-// MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
-
-extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
-    public var debugDescription : String { return self.description }
-}
-
 // MARK: CollectionType conformance
 
 extension LinearRing : CollectionType, MutableCollectionType, _DestructorSafeContainer {
@@ -227,4 +243,12 @@ extension LinearRing : CollectionType, MutableCollectionType, _DestructorSafeCon
     public func generate() -> IndexingGenerator<ContiguousArray<Coordinate3D>> {
         return self.coordinates.generate()
     }
+}
+
+// MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
+
+extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
+    public var debugDescription : String { return self.description }
 }

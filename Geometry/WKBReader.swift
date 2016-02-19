@@ -22,7 +22,7 @@ import Swift
 public class WKBReader  {
     public typealias Byte = UInt8
 
-    public func read(bytes: [Byte], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) throws -> GeometryType  {
+    public func read(bytes: [Byte], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) throws -> Geometry {
         return GeometryCollection()
     }
 }

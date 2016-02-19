@@ -22,7 +22,7 @@ import Swift
 /**
  Polygon
  */
-public struct Polygon : GeometryType {
+public struct Polygon : Geometry {
     
     public typealias RingType = LinearRing
     

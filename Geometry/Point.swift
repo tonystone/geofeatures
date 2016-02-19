@@ -26,7 +26,7 @@ import Swift
  x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
  have coordinate values for z.
  */
-public struct Point : GeometryType {
+public struct Point : Geometry {
     
     public let dimension: Int
     public let precision: Precision

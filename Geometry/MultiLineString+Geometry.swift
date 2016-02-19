@@ -1,5 +1,5 @@
 /*
- *   MultiPoint+GeometryType.swift
+ *   MultiLineString+Geometry.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,15 +19,15 @@
  */
 import Swift
 
-extension MultiPoint  /* GeometryType conformance */  {
-    
+extension MultiLineString  /* Geometry conformance */  {
+
     public func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(other: GeometryType) -> Bool {
-        if let other = other as? MultiPoint {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Point, rhs: Point) -> Bool in
+    public func equals(other: Geometry) -> Bool {
+        if let other = other as? MultiLineString {
+            return self.elementsEqual(other, isEquivalent: { (lhs: LineString, rhs: LineString) -> Bool in
                 return lhs.equals(rhs)
             })
         }
@@ -35,7 +35,7 @@ extension MultiPoint  /* GeometryType conformance */  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: GeometryType) -> GeometryType {
+    public func union(other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

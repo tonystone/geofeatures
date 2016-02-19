@@ -32,18 +32,13 @@ import Swift
     A LineString is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LineString : GeometryType {
+public struct LineString : Geometry {
 
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var coordinates = ContiguousArray<Coordinate3D>()
-}
-
-// MARK: CoordinateCollectionType conformance
-
-extension LineString  : CoordinateCollectionType  {
 
     /**
         LineString is empty constructable
@@ -84,7 +79,12 @@ extension LineString  : CoordinateCollectionType  {
         
         while let coordinate = generator.next() { self.coordinates.append(self.precision.convert(coordinate)) }
     }
-    
+}
+
+// MARK: CoordinateCollectionType conformance
+
+extension LineString  : Collection  {
+
     /**
         - Returns: The number of Coordinate3D objects.
      */
@@ -127,12 +127,36 @@ extension LineString  : CoordinateCollectionType  {
     /**
         Append the elements of `newElements` to this LineString.
      */
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Coordinate2D>(newElements: S) {
+        
+        var generator = newElements.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+        }
+    }
+
+    /**
+        Append the elements of `newElements` to this LineString.
+     */
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Coordinate2D>(newElements: C) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
             self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+        }
+    }
+
+    /**
+        Append the elements of `newElements` to this LineString.
+     */
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Coordinate3D>(newElements: S) {
+        
+        var generator = newElements.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(precision.convert(coordinate))
         }
     }
 
@@ -192,14 +216,6 @@ extension LineString  : CoordinateCollectionType  {
     }
 }
 
-// MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
-
-extension LineString : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
-    public var debugDescription : String { return self.description }
-}
-
 // MARK: CollectionType conformance
 
 extension LineString : CollectionType, MutableCollectionType, _DestructorSafeContainer {
@@ -227,4 +243,12 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
     public func generate() -> IndexingGenerator<ContiguousArray<Coordinate3D>> {
         return self.coordinates.generate()
     }
+}
+
+// MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
+
+extension LineString : CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
+    public var debugDescription : String { return self.description }
 }

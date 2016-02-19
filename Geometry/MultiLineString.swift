@@ -33,19 +33,14 @@ import Swift
  
     All the elements in a MultiLineString shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiLineString.
  */
-public struct MultiLineString : GeometryType {
+public struct MultiLineString : Geometry {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var elements = ContiguousArray<LineString>()
-}
 
-// MARK:  GeometryCollectionType conformance
-
-extension MultiLineString : GeometryCollectionType {
-    
     /**
      MultiLineString is empty constructable
      */
@@ -92,7 +87,12 @@ extension MultiLineString : GeometryCollectionType {
         self.dimension = minDimension
         self.precision = defaultPrecision
     }
-    
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension MultiLineString : Collection {
+
     /**
         - Returns: The number of LineString objects.
      */

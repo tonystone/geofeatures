@@ -33,19 +33,14 @@ import Swift
  
     All the elements in a MultiPolygon shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPolygon.
  */
-public struct MultiPolygon : GeometryType {
+public struct MultiPolygon : Geometry {
     
     public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var elements = ContiguousArray<Polygon>()
-}
 
-// MARK:  GeometryCollectionType conformance
-
-extension MultiPolygon : GeometryCollectionType {
-    
     /**
      MultiPolygon is empty constructable
      */
@@ -92,7 +87,12 @@ extension MultiPolygon : GeometryCollectionType {
         self.dimension = minDimension
         self.precision = defaultPrecision
     }
-    
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension MultiPolygon : Collection {
+
     /**
         - Returns: The number of Polygon objects.
      */

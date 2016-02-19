@@ -1,5 +1,5 @@
 /*
- *   ArialType.swift
+ *   Curve.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,6 +19,13 @@
  */
 import Swift
 
-public protocol ArealType {
+public protocol Curve {
+    
+    /**
+        The length of this Curve calaculated using its associated CoordinateReferenceSystem.
+     */
+    @warn_unused_result
+    func length() -> Double
     
 }
+

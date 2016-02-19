@@ -1,5 +1,5 @@
 /*
- *   LinearType.swift
+ *   Surface.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -19,12 +19,23 @@
  */
 import Swift
 
-public protocol LinearType {
-    
+public protocol Surface {
+
     /**
-        The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
-     */
+        The area of this Surface calaculated using its associated CoordinateReferenceSystem.
+    */
     @warn_unused_result
-    func length() -> Double
-    
+    func area() -> Double
+
+    /**
+        The mathematical centroid for this surface as a Point.  The Point is not guaranteed to be on this Surface
+    */
+    @warn_unused_result
+    func centroid() -> Point
+
+    /**
+
+    */
+    @warn_unused_result
+    func boundary() -> Geometry
 }
