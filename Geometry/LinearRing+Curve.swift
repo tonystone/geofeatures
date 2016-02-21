@@ -32,9 +32,10 @@ extension LinearRing : Curve {
         if self.coordinateReferenceSystem is Cartesian {
             var generator = self.generate()
             
-            if let p1 = generator.next() {
+            if var p1 = generator.next() {
                 while let  p2 = generator.next() {
                     length += sqrt(pow(abs(p1.x - p2.x), 2) + pow(abs(p1.y - p2.y), 2) + (self.dimension == 3 ? pow(abs(p1.z - p2.z), 2) : 0))
+                    p1 = p2
                 }
             }
         }
