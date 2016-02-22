@@ -44,5 +44,8 @@ lineString1 == lineString1
 lineString1 == lineString2
 lineString1 == lineString3
 
+// Create a Polygon with a tuple simaler to WKT with the syntax ([tuples], [[tuples]])
+Polygon<Coordinate2D>(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[]))
+Polygon<Coordinate2D>(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[[(0.5,0.5), (0.5,6.5), (3.5,1.5), (1.5,0.5), (0.5,0.5)]]))
 
 
