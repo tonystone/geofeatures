@@ -20,7 +20,7 @@
 import Swift
 
 public protocol Surface {
-
+    
     /**
         The area of this Surface calaculated using its associated CoordinateReferenceSystem.
     */
@@ -31,7 +31,7 @@ public protocol Surface {
         The mathematical centroid for this surface as a Point.  The Point is not guaranteed to be on this Surface
     */
     @warn_unused_result
-    func centroid() -> Point
+    func centroid() -> Geometry
 
     /**
 

@@ -25,10 +25,7 @@ public protocol Precision {
     func convert(value: Double) -> Double
     
     @warn_unused_result
-    func convert(tuple: (Double,Double)) -> (Double,Double)
-    
-    @warn_unused_result
-    func convert(tuple: (Double,Double,Double)) -> (Double,Double,Double)
+    func convert<T : Coordinate>(inout value: T)
 }
 
 public func ==<T1 : protocol<Precision, Hashable>, T2 : protocol<Precision, Hashable>>(lhs: T1, rhs: T2) -> Bool {

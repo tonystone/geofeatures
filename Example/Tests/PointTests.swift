@@ -24,28 +24,45 @@ import XCTest
 class PointTests: XCTestCase {
     
     // MARK: Init
+    func testInit_2D() {
+        let point = Point<Coordinate2D>(coordinate: (1.0,1.0))
+        
+        XCTAssertEqual(point.x == 1.0 && point.y == 1.0, true)
+    }
     
-    func test3DInit() {
-        let point = Point(coordinate: (1.0,1.0,1.0))
+    func testInit_2DMeasured() {
+        let point = Point<Coordinate2DM>(coordinate: (1.0,1.0,1.0))
+        
+        XCTAssertEqual(point.x == 1.0 && point.y == 1.0 && point.m == 1.0, true)
+    }
+    
+    func testInit_3D() {
+        let point = Point<Coordinate3D>(coordinate: (1.0,1.0,1.0))
         
         XCTAssertEqual(point.x == 1.0 && point.y == 1.0 && point.z == 1.0, true)
     }
     
+    func testInit_3DMeasured() {
+        let point = Point<Coordinate3DM>(coordinate: (1.0,1.0,1.0,1.0))
+        
+        XCTAssertEqual(point.x == 1.0 && point.y == 1.0 && point.z == 1.0 && point.m == 1.0, true)
+    }
+    
     // MARK: Equal
     
-    func test3DEquals_IntZero_True() { XCTAssertEqual(Point(coordinate: (0,0,0)) == Point(coordinate: (0,0,0)), true) }
+    func test3DEquals_IntZero_True()    { XCTAssertEqual(Point<Coordinate3D>(coordinate: (0,0,0)) == Point<Coordinate3D>(coordinate: (0,0,0)), true) }
     
-    func test3DEquals_IntOne_False() { XCTAssertEqual(Point(coordinate: (1,1,1)) == Point(coordinate: (2,2,2)), false) }
+    func test3DEquals_IntOne_False()    { XCTAssertEqual(Point<Coordinate3D>(coordinate: (1,1,1)) == Point<Coordinate3D>(coordinate: (2,2,2)), false) }
     
-    func test2DEquals_IntOne_True() { XCTAssertEqual(Point(coordinate: (1,1)) == Point(coordinate: (1,1)), true) }
+    func test2DEquals_IntOne_True()     { XCTAssertEqual(Point<Coordinate2D>(coordinate: (1,1)) == Point<Coordinate2D>(coordinate: (1,1)), true) }
     
-    func test2DEquals_IntOne_False() { XCTAssertEqual(Point(coordinate: (1,1)) == Point(coordinate: (2,2)), false) }
+    func test2DEquals_IntOne_False()    { XCTAssertEqual(Point<Coordinate2D>(coordinate: (1,1)) == Point<Coordinate2D>(coordinate: (2,2)), false) }
     
-    func test2DEquals3D_IntOne_False () { XCTAssertEqual(Point(coordinate: (1,1)) == Point(coordinate: (1,1,Double.NaN)), false) }
+    func test2DEquals3D_IntOne_False () { XCTAssertEqual(Point<Coordinate2D>(coordinate: (1,1)) == Point<Coordinate3D>(coordinate: (1,1,Double.NaN)), false) }
     
     // MARK: isEmpty
     
-    func testIsEmpty() {  XCTAssertEqual(Point(coordinate: (1,1)).isEmpty(), false)  }
+    func testIsEmpty() {  XCTAssertEqual(Point<Coordinate2D>(coordinate: (1,1)).isEmpty(), false)  }
 }
 
 

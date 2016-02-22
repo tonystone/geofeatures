@@ -20,37 +20,49 @@
 import Swift
 
 /**
- 2D Coordinate
+    2D Coordinate
  
- Low level 2 dimensional Coorodinate type
+    Low level 2 dimensional Coorodinate type
  */
-public typealias Coordinate2D = (x: Double, y: Double)
-
-//: Mark: Equatable
-
-internal func coordinateEquals<T : protocol<Comparable, FloatingPointType>>(tuple1: (T,T), _ tuple2: (T,T)) -> Bool {
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
+public struct Coordinate2D : Coordinate, _CoordinateConstructable {
+    public typealias TupleType = (x: Double, y: Double)
+    
+    public var x: Double
+    public var y: Double
+    
+    public var tuple: TupleType {
+        get { return (self.x, self.y) }
+        set { self.x = newValue.x; self.y = newValue.y }
+    }
+    
+    public init() {
+        self.x = Double.NaN
+        self.y = Double.NaN
+    }
+    
+    public init(other: Coordinate2D) {
+        self.x = other.x
+        self.y = other.y
+    }
+    
+    public init(tuple: TupleType) {
+        self.x = tuple.x
+        self.y = tuple.y
+    }
 }
 
-internal func coordinateEquals<T : protocol<Comparable, IntegerType>>(tuple1: (T,T), _ tuple2: (T,T), dimension: Int) -> Bool {
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
+public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y
 }
 
-//: Mark: Math
-
-internal func coordinateAdd(tuple1: (Double,Double), _ tuple2: (Double,Double)) -> (Double,Double)  {
-    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1)
-}
-
-internal func coordinateAdd(tuple1: (Int,Int), _ tuple2: (Int,Int)) -> (Int,Int)  {
-    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1)
-}
-
-internal func coordinateSubtract(tuple1: (Double,Double), _ tuple2: (Double,Double)) -> (Double,Double) {
-    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1)
-}
-
-internal func coordinateSubtract(tuple1: (Int,Int), _ tuple2: (Int,Int)) -> (Int,Int) {
-    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1)
+extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description : String {
+        return "(x: \(self.x), y: \(self.y))"
+    }
+    
+    public var debugDescription : String {
+        return self.description
+    }
 }
 

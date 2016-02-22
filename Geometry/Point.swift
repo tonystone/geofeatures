@@ -26,45 +26,53 @@ import Swift
  x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
  have coordinate values for z.
  */
-public struct Point : Geometry {
+public struct Point<CoordinateType : protocol<Coordinate, _CoordinateConstructable>> : Geometry {
     
-    public let dimension: Int
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
     
-    internal let coordinate: Coordinate3D
-    
-    /**
-     * Initialize this Point with the coordinates
-     */
-    public init(coordinate: (Double, Double), precision: Precision = defaultPrecision) {
-        self.dimension = 2
-        self.precision = precision
-        
-        self.coordinate = precision.convert((coordinate.0, coordinate.1, Double.NaN))
-    }
-    
-    public init(coordinate: (Double, Double, Double), precision: Precision = defaultPrecision)  {
-        self.dimension = 3
-        self.precision = precision
-        
-        self.coordinate = precision.convert(coordinate)
-    }
-
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
+    
+    public init(coordinate: CoordinateType.TupleType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        var convertedCoordinate = CoordinateType(tuple: coordinate)
+        
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinate = convertedCoordinate
+        
+    }
+    public init(coordinate: CoordinateType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        var convertedCoordinate = CoordinateType(other: coordinate)
+        
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinate = convertedCoordinate
+    }
+    
+    internal let coordinate: CoordinateType
+}
+
+extension Point where CoordinateType : ThreeDimensional {
     public var z: Double { get { return coordinate.z } }
+}
+
+extension Point where CoordinateType : Measured {
+    public var m: Double { get { return coordinate.m } }
 }
 
 extension Point : CustomStringConvertible, CustomDebugStringConvertible {
     
-    public var description : String {
-        return "\(self.dynamicType)(\(self.coordinate.0),\(self.coordinate.1),\(self.coordinate.2))"
-    }
-    
-    public var debugDescription : String {
-        return self.description
-    }
+    public var description : String { return "\(self.dynamicType)(\(self.coordinate))"  }
+    public var debugDescription : String { return self.description  }
 }
 
 

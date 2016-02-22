@@ -33,58 +33,48 @@ import Swift
  
     All the elements in a GeometryCollection shall be in the same Spatial Reference System. This is also the Spatial Reference System for the GeometryCollection.
  */
-public struct GeometryCollection : Geometry {
-    
-    public let dimension: Int
+public struct GeometryCollection : Geometry  {
+
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
     private var elements = ContiguousArray<Geometry>()
 
     /**
-     GeometryCollection is empty constructable
+        GeometryCollection is empty constructable
      */
     public init () {
-        self.dimension = 0
         self.precision = defaultPrecision
     }
     
     /**
-     GeometryCollection can be constructed from any SequenceType as long as it has an
-     Element type equal the Geometry Element.
+        GeometryCollection can be constructed from any SequenceType as long as it has an
+        Element type equal the Geometry Element.
      */
     public init<C : SequenceType where C.Generator.Element == Geometry>(elements: C) {
-        
-        var minDimension: Int = 3
-        var generator         = elements.generate()
+    
+        var generator = elements.generate()
         
         while let element = generator.next() {
-            minDimension = min(minDimension, element.dimension)
-            
             self.elements.append(element)
         }
-        self.dimension = minDimension
         self.precision = defaultPrecision
     }
     
     /**
-     GeometryCollection can be constructed from any CollectionType including Array as
-     long as it has an Element type equal the Geometry Element and the Distance
-     is an Int type.
+        GeometryCollection can be constructed from any CollectionType including Array as
+        long as it has an Element type equal the Geometry Element and the Distance
+        is an Int type.
      */
     public init<C : CollectionType where C.Generator.Element == Geometry, C.Index.Distance == Int>(elements: C) {
         
         self.elements.reserveCapacity(elements.count)
-        
-        var minDimension: Int = 3
-        var generator         = elements.generate()
+
+        var generator = elements.generate()
         
         while let element = generator.next() {
-            minDimension = min(minDimension, element.dimension)
-            
             self.elements.append(element)
         }
-        self.dimension = minDimension
         self.precision = defaultPrecision
     }
 }
@@ -186,7 +176,7 @@ extension GeometryCollection {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> Geometry {
+    public subscript(position : Int) -> Geometry{
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }

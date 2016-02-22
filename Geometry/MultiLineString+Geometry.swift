@@ -26,8 +26,8 @@ extension MultiLineString  /* Geometry conformance */  {
     }
     
     public func equals(other: Geometry) -> Bool {
-        if let other = other as? MultiLineString {
-            return self.elementsEqual(other, isEquivalent: { (lhs: LineString, rhs: LineString) -> Bool in
+        if let other = other as? MultiLineString<CoordinateType> {
+            return self.elementsEqual(other, isEquivalent: { (lhs: LineString<CoordinateType>, rhs: LineString<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
             })
         }

@@ -32,73 +32,95 @@ import Swift
     A ${Self} is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct ${Self} : Geometry {
-
-    public let dimension: Int
+public struct ${Self}<CoordinateType : protocol<Coordinate, _CoordinateConstructable>> : Geometry {
+    
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
-
-    private var coordinates = ContiguousArray<${Element3D}>()
-
-    /**
-        ${Self} is empty constructable
-     */
-    public init () {
-        self.dimension = 0
-        self.precision = defaultPrecision
-    }
-
-    /**
-        ${Self} can be constructed from any SequenceType as long as it has an
-        Element type equal the ${Element2D} Element.
-     */
-    public init<C : CollectionType where C.Generator.Element == ${Element2D}, C.Index.Distance == Int>(coordinates: C, precision: Precision = defaultPrecision) {
-        
-        self.dimension = 2
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
+    
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+    }
+    
+    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
-        self.coordinates.reserveCapacity(coordinates.count)
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
         
         var generator = coordinates.generate()
         
-        while let (x, y) = generator.next() { self.coordinates.append(self.precision.convert((x,y, Double.NaN))) }
+        while let coordinate = generator.next() {
+            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates.append(convertedCoordinate)
+        }
     }
-
-    /**
-        ${Self} can be constructed from any SequenceType as long as it has an
-        Element type equal the ${Element3D} Element.
-     */
-    public init<C : CollectionType where C.Generator.Element == ${Element3D}, C.Index.Distance == Int>(coordinates: C, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(coordinates: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
-        self.dimension = 3
         self.precision = precision
-        
-        self.coordinates.reserveCapacity(coordinates.count)
+        self.coordinateReferenceSystem = coordinateReferenceSystem
         
         var generator = coordinates.generate()
         
-        while let coordinate = generator.next() { self.coordinates.append(self.precision.convert(coordinate)) }
+        while let coordinate = generator.next() {
+            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates.append(convertedCoordinate)
+        }
     }
+    
+    public init<S : SequenceType where S.Generator.Element == CoordinateType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        var generator = coordinates.generate()
+        
+        while var coordinate = generator.next() {
+            self.precision.convert(&coordinate)
+            
+            self.coordinates.append(coordinate)
+        }
+    }
+    public init<C : CollectionType where C.Generator.Element == CoordinateType>(coordinates: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        var generator = coordinates.generate()
+        
+        while var coordinate = generator.next() {
+            self.precision.convert(&coordinate)
+            
+            self.coordinates.append(coordinate)
+        }
+    }
+    
+    private var coordinates = ContiguousArray<CoordinateType>()
 }
 
 // MARK: CoordinateCollectionType conformance
 
-extension ${Self}  : Collection  {
-
+extension ${Self}  {
+    
     /**
-        - Returns: The number of ${Element3D} objects.
+        - Returns: The number of Coordinate3D objects.
      */
     public var count: Int {
         get { return self.coordinates.count }
     }
-
+    
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
         get { return self.coordinates.capacity }
     }
-
+    
     /**
         Reserve enough space to store `minimumCapacity` elements.
      
@@ -107,77 +129,99 @@ extension ${Self}  : Collection  {
     public mutating func reserveCapacity(minimumCapacity: Int) {
         self.coordinates.reserveCapacity(minimumCapacity)
     }
-
+    
     /**
         Reserve enough space to store `minimumCapacity` elements.
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: ${Element2D}) {
-        self.coordinates.append(self.precision.convert((newElement.x,newElement.y,Double.NaN)))
+    public mutating func append(newElement: CoordinateType) {
+        var convertedCoordinate = CoordinateType(other: newElement)
+        
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinates.append(convertedCoordinate)
     }
-
+    
+    /**
+        Reserve enough space to store `minimumCapacity` elements.
+     
+        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
+     */
+    public mutating func append(newElement: CoordinateType.TupleType) {
+        var convertedCoordinate = CoordinateType(tuple: newElement)
+        
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinates.append(convertedCoordinate)
+    }
+    
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func append(newElement: ${Element3D}) {
-        self.coordinates.append(self.precision.convert(newElement))
-    }
-
-    /**
-        Append the elements of `newElements` to this ${Self}.
-     */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == ${Element2D}>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(newElements: S) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates.append(convertedCoordinate)
         }
     }
-
+    
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == ${Element2D}>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(newElements: C) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            self.coordinates.append(precision.convert((coordinate.x,coordinate.y,Double.NaN)))
+            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates.append(convertedCoordinate)
         }
     }
-
+    
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == ${Element3D}>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == CoordinateType>(newElements: S) {
         
         var generator = newElements.generate()
         
-        while let coordinate = generator.next() {
-            self.coordinates.append(precision.convert(coordinate))
+        while var coordinate = generator.next() {
+            self.precision.convert(&coordinate)
+            
+            self.coordinates.append(coordinate)
         }
     }
-
+    
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == ${Element3D}>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == CoordinateType>(newElements: C) {
         
         var generator = newElements.generate()
         
-        while let coordinate = generator.next() {
-            self.coordinates.append(precision.convert(coordinate))
+        while var coordinate = generator.next() {
+            self.precision.convert(&coordinate)
+            
+            self.coordinates.append(coordinate)
         }
     }
-
+    
     /**
         Remove an element from the end of this ${Self}.
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> ${Element3D} {
+    public mutating func removeLast() -> CoordinateType {
         return self.coordinates.removeLast()
     }
 
@@ -186,26 +230,34 @@ extension ${Self}  : Collection  {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: ${Element2D}, atIndex i: Int) {
-        self.coordinates.insert(self.precision.convert((newElement.x,newElement.y,Double.NaN)), atIndex: i)
+    public mutating func insert(newElement: CoordinateType.TupleType, atIndex i: Int) {
+        var convertedCoordinate = CoordinateType(tuple: newElement)
+        
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinates.insert(convertedCoordinate, atIndex: i)
     }
-
+    
     /**
         Insert `newElement` at index `i` of this ${Self}.
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: ${Element3D}, atIndex i: Int) {
-        self.coordinates.insert(self.precision.convert(newElement), atIndex: i)
+    public mutating func insert(newElement: CoordinateType, atIndex i: Int) {
+        var convertedCoordinate = CoordinateType(other: newElement)
+        
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinates.insert(convertedCoordinate, atIndex: i)
     }
-
+    
     /**
         Remove and return the element at index `i` of this ${Self}.
      */
-    public mutating func removeAtIndex(index: Int) -> ${Element3D} {
+    public mutating func removeAtIndex(index: Int) -> CoordinateType {
         return self.coordinates.removeAtIndex(index)
     }
-
+    
     /**
         Remove all elements of this ${Self}.
      
@@ -219,28 +271,43 @@ extension ${Self}  : Collection  {
 // MARK: CollectionType conformance
 
 extension ${Self} : CollectionType, MutableCollectionType, _DestructorSafeContainer {
-
+    
     /**
         Always zero, which is the index of the first element when non-empty.
      */
     public var startIndex : Int { return self.coordinates.startIndex }
-
+    
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
     public var endIndex   : Int { return self.coordinates.endIndex }
     
-    public subscript(position : Int) -> ${Element3D} {
-        get         { return self.coordinates[position] }
-        set (value) { self.coordinates[position] = value }
+    public subscript(position : Int) -> CoordinateType {
+        
+        get {
+            return self.coordinates[position]
+        }
+        
+        set (value) {
+            var convertedCoordinate = CoordinateType(other: value)
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates[position] = convertedCoordinate
+        }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<${Element3D}> {
-        get         { return self.coordinates[range] }
-        set (value) { self.coordinates[range] = value }
+    public subscript(range: Range<Int>) -> ArraySlice<CoordinateType> {
+        get {
+            return self.coordinates[range]
+        }
+        
+        set (value) {
+            // TODO: precision convert the values before putting them in
+            self.coordinates[range] = value
+        }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<${Element3D}>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<CoordinateType>> {
         return self.coordinates.generate()
     }
 }
@@ -249,6 +316,12 @@ extension ${Self} : CollectionType, MutableCollectionType, _DestructorSafeContai
 
 extension ${Self} : CustomStringConvertible, CustomDebugStringConvertible {
     
-    public var description : String { return "\(self.dynamicType)(\(self.coordinates.description))" }
-    public var debugDescription : String { return self.description }
+    public var description : String {
+        return "\(self.dynamicType)(\(self.coordinates.description))"
+    }
+    
+    public var debugDescription : String {
+        return self.description
+    }
 }
+

@@ -25,67 +25,71 @@ class LineStringTests: XCTestCase {
     // MARK: Init
     
     func testInit_NoArg()   {
-        XCTAssertEqual(LineString().isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate2D>().isEmpty, true)
     }
     
     func testInit_Double2DTuple_FloatingPrecision() {
+        let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10.0,10.0)]).elementsEqual([(10.0,10.0,Double.NaN)])
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return coordinateEquals(lhs, rhs, dimension: 2)
+            (LineString<Coordinate2D>(coordinates: [(10.0,10.0)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.0,10.0))])
+                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                    return lhs == rhs
             }
         ), true)
     }
     
     func testInit_Double2DTuple_FixedPrecision() {
-        let fixed = FixedPrecision(scale: 100)
+        let precision = FixedPrecision(scale: 100)
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10.03,10.04)], precision: fixed).elementsEqual([(10.03,10.04,Double.NaN)])
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return coordinateEquals(lhs, rhs, dimension: 2)
+            (LineString<Coordinate2D>(coordinates: [(10.03,10.04)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.03,10.04))])
+                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                    return lhs == rhs
                 }
             ), true)
     }
     
     func testInit_Double2DTuple_FixedPrecision_Truncated() {
-        let fixed = FixedPrecision(scale: 100)
+        let precision = FixedPrecision(scale: 100)
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10.003,10.004)], precision: fixed).elementsEqual([(10.0,10.0,Double.NaN)])
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return coordinateEquals(lhs, rhs, dimension: 2)
+            (LineString<Coordinate2D>(coordinates: [(10.033,10.043)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.03,10.04))])
+                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                    return lhs == rhs
                 }
             ), true)
     }
     
     func testInit_Double3DTuple_FloatingPrecision() {
+        let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10.0,10.0,10.0)]).elementsEqual([(10.0,10.0,10.0)])
+            (LineString<Coordinate3D>(coordinates: [(10.0,10.0,10.0)], precision: precision).elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return coordinateEquals(lhs, rhs, dimension: 3)
+                    return lhs == rhs
                 }
             ), true)
     }
     
     func testInit_Int2DTuple_FloatingPrecision() {
+        let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10,10)]).elementsEqual([(10.0,10.0,Double.NaN)])
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return coordinateEquals(lhs, rhs, dimension: 2)
+            (LineString(coordinates: [(10,10)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.0,10.0))])
+                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                    return lhs == rhs
                 }
             ), true)
     }
     
     func testInit_Int3DTuple_FloatingPrecision() {
+        let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10,10,10)]).elementsEqual([(10.0,10.0,10.0)])
+            (LineString(coordinates: [(10,10,10)], precision: precision).elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                    return coordinateEquals(lhs, rhs, dimension: 3)
+                    return lhs == rhs
                 }
             ), true)
     }
@@ -93,73 +97,73 @@ class LineStringTests: XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = LineString(coordinates: [(10,10,10),(20,20,20)])
+        let lineString = LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20)])
         
-        XCTAssertEqual(coordinateEquals(lineString[1], (20,20,20), dimension: 3), true)
+        XCTAssertEqual(lineString[1] == Coordinate3D(tuple: (20,20,20)), true)
     }
     
     func testSubscript_Set () {
-        var lineString = LineString(coordinates: [(10,10,10),(20,20,20)])
+        var lineString = LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20)])
         
-        lineString[1] = (10,10,10)
+        lineString[1] = Coordinate3D(tuple: (10,10,10))
         
-        XCTAssertEqual(coordinateEquals(lineString[1], (10,10,10), dimension: 3), true)
+        XCTAssertEqual(lineString[1] ==  Coordinate3D(tuple: (10,10,10)), true)
     }
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = LineString(coordinates: [(10,10,10),(20,20,20)])
-        var lineString2 = LineString()
+        let lineString1 = LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20)])
+        var lineString2 = LineString<Coordinate3D>()
         
         lineString2.appendContentsOf(lineString1)
         
-        XCTAssertEqual(lineString1.equals(lineString2), true)
+        XCTAssertEqual(lineString1 == lineString2, true)
     }
     
     func testAppendContentsOf_Array () {
         
-        let array      = [(10.0,10.0,10.0),(20.0,20.0,20.0)]
-        var lineString2 = LineString()
+        let array      = [Coordinate3D(tuple: (10.0,10.0,10.0)),Coordinate3D(tuple: (20.0,20.0,20.0))]
+        var lineString2 = LineString<Coordinate3D>()
         
         lineString2.appendContentsOf(array)
         
         XCTAssertEqual(lineString2.elementsEqual(array) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-            return coordinateEquals(lineString2[1], (20,20,20), dimension: 3)
+            return lhs == rhs
         }, true)
     }
     
     // MARK: Equal
     
     func testEquals_Int3D () {
-        XCTAssertEqual(LineString(coordinates: [(10,10,10)]).equals(LineString(coordinates: [(10.0,10.0,10.0)])), true)
+        XCTAssertEqual(LineString<Coordinate3D>(coordinates: [(10,10,10)]).equals(LineString<Coordinate3D>(coordinates: [(10.0,10.0,10.0)])), true)
     }
     
     func testEquals_Int2D () {
-        XCTAssertEqual(LineString(coordinates: [(10,10)]).equals(LineString(coordinates: [(10.0,10.0,Double.NaN)])), true)
+        XCTAssertEqual(LineString<Coordinate2D>(coordinates: [(10,10)]).equals(LineString<Coordinate2D>(coordinates: [(10.0,10.0)])), true)
     }
     
     // MARK: isEmpty
     
     func testIsEmpty_True() {
-        XCTAssertEqual(LineString().isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate2D>().isEmpty(), true)
     }
     
     func testIsEmpty_False() {
-        XCTAssertEqual(LineString(coordinates: [(10,10,10)]).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate3D>(coordinates: [(10,10,10)]).isEmpty(), false)
     }
     
     func testCount () {
-        XCTAssertEqual(LineString(coordinates: [(10,10,10),(20,20,20),(30,30,30)]).count, 3)
+        XCTAssertEqual(LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20),(30,30,30)]).count, 3)
     }
     
     func testAppend () {
-        var lineString = LineString()
+        var lineString = LineString<Coordinate3D>()
         
         lineString.append((10,10,10))
         
-        XCTAssertEqual(lineString.elementsEqual([(10.0,10.0,10.0)])
+        XCTAssertEqual(lineString.elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
             { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return coordinateEquals(lhs, rhs, dimension:  3)
+                return lhs == rhs
         }, true)
     }
 

@@ -20,36 +20,52 @@
 import Swift
 
 /**
- 3D Coordinate
+    3D Coordinate
  
- Low level 3 dimensional Coorodinate type
+    Low level 3 dimensional Coorodinate type
  */
-public typealias Coordinate3D = (x: Double, y: Double, z: Double)
-
-//: Mark: Equatable
-
-internal func coordinateEquals<T : protocol<Comparable, FloatingPointType>>(tuple1: (T,T,T), _ tuple2: (T,T,T), dimension: Int) -> Bool {
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (dimension == 3 ? (tuple1.2 == tuple2.2) : true)
+public struct Coordinate3D : Coordinate, ThreeDimensional, _CoordinateConstructable {
+    public typealias TupleType = (x: Double, y: Double, z: Double)
+    
+    public var x: Double
+    public var y: Double
+    public var z: Double
+    
+    public var tuple: TupleType {
+        get { return (self.x, self.y, self.z)  }
+        set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z }
+    }
+    
+    public init() {
+        self.x = Double.NaN
+        self.y = Double.NaN
+        self.z = Double.NaN
+    }
+    
+    public init(other: Coordinate3D) {
+        self.x = other.x
+        self.y = other.y
+        self.z = other.z
+    }
+    
+    public init(tuple: TupleType) {
+        self.x = tuple.x
+        self.y = tuple.y
+        self.z = tuple.z
+    }
 }
 
-internal func coordinateEquals<T : protocol<Comparable, IntegerType>>(tuple1: (T,T,T), _ tuple2: (T,T,T), dimension: Int) -> Bool {
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (dimension == 3 ? (tuple1.2 == tuple2.2) : true)
+public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }
 
-//: Mark: Math
-
-internal func coordinateAdd(tuple1: (Double,Double,Double), _ tuple2: (Double,Double,Double), dimension: Int) -> (Double,Double,Double)  {
-    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1, (dimension == 3 ? tuple1.2 + tuple2.2 : Double.NaN))
-}
-
-internal func coordinateAdd(tuple1: (Int,Int,Int), _ tuple2: (Int,Int,Int), dimension: Int) -> (Int,Int,Int)  {
-    return (tuple1.0 + tuple2.0, tuple1.1 + tuple2.1, (dimension == 3 ? tuple1.2 + tuple2.2 : 0))
-}
-
-internal func coordinateSubtract(tuple1: (Double,Double,Double), _ tuple2: (Double,Double,Double), dimension: Int) -> (Double,Double,Double) {
-    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1, (dimension == 3 ? tuple1.2 - tuple2.2 : Double.NaN))
-}
-
-internal func coordinateSubtract(tuple1: (Int,Int,Int), _ tuple2: (Int,Int,Int), dimension: Int) -> (Int,Int,Int) {
-    return (tuple1.0 - tuple2.0, tuple1.1 - tuple2.1, (dimension == 3 ? tuple1.2 - tuple2.2 : 0))
+extension Coordinate3D : CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description : String {
+        return "(x: \(self.x), y: \(self.y), z: \(self.z))"
+    }
+    
+    public var debugDescription : String {
+        return self.description
+    }
 }

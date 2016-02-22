@@ -33,58 +33,48 @@ import Swift
  
     All the elements in a MultiPolygon shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPolygon.
  */
-public struct MultiPolygon : Geometry {
-    
-    public let dimension: Int
+public struct MultiPolygon<CoordinateType : protocol<Coordinate, _CoordinateConstructable>> : Geometry  {
+
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
-    private var elements = ContiguousArray<Polygon>()
+    private var elements = ContiguousArray<Polygon<CoordinateType>>()
 
     /**
-     MultiPolygon is empty constructable
+        MultiPolygon is empty constructable
      */
     public init () {
-        self.dimension = 0
         self.precision = defaultPrecision
     }
     
     /**
-     MultiPolygon can be constructed from any SequenceType as long as it has an
-     Element type equal the Polygon Element.
+        MultiPolygon can be constructed from any SequenceType as long as it has an
+        Element type equal the Polygon Element.
      */
-    public init<C : SequenceType where C.Generator.Element == Polygon>(elements: C) {
-        
-        var minDimension: Int = 3
-        var generator         = elements.generate()
+    public init<C : SequenceType where C.Generator.Element == Polygon<CoordinateType>>(elements: C) {
+
+        var generator = elements.generate()
         
         while let element = generator.next() {
-            minDimension = min(minDimension, element.dimension)
-            
             self.elements.append(element)
         }
-        self.dimension = minDimension
         self.precision = defaultPrecision
     }
     
     /**
-     MultiPolygon can be constructed from any CollectionType including Array as
-     long as it has an Element type equal the Polygon Element and the Distance
-     is an Int type.
+        MultiPolygon can be constructed from any CollectionType including Array as
+        long as it has an Element type equal the Polygon Element and the Distance
+        is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Polygon, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Polygon<CoordinateType>, C.Index.Distance == Int>(elements: C) {
         
         self.elements.reserveCapacity(elements.count)
-        
-        var minDimension: Int = 3
-        var generator         = elements.generate()
+
+        var generator = elements.generate()
         
         while let element = generator.next() {
-            minDimension = min(minDimension, element.dimension)
-            
             self.elements.append(element)
         }
-        self.dimension = minDimension
         self.precision = defaultPrecision
     }
 }
@@ -119,21 +109,21 @@ extension MultiPolygon : Collection {
     /**
         Append `newElement` to this MultiPolygon.
      */
-    public mutating func append(newElement: Polygon) {
+    public mutating func append(newElement: Polygon<CoordinateType>) {
         self.elements.append(newElement)
     }
 
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Polygon>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Polygon<CoordinateType>>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Polygon>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Polygon<CoordinateType>>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
@@ -142,7 +132,7 @@ extension MultiPolygon : Collection {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> Polygon {
+    public mutating func removeLast() -> Polygon<CoordinateType> {
         return self.elements.removeLast()
     }
 
@@ -151,14 +141,14 @@ extension MultiPolygon : Collection {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Polygon, atIndex i: Int) {
+    public mutating func insert(newElement: Polygon<CoordinateType>, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
         Remove and return the element at index `i` of this MultiPolygon.
      */
-    public mutating func removeAtIndex(index: Int) -> Polygon {
+    public mutating func removeAtIndex(index: Int) -> Polygon<CoordinateType> {
         return self.elements.removeAtIndex(index)
     }
 
@@ -186,17 +176,17 @@ extension MultiPolygon {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> Polygon {
+    public subscript(position : Int) -> Polygon<CoordinateType> {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<Polygon> {
+    public subscript(range: Range<Int>) -> ArraySlice<Polygon<CoordinateType>> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<Polygon>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Polygon<CoordinateType>>> {
         return self.elements.generate()
     }
 }

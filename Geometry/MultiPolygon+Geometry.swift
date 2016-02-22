@@ -26,8 +26,8 @@ extension MultiPolygon  /* Geometry conformance */  {
     }
     
     public func equals(other: Geometry) -> Bool {
-        if let other = other as? MultiPolygon {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Polygon, rhs: Polygon) -> Bool in
+        if let other = other as? MultiPolygon<CoordinateType> {
+            return self.elementsEqual(other, isEquivalent: { (lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
             })
         }

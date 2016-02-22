@@ -26,8 +26,8 @@ extension MultiPoint  /* Geometry conformance */  {
     }
     
     public func equals(other: Geometry) -> Bool {
-        if let other = other as? MultiPoint {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Point, rhs: Point) -> Bool in
+        if let other = other as? MultiPoint<CoordinateType> {
+            return self.elementsEqual(other, isEquivalent: { (lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
             })
         }

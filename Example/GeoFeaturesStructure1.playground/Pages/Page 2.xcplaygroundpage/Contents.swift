@@ -69,21 +69,21 @@ public protocol Coordinate  {
 }
 
 /*:
-    3D
+3D
 */
 public protocol ThreeDimensional {
     var z: Double { get }
 }
 
 /*:
-    Measured
+Measured
 */
 public protocol Measured {
     var m: Double { get }
 }
 
 /*:
-    Internal private
+Internal private
 */
 public protocol _CoordinateConstructable {
     typealias TupleType
@@ -356,7 +356,7 @@ public struct LineString<CoordinateTupleType : protocol<Coordinate, _CoordinateC
     
     private var coordinates = ContiguousArray<CoordinateTupleType>()
     
-    init( coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
     }
@@ -381,6 +381,29 @@ public struct LineString<CoordinateTupleType : protocol<Coordinate, _CoordinateC
         
         while let coordinate = generator.next() {
             self.coordinates.append(CoordinateTupleType(tuple: coordinate, precision: self.precision))
+        }
+    }
+    
+    init<S : SequenceType where S.Generator.Element == CoordinateTupleType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        var generator = coordinates.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(CoordinateTupleType(other: coordinate, precision: self.precision))
+        }
+    }
+    init<C : CollectionType where C.Generator.Element == CoordinateTupleType>(coordinates: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        var generator = coordinates.generate()
+        
+        while let coordinate = generator.next() {
+            self.coordinates.append(CoordinateTupleType(other: coordinate, precision: self.precision))
         }
     }
 }
@@ -597,6 +620,7 @@ var lineString1 = LineString<Coordinate2D>()
 lineString1.append((1.001, 1.001))
 lineString1.append((2.001, 2.001))
 lineString1.append((3.001, 3.001))
+
 // lineString1.append((3.003, 3.003, 3.003))  // Error:
 
 lineString1.length()
@@ -604,6 +628,8 @@ lineString1.length()
 lineString1.pointN(0)
 
 let fixedPrecision = FixedPrecision(scale: 100)
+
+LineString<Coordinate2D>(coordinates: lineString1, precision: fixedPrecision)
 
 var lineString2 = LineString<Coordinate2D>(coordinates: [(1.001, 1.001),(2.001, 2.001),(3.001, 3.001)], precision: fixedPrecision)
 

@@ -22,11 +22,10 @@ import Swift
 /**
  Polygon
  */
-public struct Polygon : Geometry {
+public struct Polygon<CoordinateType : protocol<Coordinate, _CoordinateConstructable>> : Geometry {
     
-    public typealias RingType = LinearRing
+    public typealias RingType = LinearRing<CoordinateType>
     
-    public let dimension: Int
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
 
@@ -37,22 +36,25 @@ public struct Polygon : Geometry {
     private var _innerRings = [RingType]()
 
     public init () {
-        self.dimension = 0
         self.precision = defaultPrecision
     }
     
-    public  init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
-        self.init(outerRing: rings.0, innerRings: rings.1, precision: precision)
-    }
+//    public  init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType, C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
+//        self.init(outerRing: rings.0, innerRings: rings.1, precision: precision)
+//    }
     
-    public  init<C : CollectionType where C.Generator.Element == (Double, Double), C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
-        self.dimension = 2
+    public  init<C : CollectionType where C.Generator.Element == CoordinateType, C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
         self.precision = defaultPrecision
         
         var outerRingsGenerator = outerRing.generate()
         
-        while let (x, y) = outerRingsGenerator.next() {
-            self._outerRing.append(precision.convert((x,y,Double.NaN)))
+        self._outerRing.reserveCapacity(outerRing.count)
+        
+        while var coordinate = outerRingsGenerator.next() {
+            
+            self.precision.convert(&coordinate)
+            
+            self._outerRing.append(coordinate)
         }
         self._innerRings.reserveCapacity(innerRings.count)
         
@@ -63,27 +65,6 @@ public struct Polygon : Geometry {
         }
     }
     
-    public  init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
-        self.init(outerRing: rings.0, innerRings: rings.1, precision: precision)
-    }
-    
-    public  init<C : CollectionType where C.Generator.Element == (Double, Double, Double), C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
-        self.dimension = 3
-        self.precision = defaultPrecision
-        
-        var outerRingsGenerator = outerRing.generate()
-        
-        while let coordinate = outerRingsGenerator.next() {
-            self._outerRing.append(precision.convert(coordinate))
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
-        
-        var innerRingsGenerator = innerRings.generate()
-        
-        while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(coordinates: ring, precision: precision))
-        }
-    }
 }
 
 // MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
