@@ -24,7 +24,7 @@ import Swift
  
     Low level 3 dimensional Coorodinate type
  */
-public struct Coordinate3D : Coordinate, ThreeDimensional, _CoordinateConstructable {
+public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable, _CoordinateConstructable {
     public typealias TupleType = (x: Double, y: Double, z: Double)
     
     public var x: Double

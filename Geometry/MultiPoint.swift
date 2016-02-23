@@ -33,7 +33,7 @@ import Swift
  
     All the elements in a MultiPoint shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPoint.
  */
-public struct MultiPoint<CoordinateType : protocol<Coordinate, _CoordinateConstructable>> : Geometry  {
+public struct MultiPoint<CoordinateType : protocol<Coordinate, TupleConvertable, _CoordinateConstructable>> : Geometry  {
 
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
