@@ -14,16 +14,8 @@ import Swift
     Implenented by all Coordinate structs.
 */
 public protocol Coordinate  {
-    typealias TupleType
-    
     var x: Double { get set }
     var y: Double { get set }
-    
-    var tuple: TupleType { get set }
-    
-    init ()
-    
-    func ==(lhs: Self, rhs: Self) -> Bool
 }
 
 /**
@@ -50,6 +42,10 @@ public protocol Measured {
 public protocol _CoordinateConstructable {
     typealias TupleType
     
+    var tuple: TupleType { get set }
+    
     init(other: Self)
     init(tuple: TupleType)
+    
+    func ==(lhs: Self, rhs: Self) -> Bool
 }
