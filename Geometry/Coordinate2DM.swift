@@ -44,6 +44,10 @@ public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
     }
 }
 
+extension Coordinate2DM : Equatable, Hashable {
+    public var hashValue: Int { get { return x.hashValue ^ y.hashValue ^ m.hashValue } }
+}
+
 public func ==(lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.m == rhs.m
 }
