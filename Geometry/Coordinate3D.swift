@@ -37,12 +37,6 @@ public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
         set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z }
     }
     
-    public init(other: Coordinate3D) {
-        self.x = other.x
-        self.y = other.y
-        self.z = other.z
-    }
-    
     public init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y

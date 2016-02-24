@@ -38,13 +38,6 @@ public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConve
         set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z; self.m = newValue.m }
     }
     
-    public init(other: Coordinate3DM) {
-        self.x = other.x
-        self.y = other.y
-        self.z = other.z
-        self.m = other.m
-    }
-    
     public init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y

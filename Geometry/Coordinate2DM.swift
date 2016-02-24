@@ -36,12 +36,7 @@ public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
         get { return (self.x, self.y, self.m)  }
         set { self.x = newValue.x; self.y = newValue.y; self.m = newValue.m }
     }
-    public init(other: Coordinate2DM) {
-        self.x = other.x
-        self.y = other.y
-        self.m = other.m
-    }
-    
+
     public init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y

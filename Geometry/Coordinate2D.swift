@@ -36,11 +36,6 @@ public struct Coordinate2D : Coordinate, TupleConvertable {
         set { self.x = newValue.x; self.y = newValue.y }
     }
     
-    public init(other: Coordinate2D) {
-        self.x = other.x
-        self.y = other.y
-    }
-    
     public init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
