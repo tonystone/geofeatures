@@ -49,6 +49,7 @@
 		EAE34D0E1C7A7B3100CD8D11 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D0D1C7A7B3100CD8D11 /* Coordinate.swift */; };
 		EAE34D101C7A7D2A00CD8D11 /* Coordinate2DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D0F1C7A7D2A00CD8D11 /* Coordinate2DM.swift */; };
 		EAE34D121C7A7D8900CD8D11 /* Coordinate3DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D111C7A7D8900CD8D11 /* Coordinate3DM.swift */; };
+		EAE34D161C7CAB5900CD8D11 /* TupleConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D151C7CAB5900CD8D11 /* TupleConvertable.swift */; };
 		EEC5D7A84AEC9283341A49E963352F90 /* MultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945A125EB8E1959D573B484F3E086BE /* MultiPoint.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		EF0B245F61785B7025F2FD4F215FBFCC /* Precision.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE2C464D68A4608BFB10E808992ACF3 /* Precision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F49F38A737FDD6121E1C6887D64617D6 /* FloatingPrecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603BE8D2A21994D92DFF87C3F220A41D /* FloatingPrecision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -78,7 +79,7 @@
 		0583B8DA9106E1FA5A10361028448EBD /* WKBReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKBReader.swift; sourceTree = "<group>"; };
 		07547D2F13893830C1FCFD3BEA47F28E /* Pods-GeoFeatures2_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Example-frameworks.sh"; sourceTree = "<group>"; };
 		0945A125EB8E1959D573B484F3E086BE /* MultiPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiPoint.swift; sourceTree = "<group>"; };
-		0A2FB0F8D49DD9049006B8414E25DD2E /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = CoordinateCollection.swift.gyb; sourceTree = "<group>"; };
+		0A2FB0F8D49DD9049006B8414E25DD2E /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = CoordinateCollection.swift.gyb; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Tests-umbrella.h"; sourceTree = "<group>"; };
 		14A3197FB09B808E659E0F104A617DE0 /* Pods_GeoFeatures2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A9F58769274C7E1B1AAFF4A0063C3F /* Renderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 		EAE34D0D1C7A7B3100CD8D11 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		EAE34D0F1C7A7D2A00CD8D11 /* Coordinate2DM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DM.swift; sourceTree = "<group>"; };
 		EAE34D111C7A7D8900CD8D11 /* Coordinate3DM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DM.swift; sourceTree = "<group>"; };
+		EAE34D151C7CAB5900CD8D11 /* TupleConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupleConvertable.swift; sourceTree = "<group>"; };
 		F12800ACBBA09FA0D85736915F680E46 /* Pods-GeoFeatures2_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		FE899D8331FC089B4309AA98DA3004EB /* GeoFeatures2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GeoFeatures2.xcconfig; sourceTree = "<group>"; };
 		FFD35A803619C151D8C535A4853A6989 /* Pods-GeoFeatures2_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GeoFeatures2_Example.modulemap"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				BEE2C464D68A4608BFB10E808992ACF3 /* Precision.swift */,
 				D09F8B62C7E5945C5862E72EAFB7F31D /* FixedPrecision.swift */,
 				603BE8D2A21994D92DFF87C3F220A41D /* FloatingPrecision.swift */,
+				EAE34D151C7CAB5900CD8D11 /* TupleConvertable.swift */,
 				EAE34D0D1C7A7B3100CD8D11 /* Coordinate.swift */,
 				B6B3EB74B502B83F3BE013FF2505508D /* Coordinate2D.swift */,
 				EAE34D0F1C7A7D2A00CD8D11 /* Coordinate2DM.swift */,
@@ -241,12 +244,12 @@
 				3690D29AC9DA5B3BBE49D17212C571F4 /* GeometryCollection.swift */,
 				D14E2A061CBC0326B7015A7D03FDBD80 /* GeometryCollection+Geometry.swift */,
 				5B2DB4FA44E05162F9B4AFC4C8FEF7AB /* MultiCollection.swift.gyb */,
-				16D6324991DEB42C926055876882C76A /* LinearRing.swift */,
-				1B124CAEDB44592D4F21C08271075816 /* LinearRing+Curve.swift */,
-				59E4CC45763470320B11321F8F11E911 /* LinearRing+Geometry.swift */,
 				30FB000578D87501FFB1FEBC394FFDCE /* LineString.swift */,
 				29346ED2F58E3DD5AB107FCD28F32FE8 /* LineString+Curve.swift */,
 				42FFD0BF72DCA8DE00426981544E8710 /* LineString+Geometry.swift */,
+				16D6324991DEB42C926055876882C76A /* LinearRing.swift */,
+				1B124CAEDB44592D4F21C08271075816 /* LinearRing+Curve.swift */,
+				59E4CC45763470320B11321F8F11E911 /* LinearRing+Geometry.swift */,
 				E572A6F2333B6D347525C8DF9637A13D /* MultiLineString.swift */,
 				3985B106E15B8ED9BB0DC80AC7012814 /* MultiLineString+Geometry.swift */,
 				0945A125EB8E1959D573B484F3E086BE /* MultiPoint.swift */,
@@ -496,6 +499,7 @@
 				8D7AA15D232EE63F55964B86C6D1CE3A /* LineString.swift in Sources */,
 				3CEDD03DE3CF4468B799EF83B7F6422B /* MultiLineString+Geometry.swift in Sources */,
 				B10ACE9A2F18D490EAA1B9D332C0D727 /* MultiLineString.swift in Sources */,
+				EAE34D161C7CAB5900CD8D11 /* TupleConvertable.swift in Sources */,
 				EAE34D0E1C7A7B3100CD8D11 /* Coordinate.swift in Sources */,
 				35A1520151C0503FAB03C71CCEBC1725 /* MultiPoint+Geometry.swift in Sources */,
 				EEC5D7A84AEC9283341A49E963352F90 /* MultiPoint.swift in Sources */,

@@ -11,7 +11,6 @@ import GeoFeatures2
 
 class LengthTests: XCTestCase {
 
-
     func testLength_Cartisian_Test1() {
         XCTAssertEqual(LineString<Coordinate2D>(coordinates: [(0,0),(1,1)]).length(), 1.4142135623730951)
     }
@@ -27,5 +26,15 @@ class LengthTests: XCTestCase {
     func testLength_Cartisian_Test4() {
         XCTAssertEqual(LineString<Coordinate2D>(coordinates: [(0,0),(0,2),(0,3),(0,4),(0,5)]).length(), 5.0)
     }
-    
+
+    func testPerformanceLength() {
+        let lineString = LineString<Coordinate3D>(coordinates: [(0,0,0),(0,2,0),(0,3,0),(0,4,0),(0,5,0)])
+        
+        self.measureBlock {
+            
+            for _ in 1...500000 {
+                let _ = lineString.length()
+            }
+        }
+    }
 }

@@ -148,8 +148,8 @@
 				EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */,
 				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
 				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
-				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
 				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
+				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
 				EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
