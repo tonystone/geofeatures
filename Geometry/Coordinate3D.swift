@@ -24,7 +24,8 @@ import Swift
  
     Low level 3 dimensional Coorodinate type
  */
-public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable, _CoordinateConstructable {
+public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
+    
     public typealias TupleType = (x: Double, y: Double, z: Double)
     
     public var x: Double
@@ -34,12 +35,6 @@ public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable, _Co
     public var tuple: TupleType {
         get { return (self.x, self.y, self.z)  }
         set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z }
-    }
-    
-    public init() {
-        self.x = Double.NaN
-        self.y = Double.NaN
-        self.z = Double.NaN
     }
     
     public init(other: Coordinate3D) {

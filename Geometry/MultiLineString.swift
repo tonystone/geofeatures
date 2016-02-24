@@ -33,7 +33,7 @@ import Swift
  
     All the elements in a MultiLineString shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiLineString.
  */
-public struct MultiLineString<CoordinateType : protocol<Coordinate, TupleConvertable, _CoordinateConstructable>> : Geometry  {
+public struct MultiLineString<CoordinateType : protocol<Coordinate, TupleConvertable>> : Geometry  {
 
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem

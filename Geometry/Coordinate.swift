@@ -46,12 +46,3 @@ public protocol ThreeDimensional {
 public protocol Measured {
     var m: Double { get set }
 }
-
-/**
-    Internal private
-*/
-public protocol _CoordinateConstructable {
-    init(other: Self)
-    
-    func ==(lhs: Self, rhs: Self) -> Bool
-}

@@ -24,7 +24,8 @@ import Swift
  
     Low level 2 dimensional Coorodinate type with an m value.
  */
-public struct Coordinate2DM : Coordinate, Measured, TupleConvertable, _CoordinateConstructable  {
+public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
+    
     public typealias TupleType = (x: Double, y: Double, m: Double)
     
     public var x: Double
@@ -35,13 +36,6 @@ public struct Coordinate2DM : Coordinate, Measured, TupleConvertable, _Coordinat
         get { return (self.x, self.y, self.m)  }
         set { self.x = newValue.x; self.y = newValue.y; self.m = newValue.m }
     }
-    
-    public init() {
-        self.x = Double.NaN
-        self.y = Double.NaN
-        self.m = Double.NaN
-    }
-    
     public init(other: Coordinate2DM) {
         self.x = other.x
         self.y = other.y
