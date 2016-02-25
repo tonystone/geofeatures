@@ -26,17 +26,22 @@ extension LinearRing : Curve {
      */
     @warn_unused_result
     public func length() -> Double {
-
-        var length = 0.0
         
-        if self.coordinateReferenceSystem is Cartesian {
-            var generator = self.generate()
-            
-            if var p1 = generator.next() {
-                while let  p2 = generator.next() {
-                    length += sqrt(pow(abs(p1.x - p2.x), 2) + pow(abs(p1.y - p2.y), 2) + (self.dimension == 3 ? pow(abs(p1.z - p2.z), 2) : 0))
-                    p1 = p2
+        var length: Double  = 0.0
+        
+        var generator = self.generate()
+        
+        if var c1 = generator.next() {
+            while let  c2 = generator.next() {
+                var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
+                
+                if let c1 = c1 as? ThreeDimensional,
+                    let c2 = c2 as? ThreeDimensional {
+                        
+                        result += pow(abs(c1.z - c2.z), 2.0)
                 }
+                length += sqrt(result)
+                c1 = c2
             }
         }
         return self.precision.convert(length)

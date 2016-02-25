@@ -22,30 +22,30 @@ import XCTest
 
 class Coordinate2DTests: XCTestCase {
     
-    // MARK: Equal
-    
-    func testEqual_Zero()         { XCTAssertTrue(coordinateEquals((0.0,0.0), (0.0,0.0))) }
-    
-    func testEqual_One()          { XCTAssertTrue(coordinateEquals((1.0,1.0), (1.0,1.0)))  }
-    
-    func testEqual_Negative()     { XCTAssertTrue(coordinateEquals((-1.0,-1.0), (-1.0,-1.0))) }
-    
-    func testEqual_Small()        { XCTAssertTrue(coordinateEquals((0.0000000000000000001,0.0000000000000000001), (0.0000000000000000001,0.0000000000000000001))) }
-    
-    func testEqual_Large()        { XCTAssertTrue(coordinateEquals((1000000000000000000.0,1000000000000000000.0), (1000000000000000000.0,1000000000000000000.0)))  }
-    
-    // MARK: Not Equal
-    
-    func testNotEqual_Zero()         { XCTAssertFalse(coordinateEquals((0.0,0.0),(1.0,0.0))) }
-    
-    func testNotEqual_One()          { XCTAssertFalse(coordinateEquals((1.0,1.0),(0.0,1.0)))  }
-    
-    func testNotEqual_Negative()     { XCTAssertFalse(coordinateEquals((-1.0,-1.0),(-2.0,-1.0)))  }
-    
-    func testNotEqual_Small()        { XCTAssertFalse(coordinateEquals((0.0000000000000000001,0.0000000000000000001), (0.00000000000000000011,0.0000000000000000001)))  }
-    
-    func testNotEqual_Large()        { XCTAssertFalse(coordinateEquals((1000000000000000000.0,1000000000000000000.0), (1200000000000000000.0,1000000000000000000.0)))  }
-    
+//    // MARK: Equal
+//    
+//    func testEqual_Zero()         { XCTAssertTrue(coordinateEquals((0.0,0.0), (0.0,0.0))) }
+//    
+//    func testEqual_One()          { XCTAssertTrue(coordinateEquals((1.0,1.0), (1.0,1.0)))  }
+//    
+//    func testEqual_Negative()     { XCTAssertTrue(coordinateEquals((-1.0,-1.0), (-1.0,-1.0))) }
+//    
+//    func testEqual_Small()        { XCTAssertTrue(coordinateEquals((0.0000000000000000001,0.0000000000000000001), (0.0000000000000000001,0.0000000000000000001))) }
+//    
+//    func testEqual_Large()        { XCTAssertTrue(coordinateEquals((1000000000000000000.0,1000000000000000000.0), (1000000000000000000.0,1000000000000000000.0)))  }
+//    
+//    // MARK: Not Equal
+//    
+//    func testNotEqual_Zero()         { XCTAssertFalse(coordinateEquals((0.0,0.0),(1.0,0.0))) }
+//    
+//    func testNotEqual_One()          { XCTAssertFalse(coordinateEquals((1.0,1.0),(0.0,1.0)))  }
+//    
+//    func testNotEqual_Negative()     { XCTAssertFalse(coordinateEquals((-1.0,-1.0),(-2.0,-1.0)))  }
+//    
+//    func testNotEqual_Small()        { XCTAssertFalse(coordinateEquals((0.0000000000000000001,0.0000000000000000001), (0.00000000000000000011,0.0000000000000000001)))  }
+//    
+//    func testNotEqual_Large()        { XCTAssertFalse(coordinateEquals((1000000000000000000.0,1000000000000000000.0), (1200000000000000000.0,1000000000000000000.0)))  }
+//    
 }
 
 

@@ -16,13 +16,13 @@ extension Polygon : Surface {
     }
 
     @warn_unused_result
-    public func centroid() -> Point {
-        return Point(coordinate: (0,0,0), precision: self.precision)
+    public func centroid() -> Geometry {
+        return GeometryCollection()
     }
 
     @warn_unused_result
     public func boundary() -> Geometry {
-        return Polygon()
+        return Polygon<CoordinateType>()
     }
 
 }

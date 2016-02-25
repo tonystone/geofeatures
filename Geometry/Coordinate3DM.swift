@@ -1,5 +1,5 @@
 /*
- *   Coordinate3D.swift
+ *   Coordinate3DM.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,47 +15,49 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 2/9/16.
+ *   Created by Tony Stone on 2/21/16.
  */
 import Swift
 
 /**
-    3D Coordinate
+    Measured 3D Coordinate
  
-    Low level 3 dimensional Coorodinate type
+    Low level 3 dimensional Coorodinate type with an m value.
  */
-public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
+public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConvertable {
     
-    public typealias TupleType = (x: Double, y: Double, z: Double)
+    public typealias TupleType = (x: Double, y: Double, z: Double, m: Double)
     
     public var x: Double
     public var y: Double
     public var z: Double
+    public var m: Double
     
     public var tuple: TupleType {
-        get { return (self.x, self.y, self.z)  }
-        set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z }
+        get { return (self.x, self.y, self.z, self.m)  }
+        set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z; self.m = newValue.m }
     }
     
     public init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
         self.z = tuple.z
+        self.m = tuple.m
     }
 }
 
-extension Coordinate3D : Equatable, Hashable {
-    public var hashValue: Int { get { return x.hashValue ^ y.hashValue ^ z.hashValue } }
+extension Coordinate3DM  : Equatable, Hashable {
+    public var hashValue: Int { get { return x.hashValue ^ y.hashValue ^ z.hashValue ^ m.hashValue } }
 }
 
-public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
+public func ==(lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.m == rhs.m
 }
 
-extension Coordinate3D : CustomStringConvertible, CustomDebugStringConvertible {
+extension Coordinate3DM : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "(x: \(self.x), y: \(self.y), z: \(self.z))"
+        return "(x: \(self.x), y: \(self.y), z: \(self.z), m: \(self.m))"
     }
     
     public var debugDescription : String {

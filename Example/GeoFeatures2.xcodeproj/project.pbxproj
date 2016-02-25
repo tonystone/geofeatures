@@ -61,7 +61,7 @@
 		EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringTests.swift; sourceTree = "<group>"; };
 		EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTReaderTests.swift; sourceTree = "<group>"; };
-		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeaturesStructure1.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeaturesStructure1.playground; sourceTree = "<group>"; };
+		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
 		ECD05668FB877775EDD2C65A /* Pods-GeoFeatures2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6B35E10B1FEDBFEEA17571 /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,8 +148,8 @@
 				EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */,
 				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
 				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
-				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
 				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
+				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
 				EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -205,7 +205,7 @@
 		EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				EAB4C1CC1C6F7D7D00F288D1 /* GeoFeaturesStructure1.playground */,
+				EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";

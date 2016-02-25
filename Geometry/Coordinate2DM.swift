@@ -1,5 +1,5 @@
 /*
- *   Coordinate2D.swift
+ *   Coordinate2DM.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,49 +15,50 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 2/9/16.
+ *   Created by Tony Stone on 2/21/16.
  */
 import Swift
 
 /**
-    2D Coordinate
+    Measuted 2D Coordinate
  
-    Low level 2 dimensional Coorodinate type
+    Low level 2 dimensional Coorodinate type with an m value.
  */
-public struct Coordinate2D : Coordinate, TupleConvertable {
+public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
     
-    public typealias TupleType = (x: Double, y: Double)
+    public typealias TupleType = (x: Double, y: Double, m: Double)
     
     public var x: Double
     public var y: Double
+    public var m: Double
     
     public var tuple: TupleType {
-        get { return (self.x, self.y) }
-        set { self.x = newValue.x; self.y = newValue.y }
+        get { return (self.x, self.y, self.m)  }
+        set { self.x = newValue.x; self.y = newValue.y; self.m = newValue.m }
     }
-    
+
     public init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
+        self.m = tuple.m
     }
 }
 
-extension Coordinate2D  : Equatable, Hashable {
-    public var hashValue: Int { get { return x.hashValue ^ y.hashValue  } }
+extension Coordinate2DM : Equatable, Hashable {
+    public var hashValue: Int { get { return x.hashValue ^ y.hashValue ^ m.hashValue } }
 }
 
-public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y
+public func ==(lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.m == rhs.m
 }
 
-extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
+extension Coordinate2DM : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "(x: \(self.x), y: \(self.y))"
+        return "(x: \(self.x), y: \(self.y), m: \(self.m))"
     }
     
     public var debugDescription : String {
         return self.description
     }
 }
-

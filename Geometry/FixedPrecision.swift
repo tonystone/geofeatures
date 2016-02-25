@@ -23,7 +23,7 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
     
     public let scale: Double
     
-    public var hashValue: Int { get { return scale.hashValue } }
+    public var hashValue: Int { get { return 31.hashValue + scale.hashValue } }
     
     public init(scale: Double) {
         self.scale = scale
@@ -33,12 +33,18 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
         return round(value * scale) / scale
     }
     
-    public func convert(tuple: (Double,Double)) -> (Double,Double) {
-        return (convert(tuple.0),convert(tuple.1))
-    }
-    
-    public func convert(tuple: (Double,Double,Double)) -> (Double,Double,Double) {
-        return (convert(tuple.0),convert(tuple.1),tuple.2.isNaN ? tuple.2 : convert(tuple.2))
+    public func convert<T : Coordinate>(inout value: T) {
+        
+        value.x = self.convert(value.x)
+        value.y = self.convert(value.y)
+        
+        if var value = value as? ThreeDimensional {
+            value.z = self.convert(value.z)
+        }
+        
+        if var value = value as? Measured {
+            value.m = self.convert(value.m)
+        }
     }
 }
 extension FixedPrecision : CustomStringConvertible, CustomDebugStringConvertible {

@@ -1,5 +1,5 @@
 /*
- *   CoordinateReferenceSystem.swift
+ *   Coordinate.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,25 +15,35 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 2/5/16.
+ *   Created by Tony Stone on 2/21/16.
  */
 import Swift
 
-/** 
- Coordinate System Types
-
- These are used by the algorythms when they are applyed to the types
+/**
+    Coordinate (2 dimensional protocol)
+ 
+    Implenented by all Coordinate structs.
 */
-public protocol CoordinateReferenceSystem {}
-
-public struct Cartesian: CoordinateReferenceSystem {
-    public init() {}
+public protocol Coordinate : Equatable, Hashable {
+    
+    var x: Double { get set }
+    var y: Double { get set }
 }
 
-public struct Ellipsoidal: CoordinateReferenceSystem {}
+/**
+    3D
+ 
+    Implenented if this Coordinate has z value.
+*/
+public protocol ThreeDimensional {
+    var z: Double { get set }
+}
 
-public struct Spherical: CoordinateReferenceSystem {}
-
-public struct Vertical: CoordinateReferenceSystem {}
-
-public struct Polar: CoordinateReferenceSystem {}
+/**
+    Measured
+ 
+    Implenented if this Coordinate has m value.
+*/
+public protocol Measured {
+    var m: Double { get set }
+}

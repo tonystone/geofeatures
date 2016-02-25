@@ -1,5 +1,5 @@
 /*
- *   CoordinateReferenceSystem.swift
+ *   TupleConvertable.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,25 +15,22 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 2/5/16.
+ *   Created by Tony Stone on 2/23/16.
  */
 import Swift
 
-/** 
- Coordinate System Types
+/**
+    TupleConvertable
 
- These are used by the algorythms when they are applyed to the types
+    Specifies the contract for a type that is convertable to and from a tuple type
 */
-public protocol CoordinateReferenceSystem {}
-
-public struct Cartesian: CoordinateReferenceSystem {
-    public init() {}
+public protocol TupleConvertable {
+    /// Tuple conversion type (what does the tuple look like)
+    typealias TupleType
+    
+    /// returns the tuple representation of self.
+    var tuple: TupleType { get }
+    
+    /// Instantiates an instance of Self with tuple.
+    init(tuple: TupleType)
 }
-
-public struct Ellipsoidal: CoordinateReferenceSystem {}
-
-public struct Spherical: CoordinateReferenceSystem {}
-
-public struct Vertical: CoordinateReferenceSystem {}
-
-public struct Polar: CoordinateReferenceSystem {}

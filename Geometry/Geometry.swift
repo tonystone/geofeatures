@@ -36,11 +36,6 @@ let defaultCoordinateReferenceSystem = Cartesian()
  is the abstract type that is implenented by all geometry classes.
 */
 public protocol Geometry {
-
-    /**
-        The dimension of this Geometry which must be equal to or less than the coordinate dimension.
-    */
-    var dimension: Int { get }
     
     /**
         The Precision used to store the coordinates for this Geometry

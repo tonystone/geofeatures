@@ -26,9 +26,9 @@ extension LineString /* Geometry conformance */ {
     }
 
     public func equals(other: Geometry) -> Bool {
-        if let other = other as? LineString {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return coordinateEquals(lhs, rhs, dimension: self.dimension)
+        if let other = other as? LineString<CoordinateType> {
+            return self.elementsEqual(other, isEquivalent: { (lhs: CoordinateType, rhs: CoordinateType) -> Bool in
+                return lhs == rhs
             })
         }
         return false

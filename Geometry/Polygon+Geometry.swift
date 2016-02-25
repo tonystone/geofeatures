@@ -26,8 +26,8 @@ extension Polygon /* Geometry conformance */ {
     }
 
     public func equals(other: Geometry) -> Bool {
-        if let other = other as? Polygon {
-            return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, isEquivalent: { (lhs: LinearRing, rhs: LinearRing) -> Bool in
+        if let other = other as? Polygon<CoordinateType> {
+            return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, isEquivalent: { (lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
             })
         }

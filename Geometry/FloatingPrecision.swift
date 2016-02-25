@@ -29,12 +29,8 @@ public struct FloatingPrecision : Precision, Equatable, Hashable  {
         return value
     }
     
-    public func convert(tuple: (Double,Double)) -> (Double,Double) {
-        return tuple
-    }
-    
-    public func convert(tuple: (Double,Double,Double)) -> (Double,Double,Double) {
-        return tuple
+    public func convert<T : Coordinate>(inout value: T) {
+        // No op
     }
 }
 extension FloatingPrecision : CustomStringConvertible, CustomDebugStringConvertible {
