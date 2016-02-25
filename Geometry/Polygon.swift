@@ -92,20 +92,38 @@ extension Polygon : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
         
+        let outerRingDescription = { () -> String in
+            var string: String = ""
+            
+            var ringGenerator = self.outerRing.generate()
+            
+            while let coordinate = ringGenerator.next() {
+                if string.characters.count > 0  { string += "," }
+                string += "\(coordinate)"
+            }
+            if string.characters.count == 0 { string += "[]" }
+            return string
+        }
+        
         let innerRingsDescription = { () -> String in
             var string: String = ""
             
             var innerRingsGenerator = self.innerRings.generate()
             
             while let ring = innerRingsGenerator.next() {
-                if string.characters.count > 0  { string += "," }
-                string += ring.description
+                
+                var ringGenerator = ring.generate()
+                
+                while let coordinate = ringGenerator.next() {
+                    if string.characters.count > 0  { string += "," }
+                    string += "\(coordinate)"
+                }
             }
             
             if string.characters.count == 0 { string += "[]" }
             return string
         }
-        return "\(self.dynamicType)(\(self.outerRing.description),\(innerRingsDescription()))"
+        return "\(self.dynamicType)(\(outerRingDescription()),\(innerRingsDescription()))"
     }
     
     public var debugDescription : String {
