@@ -55,6 +55,7 @@ public struct ${Self}<CoordinateType : protocol<Coordinate, TupleConvertable>> :
             self.coordinates.append(coordinate)
         }
     }
+    
     public init<C : CollectionType where C.Generator.Element == CoordinateType>(coordinates: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.precision = precision
@@ -69,7 +70,8 @@ public struct ${Self}<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         }
     }
     
-        public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    // Note: these should be part of the extension below "extension ${Self} where CoordinateType : TupleConvertable" but Swift crashes so until that is fixed, they will need to stay here
+    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
@@ -101,12 +103,13 @@ public struct ${Self}<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         }
     }
     
+    
     private var coordinates = ContiguousArray<CoordinateType>()
 }
 
 // MARK: CoordinateCollectionType conformance
 
-extension ${Self}  {
+extension ${Self} : Collection  {
     
     /**
         - Returns: The number of Coordinate3D objects.
@@ -216,8 +219,8 @@ extension ${Self}  {
  
     Coordinates that are TupleConvertable allow initialization via an ordinary Swift tuple.
  */
-extension ${Self} /* where CoordinateType : TupleConvertable */ {
-        
+extension ${Self} where CoordinateType : TupleConvertable {
+    
     /**
         Reserve enough space to store `minimumCapacity` elements.
      
