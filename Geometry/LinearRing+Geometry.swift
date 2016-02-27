@@ -26,8 +26,8 @@ extension LinearRing /* Geometry conformance */ {
     }
     
     public func equals(other: Geometry) -> Bool {
-        if let other = other as? LinearRing<CoordinateType> {
-            return self.elementsEqual(other, isEquivalent: { (lhs: CoordinateType, rhs: CoordinateType) -> Bool in
+        if let other = other as? LinearRing<Element> {
+            return self.elementsEqual(other, isEquivalent: { (lhs: Element, rhs: Element) -> Bool in
                 return lhs == rhs
             })
         }

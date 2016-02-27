@@ -32,7 +32,7 @@ class LineStringTests: XCTestCase {
         let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString<Coordinate2D>(coordinates: [(10.0,10.0)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.0,10.0))])
+            (LineString<Coordinate2D>(elements: [(10.0,10.0)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.0,10.0))])
                 { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
@@ -43,7 +43,7 @@ class LineStringTests: XCTestCase {
         let precision = FixedPrecision(scale: 100)
         
         XCTAssertEqual(
-            (LineString<Coordinate2D>(coordinates: [(10.03,10.04)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.03,10.04))])
+            (LineString<Coordinate2D>(elements: [(10.03,10.04)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.03,10.04))])
                 { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
                 }
@@ -54,7 +54,7 @@ class LineStringTests: XCTestCase {
         let precision = FixedPrecision(scale: 100)
         
         XCTAssertEqual(
-            (LineString<Coordinate2D>(coordinates: [(10.033,10.043)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.03,10.04))])
+            (LineString<Coordinate2D>(elements: [(10.033,10.043)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.03,10.04))])
                 { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
                 }
@@ -65,7 +65,7 @@ class LineStringTests: XCTestCase {
         let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString<Coordinate3D>(coordinates: [(10.0,10.0,10.0)], precision: precision).elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
+            (LineString<Coordinate3D>(elements: [(10.0,10.0,10.0)], precision: precision).elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
                 }
@@ -76,7 +76,7 @@ class LineStringTests: XCTestCase {
         let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10,10)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.0,10.0))])
+            (LineString(elements: [(10,10)], precision: precision).elementsEqual([Coordinate2D(tuple: (10.0,10.0))])
                 { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
                 }
@@ -87,7 +87,7 @@ class LineStringTests: XCTestCase {
         let precision = FloatingPrecision()
         
         XCTAssertEqual(
-            (LineString(coordinates: [(10,10,10)], precision: precision).elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
+            (LineString(elements: [(10,10,10)], precision: precision).elementsEqual([Coordinate3D(tuple: (10.0,10.0,10.0))])
                 { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
                 }
@@ -97,13 +97,13 @@ class LineStringTests: XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20)])
+        let lineString = LineString<Coordinate3D>(elements: [(10,10,10),(20,20,20)])
         
         XCTAssertEqual(lineString[1] == Coordinate3D(tuple: (20,20,20)), true)
     }
     
     func testSubscript_Set () {
-        var lineString = LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20)])
+        var lineString = LineString<Coordinate3D>(elements: [(10,10,10),(20,20,20)])
         
         lineString[1] = Coordinate3D(tuple: (10,10,10))
         
@@ -112,7 +112,7 @@ class LineStringTests: XCTestCase {
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20)])
+        let lineString1 = LineString<Coordinate3D>(elements: [(10,10,10),(20,20,20)])
         var lineString2 = LineString<Coordinate3D>()
         
         lineString2.appendContentsOf(lineString1)
@@ -135,11 +135,11 @@ class LineStringTests: XCTestCase {
     // MARK: Equal
     
     func testEquals_Int3D () {
-        XCTAssertEqual(LineString<Coordinate3D>(coordinates: [(10,10,10)]).equals(LineString<Coordinate3D>(coordinates: [(10.0,10.0,10.0)])), true)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [(10,10,10)]).equals(LineString<Coordinate3D>(elements: [(10.0,10.0,10.0)])), true)
     }
     
     func testEquals_Int2D () {
-        XCTAssertEqual(LineString<Coordinate2D>(coordinates: [(10,10)]).equals(LineString<Coordinate2D>(coordinates: [(10.0,10.0)])), true)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [(10,10)]).equals(LineString<Coordinate2D>(elements: [(10.0,10.0)])), true)
     }
     
     // MARK: isEmpty
@@ -149,11 +149,11 @@ class LineStringTests: XCTestCase {
     }
     
     func testIsEmpty_False() {
-        XCTAssertEqual(LineString<Coordinate3D>(coordinates: [(10,10,10)]).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [(10,10,10)]).isEmpty(), false)
     }
     
     func testCount () {
-        XCTAssertEqual(LineString<Coordinate3D>(coordinates: [(10,10,10),(20,20,20),(30,30,30)]).count, 3)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [(10,10,10),(20,20,20),(30,30,30)]).count, 3)
     }
     
     func testAppend () {

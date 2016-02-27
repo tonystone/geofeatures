@@ -26,6 +26,15 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
      */
     typealias Element
     
+//    /**
+//        Collections are empty constructable
+//     */
+//    init()
+    
+//    init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
+//    
+//    init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
+//    
     /**
         - Returns: The number of Geometry objects.
      */

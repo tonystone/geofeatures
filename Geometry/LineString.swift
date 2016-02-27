@@ -32,7 +32,7 @@ import Swift
     A LineString is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LineString<CoordinateType : protocol<Coordinate, TupleConvertable>> : Geometry {
+public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geometry {
     
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
@@ -42,74 +42,38 @@ public struct LineString<CoordinateType : protocol<Coordinate, TupleConvertable>
         self.coordinateReferenceSystem = coordinateReferenceSystem
     }
     
-    public init<S : SequenceType where S.Generator.Element == CoordinateType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
-        
-        self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
-        
-        var generator = coordinates.generate()
-        
-        while var coordinate = generator.next() {
-            self.precision.convert(&coordinate)
-            
-            self.coordinates.append(coordinate)
-        }
-    }
-    
-    public init<C : CollectionType where C.Generator.Element == CoordinateType>(coordinates: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
-        
-        self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
-        
-        var generator = coordinates.generate()
-        
-        while var coordinate = generator.next() {
-            self.precision.convert(&coordinate)
-            
-            self.coordinates.append(coordinate)
-        }
-    }
-    
-    // Note: these should be part of the extension below "extension LineString where CoordinateType : TupleConvertable" but Swift crashes so until that is fixed, they will need to stay here
-    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(coordinates: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
-        
-        self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
-        
-        var generator = coordinates.generate()
-        
-        while let coordinate = generator.next() {
-            var convertedCoordinate = CoordinateType(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self.coordinates.append(convertedCoordinate)
-        }
-    }
-    
-    public init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(coordinates: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
-        
-        self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
-        
-        var generator = coordinates.generate()
-        
-        while let coordinate = generator.next() {
-            var convertedCoordinate = CoordinateType(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self.coordinates.append(convertedCoordinate)
-        }
-    }
-    
-    
-    private var coordinates = ContiguousArray<CoordinateType>()
+    private var coordinates = ContiguousArray<Element>()
 }
 
-// MARK: CoordinateCollectionType conformance
+// MARK: Collection conformance
 
 extension LineString : Collection  {
+    
+    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        var generator = elements.generate()
+        
+        while var coordinate = generator.next() {
+            self.precision.convert(&coordinate)
+            
+            self.coordinates.append(coordinate)
+        }
+    }
+    
+    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        var generator = elements.generate()
+        
+        while var coordinate = generator.next() {
+            self.precision.convert(&coordinate)
+            
+            self.coordinates.append(coordinate)
+        }
+    }
     
     /**
         - Returns: The number of Coordinate3D objects.
@@ -139,7 +103,7 @@ extension LineString : Collection  {
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: CoordinateType) {
+    public mutating func append(newElement: Element) {
         var convertedCoordinate = newElement
         
         self.precision.convert(&convertedCoordinate)
@@ -150,7 +114,7 @@ extension LineString : Collection  {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == CoordinateType>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         
         var generator = newElements.generate()
         
@@ -164,7 +128,7 @@ extension LineString : Collection  {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == CoordinateType>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         
         var generator = newElements.generate()
         
@@ -180,7 +144,7 @@ extension LineString : Collection  {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> CoordinateType {
+    public mutating func removeLast() -> Element {
         return self.coordinates.removeLast()
     }
     
@@ -189,7 +153,7 @@ extension LineString : Collection  {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: CoordinateType, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex i: Int) {
         var convertedCoordinate = newElement
         
         self.precision.convert(&convertedCoordinate)
@@ -200,7 +164,7 @@ extension LineString : Collection  {
     /**
         Remove and return the element at index `i` of this LineString.
      */
-    public mutating func removeAtIndex(index: Int) -> CoordinateType {
+    public mutating func removeAtIndex(index: Int) -> Element {
         return self.coordinates.removeAtIndex(index)
     }
     
@@ -219,16 +183,45 @@ extension LineString : Collection  {
  
     Coordinates that are TupleConvertable allow initialization via an ordinary Swift tuple.
  */
-extension LineString where CoordinateType : TupleConvertable {
+extension LineString where Element : TupleConvertable {
     
+    public init<S : SequenceType where S.Generator.Element == Element.TupleType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        var generator = elements.generate()
+        
+        while let coordinate = generator.next() {
+            var convertedCoordinate = Element(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates.append(convertedCoordinate)
+        }
+    }
+    
+    public init<C : CollectionType where C.Generator.Element == Element.TupleType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        var generator = elements.generate()
+        
+        while let coordinate = generator.next() {
+            var convertedCoordinate = Element(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self.coordinates.append(convertedCoordinate)
+        }
+    }
     
     /**
         Reserve enough space to store `minimumCapacity` elements.
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: CoordinateType.TupleType) {
-        var convertedCoordinate = CoordinateType(tuple: newElement)
+    public mutating func append(newElement: Element.TupleType) {
+        var convertedCoordinate = Element(tuple: newElement)
         
         self.precision.convert(&convertedCoordinate)
         
@@ -238,12 +231,12 @@ extension LineString where CoordinateType : TupleConvertable {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element.TupleType>(newElements: S) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            var convertedCoordinate = Element(tuple: coordinate)
             
             self.precision.convert(&convertedCoordinate)
             
@@ -254,12 +247,12 @@ extension LineString where CoordinateType : TupleConvertable {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element.TupleType>(newElements: C) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            var convertedCoordinate = Element(tuple: coordinate)
             
             self.precision.convert(&convertedCoordinate)
             
@@ -272,8 +265,8 @@ extension LineString where CoordinateType : TupleConvertable {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: CoordinateType.TupleType, atIndex i: Int) {
-        var convertedCoordinate = CoordinateType(tuple: newElement)
+    public mutating func insert(newElement: Element.TupleType, atIndex i: Int) {
+        var convertedCoordinate = Element(tuple: newElement)
         
         self.precision.convert(&convertedCoordinate)
         
@@ -296,7 +289,7 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
      */
     public var endIndex   : Int { return self.coordinates.endIndex }
     
-    public subscript(position : Int) -> CoordinateType {
+    public subscript(position : Int) -> Element {
         
         get {
             return self.coordinates[position]
@@ -311,7 +304,7 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
         }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<CoordinateType> {
+    public subscript(range: Range<Int>) -> ArraySlice<Element> {
         get {
             return self.coordinates[range]
         }
@@ -322,7 +315,7 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
         }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<CoordinateType>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
         return self.coordinates.generate()
     }
 }
