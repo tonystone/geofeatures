@@ -35,38 +35,46 @@ import Swift
  */
 public struct MultiPoint<CoordinateType : protocol<Coordinate, TupleConvertable>> : Geometry  {
 
+    public typealias Element = Point<CoordinateType>
+    
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
 
-    private var elements = ContiguousArray<Point<CoordinateType>>()
-
-    /**
-        MultiPoint is empty constructable
-     */
-    public init () {
-        self.precision = defaultPrecision
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
     }
     
+    private var elements = ContiguousArray<Element>()
+}
+
+// MARK:  Collection conformance
+
+extension MultiPoint : Collection {
+
     /**
         MultiPoint can be constructed from any SequenceType as long as it has an
-        Element type equal the Point Element.
+        Element type equal the Geometry Element.
      */
-    public init<C : SequenceType where C.Generator.Element == Point<CoordinateType>>(elements: C) {
-
+    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
         var generator = elements.generate()
         
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
     
     /**
         MultiPoint can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the Point Element and the Distance
+        long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Point<CoordinateType>, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
         self.elements.reserveCapacity(elements.count)
 
@@ -75,14 +83,8 @@ public struct MultiPoint<CoordinateType : protocol<Coordinate, TupleConvertable>
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension MultiPoint : Collection {
-
+    
     /**
         - Returns: The number of Point objects.
      */
@@ -109,21 +111,21 @@ extension MultiPoint : Collection {
     /**
         Append `newElement` to this MultiPoint.
      */
-    public mutating func append(newElement: Point<CoordinateType>) {
+    public mutating func append(newElement: Element) {
         self.elements.append(newElement)
     }
 
     /**
         Append the elements of `newElements` to this MultiPoint.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Point<CoordinateType>>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
         Append the elements of `newElements` to this MultiPoint.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Point<CoordinateType>>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
@@ -132,7 +134,7 @@ extension MultiPoint : Collection {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> Point<CoordinateType> {
+    public mutating func removeLast() -> Element {
         return self.elements.removeLast()
     }
 
@@ -141,14 +143,14 @@ extension MultiPoint : Collection {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Point<CoordinateType>, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
         Remove and return the element at index `i` of this MultiPoint.
      */
-    public mutating func removeAtIndex(index: Int) -> Point<CoordinateType> {
+    public mutating func removeAtIndex(index: Int) -> Element {
         return self.elements.removeAtIndex(index)
     }
 
@@ -176,17 +178,17 @@ extension MultiPoint {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> Point<CoordinateType> {
+    public subscript(position : Int) -> Element {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<Point<CoordinateType>> {
+    public subscript(range: Range<Int>) -> ArraySlice<Element> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<Point<CoordinateType>>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
         return self.elements.generate()
     }
 }

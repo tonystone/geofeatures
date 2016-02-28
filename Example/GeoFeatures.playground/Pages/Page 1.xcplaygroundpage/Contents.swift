@@ -17,16 +17,16 @@ fixedPrecision1 == floatingPrecision1
 fixedPrecision4 == floatingPrecision1
 
 //: ## Usage scenarios
-// Simple Array of tubles used as coordinates
+// Simple Array of tubles used as elements
 let coordinates2d: [(Double, Double)]         = [(0,0), (0,7), (4,2), (2,0), (0,0)]
 let coordinates3d: [(Double, Double, Double)] = [(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)]
 
 // LinearRing created with simple tuble array
-LinearRing<Coordinate2D>(coordinates: coordinates2d)
+LinearRing<Coordinate2D>(elements: coordinates2d)
 
-LinearRing<Coordinate3D>(coordinates:coordinates3d)
+LinearRing<Coordinate3D>(elements:coordinates3d)
 
-let geometry1: Geometry = LineString<Coordinate3D>(coordinates:[(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)])
+let geometry1: Geometry = LineString<Coordinate3D>(elements:[(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)])
 
 if let linearType = geometry1 as? Curve {
     linearType.length()
@@ -59,7 +59,7 @@ Point<Coordinate2D>(coordinate: (1,1)).isEmpty()
 Polygon<Coordinate3DM>().isEmpty()
 Polygon<Coordinate2D>(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[])).isEmpty()
 LineString<Coordinate2D>().isEmpty()
-LineString<Coordinate3D>(coordinates:[(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)]).isEmpty()
+LineString<Coordinate3D>(elements:[(0,0,0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)]).isEmpty()
 
 GeometryCollection().isEmpty()
 GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (1,1))] as [Geometry]).isEmpty()

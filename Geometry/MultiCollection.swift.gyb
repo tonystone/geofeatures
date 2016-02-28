@@ -33,40 +33,48 @@ import Swift
  
     All the elements in a ${Self} shall be in the same Spatial Reference System. This is also the Spatial Reference System for the ${Self}.
  */
-public struct ${Self}<CoordinateType : protocol<Coordinate, _CoordinateConstructable>> : Geometry  {
+public struct ${Self}<CoordinateType : protocol<Coordinate, TupleConvertable>> : Geometry  {
 
+    public typealias Element = ${Element}<CoordinateType>
+    
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
 
-    private var elements = ContiguousArray<${Element}<CoordinateType>>()
-
-    /**
-        ${Self} is empty constructable
-     */
-    public init () {
-        self.precision = defaultPrecision
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
     }
     
+    private var elements = ContiguousArray<Element>()
+}
+
+// MARK:  Collection conformance
+
+extension ${Self} : Collection {
+
     /**
         ${Self} can be constructed from any SequenceType as long as it has an
-        Element type equal the ${Element} Element.
+        Element type equal the Geometry Element.
      */
-    public init<C : SequenceType where C.Generator.Element == ${Element}<CoordinateType>>(elements: C) {
-
+    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
         var generator = elements.generate()
         
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
     
     /**
         ${Self} can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the ${Element} Element and the Distance
+        long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == ${Element}<CoordinateType>, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
         self.elements.reserveCapacity(elements.count)
 
@@ -75,14 +83,8 @@ public struct ${Self}<CoordinateType : protocol<Coordinate, _CoordinateConstruct
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension ${Self} : Collection {
-
+    
     /**
         - Returns: The number of ${Element} objects.
      */
@@ -109,21 +111,21 @@ extension ${Self} : Collection {
     /**
         Append `newElement` to this ${Self}.
      */
-    public mutating func append(newElement: ${Element}<CoordinateType>) {
+    public mutating func append(newElement: Element) {
         self.elements.append(newElement)
     }
 
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == ${Element}<CoordinateType>>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == ${Element}<CoordinateType>>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
@@ -132,7 +134,7 @@ extension ${Self} : Collection {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> ${Element}<CoordinateType> {
+    public mutating func removeLast() -> Element {
         return self.elements.removeLast()
     }
 
@@ -141,14 +143,14 @@ extension ${Self} : Collection {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: ${Element}<CoordinateType>, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
         Remove and return the element at index `i` of this ${Self}.
      */
-    public mutating func removeAtIndex(index: Int) -> ${Element}<CoordinateType> {
+    public mutating func removeAtIndex(index: Int) -> Element {
         return self.elements.removeAtIndex(index)
     }
 
@@ -176,17 +178,17 @@ extension ${Self} {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> ${Element}<CoordinateType> {
+    public subscript(position : Int) -> Element {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<${Element}<CoordinateType>> {
+    public subscript(range: Range<Int>) -> ArraySlice<Element> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<${Element}<CoordinateType>>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
         return self.elements.generate()
     }
 }

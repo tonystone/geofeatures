@@ -20,14 +20,15 @@ lineString1.length()
 
 let fixedPrecision = FixedPrecision(scale: 100)
 
-let lineString = LineString<Coordinate2D>(coordinates: lineString1, precision: fixedPrecision)
+let lineString = LineString<Coordinate2D>(elements: lineString1, precision: fixedPrecision)
 
-var lineString2 = LineString<Coordinate2D>(coordinates: [(1.001, 1.001),(2.001, 2.001),(3.001, 3.001)], precision: fixedPrecision)
+var lineString2 = LineString<Coordinate2D>(elements: [(1.001, 1.001),(2.001, 2.001),(3.001, 3.001)], precision: fixedPrecision)
 
 lineString == lineString2
 
 lineString2.length()
 lineString1 == lineString2
+LineString(elements: lineString1, precision:  fixedPrecision) == lineString2    // Change linestring 1 precision by copying it
 
 lineString2.append(Coordinate2D(tuple: (4.001, 4.001)))
 lineString2.append((5.001, 5.001))

@@ -27,7 +27,7 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
     public typealias RingType = LinearRing<CoordinateType>
     
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
 
     public var outerRing:  RingType   { get { return _outerRing } }
     public var innerRings: [RingType] { get { return _innerRings } }
@@ -35,12 +35,41 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
     private var _outerRing = RingType()
     private var _innerRings = [RingType]()
 
-    public init () {
-        self.precision = defaultPrecision
+    public init (coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        self.precision = precision
     }
     
-    public  init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType, C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
-        self.precision = defaultPrecision
+    public  init<C : CollectionType where C.Generator.Element == CoordinateType, C.Index.Distance == Int>(outerRing: C, innerRings: [C], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+       
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        var outerRingsGenerator = outerRing.generate()
+        
+        self._outerRing.reserveCapacity(outerRing.count)
+        
+        while var coordinate = outerRingsGenerator.next() {
+            
+            self.precision.convert(&coordinate)
+            
+            self._outerRing.append(coordinate)
+        }
+        self._innerRings.reserveCapacity(innerRings.count)
+        
+        var innerRingsGenerator = innerRings.generate()
+        
+        while let ring = innerRingsGenerator.next() {
+            self._innerRings.append(RingType(elements: ring, precision: precision))
+        }
+    }
+    
+}
+
+extension Polygon where CoordinateType : TupleConvertable {
+    
+    public  init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType, C.Index.Distance == Int>(rings: (C,[C]), coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+       self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
         var outerRingsGenerator = rings.0.generate()
         
@@ -58,32 +87,9 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         var innerRingsGenerator = rings.1.generate()
         
         while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(coordinates: ring, precision: precision))
+            self._innerRings.append(RingType(elements: ring, precision: precision))
         }
     }
-    
-    public  init<C : CollectionType where C.Generator.Element == CoordinateType, C.Index.Distance == Int>(outerRing: C, innerRings: [C], precision: Precision = defaultPrecision) {
-        self.precision = defaultPrecision
-        
-        var outerRingsGenerator = outerRing.generate()
-        
-        self._outerRing.reserveCapacity(outerRing.count)
-        
-        while var coordinate = outerRingsGenerator.next() {
-            
-            self.precision.convert(&coordinate)
-            
-            self._outerRing.append(coordinate)
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
-        
-        var innerRingsGenerator = innerRings.generate()
-        
-        while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(coordinates: ring, precision: precision))
-        }
-    }
-    
 }
 
 // MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance

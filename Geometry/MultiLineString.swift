@@ -35,38 +35,46 @@ import Swift
  */
 public struct MultiLineString<CoordinateType : protocol<Coordinate, TupleConvertable>> : Geometry  {
 
+    public typealias Element = LineString<CoordinateType>
+    
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
 
-    private var elements = ContiguousArray<LineString<CoordinateType>>()
-
-    /**
-        MultiLineString is empty constructable
-     */
-    public init () {
-        self.precision = defaultPrecision
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
     }
     
+    private var elements = ContiguousArray<Element>()
+}
+
+// MARK:  Collection conformance
+
+extension MultiLineString : Collection {
+
     /**
         MultiLineString can be constructed from any SequenceType as long as it has an
-        Element type equal the LineString Element.
+        Element type equal the Geometry Element.
      */
-    public init<C : SequenceType where C.Generator.Element == LineString<CoordinateType>>(elements: C) {
-
+    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
         var generator = elements.generate()
         
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
     
     /**
         MultiLineString can be constructed from any CollectionType including Array as
-        long as it has an Element type equal the LineString Element and the Distance
+        long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == LineString<CoordinateType>, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
         self.elements.reserveCapacity(elements.count)
 
@@ -75,14 +83,8 @@ public struct MultiLineString<CoordinateType : protocol<Coordinate, TupleConvert
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension MultiLineString : Collection {
-
+    
     /**
         - Returns: The number of LineString objects.
      */
@@ -109,21 +111,21 @@ extension MultiLineString : Collection {
     /**
         Append `newElement` to this MultiLineString.
      */
-    public mutating func append(newElement: LineString<CoordinateType>) {
+    public mutating func append(newElement: Element) {
         self.elements.append(newElement)
     }
 
     /**
         Append the elements of `newElements` to this MultiLineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == LineString<CoordinateType>>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
         Append the elements of `newElements` to this MultiLineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == LineString<CoordinateType>>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
@@ -132,7 +134,7 @@ extension MultiLineString : Collection {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> LineString<CoordinateType> {
+    public mutating func removeLast() -> Element {
         return self.elements.removeLast()
     }
 
@@ -141,14 +143,14 @@ extension MultiLineString : Collection {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: LineString<CoordinateType>, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
         Remove and return the element at index `i` of this MultiLineString.
      */
-    public mutating func removeAtIndex(index: Int) -> LineString<CoordinateType> {
+    public mutating func removeAtIndex(index: Int) -> Element {
         return self.elements.removeAtIndex(index)
     }
 
@@ -176,17 +178,17 @@ extension MultiLineString {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> LineString<CoordinateType> {
+    public subscript(position : Int) -> Element {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<LineString<CoordinateType>> {
+    public subscript(range: Range<Int>) -> ArraySlice<Element> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<LineString<CoordinateType>>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
         return self.elements.generate()
     }
 }

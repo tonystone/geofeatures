@@ -34,18 +34,6 @@ public struct Point<CoordinateType : protocol<Coordinate, TupleConvertable>> : G
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
     
-    public init(coordinate: CoordinateType.TupleType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
-        
-        self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
-        
-        var convertedCoordinate = CoordinateType(tuple: coordinate)
-        
-        self.precision.convert(&convertedCoordinate)
-        
-        self.coordinate = convertedCoordinate
-        
-    }
     public init(var coordinate: CoordinateType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.precision = precision
@@ -65,6 +53,13 @@ extension Point where CoordinateType : ThreeDimensional {
 
 extension Point where CoordinateType : Measured {
     public var m: Double { get { return coordinate.m } }
+}
+
+extension Point where CoordinateType : TupleConvertable {
+    
+    public init(coordinate: CoordinateType.TupleType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        self.init(coordinate: CoordinateType(tuple: coordinate))
+    }
 }
 
 extension Point : CustomStringConvertible, CustomDebugStringConvertible {

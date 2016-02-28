@@ -35,30 +35,38 @@ import Swift
  */
 public struct GeometryCollection : Geometry  {
 
+    public typealias Element = Geometry
+    
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem
-
-    private var elements = ContiguousArray<Geometry>()
-
-    /**
-        GeometryCollection is empty constructable
-     */
-    public init () {
-        self.precision = defaultPrecision
+    public let coordinateReferenceSystem: CoordinateReferenceSystem
+    
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
     }
     
+    private var elements = ContiguousArray<Element>()
+
+
+}
+
+// MARK:  GeometryCollectionType conformance
+
+extension GeometryCollection : Collection {
+
     /**
         GeometryCollection can be constructed from any SequenceType as long as it has an
         Element type equal the Geometry Element.
      */
-    public init<C : SequenceType where C.Generator.Element == Geometry>(elements: C) {
+    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
     
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
         var generator = elements.generate()
         
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
     
     /**
@@ -66,7 +74,9 @@ public struct GeometryCollection : Geometry  {
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Geometry, C.Index.Distance == Int>(elements: C) {
+    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
         self.elements.reserveCapacity(elements.count)
 
@@ -75,14 +85,8 @@ public struct GeometryCollection : Geometry  {
         while let element = generator.next() {
             self.elements.append(element)
         }
-        self.precision = defaultPrecision
     }
-}
-
-// MARK:  GeometryCollectionType conformance
-
-extension GeometryCollection : Collection {
-
+    
     /**
         - Returns: The number of Geometry objects.
      */
@@ -109,21 +113,21 @@ extension GeometryCollection : Collection {
     /**
         Append `newElement` to this GeometryCollection.
      */
-    public mutating func append(newElement: Geometry) {
+    public mutating func append(newElement: Element) {
         self.elements.append(newElement)
     }
 
     /**
         Append the elements of `newElements` to this GeometryCollection.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Geometry>(newElements: S) {
+    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         self.elements.appendContentsOf(newElements)
     }
 
     /**
         Append the elements of `newElements` to this GeometryCollection.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Geometry>(newElements: C) {
+    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         self.elements.appendContentsOf(newElements)
     }
 
@@ -132,7 +136,7 @@ extension GeometryCollection : Collection {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> Geometry {
+    public mutating func removeLast() -> Element {
         return self.elements.removeLast()
     }
 
@@ -141,14 +145,14 @@ extension GeometryCollection : Collection {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Geometry, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex i: Int) {
         self.elements.insert(newElement, atIndex: i)
     }
 
     /**
         Remove and return the element at index `i` of this GeometryCollection.
      */
-    public mutating func removeAtIndex(index: Int) -> Geometry {
+    public mutating func removeAtIndex(index: Int) -> Element {
         return self.elements.removeAtIndex(index)
     }
 
@@ -176,17 +180,17 @@ extension GeometryCollection {
      */
     public var endIndex   : Int { return self.elements.endIndex }
     
-    public subscript(position : Int) -> Geometry{
+    public subscript(position : Int) -> Element {
         get         { return self.elements[position] }
         set (value) { self.elements[position] = value }
     }
     
-    public subscript(range: Range<Int>) -> ArraySlice<Geometry> {
+    public subscript(range: Range<Int>) -> ArraySlice<Element> {
         get         { return self.elements[range] }
         set (value) { self.elements[range] = value }
     }
     
-    public func generate() -> IndexingGenerator<ContiguousArray<Geometry>> {
+    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
         return self.elements.generate()
     }
 }

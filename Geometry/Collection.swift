@@ -27,6 +27,20 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
     typealias Element
     
     /**
+        Collection can be constructed from any SequenceType as long as it has an
+        Element type equal Self.Element.
+     */
+    init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
+    
+    
+    /**
+        Collection can be constructed from any CollectionType including Array as
+        long as it has an Element type equal Self.Element and the Distance
+        is an Int type.
+     */
+    init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
+    
+    /**
         - Returns: The number of Geometry objects.
      */
     var count: Int { get }
