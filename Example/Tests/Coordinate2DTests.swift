@@ -31,10 +31,20 @@ class Coordinate2DTests: XCTestCase {
         XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0)
     }
     
+    // MARK: Accessors
+    
     func testTuple () {
         let coordinate = Coordinate2D(tuple: (2.0,3.0))
         
         XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0)
+    }
+    
+    func testX () {
+        XCTAssertEqual(Coordinate2D(tuple: (1001.0,1002.0)).x, 1001.0)
+    }
+    
+    func testY () {
+        XCTAssertEqual(Coordinate2D(tuple: (1001.0,1002.0)).y, 1002.0)
     }
     
     // MARK: Hashvalue
