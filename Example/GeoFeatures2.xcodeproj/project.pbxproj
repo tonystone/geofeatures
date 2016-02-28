@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3669851E2D5420E7197967B6 /* Coordinate3DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */; };
 		36698BF49435188ABC3F8FCE /* Coordinate2DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36698E41D4A1A205AE291935 /* Coordinate2DMTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		0F243D2FCE8800EAB521DC72 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		28E76E80829A6C416EFFD976 /* Pods_GeoFeatures2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E8E8258ACE5267DDF6D0D4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DMTests.swift; sourceTree = "<group>"; };
 		36698E41D4A1A205AE291935 /* Coordinate2DMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DMTests.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GeoFeatures2_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoFeatures2_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
 				36698E41D4A1A205AE291935 /* Coordinate2DMTests.swift */,
 				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
+				36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */,
 				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
 				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
 				EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */,
@@ -431,6 +434,7 @@
 				EAB4C1C41C6F7CB600F288D1 /* Coordinate2DTests.swift in Sources */,
 				EAB4C1CA1C6F7CCE00F288D1 /* WKTReaderTests.swift in Sources */,
 				36698BF49435188ABC3F8FCE /* Coordinate2DMTests.swift in Sources */,
+				3669851E2D5420E7197967B6 /* Coordinate3DMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
