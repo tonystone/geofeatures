@@ -201,8 +201,11 @@ extension ${Self} where Element : TupleConvertable {
     }
     
     public init<C : CollectionType where C.Generator.Element == Element.TupleType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == Element.TupleType, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        self.coordinates.reserveCapacity(elements.count)
         
         var generator = elements.generate()
         
