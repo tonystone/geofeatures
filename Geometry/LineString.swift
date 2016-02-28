@@ -49,6 +49,11 @@ public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geo
 
 extension LineString : Collection  {
     
+    
+    /**
+        LineString can be constructed from any SequenceType as long as it has an
+        Element type equal the Coordinate type specified in Element.
+     */
     public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
@@ -62,9 +67,16 @@ extension LineString : Collection  {
         }
     }
     
-    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    /**
+        LineString can be constructed from any CollectionType including Array as
+        long as it has an Element type equal the Coordinate type specified in Element 
+        and the Distance is an Int type.
+     */
+    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        self.coordinates.reserveCapacity(elements.count)
         
         var generator = elements.generate()
         
@@ -185,6 +197,14 @@ extension LineString : Collection  {
  */
 extension LineString where Element : TupleConvertable {
     
+    /**
+        LineString can be constructed from any SequenceType if it's Elements are tuples that match
+        Self.Element's TupleType.  
+     
+        ----
+     
+        - seealso: TupleConvertable.
+     */
     public init<S : SequenceType where S.Generator.Element == Element.TupleType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
@@ -200,9 +220,19 @@ extension LineString where Element : TupleConvertable {
         }
     }
     
-    public init<C : CollectionType where C.Generator.Element == Element.TupleType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    /**
+        LineString can be constructed from any CollectionType if it's Elements are tuples that match
+        Self.Element's TupleType.  
+     
+        ----
+     
+        - seealso: TupleConvertable.
+     */
+    public init<C : CollectionType where C.Generator.Element == Element.TupleType, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        self.coordinates.reserveCapacity(elements.count)
         
         var generator = elements.generate()
         
