@@ -69,8 +69,8 @@ class Coordinate2DTests: XCTestCase {
         XCTAssertNotEqual(Coordinate2D(tuple: (0.0,0.0)).hashValue, Coordinate2D(tuple: (1.0,1.0)).hashValue)
     }
     
-    func testHasvalue_NotEqual_Values0_0_Value2_2 () {
-        XCTAssertNotEqual(Coordinate2D(tuple: (0.0,0.0)).hashValue, Coordinate2D(tuple: (2.0,2.0)).hashValue)
+    func testHasvalue_NotEqual_Values0_0_Value2_0 () {
+        XCTAssertNotEqual(Coordinate2D(tuple: (0.0,0.0)).hashValue, Coordinate2D(tuple: (2.0,0.0)).hashValue)
     }
     
     func testHasvalue_NotEqual_Values1_1_Values3_3 () {
