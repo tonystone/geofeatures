@@ -49,7 +49,6 @@ public struct ${Self}<Element : protocol<Coordinate, TupleConvertable>> : Geomet
 
 extension ${Self} : Collection  {
     
-    
     /**
         ${Self} can be constructed from any SequenceType as long as it has an
         Element type equal the Coordinate type specified in Element.

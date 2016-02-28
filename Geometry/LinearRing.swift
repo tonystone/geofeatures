@@ -49,7 +49,6 @@ public struct LinearRing<Element : protocol<Coordinate, TupleConvertable>> : Geo
 
 extension LinearRing : Collection  {
     
-    
     /**
         LinearRing can be constructed from any SequenceType as long as it has an
         Element type equal the Coordinate type specified in Element.

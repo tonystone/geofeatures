@@ -49,7 +49,6 @@ public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geo
 
 extension LineString : Collection  {
     
-    
     /**
         LineString can be constructed from any SequenceType as long as it has an
         Element type equal the Coordinate type specified in Element.
