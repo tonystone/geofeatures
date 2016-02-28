@@ -40,28 +40,29 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         self.precision = precision
     }
     
-//    public  init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType, C.Index.Distance == Int>(rings: (C,[C]), precision: Precision = defaultPrecision) {
-//        self.precision = defaultPrecision
-//        
-//        var outerRingsGenerator = rings.0.generate()
-//        
-//        self._outerRing.reserveCapacity(outerRing.count)
-//        
-//        while let coordinate = outerRingsGenerator.next() {
-//            var convertedCoordinate = CoordinateType(tuple: coordinate)
-//            
-//            self.precision.convert(&convertedCoordinate)
-//            
-//            self._outerRing.append(convertedCoordinate)
-//        }
-//        self._innerRings.reserveCapacity(innerRings.count)
-//        
-//        var innerRingsGenerator = rings.1.generate()
-//        
-//        while let ring = innerRingsGenerator.next() {
-//            self._innerRings.append(RingType(coordinates: ring, precision: precision))
-//        }
-//    }
+    public  init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType, C.Index.Distance == Int>(rings: (C,[C]), coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+        
+       self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        
+        var outerRingsGenerator = rings.0.generate()
+        
+        self._outerRing.reserveCapacity(outerRing.count)
+        
+        while let coordinate = outerRingsGenerator.next() {
+            var convertedCoordinate = CoordinateType(tuple: coordinate)
+            
+            self.precision.convert(&convertedCoordinate)
+            
+            self._outerRing.append(convertedCoordinate)
+        }
+        self._innerRings.reserveCapacity(innerRings.count)
+        
+        var innerRingsGenerator = rings.1.generate()
+        
+        while let ring = innerRingsGenerator.next() {
+            self._innerRings.append(RingType(elements: ring, precision: precision))
+        }
+    }
     
     public  init<C : CollectionType where C.Generator.Element == CoordinateType, C.Index.Distance == Int>(outerRing: C, innerRings: [C], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
        
