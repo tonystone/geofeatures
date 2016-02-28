@@ -28,6 +28,7 @@ lineString == lineString2
 
 lineString2.length()
 lineString1 == lineString2
+LineString(elements: lineString1, precision:  fixedPrecision) == lineString2    // Change linestring 1 precision by copying it
 
 lineString2.append(Coordinate2D(tuple: (4.001, 4.001)))
 lineString2.append((5.001, 5.001))
