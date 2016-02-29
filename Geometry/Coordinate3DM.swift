@@ -47,18 +47,7 @@ public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConve
 }
 
 extension Coordinate3DM  : Equatable, Hashable {
-    public var hashValue: Int {
-        get {
-            // DJB2 Algorithm
-            var hash = 5381
-            hash = ((hash << 5) &+ hash) &+ x.hashValue
-            hash = ((hash << 5) &+ hash) &+ y.hashValue
-            hash = ((hash << 5) &+ hash) &+ z.hashValue
-            hash = ((hash << 5) &+ hash) &+ m.hashValue
-            
-            return hash
-        }
-    }
+    public var hashValue: Int { get { return combineHashes(x.hashValue, y.hashValue, z.hashValue, m.hashValue) } }
 }
 
 public func ==(lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool {

@@ -45,17 +45,7 @@ public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
 }
 
 extension Coordinate2DM : Equatable, Hashable {
-    public var hashValue: Int {
-        get {
-            // DJB2 Algorithm
-            var hash = 5381
-            hash = ((hash << 5) &+ hash) &+ x.hashValue
-            hash = ((hash << 5) &+ hash) &+ y.hashValue
-            hash = ((hash << 5) &+ hash) &+ m.hashValue
-            
-            return hash
-        }
-    }
+    public var hashValue: Int { get { return combineHashes(x.hashValue, y.hashValue, m.hashValue) } }
 }
 
 public func ==(lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool {

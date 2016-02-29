@@ -45,17 +45,7 @@ public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
 }
 
 extension Coordinate3D : Equatable, Hashable {
-    public var hashValue: Int {
-        get {
-            // DJB2 Algorithm
-            var hash = 5381
-            hash = ((hash << 5) &+ hash) &+ x.hashValue
-            hash = ((hash << 5) &+ hash) &+ y.hashValue
-            hash = ((hash << 5) &+ hash) &+ z.hashValue
-            
-            return hash
-        }
-    }
+    public var hashValue: Int { get { return combineHashes(x.hashValue, y.hashValue, z.hashValue) } }
 }
 
 public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {

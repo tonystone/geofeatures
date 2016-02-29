@@ -43,16 +43,7 @@ public struct Coordinate2D : Coordinate, TupleConvertable {
 }
 
 extension Coordinate2D  : Equatable, Hashable {
-    public var hashValue: Int {
-        get {
-            // DJB2 Algorithm
-            var hash = 5381
-            hash = ((hash << 5) &+ hash) &+ x.hashValue
-            hash = ((hash << 5) &+ hash) &+ y.hashValue
-            
-            return hash
-        }
-    }
+    public var hashValue: Int { get { return combineHashes(x.hashValue, y.hashValue) } }
 }
 
 public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
