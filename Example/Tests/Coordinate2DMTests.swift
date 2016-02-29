@@ -51,44 +51,6 @@ class Coordinate2DMTests: XCTestCase {
         XCTAssertEqual(Coordinate2DM(tuple: (1001.0,1002.0,1003.0)).m, 1003.0)
     }
     
-    // MARK: Hashvalue
-    
-    func testHasvalue_Equal_Values0_0_0 () {
-        XCTAssertEqual(Coordinate2DM(tuple: (0.0,0.0,0.0)).hashValue, Coordinate2DM(tuple: (0.0,0.0,0.0)).hashValue)
-    }
-    
-    func testHasvalue_Equal_Values1_1_1 () {
-        XCTAssertEqual(Coordinate2DM(tuple: (1.0,1.0,1.0)).hashValue, Coordinate2DM(tuple: (1.0,1.0,1.0)).hashValue)
-    }
-    
-    func testHasvalue_Equal_Values1_2_3 () {
-        XCTAssertEqual(Coordinate2DM(tuple: (1.0,2.0,3.0)).hashValue, Coordinate2DM(tuple: (1.0,2.0,3.0)).hashValue)
-    }
-    
-    func testHasvalue_Equal_Values1234_1234_1234 () {
-        XCTAssertEqual(Coordinate2DM(tuple: (1234.0,1234.0,1234.0)).hashValue, Coordinate2DM(tuple: (1234.0,1234.0,1234.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values0_0_0_Values1_1_1 () {
-        XCTAssertNotEqual(Coordinate2DM(tuple: (0.0,0.0,0.0)).hashValue, Coordinate2DM(tuple: (1.0,1.0,1.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values0_0_0_Value2_0_0 () {
-        XCTAssertNotEqual(Coordinate2DM(tuple: (0.0,0.0,0.0)).hashValue, Coordinate2DM(tuple: (2.0,0.0,0.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values1_1_1_Values3_3_3 () {
-        XCTAssertNotEqual(Coordinate2DM(tuple: (1.0,1.0,1.0)).hashValue, Coordinate2DM(tuple: (3.0,3.0,3.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values1_2_3_Values3_4_5 () {
-        XCTAssertNotEqual(Coordinate2DM(tuple: (1.0,2.0,3.0)).hashValue, Coordinate2DM(tuple: (3.0,4.0,5.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values1234_1234_1234_Values12345_12345_12345 () {
-        XCTAssertNotEqual(Coordinate2DM(tuple: (1234.0,1234.0,1234.0)).hashValue, Coordinate2DM(tuple: (12345.0,12345.0,12345.0)).hashValue)
-    }
-    
     // MARK: Equal
     
     func testEqual () {

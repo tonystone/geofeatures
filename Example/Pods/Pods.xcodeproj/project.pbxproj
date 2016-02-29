@@ -46,7 +46,6 @@
 		D80A5EB733B68435CBF0449AD6FC0CB3 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CDACEAAF478FD5E7F326C09C11A1D3 /* Coordinate3D.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E3740180A20118FA0BCEEFF24966F000 /* FixedPrecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F8B62C7E5945C5862E72EAFB7F31D /* FixedPrecision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E45134A052F4CBBD19943446BC5DD933 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59DC3D3D3DF5F462718A515A229B52F /* Point.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EADA5DA91C83C90400594AAE /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA5DA81C83C90400594AAE /* Hash.swift */; };
 		EAE34D0E1C7A7B3100CD8D11 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D0D1C7A7B3100CD8D11 /* Coordinate.swift */; };
 		EAE34D101C7A7D2A00CD8D11 /* Coordinate2DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D0F1C7A7D2A00CD8D11 /* Coordinate2DM.swift */; };
 		EAE34D121C7A7D8900CD8D11 /* Coordinate3DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE34D111C7A7D8900CD8D11 /* Coordinate3DM.swift */; };
@@ -139,7 +138,6 @@
 		DA37933ECF19B3510850786956868B3C /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DE3329335C7D5CF6CC6158281EB3E4E8 /* Polygon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		E572A6F2333B6D347525C8DF9637A13D /* MultiLineString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiLineString.swift; sourceTree = "<group>"; };
-		EADA5DA81C83C90400594AAE /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		EAE34D0D1C7A7B3100CD8D11 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		EAE34D0F1C7A7D2A00CD8D11 /* Coordinate2DM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DM.swift; sourceTree = "<group>"; };
 		EAE34D111C7A7D8900CD8D11 /* Coordinate3DM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DM.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 		7C173A1E464CAC2A65369F57352EF631 /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
-				EADA5DA81C83C90400594AAE /* Hash.swift */,
 				BEE2C464D68A4608BFB10E808992ACF3 /* Precision.swift */,
 				D09F8B62C7E5945C5862E72EAFB7F31D /* FixedPrecision.swift */,
 				603BE8D2A21994D92DFF87C3F220A41D /* FloatingPrecision.swift */,
@@ -479,7 +476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E6DD68DA2FC50E98A1E469B75F247C0 /* Collection.swift in Sources */,
-				EADA5DA91C83C90400594AAE /* Hash.swift in Sources */,
 				575ADBE3A394CFE3074CB80344EE4CB3 /* Coordinate2D.swift in Sources */,
 				D80A5EB733B68435CBF0449AD6FC0CB3 /* Coordinate3D.swift in Sources */,
 				EAE34D121C7A7D8900CD8D11 /* Coordinate3DM.swift in Sources */,

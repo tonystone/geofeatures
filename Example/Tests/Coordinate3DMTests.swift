@@ -54,43 +54,6 @@ class Coordinate3DMTests: XCTestCase {
         XCTAssertEqual(Coordinate3DM(tuple: (1001.0,1002.0,1003.0,1004.0)).m, 1004.0)
     }
     
-    // MARK: Hashvalue
-    
-    func testHasvalue_Equal_Values0_0_0_0 () {
-        XCTAssertEqual(Coordinate3DM(tuple: (0.0,0.0,0.0,0.0)).hashValue, Coordinate3DM(tuple: (0.0,0.0,0.0,0.0)).hashValue)
-    }
-    
-    func testHasvalue_Equal_Values1_1_1_1 () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)).hashValue, Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)).hashValue)
-    }
-    
-    func testHasvalue_Equal_Values1_2_3_4 () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1.0,2.0,3.0,4.0)).hashValue, Coordinate3DM(tuple: (1.0,2.0,3.0,4.0)).hashValue)
-    }
-    
-    func testHasvalue_Equal_Values1234_1234_1234_1234 () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1234.0,1234.0,1234.0,1234.0)).hashValue, Coordinate3DM(tuple: (1234.0,1234.0,1234.0,1234.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values0_0_0_0_Values1_1_1_1 () {
-        XCTAssertNotEqual(Coordinate3DM(tuple: (0.0,0.0,0.0,0.0)).hashValue, Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values0_0_0_0_Value2_0_0_0 () {
-        XCTAssertNotEqual(Coordinate3DM(tuple: (0.0,0.0,0.0,0.0)).hashValue, Coordinate3DM(tuple: (2.0,0.0,0.0,0.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values1_1_1_1_Values3_3_3_3 () {
-        XCTAssertNotEqual(Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)).hashValue, Coordinate3DM(tuple: (3.0,3.0,3.0,3.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values1_2_3_4_Values3_4_5_6 () {
-        XCTAssertNotEqual(Coordinate3DM(tuple: (1.0,2.0,3.0,4.0)).hashValue, Coordinate3DM(tuple: (3.0,4.0,5.0,6.0)).hashValue)
-    }
-    
-    func testHasvalue_NotEqual_Values1234_Values12345 () {
-        XCTAssertNotEqual(Coordinate3DM(tuple: (1234.0,1234.0,1234.0,1234.0)).hashValue, Coordinate3DM(tuple: (12345.0,12345.0,12345.0,12345.0)).hashValue)
-    }
     
     // MARK: Equal
     
