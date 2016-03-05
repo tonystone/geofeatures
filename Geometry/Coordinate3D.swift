@@ -32,6 +32,12 @@ public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
     public var y: Double
     public var z: Double
     
+    public init() {
+        self.x = Double.NaN
+        self.y = Double.NaN
+        self.z = Double.NaN
+    }
+    
     public var tuple: TupleType {
         get { return (self.x, self.y, self.z)  }
         set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z }

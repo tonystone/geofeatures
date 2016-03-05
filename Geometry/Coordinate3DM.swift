@@ -33,6 +33,13 @@ public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConve
     public var z: Double
     public var m: Double
     
+    public init() {
+        self.x = Double.NaN
+        self.y = Double.NaN
+        self.z = Double.NaN
+        self.m = Double.NaN
+    }
+    
     public var tuple: TupleType {
         get { return (self.x, self.y, self.z, self.m)  }
         set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z; self.m = newValue.m }

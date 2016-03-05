@@ -22,12 +22,12 @@ import Swift
 /**
 Default Precision for all class
 */
-let defaultPrecision = FloatingPrecision()
+public let defaultPrecision = FloatingPrecision()
 
 /**
 Default CoordinateReferenceSystem
 */
-let defaultCoordinateReferenceSystem = Cartesian()
+public let defaultCoordinateReferenceSystem = Cartesian()
 
 /**
  Geometry
