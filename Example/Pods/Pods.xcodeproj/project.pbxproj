@@ -104,7 +104,7 @@
 		50240E9A7EA2682356471CE55FBC19D2 /* Point+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Point+Geometry.swift"; sourceTree = "<group>"; };
 		543D9E1C6B50E9067EA27F95AF30F64C /* MultiPolygon+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MultiPolygon+Geometry.swift"; sourceTree = "<group>"; };
 		59E4CC45763470320B11321F8F11E911 /* LinearRing+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LinearRing+Geometry.swift"; sourceTree = "<group>"; };
-		5B2DB4FA44E05162F9B4AFC4C8FEF7AB /* MultiCollection.swift.gyb */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = MultiCollection.swift.gyb; sourceTree = "<group>"; };
+		5B2DB4FA44E05162F9B4AFC4C8FEF7AB /* MultiCollection.swift.gyb */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = MultiCollection.swift.gyb; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		603BE8D2A21994D92DFF87C3F220A41D /* FloatingPrecision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FloatingPrecision.swift; sourceTree = "<group>"; };
 		6A816A30072A63C10F70B2067EBF9EF1 /* GeoFeatures2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeoFeatures2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3DBE3EFDB2F4DD65FFA980A397B065 /* MultiPolygon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiPolygon.swift; sourceTree = "<group>"; };
