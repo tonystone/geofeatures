@@ -23,6 +23,17 @@ class WKTReaderTests: XCTestCase {
         }
     }
     
+    func testRead_Point_Valid_WhiteSpace() {
+        
+        do {
+            let geometry = try WKTReader<Coordinate2D>.read(" POINT  (   1.0     1.0   ) ")
+            
+            XCTAssertEqual(geometry == Point<Coordinate2D>(coordinate: (1.0, 1.0)), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
     func testRead_Point_Valid_Exponent_UpperCase() {
         
         do {
