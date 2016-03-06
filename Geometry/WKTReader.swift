@@ -35,9 +35,7 @@ private enum Token : String {
     case RIGHT_BRACKET                  = "\\]"
     case LEFT_DELIMITER                 = "[\\(|\\[])"
     case RIGHT_DELIMITER                = "[\\)|\\]])"
-    case SIGNED_NUMERIC_LITERAL         = "[-+]?[0-9]*\\.?[0-9]+"
-    case UNSIGNED_NUMERIC_LITERAL       = "[0-9]*\\.?[0-9]+"
-    case APPROXIMATE_NUMERIC_LITERAL    = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?"
+    case NUMERIC_LITERAL                = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?"
     case THREEDIMENSIONAL               = "z"
     case MEASURED                       = "m"
     case EMPTY                          = "empty"
@@ -213,20 +211,20 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         // Eat any white space
         tokenizer.accept(.WHITE_SPACE)
         
-        if let token = tokenizer.accept(.UNSIGNED_NUMERIC_LITERAL) {
+        if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinate.x = Double(token)!
         } else {
-            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.UNSIGNED_NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
         }
         
         if tokenizer.accept(.WHITE_SPACE) == nil {
             throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.WHITE_SPACE) but found -> \(tokenizer.stringStream)")
         }
         
-        if let token = tokenizer.accept(.UNSIGNED_NUMERIC_LITERAL) {
+        if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinate.y = Double(token)!
         } else {
-            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.UNSIGNED_NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
         }
         
         if var coordinate = coordinate as? ThreeDimensional {
@@ -235,10 +233,10 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
                 throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.WHITE_SPACE) but found -> \(tokenizer.stringStream)")
             }
             
-            if let token = tokenizer.accept(.UNSIGNED_NUMERIC_LITERAL) {
+            if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinate.z = Double(token)!
             } else {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.UNSIGNED_NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
             }
         }
         
@@ -248,10 +246,10 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
                 throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.WHITE_SPACE) but found -> \(tokenizer.stringStream)")
             }
             
-            if let token = tokenizer.accept(.UNSIGNED_NUMERIC_LITERAL) {
+            if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinate.m = Double(token)!
             } else {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.UNSIGNED_NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
             }
         }
         
