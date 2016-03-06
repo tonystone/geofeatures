@@ -26,7 +26,7 @@ public enum ParseError : ErrorType  {
 
 // Translated from BNF
 private enum Token : String {
-    case WHITE_SPACE                    = "\\s*"
+    case WHITE_SPACE                    = "[ \\t]+"
     case NEW_LINE                       = "[\\n|\\r]"
     case COMMA                          = ","
     case LEFT_PAREN                     = "\\("
