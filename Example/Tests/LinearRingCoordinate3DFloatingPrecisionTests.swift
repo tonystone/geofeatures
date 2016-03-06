@@ -50,36 +50,36 @@ class LinearRingCoordinate3DFloatingPrecisionTests : XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
+        let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
         
-        XCTAssertEqual(lineString[1] == Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), true)
+        XCTAssertEqual(geometry[1] == Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), true)
     }
     
     func testSubscript_Set () {
-        var lineString = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
+        var geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
         
-        lineString[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
+        geometry[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
         
-        XCTAssertEqual(lineString[1] ==  Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), true)
+        XCTAssertEqual(geometry[1] ==  Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), true)
     }
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
-        var lineString2 = LinearRing<Coordinate3D>(precision: FloatingPrecision())
+        let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
+        var geometry2 = LinearRing<Coordinate3D>(precision: FloatingPrecision())
         
-        lineString2.appendContentsOf(lineString1)
+        geometry2.appendContentsOf(geometry1)
         
-        XCTAssertEqual(lineString1 == lineString2, true)
+        XCTAssertEqual(geometry1 == geometry2, true)
     }
     
     func testAppendContentsOf_Array () {
         
-        var lineString2 = LinearRing<Coordinate3D>(precision: FloatingPrecision())
+        var geometry2 = LinearRing<Coordinate3D>(precision: FloatingPrecision())
         
-        lineString2.appendContentsOf([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
+        geometry2.appendContentsOf([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
         
-        XCTAssertEqual(lineString2.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+        XCTAssertEqual(geometry2.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
         }, true)
     }
@@ -105,11 +105,11 @@ class LinearRingCoordinate3DFloatingPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = LinearRing<Coordinate3D>(precision: FloatingPrecision())
+        var geometry = LinearRing<Coordinate3D>(precision: FloatingPrecision())
         
-        lineString.append((x: 1.0, y: 1.0, z: 1.0))
+        geometry.append((x: 1.0, y: 1.0, z: 1.0))
         
-        XCTAssertEqual(lineString.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))])
             { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
         }, true)

@@ -50,36 +50,36 @@ class LineStringCoordinate2DMFixedPrecisionTests : XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
+        let geometry = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
         
-        XCTAssertEqual(lineString[1] == Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), true)
+        XCTAssertEqual(geometry[1] == Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), true)
     }
     
     func testSubscript_Set () {
-        var lineString = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
+        var geometry = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
         
-        lineString[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
+        geometry[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
         
-        XCTAssertEqual(lineString[1] ==  Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), true)
+        XCTAssertEqual(geometry[1] ==  Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), true)
     }
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
-        var lineString2 = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
+        let geometry1 = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
+        var geometry2 = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
         
-        lineString2.appendContentsOf(lineString1)
+        geometry2.appendContentsOf(geometry1)
         
-        XCTAssertEqual(lineString1 == lineString2, true)
+        XCTAssertEqual(geometry1 == geometry2, true)
     }
     
     func testAppendContentsOf_Array () {
         
-        var lineString2 = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
+        var geometry2 = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
         
-        lineString2.appendContentsOf([Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))])
+        geometry2.appendContentsOf([Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))])
         
-        XCTAssertEqual(lineString2.elementsEqual([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+        XCTAssertEqual(geometry2.elementsEqual([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs
         }, true)
     }
@@ -105,11 +105,11 @@ class LineStringCoordinate2DMFixedPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
+        var geometry = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
         
-        lineString.append((x: 1.001, y: 1.001, m: 1.001))
+        geometry.append((x: 1.001, y: 1.001, m: 1.001))
         
-        XCTAssertEqual(lineString.elementsEqual([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))])
             { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                 return lhs == rhs
         }, true)

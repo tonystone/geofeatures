@@ -50,36 +50,36 @@ class LineStringCoordinate2DFloatingPrecisionTests : XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: FloatingPrecision())
+        let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: FloatingPrecision())
         
-        XCTAssertEqual(lineString[1] == Coordinate2D(tuple: (x: 2.0, y: 2.0)), true)
+        XCTAssertEqual(geometry[1] == Coordinate2D(tuple: (x: 2.0, y: 2.0)), true)
     }
     
     func testSubscript_Set () {
-        var lineString = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: FloatingPrecision())
+        var geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: FloatingPrecision())
         
-        lineString[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
+        geometry[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
         
-        XCTAssertEqual(lineString[1] ==  Coordinate2D(tuple: (x: 1.0, y: 1.0)), true)
+        XCTAssertEqual(geometry[1] ==  Coordinate2D(tuple: (x: 1.0, y: 1.0)), true)
     }
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: FloatingPrecision())
-        var lineString2 = LineString<Coordinate2D>(precision: FloatingPrecision())
+        let geometry1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: FloatingPrecision())
+        var geometry2 = LineString<Coordinate2D>(precision: FloatingPrecision())
         
-        lineString2.appendContentsOf(lineString1)
+        geometry2.appendContentsOf(geometry1)
         
-        XCTAssertEqual(lineString1 == lineString2, true)
+        XCTAssertEqual(geometry1 == geometry2, true)
     }
     
     func testAppendContentsOf_Array () {
         
-        var lineString2 = LineString<Coordinate2D>(precision: FloatingPrecision())
+        var geometry2 = LineString<Coordinate2D>(precision: FloatingPrecision())
         
-        lineString2.appendContentsOf([Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))])
+        geometry2.appendContentsOf([Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))])
         
-        XCTAssertEqual(lineString2.elementsEqual([Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+        XCTAssertEqual(geometry2.elementsEqual([Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
             return lhs == rhs
         }, true)
     }
@@ -105,11 +105,11 @@ class LineStringCoordinate2DFloatingPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = LineString<Coordinate2D>(precision: FloatingPrecision())
+        var geometry = LineString<Coordinate2D>(precision: FloatingPrecision())
         
-        lineString.append((x: 1.0, y: 1.0))
+        geometry.append((x: 1.0, y: 1.0))
         
-        XCTAssertEqual(lineString.elementsEqual([Coordinate2D(tuple: (x: 1.0, y: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Coordinate2D(tuple: (x: 1.0, y: 1.0))])
             { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                 return lhs == rhs
         }, true)

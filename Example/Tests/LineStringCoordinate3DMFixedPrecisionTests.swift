@@ -50,36 +50,36 @@ class LineStringCoordinate3DMFixedPrecisionTests : XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
+        let geometry = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
         
-        XCTAssertEqual(lineString[1] == Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), true)
+        XCTAssertEqual(geometry[1] == Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), true)
     }
     
     func testSubscript_Set () {
-        var lineString = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
+        var geometry = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
         
-        lineString[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+        geometry[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
         
-        XCTAssertEqual(lineString[1] ==  Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), true)
+        XCTAssertEqual(geometry[1] ==  Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), true)
     }
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
-        var lineString2 = LineString<Coordinate3DM>(precision: FixedPrecision(scale: 100))
+        let geometry1 = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
+        var geometry2 = LineString<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
-        lineString2.appendContentsOf(lineString1)
+        geometry2.appendContentsOf(geometry1)
         
-        XCTAssertEqual(lineString1 == lineString2, true)
+        XCTAssertEqual(geometry1 == geometry2, true)
     }
     
     func testAppendContentsOf_Array () {
         
-        var lineString2 = LineString<Coordinate3DM>(precision: FixedPrecision(scale: 100))
+        var geometry2 = LineString<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
-        lineString2.appendContentsOf([Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
+        geometry2.appendContentsOf([Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
         
-        XCTAssertEqual(lineString2.elementsEqual([Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+        XCTAssertEqual(geometry2.elementsEqual([Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
             return lhs == rhs
         }, true)
     }
@@ -105,11 +105,11 @@ class LineStringCoordinate3DMFixedPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = LineString<Coordinate3DM>(precision: FixedPrecision(scale: 100))
+        var geometry = LineString<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
-        lineString.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+        geometry.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
         
-        XCTAssertEqual(lineString.elementsEqual([Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))])
             { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                 return lhs == rhs
         }, true)

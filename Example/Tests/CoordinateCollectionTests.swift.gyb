@@ -54,36 +54,36 @@ class ${Self} : XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let lineString = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
+        let geometry = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
         
-        XCTAssertEqual(lineString[1] == ${CoordinateType}(tuple: ${ExpectedTuple1}), true)
+        XCTAssertEqual(geometry[1] == ${CoordinateType}(tuple: ${ExpectedTuple1}), true)
     }
     
     func testSubscript_Set () {
-        var lineString = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
+        var geometry = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
         
-        lineString[1] = ${CoordinateType}(tuple: ${TestTuple0})
+        geometry[1] = ${CoordinateType}(tuple: ${TestTuple0})
         
-        XCTAssertEqual(lineString[1] ==  ${CoordinateType}(tuple: ${ExpectedTuple0}), true)
+        XCTAssertEqual(geometry[1] ==  ${CoordinateType}(tuple: ${ExpectedTuple0}), true)
     }
     
     func testAppendContentsOf_LineString () {
         
-        let lineString1 = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
-        var lineString2 = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
+        let geometry1 = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
+        var geometry2 = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
         
-        lineString2.appendContentsOf(lineString1)
+        geometry2.appendContentsOf(geometry1)
         
-        XCTAssertEqual(lineString1 == lineString2, true)
+        XCTAssertEqual(geometry1 == geometry2, true)
     }
     
     func testAppendContentsOf_Array () {
         
-        var lineString2 = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
+        var geometry2 = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
         
-        lineString2.appendContentsOf([${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
+        geometry2.appendContentsOf([${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
         
-        XCTAssertEqual(lineString2.elementsEqual([${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+        XCTAssertEqual(geometry2.elementsEqual([${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
             return lhs == rhs
         }, true)
     }
@@ -109,11 +109,11 @@ class ${Self} : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
+        var geometry = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
         
-        lineString.append(${TestTuple0})
+        geometry.append(${TestTuple0})
         
-        XCTAssertEqual(lineString.elementsEqual([${CoordinateType}(tuple: ${ExpectedTuple0})])
+        XCTAssertEqual(geometry.elementsEqual([${CoordinateType}(tuple: ${ExpectedTuple0})])
             { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                 return lhs == rhs
         }, true)
