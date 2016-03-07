@@ -76,14 +76,12 @@ private class Tokenizer {
             } else {
                 column += range.count
             }
-            
-            let result = stringStream.substringWithRange(range)
+            let result = stringStream[range]
             
             stringStream.removeRange(range)
             
             return result
         }
-        
         return nil
     }
     
