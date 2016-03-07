@@ -107,14 +107,38 @@ class WKTReaderTests: XCTestCase {
         do {
             // mising closing paren
             try WKTReader<Coordinate2D>.read("MULTIPOINT((1.0 2.0)")
-        } catch let error {
             
+            XCTFail("Parsing failed")
             
-            if case ParseError.UnexpectedToken(_) = error {
-                XCTAssertTrue(true)
-            } else {
-                XCTFail("Parsing failed")
-            }
+        } catch ParseError.UnexpectedToken {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail("Parsing failed")
+        }
+    }
+    
+    func testRead_MultiLineString_Valid() {
+        
+        do {
+            let geometry = try WKTReader<Coordinate2D>.read("MULTILINESTRING((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))")
+            
+            XCTAssertEqual(geometry == MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]), LineString(elements:  [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0)])]), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
+    func testRead_MultiLineString_Invalid_MissingCLosingParen() {
+        
+        do {
+            try WKTReader<Coordinate2D>.read("MULTILINESTRING((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
+            
+            XCTFail("Parsing failed")
+            
+        } catch ParseError.UnexpectedToken {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail("Parsing failed")
         }
     }
 }
