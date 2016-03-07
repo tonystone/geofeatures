@@ -141,4 +141,24 @@ class WKTReaderTests: XCTestCase {
             XCTFail("Parsing failed")
         }
     }
+    
+    func testRead_GeometryCollection_Valid() {
+        
+        do {
+            let geometry = try WKTReader<Coordinate2D>.read("GEOMETRYCOLLECTION( POINT(1.0 1.0), LINESTRING(1.0 1.0, 2.0 2.0, 3.0 3.0), MULTIPOINT((1.0 2.0)), MULTILINESTRING((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)))")
+            
+            XCTAssertEqual(geometry == GeometryCollection(elements:
+                [
+                    Point<Coordinate2D>(coordinate: (1.0, 1.0)),
+                    LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]),
+                    MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))]),
+                    MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]), LineString(elements:  [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0)])])
+                    
+                ] as [Geometry]), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
+
 }
