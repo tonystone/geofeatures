@@ -98,7 +98,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         
         // Eat any white space before the start
         tokenizer.accept(.WHITE_SPACE)
-        
+
         if tokenizer.expect(.POINT) {
             
             return try self.point(tokenizer)
@@ -121,7 +121,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         
         if tokenizer.expect(.MULTIPOINT)  {
             
-            throw ParseError.UnsupportedType(String(Token.MULTIPOINT))
+            return try self.multiPoint(tokenizer)
         }
         
         if tokenizer.expect(.MULTILINESTRING)  {
@@ -203,6 +203,70 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             return LineString<CoordinateType>(elements: coordinates)
         }
     }
+
+    private class func multiPoint(tokenizer: Tokenizer) throws -> MultiPoint<CoordinateType> {
+
+        tokenizer.accept(.MULTIPOINT)
+        tokenizer.accept(.WHITE_SPACE) // Eat any white space
+
+        if tokenizer.accept(.EMPTY) != nil {
+            
+            return MultiPoint<CoordinateType>()
+        } else {
+
+            if tokenizer.accept(.LEFT_PAREN) == nil {
+                
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            }
+
+            var elements = [Point<CoordinateType>]()
+
+            var isParsing = true
+
+            while isParsing {
+
+                if tokenizer.accept(.LEFT_PAREN) == nil {
+                    
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+                }
+
+                let coordinate = try self.coordinate(tokenizer)
+                
+                elements.append(Point<CoordinateType>(coordinate: coordinate))
+
+                tokenizer.accept(.WHITE_SPACE)
+                
+                if tokenizer.accept(.RIGHT_PAREN) == nil {
+                    
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+                }
+                
+                tokenizer.accept(.WHITE_SPACE)
+
+                if tokenizer.accept(.COMMA) == nil {
+
+                    tokenizer.accept(.WHITE_SPACE)
+
+                    if tokenizer.accept(.RIGHT_PAREN) != nil {
+                        
+                        isParsing = false
+                    }
+                    else {
+                        throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+                    }
+                }
+
+                tokenizer.accept(.WHITE_SPACE)
+            }
+
+            if tokenizer.accept(.RIGHT_PAREN) != nil {
+                
+                isParsing = false
+            }
+
+            return MultiPoint<CoordinateType>(elements: elements)
+        }
+    }
     
     private class func coordinate(tokenizer: Tokenizer) throws -> CoordinateType {
         
@@ -243,17 +307,20 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         if var coordinate = coordinate as? Measured {
             
             if tokenizer.accept(.WHITE_SPACE) == nil {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.WHITE_SPACE) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.WHITE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinate.m = Double(token)!
             } else {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
             }
         }
         
         return coordinate
     }
 
+    private class func errorMessage(tokenizer: Tokenizer, expectedToken: Token) -> String {
+        return "Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column). Expected \(expectedToken) but found -> \(tokenizer.stringStream)"
+    }
 }

@@ -67,7 +67,7 @@ class WKTReaderTests: XCTestCase {
         }
     }
     
-    func testRead_Point_Invalid1() {
+    func testRead_Point_InvalidCoordinate() {
         
         do {
             try WKTReader<Coordinate2D>.read("POINT(1.01.0)")
@@ -86,6 +86,35 @@ class WKTReaderTests: XCTestCase {
             XCTAssertEqual(geometry == LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
+        }
+    }
+
+    func testRead_MultiPoint_Valid() {
+
+        do {
+            let geometry1 = try WKTReader<Coordinate2D>.read("MULTIPOINT((1.0 2.0))")
+            let geometry2 = try WKTReader<Coordinate2D>.read("MULTIPOINT((1.0 2.0), (10.0 20.0))")
+
+            XCTAssertEqual(geometry1 == MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))]), true)
+            XCTAssertEqual(geometry2 == MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0)), Point<Coordinate2D>(coordinate: (x: 10.0, y: 20.0))]), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
+    func testRead_MultiPoint_Invalid() {
+        
+        do {
+            // mising closing paren
+            try WKTReader<Coordinate2D>.read("MULTIPOINT((1.0 2.0)")
+        } catch let error {
+            
+            
+            if case ParseError.UnexpectedToken(_) = error {
+                XCTAssertTrue(true)
+            } else {
+                XCTFail("Parsing failed")
+            }
         }
     }
 }
