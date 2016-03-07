@@ -136,7 +136,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         
         if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
             
-            throw ParseError.UnsupportedType(String(Token.GEOMETRYCOLLECTION))
+            return try self.geometryCollection(tokenizer)
         }
         
         throw ParseError.UnsupportedType(string)
@@ -272,6 +272,71 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             }
             
             return MultiLineString<CoordinateType>(elements: elements)
+        }
+    }
+    
+    private class func geometryCollection(tokenizer: Tokenizer) throws -> GeometryCollection {
+        
+        tokenizer.accept(.WHITE_SPACE) // Eat any white space
+        
+        if tokenizer.accept(.EMPTY) != nil {
+            
+            return GeometryCollection()
+        } else {
+            
+            if tokenizer.accept(.LEFT_PAREN) == nil {
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            }
+            
+            var elements = [Geometry]()
+            
+            repeat {
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
+                if tokenizer.accept(.POINT) != nil {
+                    
+                    elements.append(try self.point(tokenizer))
+                    
+                } else if tokenizer.accept(.LINESTRING) != nil {
+                    
+                    elements.append(try self.lineString(tokenizer))
+                    
+                } else if tokenizer.accept(.LINEARRING) != nil {
+                    
+                    throw ParseError.UnsupportedType(String(Token.LINEARRING))
+                    
+                } else if tokenizer.accept(.POLYGON) != nil {
+                    
+                    throw ParseError.UnsupportedType(String(Token.POLYGON))
+                    
+                } else if tokenizer.accept(.MULTIPOINT) != nil {
+                    
+                    elements.append(try self.multiPoint(tokenizer))
+                    
+                } else if tokenizer.accept(.MULTILINESTRING) != nil  {
+                    
+                    elements.append(try self.multiLineString(tokenizer))
+                    
+                } else if tokenizer.accept(.MULTIPOLYGON) != nil  {
+                    
+                    throw ParseError.UnsupportedType(String(Token.MULTIPOLYGON))
+                    
+                } else if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
+                    
+                    elements.append(try self.geometryCollection(tokenizer))
+                }
+
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
+            } while tokenizer.accept(.COMMA) != nil
+            
+            tokenizer.accept(.WHITE_SPACE) // Eat any white space
+            
+            if tokenizer.accept(.RIGHT_PAREN) == nil {
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            }
+            
+            return GeometryCollection(elements: elements)
         }
     }
     
