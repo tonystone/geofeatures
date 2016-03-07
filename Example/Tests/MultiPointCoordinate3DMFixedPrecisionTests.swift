@@ -33,13 +33,13 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
     // MARK: Init
     
     func testInit_NoArg ()   {
-        XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: FloatingPrecision()).isEmpty, true)
+        XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100)).isEmpty, true)
     }
     
     func testInit_Tuple () {
     
         XCTAssertEqual(
-            (MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision()).elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
+            (MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100)).elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
                 { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                     return lhs == rhs
             }
@@ -49,13 +49,13 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
     // MARK: CollectionType
     
     func testSubscript_Get () {
-        let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision())
+        let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
         
         XCTAssertEqual(geometry[1] == Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), true)
     }
     
     func testSubscript_Set () {
-        var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision())
+        var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
         
         geometry[1] = Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
         
@@ -64,8 +64,8 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
     
     func testAppendContentsOf_MultiPoint () {
         
-        let geometry1 = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision())
-        var geometry2 = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
+        let geometry1 = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
+        var geometry2 = MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
         geometry2.appendContentsOf(geometry1)
         
@@ -74,7 +74,7 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
     
     func testAppendContentsOf_Array () {
         
-        var geometry = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
+        var geometry = MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
         geometry.appendContentsOf([Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
         
@@ -86,25 +86,25 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
     // MARK: Equal
     
     func testEquals () {
-        XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision()).equals(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision())), true)
+        XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100)).equals(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))), true)
     }
     
     // MARK: isEmpty
     
     func testIsEmpty () {
-        XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: FloatingPrecision()).isEmpty(), true)
+        XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100)).isEmpty(), true)
     }
     
     func testIsEmpty_False() {
-        XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision()).isEmpty(), false)
+        XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100)).isEmpty(), false)
     }
     
     func testCount () {
-        XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FloatingPrecision()).count, 2)
+        XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100)).count, 2)
     }
     
     func testAppend () {
-        var lineString = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
+        var lineString = MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
         lineString.append(Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)))
         

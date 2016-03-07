@@ -41,6 +41,14 @@ public struct MultiPoint<CoordinateType : protocol<Coordinate, TupleConvertable>
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
 
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem) {
+        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: defaultPrecision)
+    }
+    
+    public init(precision: Precision) {
+        self.init(coordinateReferenceSystem: defaultCoordinateReferenceSystem, precision: precision)
+    }
+    
     public init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
