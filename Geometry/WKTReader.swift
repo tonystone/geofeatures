@@ -101,42 +101,42 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         // Eat any white space before the start
         tokenizer.accept(.WHITE_SPACE)
 
-        if tokenizer.expect(.POINT) {
+        if tokenizer.accept(.POINT) != nil {
             
             return try self.point(tokenizer)
         }
         
-        if tokenizer.expect(.LINESTRING)  {
+        if tokenizer.accept(.LINESTRING) != nil {
             
             return try self.lineString(tokenizer)
         }
         
-        if tokenizer.expect(.LINEARRING)  {
+        if tokenizer.accept(.LINEARRING) != nil {
             
             throw ParseError.UnsupportedType(String(Token.LINEARRING))
         }
         
-        if tokenizer.expect(.POLYGON)  {
+        if tokenizer.accept(.POLYGON) != nil {
             
             throw ParseError.UnsupportedType(String(Token.POLYGON))
         }
         
-        if tokenizer.expect(.MULTIPOINT)  {
+        if tokenizer.accept(.MULTIPOINT) != nil {
             
             return try self.multiPoint(tokenizer)
         }
         
-        if tokenizer.expect(.MULTILINESTRING)  {
+        if tokenizer.accept(.MULTILINESTRING) != nil  {
             
-            throw ParseError.UnsupportedType(String(Token.MULTILINESTRING))
+            return try self.multiLineString(tokenizer)
         }
         
-        if tokenizer.expect(.MULTIPOLYGON)  {
+        if tokenizer.accept(.MULTIPOLYGON) != nil  {
             
             throw ParseError.UnsupportedType(String(Token.MULTIPOLYGON))
         }
         
-        if tokenizer.expect(.GEOMETRYCOLLECTION)  {
+        if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
             
             throw ParseError.UnsupportedType(String(Token.GEOMETRYCOLLECTION))
         }
@@ -145,8 +145,6 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     }
     
     private class func point(tokenizer: Tokenizer) throws -> Point<CoordinateType> {
-        
-        tokenizer.accept(.POINT)
         
         // Eat any white space
         tokenizer.accept(.WHITE_SPACE)
@@ -174,8 +172,6 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     }
     
     private class func lineString(tokenizer: Tokenizer) throws -> LineString<CoordinateType> {
-        
-        tokenizer.accept(.LINESTRING)
         
         // Eat any white space
         tokenizer.accept(.WHITE_SPACE)
@@ -207,8 +203,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     }
 
     private class func multiPoint(tokenizer: Tokenizer) throws -> MultiPoint<CoordinateType> {
-
-        tokenizer.accept(.MULTIPOINT)
+        
         tokenizer.accept(.WHITE_SPACE) // Eat any white space
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -217,56 +212,53 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } else {
 
             if tokenizer.accept(.LEFT_PAREN) == nil {
-                
                 throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
             }
 
             var elements = [Point<CoordinateType>]()
 
-            var isParsing = true
-
-            while isParsing {
-
-                if tokenizer.accept(.LEFT_PAREN) == nil {
-                    
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
-                }
-
-                let coordinate = try self.coordinate(tokenizer)
-                
-                elements.append(Point<CoordinateType>(coordinate: coordinate))
-
-                tokenizer.accept(.WHITE_SPACE)
-                
-                if tokenizer.accept(.RIGHT_PAREN) == nil {
-                    
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
-                }
-                
-                tokenizer.accept(.WHITE_SPACE)
-
-                if tokenizer.accept(.COMMA) == nil {
-
-                    tokenizer.accept(.WHITE_SPACE)
-
-                    if tokenizer.accept(.RIGHT_PAREN) != nil {
-                        
-                        isParsing = false
-                    }
-                    else {
-                        throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
-                    }
-                }
-
-                tokenizer.accept(.WHITE_SPACE)
+            repeat {
+                elements.append(try self.point(tokenizer))
+            } while tokenizer.accept(.COMMA) != nil
+            
+            
+            tokenizer.accept(.WHITE_SPACE) // Eat any white space
+            
+            if tokenizer.accept(.RIGHT_PAREN) == nil {
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
             }
-
-            if tokenizer.accept(.RIGHT_PAREN) != nil {
-                
-                isParsing = false
-            }
-
+            
             return MultiPoint<CoordinateType>(elements: elements)
+        }
+    }
+    
+    private class func multiLineString(tokenizer: Tokenizer) throws -> MultiLineString<CoordinateType> {
+        
+        tokenizer.accept(.WHITE_SPACE) // Eat any white space
+        
+        if tokenizer.accept(.EMPTY) != nil {
+            
+            return MultiLineString<CoordinateType>()
+        } else {
+            
+            if tokenizer.accept(.LEFT_PAREN) == nil {
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            }
+            
+            var elements = [LineString<CoordinateType>]()
+            
+            repeat {
+                elements.append(try self.lineString(tokenizer))
+            } while tokenizer.accept(.COMMA) != nil
+            
+            
+            tokenizer.accept(.WHITE_SPACE) // Eat any white space
+            
+            if tokenizer.accept(.RIGHT_PAREN) == nil {
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            }
+            
+            return MultiLineString<CoordinateType>(elements: elements)
         }
     }
     
