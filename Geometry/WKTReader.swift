@@ -156,6 +156,8 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
                 throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
             }
             
+            tokenizer.accept(.WHITE_SPACE) // Eat any white space
+            
             let coordinate = try self.coordinate(tokenizer)
             
             // Eat any white space
@@ -186,7 +188,12 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             var coordinates = [CoordinateType]()
 
             repeat {
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
                 coordinates.append(try self.coordinate(tokenizer))
+                
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
             } while tokenizer.accept(.COMMA) != nil
             
             // Eat any white space
@@ -216,9 +223,13 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             var elements = [Point<CoordinateType>]()
 
             repeat {
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
                 elements.append(try self.point(tokenizer))
+                
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
             } while tokenizer.accept(.COMMA) != nil
-            
             
             tokenizer.accept(.WHITE_SPACE) // Eat any white space
             
@@ -246,9 +257,13 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             var elements = [LineString<CoordinateType>]()
             
             repeat {
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
                 elements.append(try self.lineString(tokenizer))
+                
+                tokenizer.accept(.WHITE_SPACE) // Eat any white space
+                
             } while tokenizer.accept(.COMMA) != nil
-            
             
             tokenizer.accept(.WHITE_SPACE) // Eat any white space
             
