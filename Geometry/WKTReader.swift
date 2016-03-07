@@ -76,12 +76,14 @@ private class Tokenizer {
             } else {
                 column += range.count
             }
+            
             let result = stringStream.substringWithRange(range)
             
             stringStream.removeRange(range)
             
             return result
         }
+        
         return nil
     }
     
@@ -155,7 +157,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } else {
             
             if tokenizer.accept(.LEFT_PAREN) == nil {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.LEFT_PAREN) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
             }
             
             let coordinate = try self.coordinate(tokenizer)
@@ -164,7 +166,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             tokenizer.accept(.WHITE_SPACE)
             
             if tokenizer.accept(.RIGHT_PAREN) == nil {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.RIGHT_PAREN) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
             }
     
             return Point<CoordinateType>(coordinate: coordinate)
@@ -184,7 +186,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } else {
         
             if tokenizer.accept(.LEFT_PAREN) == nil {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.LEFT_PAREN) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
             }
             
             var coordinates = [CoordinateType]()
@@ -197,7 +199,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             tokenizer.accept(.WHITE_SPACE)
             
             if tokenizer.accept(.RIGHT_PAREN) == nil {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.RIGHT_PAREN) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
             }
             
             return LineString<CoordinateType>(elements: coordinates)
@@ -278,29 +280,29 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinate.x = Double(token)!
         } else {
-            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
         }
         
         if tokenizer.accept(.WHITE_SPACE) == nil {
-            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.WHITE_SPACE) but found -> \(tokenizer.stringStream)")
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.WHITE_SPACE))
         }
         
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinate.y = Double(token)!
         } else {
-            throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
         }
         
         if var coordinate = coordinate as? ThreeDimensional {
             
             if tokenizer.accept(.WHITE_SPACE) == nil {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.WHITE_SPACE) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.WHITE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinate.z = Double(token)!
             } else {
-                throw ParseError.UnexpectedToken("Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column).  Expected \(Token.NUMERIC_LITERAL) but found -> \(tokenizer.stringStream)")
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
             }
         }
         
