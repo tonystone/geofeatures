@@ -416,19 +416,53 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     
     // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
     private func multiPolygonTaggedText(tokenizer: Tokenizer) throws -> MultiPolygon<CoordinateType> {
+
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try multiPolygonText(tokenizer)
     }
 
     // BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
     private func multiPolygonText(tokenizer: Tokenizer) throws -> MultiPolygon<CoordinateType> {
+
         if tokenizer.accept(.EMPTY) != nil {
+
             return MultiPolygon<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
         }
-        //: TODO: MultiPolygon implementation
-        throw ParseError.UnsupportedType("MULTIPOLYGON")
+
+        if tokenizer.accept(.LEFT_PAREN) == nil {
+
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+        }
+
+        var elements = [Polygon<CoordinateType>]()
+        var done = false
+
+        repeat {
+            
+            if tokenizer.accept(.POLYGON) == nil {
+                
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .POLYGON))
+            }
+        
+            elements.append(try self.polygonTaggedText(tokenizer))
+
+            if tokenizer.accept(.COMMA) != nil {
+                if tokenizer.accept(.SINGLE_SPACE) == nil {
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                }
+            } else {
+                done = true;
+            }
+        } while !done
+
+        if tokenizer.accept(.RIGHT_PAREN) == nil {
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+        }
+
+        return MultiPolygon<CoordinateType>(elements: elements)
     }
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
