@@ -444,12 +444,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
 
         repeat {
             
-            if tokenizer.accept(.POLYGON) == nil {
-                
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .POLYGON))
-            }
-        
-            elements.append(try self.polygonTaggedText(tokenizer))
+            elements.append(try self.polygonText(tokenizer))
 
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {

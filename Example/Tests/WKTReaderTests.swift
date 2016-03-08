@@ -220,7 +220,7 @@ class WKTReaderTests: XCTestCase {
     func testRead_MultiPolygon_Valid() {
         
         do {
-            let geometry = try wktReader.read("MULTIPOLYGON (POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), POLYGON ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))")
+            let geometry = try wktReader.read("MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))")
             
             XCTAssertEqual(geometry == MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(10.0, 10.0), (20.0, 20.0), (30.0, 30.0), (10.0, 10.0)]), innerRings: [])]), true)
         } catch {
@@ -247,6 +247,4 @@ class WKTReaderTests: XCTestCase {
             XCTFail("Parsing failed: \(error).")
         }
     }
-    
-
 }
