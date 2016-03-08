@@ -42,10 +42,6 @@ public struct Coordinate2D : Coordinate, TupleConvertable {
     }
 }
 
-extension Coordinate2D  : Equatable, Hashable {
-    public var hashValue: Int { get { return x.hashValue ^ y.hashValue  } }
-}
-
 public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y
 }

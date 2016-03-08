@@ -40,7 +40,7 @@ public struct GeometryCollection : Geometry  {
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
     
-    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
     }
@@ -54,6 +54,10 @@ public struct GeometryCollection : Geometry  {
 
 extension GeometryCollection : Collection {
 
+    public init() {
+        self.init(coordinateReferenceSystem: defaultCoordinateReferenceSystem, precision: defaultPrecision)
+    }
+    
     /**
         GeometryCollection can be constructed from any SequenceType as long as it has an
         Element type equal the Geometry Element.

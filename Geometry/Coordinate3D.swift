@@ -44,10 +44,6 @@ public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
     }
 }
 
-extension Coordinate3D : Equatable, Hashable {
-    public var hashValue: Int { get { return x.hashValue ^ y.hashValue ^ z.hashValue } }
-}
-
 public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }

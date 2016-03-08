@@ -27,6 +27,11 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
     typealias Element
     
     /**
+        Collections are empty constructable
+     */
+    init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
+    
+    /**
         Collection can be constructed from any SequenceType as long as it has an
         Element type equal Self.Element.
      */

@@ -34,14 +34,16 @@ public struct Point<CoordinateType : protocol<Coordinate, TupleConvertable>> : G
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
     
-    public init(var coordinate: CoordinateType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init(coordinate: CoordinateType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
-        self.precision.convert(&coordinate)
+        var convertedCoordinate = coordinate
         
-        self.coordinate = coordinate
+        self.precision.convert(&convertedCoordinate)
+        
+        self.coordinate = convertedCoordinate
     }
     
     internal let coordinate: CoordinateType

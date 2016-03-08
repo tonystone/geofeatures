@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3669851E2D5420E7197967B6 /* Coordinate3DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */; };
+		36698BF49435188ABC3F8FCE /* Coordinate2DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36698E41D4A1A205AE291935 /* Coordinate2DMTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -14,12 +16,36 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		BF5C19E555F0BB8ED799E286 /* Pods_GeoFeatures2_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B88AC2CCDA7AA09BD031B8E /* Pods_GeoFeatures2_Example.framework */; };
 		DABEEBC540582F4C4AB425AA /* Pods_GeoFeatures2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E76E80829A6C416EFFD976 /* Pods_GeoFeatures2_Tests.framework */; };
+		EA043EC01C8C8D5800FBA8D4 /* LinearRingCoordinate2DFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EB81C8C8CDA00FBA8D4 /* LinearRingCoordinate2DFixedPrecisionTests.swift */; };
+		EA043EC11C8C8D5D00FBA8D4 /* LinearRingCoordinate2DMFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EB91C8C8CDA00FBA8D4 /* LinearRingCoordinate2DMFixedPrecisionTests.swift */; };
+		EA043EC21C8C8D6000FBA8D4 /* LinearRingCoordinate3DFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EBA1C8C8CDA00FBA8D4 /* LinearRingCoordinate3DFixedPrecisionTests.swift */; };
+		EA043EC31C8C8D6400FBA8D4 /* LinearRingCoordinate3DMFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EBB1C8C8CDA00FBA8D4 /* LinearRingCoordinate3DMFixedPrecisionTests.swift */; };
+		EA043EC61C8CF50F00FBA8D4 /* MultiPointTests.swift.gyb in Sources */ = {isa = PBXBuildFile; fileRef = EA043EC41C8CF4F600FBA8D4 /* MultiPointTests.swift.gyb */; };
+		EA043ED71C8D0C1900FBA8D4 /* MultiPointCoordinate2DFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EC71C8D0C0800FBA8D4 /* MultiPointCoordinate2DFixedPrecisionTests.swift */; };
+		EA043ED81C8D0C1900FBA8D4 /* MultiPointCoordinate2DFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EC81C8D0C0800FBA8D4 /* MultiPointCoordinate2DFloatingPrecisionTests.swift */; };
+		EA043ED91C8D0C1900FBA8D4 /* MultiPointCoordinate2DMFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EC91C8D0C0800FBA8D4 /* MultiPointCoordinate2DMFixedPrecisionTests.swift */; };
+		EA043EDA1C8D0C1900FBA8D4 /* MultiPointCoordinate2DMFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043ECA1C8D0C0800FBA8D4 /* MultiPointCoordinate2DMFloatingPrecisionTests.swift */; };
+		EA043EDB1C8D0C1900FBA8D4 /* MultiPointCoordinate3DFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043ECB1C8D0C0800FBA8D4 /* MultiPointCoordinate3DFixedPrecisionTests.swift */; };
+		EA043EDC1C8D0C1900FBA8D4 /* MultiPointCoordinate3DFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043ECC1C8D0C0800FBA8D4 /* MultiPointCoordinate3DFloatingPrecisionTests.swift */; };
+		EA043EDD1C8D0C1900FBA8D4 /* MultiPointCoordinate3DMFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043ECD1C8D0C0800FBA8D4 /* MultiPointCoordinate3DMFixedPrecisionTests.swift */; };
+		EA043EDE1C8D0C1900FBA8D4 /* MultiPointCoordinate3DMFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043ECE1C8D0C0800FBA8D4 /* MultiPointCoordinate3DMFloatingPrecisionTests.swift */; };
+		EA06A2A71C85EFA50096B83B /* LinearRingCoordinate2DFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2A31C85EF8B0096B83B /* LinearRingCoordinate2DFloatingPrecisionTests.swift */; };
+		EA06A2A81C85EFA80096B83B /* LineStringCoordinate2DFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2A41C85EF8B0096B83B /* LineStringCoordinate2DFloatingPrecisionTests.swift */; };
+		EA06A2A91C85EFAB0096B83B /* LineStringCoordinate3DFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2A11C85EEE60096B83B /* LineStringCoordinate3DFloatingPrecisionTests.swift */; };
+		EA06A2AA1C85EFAE0096B83B /* LinearRingCoordinate3DFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A29F1C85EE410096B83B /* LinearRingCoordinate3DFloatingPrecisionTests.swift */; };
+		EA06A2AD1C8607560096B83B /* LineStringCoordinate3DMFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2AB1C8607030096B83B /* LineStringCoordinate3DMFloatingPrecisionTests.swift */; };
+		EA06A2B41C861B350096B83B /* LinearRingCoordinate3DMFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2B21C861B260096B83B /* LinearRingCoordinate3DMFloatingPrecisionTests.swift */; };
+		EA06A2BB1C863A9A0096B83B /* LineStringCoordinate2DMFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2B81C863A8A0096B83B /* LineStringCoordinate2DMFloatingPrecisionTests.swift */; };
+		EA06A2BC1C863A9E0096B83B /* LinearRingCoordinate2DMFloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2B71C863A8A0096B83B /* LinearRingCoordinate2DMFloatingPrecisionTests.swift */; };
+		EA06A2BD1C863AA20096B83B /* LineStringCoordinate2DFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2B51C863A730096B83B /* LineStringCoordinate2DFixedPrecisionTests.swift */; };
+		EA06A2C41C8644160096B83B /* LineStringCoordinate2DMFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2BE1C86440F0096B83B /* LineStringCoordinate2DMFixedPrecisionTests.swift */; };
+		EA06A2C51C8644160096B83B /* LineStringCoordinate3DFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2BF1C86440F0096B83B /* LineStringCoordinate3DFixedPrecisionTests.swift */; };
+		EA06A2C61C8644160096B83B /* LineStringCoordinate3DMFixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA06A2C01C86440F0096B83B /* LineStringCoordinate3DMFixedPrecisionTests.swift */; };
 		EA4727A01C7376B90000814B /* LengthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA47279F1C7376B90000814B /* LengthTests.swift */; };
 		EAB4C1C41C6F7CB600F288D1 /* Coordinate2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */; };
 		EAB4C1C51C6F7CBA00F288D1 /* Coordinate3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */; };
 		EAB4C1C61C6F7CBD00F288D1 /* FixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */; };
 		EAB4C1C71C6F7CC100F288D1 /* FloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */; };
-		EAB4C1C81C6F7CC500F288D1 /* LineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */; };
 		EAB4C1C91C6F7CC900F288D1 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */; };
 		EAB4C1CA1C6F7CCE00F288D1 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +66,8 @@
 		0F243D2FCE8800EAB521DC72 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		28E76E80829A6C416EFFD976 /* Pods_GeoFeatures2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E8E8258ACE5267DDF6D0D4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DMTests.swift; sourceTree = "<group>"; };
+		36698E41D4A1A205AE291935 /* Coordinate2DMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DMTests.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GeoFeatures2_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoFeatures2_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +79,31 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD829F37916D32011B39AD57 /* GeoFeatures2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures2.podspec; path = ../GeoFeatures2.podspec; sourceTree = "<group>"; };
+		EA043EB81C8C8CDA00FBA8D4 /* LinearRingCoordinate2DFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate2DFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043EB91C8C8CDA00FBA8D4 /* LinearRingCoordinate2DMFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate2DMFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043EBA1C8C8CDA00FBA8D4 /* LinearRingCoordinate3DFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate3DFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043EBB1C8C8CDA00FBA8D4 /* LinearRingCoordinate3DMFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate3DMFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043EC41C8CF4F600FBA8D4 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MultiPointTests.swift.gyb; sourceTree = "<group>"; };
+		EA043EC71C8D0C0800FBA8D4 /* MultiPointCoordinate2DFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate2DFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043EC81C8D0C0800FBA8D4 /* MultiPointCoordinate2DFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate2DFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043EC91C8D0C0800FBA8D4 /* MultiPointCoordinate2DMFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate2DMFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043ECA1C8D0C0800FBA8D4 /* MultiPointCoordinate2DMFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate2DMFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043ECB1C8D0C0800FBA8D4 /* MultiPointCoordinate3DFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate3DFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043ECC1C8D0C0800FBA8D4 /* MultiPointCoordinate3DFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate3DFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043ECD1C8D0C0800FBA8D4 /* MultiPointCoordinate3DMFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate3DMFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA043ECE1C8D0C0800FBA8D4 /* MultiPointCoordinate3DMFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointCoordinate3DMFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A29F1C85EE410096B83B /* LinearRingCoordinate3DFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate3DFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2A11C85EEE60096B83B /* LineStringCoordinate3DFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate3DFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2A31C85EF8B0096B83B /* LinearRingCoordinate2DFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate2DFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2A41C85EF8B0096B83B /* LineStringCoordinate2DFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate2DFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2AB1C8607030096B83B /* LineStringCoordinate3DMFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate3DMFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2B21C861B260096B83B /* LinearRingCoordinate3DMFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate3DMFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2B51C863A730096B83B /* LineStringCoordinate2DFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate2DFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2B71C863A8A0096B83B /* LinearRingCoordinate2DMFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingCoordinate2DMFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2B81C863A8A0096B83B /* LineStringCoordinate2DMFloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate2DMFloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2BE1C86440F0096B83B /* LineStringCoordinate2DMFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate2DMFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2BF1C86440F0096B83B /* LineStringCoordinate3DFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate3DFixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA06A2C01C86440F0096B83B /* LineStringCoordinate3DMFixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringCoordinate3DMFixedPrecisionTests.swift; sourceTree = "<group>"; };
 		EA47279F1C7376B90000814B /* LengthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LengthTests.swift; path = Algorithms/LengthTests.swift; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
 		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
@@ -58,10 +111,10 @@
 		EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DTests.swift; sourceTree = "<group>"; };
 		EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedPrecisionTests.swift; sourceTree = "<group>"; };
 		EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPrecisionTests.swift; sourceTree = "<group>"; };
-		EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringTests.swift; sourceTree = "<group>"; };
 		EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTReaderTests.swift; sourceTree = "<group>"; };
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
+		EAFD4D631C85E16700A5083F /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
 		ECD05668FB877775EDD2C65A /* Pods-GeoFeatures2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6B35E10B1FEDBFEEA17571 /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,9 +200,36 @@
 				EAB4C1B81C6F7C3F00F288D1 /* FixedPrecisionTests.swift */,
 				EAB4C1B91C6F7C3F00F288D1 /* FloatingPrecisionTests.swift */,
 				EAB4C1B61C6F7C3F00F288D1 /* Coordinate2DTests.swift */,
+				36698E41D4A1A205AE291935 /* Coordinate2DMTests.swift */,
 				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
+				36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */,
 				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
-				EAB4C1BA1C6F7C3F00F288D1 /* LineStringTests.swift */,
+				EAFD4D631C85E16700A5083F /* CoordinateCollectionTests.swift.gyb */,
+				EA06A2A41C85EF8B0096B83B /* LineStringCoordinate2DFloatingPrecisionTests.swift */,
+				EA06A2B81C863A8A0096B83B /* LineStringCoordinate2DMFloatingPrecisionTests.swift */,
+				EA06A2A11C85EEE60096B83B /* LineStringCoordinate3DFloatingPrecisionTests.swift */,
+				EA06A2AB1C8607030096B83B /* LineStringCoordinate3DMFloatingPrecisionTests.swift */,
+				EA06A2B51C863A730096B83B /* LineStringCoordinate2DFixedPrecisionTests.swift */,
+				EA06A2BE1C86440F0096B83B /* LineStringCoordinate2DMFixedPrecisionTests.swift */,
+				EA06A2BF1C86440F0096B83B /* LineStringCoordinate3DFixedPrecisionTests.swift */,
+				EA06A2C01C86440F0096B83B /* LineStringCoordinate3DMFixedPrecisionTests.swift */,
+				EA06A2A31C85EF8B0096B83B /* LinearRingCoordinate2DFloatingPrecisionTests.swift */,
+				EA06A2B71C863A8A0096B83B /* LinearRingCoordinate2DMFloatingPrecisionTests.swift */,
+				EA06A29F1C85EE410096B83B /* LinearRingCoordinate3DFloatingPrecisionTests.swift */,
+				EA06A2B21C861B260096B83B /* LinearRingCoordinate3DMFloatingPrecisionTests.swift */,
+				EA043EB81C8C8CDA00FBA8D4 /* LinearRingCoordinate2DFixedPrecisionTests.swift */,
+				EA043EB91C8C8CDA00FBA8D4 /* LinearRingCoordinate2DMFixedPrecisionTests.swift */,
+				EA043EBA1C8C8CDA00FBA8D4 /* LinearRingCoordinate3DFixedPrecisionTests.swift */,
+				EA043EBB1C8C8CDA00FBA8D4 /* LinearRingCoordinate3DMFixedPrecisionTests.swift */,
+				EA043EC41C8CF4F600FBA8D4 /* MultiPointTests.swift.gyb */,
+				EA043EC71C8D0C0800FBA8D4 /* MultiPointCoordinate2DFixedPrecisionTests.swift */,
+				EA043EC81C8D0C0800FBA8D4 /* MultiPointCoordinate2DFloatingPrecisionTests.swift */,
+				EA043EC91C8D0C0800FBA8D4 /* MultiPointCoordinate2DMFixedPrecisionTests.swift */,
+				EA043ECA1C8D0C0800FBA8D4 /* MultiPointCoordinate2DMFloatingPrecisionTests.swift */,
+				EA043ECB1C8D0C0800FBA8D4 /* MultiPointCoordinate3DFixedPrecisionTests.swift */,
+				EA043ECC1C8D0C0800FBA8D4 /* MultiPointCoordinate3DFloatingPrecisionTests.swift */,
+				EA043ECD1C8D0C0800FBA8D4 /* MultiPointCoordinate3DMFixedPrecisionTests.swift */,
+				EA043ECE1C8D0C0800FBA8D4 /* MultiPointCoordinate3DMFloatingPrecisionTests.swift */,
 				EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -238,6 +318,7 @@
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures2_Tests" */;
 			buildPhases = (
 				957454C95BA67F13FD25AED8 /* Check Pods Manifest.lock */,
+				EA06A2B11C860AE80096B83B /* ShellScript */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -403,6 +484,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EA06A2B11C860AE80096B83B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd Tests\n\n# LineString FloatingPrecision\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2D -D\"TestTuple0=(x: 1.0, y: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LineString -o LineStringCoordinate2DFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2DM -D\"TestTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LineString -o LineStringCoordinate2DMFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3D -D\"TestTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LineString -o LineStringCoordinate3DFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3DM -D\"TestTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LineString -o LineStringCoordinate3DMFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n#LineString FixedPrecision\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2D -D\"TestTuple0=(x: 1.001, y: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LineString -o LineStringCoordinate2DFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2DM -D\"TestTuple0=(x: 1.001, y: 1.001, m: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, m: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LineString -o LineStringCoordinate2DMFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3D -D\"TestTuple0=(x: 1.001, y: 1.001, z: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, z: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LineString -o LineStringCoordinate3DFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3DM -D\"TestTuple0=(x: 1.001, y: 1.001, z: 1.001, m: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, z: 2.002, m: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LineString -o LineStringCoordinate3DMFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n\n# LinearRing FloatingPrecision\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2D -D\"TestTuple0=(x: 1.0, y: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LinearRing -o LinearRingCoordinate2DFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2DM -D\"TestTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LinearRing -o LinearRingCoordinate2DMFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3D -D\"TestTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LinearRing -o LinearRingCoordinate3DFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3DM -D\"TestTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"Precision=FloatingPrecision()\" -DGeometryType=LinearRing -o LinearRingCoordinate3DMFloatingPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n#LinearRing FixedPrecision\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2D -D\"TestTuple0=(x: 1.001, y: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LinearRing -o LinearRingCoordinate2DFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2DM -D\"TestTuple0=(x: 1.001, y: 1.001, m: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, m: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LinearRing -o LinearRingCoordinate2DMFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3D -D\"TestTuple0=(x: 1.001, y: 1.001, z: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, z: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LinearRing -o LinearRingCoordinate3DFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3DM -D\"TestTuple0=(x: 1.001, y: 1.001, z: 1.001, m: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, z: 2.002, m: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -DGeometryType=LinearRing -o LinearRingCoordinate3DMFixedPrecisionTests.swift CoordinateCollectionTests.swift.gyb\n\n# MultiPoint FloatingPrecision\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2D -D\"TestTuple0=(x: 1.0, y: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0)\" -D\"Precision=FloatingPrecision()\" -o MultiPointCoordinate2DFloatingPrecisionTests.swift MultiPointTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2DM -D\"TestTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"Precision=FloatingPrecision()\" -o MultiPointCoordinate2DMFloatingPrecisionTests.swift MultiPointTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3D -D\"TestTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"Precision=FloatingPrecision()\" -o MultiPointCoordinate3DFloatingPrecisionTests.swift MultiPointTests.swift.gyb\n\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3DM -D\"TestTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"TestTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"Precision=FloatingPrecision()\" -o MultiPointCoordinate3DMFloatingPrecisionTests.swift MultiPointTests.swift.gyb\n\n#MultiPOint FixedPrecision\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2D -D\"TestTuple0=(x: 1.001, y: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -o MultiPointCoordinate2DFixedPrecisionTests.swift MultiPointTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate2DM -D\"TestTuple0=(x: 1.001, y: 1.001, m: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, m: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, m: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -o MultiPointCoordinate2DMFixedPrecisionTests.swift MultiPointTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3D -D\"TestTuple0=(x: 1.001, y: 1.001, z: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, z: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -o MultiPointCoordinate3DFixedPrecisionTests.swift MultiPointTests.swift.gyb\n\n~/gyb --line-directive '' -DCoordinateType=Coordinate3DM -D\"TestTuple0=(x: 1.001, y: 1.001, z: 1.001, m: 1.001)\" -D\"TestTuple1=(x: 2.002, y: 2.002, z: 2.002, m: 2.002)\" -D\"ExpectedTuple0=(x: 1.0, y: 1.0, z: 1.0, m: 1.0)\" -D\"ExpectedTuple1=(x: 2.0, y: 2.0, z: 2.0, m: 2.0)\" -D\"Precision=FixedPrecision(scale: 100)\" -o MultiPointCoordinate3DMFixedPrecisionTests.swift MultiPointTests.swift.gyb\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -422,11 +516,37 @@
 				EAB4C1C91C6F7CC900F288D1 /* PointTests.swift in Sources */,
 				EA4727A01C7376B90000814B /* LengthTests.swift in Sources */,
 				EAB4C1C61C6F7CBD00F288D1 /* FixedPrecisionTests.swift in Sources */,
+				EA043ED81C8D0C1900FBA8D4 /* MultiPointCoordinate2DFloatingPrecisionTests.swift in Sources */,
 				EAB4C1C51C6F7CBA00F288D1 /* Coordinate3DTests.swift in Sources */,
-				EAB4C1C81C6F7CC500F288D1 /* LineStringTests.swift in Sources */,
+				EA06A2AD1C8607560096B83B /* LineStringCoordinate3DMFloatingPrecisionTests.swift in Sources */,
+				EA06A2AA1C85EFAE0096B83B /* LinearRingCoordinate3DFloatingPrecisionTests.swift in Sources */,
+				EA06A2BD1C863AA20096B83B /* LineStringCoordinate2DFixedPrecisionTests.swift in Sources */,
+				EA06A2C41C8644160096B83B /* LineStringCoordinate2DMFixedPrecisionTests.swift in Sources */,
+				EA06A2C51C8644160096B83B /* LineStringCoordinate3DFixedPrecisionTests.swift in Sources */,
 				EAB4C1C71C6F7CC100F288D1 /* FloatingPrecisionTests.swift in Sources */,
+				EA043EC61C8CF50F00FBA8D4 /* MultiPointTests.swift.gyb in Sources */,
+				EA06A2C61C8644160096B83B /* LineStringCoordinate3DMFixedPrecisionTests.swift in Sources */,
+				EA043EC21C8C8D6000FBA8D4 /* LinearRingCoordinate3DFixedPrecisionTests.swift in Sources */,
 				EAB4C1C41C6F7CB600F288D1 /* Coordinate2DTests.swift in Sources */,
+				EA043EC01C8C8D5800FBA8D4 /* LinearRingCoordinate2DFixedPrecisionTests.swift in Sources */,
+				EA043ED91C8D0C1900FBA8D4 /* MultiPointCoordinate2DMFixedPrecisionTests.swift in Sources */,
+				EA06A2A71C85EFA50096B83B /* LinearRingCoordinate2DFloatingPrecisionTests.swift in Sources */,
+				EA06A2BB1C863A9A0096B83B /* LineStringCoordinate2DMFloatingPrecisionTests.swift in Sources */,
+				EA043EDA1C8D0C1900FBA8D4 /* MultiPointCoordinate2DMFloatingPrecisionTests.swift in Sources */,
+				EA043EDC1C8D0C1900FBA8D4 /* MultiPointCoordinate3DFloatingPrecisionTests.swift in Sources */,
+				EA06A2BC1C863A9E0096B83B /* LinearRingCoordinate2DMFloatingPrecisionTests.swift in Sources */,
+				EA06A2B41C861B350096B83B /* LinearRingCoordinate3DMFloatingPrecisionTests.swift in Sources */,
+				EA043EDD1C8D0C1900FBA8D4 /* MultiPointCoordinate3DMFixedPrecisionTests.swift in Sources */,
+				EA043ED71C8D0C1900FBA8D4 /* MultiPointCoordinate2DFixedPrecisionTests.swift in Sources */,
+				EA043EDB1C8D0C1900FBA8D4 /* MultiPointCoordinate3DFixedPrecisionTests.swift in Sources */,
+				EA043EDE1C8D0C1900FBA8D4 /* MultiPointCoordinate3DMFloatingPrecisionTests.swift in Sources */,
+				EA043EC11C8C8D5D00FBA8D4 /* LinearRingCoordinate2DMFixedPrecisionTests.swift in Sources */,
+				EA06A2A91C85EFAB0096B83B /* LineStringCoordinate3DFloatingPrecisionTests.swift in Sources */,
+				EA043EC31C8C8D6400FBA8D4 /* LinearRingCoordinate3DMFixedPrecisionTests.swift in Sources */,
 				EAB4C1CA1C6F7CCE00F288D1 /* WKTReaderTests.swift in Sources */,
+				36698BF49435188ABC3F8FCE /* Coordinate2DMTests.swift in Sources */,
+				3669851E2D5420E7197967B6 /* Coordinate3DMTests.swift in Sources */,
+				EA06A2A81C85EFA80096B83B /* LineStringCoordinate2DFloatingPrecisionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

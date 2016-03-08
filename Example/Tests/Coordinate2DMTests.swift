@@ -1,5 +1,5 @@
 /*
- *   Coordinate2DTests.swift
+ *   Coordinate3DTests.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -20,44 +20,47 @@
 import XCTest
 @testable import GeoFeatures2
 
-class Coordinate3DTests: XCTestCase {
-
-    // MARK: Contrsuction
+class Coordinate2DMTests: XCTestCase {
+    
+    
+    // MARK: Contrsuction 
     
     func testInit () {
-        let coordinate = Coordinate3D(tuple: (2.0,3.0,4.0))
+        let coordinate = Coordinate2DM(tuple: (2.0,3.0,4.0))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0)
+        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.m == 4.0)
     }
     
     // MARK: Accessors
     
     func testTuple () {
-        let coordinate = Coordinate3D(tuple: (2.0,3.0,4.0))
+        let coordinate = Coordinate2DM(tuple: (2.0,3.0,4.0))
         
-        XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0 && coordinate.tuple.z == 4.0)
+        XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0 && coordinate.tuple.m == 4.0)
     }
     
     func testX () {
-        XCTAssertEqual(Coordinate3D(tuple: (1001.0,1002.0,1003.0)).x, 1001.0)
+        XCTAssertEqual(Coordinate2DM(tuple: (1001.0,1002.0,1003.0)).x, 1001.0)
     }
     
     func testY () {
-        XCTAssertEqual(Coordinate3D(tuple: (1001.0,1002.0,1003.0)).y, 1002.0)
+        XCTAssertEqual(Coordinate2DM(tuple: (1001.0,1002.0,1003.0)).y, 1002.0)
     }
     
-    func testZ () {
-        XCTAssertEqual(Coordinate3D(tuple: (1001.0,1002.0,1003.0)).z, 1003.0)
+    func testM () {
+        XCTAssertEqual(Coordinate2DM(tuple: (1001.0,1002.0,1003.0)).m, 1003.0)
     }
-    
     
     // MARK: Equal
     
     func testEqual () {
-        XCTAssertEqual(Coordinate3D(tuple: (1.0,1.0,1.0)), Coordinate3D(tuple: (1.0,1.0,1.0)))
+        XCTAssertEqual(Coordinate2DM(tuple: (1.0,1.0,1.0)), Coordinate2DM(tuple: (1.0,1.0,1.0)))
+    }
+ 
+    func testNotEqual () {
+        XCTAssertNotEqual(Coordinate2DM(tuple: (1.0,1.0,1.0)), Coordinate2DM(tuple: (2.0,2.0,2.0)))
     }
     
-    func testNotEqual () {
-        XCTAssertNotEqual(Coordinate3D(tuple: (1.0,1.0,1.0)), Coordinate3D(tuple: (2.0,2.0,2.0)))
-    }
 }
+
+

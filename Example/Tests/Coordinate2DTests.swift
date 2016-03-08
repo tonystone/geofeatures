@@ -22,30 +22,41 @@ import XCTest
 
 class Coordinate2DTests: XCTestCase {
     
-//    // MARK: Equal
-//    
-//    func testEqual_Zero()         { XCTAssertTrue(coordinateEquals((0.0,0.0), (0.0,0.0))) }
-//    
-//    func testEqual_One()          { XCTAssertTrue(coordinateEquals((1.0,1.0), (1.0,1.0)))  }
-//    
-//    func testEqual_Negative()     { XCTAssertTrue(coordinateEquals((-1.0,-1.0), (-1.0,-1.0))) }
-//    
-//    func testEqual_Small()        { XCTAssertTrue(coordinateEquals((0.0000000000000000001,0.0000000000000000001), (0.0000000000000000001,0.0000000000000000001))) }
-//    
-//    func testEqual_Large()        { XCTAssertTrue(coordinateEquals((1000000000000000000.0,1000000000000000000.0), (1000000000000000000.0,1000000000000000000.0)))  }
-//    
-//    // MARK: Not Equal
-//    
-//    func testNotEqual_Zero()         { XCTAssertFalse(coordinateEquals((0.0,0.0),(1.0,0.0))) }
-//    
-//    func testNotEqual_One()          { XCTAssertFalse(coordinateEquals((1.0,1.0),(0.0,1.0)))  }
-//    
-//    func testNotEqual_Negative()     { XCTAssertFalse(coordinateEquals((-1.0,-1.0),(-2.0,-1.0)))  }
-//    
-//    func testNotEqual_Small()        { XCTAssertFalse(coordinateEquals((0.0000000000000000001,0.0000000000000000001), (0.00000000000000000011,0.0000000000000000001)))  }
-//    
-//    func testNotEqual_Large()        { XCTAssertFalse(coordinateEquals((1000000000000000000.0,1000000000000000000.0), (1200000000000000000.0,1000000000000000000.0)))  }
-//    
+    
+    // MARK: Contrsuction 
+    
+    func testInit () {
+        let coordinate = Coordinate2D(tuple: (2.0,3.0))
+        
+        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0)
+    }
+    
+    // MARK: Accessors
+    
+    func testTuple () {
+        let coordinate = Coordinate2D(tuple: (2.0,3.0))
+        
+        XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0)
+    }
+    
+    func testX () {
+        XCTAssertEqual(Coordinate2D(tuple: (1001.0,1002.0)).x, 1001.0)
+    }
+    
+    func testY () {
+        XCTAssertEqual(Coordinate2D(tuple: (1001.0,1002.0)).y, 1002.0)
+    }
+    
+       // MARK: Equal
+    
+    func testEqual () {
+        XCTAssertEqual(Coordinate2D(tuple: (1.0,1.0)), Coordinate2D(tuple: (1.0,1.0)))
+    }
+ 
+    func testNotEqual () {
+        XCTAssertNotEqual(Coordinate2D(tuple: (1.0,1.0)), Coordinate2D(tuple: (2.0,2.0)))
+    }
+    
 }
 
 

@@ -46,10 +46,6 @@ public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConve
     }
 }
 
-extension Coordinate3DM  : Equatable, Hashable {
-    public var hashValue: Int { get { return x.hashValue ^ y.hashValue ^ z.hashValue ^ m.hashValue } }
-}
-
 public func ==(lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.m == rhs.m
 }
