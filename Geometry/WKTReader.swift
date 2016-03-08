@@ -279,7 +279,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <polygon tagged text> ::= polygon <polygon text>
     private func polygonTaggedText(tokenizer: Tokenizer) throws -> Polygon<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try polygonText(tokenizer)
     }
@@ -294,24 +294,24 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
             
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         let outerRing = try self.linearRingText(tokenizer)
         
-        if tokenizer.accept(Token.RIGHT_PAREN) != nil {
+        if tokenizer.accept(.RIGHT_PAREN) != nil {
             
             return Polygon<CoordinateType>(outerRing: outerRing, innerRings: [])
         }
     
         if tokenizer.accept(.COMMA) == nil {
             
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.COMMA))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .COMMA))
         }
         
-        if tokenizer.accept(Token.SINGLE_SPACE) == nil {
+        if tokenizer.accept(.SINGLE_SPACE) == nil {
             
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         
         var innerRings = [LinearRing<CoordinateType>]()
@@ -323,7 +323,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
