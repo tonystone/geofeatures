@@ -168,8 +168,10 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
 
     // BNF: <point tagged text> ::= point <point text>
     private func pointTaggedText(tokenizer: Tokenizer) throws -> Point<CoordinateType> {
+
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try pointText(tokenizer)
     }
@@ -182,13 +184,13 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         let coordinate = try self.coordinate(tokenizer)
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return Point<CoordinateType>(coordinate: coordinate, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -196,7 +198,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <linestring tagged text> ::= linestring <linestring text>
     private func lineStringTaggedText(tokenizer: Tokenizer) throws -> LineString<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try lineStringText(tokenizer)
     }
@@ -209,7 +211,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var coordinates = [CoordinateType]()
@@ -221,7 +223,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -229,7 +231,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return LineString<CoordinateType>(elements: coordinates, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -237,7 +239,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: None defined by OGC
     private func linearRingTaggedText(tokenizer: Tokenizer) throws -> LinearRing<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try linearRingText(tokenizer)
     }
@@ -250,7 +252,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var coordinates = [CoordinateType]()
@@ -262,7 +264,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -270,7 +272,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return LinearRing<CoordinateType>(elements: coordinates, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -336,7 +338,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
     private func multiPointTaggedText(tokenizer: Tokenizer) throws -> MultiPoint<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try multiPointText(tokenizer)
     }
@@ -349,7 +351,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var elements = [Point<CoordinateType>]()
@@ -361,7 +363,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -369,7 +371,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return MultiPoint<CoordinateType>(elements: elements, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -377,7 +379,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
     private func multiLineStringTaggedText(tokenizer: Tokenizer) throws -> MultiLineString<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try multiLineStringText(tokenizer)
     }
@@ -390,7 +392,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var elements = [LineString<CoordinateType>]()
@@ -401,7 +403,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -409,7 +411,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return MultiLineString<CoordinateType>(elements: elements, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -459,7 +461,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } while !done
 
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
 
         return MultiPolygon<CoordinateType>(elements: elements)
@@ -468,7 +470,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
     private func geometryCollectionTaggedText(tokenizer: Tokenizer) throws -> GeometryCollection {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try geometryCollectionText(tokenizer)
     }
@@ -481,7 +483,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var elements = [Geometry]()
@@ -525,7 +527,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -533,7 +535,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return GeometryCollection(elements: elements, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -549,42 +551,42 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinate.x = Double(token)!
         } else {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
         }
         
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinate.y = Double(token)!
         } else {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
         }
         
         if var coordinate = coordinate as? ThreeDimensional {
             
             if tokenizer.accept(.SINGLE_SPACE) == nil {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinate.z = Double(token)!
             } else {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
             }
         }
         
         if var coordinate = coordinate as? Measured {
             
             if tokenizer.accept(.SINGLE_SPACE) == nil {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinate.m = Double(token)!
             } else {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.NUMERIC_LITERAL))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
             }
         }
         return coordinate
