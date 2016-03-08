@@ -277,7 +277,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     
     
     // BNF: <polygon tagged text> ::= polygon <polygon text>
-    private func polygonTaggedText(tokenizer: Tokenizer) throws -> MultiPolygon<CoordinateType> {
+    private func polygonTaggedText(tokenizer: Tokenizer) throws -> Polygon<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
             throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
         }
@@ -285,12 +285,52 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     }
 
     // BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
-    private func polygonText(tokenizer: Tokenizer) throws -> MultiPolygon<CoordinateType> {
+    private func polygonText(tokenizer: Tokenizer) throws -> Polygon<CoordinateType> {
+        
         if tokenizer.accept(.EMPTY) != nil {
-            return MultiPolygon<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
+            
+            return Polygon<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
         }
-        //: TODO: Polygon implementation
-        throw ParseError.UnsupportedType("POLYGON")
+        
+        if tokenizer.accept(.LEFT_PAREN) == nil {
+            
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.LEFT_PAREN))
+        }
+        
+        let outerRing = try self.linearRingText(tokenizer)
+        
+        if tokenizer.accept(Token.RIGHT_PAREN) != nil {
+            
+            return Polygon<CoordinateType>(outerRing: outerRing, innerRings: [])
+        }
+    
+        if tokenizer.accept(.COMMA) == nil {
+            
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.COMMA))
+        }
+        
+        if tokenizer.accept(Token.SINGLE_SPACE) == nil {
+            
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+        }
+        
+        var innerRings = [LinearRing<CoordinateType>]()
+        
+        var done = false
+        
+        repeat {
+            innerRings.append(try self.linearRingText(tokenizer))
+            
+            if tokenizer.accept(.COMMA) != nil {
+                if tokenizer.accept(.SINGLE_SPACE) == nil {
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: Token.SINGLE_SPACE))
+                }
+            } else {
+                done = true;
+            }
+        } while !done
+        
+        return Polygon<CoordinateType>(outerRing: outerRing, innerRings: innerRings)
     }
 
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>

@@ -163,6 +163,39 @@ class WKTReaderTests: XCTestCase {
         }
     }
     
+    func testRead_Polygon_ZeroInnerRings_Valid() {
+        
+        do {
+            let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))")
+            
+            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: []), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
+    func testRead_Polygon_SingleOuterRing_Valid() {
+        
+        do {
+            let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))")
+            
+            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: [LinearRing(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])]), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
+    func testRead_Polygon_MultipleOuterRings_Valid() {
+        
+        do {
+            let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))")
+            
+            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: [LinearRing(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)]), LinearRing(elements: [(3.0, 3.0), (4.0, 4.0), (5.0, 5.0), (3.0, 3.0)])]), true)
+        } catch {
+            XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
     func testRead_GeometryCollection_Valid() {
         
         do {
