@@ -28,6 +28,8 @@ public protocol Coordinate : Equatable {
     
     var x: Double { get set }
     var y: Double { get set }
+    
+    init()
 }
 
 /**

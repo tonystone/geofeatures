@@ -31,6 +31,11 @@ public struct Coordinate2D : Coordinate, TupleConvertable {
     public var x: Double
     public var y: Double
     
+    public init() {
+        self.x = Double.NaN
+        self.y = Double.NaN
+    }
+    
     public var tuple: TupleType {
         get { return (self.x, self.y) }
         set { self.x = newValue.x; self.y = newValue.y }

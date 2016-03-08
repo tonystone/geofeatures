@@ -32,6 +32,12 @@ public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
     public var y: Double
     public var m: Double
     
+    public init() {
+        self.x = Double.NaN
+        self.y = Double.NaN
+        self.m = Double.NaN
+    }
+    
     public var tuple: TupleType {
         get { return (self.x, self.y, self.m)  }
         set { self.x = newValue.x; self.y = newValue.y; self.m = newValue.m }
