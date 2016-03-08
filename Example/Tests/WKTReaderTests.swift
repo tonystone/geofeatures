@@ -179,7 +179,10 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))")
             
-            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: [LinearRing(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])]), true)
+            let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
+            let innerRing = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
+            
+            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -190,9 +193,27 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))")
             
-            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: [LinearRing(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)]), LinearRing(elements: [(3.0, 3.0), (4.0, 4.0), (5.0, 5.0), (3.0, 3.0)])]), true)
+            let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
+            let innerRing1 = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
+            let innerRing2 = LinearRing<Coordinate2D>(elements: [(3.0, 3.0), (4.0, 4.0), (5.0, 5.0), (3.0, 3.0)])
+            
+            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing1, innerRing2]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
+        }
+    }
+    
+    func testRead_Polygon_MultipleOuterRings_Invalid_MissingComma() {
+        
+        do {
+            try wktReader.read("MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
+            
+            XCTFail("Parsing failed")
+            
+        } catch ParseError.UnexpectedToken {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail("Parsing failed")
         }
     }
     
