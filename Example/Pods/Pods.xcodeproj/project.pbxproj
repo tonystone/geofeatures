@@ -50,6 +50,7 @@
 		D4A618E083B71070D07316DAFE40CA1D /* Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3228E9F5793545FE4A5EBADAF755D224 /* Surface.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E3424F7E554E73D3FC9121A66D594344 /* Precision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591C93E16C19A633315A25E7BF76BF2A /* Precision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E465DE91062705F247502039B6DC5766 /* WKBReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB00685E618CEF30A118FF55BFF4AE /* WKBReader.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EA043EE01C8F429000FBA8D4 /* WKTWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA043EDF1C8F429000FBA8D4 /* WKTWriter.swift */; };
 		F093A8A1C030C8980FFABDD7F681C9AC /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BD478231C683512CEAE2630E600409 /* LineString.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F4730BEEA35DEA2921F01D46569FFB1A /* Coordinate2DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87041BFE35830F0CD44E0381B57462D /* Coordinate2DM.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F6F5EA8E5F556D5B3E396CD72FEDE606 /* MultiCollection.swift.gyb in Sources */ = {isa = PBXBuildFile; fileRef = C5877617A60E9463FCF62BA742206180 /* MultiCollection.swift.gyb */; };
@@ -139,6 +140,7 @@
 		E51F5F7E3F95FDF5E9D2243DA0627C1A /* LineString+Curve.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LineString+Curve.swift"; sourceTree = "<group>"; };
 		E6FBD1C491B08D921672C9D49F34D223 /* GeometryCollection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeometryCollection.swift; sourceTree = "<group>"; };
 		E87041BFE35830F0CD44E0381B57462D /* Coordinate2DM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinate2DM.swift; sourceTree = "<group>"; };
+		EA043EDF1C8F429000FBA8D4 /* WKTWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTWriter.swift; sourceTree = "<group>"; };
 		EAD062572D73D54B331813A4B52CA7C6 /* Point+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Point+Geometry.swift"; sourceTree = "<group>"; };
 		EDCB00685E618CEF30A118FF55BFF4AE /* WKBReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKBReader.swift; sourceTree = "<group>"; };
 		F12800ACBBA09FA0D85736915F680E46 /* Pods-GeoFeatures2_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-frameworks.sh"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				30AC486D32EE765D0F75FF5AD6099DF4 /* TupleConvertable.swift */,
 				EDCB00685E618CEF30A118FF55BFF4AE /* WKBReader.swift */,
 				2C3CAFA0E762E3D1A1D465F86F1CE3AA /* WKTReader.swift */,
+				EA043EDF1C8F429000FBA8D4 /* WKTWriter.swift */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				8BCA34C58B9B1468DC000C198D968BEE /* Coordinate3DM.swift in Sources */,
 				2C1EB1BB03DE25FB490DCE36C4853AE8 /* CoordinateCollection.swift.gyb in Sources */,
 				8B5D3B4A89FC24B0F8DA90B7FACB3FB0 /* CoordinateReferenceSystem.swift in Sources */,
+				EA043EE01C8F429000FBA8D4 /* WKTWriter.swift in Sources */,
 				C57C924DEE2B6F87A14A44B0F0205B07 /* Curve.swift in Sources */,
 				3CDA6C5A93F617586B2F39D97F7A38C8 /* FixedPrecision.swift in Sources */,
 				B225EDCA3FD837EE9505797763C77956 /* FloatingPrecision.swift in Sources */,
