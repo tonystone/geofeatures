@@ -24,7 +24,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.default_subspec = 'Geometry'
 
-  s.source_files = 'Geometry/**/*'
+  s.source_files = 'Geometry/**/*.swift'
+  s.preserve_paths = 'Geometry/**/*.swift.gyb'
 
   s.subspec 'Geometry' do |ss|
     # Main spec
@@ -32,6 +33,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Visualization' do |ss|
     ss.source_files = 'Visualization/**/*'
+    ss.preserve_paths = 'Visualization/**/*.swift.gyb'
   end
 
 end
