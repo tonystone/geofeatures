@@ -30,11 +30,10 @@ class WKTWriterTests: XCTestCase {
         wktWriter = WKTWriter()
     }
     
-    func testRead_Point_Float_Valid() {
+    func testWrite_Point() {
 
         let wktStr = wktWriter.write(Point<Coordinate2D>(coordinate: (1.0, 1.0)))
         
         XCTAssertEqual("point (1.0 1.0)", wktStr)
-        
     }
 }
