@@ -570,6 +570,35 @@
 			};
 			name = Release;
 		};
+		406E89E79C379EA1D113D163EAC906BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0AE6C269B0073A104FDDFB882AC1D51 /* GeoFeatures2.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GeoFeatures2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GeoFeatures2/GeoFeatures2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = GeoFeatures2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		4BD69AB70131D04435EC51ACB479FFE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */;
@@ -758,35 +787,6 @@
 			};
 			name = Debug;
 		};
-		E690388625004E0643A67AF66F9FE86A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0AE6C269B0073A104FDDFB882AC1D51 /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GeoFeatures2/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GeoFeatures2/GeoFeatures2.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -811,7 +811,7 @@
 		40D84D4F9071D71648A576793ABFC388 /* Build configuration list for PBXNativeTarget "GeoFeatures2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E690388625004E0643A67AF66F9FE86A /* Debug */,
+				406E89E79C379EA1D113D163EAC906BF /* Debug */,
 				8B80745BB61F9F7014DD81D389DE4659 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
