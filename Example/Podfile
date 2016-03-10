@@ -10,3 +10,15 @@ target 'GeoFeatures2_Tests', :exclusive => true do
   pod 'GeoFeatures2', :path => '../'
   pod 'GeoFeatures2/Visualization', :path => '../'
 end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == "GeoFeatures2"
+            target.build_configurations.each do |config|
+                if config.name == "Debug"
+                    config.build_settings['ENABLE_TESTABILITY'] = 'YES'
+                end
+            end
+        end
+    end
+end
