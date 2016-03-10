@@ -19,14 +19,16 @@
   },
   "requires_arc": true,
   "default_subspecs": "Geometry",
-  "source_files": "Geometry/**/*",
+  "source_files": "Geometry/**/*.swift",
+  "preserve_paths": "Geometry/**/*.swift.gyb",
   "subspecs": [
     {
       "name": "Geometry"
     },
     {
       "name": "Visualization",
-      "source_files": "Visualization/**/*"
+      "source_files": "Visualization/**/*",
+      "preserve_paths": "Visualization/**/*.swift.gyb"
     }
   ]
 }
