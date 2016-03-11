@@ -107,7 +107,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <point tagged text> ::= point <point text>
     private func pointTaggedText(point: Point<CoordinateType>) -> String  {
         
-        return  Token.POINT.rawValue + Token.SINGLE_SPACE.rawValue + pointText(point)
+        return  Token.POINT.rawValue + Token.SINGLE_SPACE.rawValue + zmText(point.coordinate) + pointText(point)
     }
     
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
@@ -149,22 +149,58 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     
     // BNF: None defined by OGC
     private func linearRingTaggedText(linearRing: LinearRing<CoordinateType>) -> String {
-        return ""
+        
+        return Token.LINEARRING.rawValue + Token.SINGLE_SPACE.rawValue + linearRingText(linearRing)
     }
     
     // BNF: None defined by OGC
     private func linearRingText(linearRing: LinearRing<CoordinateType>) -> String  {
-        return ""
+        if linearRing.isEmpty() {
+            return Token.EMPTY.rawValue
+        }
+        linearRing.generate()
+        
+        var linearRingText = Token.LEFT_PAREN.rawValue
+        
+        for index in 0..<linearRing.count {
+            let coordinate = linearRing[index]
+            
+            if (index > 0) {
+                linearRingText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
+            }
+            linearRingText += self.coordinateText(coordinate)
+        }
+        linearRingText += Token.RIGHT_PAREN.rawValue
+        
+        return linearRingText
     }
     
     // BNF: <polygon tagged text> ::= polygon <polygon text>
     private func polygonTaggedText(polygon: Polygon<CoordinateType> ) -> String {
-        return ""
+        
+        return Token.POLYGON.rawValue + Token.SINGLE_SPACE.rawValue + polygonText(polygon)
     }
     
     // BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
     private func polygonText(polygon: Polygon<CoordinateType> ) -> String {
-        return ""
+        
+        if polygon.isEmpty() {
+            return Token.EMPTY.rawValue
+        }
+        
+        var polygonText = Token.LEFT_PAREN.rawValue + linearRingText(polygon.outerRing)
+
+        for index in 0..<polygon.innerRings.count {
+
+            if (index < polygon.innerRings.count) {
+                polygonText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
+            }
+            polygonText += linearRingText(polygon.innerRings[index])
+        }
+        
+        polygonText += Token.RIGHT_PAREN.rawValue
+
+        return polygonText
     }
     
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
@@ -224,5 +260,24 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         return coordinateText
+    }
+    
+    private func zmText(coordinate: CoordinateType) -> String {
+        
+        var zmText = ""
+        
+        if let _ = coordinate as? ThreeDimensional {
+            zmText += Token.THREEDIMENSIONAL.rawValue
+        }
+        
+        if let _ = coordinate as? Measured {
+            zmText += Token.MEASURED.rawValue
+        }
+        
+        if zmText != "" {
+            zmText += Token.SINGLE_SPACE.rawValue
+        }
+        
+        return zmText
     }
 }

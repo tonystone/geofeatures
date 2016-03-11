@@ -23,17 +23,80 @@ import GeoFeatures2
 
 class WKTWriterTests: XCTestCase {
     
-    private var wktWriter: WKTWriter<Coordinate2D>!
+    var wktWriter2D  : WKTWriter<Coordinate2D>!
+    var wktWriter2DM : WKTWriter<Coordinate2DM>!
+    var wktWriter3D  : WKTWriter<Coordinate3D>!
+    var wktWriter3DM : WKTWriter<Coordinate3DM>!
     
     override func setUp() {
-        
-        wktWriter = WKTWriter()
+        wktWriter2D  = WKTWriter<Coordinate2D>()
+        wktWriter2DM = WKTWriter<Coordinate2DM>()
+        wktWriter3D  = WKTWriter<Coordinate3D>()
+        wktWriter3DM = WKTWriter<Coordinate3DM>()
     }
     
-    func testWrite_Point() {
-
-        let wktStr = wktWriter.write(Point<Coordinate2D>(coordinate: (1.0, 1.0)))
+    func testWrite_Point_2D() {
         
-        XCTAssertEqual("point (1.0 1.0)", wktStr)
+        XCTAssertEqual("point (1.0 1.0)", wktWriter2D.write(Point<Coordinate2D>(coordinate: (1.0, 1.0))))
+    }
+    
+    func testWrite_Point_2DM() {
+        
+        XCTAssertEqual("point m (1.0 2.0 3.0)", wktWriter2DM.write(Point<Coordinate2DM>(coordinate: (1.0, 2.0, 3.0))))
+    }
+    
+    func testWrite_Point_3D() {
+        
+        XCTAssertEqual("point z (1.0 2.0 3.0)", wktWriter3D.write(Point<Coordinate3D>(coordinate: (1.0, 2.0, 3.0))))
+    }
+    
+    func testWrite_Point_3DM() {
+        
+        XCTAssertEqual("point zm (1.0 2.0 3.0 4.0)", wktWriter3DM.write(Point<Coordinate3DM>(coordinate: (1.0, 2.0, 3.0, 4.0))))
+    }
+    
+    func testWrite_LineString_Empty() {
+        
+        XCTAssertEqual("linestring empty", wktWriter2D.write(LineString<Coordinate2D>(elements: [])))
+    }
+    
+    func testWrite_LineString_2D() {
+        
+        XCTAssertEqual("linestring (1.0 1.0, 2.0 2.0, 3.0 3.0)", wktWriter2D.write(LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)])))
+    }
+    
+//    func testWrite_LineString_2DM() {
+//        
+//        XCTAssertEqual("linestring m (1.0 1.0 7.0, 2.0 2.0 8.0, 3.0 3.0 9.0)", wktWriter2D.write(LineString<Coordinate2DM>(elements: [(1.0, 1.0, 7.0), (2.0, 2.0, 8.0), (3.0, 3.0, 9.0)])))
+//    }
+//    
+//    func testWrite_LineString_3D() {
+//        
+//        XCTAssertEqual("linestring z (1.0 1.0 4.0, 2.0 2.0 5.0, 3.0 3.0 6.0)", wktWriter3D.write(LineString<Coordinate3D>(elements: [(1.0, 1.0, 4.0), (2.0, 2.0, 5.0), (3.0, 3.0, 6.0)])))
+//    }
+//    
+//    func testWrite_LineString_3DM() {
+//        
+//        XCTAssertEqual("linestring zm (1.0 1.0, 2.0 2.0, 3.0 3.0)", wktWriter3DM.write(LineString<Coordinate3DM>(elements: [(1.0, 1.0, 4.0, 7.0), (2.0, 2.0, 5.0, 8.0), (3.0, 3.0, 6.0, 9.0)])))
+//    }
+    
+    func testWrite_Polygon_Empty() {
+        
+        XCTAssertEqual("polygon empty", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: []), innerRings: [])))
+    }
+    
+    func testWrite_Polygon_2D() {
+        
+        let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
+        let innerRing = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
+        
+        XCTAssertEqual("polygon ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])))
+    }
+    
+    func testWrite_Polygon_2D_ZeroInnerRings() {
+        
+        let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
+        
+        XCTAssertEqual("polygon ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [])))
     }
 }
