@@ -43,7 +43,7 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
         long as it has an Element type equal Self.Element and the Distance
         is an Int type.
      */
-    init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
+    init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision)
     
     /**
         - Returns: The number of Geometry objects.
