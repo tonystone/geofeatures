@@ -27,23 +27,34 @@ extension LineString : Curve {
     @warn_unused_result
     public func length() -> Double {
         
-        var length: Double  = 0.0
-        
-        var generator = self.generate()
-        
-        if var c1 = generator.next() {
-            while let  c2 = generator.next() {
-                var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
+        let length: Double  = _storage.withUnsafeMutablePointers { (count, elements)->Double in
+            
+            var length: Double = 0.0
+            
+            if count.memory > 0 {
                 
-                if let c1 = c1 as? ThreeDimensional,
-                   let c2 = c2 as? ThreeDimensional {
+                let indices = 1..<count.memory
+                
+                var c1 = elements[0]
+                
+                for index in indices {
                     
-                    result += pow(abs(c1.z - c2.z), 2.0)
+                    var c2 = elements[index]
+                    
+                    var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
+                    
+                    if let c1 = c1 as? ThreeDimensional,
+                        let c2 = c2 as? ThreeDimensional {
+                            
+                            result += pow(abs(c1.z - c2.z), 2.0)
+                    }
+                    length += sqrt(result)
+                    c1 = c2
                 }
-                length += sqrt(result)
-                c1 = c2
             }
+            return length
         }
+
         return self.precision.convert(length)
     }
 }
