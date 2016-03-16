@@ -118,4 +118,12 @@ class ${Self} : XCTestCase {
         }, true)
     }
 
+    func testRemoveAll () {
+        var geometry = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: ${Precision})
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
 }
