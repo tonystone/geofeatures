@@ -52,9 +52,30 @@ public struct MultiPolygon<CoordinateType : protocol<Coordinate, TupleConvertabl
     public init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        _storage = CollectionBuffer<Element>.create(8) { _ in 0 } as! CollectionBuffer<Element>
     }
     
-    private var elements = ContiguousArray<Element>()
+    internal var _storage: CollectionBuffer<Element>
+}
+
+// MARK: Private methods
+
+extension MultiPolygon {
+    
+    @inline(__always)
+    private mutating func _ensureUniquelyReferenced() {
+        if !isUniquelyReferencedNonObjC(&_storage) {
+            _storage = _storage.clone()
+        }
+    }
+    
+    @inline(__always)
+    private mutating func _resizeIfNeeded() {
+        if _storage.allocatedElementCount == count {
+            _storage = _storage.resize(count * 2)
+        }
+    }
 }
 
 // MARK:  Collection conformance
@@ -79,7 +100,7 @@ extension MultiPolygon : Collection {
         var generator = elements.generate()
         
         while let element = generator.next() {
-            self.elements.append(element)
+            self.append(element)
         }
     }
     
@@ -88,16 +109,16 @@ extension MultiPolygon : Collection {
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
-        self.elements.reserveCapacity(elements.count)
+        self.reserveCapacity(numericCast(elements.count))
 
         var generator = elements.generate()
         
         while let element = generator.next() {
-            self.elements.append(element)
+            self.append(element)
         }
     }
     
@@ -105,14 +126,14 @@ extension MultiPolygon : Collection {
         - Returns: The number of Polygon objects.
      */
     public var count: Int {
-        get { return self.elements.count }
+        get { return self._storage.value }
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.elements.capacity }
+        get { return self._storage.allocatedElementCount }
     }
 
     /**
@@ -121,53 +142,130 @@ extension MultiPolygon : Collection {
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
     public mutating func reserveCapacity(minimumCapacity: Int) {
-        self.elements.reserveCapacity(minimumCapacity)
+        
+        if _storage.allocatedElementCount < minimumCapacity {
+            
+            _ensureUniquelyReferenced()
+            
+            let newSize = max(_storage.allocatedElementCount * 2, minimumCapacity)
+            
+            _storage = _storage.resize(newSize)
+        }
     }
 
     /**
         Append `newElement` to this MultiPolygon.
      */
     public mutating func append(newElement: Element) {
-        self.elements.append(newElement)
+        
+        _ensureUniquelyReferenced()
+        _resizeIfNeeded()
+        
+        _storage.withUnsafeMutablePointers { (value, elements)->Void in
+            
+            (elements + value.memory).initialize(newElement)
+            value.memory += 1
+        }
     }
 
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
     public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
-        self.elements.appendContentsOf(newElements)
+       
+        var generator = newElements.generate()
+        
+        while let element = generator.next() {
+            self.append(element)
+        }
     }
 
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
-        self.elements.appendContentsOf(newElements)
+        
+        self.reserveCapacity(numericCast(newElements.count))
+        
+        var generator = newElements.generate()
+        
+        while let element = generator.next() {
+            self.append(element)
+        }
     }
 
-    /**
-        Remove an element from the end of this MultiPolygon.
-     
-        - Requires: `count > 0`.
-     */
-    public mutating func removeLast() -> Element {
-        return self.elements.removeLast()
-    }
 
     /**
         Insert `newElement` at index `i` of this MultiPolygon.
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Element, atIndex i: Int) {
-        self.elements.insert(newElement, atIndex: i)
+    public mutating func insert(newElement: Element, atIndex index: Int) {
+        guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range, can't insert Polygon.") }
+        
+        _ensureUniquelyReferenced()
+        _resizeIfNeeded()
+        
+        _storage.withUnsafeMutablePointers { (count, elements)->Void in
+            
+            var m = count.memory
+            
+            count.memory += 1
+            
+            // Move the other elements
+            while  m >= index {
+                elements[m + 1] = elements[m];
+                m = m - 1;
+            }
+            (elements + index).initialize(newElement)
+        }
     }
 
+    
     /**
         Remove and return the element at index `i` of this MultiPolygon.
      */
     public mutating func removeAtIndex(index: Int) -> Element {
-        return self.elements.removeAtIndex(index)
+        guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range, can't remove Polygon.") }
+        
+        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
+            
+            let result = elements[index]
+            
+            var m = count.memory
+            
+            // Move the other elements
+            while  m <  index {
+                elements[m - 1] = elements[m];
+                m = m + 1;
+            }
+            count.memory -= 1
+            
+            return result
+        }
+    }
+    
+    /**
+     Remove an element from the end of this MultiPolygon.
+     
+     - Requires: `count > 0`.
+     */
+    public mutating func removeLast() -> Element {
+        guard count > 0 else { preconditionFailure("can't removeLast from an empty MultiPolygon.") }
+        
+        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
+            
+            let index = count.memory
+            
+            // No need to check for overflow in `i - 1` because `i` is known to be positive.
+            let result = elements[index &- 1]
+            
+            (elements + (index &- 1)).destroy()
+            
+            count.memory = count.memory &- 1
+            
+            return result
+        }
     }
 
     /**
@@ -176,36 +274,44 @@ extension MultiPolygon : Collection {
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
     public mutating func removeAll(keepCapacity keepCapacity: Bool = true) {
-        self.elements.removeAll(keepCapacity: keepCapacity)
+        
+        _storage.withUnsafeMutablePointers { (count, elements)-> Void in
+            elements.destroy(count.memory)
+            count.memory = 0
+        }
     }
 }
 
-// MARK: CollectionType conformance
+// MARK: Collection conformance
 
 extension MultiPolygon {
     
     /**
         Always zero, which is the index of the first element when non-empty.
      */
-    public var startIndex : Int { return self.elements.startIndex }
+    public var startIndex : Int { return 0 }
 
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
-    public var endIndex   : Int { return self.elements.endIndex }
+    public var endIndex   : Int { return _storage.value  }
     
-    public subscript(position : Int) -> Element {
-        get         { return self.elements[position] }
-        set (value) { self.elements[position] = value }
-    }
-    
-    public subscript(range: Range<Int>) -> ArraySlice<Element> {
-        get         { return self.elements[range] }
-        set (value) { self.elements[range] = value }
-    }
-    
-    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
-        return self.elements.generate()
+    public subscript(index : Int) -> Element {
+        get {
+            guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+            
+            
+            return _storage.withUnsafeMutablePointerToElements { $0[index] }
+        }
+        set (newValue) {
+            guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+            
+            _ensureUniquelyReferenced()
+        
+            _storage.withUnsafeMutablePointerToElements { elements->Void in
+                elements[index] = newValue
+            }
+        }
     }
 }
 
@@ -214,7 +320,7 @@ extension MultiPolygon {
 extension MultiPolygon : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(\(self.elements.description))"
+        return "\(self.dynamicType)(" //.join(self.map { String($0) }) + ")"
     }
     
     public var debugDescription : String {
