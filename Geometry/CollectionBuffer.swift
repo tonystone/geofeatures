@@ -58,24 +58,3 @@ extension CollectionBuffer {
     }
 }
 
-extension CollectionBuffer  {
-    
-    /// The position of the first element in a non-empty collection.
-    ///
-    /// In an empty collection, `startIndex == endIndex`.
-    var startIndex: Int {
-        return 0
-    }
-    /// The collection's "past the end" position.
-    ///
-    /// `endIndex` is not a valid argument to `subscript`, and is always
-    /// reachable from `startIndex` by zero or more applications of
-    /// `successor()`.
-    var endIndex: Int {
-        return self.value - 1
-    }
-    
-    var count: Int  {
-        return self.value
-    }
-}
