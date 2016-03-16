@@ -104,14 +104,22 @@ class MultiPointCoordinate3DMFloatingPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
+        var geometry = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
         
-        lineString.append(Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
+        geometry.append(Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
         
-        XCTAssertEqual(lineString.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))])
             { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testRemoveAll () {
+        var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: FloatingPrecision())
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

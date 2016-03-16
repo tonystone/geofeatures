@@ -114,4 +114,12 @@ class LineStringCoordinate2DFixedPrecisionTests : XCTestCase {
         }, true)
     }
 
+    func testRemoveAll () {
+        var geometry = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: FixedPrecision(scale: 100))
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
 }

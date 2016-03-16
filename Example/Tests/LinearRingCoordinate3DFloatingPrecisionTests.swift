@@ -114,4 +114,12 @@ class LinearRingCoordinate3DFloatingPrecisionTests : XCTestCase {
         }, true)
     }
 
+    func testRemoveAll () {
+        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: FloatingPrecision())
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
 }
