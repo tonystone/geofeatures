@@ -34,9 +34,7 @@ import Swift
     Coordinates defines a Line segment.
  */
 public struct ${Self}<Element : protocol<Coordinate, TupleConvertable>> : Geometry {
-    
-    internal typealias _Storage = CollectionBuffer<Element>
-    
+
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
     
@@ -54,8 +52,8 @@ public struct ${Self}<Element : protocol<Coordinate, TupleConvertable>> : Geomet
         
         _storage = CollectionBuffer<Element>.create(8) { _ in 0 } as! CollectionBuffer<Element>
     }
-    
-    internal var _storage: _Storage
+
+    internal var _storage: CollectionBuffer<Element>
 }
 
 extension ${Self} {
@@ -170,7 +168,8 @@ extension ${Self} : Collection  {
         
         _storage.withUnsafeMutablePointers { (value, elements)->Void in
             
-            (elements + value.memory++).initialize(convertedCoordinate)
+            (elements + value.memory).initialize(convertedCoordinate)
+            value.memory += 1
         }
     }
 
@@ -206,8 +205,19 @@ extension ${Self} : Collection  {
         - Requires: `count > 0`.
      */
     public mutating func removeLast() -> Element {
-//        return self._storage.removeLast()
-        return Element()
+        precondition(count > 0, "can't removeLast from an empty ${Self}")
+        
+        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
+
+            let index = count.memory
+            
+            // No need to check for overflow in `i - 1` because `i` is known to be positive.
+            let result = elements[index &- 1]
+            
+            count.memory = count.memory &- 1
+            
+            return result
+        }
     }
     
     /**
@@ -237,7 +247,7 @@ extension ${Self} : Collection  {
                 elements[m + 1] = elements[m];
                 m = m - 1;
             }
-            (elements + i).initialize(newElement)
+            (elements + i).initialize(convertedCoordinate)
         }
     }
     
