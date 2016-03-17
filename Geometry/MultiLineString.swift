@@ -210,12 +210,12 @@ extension MultiLineString : Collection {
             
             var m = count.memory
             
-            count.memory += 1
+            count.memory = count.memory &+ 1
             
             // Move the other elements
             while  m >= index {
-                elements[m + 1] = elements[m];
-                m = m - 1;
+                (elements + (m &+ 1)).moveAssignFrom((elements + m), count: 1)
+                m = m &- 1
             }
             (elements + index).initialize(newElement)
         }
@@ -232,14 +232,14 @@ extension MultiLineString : Collection {
             
             let result = elements[index]
             
-            var m = count.memory
+            var m = index &+ 1
             
             // Move the other elements
-            while  m <  index {
-                elements[m - 1] = elements[m];
-                m = m + 1;
+            while  m <  count.memory {
+                (elements + (m &- 1)).moveAssignFrom((elements + m), count: 1)
+                m = m &+ 1
             }
-            count.memory -= 1
+            count.memory = count.memory &- 1
             
             return result
         }
@@ -259,8 +259,6 @@ extension MultiLineString : Collection {
             
             // No need to check for overflow in `i - 1` because `i` is known to be positive.
             let result = elements[index &- 1]
-            
-            (elements + (index &- 1)).destroy()
             
             count.memory = count.memory &- 1
             
@@ -320,7 +318,7 @@ extension MultiLineString {
 extension MultiLineString : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(" //.join(self.map { String($0) }) + ")"
+        return "\(self.dynamicType)(\(self.flatMap { String($0) }.joinWithSeparator(", ")))"
     }
     
     public var debugDescription : String {

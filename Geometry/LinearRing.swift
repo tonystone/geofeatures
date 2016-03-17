@@ -225,9 +225,9 @@ extension LinearRing : Collection  {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Element, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex index: Int) {
         
-        _checkValidSubscript(i)
+        _checkValidSubscript(index)
         
         var convertedCoordinate = newElement
         
@@ -237,17 +237,16 @@ extension LinearRing : Collection  {
         _resizeIfNeeded()
         
         _storage.withUnsafeMutablePointers { (count, elements)->Void in
-            
             var m = count.memory
             
-            count.memory += 1
+            count.memory = count.memory &+ 1
             
             // Move the other elements
-            while  m >= i {
-                elements[m + 1] = elements[m];
-                m = m - 1;
+            while  m >= index {
+                (elements + (m &+ 1)).moveAssignFrom((elements + m), count: 1)
+                m = m &- 1
             }
-            (elements + i).initialize(convertedCoordinate)
+            (elements + index).initialize(newElement)
         }
     }
     
@@ -261,14 +260,14 @@ extension LinearRing : Collection  {
             
             let result = elements[index]
             
-            var m = count.memory
+            var m = index &+ 1
             
             // Move the other elements
-            while  m <  index {
-                elements[m - 1] = elements[m];
-                m = m + 1;
+            while  m <  count.memory {
+                (elements + (m &- 1)).moveAssignFrom((elements + m), count: 1)
+                m = m &+ 1
             }
-            count.memory -= 1
+            count.memory = count.memory &- 1
             
             return result
         }
@@ -424,7 +423,7 @@ extension LinearRing : CollectionType, /* MutableCollectionType, */ _DestructorS
 extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(" //.join(self.map { String($0) }) + ")"
+        return "\(self.dynamicType)(\(self.flatMap { String($0) }.joinWithSeparator(", ")))"
     }
     
     public var debugDescription : String {
