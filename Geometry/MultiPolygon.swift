@@ -272,11 +272,15 @@ extension MultiPolygon : Collection {
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    public mutating func removeAll(keepCapacity keepCapacity: Bool = true) {
+    public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
         
-        storage.withUnsafeMutablePointers { (count, elements)-> Void in
-            elements.destroy(count.memory)
-            count.memory = 0
+        if keepCapacity {
+        
+            storage.withUnsafeMutablePointers { (count, elements)-> Void in
+                count.memory = 0
+            }
+        } else {
+            storage = CollectionBuffer<Element>.create(0) { _ in 0 } as! CollectionBuffer<Element>
         }
     }
 }
