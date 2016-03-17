@@ -114,6 +114,18 @@ class LineStringCoordinate2DMFloatingPrecisionTests : XCTestCase {
         }, true)
     }
 
+    func testInsert () {
+        var geometry = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: FloatingPrecision())
+        
+        geometry.insert(Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))])
+            { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
     func testRemoveAll () {
         var geometry = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: FloatingPrecision())
 

@@ -114,6 +114,18 @@ class LineStringCoordinate3DFixedPrecisionTests : XCTestCase {
         }, true)
     }
 
+    func testInsert () {
+        var geometry = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: FixedPrecision(scale: 100))
+        
+        geometry.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))])
+            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
     func testRemoveAll () {
         var geometry = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: FixedPrecision(scale: 100))
 
