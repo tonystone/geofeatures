@@ -50,25 +50,25 @@ public struct LinearRing<Element : protocol<Coordinate, TupleConvertable>> : Geo
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
-        _storage = CollectionBuffer<Element>.create(8) { _ in 0 } as! CollectionBuffer<Element>
+        storage = CollectionBuffer<Element>.create(8) { _ in 0 } as! CollectionBuffer<Element>
     }
 
-    internal var _storage: CollectionBuffer<Element>
+    internal var storage: CollectionBuffer<Element>
 }
 
 extension LinearRing {
     
     @inline(__always)
     private mutating func _ensureUniquelyReferenced() {
-        if !isUniquelyReferencedNonObjC(&_storage) {
-            _storage = _storage.clone()
+        if !isUniquelyReferencedNonObjC(&storage) {
+            storage = storage.clone()
         }
     }
 
     @inline(__always)
     private mutating func _resizeIfNeeded() {
-        if _storage.allocatedElementCount == count {
-            _storage = _storage.resize(count * 2)
+        if storage.allocatedElementCount == count {
+            storage = storage.resize(count * 2)
         }
     }
 }
@@ -121,14 +121,14 @@ extension LinearRing : Collection  {
         - Returns: The number of Coordinate3D objects.
      */
     public var count: Int {
-        get { return self._storage.value }
+        get { return self.storage.value }
     }
     
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self._storage.allocatedElementCount }
+        get { return self.storage.allocatedElementCount }
     }
     
     /**
@@ -138,13 +138,13 @@ extension LinearRing : Collection  {
      */
     public mutating func reserveCapacity(minimumCapacity: Int) {
         
-        if _storage.allocatedElementCount < minimumCapacity {
+        if storage.allocatedElementCount < minimumCapacity {
             
             _ensureUniquelyReferenced()
             
-            let newSize = max(_storage.allocatedElementCount * 2, minimumCapacity)
+            let newSize = max(storage.allocatedElementCount * 2, minimumCapacity)
             
-            _storage = _storage.resize(newSize)
+            storage = storage.resize(newSize)
         }
     }
     
@@ -161,7 +161,7 @@ extension LinearRing : Collection  {
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
-        _storage.withUnsafeMutablePointers { (value, elements)->Void in
+        storage.withUnsafeMutablePointers { (value, elements)->Void in
             
             (elements + value.memory).initialize(convertedCoordinate)
             value.memory += 1
@@ -200,7 +200,7 @@ extension LinearRing : Collection  {
         - Requires: `i <= count`.
      */
     public mutating func insert(newElement: Element, atIndex index: Int) {
-        guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
         var convertedCoordinate = newElement
         
@@ -209,7 +209,7 @@ extension LinearRing : Collection  {
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
-        _storage.withUnsafeMutablePointers { (count, elements)->Void in
+        storage.withUnsafeMutablePointers { (count, elements)->Void in
             var m = count.memory
             
             count.memory = count.memory &+ 1
@@ -227,9 +227,9 @@ extension LinearRing : Collection  {
         Remove and return the element at index `i` of this LinearRing.
      */
     public mutating func removeAtIndex(index: Int) -> Element {
-        guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
-        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
+        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
             
             let result = elements[index]
             
@@ -254,7 +254,7 @@ extension LinearRing : Collection  {
     public mutating func removeLast() -> Element {
         guard count > 0 else { preconditionFailure("can't removeLast from an empty LinearRing.") }
 
-        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
+        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
 
             let index = count.memory
             
@@ -274,7 +274,7 @@ extension LinearRing : Collection  {
      */
     public mutating func removeAll(keepCapacity keepCapacity: Bool = true) {
         
-        _storage.withUnsafeMutablePointers { (count, elements)-> Void in
+        storage.withUnsafeMutablePointers { (count, elements)-> Void in
             count.memory = 0
         }
     }
@@ -318,7 +318,7 @@ extension LinearRing where Element : TupleConvertable {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
-        self._storage.resize(elements.count)
+        self.storage.resize(elements.count)
         
         var generator = elements.generate()
         
@@ -355,7 +355,7 @@ extension LinearRing where Element : TupleConvertable {
         
         _ensureUniquelyReferenced()
         
-        self.reserveCapacity(numericCast(newElements.count) + _storage.value)
+        self.reserveCapacity(numericCast(newElements.count) + storage.value)
         
         var generator = newElements.generate()
         
@@ -387,18 +387,18 @@ extension LinearRing : CollectionType, /* MutableCollectionType, */ _DestructorS
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
-    public var endIndex  : Int { return _storage.value }
+    public var endIndex  : Int { return storage.value }
     
     public subscript(index : Int) -> Element {
         
         get {
-            guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
             
-            return _storage.withUnsafeMutablePointerToElements { $0[index] }
+            return storage.withUnsafeMutablePointerToElements { $0[index] }
         }
         
         set (newValue) {
-            guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
             _ensureUniquelyReferenced()
             
@@ -406,7 +406,7 @@ extension LinearRing : CollectionType, /* MutableCollectionType, */ _DestructorS
             
             precision.convert(&convertedCoordinate)
             
-            _storage.withUnsafeMutablePointerToElements { elements->Void in
+            storage.withUnsafeMutablePointerToElements { elements->Void in
                 elements[index] = convertedCoordinate
             }
         }

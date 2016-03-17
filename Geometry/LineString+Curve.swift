@@ -27,7 +27,7 @@ extension LineString : Curve {
     @warn_unused_result
     public func length() -> Double {
         
-        let length: Double  = _storage.withUnsafeMutablePointers { (count, elements)->Double in
+        let length: Double  = storage.withUnsafeMutablePointers { (count, elements)->Double in
             
             var length: Double = 0.0
             
