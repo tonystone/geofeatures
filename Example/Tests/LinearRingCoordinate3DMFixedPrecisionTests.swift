@@ -114,4 +114,24 @@ class LinearRingCoordinate3DMFixedPrecisionTests : XCTestCase {
         }, true)
     }
 
+    func testInsert () {
+        var geometry = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
+        
+        geometry.insert(Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002)), Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
+            { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
+    func testRemoveAll () {
+        var geometry = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
 }

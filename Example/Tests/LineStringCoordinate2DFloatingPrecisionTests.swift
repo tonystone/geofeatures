@@ -114,4 +114,24 @@ class LineStringCoordinate2DFloatingPrecisionTests : XCTestCase {
         }, true)
     }
 
+    func testInsert () {
+        var geometry = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: FloatingPrecision())
+        
+        geometry.insert(Coordinate2D(tuple: (x: 2.0, y: 2.0)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))])
+            { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
+    func testRemoveAll () {
+        var geometry = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: FloatingPrecision())
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
 }

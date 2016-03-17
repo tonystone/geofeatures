@@ -104,14 +104,22 @@ class MultiPointCoordinate2DMFixedPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = MultiPoint<Coordinate2DM>(precision: FixedPrecision(scale: 100))
+        var geometry = MultiPoint<Coordinate2DM>(precision: FixedPrecision(scale: 100))
         
-        lineString.append(Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)))
+        geometry.append(Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)))
         
-        XCTAssertEqual(lineString.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, m: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, m: 1.0))])
             { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testRemoveAll () {
+        var geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

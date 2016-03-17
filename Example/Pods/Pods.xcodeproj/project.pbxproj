@@ -46,6 +46,7 @@
 		D259D5856475E030949E62976E2F91EE /* LineString+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB98316FCD68E5B4E50B40B7E731A0 /* LineString+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D3C031BA3301A9F88A7AEC0D642B891A /* Coordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D74AFD8C8F4CF8C216C5CEE3F17E6D /* Coordinate2D.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D92B547293F60CF1C376ABC4532A4CCE /* LinearRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA23C41C43C871CAE59F1DDF8124ED7 /* LinearRing.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EA3708361C950259001FCEEA /* CollectionBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3708351C950259001FCEEA /* CollectionBuffer.swift */; };
 		EC6E8CEDB3CCC395AD27FECA17F2969D /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194844D112F9A7B26021D7BB5A34A221 /* Curve.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		EDB87C9C1AC852A5ED69DDA626995972 /* LineString+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410F0B1549CF060C58BAE5CD137A40F /* LineString+Curve.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F0321BF6B48BFC9B50FDC1FB5DD81A90 /* Coordinate3DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB1F361B771C1ADAF5F2F20BA83C00 /* Coordinate3DM.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -134,6 +135,7 @@
 		E4FD9352602DC0CEE72B98681E897175 /* Precision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Precision.swift; sourceTree = "<group>"; };
 		E54752D7774F3554DC04B71C53F87901 /* Coordinate3D.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinate3D.swift; sourceTree = "<group>"; };
 		E98B9B30563F291C6619CC35A4A967D6 /* LinearRing+Curve.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LinearRing+Curve.swift"; sourceTree = "<group>"; };
+		EA3708351C950259001FCEEA /* CollectionBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionBuffer.swift; sourceTree = "<group>"; };
 		EEDB1F361B771C1ADAF5F2F20BA83C00 /* Coordinate3DM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinate3DM.swift; sourceTree = "<group>"; };
 		F12800ACBBA09FA0D85736915F680E46 /* Pods-GeoFeatures2_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		F2EB793768DE4E406821AA69FD08544F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				39C6171B29412E7268C1D7A4CC85D2D4 /* Collection.swift */,
+				EA3708351C950259001FCEEA /* CollectionBuffer.swift */,
 				204A2F2B1FB7E845467D6549CC439169 /* Coordinate.swift */,
 				32D74AFD8C8F4CF8C216C5CEE3F17E6D /* Coordinate2D.swift */,
 				E23BFB2919CBF79FDB35EDC9514283B5 /* Coordinate2DM.swift */,
@@ -471,6 +474,7 @@
 			files = (
 				1CF02BB228657DE0E6569D1F198F61A1 /* Collection.swift in Sources */,
 				5BC6E8CC2947F993520F8AB125F746DF /* Coordinate.swift in Sources */,
+				EA3708361C950259001FCEEA /* CollectionBuffer.swift in Sources */,
 				D3C031BA3301A9F88A7AEC0D642B891A /* Coordinate2D.swift in Sources */,
 				B83D8A020EB49ED3E56EF9EB17E81AC7 /* Coordinate2DM.swift in Sources */,
 				3DB1D72CD86EBCCB1A62C65BC24D3A6D /* Coordinate3D.swift in Sources */,

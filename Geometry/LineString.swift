@@ -34,7 +34,7 @@ import Swift
     Coordinates defines a Line segment.
  */
 public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geometry {
-    
+
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
     
@@ -49,9 +49,28 @@ public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geo
     public init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        storage = CollectionBuffer<Element>.create(8) { _ in 0 } as! CollectionBuffer<Element>
     }
+
+    internal var storage: CollectionBuffer<Element>
+}
+
+extension LineString {
     
-    private var coordinates = ContiguousArray<Element>()
+    @inline(__always)
+    private mutating func _ensureUniquelyReferenced() {
+        if !isUniquelyReferencedNonObjC(&storage) {
+            storage = storage.clone()
+        }
+    }
+
+    @inline(__always)
+    private mutating func _resizeIfNeeded() {
+        if storage.allocatedElementCount == count {
+            storage = storage.resize(count * 2)
+        }
+    }
 }
 
 // MARK: Collection conformance
@@ -75,10 +94,8 @@ extension LineString : Collection  {
         
         var generator = elements.generate()
         
-        while var coordinate = generator.next() {
-            self.precision.convert(&coordinate)
-            
-            self.coordinates.append(coordinate)
+        while let coordinate = generator.next() {
+            self.append(coordinate)
         }
     }
     
@@ -87,18 +104,16 @@ extension LineString : Collection  {
         long as it has an Element type equal the Coordinate type specified in Element 
         and the Distance is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Element, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
-        self.coordinates.reserveCapacity(elements.count)
+        self.reserveCapacity(numericCast(elements.count))
         
         var generator = elements.generate()
         
-        while var coordinate = generator.next() {
-            self.precision.convert(&coordinate)
-            
-            self.coordinates.append(coordinate)
+        while let coordinate = generator.next() {
+            self.append(coordinate)
         }
     }
     
@@ -106,14 +121,14 @@ extension LineString : Collection  {
         - Returns: The number of Coordinate3D objects.
      */
     public var count: Int {
-        get { return self.coordinates.count }
+        get { return self.storage.value }
     }
     
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.coordinates.capacity }
+        get { return self.storage.allocatedElementCount }
     }
     
     /**
@@ -122,7 +137,15 @@ extension LineString : Collection  {
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
     public mutating func reserveCapacity(minimumCapacity: Int) {
-        self.coordinates.reserveCapacity(minimumCapacity)
+        
+        if storage.allocatedElementCount < minimumCapacity {
+            
+            _ensureUniquelyReferenced()
+            
+            let newSize = max(storage.allocatedElementCount * 2, minimumCapacity)
+            
+            storage = storage.resize(newSize)
+        }
     }
     
     /**
@@ -133,11 +156,18 @@ extension LineString : Collection  {
     public mutating func append(newElement: Element) {
         var convertedCoordinate = newElement
         
-        self.precision.convert(&convertedCoordinate)
+        precision.convert(&convertedCoordinate)
         
-        self.coordinates.append(convertedCoordinate)
+        _ensureUniquelyReferenced()
+        _resizeIfNeeded()
+        
+        storage.withUnsafeMutablePointers { (value, elements)->Void in
+            
+            (elements + value.memory).initialize(convertedCoordinate)
+            value.memory += 1
+        }
     }
-    
+
     /**
         Append the elements of `newElements` to this LineString.
      */
@@ -145,10 +175,8 @@ extension LineString : Collection  {
         
         var generator = newElements.generate()
         
-        while var coordinate = generator.next() {
-            self.precision.convert(&coordinate)
-            
-            self.coordinates.append(coordinate)
+        while let coordinate = generator.next() {
+            self.append(coordinate)
         }
     }
     
@@ -157,22 +185,13 @@ extension LineString : Collection  {
      */
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
         
+        self.reserveCapacity(numericCast(newElements.count))
+        
         var generator = newElements.generate()
         
-        while var coordinate = generator.next() {
-            self.precision.convert(&coordinate)
-            
-            self.coordinates.append(coordinate)
+        while let coordinate = generator.next() {
+            self.append(coordinate)
         }
-    }
-    
-    /**
-        Remove an element from the end of this LineString.
-     
-        - Requires: `count > 0`.
-     */
-    public mutating func removeLast() -> Element {
-        return self.coordinates.removeLast()
     }
     
     /**
@@ -180,28 +199,84 @@ extension LineString : Collection  {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Element, atIndex i: Int) {
+    public mutating func insert(newElement: Element, atIndex index: Int) {
+        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+
         var convertedCoordinate = newElement
         
-        self.precision.convert(&convertedCoordinate)
+        precision.convert(&convertedCoordinate)
         
-        self.coordinates.insert(convertedCoordinate, atIndex: i)
+        _ensureUniquelyReferenced()
+        _resizeIfNeeded()
+        
+        storage.withUnsafeMutablePointers { (count, elements)->Void in
+            var m = count.memory
+            
+            count.memory = count.memory &+ 1
+            
+            // Move the other elements
+            while  m >= index {
+                (elements + (m &+ 1)).moveAssignFrom((elements + m), count: 1)
+                m = m &- 1
+            }
+            (elements + index).initialize(convertedCoordinate)
+        }
     }
     
     /**
         Remove and return the element at index `i` of this LineString.
      */
     public mutating func removeAtIndex(index: Int) -> Element {
-        return self.coordinates.removeAtIndex(index)
+        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+
+        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
+            
+            let result = elements[index]
+            
+            var m = index &+ 1
+            
+            // Move the other elements
+            while  m <  count.memory {
+                (elements + (m &- 1)).moveAssignFrom((elements + m), count: 1)
+                m = m &+ 1
+            }
+            count.memory = count.memory &- 1
+            
+            return result
+        }
     }
-    
+
+    /**
+        Remove an element from the end of this LineString.
+     
+        - Requires: `count > 0`.
+     */
+    public mutating func removeLast() -> Element {
+        guard count > 0 else { preconditionFailure("can't removeLast from an empty LineString.") }
+
+        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
+
+            let index = count.memory
+            
+            // No need to check for overflow in `i - 1` because `i` is known to be positive.
+            let result = elements[index &- 1]
+            
+            count.memory = count.memory &- 1
+            
+            return result
+        }
+    }
+
     /**
         Remove all elements of this LineString.
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
     public mutating func removeAll(keepCapacity keepCapacity: Bool = true) {
-        self.coordinates.removeAll(keepCapacity: keepCapacity)
+        
+        storage.withUnsafeMutablePointers { (count, elements)-> Void in
+            count.memory = 0
+        }
     }
 }
 
@@ -227,11 +302,7 @@ extension LineString where Element : TupleConvertable {
         var generator = elements.generate()
         
         while let coordinate = generator.next() {
-            var convertedCoordinate = Element(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self.coordinates.append(convertedCoordinate)
+            self.append(coordinate)
         }
     }
     
@@ -247,16 +318,12 @@ extension LineString where Element : TupleConvertable {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
-        self.coordinates.reserveCapacity(elements.count)
+        self.storage.resize(elements.count)
         
         var generator = elements.generate()
         
         while let coordinate = generator.next() {
-            var convertedCoordinate = Element(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self.coordinates.append(convertedCoordinate)
+            self.append(coordinate)
         }
     }
     
@@ -266,11 +333,7 @@ extension LineString where Element : TupleConvertable {
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
     public mutating func append(newElement: Element.TupleType) {
-        var convertedCoordinate = Element(tuple: newElement)
-        
-        self.precision.convert(&convertedCoordinate)
-        
-        self.coordinates.append(convertedCoordinate)
+        self.append(Element(tuple: newElement))
     }
     
     /**
@@ -281,11 +344,7 @@ extension LineString where Element : TupleConvertable {
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            var convertedCoordinate = Element(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self.coordinates.append(convertedCoordinate)
+            self.append(Element(tuple: coordinate))
         }
     }
     
@@ -294,14 +353,14 @@ extension LineString where Element : TupleConvertable {
      */
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element.TupleType>(newElements: C) {
         
+        _ensureUniquelyReferenced()
+        
+        self.reserveCapacity(numericCast(newElements.count) + storage.value)
+        
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            var convertedCoordinate = Element(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self.coordinates.append(convertedCoordinate)
+            self.append(Element(tuple: coordinate))
         }
     }
     
@@ -311,57 +370,46 @@ extension LineString where Element : TupleConvertable {
         - Requires: `i <= count`.
      */
     public mutating func insert(newElement: Element.TupleType, atIndex i: Int) {
-        var convertedCoordinate = Element(tuple: newElement)
-        
-        self.precision.convert(&convertedCoordinate)
-        
-        self.coordinates.insert(convertedCoordinate, atIndex: i)
+        self.insert(Element(tuple: newElement), atIndex: i)
     }
 }
 
 
 // MARK: CollectionType conformance
 
-extension LineString : CollectionType, MutableCollectionType, _DestructorSafeContainer {
+extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorSafeContainer {
     
     /**
         Always zero, which is the index of the first element when non-empty.
      */
-    public var startIndex : Int { return self.coordinates.startIndex }
+    public var startIndex : Int { return 0 }
     
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
-    public var endIndex   : Int { return self.coordinates.endIndex }
+    public var endIndex  : Int { return storage.value }
     
-    public subscript(position : Int) -> Element {
+    public subscript(index : Int) -> Element {
         
         get {
-            return self.coordinates[position]
+            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+            
+            return storage.withUnsafeMutablePointerToElements { $0[index] }
         }
         
-        set (value) {
-            var convertedCoordinate = value
+        set (newValue) {
+            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+
+            _ensureUniquelyReferenced()
             
-            self.precision.convert(&convertedCoordinate)
+            var convertedCoordinate = newValue
             
-            self.coordinates[position] = convertedCoordinate
+            precision.convert(&convertedCoordinate)
+            
+            storage.withUnsafeMutablePointerToElements { elements->Void in
+                elements[index] = convertedCoordinate
+            }
         }
-    }
-    
-    public subscript(range: Range<Int>) -> ArraySlice<Element> {
-        get {
-            return self.coordinates[range]
-        }
-        
-        set (value) {
-            // TODO: precision convert the values before putting them in
-            self.coordinates[range] = value
-        }
-    }
-    
-    public func generate() -> IndexingGenerator<ContiguousArray<Element>> {
-        return self.coordinates.generate()
     }
 }
 
@@ -370,7 +418,7 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
 extension LineString : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(\(self.coordinates.description))"
+        return "\(self.dynamicType)(\(self.flatMap { String($0) }.joinWithSeparator(", ")))"
     }
     
     public var debugDescription : String {

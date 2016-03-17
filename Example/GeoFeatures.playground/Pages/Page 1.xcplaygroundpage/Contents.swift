@@ -78,7 +78,7 @@ Readers and Writers
 */
 
 do {
-    try WKTReader<Coordinate2D>.read("LINESTRING(0 0,0 90,90 90,90 0,0 0)")
+    try WKTReader<Coordinate2D>().read("LINESTRING (0 0, 0 90, 90 90, 90 0, 0 0)")
 } catch {
    print(error)
 }

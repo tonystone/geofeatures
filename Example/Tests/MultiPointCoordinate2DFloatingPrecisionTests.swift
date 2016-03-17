@@ -104,14 +104,22 @@ class MultiPointCoordinate2DFloatingPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = MultiPoint<Coordinate2D>(precision: FloatingPrecision())
+        var geometry = MultiPoint<Coordinate2D>(precision: FloatingPrecision())
         
-        lineString.append(Point(coordinate: (x: 1.0, y: 1.0)))
+        geometry.append(Point(coordinate: (x: 1.0, y: 1.0)))
         
-        XCTAssertEqual(lineString.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0))])
             { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testRemoveAll () {
+        var geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: FloatingPrecision())
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

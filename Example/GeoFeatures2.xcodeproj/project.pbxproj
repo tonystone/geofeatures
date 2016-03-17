@@ -63,7 +63,7 @@
 		EAB4C1C91C6F7CC900F288D1 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */; };
 		EAB4C1CA1C6F7CCE00F288D1 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4C1BC1C6F7C3F00F288D1 /* WKTReaderTests.swift */; };
 		EAC75E861C91E62200BA35F8 /* CoordinateCollection.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = EAC75E841C91E62200BA35F8 /* CoordinateCollection.swift.gyb */; };
-		EAC75E871C91E62200BA35F8 /* MultiCollection.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = EAC75E851C91E62200BA35F8 /* MultiCollection.swift.gyb */; };
+		EAC75E871C91E62200BA35F8 /* GeometryCollection.swift.gyb in Resources */ = {isa = PBXBuildFile; fileRef = EAC75E851C91E62200BA35F8 /* GeometryCollection.swift.gyb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,8 +132,8 @@
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
 		EAC75E7D1C91CEB800BA35F8 /* process_geometry_gyb.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = process_geometry_gyb.sh; path = Scripts/process_geometry_gyb.sh; sourceTree = "<group>"; };
 		EAC75E7E1C91CEE200BA35F8 /* process_tests_gyb.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = process_tests_gyb.sh; path = Scripts/process_tests_gyb.sh; sourceTree = "<group>"; };
-		EAC75E841C91E62200BA35F8 /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CoordinateCollection.swift.gyb; path = ../Geometry/CoordinateCollection.swift.gyb; sourceTree = "<group>"; };
-		EAC75E851C91E62200BA35F8 /* MultiCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MultiCollection.swift.gyb; path = ../Geometry/MultiCollection.swift.gyb; sourceTree = "<group>"; };
+		EAC75E841C91E62200BA35F8 /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CoordinateCollection.swift.gyb; path = ../Geometry/CoordinateCollection.swift.gyb; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		EAC75E851C91E62200BA35F8 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = ../Geometry/GeometryCollection.swift.gyb; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EAFD4D631C85E16700A5083F /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
 		ECD05668FB877775EDD2C65A /* Pods-GeoFeatures2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6B35E10B1FEDBFEEA17571 /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 			children = (
 				EAC75E841C91E62200BA35F8 /* CoordinateCollection.swift.gyb */,
 				EAFD4D631C85E16700A5083F /* CoordinateCollectionTests.swift.gyb */,
-				EAC75E851C91E62200BA35F8 /* MultiCollection.swift.gyb */,
+				EAC75E851C91E62200BA35F8 /* GeometryCollection.swift.gyb */,
 				EA043EC41C8CF4F600FBA8D4 /* MultiPointTests.swift.gyb */,
 			);
 			name = Gyb;
@@ -422,7 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				EAC75E871C91E62200BA35F8 /* MultiCollection.swift.gyb in Resources */,
+				EAC75E871C91E62200BA35F8 /* GeometryCollection.swift.gyb in Resources */,
 				EAC75E861C91E62200BA35F8 /* CoordinateCollection.swift.gyb in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -828,6 +828,7 @@
 				EAC75E8B1C91E84900BA35F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
