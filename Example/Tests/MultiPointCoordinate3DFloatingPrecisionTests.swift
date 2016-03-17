@@ -67,7 +67,7 @@ class MultiPointCoordinate3DFloatingPrecisionTests : XCTestCase {
         let geometry1 = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: FloatingPrecision())
         var geometry2 = MultiPoint<Coordinate3D>(precision: FloatingPrecision())
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class MultiPointCoordinate3DFloatingPrecisionTests : XCTestCase {
         
         var geometry = MultiPoint<Coordinate3D>(precision: FloatingPrecision())
         
-        geometry.appendContentsOf([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))])
+        geometry.append(contentsOf: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))])
         
         XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))]) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
             return lhs == rhs

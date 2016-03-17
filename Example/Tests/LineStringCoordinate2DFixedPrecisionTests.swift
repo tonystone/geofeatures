@@ -67,7 +67,7 @@ class LineStringCoordinate2DFixedPrecisionTests : XCTestCase {
         let geometry1 = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: FixedPrecision(scale: 100))
         var geometry2 = LineString<Coordinate2D>(precision: FixedPrecision(scale: 100))
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class LineStringCoordinate2DFixedPrecisionTests : XCTestCase {
         
         var geometry = LineString<Coordinate2D>(precision: FixedPrecision(scale: 100))
         
-        geometry.appendContentsOf([Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))])
+        geometry.append(contentsOf: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))])
         
         XCTAssertEqual(geometry.elementsEqual([Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
             return lhs == rhs

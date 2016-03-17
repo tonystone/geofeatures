@@ -172,7 +172,7 @@ extension MultiLineString : Collection {
     /**
         Append the elements of `newElements` to this MultiLineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
+    public mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
        
         var generator = newElements.generate()
         
@@ -184,7 +184,7 @@ extension MultiLineString : Collection {
     /**
         Append the elements of `newElements` to this MultiLineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
+    public mutating func append<C : CollectionType where C.Generator.Element == Element>(contentsOf newElements: C) {
         
         self.reserveCapacity(numericCast(newElements.count))
         
@@ -226,7 +226,7 @@ extension MultiLineString : Collection {
     /**
         Remove and return the element at index `i` of this MultiLineString.
      */
-    public mutating func removeAtIndex(index: Int) -> Element {
+    public mutating func remove(at index: Int) -> Element {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range, can't remove LineString.") }
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in

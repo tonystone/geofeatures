@@ -67,7 +67,7 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
         let geometry1 = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
         var geometry2 = MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class MultiPointCoordinate3DMFixedPrecisionTests : XCTestCase {
         
         var geometry = MultiPoint<Coordinate3DM>(precision: FixedPrecision(scale: 100))
         
-        geometry.appendContentsOf([Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
+        geometry.append(contentsOf: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
         
         XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
             return lhs == rhs
