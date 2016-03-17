@@ -118,6 +118,18 @@ class ${Self} : XCTestCase {
         }, true)
     }
 
+    func testInsert () {
+        var geometry = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: ${Precision})
+        
+        geometry.insert(${CoordinateType}(tuple: ${TestTuple1}), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([${CoordinateType}(tuple: ${TestTuple1}), ${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
+            { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
     func testRemoveAll () {
         var geometry = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: ${Precision})
 
