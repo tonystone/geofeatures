@@ -12,8 +12,10 @@ cd ../Geometry
 
 ../Example/bin/gyb --line-directive '' -DSelf=LineString -o LineString.swift CoordinateCollection.swift.gyb
 
-../Example/bin/gyb --line-directive '' -DSelf=MultiPoint -DElement=Point -o MultiPoint.swift MultiCollection.swift.gyb
+../Example/bin/gyb --line-directive '' -DSelf=GeometryCollection -DElement=Geometry -DCoordinateSpecialized=false -o GeometryCollection.swift GeometryCollection.swift.gyb
 
-../Example/bin/gyb --line-directive '' -DSelf=MultiLineString -DElement=LineString -o MultiLineString.swift MultiCollection.swift.gyb
+../Example/bin/gyb --line-directive '' -DSelf=MultiPoint -DElement=Point -DCoordinateSpecialized=true -o MultiPoint.swift GeometryCollection.swift.gyb
 
-../Example/bin/gyb --line-directive '' -DSelf=MultiPolygon -DElement=Polygon -o MultiPolygon.swift MultiCollection.swift.gyb
+../Example/bin/gyb --line-directive '' -DSelf=MultiLineString -DElement=LineString -DCoordinateSpecialized=true -o MultiLineString.swift GeometryCollection.swift.gyb
+
+../Example/bin/gyb --line-directive '' -DSelf=MultiPolygon -DElement=Polygon -DCoordinateSpecialized=true -o MultiPolygon.swift GeometryCollection.swift.gyb
