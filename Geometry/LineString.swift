@@ -64,12 +64,7 @@ extension LineString {
             _storage = _storage.clone()
         }
     }
-    
-    @inline(__always)
-    private func _checkValidSubscript(index : Int) {
-        precondition((index >= 0) && (index < _storage.value), "Index out of range")
-    }
-    
+
     @inline(__always)
     private mutating func _resizeIfNeeded() {
         if _storage.allocatedElementCount == count {
@@ -200,35 +195,13 @@ extension LineString : Collection  {
     }
     
     /**
-        Remove an element from the end of this LineString.
-     
-        - Requires: `count > 0`.
-     */
-    public mutating func removeLast() -> Element {
-        precondition(count > 0, "can't removeLast from an empty LineString")
-        
-        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
-
-            let index = count.memory
-            
-            // No need to check for overflow in `i - 1` because `i` is known to be positive.
-            let result = elements[index &- 1]
-            
-            count.memory = count.memory &- 1
-            
-            return result
-        }
-    }
-    
-    /**
         Insert `newElement` at index `i` of this LineString.
      
         - Requires: `i <= count`.
      */
     public mutating func insert(newElement: Element, atIndex index: Int) {
-        
-        _checkValidSubscript(index)
-        
+        guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+
         var convertedCoordinate = newElement
         
         precision.convert(&convertedCoordinate)
@@ -246,7 +219,7 @@ extension LineString : Collection  {
                 (elements + (m &+ 1)).moveAssignFrom((elements + m), count: 1)
                 m = m &- 1
             }
-            (elements + index).initialize(newElement)
+            (elements + index).initialize(convertedCoordinate)
         }
     }
     
@@ -254,7 +227,7 @@ extension LineString : Collection  {
         Remove and return the element at index `i` of this LineString.
      */
     public mutating func removeAtIndex(index: Int) -> Element {
-        _checkValidSubscript(index)
+        guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
 
         return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
             
@@ -272,7 +245,28 @@ extension LineString : Collection  {
             return result
         }
     }
-    
+
+    /**
+        Remove an element from the end of this LineString.
+     
+        - Requires: `count > 0`.
+     */
+    public mutating func removeLast() -> Element {
+        guard count > 0 else { preconditionFailure("can't removeLast from an empty LineString.") }
+
+        return _storage.withUnsafeMutablePointers { (count, elements)-> Element in
+
+            let index = count.memory
+            
+            // No need to check for overflow in `i - 1` because `i` is known to be positive.
+            let result = elements[index &- 1]
+            
+            count.memory = count.memory &- 1
+            
+            return result
+        }
+    }
+
     /**
         Remove all elements of this LineString.
      
@@ -395,16 +389,17 @@ extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorS
      */
     public var endIndex  : Int { return _storage.value }
     
-    public subscript(position : Int) -> Element {
+    public subscript(index : Int) -> Element {
         
         get {
-            _checkValidSubscript(position)
+            guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
             
-            return _storage.withUnsafeMutablePointerToElements { $0[position] }
+            return _storage.withUnsafeMutablePointerToElements { $0[index] }
         }
         
         set (newValue) {
-            _checkValidSubscript(position)
+            guard ((index >= 0) && (index < _storage.value)) else { preconditionFailure("Index out of range.") }
+
             _ensureUniquelyReferenced()
             
             var convertedCoordinate = newValue
@@ -412,7 +407,7 @@ extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorS
             precision.convert(&convertedCoordinate)
             
             _storage.withUnsafeMutablePointerToElements { elements->Void in
-                elements[position] = convertedCoordinate
+                elements[index] = convertedCoordinate
             }
         }
     }

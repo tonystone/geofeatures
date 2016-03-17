@@ -33,11 +33,9 @@ extension LineString : Curve {
             
             if count.memory > 0 {
                 
-                let indices = 1..<count.memory
-                
                 var c1 = elements[0]
                 
-                for index in indices {
+                for index in 1..<count.memory {
                     
                     var c2 = elements[index]
                     
