@@ -71,19 +71,12 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
     /**
         Append the elements of `newElements`.
      */
-    mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S)
+    mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S)
     
     /**
         Append the elements of `newElements`.
      */
-    mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C)
-    
-    /**
-        Remove an element from the end of the Collection.
-     
-        - Requires: `count > 0`.
-     */
-    mutating func removeLast() -> Element
+    mutating func append<C : CollectionType where C.Generator.Element == Element>(contentsOf newElements: C)
     
     /**
         Insert `newElement` at index `i`.
@@ -95,7 +88,14 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
     /**
         Remove and return the element at index `i`.
      */
-    mutating func removeAtIndex(index: Int) -> Element
+    mutating func remove(at index: Int) -> Element
+    
+    /**
+        Remove an element from the end of the Collection.
+     
+        - Requires: `count > 0`.
+     */
+    mutating func removeLast() -> Element
     
     /**
         Remove all elements.

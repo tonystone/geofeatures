@@ -67,7 +67,7 @@ class MultiPointCoordinate2DFixedPrecisionTests : XCTestCase {
         let geometry1 = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: FixedPrecision(scale: 100))
         var geometry2 = MultiPoint<Coordinate2D>(precision: FixedPrecision(scale: 100))
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class MultiPointCoordinate2DFixedPrecisionTests : XCTestCase {
         
         var geometry = MultiPoint<Coordinate2D>(precision: FixedPrecision(scale: 100))
         
-        geometry.appendContentsOf([Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))])
+        geometry.append(contentsOf: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))])
         
         XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))]) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
             return lhs == rhs

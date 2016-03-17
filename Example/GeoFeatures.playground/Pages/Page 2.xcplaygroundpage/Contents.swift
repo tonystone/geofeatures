@@ -46,9 +46,9 @@ lineString1 == lineString2
 lineString1 == lineString3
 
 lineString3
-lineString3.removeAtIndex(0)
+lineString3.remove(at: 0)
 lineString3
-lineString3.removeAtIndex(1)
+lineString3.remove(at: 1)
 lineString3
 
 lineString3.removeLast()

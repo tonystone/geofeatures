@@ -171,7 +171,7 @@ extension LineString : Collection  {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
+    public mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
         
         var generator = newElements.generate()
         
@@ -183,7 +183,7 @@ extension LineString : Collection  {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
+    public mutating func append<C : CollectionType where C.Generator.Element == Element>(contentsOf newElements: C) {
         
         self.reserveCapacity(numericCast(newElements.count))
         
@@ -226,7 +226,7 @@ extension LineString : Collection  {
     /**
         Remove and return the element at index `i` of this LineString.
      */
-    public mutating func removeAtIndex(index: Int) -> Element {
+    public mutating func remove(at index: Int) -> Element {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in

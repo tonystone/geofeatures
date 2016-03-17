@@ -67,7 +67,7 @@ class LineStringCoordinate2DMFloatingPrecisionTests : XCTestCase {
         let geometry1 = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: FloatingPrecision())
         var geometry2 = LineString<Coordinate2DM>(precision: FloatingPrecision())
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class LineStringCoordinate2DMFloatingPrecisionTests : XCTestCase {
         
         var geometry = LineString<Coordinate2DM>(precision: FloatingPrecision())
         
-        geometry.appendContentsOf([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))])
+        geometry.append(contentsOf: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))])
         
         XCTAssertEqual(geometry.elementsEqual([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs

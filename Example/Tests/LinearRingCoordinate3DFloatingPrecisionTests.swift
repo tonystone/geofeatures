@@ -67,7 +67,7 @@ class LinearRingCoordinate3DFloatingPrecisionTests : XCTestCase {
         let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
         var geometry2 = LinearRing<Coordinate3D>(precision: FloatingPrecision())
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class LinearRingCoordinate3DFloatingPrecisionTests : XCTestCase {
         
         var geometry = LinearRing<Coordinate3D>(precision: FloatingPrecision())
         
-        geometry.appendContentsOf([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
+        geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
         
         XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
