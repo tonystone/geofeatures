@@ -230,15 +230,15 @@ extension ${Self} : Collection  {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in
+            var m = index
             
-            let result = elements[index]
+            let result = (m2 + m).memory
             
-            var m = index &+ 1
+            (m2 + m).destroy()
             
-            // Move the other elements
-            while  m <  count.memory {
-                (elements + (m &- 1)).moveAssignFrom((elements + m), count: 1)
-                m = m &+ 1
+            while  m <  10 {
+                (m2 + m).moveInitializeFrom((m2 + (m &+ 1)), count: 1)
+                m = m &+ 1;
             }
             count.memory = count.memory &- 1
             
