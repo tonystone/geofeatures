@@ -119,7 +119,7 @@ class LinearRingCoordinate3DFixedPrecisionTests : XCTestCase {
         
         geometry.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), atIndex: 0)
 
-        XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))])
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
             { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
             }, true)

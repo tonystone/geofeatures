@@ -119,7 +119,7 @@ class LineStringCoordinate2DFixedPrecisionTests : XCTestCase {
         
         geometry.insert(Coordinate2D(tuple: (x: 2.002, y: 2.002)), atIndex: 0)
 
-        XCTAssertEqual(geometry.elementsEqual([Coordinate2D(tuple: (x: 2.002, y: 2.002)), Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))])
+        XCTAssertEqual(geometry.elementsEqual([Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))])
             { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                 return lhs == rhs
             }, true)
