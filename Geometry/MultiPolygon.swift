@@ -215,7 +215,7 @@ extension MultiPolygon : Collection {
             
             // Move the other elements
             while  m >= index {
-                (elements + (m &+ 1)).moveAssignFrom((elements + m), count: 1)
+                (elements + (m &+ 1)).moveInitializeFrom((elements + m), count: 1)
                 m = m &- 1
             }
             (elements + index).initialize(newElement)
@@ -231,13 +231,13 @@ extension MultiPolygon : Collection {
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in
             
-            let result = elements[index]
+            let result = (elements + index).move()
             
-            var m = index &+ 1
+            var m = index
             
             // Move the other elements
             while  m <  count.memory {
-                (elements + (m &- 1)).moveAssignFrom((elements + m), count: 1)
+                (elements + m).moveInitializeFrom((elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
             count.memory = count.memory &- 1
@@ -252,18 +252,13 @@ extension MultiPolygon : Collection {
      - Requires: `count > 0`.
      */
     public mutating func removeLast() -> Element {
-        guard count > 0 else { preconditionFailure("can't removeLast from an empty MultiPolygon.") }
+        guard storage.value > 0 else { preconditionFailure("can't removeLast from an empty MultiPolygon.") }
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in
             
-            let index = count.memory
-            
-            // No need to check for overflow in `i - 1` because `i` is known to be positive.
-            let result = elements[index &- 1]
-            
+            // No need to check for overflow in `count.memory - 1` because `count.memory` is known to be positive.
             count.memory = count.memory &- 1
-            
-            return result
+            return (elements + count.memory).move()
         }
     }
 
@@ -312,7 +307,9 @@ extension MultiPolygon {
             _ensureUniquelyReferenced()
         
             storage.withUnsafeMutablePointerToElements { elements->Void in
-                elements[index] = newValue
+                
+                (elements + index).destroy()
+                (elements + index).initialize(newValue)
             }
         }
     }
