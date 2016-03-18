@@ -152,8 +152,6 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
             return Token.EMPTY.rawValue
         }
         
-        linearRing.generate()
-        
         var linearRingText = Token.LEFT_PAREN.rawValue
         
         for index in 0..<linearRing.count {
