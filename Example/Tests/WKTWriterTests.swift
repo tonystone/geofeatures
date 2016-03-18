@@ -37,32 +37,32 @@ class WKTWriterTests: XCTestCase {
     
     func testWrite_Point_2D() {
         
-        XCTAssertEqual("point (1.0 1.0)", wktWriter2D.write(Point<Coordinate2D>(coordinate: (1.0, 1.0))))
+        XCTAssertEqual("POINT (1.0 1.0)", wktWriter2D.write(Point<Coordinate2D>(coordinate: (1.0, 1.0))))
     }
     
     func testWrite_Point_2DM() {
         
-        XCTAssertEqual("point m (1.0 2.0 3.0)", wktWriter2DM.write(Point<Coordinate2DM>(coordinate: (1.0, 2.0, 3.0))))
+        XCTAssertEqual("POINT M (1.0 2.0 3.0)", wktWriter2DM.write(Point<Coordinate2DM>(coordinate: (1.0, 2.0, 3.0))))
     }
     
     func testWrite_Point_3D() {
         
-        XCTAssertEqual("point z (1.0 2.0 3.0)", wktWriter3D.write(Point<Coordinate3D>(coordinate: (1.0, 2.0, 3.0))))
+        XCTAssertEqual("POINT Z (1.0 2.0 3.0)", wktWriter3D.write(Point<Coordinate3D>(coordinate: (1.0, 2.0, 3.0))))
     }
     
     func testWrite_Point_3DM() {
         
-        XCTAssertEqual("point zm (1.0 2.0 3.0 4.0)", wktWriter3DM.write(Point<Coordinate3DM>(coordinate: (1.0, 2.0, 3.0, 4.0))))
+        XCTAssertEqual("POINT ZM (1.0 2.0 3.0 4.0)", wktWriter3DM.write(Point<Coordinate3DM>(coordinate: (1.0, 2.0, 3.0, 4.0))))
     }
     
     func testWrite_LineString_Empty() {
         
-        XCTAssertEqual("linestring empty", wktWriter2D.write(LineString<Coordinate2D>(elements: [])))
+        XCTAssertEqual("LINESTRING EMPTY", wktWriter2D.write(LineString<Coordinate2D>(elements: [])))
     }
     
     func testWrite_LineString_2D() {
         
-        XCTAssertEqual("linestring (1.0 1.0, 2.0 2.0, 3.0 3.0)", wktWriter2D.write(LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)])))
+        XCTAssertEqual("LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)", wktWriter2D.write(LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)])))
     }
     
 //    func testWrite_LineString_2DM() {
@@ -82,7 +82,7 @@ class WKTWriterTests: XCTestCase {
     
     func testWrite_Polygon_Empty() {
         
-        XCTAssertEqual("polygon empty", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: []), innerRings: [])))
+        XCTAssertEqual("POLYGON EMPTY", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: []), innerRings: [])))
     }
     
     func testWrite_Polygon_2D() {
@@ -90,13 +90,62 @@ class WKTWriterTests: XCTestCase {
         let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
         let innerRing = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
         
-        XCTAssertEqual("polygon ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])))
+        XCTAssertEqual("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])))
     }
     
     func testWrite_Polygon_2D_ZeroInnerRings() {
         
         let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
         
-        XCTAssertEqual("polygon ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [])))
+        XCTAssertEqual("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [])))
+    }
+    
+    func testWrite_MultiPoint_2D_SinglePoint() {
+        
+        let multiPoint = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (1.0, 1.0))])
+        
+        XCTAssertEqual("MULTIPOINT ((1.0 1.0))", wktWriter2D.write(multiPoint))
+    }
+    
+    func testWrite_MultiPoint_2D_TwoPoints() {
+        
+        let multiPoint = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (1.0, 1.0)), Point<Coordinate2D>(coordinate: (2.0, 2.0))])
+        
+        XCTAssertEqual("MULTIPOINT ((1.0 1.0), (2.0 2.0))", wktWriter2D.write(multiPoint))
+    }
+    
+    func testWrite_MultiPoint_2D_Empty() {
+        
+        let multiPoint = MultiPoint<Coordinate2D>(elements: [])
+        
+        XCTAssertEqual("MULTIPOINT EMPTY", wktWriter2D.write(multiPoint))
+    }
+    
+    func testWrite_MultiLineString_Empty() {
+        
+        let multiLineString = MultiLineString<Coordinate2D>(elements: [])
+        
+        XCTAssertEqual("MULTILINESTRING EMPTY", wktWriter2D.write(multiLineString))
+    }
+    
+    func testWrite_MultiLineString_SingleLineString() {
+        
+        let multiLineString = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0)])])
+        
+        XCTAssertEqual("MULTILINESTRING ((1.0 1.0, 2.0 2.0))", wktWriter2D.write(multiLineString))
+    }
+    
+    func testWrite_MultiLineString_MultipleLineString() {
+        
+        let multiLineString = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0)]), LineString<Coordinate2D>(elements: [(3.0, 3.0), (4.0, 4.0)])])
+        
+        XCTAssertEqual("MULTILINESTRING ((1.0 1.0, 2.0 2.0), (3.0 3.0, 4.0 4.0))", wktWriter2D.write(multiLineString))
+    }
+    
+    func testWrite_MultiPolygon_2D() {
+        let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
+        let innerRing = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
+        
+        XCTAssertEqual("MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0)), ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0)))", wktWriter2D.write(MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing]), Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])])))
     }
 }

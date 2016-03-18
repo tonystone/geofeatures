@@ -28,17 +28,17 @@ private enum Token : String {
     case RIGHT_PAREN                    = ")"
     case LEFT_BRACKET                   = "["
     case RIGHT_BRACKET                  = "]"
-    case THREEDIMENSIONAL               = "z"
-    case MEASURED                       = "m"
-    case EMPTY                          = "empty"
-    case POINT                          = "point"
-    case LINESTRING                     = "linestring"
-    case LINEARRING                     = "linearring"
-    case POLYGON                        = "polygon"
-    case MULTIPOINT                     = "multipoint"
-    case MULTILINESTRING                = "multilinestring"
-    case MULTIPOLYGON                   = "multipolygon"
-    case GEOMETRYCOLLECTION             = "geometrycollection"
+    case THREEDIMENSIONAL               = "Z"
+    case MEASURED                       = "M"
+    case EMPTY                          = "EMPTY"
+    case POINT                          = "POINT"
+    case LINESTRING                     = "LINESTRING"
+    case LINEARRING                     = "LINEARRING"
+    case POLYGON                        = "POLYGON"
+    case MULTIPOINT                     = "MULTIPOINT"
+    case MULTILINESTRING                = "MULTILINESTRING"
+    case MULTIPOLYGON                   = "MULTIPOLYGON"
+    case GEOMETRYCOLLECTION             = "GEOMETRYCOLLECTION"
 }
 
 /**
@@ -46,8 +46,7 @@ private enum Token : String {
  */
 public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>>  {
     
-    public init() {
-    }
+    public init() {}
     
     /**
      TODO: Full header func doc for read
@@ -68,39 +67,33 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         switch (geometry) {
         
         case let point as Point<CoordinateType>:
-            
             return self.pointTaggedText(point)
 
         case let lineString as LineString<CoordinateType>:
-            
             return self.lineStringTaggedText(lineString)
             
         case let linearRing as LinearRing<CoordinateType>:
-            
             return self.linearRingTaggedText(linearRing)
         
         case let polygon as Polygon<CoordinateType>:
-            
             return self.polygonTaggedText(polygon)
+            
+        case let multiPoint as MultiPoint<CoordinateType>:
+            return self.multiPointTaggedText(multiPoint)
         
         case let multiPolygon as MultiPolygon<CoordinateType>:
-            
             return self.multiPolygonTaggedText(multiPolygon)
             
         case let multiLineString as MultiLineString<CoordinateType>:
-            
             return self.multiLineStringTaggedText(multiLineString)
             
         case let multiPolygon as MultiPolygon<CoordinateType>:
-            
             return self.multiPolygonTaggedText(multiPolygon)
             
         case let geometryCollection as GeometryCollection:
-            
             return self.geometryCollectionTaggedText(geometryCollection)
             
-        default:
-            return ""
+        default: return ""
         }
     }
 
@@ -122,7 +115,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <linestring tagged text> ::= linestring <linestring text>
     private func lineStringTaggedText(lineString: LineString<CoordinateType>) -> String {
         
-        return  Token.LINESTRING.rawValue + Token.SINGLE_SPACE.rawValue + lineStringText(lineString)
+        return Token.LINESTRING.rawValue + Token.SINGLE_SPACE.rawValue + lineStringText(lineString)
     }
     
     // BNF: <linestring text> ::= <empty set> | <left paren> <point> {<comma> <point>}* <right paren>
@@ -135,13 +128,12 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         var lineStringText = Token.LEFT_PAREN.rawValue
         
         for index in 0..<lineString.count {
-            let coordinate = lineString[index]
-            
-            if (index > 0) {
+            if index > 0 {
                 lineStringText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            lineStringText += self.coordinateText(coordinate)
+            lineStringText += self.coordinateText(lineString[index])
         }
+        
         lineStringText += Token.RIGHT_PAREN.rawValue
         
         return lineStringText
@@ -155,21 +147,22 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     
     // BNF: None defined by OGC
     private func linearRingText(linearRing: LinearRing<CoordinateType>) -> String  {
+
         if linearRing.isEmpty() {
             return Token.EMPTY.rawValue
         }
+        
         linearRing.generate()
         
         var linearRingText = Token.LEFT_PAREN.rawValue
         
         for index in 0..<linearRing.count {
-            let coordinate = linearRing[index]
-            
-            if (index > 0) {
+            if index > 0 {
                 linearRingText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            linearRingText += self.coordinateText(coordinate)
+            linearRingText += self.coordinateText(linearRing[index])
         }
+        
         linearRingText += Token.RIGHT_PAREN.rawValue
         
         return linearRingText
@@ -191,7 +184,6 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         var polygonText = Token.LEFT_PAREN.rawValue + linearRingText(polygon.outerRing)
 
         for index in 0..<polygon.innerRings.count {
-
             if (index < polygon.innerRings.count) {
                 polygonText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
@@ -204,33 +196,77 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     }
     
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
-    private func multiPointTaggedText(multiPolygon: MultiPoint<CoordinateType>) -> String {
-        return ""
+    private func multiPointTaggedText(multiPoint: MultiPoint<CoordinateType>) -> String {
+        
+        return Token.MULTIPOINT.rawValue + Token.SINGLE_SPACE.rawValue + multiPointText(multiPoint)
     }
     
     // BNF: <multipoint text> ::= <empty set> | <left paren> <point text> {<comma> <point text>}* <right paren>
-    private func multiPointText(multiPolygon: MultiPoint<CoordinateType>) -> String {
-        return ""
+    private func multiPointText(multiPoint: MultiPoint<CoordinateType>) -> String {
+        
+        if multiPoint.isEmpty() {
+            return Token.EMPTY.rawValue
+        }
+        
+        var multiPointText = Token.LEFT_PAREN.rawValue
+        
+        for index in 0..<multiPoint.count {
+            if index > 0 {
+                multiPointText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
+            }
+            multiPointText += pointText(multiPoint[index])
+        }
+        
+        return multiPointText + Token.RIGHT_PAREN.rawValue
     }
     
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
     private func multiLineStringTaggedText(multiLineString: MultiLineString<CoordinateType> ) -> String {
-        return ""
+        
+        return Token.MULTILINESTRING.rawValue + Token.SINGLE_SPACE.rawValue +  multiLineStringText(multiLineString)
     }
     
     // BNF: <multilinestring text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
-    private func multiLineStringText(multiLineString: MultiLineString<CoordinateType> ) -> String {
-        return ""
+    private func multiLineStringText(multiLineString: MultiLineString<CoordinateType>) -> String {
+        
+        if multiLineString.isEmpty() {
+            return Token.EMPTY.rawValue
+        }
+        
+        var multiLineStringText = Token.LEFT_PAREN.rawValue
+        
+        for index in 0..<multiLineString.count {
+            if index > 0 {
+                multiLineStringText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
+            }
+            multiLineStringText += lineStringText(multiLineString[index])
+        }
+        
+        return multiLineStringText + Token.RIGHT_PAREN.rawValue
     }
     
     // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
     private func multiPolygonTaggedText(multiPolygon: MultiPolygon<CoordinateType> ) -> String {
-        return ""
+        return Token.MULTIPOLYGON.rawValue + Token.SINGLE_SPACE.rawValue + multiPolygonText(multiPolygon)
     }
     
     // BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
     private func multiPolygonText(multiPolygon: MultiPolygon<CoordinateType> ) -> String  {
-        return ""
+        
+        if multiPolygon.isEmpty() {
+            return Token.EMPTY.rawValue
+        }
+        
+        var multiPolygonText = Token.LEFT_PAREN.rawValue
+        
+        for index in 0..<multiPolygon.count {
+            if index > 0 {
+                multiPolygonText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
+            }
+            multiPolygonText += polygonText(multiPolygon[index])
+        }
+        
+        return multiPolygonText + Token.RIGHT_PAREN.rawValue
     }
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
