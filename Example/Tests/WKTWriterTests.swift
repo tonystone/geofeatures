@@ -150,4 +150,17 @@ class WKTWriterTests: XCTestCase {
         
         XCTAssertEqual("MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0)), ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0)))", wktWriter2D.write(MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing]), Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])])))
     }
+    
+    func testWrite_GeometryCollection_2D() {
+        
+        var geometryCollection = GeometryCollection()
+        
+        geometryCollection.append(Point<Coordinate2D>(coordinate: (x:1.0, y:2.0)))
+        geometryCollection.append(Point<Coordinate2D>(coordinate: (x:10.0, y:20.0)))
+        geometryCollection.append(LineString<Coordinate2D>(elements: [(x:3.0, y:4.0)]))
+        geometryCollection.append(LinearRing<Coordinate2D>(elements: [(x:1.0, y:1.0), (x:2.0, y:2.0), (x:3.0, y:3.0), (x:1.0, y:1.0)]))
+        geometryCollection.append(Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: [(x:1.0, y:1.0), (x:2.0, y:2.0), (x:3.0, y:3.0), (x:1.0, y:1.0)]), innerRings: [LinearRing<Coordinate2D>(elements: [(x:4.0, y:4.0), (x:5.0, y:5.0), (x:6.0, y:6.0), (x:4.0, y:4.0)])]))
+        
+        XCTAssertEqual("GEOMETRYCOLLECTION (POINT (1.0 2.0), POINT (10.0 20.0), LINESTRING (3.0 4.0), LINEARRING (1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0)))", wktWriter2D.write(geometryCollection))
+    }
 }

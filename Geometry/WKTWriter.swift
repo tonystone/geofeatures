@@ -269,12 +269,23 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
     private func geometryCollectionTaggedText(geometryCollection: GeometryCollection) -> String {
-        return ""
+        return Token.GEOMETRYCOLLECTION.rawValue + Token.SINGLE_SPACE.rawValue + geometryCollectionText(geometryCollection)
     }
     
     // BNF: <geometrycollection text> ::= <empty set> | <left paren> <geometry tagged text> {<comma> <geometry tagged text>}* <right paren>
     private func geometryCollectionText(geometryCollection: GeometryCollection) -> String {
-        return ""
+        
+        var geometryCollectionText = Token.LEFT_PAREN.rawValue
+        
+        for index in 0..<geometryCollection.count {
+            
+            if index > 0 {
+                geometryCollectionText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
+            }
+            geometryCollectionText += write(geometryCollection[index])
+        }
+        
+        return geometryCollectionText + Token.RIGHT_PAREN.rawValue
     }
     
     // BNF: <point> ::= <x> <y>
