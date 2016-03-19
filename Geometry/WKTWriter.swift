@@ -300,11 +300,11 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         
         var zmText = ""
         
-        if let _ = coordinate as? ThreeDimensional {
+        if coordinate is ThreeDimensional {
             zmText += Token.THREEDIMENSIONAL.rawValue
         }
         
-        if let _ = coordinate as? Measured {
+        if coordinate is Measured {
             zmText += Token.MEASURED.rawValue
         }
         
