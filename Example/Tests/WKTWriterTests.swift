@@ -57,7 +57,9 @@ class WKTWriterTests: XCTestCase {
     
     func testWrite_LineString_Empty() {
         
-        XCTAssertEqual("LINESTRING EMPTY", wktWriter2D.write(LineString<Coordinate2D>(elements: [])))
+        let emptyLineString = LineString<Coordinate2D>()
+        
+        XCTAssertEqual("LINESTRING EMPTY", wktWriter2D.write(emptyLineString))
     }
     
     func testWrite_LineString_2D() {
@@ -82,7 +84,7 @@ class WKTWriterTests: XCTestCase {
     
     func testWrite_Polygon_Empty() {
         
-        XCTAssertEqual("POLYGON EMPTY", wktWriter2D.write(Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: []), innerRings: [])))
+        XCTAssertEqual("POLYGON EMPTY", wktWriter2D.write(Polygon<Coordinate2D>()))
     }
     
     func testWrite_Polygon_2D() {
