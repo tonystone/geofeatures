@@ -67,7 +67,7 @@ class MultiPointCoordinate3DMFloatingPrecisionTests : XCTestCase {
         let geometry1 = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: FloatingPrecision())
         var geometry2 = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class MultiPointCoordinate3DMFloatingPrecisionTests : XCTestCase {
         
         var geometry = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
         
-        geometry.appendContentsOf([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
+        geometry.append(contentsOf: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
         
         XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
             return lhs == rhs
@@ -104,14 +104,22 @@ class MultiPointCoordinate3DMFloatingPrecisionTests : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
+        var geometry = MultiPoint<Coordinate3DM>(precision: FloatingPrecision())
         
-        lineString.append(Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
+        geometry.append(Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
         
-        XCTAssertEqual(lineString.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))])
+        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))])
             { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testRemoveAll () {
+        var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: FloatingPrecision())
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

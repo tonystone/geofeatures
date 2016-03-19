@@ -34,16 +34,26 @@ lineString2.append(Coordinate2D(tuple: (4.001, 4.001)))
 lineString2.append((5.001, 5.001))
 
 var lineString3 = LineString<Coordinate3DM>()
-lineString3.append((0.0, 0.0, 0.0, 0.0))
-lineString3.append((0.0, 1.0, 0.0, 0.0))
-lineString3.append((0.0, 2.0, 0.0, 0.0))
 lineString3.append((0.0, 3.0, 0.0, 0.0))
+lineString3.insert((0.0, 2.0, 0.0, 0.0), atIndex: 0)
+lineString3.insert((0.0, 1.0, 0.0, 0.0), atIndex: 0)
+lineString3.insert((0.0, 0.0, 0.0, 0.0), atIndex: 0)
 
 lineString3.length()
 
 lineString1 == lineString1
 lineString1 == lineString2
 lineString1 == lineString3
+
+lineString3
+lineString3.remove(at: 0)
+lineString3
+lineString3.remove(at: 1)
+lineString3
+
+lineString3.removeLast()
+lineString3
+
 
 // Create a Polygon with a tuple simaler to WKT with the syntax ([tuples], [[tuples]])
 Polygon<Coordinate2D>(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[]))

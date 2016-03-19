@@ -71,7 +71,7 @@ class ${Self} : XCTestCase {
         let geometry1 = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: ${Precision})
         var geometry2 = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -80,7 +80,7 @@ class ${Self} : XCTestCase {
         
         var geometry = ${GeometryType}<${CoordinateType}>(precision: ${Precision})
         
-        geometry.appendContentsOf([${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
+        geometry.append(contentsOf: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
         
         XCTAssertEqual(geometry.elementsEqual([${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
             return lhs == rhs
@@ -116,6 +116,26 @@ class ${Self} : XCTestCase {
             { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testInsert () {
+        var geometry = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: ${Precision})
+        
+        geometry.insert(${CoordinateType}(tuple: ${TestTuple1}), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([${CoordinateType}(tuple: ${ExpectedTuple1}), ${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})])
+            { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
+    func testRemoveAll () {
+        var geometry = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: ${Precision})
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

@@ -67,7 +67,7 @@ class LineStringCoordinate3DFloatingPrecisionTests : XCTestCase {
         let geometry1 = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: FloatingPrecision())
         var geometry2 = LineString<Coordinate3D>(precision: FloatingPrecision())
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class LineStringCoordinate3DFloatingPrecisionTests : XCTestCase {
         
         var geometry = LineString<Coordinate3D>(precision: FloatingPrecision())
         
-        geometry.appendContentsOf([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
+        geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
         
         XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
@@ -112,6 +112,26 @@ class LineStringCoordinate3DFloatingPrecisionTests : XCTestCase {
             { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testInsert () {
+        var geometry = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: FloatingPrecision())
+        
+        geometry.insert(Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
+            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
+    func testRemoveAll () {
+        var geometry = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: FloatingPrecision())
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

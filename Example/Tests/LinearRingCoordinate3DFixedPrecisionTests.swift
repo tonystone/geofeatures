@@ -67,7 +67,7 @@ class LinearRingCoordinate3DFixedPrecisionTests : XCTestCase {
         let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: FixedPrecision(scale: 100))
         var geometry2 = LinearRing<Coordinate3D>(precision: FixedPrecision(scale: 100))
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class LinearRingCoordinate3DFixedPrecisionTests : XCTestCase {
         
         var geometry = LinearRing<Coordinate3D>(precision: FixedPrecision(scale: 100))
         
-        geometry.appendContentsOf([Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))])
+        geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))])
         
         XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
@@ -112,6 +112,26 @@ class LinearRingCoordinate3DFixedPrecisionTests : XCTestCase {
             { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testInsert () {
+        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: FixedPrecision(scale: 100))
+        
+        geometry.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
+            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
+    func testRemoveAll () {
+        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: FixedPrecision(scale: 100))
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

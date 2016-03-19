@@ -71,7 +71,7 @@ class ${Self} : XCTestCase {
         let geometry1 = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: ${Precision})
         var geometry2 = MultiPoint<${CoordinateType}>(precision: ${Precision})
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -80,7 +80,7 @@ class ${Self} : XCTestCase {
         
         var geometry = MultiPoint<${CoordinateType}>(precision: ${Precision})
         
-        geometry.appendContentsOf([Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})])
+        geometry.append(contentsOf: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})])
         
         XCTAssertEqual(geometry.elementsEqual([Point(coordinate: ${ExpectedTuple0}),Point(coordinate: ${ExpectedTuple1})]) { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
             return lhs == rhs
@@ -108,14 +108,22 @@ class ${Self} : XCTestCase {
     }
     
     func testAppend () {
-        var lineString = MultiPoint<${CoordinateType}>(precision: ${Precision})
+        var geometry = MultiPoint<${CoordinateType}>(precision: ${Precision})
         
-        lineString.append(Point(coordinate: ${TestTuple0}))
+        geometry.append(Point(coordinate: ${TestTuple0}))
         
-        XCTAssertEqual(lineString.elementsEqual([Point(coordinate: ${ExpectedTuple0})])
+        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: ${ExpectedTuple0})])
             { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testRemoveAll () {
+        var geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: ${Precision})
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }

@@ -67,7 +67,7 @@ class LineStringCoordinate2DMFixedPrecisionTests : XCTestCase {
         let geometry1 = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: FixedPrecision(scale: 100))
         var geometry2 = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
         
-        geometry2.appendContentsOf(geometry1)
+        geometry2.append(contentsOf: geometry1)
         
         XCTAssertEqual(geometry1 == geometry2, true)
     }
@@ -76,7 +76,7 @@ class LineStringCoordinate2DMFixedPrecisionTests : XCTestCase {
         
         var geometry = LineString<Coordinate2DM>(precision: FixedPrecision(scale: 100))
         
-        geometry.appendContentsOf([Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))])
+        geometry.append(contentsOf: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))])
         
         XCTAssertEqual(geometry.elementsEqual([Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs
@@ -112,6 +112,26 @@ class LineStringCoordinate2DMFixedPrecisionTests : XCTestCase {
             { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                 return lhs == rhs
         }, true)
+    }
+
+    func testInsert () {
+        var geometry = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
+        
+        geometry.insert(Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002)), atIndex: 0)
+
+        XCTAssertEqual(geometry.elementsEqual([Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))])
+            { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+            }, true)
+        
+    }
+
+    func testRemoveAll () {
+        var geometry = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: FixedPrecision(scale: 100))
+
+        geometry.removeAll()
+
+        XCTAssertEqual(geometry.isEmpty(), true)
     }
 
 }
