@@ -67,6 +67,18 @@ class WKTWriterTests: XCTestCase {
         XCTAssertEqual("LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)", wktWriter2D.write(LineString<Coordinate2D>(elements: [(x:1.0, y:1.0), (x:2.0, y:2.0), (x:3.0, y:3.0)])))
     }
     
+    func testWrite_LinearRing_Empty() {
+        
+        let emptyLinearRing = LinearRing<Coordinate2D>()
+        
+        XCTAssertEqual("LINEARRING EMPTY", wktWriter2D.write(emptyLinearRing))
+    }
+    
+    func testWrite_LinearRing_2D() {
+        
+        XCTAssertEqual("LINEARRING (1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)", wktWriter2D.write(LinearRing<Coordinate2D>(elements: [(x:1.0, y:1.0), (x:2.0, y:2.0), (x:3.0, y:3.0), (x:1.0, y:1.0)])))
+    }
+    
 //    func testWrite_LineString_2DM() {
 //        
 //        XCTAssertEqual("linestring m (1.0 1.0 7.0, 2.0 2.0 8.0, 3.0 3.0 9.0)", wktWriter2D.write(LineString<Coordinate2DM>(elements: [(1.0, 1.0, 7.0), (2.0, 2.0, 8.0), (3.0, 3.0, 9.0)])))
@@ -142,6 +154,13 @@ class WKTWriterTests: XCTestCase {
         let multiLineString = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x:1.0, y:1.0), (x:2.0, y:2.0)]), LineString<Coordinate2D>(elements: [(x:3.0, y:3.0), (x:4.0, y:4.0)])])
         
         XCTAssertEqual("MULTILINESTRING ((1.0 1.0, 2.0 2.0), (3.0 3.0, 4.0 4.0))", wktWriter2D.write(multiLineString))
+    }
+    
+    func testWrite_MultiPolygon_Empty() {
+        
+        let emptyMultiPolygon = MultiPolygon<Coordinate2D>()
+        
+        XCTAssertEqual("MULTIPOLYGON EMPTY", wktWriter2D.write(emptyMultiPolygon))
     }
     
     func testWrite_MultiPolygon_2D() {

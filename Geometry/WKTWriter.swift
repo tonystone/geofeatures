@@ -87,9 +87,6 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         case let multiLineString as MultiLineString<CoordinateType>:
             return self.multiLineStringTaggedText(multiLineString)
             
-        case let multiPolygon as MultiPolygon<CoordinateType>:
-            return self.multiPolygonTaggedText(multiPolygon)
-            
         case let geometryCollection as GeometryCollection:
             return self.geometryCollectionTaggedText(geometryCollection)
             
@@ -106,9 +103,6 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
     private func pointText(point: Point<CoordinateType>) -> String  {
         
-        if point.isEmpty() {
-            return Token.EMPTY.rawValue
-        }
         return Token.LEFT_PAREN.rawValue + self.coordinateText(point.coordinate) + Token.RIGHT_PAREN.rawValue
     }
     
