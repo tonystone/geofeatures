@@ -50,7 +50,7 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         
         while let coordinate = outerRingsGenerator.next() {
             
-            self._outerRing.append(CoordinateType(coordinate: coordinate, precision: precision))
+            self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
         

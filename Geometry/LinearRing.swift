@@ -158,7 +158,7 @@ extension LinearRing : Collection  {
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
-        let convertedCoordinate = Element(coordinate: newElement, precision: precision)
+        let convertedCoordinate = Element(other: newElement, precision: precision)
          
         storage.withUnsafeMutablePointers { (value, elements)->Void in
             
@@ -200,10 +200,11 @@ extension LinearRing : Collection  {
      */
     public mutating func insert(newElement: Element, atIndex index: Int) {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
-        let convertedCoordinate = Element(coordinate: newElement, precision: precision)
+        let convertedCoordinate = Element(other: newElement, precision: precision)
         
         storage.withUnsafeMutablePointers { (count, elements)->Void in
             var m = count.memory
@@ -398,7 +399,7 @@ extension LinearRing : CollectionType, /* MutableCollectionType, */ _DestructorS
 
             _ensureUniquelyReferenced()
             
-            let convertedCoordinate = Element(coordinate: newValue, precision: precision)
+            let convertedCoordinate = Element(other: newValue, precision: precision)
             
             storage.withUnsafeMutablePointerToElements { elements->Void in
                 

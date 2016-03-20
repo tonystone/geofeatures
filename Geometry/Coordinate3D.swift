@@ -48,16 +48,16 @@ public class Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
         self.z = precision.convert(tuple.z)
     }
     
-    public required init(coordinate: Coordinate3D) {
-        self.x = coordinate.x
-        self.y = coordinate.y
-        self.z = coordinate.z
+    public required init(other: Coordinate3D) {
+        self.x = other.x
+        self.y = other.y
+        self.z = other.z
     }
     
-    public required init(coordinate: Coordinate3D, precision: Precision) {
-        self.x = precision.convert(coordinate.x)
-        self.y = precision.convert(coordinate.y)
-        self.z = precision.convert(coordinate.z)
+    public required init(other: Coordinate3D, precision: Precision) {
+        self.x = precision.convert(other.x)
+        self.y = precision.convert(other.y)
+        self.z = precision.convert(other.z)
     }
     
     public required init(array: [Double]) {

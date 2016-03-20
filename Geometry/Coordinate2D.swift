@@ -45,14 +45,14 @@ public class Coordinate2D : Coordinate, TupleConvertable {
         self.y = precision.convert(tuple.y)
     }
     
-    public required init(coordinate: Coordinate2D) {
-        self.x = coordinate.x
-        self.y = coordinate.y
+    public required init(other: Coordinate2D) {
+        self.x = other.x
+        self.y = other.y
     }
     
-    public required init(coordinate: Coordinate2D, precision: Precision) {
-        self.x = precision.convert(coordinate.x)
-        self.y = precision.convert(coordinate.y)
+    public required init(other: Coordinate2D, precision: Precision) {
+        self.x = precision.convert(other.x)
+        self.y = precision.convert(other.y)
     }
     
     public required init(array: [Double]) {

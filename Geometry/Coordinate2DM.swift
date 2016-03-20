@@ -48,16 +48,16 @@ public class Coordinate2DM : Coordinate, Measured, TupleConvertable  {
         self.m = precision.convert(tuple.m)
     }
     
-    public required init(coordinate: Coordinate2DM) {
-        self.x = coordinate.x
-        self.y = coordinate.y
-        self.m = coordinate.m
+    public required init(other: Coordinate2DM) {
+        self.x = other.x
+        self.y = other.y
+        self.m = other.m
     }
     
-    public required init(coordinate: Coordinate2DM, precision: Precision) {
-        self.x = precision.convert(coordinate.x)
-        self.y = precision.convert(coordinate.y)
-        self.m = precision.convert(coordinate.m)
+    public required init(other: Coordinate2DM, precision: Precision) {
+        self.x = precision.convert(other.x)
+        self.y = precision.convert(other.y)
+        self.m = precision.convert(other.m)
     }
     
     public required init(array: [Double]) {

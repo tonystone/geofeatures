@@ -24,10 +24,10 @@ public protocol CopyConstructable {
     /**
      Copy constructor
      */
-    init(coordinate: Self)
+    init(other: Self)
     
     /**
      Copy constructor with new precision
      */
-    init(coordinate: Self, precision: Precision)
+    init(other: Self, precision: Precision)
 }
