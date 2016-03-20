@@ -178,10 +178,6 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
 
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
     private func pointText(tokenizer: Tokenizer) throws -> Point<CoordinateType> {
-    
-        if tokenizer.accept(.EMPTY) != nil {
-            return Point<CoordinateType>(coordinate: CoordinateType(), coordinateReferenceSystem: crs, precision: precision)
-        }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
             throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
@@ -541,10 +537,10 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
     // BNF: <point zm> ::= <x> <y> <z> <m>
     private func coordinate(tokenizer: Tokenizer) throws -> CoordinateType {
         
-        var coordinate = CoordinateType()
+        var coordinates = [Double]()
         
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
-            coordinate.x = Double(token)!
+            coordinates.append(Double(token)!)
         } else {
             throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
         }
@@ -554,37 +550,37 @@ public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> 
         }
         
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
-            coordinate.y = Double(token)!
+            coordinates.append(Double(token)!)
         } else {
             throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
         }
         
-        if var coordinate = coordinate as? ThreeDimensional {
+        if CoordinateType.self is ThreeDimensional {
             
             if tokenizer.accept(.SINGLE_SPACE) == nil {
                 throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
-                coordinate.z = Double(token)!
+                coordinates.append(Double(token)!)
             } else {
                 throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
             }
         }
         
-        if var coordinate = coordinate as? Measured {
+        if CoordinateType.self is  Measured {
             
             if tokenizer.accept(.SINGLE_SPACE) == nil {
                 throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
-                coordinate.m = Double(token)!
+                coordinates.append(Double(token)!)
             } else {
                 throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
             }
         }
-        return coordinate
+        return CoordinateType(array: coordinates)
     }
 
     private func errorMessage(tokenizer: Tokenizer, expectedToken: Token) -> String {

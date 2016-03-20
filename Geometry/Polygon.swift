@@ -48,11 +48,9 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         
         self._outerRing.reserveCapacity(outerRing.count)
         
-        while var coordinate = outerRingsGenerator.next() {
+        while let coordinate = outerRingsGenerator.next() {
             
-            self.precision.convert(&coordinate)
-            
-            self._outerRing.append(coordinate)
+            self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
         
@@ -76,11 +74,8 @@ extension Polygon where CoordinateType : TupleConvertable {
         self._outerRing.reserveCapacity(outerRing.count)
         
         while let coordinate = outerRingsGenerator.next() {
-            var convertedCoordinate = CoordinateType(tuple: coordinate)
-            
-            self.precision.convert(&convertedCoordinate)
-            
-            self._outerRing.append(convertedCoordinate)
+
+            self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
         

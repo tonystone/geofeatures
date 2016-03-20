@@ -154,13 +154,12 @@ extension LineString : Collection  {
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
     public mutating func append(newElement: Element) {
-        var convertedCoordinate = newElement
-        
-        precision.convert(&convertedCoordinate)
         
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
+        let convertedCoordinate = Element(other: newElement, precision: precision)
+         
         storage.withUnsafeMutablePointers { (value, elements)->Void in
             
             (elements + value.memory).initialize(convertedCoordinate)
@@ -202,12 +201,10 @@ extension LineString : Collection  {
     public mutating func insert(newElement: Element, atIndex index: Int) {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
-        var convertedCoordinate = newElement
-        
-        precision.convert(&convertedCoordinate)
-        
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
+        
+        let convertedCoordinate = Element(other: newElement, precision: precision)
         
         storage.withUnsafeMutablePointers { (count, elements)->Void in
             var m = count.memory
@@ -402,9 +399,7 @@ extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorS
 
             _ensureUniquelyReferenced()
             
-            var convertedCoordinate = newValue
-            
-            precision.convert(&convertedCoordinate)
+            let convertedCoordinate = Element(other: newValue, precision: precision)
             
             storage.withUnsafeMutablePointerToElements { elements->Void in
                 

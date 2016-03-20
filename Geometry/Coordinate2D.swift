@@ -24,26 +24,41 @@ import Swift
  
     Low level 2 dimensional Coorodinate type
  */
-public struct Coordinate2D : Coordinate, TupleConvertable {
+public class Coordinate2D : Coordinate, TupleConvertable {
     
     public typealias TupleType = (x: Double, y: Double)
     
-    public var x: Double
-    public var y: Double
-    
-    public init() {
-        self.x = Double.NaN
-        self.y = Double.NaN
-    }
+    public let x: Double
+    public let y: Double
     
     public var tuple: TupleType {
-        get { return (self.x, self.y) }
-        set { self.x = newValue.x; self.y = newValue.y }
+        get { return (x: self.x, y: self.y) }
     }
     
-    public init(tuple: TupleType) {
+    public required init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
+    }
+    
+    public required init(tuple: TupleType, precision: Precision) {
+        self.x = precision.convert(tuple.x)
+        self.y = precision.convert(tuple.y)
+    }
+    
+    public required init(other: Coordinate2D) {
+        self.x = other.x
+        self.y = other.y
+    }
+    
+    public required init(other: Coordinate2D, precision: Precision) {
+        self.x = precision.convert(other.x)
+        self.y = precision.convert(other.y)
+    }
+    
+    public required init(array: [Double]) {
+        precondition(array.count == 2)
+        self.x = array[0]
+        self.y = array[1]
     }
 }
 

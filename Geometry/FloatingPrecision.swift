@@ -28,10 +28,6 @@ public struct FloatingPrecision : Precision, Equatable, Hashable  {
     public func convert(value: Double) -> Double {
         return value
     }
-    
-    public func convert<T : Coordinate>(inout value: T) {
-        // No op
-    }
 }
 extension FloatingPrecision : CustomStringConvertible, CustomDebugStringConvertible {
     

@@ -33,4 +33,7 @@ public protocol TupleConvertable {
     
     /// Instantiates an instance of Self with tuple.
     init(tuple: TupleType)
+
+    /// Instantiates an instance of Self with tuple converting it to precision.
+    init(tuple: TupleType, precision: Precision)
 }

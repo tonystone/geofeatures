@@ -24,29 +24,47 @@ import Swift
  
     Low level 2 dimensional Coorodinate type with an m value.
  */
-public struct Coordinate2DM : Coordinate, Measured, TupleConvertable  {
+public class Coordinate2DM : Coordinate, Measured, TupleConvertable  {
     
     public typealias TupleType = (x: Double, y: Double, m: Double)
     
-    public var x: Double
-    public var y: Double
-    public var m: Double
-    
-    public init() {
-        self.x = Double.NaN
-        self.y = Double.NaN
-        self.m = Double.NaN
-    }
+    public let x: Double
+    public let y: Double
+    public let m: Double
     
     public var tuple: TupleType {
-        get { return (self.x, self.y, self.m)  }
-        set { self.x = newValue.x; self.y = newValue.y; self.m = newValue.m }
+        get { return (x: self.x, y: self.y, m: self.m)  }
     }
 
-    public init(tuple: TupleType) {
+    public required init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
         self.m = tuple.m
+    }
+    
+    public required init(tuple: TupleType, precision: Precision) {
+        self.x = precision.convert(tuple.x)
+        self.y = precision.convert(tuple.y)
+        self.m = precision.convert(tuple.m)
+    }
+    
+    public required init(other: Coordinate2DM) {
+        self.x = other.x
+        self.y = other.y
+        self.m = other.m
+    }
+    
+    public required init(other: Coordinate2DM, precision: Precision) {
+        self.x = precision.convert(other.x)
+        self.y = precision.convert(other.y)
+        self.m = precision.convert(other.m)
+    }
+    
+    public required init(array: [Double]) {
+        precondition(array.count == 3)
+        self.x = array[0]
+        self.y = array[1]
+        self.m = array[2]
     }
 }
 

@@ -24,33 +24,55 @@ import Swift
  
     Low level 3 dimensional Coorodinate type with an m value.
  */
-public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConvertable {
+public class Coordinate3DM : Coordinate, ThreeDimensional, Measured, TupleConvertable {
     
     public typealias TupleType = (x: Double, y: Double, z: Double, m: Double)
     
-    public var x: Double
-    public var y: Double
-    public var z: Double
-    public var m: Double
-    
-    public init() {
-        self.x = Double.NaN
-        self.y = Double.NaN
-        self.z = Double.NaN
-        self.m = Double.NaN
-    }
+    public let x: Double
+    public let y: Double
+    public let z: Double
+    public let m: Double
     
     public var tuple: TupleType {
-        get { return (self.x, self.y, self.z, self.m)  }
-        set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z; self.m = newValue.m }
+        get { return (x: self.x, y: self.y, z: self.z, m: self.m)  }
     }
     
-    public init(tuple: TupleType) {
+    public required init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
         self.z = tuple.z
         self.m = tuple.m
     }
+
+    public required init(tuple: TupleType, precision: Precision) {
+        self.x = precision.convert(tuple.x)
+        self.y = precision.convert(tuple.y)
+        self.z = precision.convert(tuple.z)
+        self.m = precision.convert(tuple.m)
+    }
+    
+    public required init(other: Coordinate3DM) {
+        self.x = other.x
+        self.y = other.y
+        self.z = other.z
+        self.m = other.m
+    }
+    
+    public required init(other: Coordinate3DM, precision: Precision) {
+        self.x = precision.convert(other.x)
+        self.y = precision.convert(other.y)
+        self.z = precision.convert(other.z)
+        self.m = precision.convert(other.m)
+    }
+    
+    public required init(array: [Double]) {
+        precondition(array.count == 4)
+        self.x = array[0]
+        self.y = array[1]
+        self.z = array[2]
+        self.m = array[3]
+    }
+    
 }
 
 public func ==(lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool {
