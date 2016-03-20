@@ -32,20 +32,6 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
     public func convert(value: Double) -> Double {
         return round(value * scale) / scale
     }
-    
-    public func convert<T : Coordinate>(inout value: T) {
-        
-        value.x = self.convert(value.x)
-        value.y = self.convert(value.y)
-        
-        if var value = value as? ThreeDimensional {
-            value.z = self.convert(value.z)
-        }
-        
-        if var value = value as? Measured {
-            value.m = self.convert(value.m)
-        }
-    }
 }
 extension FixedPrecision : CustomStringConvertible, CustomDebugStringConvertible {
     

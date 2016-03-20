@@ -39,11 +39,7 @@ public struct Point<CoordinateType : protocol<Coordinate, TupleConvertable>> : G
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
-        var convertedCoordinate = coordinate
-        
-        self.precision.convert(&convertedCoordinate)
-        
-        self.coordinate = convertedCoordinate
+        self.coordinate = CoordinateType(coordinate: coordinate, precision: precision)
     }
     
     internal let coordinate: CoordinateType

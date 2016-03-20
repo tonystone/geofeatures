@@ -24,30 +24,49 @@ import Swift
  
     Low level 3 dimensional Coorodinate type
  */
-public struct Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
+public class Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
     
     public typealias TupleType = (x: Double, y: Double, z: Double)
     
-    public var x: Double
-    public var y: Double
-    public var z: Double
-    
-    public init() {
-        self.x = Double.NaN
-        self.y = Double.NaN
-        self.z = Double.NaN
-    }
-    
+    public let x: Double
+    public let y: Double
+    public let z: Double
+
     public var tuple: TupleType {
-        get { return (self.x, self.y, self.z)  }
-        set { self.x = newValue.x; self.y = newValue.y; self.z = newValue.z }
+        get { return (x: self.x, y: self.y, z: self.z)  }
     }
     
-    public init(tuple: TupleType) {
+    public required init(tuple: TupleType) {
         self.x = tuple.x
         self.y = tuple.y
         self.z = tuple.z
     }
+
+    public required init(tuple: TupleType, precision: Precision) {
+        self.x = precision.convert(tuple.x)
+        self.y = precision.convert(tuple.y)
+        self.z = precision.convert(tuple.z)
+    }
+    
+    public required init(coordinate: Coordinate3D) {
+        self.x = coordinate.x
+        self.y = coordinate.y
+        self.z = coordinate.z
+    }
+    
+    public required init(coordinate: Coordinate3D, precision: Precision) {
+        self.x = precision.convert(coordinate.x)
+        self.y = precision.convert(coordinate.y)
+        self.z = precision.convert(coordinate.z)
+    }
+    
+    public required init(array: [Double]) {
+        precondition(array.count == 3)
+        self.x = array[0]
+        self.y = array[1]
+        self.z = array[2]
+    }
+    
 }
 
 public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {

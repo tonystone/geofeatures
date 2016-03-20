@@ -37,7 +37,7 @@ extension LineString : Curve {
                 
                 for index in 1..<count.memory {
                     
-                    var c2 = elements[index]
+                    let c2 = elements[index]
                     
                     var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
                     

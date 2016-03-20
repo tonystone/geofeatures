@@ -24,12 +24,10 @@ import Swift
  
     Implenented by all Coordinate structs.
 */
-public protocol Coordinate : Equatable {
+public protocol Coordinate : Equatable, CopyConstructable, _ArrayConstructable {
     
-    var x: Double { get set }
-    var y: Double { get set }
-    
-    init()
+    var x: Double { get }
+    var y: Double { get }
 }
 
 /**
@@ -38,7 +36,8 @@ public protocol Coordinate : Equatable {
     Implenented if this Coordinate has z value.
 */
 public protocol ThreeDimensional {
-    var z: Double { get set }
+    
+    var z: Double { get }
 }
 
 /**
@@ -47,5 +46,6 @@ public protocol ThreeDimensional {
     Implenented if this Coordinate has m value.
 */
 public protocol Measured {
-    var m: Double { get set }
+    
+    var m: Double { get }
 }
