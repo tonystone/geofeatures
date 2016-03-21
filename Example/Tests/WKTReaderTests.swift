@@ -106,7 +106,7 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)")
             
-            XCTAssertEqual(geometry == LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]), true)
+            XCTAssertEqual(geometry == LineString<Coordinate2D>(elements: [( x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -143,7 +143,7 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))")
             
-            XCTAssertEqual(geometry == MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]), LineString(elements:  [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0)])]), true)
+            XCTAssertEqual(geometry == MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -168,7 +168,7 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))")
             
-            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: []), true)
+            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -179,8 +179,8 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))")
             
-            let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
-            let innerRing = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
+            let outerRing = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
+            let innerRing = LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])
             
             XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing]), true)
         } catch {
@@ -193,9 +193,9 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))")
             
-            let outerRing = LinearRing<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)])
-            let innerRing1 = LinearRing<Coordinate2D>(elements: [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0), (4.0, 4.0)])
-            let innerRing2 = LinearRing<Coordinate2D>(elements: [(3.0, 3.0), (4.0, 4.0), (5.0, 5.0), (3.0, 3.0)])
+            let outerRing = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
+            let innerRing1 = LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])
+            let innerRing2 = LinearRing<Coordinate2D>(elements: [(x: 3.0, y: 3.0), (x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 3.0, y: 3.0)])
             
             XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing1, innerRing2]), true)
         } catch {
@@ -222,7 +222,7 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))")
             
-            XCTAssertEqual(geometry == MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(10.0, 10.0), (20.0, 20.0), (30.0, 30.0), (10.0, 10.0)]), innerRings: [])]), true)
+            XCTAssertEqual(geometry == MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 10.0, y: 10.0), (x: 20.0, y: 20.0), (x: 30.0, y: 30.0), (x: 10.0, y: 10.0)]), innerRings: [])]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -235,13 +235,13 @@ class WKTReaderTests: XCTestCase {
             
             XCTAssertEqual(geometry == GeometryCollection(elements:
                 [
-                    Point<Coordinate2D>(coordinate: (1.0, 1.0)),
-                    LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]),
+                    Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
+                    LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]),
                     MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))]),
-                    MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]), LineString(elements:  [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0)])]),
+                    MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])]),
                     GeometryCollection(elements:  [
-                            Point<Coordinate2D>(coordinate: (1.0, 1.0)),
-                            LineString<Coordinate2D>(elements: [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)])] as [Geometry])
+                            Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
+                            LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])] as [Geometry])
                 ] as [Geometry]), true)
         } catch {
             XCTFail("Parsing failed: \(error).")
