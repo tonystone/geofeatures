@@ -33,7 +33,7 @@ import Swift
     A LineString is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geometry {
+public struct LineString<Element : Coordinate> : Geometry {
 
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
@@ -311,11 +311,11 @@ extension LineString where Element : TupleConvertable {
      
         - seealso: TupleConvertable.
      */
-    public init<C : CollectionType where C.Generator.Element == Element.TupleType, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == Element.TupleType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
-        self.storage.resize(elements.count)
+        self.storage.resize(numericCast(elements.count))
         
         var generator = elements.generate()
         
@@ -336,7 +336,7 @@ extension LineString where Element : TupleConvertable {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element.TupleType>(newElements: S) {
+    public mutating func append<S : SequenceType where S.Generator.Element == Element.TupleType>(contentsOf newElements: S) {
         
         var generator = newElements.generate()
         
@@ -348,7 +348,7 @@ extension LineString where Element : TupleConvertable {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element.TupleType>(newElements: C) {
+    public mutating func append<C : CollectionType where C.Generator.Element == Element.TupleType>(contentsOf newElements: C) {
         
         _ensureUniquelyReferenced()
         
@@ -374,7 +374,7 @@ extension LineString where Element : TupleConvertable {
 
 // MARK: CollectionType conformance
 
-extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorSafeContainer {
+extension LineString : CollectionType, MutableCollectionType, _DestructorSafeContainer {
     
     /**
         Always zero, which is the index of the first element when non-empty.

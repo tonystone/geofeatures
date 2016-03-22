@@ -22,7 +22,7 @@ import Swift
 /**
  Polygon
  */
-public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> : Geometry {
+public struct Polygon<CoordinateType : Coordinate> : Geometry {
     
     public typealias RingType = LinearRing<CoordinateType>
     
@@ -40,13 +40,13 @@ public struct Polygon<CoordinateType : protocol<Coordinate, TupleConvertable>> :
         self.precision = precision
     }
     
-    public  init<C : CollectionType where C.Generator.Element == CoordinateType, C.Index.Distance == Int>(outerRing: C, innerRings: [C], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public  init<C : CollectionType where C.Generator.Element == CoordinateType>(outerRing: C, innerRings: [C], coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
        
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
         var outerRingsGenerator = outerRing.generate()
         
-        self._outerRing.reserveCapacity(outerRing.count)
+        self._outerRing.reserveCapacity(numericCast(outerRing.count))
         
         while let coordinate = outerRingsGenerator.next() {
             
