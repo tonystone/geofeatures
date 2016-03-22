@@ -35,24 +35,25 @@ public final class Coordinate3D : Coordinate, ThreeDimensional {
         self.y = y
         self.z = z
     }
+}
+
+extension Coordinate3D : _ArrayConstructable {
     
-    public required init(other: Coordinate3D) {
-        self.x = other.x
-        self.y = other.y
-        self.z = other.z
-    }
-    
-    public required init(other: Coordinate3D, precision: Precision) {
-        self.x = precision.convert(other.x)
-        self.y = precision.convert(other.y)
-        self.z = precision.convert(other.z)
-    }
-    
-    public required init(array: [Double]) {
+    public convenience init(array: [Double]) {
         precondition(array.count == 3)
-        self.x = array[0]
-        self.y = array[1]
-        self.z = array[2]
+        
+        self.init(x: array[0], y: array[1], z: array[2])
+    }
+}
+
+extension Coordinate3D : CopyConstructable {
+    
+    public convenience init(other: Coordinate3D) {
+        self.init(x: other.x, y: other.y, z: other.z)
+    }
+    
+    public convenience init(other: Coordinate3D, precision: Precision) {
+        self.init(x: precision.convert(other.x), y: precision.convert(other.y), z: precision.convert(other.z))
     }
 }
 
