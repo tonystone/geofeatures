@@ -24,28 +24,16 @@ import Swift
  
     Low level 3 dimensional Coorodinate type
  */
-public class Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
-    
-    public typealias TupleType = (x: Double, y: Double, z: Double)
+public final class Coordinate3D : Coordinate, ThreeDimensional {
     
     public let x: Double
     public let y: Double
     public let z: Double
 
-    public var tuple: TupleType {
-        get { return (x: self.x, y: self.y, z: self.z)  }
-    }
-    
-    public required init(tuple: TupleType) {
-        self.x = tuple.x
-        self.y = tuple.y
-        self.z = tuple.z
-    }
-
-    public required init(tuple: TupleType, precision: Precision) {
-        self.x = precision.convert(tuple.x)
-        self.y = precision.convert(tuple.y)
-        self.z = precision.convert(tuple.z)
+    public required init(x: Double, y: Double, z: Double) {
+        self.x = x
+        self.y = y
+        self.z = z
     }
     
     public required init(other: Coordinate3D) {
@@ -66,11 +54,23 @@ public class Coordinate3D : Coordinate, ThreeDimensional, TupleConvertable {
         self.y = array[1]
         self.z = array[2]
     }
-    
 }
 
-public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
+extension Coordinate3D : TupleConvertable {
+    
+    public typealias TupleType = (x: Double, y: Double, z: Double)
+    
+    public var tuple: TupleType {
+        get { return (x: self.x, y: self.y, z: self.z)  }
+    }
+    
+    public convenience init(tuple: TupleType) {
+        self.init(x: tuple.x, y: tuple.y, z: tuple.z)
+    }
+    
+    public convenience init(tuple: TupleType, precision: Precision) {
+        self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), z: precision.convert(tuple.z))
+    }
 }
 
 extension Coordinate3D : CustomStringConvertible, CustomDebugStringConvertible {
@@ -82,4 +82,8 @@ extension Coordinate3D : CustomStringConvertible, CustomDebugStringConvertible {
     public var debugDescription : String {
         return self.description
     }
+}
+
+public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }
