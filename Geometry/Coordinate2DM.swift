@@ -24,28 +24,16 @@ import Swift
  
     Low level 2 dimensional Coorodinate type with an m value.
  */
-public class Coordinate2DM : Coordinate, Measured, TupleConvertable  {
-    
-    public typealias TupleType = (x: Double, y: Double, m: Double)
+public final class Coordinate2DM : Coordinate, Measured {
     
     public let x: Double
     public let y: Double
     public let m: Double
     
-    public var tuple: TupleType {
-        get { return (x: self.x, y: self.y, m: self.m)  }
-    }
-
-    public required init(tuple: TupleType) {
-        self.x = tuple.x
-        self.y = tuple.y
-        self.m = tuple.m
-    }
-    
-    public required init(tuple: TupleType, precision: Precision) {
-        self.x = precision.convert(tuple.x)
-        self.y = precision.convert(tuple.y)
-        self.m = precision.convert(tuple.m)
+    public required init(x: Double, y: Double, m: Double) {
+        self.x = x
+        self.y = y
+        self.m = m
     }
     
     public required init(other: Coordinate2DM) {
@@ -68,8 +56,21 @@ public class Coordinate2DM : Coordinate, Measured, TupleConvertable  {
     }
 }
 
-public func ==(lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.m == rhs.m
+extension Coordinate2DM : TupleConvertable {
+    
+    public typealias TupleType = (x: Double, y: Double, m: Double)
+    
+    public var tuple: TupleType {
+        get { return (x: self.x, y: self.y, m: self.m)  }
+    }
+    
+    public convenience init(tuple: TupleType) {
+        self.init(x: tuple.x, y: tuple.y, m: tuple.m)
+    }
+    
+    public convenience init(tuple: TupleType, precision: Precision) {
+        self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), m: precision.convert(tuple.m))
+    }
 }
 
 extension Coordinate2DM : CustomStringConvertible, CustomDebugStringConvertible {
@@ -81,4 +82,8 @@ extension Coordinate2DM : CustomStringConvertible, CustomDebugStringConvertible 
     public var debugDescription : String {
         return self.description
     }
+}
+
+public func ==(lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.m == rhs.m
 }
