@@ -33,21 +33,25 @@ public final class Coordinate2D : Coordinate {
         self.x = x
         self.y = y
     }
+}
 
-    public required init(other: Coordinate2D) {
-        self.x = other.x
-        self.y = other.y
-    }
+extension Coordinate2D : _ArrayConstructable {
     
-    public required init(other: Coordinate2D, precision: Precision) {
-        self.x = precision.convert(other.x)
-        self.y = precision.convert(other.y)
-    }
-    
-    public required init(array: [Double]) {
+    public convenience init(array: [Double]) {
         precondition(array.count == 2)
-        self.x = array[0]
-        self.y = array[1]
+        
+        self.init(x: array[0], y: array[1])
+    }
+}
+
+extension Coordinate2D : CopyConstructable {
+    
+    public convenience init(other: Coordinate2D) {
+        self.init(x: other.x, y: other.y)
+    }
+    
+    public convenience init(other: Coordinate2D, precision: Precision) {
+        self.init(x: precision.convert(other.x), y: precision.convert(other.y))
     }
 }
 
