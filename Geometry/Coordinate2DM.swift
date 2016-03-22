@@ -35,24 +35,25 @@ public final class Coordinate2DM : Coordinate, Measured {
         self.y = y
         self.m = m
     }
+}
+
+extension Coordinate2DM : _ArrayConstructable {
     
-    public required init(other: Coordinate2DM) {
-        self.x = other.x
-        self.y = other.y
-        self.m = other.m
-    }
-    
-    public required init(other: Coordinate2DM, precision: Precision) {
-        self.x = precision.convert(other.x)
-        self.y = precision.convert(other.y)
-        self.m = precision.convert(other.m)
-    }
-    
-    public required init(array: [Double]) {
+    public convenience init(array: [Double]) {
         precondition(array.count == 3)
-        self.x = array[0]
-        self.y = array[1]
-        self.m = array[2]
+        
+        self.init(x: array[0], y: array[1], m: array[2])
+    }
+}
+
+extension Coordinate2DM : CopyConstructable {
+    
+    public convenience init(other: Coordinate2DM) {
+        self.init(x: other.x, y: other.y, m: other.m)
+    }
+    
+    public convenience init(other: Coordinate2DM, precision: Precision) {
+        self.init(x: precision.convert(other.x), y: precision.convert(other.y), m: precision.convert(other.m))
     }
 }
 
