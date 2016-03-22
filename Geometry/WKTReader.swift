@@ -95,7 +95,7 @@ private class Tokenizer {
 /**
     TODO: Full header class doc with examples
  */
-public class WKTReader<CoordinateType : protocol<Coordinate, TupleConvertable>> {
+public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, _ArrayConstructable>> {
 
     private let crs: CoordinateReferenceSystem
     private let precision: Precision
