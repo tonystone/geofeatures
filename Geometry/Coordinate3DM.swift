@@ -37,29 +37,26 @@ public final class Coordinate3DM : Coordinate, ThreeDimensional, Measured {
         self.z = z
         self.m = m
     }
+}
+
+extension Coordinate3DM : _ArrayConstructable {
     
-    public required init(other: Coordinate3DM) {
-        self.x = other.x
-        self.y = other.y
-        self.z = other.z
-        self.m = other.m
-    }
-    
-    public required init(other: Coordinate3DM, precision: Precision) {
-        self.x = precision.convert(other.x)
-        self.y = precision.convert(other.y)
-        self.z = precision.convert(other.z)
-        self.m = precision.convert(other.m)
-    }
-    
-    public required init(array: [Double]) {
+    public convenience init(array: [Double]) {
         precondition(array.count == 4)
-        self.x = array[0]
-        self.y = array[1]
-        self.z = array[2]
-        self.m = array[3]
+        
+        self.init(x: array[0], y: array[1], z: array[2], m: array[3])
+    }
+}
+
+extension Coordinate3DM : CopyConstructable {
+    
+    public convenience init(other: Coordinate3DM) {
+        self.init(x: other.x, y: other.y, z: other.z, m: other.m)
     }
     
+    public convenience init(other: Coordinate3DM, precision: Precision) {
+        self.init(x: precision.convert(other.x), y: precision.convert(other.y), z: precision.convert(other.z), m: precision.convert(other.m))
+    }
 }
 
 extension Coordinate3DM : TupleConvertable {
@@ -86,7 +83,7 @@ extension Coordinate3DM : CustomStringConvertible, CustomDebugStringConvertible 
     }
     
     public var debugDescription : String {
-        return Sring() + self.description
+        return String(self) + self.description
     }
 }
 
