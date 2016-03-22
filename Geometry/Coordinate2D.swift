@@ -24,27 +24,16 @@ import Swift
  
     Low level 2 dimensional Coorodinate type
  */
-public class Coordinate2D : Coordinate, TupleConvertable {
-    
-    public typealias TupleType = (x: Double, y: Double)
+public final class Coordinate2D : Coordinate {
     
     public let x: Double
     public let y: Double
     
-    public var tuple: TupleType {
-        get { return (x: self.x, y: self.y) }
+    public required init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
     }
-    
-    public required init(tuple: TupleType) {
-        self.x = tuple.x
-        self.y = tuple.y
-    }
-    
-    public required init(tuple: TupleType, precision: Precision) {
-        self.x = precision.convert(tuple.x)
-        self.y = precision.convert(tuple.y)
-    }
-    
+
     public required init(other: Coordinate2D) {
         self.x = other.x
         self.y = other.y
@@ -62,8 +51,21 @@ public class Coordinate2D : Coordinate, TupleConvertable {
     }
 }
 
-public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y
+extension Coordinate2D : TupleConvertable {
+    
+    public typealias TupleType = (x: Double, y: Double)
+    
+    public var tuple: TupleType {
+        get { return (x: self.x, y: self.y) }
+    }
+    
+    public convenience init(tuple: TupleType) {
+        self.init(x: tuple.x, y: tuple.y)
+    }
+    
+    public convenience init(tuple: TupleType, precision: Precision) {
+        self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y))
+    }
 }
 
 extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
@@ -77,3 +79,6 @@ extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
+public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y
+}
