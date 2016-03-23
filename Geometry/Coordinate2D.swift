@@ -24,46 +24,52 @@ import Swift
  
     Low level 2 dimensional Coorodinate type
  */
-public class Coordinate2D : Coordinate, TupleConvertable {
-    
-    public typealias TupleType = (x: Double, y: Double)
+public final class Coordinate2D : Coordinate {
     
     public let x: Double
     public let y: Double
+    
+    public required init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
+    }
+}
+
+extension Coordinate2D : _ArrayConstructable {
+    
+    public convenience init(array: [Double]) {
+        precondition(array.count == 2)
+        
+        self.init(x: array[0], y: array[1])
+    }
+}
+
+extension Coordinate2D : CopyConstructable {
+    
+    public convenience init(other: Coordinate2D) {
+        self.init(x: other.x, y: other.y)
+    }
+    
+    public convenience init(other: Coordinate2D, precision: Precision) {
+        self.init(x: precision.convert(other.x), y: precision.convert(other.y))
+    }
+}
+
+extension Coordinate2D : TupleConvertable {
+    
+    public typealias TupleType = (x: Double, y: Double)
     
     public var tuple: TupleType {
         get { return (x: self.x, y: self.y) }
     }
     
-    public required init(tuple: TupleType) {
-        self.x = tuple.x
-        self.y = tuple.y
+    public convenience init(tuple: TupleType) {
+        self.init(x: tuple.x, y: tuple.y)
     }
     
-    public required init(tuple: TupleType, precision: Precision) {
-        self.x = precision.convert(tuple.x)
-        self.y = precision.convert(tuple.y)
+    public convenience init(tuple: TupleType, precision: Precision) {
+        self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y))
     }
-    
-    public required init(other: Coordinate2D) {
-        self.x = other.x
-        self.y = other.y
-    }
-    
-    public required init(other: Coordinate2D, precision: Precision) {
-        self.x = precision.convert(other.x)
-        self.y = precision.convert(other.y)
-    }
-    
-    public required init(array: [Double]) {
-        precondition(array.count == 2)
-        self.x = array[0]
-        self.y = array[1]
-    }
-}
-
-public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y
 }
 
 extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
@@ -77,3 +83,6 @@ extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
+public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y
+}

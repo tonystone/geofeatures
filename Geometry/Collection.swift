@@ -24,7 +24,7 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
     /**
         Collection must define its Element
      */
-    typealias Element
+    associatedtype Element
     
     /**
         Collections are empty constructable

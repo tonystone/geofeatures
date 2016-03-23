@@ -44,7 +44,7 @@ private enum Token : String {
 /**
  TODO: Full header class doc with examples
  */
-public class WKTWriter<CoordinateType : protocol<Coordinate, TupleConvertable>>  {
+public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, _ArrayConstructable>>  {
     
     public init() {}
     

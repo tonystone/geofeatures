@@ -33,7 +33,7 @@ import Swift
     A LineString is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geometry {
+public struct LineString<CoordinateType : protocol<Coordinate, CopyConstructable>> : Geometry {
 
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
@@ -50,10 +50,10 @@ public struct LineString<Element : protocol<Coordinate, TupleConvertable>> : Geo
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
-        storage = CollectionBuffer<Element>.create(8) { _ in 0 } as! CollectionBuffer<Element>
+        storage = CollectionBuffer<CoordinateType>.create(8) { _ in 0 } as! CollectionBuffer<CoordinateType>
     }
 
-    internal var storage: CollectionBuffer<Element>
+    internal var storage: CollectionBuffer<CoordinateType>
 }
 
 extension LineString {
@@ -75,7 +75,7 @@ extension LineString {
 
 // MARK: Collection conformance
 
-extension LineString : Collection  {
+extension LineString : Collection {
     
     /**
         LineStrings are empty constructable
@@ -88,7 +88,7 @@ extension LineString : Collection  {
         LineString can be constructed from any SequenceType as long as it has an
         Element type equal the Coordinate type specified in Element.
      */
-    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<S : SequenceType where S.Generator.Element == CoordinateType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
@@ -104,7 +104,7 @@ extension LineString : Collection  {
         long as it has an Element type equal the Coordinate type specified in Element 
         and the Distance is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == CoordinateType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
@@ -153,12 +153,12 @@ extension LineString : Collection  {
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: Element) {
+    public mutating func append(newElement: CoordinateType) {
         
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
-        let convertedCoordinate = Element(other: newElement, precision: precision)
+        let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
          
         storage.withUnsafeMutablePointers { (value, elements)->Void in
             
@@ -170,7 +170,7 @@ extension LineString : Collection  {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
+    public mutating func append<S : SequenceType where S.Generator.Element == CoordinateType>(contentsOf newElements: S) {
         
         var generator = newElements.generate()
         
@@ -182,7 +182,7 @@ extension LineString : Collection  {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func append<C : CollectionType where C.Generator.Element == Element>(contentsOf newElements: C) {
+    public mutating func append<C : CollectionType where C.Generator.Element == CoordinateType>(contentsOf newElements: C) {
         
         self.reserveCapacity(numericCast(newElements.count))
         
@@ -198,13 +198,13 @@ extension LineString : Collection  {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Element, atIndex index: Int) {
+    public mutating func insert(newElement: CoordinateType, atIndex index: Int) {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
         
-        let convertedCoordinate = Element(other: newElement, precision: precision)
+        let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
         
         storage.withUnsafeMutablePointers { (count, elements)->Void in
             var m = count.memory
@@ -223,10 +223,10 @@ extension LineString : Collection  {
     /**
         Remove and return the element at index `i` of this LineString.
      */
-    public mutating func remove(at index: Int) -> Element {
+    public mutating func remove(at index: Int) -> CoordinateType {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
-        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
+        return storage.withUnsafeMutablePointers { (count, elements)-> CoordinateType in
             
             let result = (elements + index).move()
             
@@ -248,10 +248,10 @@ extension LineString : Collection  {
      
         - Requires: `count > 0`.
      */
-    public mutating func removeLast() -> Element {
+    public mutating func removeLast() -> CoordinateType {
         guard storage.value > 0 else { preconditionFailure("can't removeLast from an empty LineString.") }
 
-        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
+        return storage.withUnsafeMutablePointers { (count, elements)-> CoordinateType in
             
             // No need to check for overflow in `count.memory - 1` because `i` is known to be positive.
             count.memory = count.memory &- 1
@@ -272,7 +272,7 @@ extension LineString : Collection  {
                 count.memory = 0
             }
         } else {
-            storage = CollectionBuffer<Element>.create(0) { _ in 0 } as! CollectionBuffer<Element>
+            storage = CollectionBuffer<CoordinateType>.create(0) { _ in 0 } as! CollectionBuffer<CoordinateType>
         }
     }
 }
@@ -282,7 +282,7 @@ extension LineString : Collection  {
  
     Coordinates that are TupleConvertable allow initialization via an ordinary Swift tuple.
  */
-extension LineString where Element : TupleConvertable {
+extension LineString where CoordinateType : protocol<TupleConvertable, CopyConstructable> {
     
     /**
         LineString can be constructed from any SequenceType if it's Elements are tuples that match
@@ -292,7 +292,7 @@ extension LineString where Element : TupleConvertable {
      
         - seealso: TupleConvertable.
      */
-    public init<S : SequenceType where S.Generator.Element == Element.TupleType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
@@ -311,11 +311,11 @@ extension LineString where Element : TupleConvertable {
      
         - seealso: TupleConvertable.
      */
-    public init<C : CollectionType where C.Generator.Element == Element.TupleType, C.Index.Distance == Int>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
         self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         
-        self.storage.resize(elements.count)
+        self.storage.resize(numericCast(elements.count))
         
         var generator = elements.generate()
         
@@ -329,26 +329,26 @@ extension LineString where Element : TupleConvertable {
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: Element.TupleType) {
-        self.append(Element(tuple: newElement))
+    public mutating func append(newElement: CoordinateType.TupleType) {
+        self.append(CoordinateType(tuple: newElement))
     }
     
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element.TupleType>(newElements: S) {
+    public mutating func append<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(contentsOf newElements: S) {
         
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            self.append(Element(tuple: coordinate))
+            self.append(CoordinateType(tuple: coordinate))
         }
     }
     
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element.TupleType>(newElements: C) {
+    public mutating func append<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(contentsOf newElements: C) {
         
         _ensureUniquelyReferenced()
         
@@ -357,7 +357,7 @@ extension LineString where Element : TupleConvertable {
         var generator = newElements.generate()
         
         while let coordinate = generator.next() {
-            self.append(Element(tuple: coordinate))
+            self.append(CoordinateType(tuple: coordinate))
         }
     }
     
@@ -366,15 +366,15 @@ extension LineString where Element : TupleConvertable {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: Element.TupleType, atIndex i: Int) {
-        self.insert(Element(tuple: newElement), atIndex: i)
+    public mutating func insert(newElement: CoordinateType.TupleType, atIndex i: Int) {
+        self.insert(CoordinateType(tuple: newElement), atIndex: i)
     }
 }
 
 
 // MARK: CollectionType conformance
 
-extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorSafeContainer {
+extension LineString : CollectionType, MutableCollectionType, _DestructorSafeContainer {
     
     /**
         Always zero, which is the index of the first element when non-empty.
@@ -386,7 +386,7 @@ extension LineString : CollectionType, /* MutableCollectionType, */ _DestructorS
      */
     public var endIndex  : Int { return storage.value }
     
-    public subscript(index : Int) -> Element {
+    public subscript(index : Int) -> CoordinateType {
         
         get {
             guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
