@@ -26,7 +26,7 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
     public var hashValue: Int { get { return 31.hashValue + scale.hashValue } }
     
     public init(scale: Double) {
-        self.scale = scale
+        self.scale = Double.abs(scale)
     }
     
     public func convert(value: Double) -> Double {
