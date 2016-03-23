@@ -21,47 +21,79 @@ import XCTest
 @testable import GeoFeatures2
 
 class Coordinate3DMTests: XCTestCase {
-
-    // MARK: Contrsuction
     
-    func testInit () {
-        let coordinate = Coordinate3DM(tuple: (2.0,3.0,4.0,5.0))
+    // MARK: Coordinate3DM
+    
+    func testInit_XYZM () {
+        let coordinate = Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0)
         
         XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
     }
     
-    // MARK: Accessors
-    
-    func testTuple () {
-        let coordinate = Coordinate3DM(tuple: (2.0,3.0,4.0,5.0))
-        
-        XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0 && coordinate.tuple.z == 4.0 && coordinate.tuple.m == 5.0)
-    }
-    
     func testX () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1001.0,1002.0,1003.0,1004.0)).x, 1001.0)
+        XCTAssertEqual(Coordinate3DM(x: 1001.0, y: 1002.0, z: 1003.0, m: 1004.0).x, 1001.0)
     }
     
     func testY () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1001.0,1002.0,1003.0,1004.0)).y, 1002.0)
+        XCTAssertEqual(Coordinate3DM(x: 1001.0, y: 1002.0, z: 1003.0, m: 1004.0).y, 1002.0)
     }
     
     func testZ () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1001.0,1002.0,1003.0,1004.0)).z, 1003.0)
+        XCTAssertEqual(Coordinate3DM(x: 1001.0, y: 1002.0, z: 1003.0, m: 1004.0).z, 1003.0)
     }
     
     func testM () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1001.0,1002.0,1003.0,1004.0)).m, 1004.0)
+        XCTAssertEqual(Coordinate3DM(x: 1001.0, y: 1002.0, z: 1003.0, m: 1004.0).m, 1004.0)
     }
     
+    // MARK: TupleConvertable
+    
+    func testInit_Tuple () {
+        let coordinate = Coordinate3DM(tuple: (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
+        
+        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+    }
+    
+    func testTuple () {
+        let coordinate = Coordinate3DM(tuple: (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
+        
+        XCTAssertTrue(coordinate.tuple == (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
+    }
+    
+    
+    // MARK: _ArrayConstructable
+    
+    func testInit_Array () {
+        let coordinate = Coordinate3DM(array: [2.0, 3.0, 4.0, 5.0])
+        
+        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+    }
+    
+    func testInit_Array_Invalid () {
+        // TODO: Can't test precondition at this point due to lack of official support in Swift.
+    }
+    
+    // MARK: CopyConstructable
+    
+    func testInit_Copy () {
+        let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0))
+        
+        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+    }
+    
+    func testInit_Copy_FixedPrecision () {
+        let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.002, y: 3.003, z: 4.004, m: 5.005), precision: FixedPrecision(scale: 100))
+        
+        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+    }
     
     // MARK: Equal
     
     func testEqual () {
-        XCTAssertEqual(Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)), Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)))
+        XCTAssertEqual(Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 4.0, m: 5.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 4.0, m: 5.0)))
     }
     
     func testNotEqual () {
-        XCTAssertNotEqual(Coordinate3DM(tuple: (1.0,1.0,1.0,1.0)), Coordinate3DM(tuple: (2.0,2.0,2.0,2.0)))
+        XCTAssertNotEqual(Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 4.0, m: 5.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 4.0, m: 5.0)))
     }
 }
