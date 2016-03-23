@@ -11,28 +11,41 @@ import GeoFeatures2
 
 class FixedPrecisionTests: XCTestCase {
 
-    func testConvert_Scale1000_Equal() {
-        let precision  = FixedPrecision(scale: 1000)
+    // MARK: FIxed 10
+    
+    func testConvert_Scale10_Lower() {
+        let precision  = FixedPrecision(scale: 10)
         
-        XCTAssertEqual(precision.convert(100.003) == precision.convert(100.003), true)
+        XCTAssertEqual(precision.convert(1.01) == 1.0, true)
     }
     
-    func testConvert_Scale1000_NotEqual() {
-        let precision  = FixedPrecision(scale: 1000)
+    func testConvert_Scale10_Middle() {
+        let precision  = FixedPrecision(scale: 10)
         
-        XCTAssertEqual(precision.convert(100.0) == precision.convert(100.003), false)
+        XCTAssertEqual(precision.convert(1.05) == 1.1, true)
     }
     
-    func testConvert_Scale1000_Truncated_Equal() {
-        let precision  = FixedPrecision(scale: 1000)
-
-        XCTAssertEqual(precision.convert(100.0) == precision.convert(100.0003), true)
+    func testConvert_Scale10_Upper() {
+        let precision  = FixedPrecision(scale: 10)
+        
+        XCTAssertEqual(precision.convert(1.09) == 1.1, true)
     }
     
-    func testConvert_Scale1000_Truncated_NotEqual() {
-        let precision  = FixedPrecision(scale: 1000)
+    func testConvert_Scale10_Lower2() {
+        let precision  = FixedPrecision(scale: 10)
         
-        XCTAssertEqual(precision.convert(100.003) == precision.convert(100.0003), false)
+        XCTAssertEqual(precision.convert(1.0111) == 1.0, true)
     }
-
+    
+    func testConvert_Scale10_Middle2() {
+        let precision  = FixedPrecision(scale: 10)
+        
+        XCTAssertEqual(precision.convert(1.0555) == 1.1, true)
+    }
+    
+    func testConvert_Scale10_Upper2() {
+        let precision  = FixedPrecision(scale: 10)
+        
+        XCTAssertEqual(precision.convert(1.0999) == 1.1, true)
+    }
 }
