@@ -82,7 +82,7 @@ class Coordinate3DMTests: XCTestCase {
     }
     
     func testInit_Copy_FixedPrecision () {
-        let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.002, y: 3.003, z: 4.004, m: 5.005), precision: FixedPrecision(scale: 100))
+        let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.001, y: 3.001, z: 4.001, m: 5.001), precision: FixedPrecision(scale: 100))
         
         XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
     }
