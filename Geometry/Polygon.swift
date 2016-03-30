@@ -20,7 +20,7 @@
 import Swift
 
 /**
-    A polygon consists of an outer ring with it's coordinates in clockeise order and zero or more inner rings in counter clockwise order.
+    A polygon consists of an outer ring with it's coordinates in clockwise order and zero or more inner rings in counter clockwise order.
 
     - requires: The "outerRing" be oriented clockwise
     - requires: The "innerRings" be oriented counter clockwise
