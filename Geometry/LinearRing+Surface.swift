@@ -16,7 +16,7 @@ extension LinearRing : Surface {
     /**
         Calculates the area of this `LinearRing`
         
-        - returns: The area of this `LinearRing`. If the orientation of the ring is clockwise, are will be postive, otherwise it will be negative.
+        - returns: The area of this `LinearRing`. If the orientation of the ring is clockwise, area will be postive, otherwise it will be negative.
      
         - requires: isSimple == true
         - requires: isClosed == true
