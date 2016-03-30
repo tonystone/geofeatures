@@ -15,8 +15,9 @@ class MultiPolygon_SurfaceTests: XCTestCase {
     
     // MARK: Coordinate2D
     // MARK: FixedPrecision
+    // MARK: Cartesian
     
-    func testAre_Cartisian_Empty() {
+    func testArea_Coordinate2D_FixedPrecision_Cartesian_Empty() {
         XCTAssertEqual(MultiPolygon<Coordinate2D>(precision: fixed).area(), 0.0)
     }
 
