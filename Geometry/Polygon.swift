@@ -64,7 +64,7 @@ public struct Polygon<CoordinateType : protocol<Coordinate, CopyConstructable>> 
      
         - parameters:
             - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
-            - precision: The `Precision` model this polygon should use in claculations on it's coordinates.
+            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
      
         - seealso: `CollectionType`
         - seealso: `CoordinateReferenceSystem`
@@ -83,7 +83,7 @@ public struct Polygon<CoordinateType : protocol<Coordinate, CopyConstructable>> 
             - outerRing: A `CollectionType` who's elements are of type `CoordinateType`.
             - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType`.
             - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
-            - precision: The `Precision` model this polygon should use in claculations on it's coordinates.
+            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
      
         - seealso: `CollectionType`
         - seealso: `CoordinateReferenceSystem`
