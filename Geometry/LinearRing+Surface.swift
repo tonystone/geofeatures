@@ -9,7 +9,7 @@
 import Swift
 
 /**
-    Surfice extension for LinearRing
+    Surface extension for LinearRing
  */
 extension LinearRing : Surface {
     
