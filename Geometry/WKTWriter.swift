@@ -42,14 +42,21 @@ private enum Token : String {
 }
 
 /**
- TODO: Full header class doc with examples
+ WKTWriter
+ 
+ WKTWriter generates a WKT – Well-known Text – representation of a `Geometry` object.
  */
 public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, _ArrayConstructable>>  {
     
     public init() {}
     
     /**
-     TODO: Full header func doc for read
+     Based on the geometry passed in, converts it into a string representation as specified by
+     the OGC WKT standard.
+     
+     - parameter geometry: A geometry type to be converted to WKT
+     - returns: WKT string for supported types. If unsupported, an empty string is returned.
+     - note: This method does not check the validity of the geometry.
      */
     public func write(geometry: Geometry) -> String {
         
@@ -97,7 +104,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: <point tagged text> ::= point <point text>
     private func pointTaggedText(point: Point<CoordinateType>) -> String  {
         
-        return  Token.POINT.rawValue + Token.SINGLE_SPACE.rawValue + zmText(point.coordinate) + pointText(point)
+        return Token.POINT.rawValue + Token.SINGLE_SPACE.rawValue + zmText(point.coordinate) + pointText(point)
     }
     
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
@@ -291,11 +298,11 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
         var coordinateText = "\(coordinate.x) \(coordinate.y)"
         
         if let coordinate = coordinate as? ThreeDimensional {
-            coordinateText += " \(coordinate.z)"
+            coordinateText += Token.SINGLE_SPACE.rawValue + "\(coordinate.z)"
         }
         
         if let coordinate = coordinate as? Measured {
-            coordinateText += " \(coordinate.m)"
+            coordinateText += Token.SINGLE_SPACE.rawValue + "\(coordinate.m)"
         }
         
         return coordinateText
