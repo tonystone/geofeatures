@@ -62,3 +62,5 @@ Polygon<Coordinate2D>(rings: ([(0,0), (0,7), (4,2), (2,0), (0,0)],[[(0.5,0.5), (
 Point<Coordinate2D>(coordinate: (1.0,2.0))
 Point<Coordinate3DM>(coordinate: (1.0,2.0,3.0,4.0))
 
+LinearRing<Coordinate2D>(elements: [(1.00,-1.00), (-1.00,-1.00), (-1.00,1.00), (1.00,1.00), (1.00,-1.00)]).area()
+

@@ -34,7 +34,7 @@ public struct Point<CoordinateType : protocol<Coordinate, CopyConstructable>> : 
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
     
-    public init(coordinate: CoordinateType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init(coordinate: CoordinateType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
@@ -55,7 +55,7 @@ extension Point where CoordinateType : Measured {
 
 extension Point where CoordinateType : TupleConvertable {
     
-    public init(coordinate: CoordinateType.TupleType, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init(coordinate: CoordinateType.TupleType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         self.init(coordinate: CoordinateType(tuple: coordinate))
     }
 }
@@ -65,6 +65,24 @@ extension Point : CustomStringConvertible, CustomDebugStringConvertible {
     public var description : String { return "\(self.dynamicType)(\(self.coordinate))"  }
     public var debugDescription : String { return self.description  }
 }
+
+extension Point : Equatable {}
+
+@warn_unused_result
+public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
+    return lhs.equals(rhs)
+}
+
+@warn_unused_result
+public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType : Geometry>(lhs: Point<CoordinateType>, rhs: GeometryType) -> Bool {
+    return lhs.equals(rhs)
+}
+
+@warn_unused_result
+public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: Point<CoordinateType>) -> Bool {
+    return lhs.equals(rhs)
+}
+
 
 
 

@@ -39,14 +39,14 @@ public struct LinearRing<CoordinateType : protocol<Coordinate, CopyConstructable
     public let coordinateReferenceSystem: CoordinateReferenceSystem
     
     public init(coordinateReferenceSystem: CoordinateReferenceSystem) {
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: defaultPrecision)
+        self.init(precision: defaultPrecision, coordinateReferenceSystem: coordinateReferenceSystem)
     }
     
     public init(precision: Precision) {
-        self.init(coordinateReferenceSystem: defaultCoordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
     }
     
-    public init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision) {
+    public init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
@@ -81,16 +81,16 @@ extension LinearRing : Collection {
         LinearRings are empty constructable
      */
     public init() {
-        self.init(coordinateReferenceSystem: defaultCoordinateReferenceSystem, precision: defaultPrecision)
+        self.init(precision: defaultPrecision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
     }
     
     /**
         LinearRing can be constructed from any SequenceType as long as it has an
         Element type equal the Coordinate type specified in Element.
      */
-    public init<S : SequenceType where S.Generator.Element == CoordinateType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<S : SequenceType where S.Generator.Element == CoordinateType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         var generator = elements.generate()
         
@@ -104,9 +104,9 @@ extension LinearRing : Collection {
         long as it has an Element type equal the Coordinate type specified in Element 
         and the Distance is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == CoordinateType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == CoordinateType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         self.reserveCapacity(numericCast(elements.count))
         
@@ -292,9 +292,9 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
      
         - seealso: TupleConvertable.
      */
-    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         var generator = elements.generate()
         
@@ -311,9 +311,9 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
      
         - seealso: TupleConvertable.
      */
-    public init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         self.storage.resize(numericCast(elements.count))
         
@@ -422,4 +422,23 @@ extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
         return self.description
     }
 }
+
+// MARK: Equatable Conformance
+
+extension LinearRing : Equatable {}
+
+@warn_unused_result
+public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
+    return lhs.equals(rhs)
+}
+
+//@warn_unused_result
+//public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType : Geometry>(lhs: LinearRing<CoordinateType>, rhs: GeometryType) -> Bool {
+//    return lhs.equals(rhs)
+//}
+//
+//@warn_unused_result
+//public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: LinearRing<CoordinateType>) -> Bool {
+//    return lhs.equals(rhs)
+//}
 

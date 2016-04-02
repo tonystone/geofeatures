@@ -21,20 +21,19 @@
 import XCTest
 import GeoFeatures2
 
-class WKTReaderTests: XCTestCase {
+// MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-    private var wktReader: WKTReader<Coordinate2D>!
-    
-    override func setUp() {
-        wktReader = WKTReader(coordinateReferenceSystem: Cartesian(), precision: FloatingPrecision())
-    }
+class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
+    private var wktReader = WKTReader<Coordinate2D>(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
     
     func testRead_Point_Float_Valid() {
         
         do {
             let geometry = try wktReader.read("POINT (1.0 1.0)")
+            let expected = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))
             
-            XCTAssertEqual(geometry == Point<Coordinate2D>(coordinate: (1.0, 1.0)), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -44,8 +43,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("POINT (1 1)")
+            let expected = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))
             
-            XCTAssertEqual(geometry == Point<Coordinate2D>(coordinate: (1.0, 1.0)), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -69,8 +69,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("POINT (1.0E-5 1.0E-5)")
+            let expected = Point<Coordinate2D>(coordinate: (x: 1.0E-5, y: 1.0E-5))
             
-            XCTAssertEqual(geometry == Point<Coordinate2D>(coordinate: (1.0E-5, 1.0E-5)), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -80,8 +81,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("POINT (1.0e-5 1.0e-5)")
+            let expected = Point<Coordinate2D>(coordinate: (x: 1.0E-5, y: 1.0E-5))
             
-            XCTAssertEqual(geometry == Point<Coordinate2D>(coordinate: (1.0E-5, 1.0E-5)), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -105,8 +107,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)")
+            let expected = LineString<Coordinate2D>(elements: [( x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])
             
-            XCTAssertEqual(geometry == LineString<Coordinate2D>(elements: [( x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -115,10 +118,10 @@ class WKTReaderTests: XCTestCase {
     func testRead_MultiPoint_Valid() {
 
         do {
-            let geometry1 = try wktReader.read("MULTIPOINT ((1.0 2.0))")
-
-            XCTAssertEqual(geometry1 == MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))]), true)
-
+            let geometry = try wktReader.read("MULTIPOINT ((1.0 2.0))")
+            let expected = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))])
+            
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -142,8 +145,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))")
+            let expected = MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])])
             
-            XCTAssertEqual(geometry == MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])]), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -167,8 +171,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))")
-            
-            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), true)
+            let expected = Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: [])
+
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -181,8 +186,9 @@ class WKTReaderTests: XCTestCase {
             
             let outerRing = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
             let innerRing = LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])
+            let expected  = Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])
             
-            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing]), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -193,11 +199,12 @@ class WKTReaderTests: XCTestCase {
         do {
             let geometry = try wktReader.read("POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))")
             
-            let outerRing = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
+            let outerRing  = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
             let innerRing1 = LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])
             let innerRing2 = LinearRing<Coordinate2D>(elements: [(x: 3.0, y: 3.0), (x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 3.0, y: 3.0)])
+            let expected  = Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing1, innerRing2])
             
-            XCTAssertEqual(geometry == Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing1, innerRing2]), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -221,8 +228,9 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))")
+            let expected = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 10.0, y: 10.0), (x: 20.0, y: 20.0), (x: 30.0, y: 30.0), (x: 10.0, y: 10.0)]), innerRings: [])])
             
-            XCTAssertEqual(geometry == MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 10.0, y: 10.0), (x: 20.0, y: 20.0), (x: 30.0, y: 30.0), (x: 10.0, y: 10.0)]), innerRings: [])]), true)
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
@@ -232,8 +240,7 @@ class WKTReaderTests: XCTestCase {
         
         do {
             let geometry = try wktReader.read("GEOMETRYCOLLECTION (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0), MULTIPOINT ((1.0 2.0)), MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)), GEOMETRYCOLLECTION (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)))")
-            
-            XCTAssertEqual(geometry == GeometryCollection(elements:
+            let expected = GeometryCollection(elements:
                 [
                     Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
                     LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]),
@@ -242,7 +249,9 @@ class WKTReaderTests: XCTestCase {
                     GeometryCollection(elements:  [
                             Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
                             LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])] as [Geometry])
-                ] as [Geometry]), true)
+                ] as [Geometry])
+            
+            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
         } catch {
             XCTFail("Parsing failed: \(error).")
         }
