@@ -43,14 +43,14 @@ public struct GeometryCollection : Geometry  {
     public let coordinateReferenceSystem: CoordinateReferenceSystem
 
     public init(coordinateReferenceSystem: CoordinateReferenceSystem) {
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: defaultPrecision)
+        self.init(precision: defaultPrecision, coordinateReferenceSystem: coordinateReferenceSystem)
     }
     
     public init(precision: Precision) {
-        self.init(coordinateReferenceSystem: defaultCoordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
     }
     
-    public init(coordinateReferenceSystem: CoordinateReferenceSystem, precision: Precision) {
+    public init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
@@ -87,16 +87,16 @@ extension GeometryCollection : Collection {
         GeometryCollections are empty constructable
      */
     public init() {
-        self.init(coordinateReferenceSystem: defaultCoordinateReferenceSystem, precision: defaultPrecision)
+        self.init(precision: defaultPrecision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
     }
     
     /**
         GeometryCollection can be constructed from any SequenceType as long as it has an
         Element type equal the Geometry Element.
      */
-    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<S : SequenceType where S.Generator.Element == Element>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
     
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         var generator = elements.generate()
         
@@ -110,9 +110,9 @@ extension GeometryCollection : Collection {
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init<C : CollectionType where C.Generator.Element == Element>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
-        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         self.reserveCapacity(numericCast(elements.count))
 
@@ -327,4 +327,28 @@ extension GeometryCollection : CustomStringConvertible, CustomDebugStringConvert
         return self.description
     }
 }
+
+// MARK: Equatable Conformance
+
+extension GeometryCollection : Equatable {}
+
+
+
+@warn_unused_result
+public func ==(lhs: GeometryCollection, rhs: GeometryCollection) -> Bool {
+    return lhs.equals(rhs)
+}
+    
+//@warn_unused_result
+//public func ==(lhs: GeometryCollection, rhs: Geometry) -> Bool {
+//    return lhs.equals(rhs)
+//}
+//    
+//@warn_unused_result
+//public func ==(lhs: Geometry, rhs: GeometryCollection) -> Bool {
+//    return lhs.equals(rhs)
+//}
+    
+
+
 

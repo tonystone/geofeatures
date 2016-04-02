@@ -100,7 +100,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     private let crs: CoordinateReferenceSystem
     private let precision: Precision
     
-    public init(coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public init(precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         self.crs = coordinateReferenceSystem
         self.precision = precision
     }
@@ -203,7 +203,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     private func lineStringText(tokenizer: Tokenizer) throws -> LineString<CoordinateType> {
         
         if tokenizer.accept(.EMPTY) != nil {
-            return LineString<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
+            return LineString<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -244,7 +244,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     private func linearRingText(tokenizer: Tokenizer) throws -> LinearRing<CoordinateType> {
         
         if tokenizer.accept(.EMPTY) != nil {
-            return LinearRing<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
+            return LinearRing<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -343,7 +343,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     private func multiPointText(tokenizer: Tokenizer) throws -> MultiPoint<CoordinateType> {
         
         if tokenizer.accept(.EMPTY) != nil {
-            return MultiPoint<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
+            return MultiPoint<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -384,7 +384,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     private func multiLineStringText(tokenizer: Tokenizer) throws -> MultiLineString<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return MultiLineString<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
+            return MultiLineString<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -427,7 +427,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
 
         if tokenizer.accept(.EMPTY) != nil {
 
-            return MultiPolygon<CoordinateType>(coordinateReferenceSystem: crs, precision: precision)
+            return MultiPolygon<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -470,7 +470,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     private func geometryCollectionText(tokenizer: Tokenizer) throws -> GeometryCollection {
         
         if tokenizer.accept(.EMPTY) != nil {
-            return GeometryCollection(coordinateReferenceSystem: crs, precision: precision)
+            return GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
