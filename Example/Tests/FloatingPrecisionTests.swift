@@ -11,22 +11,18 @@ import GeoFeatures2
 
 class FloatingPrecisionTests: XCTestCase {
 
+    let precision  = FloatingPrecision()
+    
     func testConvert_Equal() {
-        let precision  = FloatingPrecision()
-        
-        XCTAssertEqual(precision.convert(100.003) == precision.convert(100.003), true)
+        XCTAssertEqual(precision.convert(100.003), 100.003)
     }
     
     func testConvert_NotEqual1() {
-        let precision  = FloatingPrecision()
-        
-        XCTAssertEqual(precision.convert(100.0) == precision.convert(100.003), false)
+        XCTAssertNotEqual(precision.convert(100.0), 100.003)
     }
     
     func testConvert_NotEqual2() {
-        let precision  = FloatingPrecision()
-        
-        XCTAssertEqual(precision.convert(100.003) == precision.convert(100.0003), false)
+        XCTAssertNotEqual(precision.convert(100.003), 100.0003)
     }
 
 }
