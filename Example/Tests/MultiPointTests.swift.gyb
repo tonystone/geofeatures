@@ -73,13 +73,15 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
     }
     
     func testInit_Tuple () {
-    
-        XCTAssertEqual(
-            (MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).elementsEqual([Point(coordinate: ${ExpectedTuple0}),Point(coordinate: ${ExpectedTuple1})])
+        let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Point<${CoordinateType}>(coordinate: ${ExpectedTuple0}),Point<${CoordinateType}>(coordinate: ${ExpectedTuple1})]
+
+        XCTAssertTrue(
+            (geometry.elementsEqual(expected)
                 { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
                     return lhs == rhs
             }
-        ), true)
+        ), "\(geometry) is not equal to \(expected)")
     }
 
     func testSubscript_Get () {
@@ -109,12 +111,13 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
     func testAppend_Array () {
         
         var geometry = MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
-        
+        let expected = [Point<${CoordinateType}>(coordinate: ${ExpectedTuple0}),Point<${CoordinateType}>(coordinate: ${ExpectedTuple1})]
+
         geometry.append(contentsOf: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})])
         
-        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: ${ExpectedTuple0}),Point(coordinate: ${ExpectedTuple1})]) { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
             return lhs == rhs
-        }, true)
+        }, "\(geometry) is not equal to \(expected)")
     }
 
     func testEquals () {
@@ -135,13 +138,14 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
     
     func testAppend () {
         var geometry = MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
-        
+        let expected = [Point<${CoordinateType}>(coordinate: ${ExpectedTuple0})]
+
         geometry.append(Point(coordinate: ${TestTuple0}))
         
-        XCTAssertEqual(geometry.elementsEqual([Point(coordinate: ${ExpectedTuple0})])
+        XCTAssertTrue(geometry.elementsEqual(expected)
             { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
                 return lhs == rhs
-        }, true)
+        }, "\(geometry) is not equal to \(expected)")
     }
 
     func testRemoveAll () {
