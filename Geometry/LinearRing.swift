@@ -431,14 +431,3 @@ extension LinearRing : Equatable {}
 public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
-
-//@warn_unused_result
-//public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType : Geometry>(lhs: LinearRing<CoordinateType>, rhs: GeometryType) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//
-//@warn_unused_result
-//public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: LinearRing<CoordinateType>) -> Bool {
-//    return lhs.equals(rhs)
-//}
-

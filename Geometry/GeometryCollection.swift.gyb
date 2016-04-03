@@ -346,32 +346,12 @@ public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: ${
     return lhs.equals(rhs)
 }
     
-//@warn_unused_result
-//    public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType: Geometry>(lhs: ${Self}<CoordinateType>, rhs: GeometryType) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//
-//@warn_unused_result
-//    public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: ${Self}<CoordinateType>) -> Bool {
-//    return lhs.equals(rhs)
-//}
-    
 %else:
 
 @warn_unused_result
 public func ==(lhs: ${Self}, rhs: ${Self}) -> Bool {
     return lhs.equals(rhs)
 }
-    
-//@warn_unused_result
-//public func ==(lhs: ${Self}, rhs: Geometry) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//    
-//@warn_unused_result
-//public func ==(lhs: Geometry, rhs: ${Self}) -> Bool {
-//    return lhs.equals(rhs)
-//}
     
 %end
 

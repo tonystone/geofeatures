@@ -339,16 +339,6 @@ public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: Mu
     return lhs.equals(rhs)
 }
     
-//@warn_unused_result
-//    public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType: Geometry>(lhs: MultiLineString<CoordinateType>, rhs: GeometryType) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//
-//@warn_unused_result
-//    public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: MultiLineString<CoordinateType>) -> Bool {
-//    return lhs.equals(rhs)
-//}
-    
 
 
 

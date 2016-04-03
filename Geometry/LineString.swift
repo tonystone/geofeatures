@@ -431,14 +431,3 @@ extension LineString : Equatable {}
 public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: LineString<CoordinateType>, rhs: LineString<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
-
-//@warn_unused_result
-//public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType : Geometry>(lhs: LineString<CoordinateType>, rhs: GeometryType) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//
-//@warn_unused_result
-//public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: LineString<CoordinateType>) -> Bool {
-//    return lhs.equals(rhs)
-//}
-
