@@ -27,7 +27,8 @@ class Coordinate2DTests: XCTestCase {
     func testInit_XY () {
         let coordinate = Coordinate2D(x: 2.0, y: 3.0)
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
     }
     
     func testX () {
@@ -43,13 +44,15 @@ class Coordinate2DTests: XCTestCase {
     func testInit_Tuple () {
         let coordinate = Coordinate2D(tuple: (x: 2.0, y: 3.0))
         
-        XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
     }
     
     func testTuple () {
         let coordinate = Coordinate2D(tuple: (x: 2.0, y: 3.0))
+        let expected   = (x: 2.0, y: 3.0)
         
-        XCTAssertTrue(coordinate.tuple == (x: 2.0, y: 3.0))
+        XCTAssertTrue(coordinate.tuple == expected, "\(coordinate.tuple) is not equal to \(expected)")
     }
     
     
@@ -58,7 +61,8 @@ class Coordinate2DTests: XCTestCase {
     func testInit_Array () {
         let coordinate = Coordinate2D(array: [2.0, 3.0])
         
-        XCTAssertTrue(coordinate.tuple.x == 2.0 && coordinate.tuple.y == 3.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
     }
     
     func testInit_Array_Invalid () {
@@ -70,13 +74,15 @@ class Coordinate2DTests: XCTestCase {
     func testInit_Copy () {
         let coordinate = Coordinate2D(other: Coordinate2D(x: 2.0, y: 3.0))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
     }
     
     func testInit_Copy_FixedPrecision () {
         let coordinate = Coordinate2D(other: Coordinate2D(x: 2.002, y: 3.003), precision: FixedPrecision(scale: 100))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
     }
     
     // MARK: Equal

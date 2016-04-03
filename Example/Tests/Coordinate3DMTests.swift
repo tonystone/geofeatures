@@ -27,7 +27,10 @@ class Coordinate3DMTests: XCTestCase {
     func testInit_XYZM () {
         let coordinate = Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0)
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
+        XCTAssertEqual(coordinate.m, 5.0)
     }
     
     func testX () {
@@ -51,13 +54,17 @@ class Coordinate3DMTests: XCTestCase {
     func testInit_Tuple () {
         let coordinate = Coordinate3DM(tuple: (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
+        XCTAssertEqual(coordinate.m, 5.0)
     }
     
     func testTuple () {
         let coordinate = Coordinate3DM(tuple: (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
+        let expected   = (x: 2.0, y: 3.0, z: 4.0, m: 5.0)
         
-        XCTAssertTrue(coordinate.tuple == (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
+        XCTAssertTrue(coordinate.tuple == expected, "\(coordinate.tuple) is not equal to \(expected)")
     }
     
     
@@ -66,7 +73,10 @@ class Coordinate3DMTests: XCTestCase {
     func testInit_Array () {
         let coordinate = Coordinate3DM(array: [2.0, 3.0, 4.0, 5.0])
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
+        XCTAssertEqual(coordinate.m, 5.0)
     }
     
     func testInit_Array_Invalid () {
@@ -78,13 +88,19 @@ class Coordinate3DMTests: XCTestCase {
     func testInit_Copy () {
         let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
+        XCTAssertEqual(coordinate.m, 5.0)
     }
     
     func testInit_Copy_FixedPrecision () {
         let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.001, y: 3.001, z: 4.001, m: 5.001), precision: FixedPrecision(scale: 100))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0 && coordinate.m == 5.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
+        XCTAssertEqual(coordinate.m, 5.0)
     }
     
     // MARK: Equal

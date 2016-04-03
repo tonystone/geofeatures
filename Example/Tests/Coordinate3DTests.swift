@@ -27,7 +27,9 @@ class Coordinate3DTests: XCTestCase {
     func testInit_XYZ () {
         let coordinate = Coordinate3D(x: 2.0, y: 3.0, z: 4.0)
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
     }
     
     func testX () {
@@ -47,13 +49,16 @@ class Coordinate3DTests: XCTestCase {
     func testInit_Tuple () {
         let coordinate = Coordinate3D(tuple: (x: 2.0, y: 3.0, z: 4.0))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
     }
     
     func testTuple () {
         let coordinate = Coordinate3D(tuple: (x: 2.0, y: 3.0, z: 4.0))
+        let expected   = (x: 2.0, y: 3.0, z: 4.0)
         
-        XCTAssertTrue(coordinate.tuple == (x: 2.0, y: 3.0, z: 4.0))
+        XCTAssertTrue(coordinate.tuple == expected, "\(coordinate.tuple) is not equal to \(expected)")
     }
     
     
@@ -62,7 +67,9 @@ class Coordinate3DTests: XCTestCase {
     func testInit_Array () {
         let coordinate = Coordinate3D(array: [2.0, 3.0, 4.0])
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
     }
     
     func testInit_Array_Invalid () {
@@ -74,13 +81,17 @@ class Coordinate3DTests: XCTestCase {
     func testInit_Copy () {
         let coordinate = Coordinate3D(other: Coordinate3D(x: 2.0, y: 3.0, z: 4.0))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
     }
     
     func testInit_Copy_FixedPrecision () {
         let coordinate = Coordinate3D(other: Coordinate3D(x: 2.002, y: 3.003, z: 4.004), precision: FixedPrecision(scale: 100))
         
-        XCTAssertTrue(coordinate.x == 2.0 && coordinate.y == 3.0 && coordinate.z == 4.0)
+        XCTAssertEqual(coordinate.x, 2.0)
+        XCTAssertEqual(coordinate.y, 3.0)
+        XCTAssertEqual(coordinate.z, 4.0)
     }
     
     // MARK: Equal
