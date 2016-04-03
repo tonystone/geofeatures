@@ -8,7 +8,7 @@
 
 import Swift
 
-extension Point /* Geometry Conformance */ {
+extension Point : Geometry {
 
     public func isEmpty() -> Bool {
         return false    // Point can never be empty

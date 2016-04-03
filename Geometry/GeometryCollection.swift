@@ -35,7 +35,7 @@ import Swift
     All the elements in a GeometryCollection shall be in the same Spatial Reference System. This is also the Spatial Reference System for the GeometryCollection.
  */
 
-public struct GeometryCollection : Geometry  {
+public struct GeometryCollection {
         
     public typealias Element = Geometry
     

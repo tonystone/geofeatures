@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension MultiPoint  /* Geometry conformance */  {
+extension MultiPoint : Geometry  {
     
     public func isEmpty() -> Bool {
         return self.count == 0

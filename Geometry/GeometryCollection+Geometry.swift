@@ -21,7 +21,7 @@ import Swift
 
 // MARK:  Geometry conformance
 
-extension GeometryCollection /* Geometry conformance */ {
+extension GeometryCollection : Geometry  {
     
     public func isEmpty() -> Bool {
         return self.count == 0
