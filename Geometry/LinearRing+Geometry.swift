@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension LinearRing /* Geometry conformance */ {
+extension LinearRing : Geometry  {
     
     public func isEmpty() -> Bool {
         return self.count == 0

@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension Polygon /* Geometry conformance */ {
+extension Polygon : Geometry  {
 
     public func isEmpty() -> Bool {
         return self.outerRing.count == 0

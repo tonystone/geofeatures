@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension LineString /* Geometry conformance */ {
+extension LineString : Geometry  {
 
     public func isEmpty() -> Bool {
         return self.count == 0

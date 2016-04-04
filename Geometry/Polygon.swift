@@ -27,7 +27,7 @@ import Swift
     - requires: isSimple == true
     - requires: isClosed == true for "outerRing" and all "innerRings"
  */
-public struct Polygon<CoordinateType : protocol<Coordinate, CopyConstructable>> : Geometry {
+public struct Polygon<CoordinateType : protocol<Coordinate, CopyConstructable>>  {
     
     public typealias RingType = LinearRing<CoordinateType>
     

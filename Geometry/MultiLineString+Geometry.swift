@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension MultiLineString  /* Geometry conformance */  {
+extension MultiLineString : Geometry  {
 
     public func isEmpty() -> Bool {
         return self.count == 0

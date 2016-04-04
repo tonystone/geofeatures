@@ -19,7 +19,7 @@
  */
 import Swift
 
-extension MultiPolygon  /* Geometry conformance */  {
+extension MultiPolygon : Geometry {
     
     public func isEmpty() -> Bool {
         return self.count == 0
