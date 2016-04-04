@@ -339,16 +339,6 @@ public func ==(lhs: GeometryCollection, rhs: GeometryCollection) -> Bool {
     return lhs.equals(rhs)
 }
     
-//@warn_unused_result
-//public func ==(lhs: GeometryCollection, rhs: Geometry) -> Bool {
-//    return lhs.equals(rhs)
-//}
-//    
-//@warn_unused_result
-//public func ==(lhs: Geometry, rhs: GeometryCollection) -> Bool {
-//    return lhs.equals(rhs)
-//}
-    
 
 
 
