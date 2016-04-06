@@ -4,7 +4,8 @@ xcode_scheme: GeoFeatures-Example
 osx_image: xcode7.3
 
 before_install:
-    - brew install xctool
+#    - brew install xctool
+    - git clone https://github.com/facebook/xctool.git
     - gem install cocoapods --quiet
     - pod --version
     - pod setup --silent
@@ -16,8 +17,8 @@ env:
 script:
   - travis_wait pod lib lint
   
-  - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
-  - xctool -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx          GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
+  - xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
+  - xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx          GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
