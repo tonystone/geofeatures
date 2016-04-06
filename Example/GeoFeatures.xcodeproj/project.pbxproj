@@ -50,6 +50,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		71268163C6519F776FDA5CCB /* Pods_GeoFeatures_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D75C42B50EDDC3EBE52BB89 /* Pods_GeoFeatures_iOS.framework */; };
 		EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C85B1B9F47F9002C8018 /* GFRingTests.m */; };
+		EA7389411CB58F20000E8697 /* GFGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */; };
 		EA7502151BF3B70400E8D89A /* Pods_GeoFeatures_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7502141BF3B70400E8D89A /* Pods_GeoFeatures_iOS_Tests.framework */; };
 		EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
 		EAC266C11CB42D3D003AB6E9 /* GFGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */; };
@@ -870,6 +871,7 @@
 				EAD891731BF3B03500BD4FAC /* GFIntersectsOtherTests.m in Sources */,
 				EAD891521BF3B02F00BD4FAC /* GFRingTests.m in Sources */,
 				EAD891531BF3B02F00BD4FAC /* GFBoxTests.m in Sources */,
+				EA7389411CB58F20000E8697 /* GFGeometryTests.swift in Sources */,
 				EAD891541BF3B02F00BD4FAC /* GFPointTests.m in Sources */,
 				EAD891551BF3B02F00BD4FAC /* GFPolygonTests.m in Sources */,
 				EAD891561BF3B02F00BD4FAC /* GFLineStringTests.m in Sources */,
