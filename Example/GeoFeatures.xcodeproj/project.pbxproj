@@ -99,6 +99,8 @@
 		EADCE03F1BF39FE300BA10DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EADCE03C1BF39FE300BA10DA /* main.m */; };
 		EADCE0401BF39FE300BA10DA /* new-mexico.json in Resources */ = {isa = PBXBuildFile; fileRef = EADCE03D1BF39FE300BA10DA /* new-mexico.json */; };
 		EADCE0471BF3A02000BA10DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EADCE0451BF3A02000BA10DA /* InfoPlist.strings */; };
+		EAFEC2731CB5C0DB004AB31B /* GFRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */; };
+		EAFEC2741CB5C0DB004AB31B /* GFRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +204,7 @@
 		EADCE03C1BF39FE300BA10DA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "GeoFeatures-iOS/main.m"; sourceTree = SOURCE_ROOT; };
 		EADCE03D1BF39FE300BA10DA /* new-mexico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "new-mexico.json"; path = "GeoFeatures-iOS/new-mexico.json"; sourceTree = SOURCE_ROOT; };
 		EADCE0461BF3A02000BA10DA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "GeoFeatures-iOS/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
+		EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFRingTests.swift; path = "Swift Compatibility/GFRingTests.swift"; sourceTree = "<group>"; };
 		ECF990B987AFA12BFE7DB17F /* Pods_GeoFeatures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -409,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */,
+				EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */,
 			);
 			name = "Swift Compatibility";
 			sourceTree = "<group>";
@@ -831,6 +835,7 @@
 				3669836B4BAC01B742CBAB72 /* GFPointAbstractTests.m in Sources */,
 				3669892241E56291821679FA /* GFLineStringAbstractTests.m in Sources */,
 				366985884DA03B6774617494 /* GFPolygonAbstractTests.m in Sources */,
+				EAFEC2731CB5C0DB004AB31B /* GFRingTests.swift in Sources */,
 				36698E4F0A58568D0FBCBC4E /* GFMutablePointTests.m in Sources */,
 				366989E10C0CC989A79BDB14 /* GFMutableBoxTests.m in Sources */,
 				36698B39E7BD4166DACC5174 /* GFMutableLineStringTests.m in Sources */,
@@ -881,6 +886,7 @@
 				EAD8915A1BF3B02F00BD4FAC /* GFGeometryCollectionTests.m in Sources */,
 				EAD8915B1BF3B02F00BD4FAC /* GFGeometryTests.m in Sources */,
 				EAD8915C1BF3B02F00BD4FAC /* GFPointAbstractTests.m in Sources */,
+				EAFEC2741CB5C0DB004AB31B /* GFRingTests.swift in Sources */,
 				EAD8915D1BF3B02F00BD4FAC /* GFLineStringAbstractTests.m in Sources */,
 				EAD8915E1BF3B02F00BD4FAC /* GFPolygonAbstractTests.m in Sources */,
 				EAD8915F1BF3B02F00BD4FAC /* GFMutablePointTests.m in Sources */,

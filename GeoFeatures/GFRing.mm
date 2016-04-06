@@ -63,6 +63,19 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (instancetype) initWithWKT:(NSString *) wkt error: (NSError * __autoreleasing *) error {
+        
+        try {
+            self = [self initWithWKT: wkt];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return self;
+    }
+
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
 
@@ -90,6 +103,19 @@ namespace gf = geofeatures;
             //  }
             //
             _ring = gf::GFRing::ringWithGeoJSONCoordinates(coordinates);
+        }
+        return self;
+    }
+
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error {
+        
+        try {
+            self = [self initWithGeoJSONGeometry: jsonDictionary];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
         }
         return self;
     }
