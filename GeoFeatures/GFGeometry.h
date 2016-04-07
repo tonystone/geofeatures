@@ -258,7 +258,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      *
      */
-    + (instancetype) geometryWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws -> GFGeometry instead.")));
+    + (instancetype) geometryWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws instead.")));
 
     /** Create a GFGeometry instance from the WKT string.
      *
@@ -353,7 +353,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @throws NSException This method will throw an exception if the geo json is invalid.
      */
-    + (instancetype) geometryWithGeoJSONGeometry: (NSDictionary *) geoJSONGeometryDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.")));
+    + (instancetype) geometryWithGeoJSONGeometry: (NSDictionary *) geoJSONGeometryDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.")));
 
 
     /** Creates a GFGeometry from the GeoJSON dictionary supplied.

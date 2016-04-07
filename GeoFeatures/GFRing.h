@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
      * }
      * @endcode
      */
-    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws -> GFGeometry instead.")));
+    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws instead.")));
 
     /**
      * Initialize this geometry with the given WKT (Well-Known-Text) string.
@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      * @endparblock
      */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.")));
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.")));
 
     /**
      * Initialize this geometry with the given jsonDictionary.
