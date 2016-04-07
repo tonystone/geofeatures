@@ -399,31 +399,13 @@ namespace gf = geofeatures;
     }
 
     - (NSString *) toWKTString {
-        try {
-            gf::GeometryPtrVariant variant = [self cppGeometryPtrVariant];
-
-            std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), variant);
-
-            return [NSString stringWithFormat:@"%s",wkt.c_str()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
-        }
-    }
-
-    - (NSString *) toWKTString: (NSError * __autoreleasing *) error {
-        NSString * wkt = nil;
+        gf::GeometryPtrVariant variant = [self cppGeometryPtrVariant];
         
-        try {
-            wkt = [self toWKTString];
-            
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return wkt;
+        std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), variant);
+        
+        return [NSString stringWithFormat:@"%s",wkt.c_str()];
     }
+
 
 @end
 

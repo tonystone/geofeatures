@@ -295,12 +295,6 @@ NS_ASSUME_NONNULL_BEGIN
      */
     - (NSString *) toWKTString;
 
-    /**
-     *
-     * @returns A WKT string representation of this GFGeometry.
-     */
-    - (NSString *) toWKTString: (NSError * __autoreleasing *) error;
-
 @end
 
 /**
