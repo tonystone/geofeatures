@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 // Forward declarations
 @class GFPoint;
 
@@ -41,73 +43,137 @@
 @interface GFBox : GFGeometry
 
     /**
-    * Initialize this GFBox with 2 points representing the min and max point in the box.
-    */
+     * Initialize this GFBox with 2 points representing the min and max point in the box.
+     */
     - (instancetype) initWithMinCorner: (GFPoint *) minCorner maxCorner: (GFPoint *) maxCorner;
 
     /**
-    * Initialize this geometry with the given WKT (Well-Known-Text) string.
-    *
-    * @note
-    * @parblock
-    *
-    * WKT does not support boxes. However, to be generic GeoFeatures
-    * supports reading and writing from and to boxes. Boxes are outputted as a
-    * standard POLYGON WKT.
-    *
-    * GeoFeatures can read boxes from a standard POLYGON,
-    * from a POLYGON with 2 points or from a BOX
-    *
-    * The WKT output will always be a POLYGON
-    * @endparblock
-    *
-    * Example:
-    * @code
-    * {
-    *
-    *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
-    *
-    *   GFBox * box = [[GFBox alloc] initWithWKT: wkt]];
-    *
-    * }
-    * @endcode
-    */
-    - (instancetype) initWithWKT:(NSString *)wkt;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * @note
+     * @parblock
+     *
+     * WKT does not support boxes. However, to be generic GeoFeatures
+     * supports reading and writing from and to boxes. Boxes are outputted as a
+     * standard POLYGON WKT.
+     *
+     * GeoFeatures can read boxes from a standard POLYGON,
+     * from a POLYGON with 2 points or from a BOX
+     *
+     * The WKT output will always be a POLYGON
+     * @endparblock
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
+     *
+     *   GFBox * box = [[GFBox alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt  NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use init(wkt: String) throws -> GFGeometry instead.");
 
     /**
-    * Initialize this geometry with the given jsonDictionary.
-    *
-    * @note
-    * @parblock
-    *
-    * You must pass the geometry portion of the GeoJSON structure and
-    * not the entire GeoJSON object.
-    *
-    * Example:
-    *
-    * @code
-    * {
-    *       "type": "Feature",
-    *
-    *       "geometry":  {
-    *           "type": "Box",
-    *           "coordinates": [[100.0, 0.0], [101.0, 1.0]]
-    *       }
-    *  }
-    * @endcode
-    *
-    * In the above example only the dictionary below that
-    * represents the geometry portion is passed.
-    *
-    * @code
-    *       {
-    *           "type": "Box",
-    *           "coordinates": [[100.0, 0.0], [101.0, 1.0]]
-    *       }
-    * @endcode
-    * @endparblock
-    */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * @note
+     * @parblock
+     *
+     * WKT does not support boxes. However, to be generic GeoFeatures
+     * supports reading and writing from and to boxes. Boxes are outputted as a
+     * standard POLYGON WKT.
+     *
+     * GeoFeatures can read boxes from a standard POLYGON,
+     * from a POLYGON with 2 points or from a BOX
+     *
+     * The WKT output will always be a POLYGON
+     * @endparblock
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
+     *
+     *   GFBox * box = [[GFBox alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(init(wkt:)) __attribute__((swift_error(nonnull_error)));
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry":  {
+     *           "type": "Box",
+     *           "coordinates": [[100.0, 0.0], [101.0, 1.0]]
+     *       }
+     *  }
+     * @endcode
+     *
+     * In the above example only the dictionary below that
+     * represents the geometry portion is passed.
+     *
+     * @code
+     *       {
+     *           "type": "Box",
+     *           "coordinates": [[100.0, 0.0], [101.0, 1.0]]
+     *       }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.");
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry":  {
+     *           "type": "Box",
+     *           "coordinates": [[100.0, 0.0], [101.0, 1.0]]
+     *       }
+     *  }
+     * @endcode
+     *
+     * In the above example only the dictionary below that
+     * represents the geometry portion is passed.
+     *
+     * @code
+     *       {
+     *           "type": "Box",
+     *           "coordinates": [[100.0, 0.0], [101.0, 1.0]]
+     *       }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error NS_SWIFT_NAME(init(geoJSONGeometry:)) __attribute__((swift_error(nonnull_error)));
 
     /**
     * @returns The minCorner GFPoint from this GFBox
@@ -142,3 +208,5 @@
     - (void) setMaxCorner: (GFPoint *) maxCorner;
 
 @end
+
+NS_ASSUME_NONNULL_END
