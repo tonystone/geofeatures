@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The area of the geometry.
      */
-    - (double) area NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use area() throws -> Double instead.");
+    - (double) area __attribute__((swift_private, availability(swift, unavailable, message="Use area() throws -> Double instead.")));
 
     /**
      *
@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The area of the geometry.
      */
-    - (double) area: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(area()) __attribute__((swift_error(nonnull_error)));
+    - (double) area: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("area()"), swift_error(nonnull_error)));
 
     /** The length method calculates the length (the sum of distances between consecutive points) of a geometry.
      *
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The length of linear GFGeometry types (e.g. GFLineString).
      */
-    - (double) length  NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use length() throws -> Double instead.");
+    - (double) length __attribute__((swift_private, availability(swift, unavailable, message="Use length() throws -> Double instead.")));
 
     /** The length method calculates the length (the sum of distances between consecutive points) of a geometry.
      *
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The length of linear GFGeometry types (e.g. GFLineString).
      */
-    - (double) length: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(length()) __attribute__((swift_error(nonnull_error)));
+    - (double) length: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("length()"), swift_error(nonnull_error)));
 
     /** Calculates the perimeter of a geometry
      *
@@ -122,7 +122,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *  @returns The perimeter of areal GFGeometry types (e.g. GFPolygon).
      */
-    - (double) perimeter NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use perimeter() throws -> Double instead.");
+    - (double) perimeter __attribute__((swift_private, availability(swift, unavailable, message="Use perimeter() throws -> Double instead.")));
 
     /** Calculates the perimeter of a geometry
      *
@@ -139,71 +139,71 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *  @returns The perimeter of areal GFGeometry types (e.g. GFPolygon).
      */
-    - (double) perimeter: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(perimeter()) __attribute__((swift_error(nonnull_error)));
+    - (double) perimeter: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("perimeter()"), swift_error(nonnull_error)));
 
     /**  The centroid method calculates the geometric center (or: center of mass) of a geometry.
      *
      * @returns The calculated centroid as a GFPoint.
      */
-    - (GFPoint *) centroid NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use centroid() throws -> GFPoint instead.");
+    - (GFPoint *) centroid __attribute__((swift_private, availability(swift, unavailable, message="Use centroid() throws -> GFPoint instead.")));
 
     /**  The centroid method calculates the geometric center (or: center of mass) of a geometry.
      *
      * @returns The calculated centroid as a GFPoint.
      */
-    - (GFPoint *) centroid: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(centroid()) __attribute__((swift_error(nonnull_error)));
+    - (GFPoint *) centroid: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("centroid()"), swift_error(nonnull_error)));
 
     /** The boundingBox method calculates the boundingBox (also known as axis aligned bounding box, aabb, or minimum bounding rectangle, mbr) of a geometry.
      *
      * @returns The bounding box as a GFBox.
      */
-    - (GFBox *) boundingBox NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use boundingBox() throws -> GFBox instead.");
+    - (GFBox *) boundingBox __attribute__((swift_private, availability(swift, unavailable, message="Use boundingBox() throws -> GFBox instead.")));
 
     /** The boundingBox method calculates the boundingBox (also known as axis aligned bounding box, aabb, or minimum bounding rectangle, mbr) of a geometry.
      *
      * @returns The bounding box as a GFBox.
      */
-    - (GFBox *) boundingBox: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(boundingBox()) __attribute__((swift_error(nonnull_error)));
+    - (GFBox *) boundingBox: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("boundingBox()"), swift_error(nonnull_error)));
 
     /** Checks if the geometry is completely inside the other geometry.
      *
      * @returns True if self is within the other GFGeometry instance.  False otherwise.
      */
-    - (BOOL) within: (GFGeometry *) other NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use within(other: GFGeometry) throws -> Bool instead.");
+    - (BOOL) within: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use within(other: GFGeometry) throws -> Bool instead.")));
 
     /** Checks if the geometry is completely inside the other geometry.
      *
      * @returns True if self is within the other GFGeometry instance.  False otherwise.
      */
-    - (BOOL) within: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(within(other:)) __attribute__((swift_error(nonnull_error)));
+    - (BOOL) within: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("within(other:)"), swift_error(nonnull_error)));
 
     /**
      * Checks if self has at least one intersection.
      *
      * @returns true if self has at least one intersection.
      */
-    - (BOOL) intersects NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use intersects() throws -> Bool instead.");
+    - (BOOL) intersects __attribute__((swift_private, availability(swift, unavailable, message="Use intersects() throws -> Bool instead.")));
 
     /**
      * Checks if self has at least one intersection.
      *
      * @returns true if self has at least one intersection.
      */
-    - (BOOL) intersectsError: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(intersects()) __attribute__((swift_error(nonnull_error)));
+    - (BOOL) intersectsError: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects()"), swift_error(nonnull_error)));
 
     /**
      * Checks if self has at least one intersection with the other geometry.
      *
      * @returns true if self has at least one intersection with the other geometry.
      */
-    - (BOOL) intersects: (GFGeometry *) other NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use intersects() throws -> Bool instead.");
+    - (BOOL) intersects: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use intersects() throws -> Bool instead.")));
 
     /**
      * Checks if self has at least one intersection with the other geometry.
      *
      * @returns true if self has at least one intersection with the other geometry.
      */
-    - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(intersects(other:)) __attribute__((swift_error(nonnull_error)));
+    - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects(other:)"), swift_error(nonnull_error)));
 
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
      *
@@ -211,13 +211,13 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @throws NSInvalidArgumentException if the one of the geometries is invalid.  You can test for an invalid geometry by calling isValid.
      */
-    - (GFGeometry *) union_: (GFGeometry *)other NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use union(other: GFGeometry) throws -> GFGeometry instead.");
+    - (GFGeometry *) union_: (GFGeometry *)other __attribute__((swift_private, availability(swift, unavailable, message="Use union(other: GFGeometry) throws -> GFGeometry instead.")));
 
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
      *
      * @returns A new GFGeometry instance that represents the union of the self and other.
      */
-    - (GFGeometry *) union_: (GFGeometry *)other error: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(union(other:)) __attribute__((swift_error(nonnull_error)));
+    - (GFGeometry *) union_: (GFGeometry *)other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("union(other:)"), swift_error(nonnull_error)));
 
 @end
 
@@ -258,7 +258,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      *
      */
-    + (instancetype) geometryWithWKT:(NSString *)wkt NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use init(wkt: String) throws -> GFGeometry instead.");
+    + (instancetype) geometryWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws -> GFGeometry instead.")));
 
     /** Create a GFGeometry instance from the WKT string.
      *
@@ -287,7 +287,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      *
      */
-    + (instancetype) geometryWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(init(wkt:)) __attribute__((swift_error(nonnull_error)));
+    + (instancetype) geometryWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
 
     /**
      *
@@ -359,7 +359,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @throws NSException This method will throw an exception if the geo json is invalid.
      */
-    + (instancetype) geometryWithGeoJSONGeometry: (NSDictionary *) geoJSONGeometryDictionary NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.");
+    + (instancetype) geometryWithGeoJSONGeometry: (NSDictionary *) geoJSONGeometryDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.")));
 
 
     /** Creates a GFGeometry from the GeoJSON dictionary supplied.
@@ -408,7 +408,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @throws NSException This method will throw an exception if the geo json is invalid.
      */
-    + (instancetype) geometryWithGeoJSONGeometry:(NSDictionary *)geoJSONGeometryDictionary error: (NSError * __autoreleasing *) error NS_SWIFT_NAME(init(geoJSONGeometry:)) __attribute__((swift_error(nonnull_error)));
+    + (instancetype) geometryWithGeoJSONGeometry:(NSDictionary *)geoJSONGeometryDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(geoJSONGeometry:)"), swift_error(nonnull_error)));
 
     /** Converts the Geometry to a GeoJSON object.
     *

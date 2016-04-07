@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
      * }
      * @endcode
      */
-    - (instancetype) initWithWKT:(NSString *)wkt  NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use init(wkt: String) throws -> GFGeometry instead.");
+    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws -> GFGeometry instead.")));
 
     /**
      * Initialize this geometry with the given WKT (Well-Known-Text) string.
@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
      * }
      * @endcode
      */
-    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error NS_SWIFT_NAME(init(wkt:)) __attribute__((swift_error(nonnull_error)));
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
 
     /**
      * Initialize this geometry with the given jsonDictionary.
@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      * @endparblock
      */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary NS_REFINED_FOR_SWIFT NS_SWIFT_UNAVAILABLE("Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.");
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws -> GFGeometry instead.")));
 
     /**
      * Initialize this geometry with the given jsonDictionary.
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      * @endparblock
      */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error NS_SWIFT_NAME(init(geoJSONGeometry:)) __attribute__((swift_error(nonnull_error)));
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(geoJSONGeometry:)"), swift_error(nonnull_error)));
 
     /**
     * @returns The minCorner GFPoint from this GFBox
