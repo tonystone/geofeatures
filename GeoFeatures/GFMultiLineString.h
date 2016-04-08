@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "GFGeometryCollection.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 // Forward declarations
 @class GFLineString;
 
@@ -40,60 +42,116 @@
 @interface GFMultiLineString : GFGeometryCollection
 
     /**
-    * Initialize this geometry with the given WKT (Well-Known-Text) string.
-    *
-    * Example:
-    * @code
-    * {
-    *
-    *   NSString * wkt = @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))";
-    *
-    *   GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: wkt]];
-    *
-    * }
-    * @endcode
-    */
-    - (instancetype) initWithWKT:(NSString *)wkt;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))";
+     *
+     *   GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws instead.")));
 
     /**
-    * Initialize this geometry with the given jsonDictionary.
-    *
-    * @note
-    * @parblock
-    *
-    * You must pass the geometry portion of the GeoJSON structure and
-    * not the entire GeoJSON object.
-    *
-    * Example:
-    *
-    * @code
-    * {
-    *       "type": "Feature",
-    *
-    *       "geometry": { "type": "MultiLineString",
-    *                     "coordinates": [
-    *                               [ [100.0, 0.0], [101.0, 1.0] ],
-    *                               [ [102.0, 2.0], [103.0, 3.0] ]
-    *                       ]
-    *                   }
-    *  }
-    * @endcode
-    *
-    * In the above example only the dictionary below that
-    * represents the geometry portion is passed.
-    *
-    * @code
-    *       {
-    *           "type": "MultiLineString",
-    *           "coordinates": [
-    *                   [ [100.0, 0.0], [101.0, 1.0] ],
-    *                   [ [102.0, 2.0], [103.0, 3.0] ]
-    *             ]
-    *       }
-    * @endcode
-    * @endparblock
-    */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))";
+     *
+     *   GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry": { "type": "MultiLineString",
+     *                     "coordinates": [
+     *                               [ [100.0, 0.0], [101.0, 1.0] ],
+     *                               [ [102.0, 2.0], [103.0, 3.0] ]
+     *                       ]
+     *                   }
+     *  }
+     * @endcode
+     *
+     * In the above example only the dictionary below that
+     * represents the geometry portion is passed.
+     *
+     * @code
+     *       {
+     *           "type": "MultiLineString",
+     *           "coordinates": [
+     *                   [ [100.0, 0.0], [101.0, 1.0] ],
+     *                   [ [102.0, 2.0], [103.0, 3.0] ]
+     *             ]
+     *       }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.")));
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry": { "type": "MultiLineString",
+     *                     "coordinates": [
+     *                               [ [100.0, 0.0], [101.0, 1.0] ],
+     *                               [ [102.0, 2.0], [103.0, 3.0] ]
+     *                       ]
+     *                   }
+     *  }
+     * @endcode
+     *
+     * In the above example only the dictionary below that
+     * represents the geometry portion is passed.
+     *
+     * @code
+     *       {
+     *           "type": "MultiLineString",
+     *           "coordinates": [
+     *                   [ [100.0, 0.0], [101.0, 1.0] ],
+     *                   [ [102.0, 2.0], [103.0, 3.0] ]
+     *             ]
+     *       }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(geoJSONGeometry:)"), swift_error(nonnull_error)));
 
     /** The number of GFLineString instances in this collection.
     *
@@ -212,3 +270,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END
