@@ -53,7 +53,12 @@
     - (void) testSetOuterRing_WithNilRing {
         GFMutablePolygon * polygon = [[GFMutablePolygon alloc] init];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([polygon setOuterRing: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testInnerRings_WithValidRings {
@@ -79,8 +84,13 @@
 
     - (void) testInnerRings_WithNilRings {
         GFMutablePolygon * polygon = [[GFMutablePolygon alloc] init];
-
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([polygon setInnerRings: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
 @end
