@@ -56,6 +56,8 @@
 		EA9E6F741CB71F2F00236F50 /* GFPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F711CB71F1E00236F50 /* GFPointTests.swift */; };
 		EA9E6F771CB72C4C00236F50 /* GFLineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F751CB72C4500236F50 /* GFLineStringTests.swift */; };
 		EA9E6F781CB72C4E00236F50 /* GFLineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F751CB72C4500236F50 /* GFLineStringTests.swift */; };
+		EA9E6F7B1CB73DCB00236F50 /* GFMultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F791CB73DC200236F50 /* GFMultiPointTests.swift */; };
+		EA9E6F7C1CB73DCC00236F50 /* GFMultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F791CB73DC200236F50 /* GFMultiPointTests.swift */; };
 		EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
 		EAC266C11CB42D3D003AB6E9 /* GFGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */; };
 		EAD891371BF3AFDF00BD4FAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD891361BF3AFDF00BD4FAC /* AppDelegate.swift */; };
@@ -186,6 +188,7 @@
 		EA7502141BF3B70400E8D89A /* Pods_GeoFeatures_iOS_Tests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_GeoFeatures_iOS_Tests.framework; path = "Pods/../build/Debug-iphoneos/Pods_GeoFeatures_iOS_Tests.framework"; sourceTree = "<group>"; };
 		EA9E6F711CB71F1E00236F50 /* GFPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFPointTests.swift; path = "Swift Compatibility/GFPointTests.swift"; sourceTree = "<group>"; };
 		EA9E6F751CB72C4500236F50 /* GFLineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFLineStringTests.swift; path = "Swift Compatibility/GFLineStringTests.swift"; sourceTree = "<group>"; };
+		EA9E6F791CB73DC200236F50 /* GFMultiPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFMultiPointTests.swift; path = "Swift Compatibility/GFMultiPointTests.swift"; sourceTree = "<group>"; };
 		EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFGeometryTests.swift; path = "Swift Compatibility/GFGeometryTests.swift"; sourceTree = "<group>"; };
 		EAD8909B1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS/Pods-GeoFeatures-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EAD8909C1BF3A47600BD4FAC /* Pods-GeoFeatures-iOS.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS/Pods-GeoFeatures-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -425,6 +428,7 @@
 				EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */,
 				EAFEC2751CB5DAC9004AB31B /* GFBoxTests.swift */,
 				EA9E6F751CB72C4500236F50 /* GFLineStringTests.swift */,
+				EA9E6F791CB73DC200236F50 /* GFMultiPointTests.swift */,
 			);
 			name = "Swift Compatibility";
 			sourceTree = "<group>";
@@ -846,6 +850,7 @@
 				36698FD5E108DFA674C763AA /* GFMultiLineStringTests.m in Sources */,
 				3669808E58860FC07296186F /* GFGeometryCollectionTests.m in Sources */,
 				EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */,
+				EA9E6F7B1CB73DCB00236F50 /* GFMultiPointTests.swift in Sources */,
 				3669836B4BAC01B742CBAB72 /* GFPointAbstractTests.m in Sources */,
 				3669892241E56291821679FA /* GFLineStringAbstractTests.m in Sources */,
 				366985884DA03B6774617494 /* GFPolygonAbstractTests.m in Sources */,
@@ -900,6 +905,7 @@
 				EAD891571BF3B02F00BD4FAC /* GFMultiPointTests.m in Sources */,
 				EAD891581BF3B02F00BD4FAC /* GFMultiPolygonTests.m in Sources */,
 				EAD891591BF3B02F00BD4FAC /* GFMultiLineStringTests.m in Sources */,
+				EA9E6F7C1CB73DCC00236F50 /* GFMultiPointTests.swift in Sources */,
 				EAD8915A1BF3B02F00BD4FAC /* GFGeometryCollectionTests.m in Sources */,
 				EAD8915B1BF3B02F00BD4FAC /* GFGeometryTests.m in Sources */,
 				EAD8915C1BF3B02F00BD4FAC /* GFPointAbstractTests.m in Sources */,
