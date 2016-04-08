@@ -45,8 +45,13 @@
 
     - (void) testAddGeometry_WithNilLineString {
         GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
-    
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([multiLineString addGeometry: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testInsertGeometry_WithValidLineString_BeforeLineString {
@@ -77,8 +82,13 @@
 
     - (void) testInsertGeometry_WithNilLineString {
         GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
-    
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([multiLineString insertGeometry: nil atIndex: 0], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testRemoveAllGeometries_WhileEmpty {
@@ -165,8 +175,13 @@
     - (void) testSetObjectAtIndexedSubscript_WithNilLineStringAndValidIndex {
 
         GFMutableMultiLineString * multiLineString = [[GFMutableMultiLineString alloc] init];
-
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed((multiLineString[0] = nil), NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testSetObjectAtIndexedSubscript_WithValidLineStringAndInvalidIndex {
