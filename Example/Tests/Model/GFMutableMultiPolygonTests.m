@@ -46,7 +46,12 @@
     - (void) testAddGeometry_WithNilPolygon {
         GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([multiPolygon addGeometry: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testInsertGeometry_WithValidPolygon_BeforePolygon {
@@ -78,7 +83,12 @@
     - (void) testInsertGeometry_WithNilPolygon {
         GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([multiPolygon insertGeometry: nil atIndex: 0], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testRemoveAllGeometries_WhileEmpty {
@@ -166,7 +176,12 @@
 
         GFMutableMultiPolygon * multiPolygon = [[GFMutableMultiPolygon alloc] init];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed((multiPolygon[0] = nil), NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testSetObjectAtIndexedSubscript_WithValidPolygonAndInvalidIndex {
