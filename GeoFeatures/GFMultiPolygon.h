@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
      * }
      * @endcode
      */
-    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_error(nonnull_error)));
 
     /**
      * Initialize this geometry with the given jsonDictionary.
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      * @endparblock
      */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(geoJSONGeometry:)"), swift_error(nonnull_error)));
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_error(nonnull_error)));
 
     /** The number of GFPolygon instances in this collection.
     *
