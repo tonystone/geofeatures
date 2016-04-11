@@ -46,7 +46,12 @@
     - (void) testAddGeometry_WithNilPolygon {
         GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([geometryCollection addGeometry: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testAddGeometry_WithIncorrectObjectType {
@@ -84,7 +89,12 @@
     - (void) testInsertGeometry_WithNilPolygon {
         GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([geometryCollection insertGeometry: nil atIndex: 0], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testInsertGeometry_WithIncorrectObjectType {
@@ -180,7 +190,12 @@
 
         GFMutableGeometryCollection * geometryCollection = [[GFMutableGeometryCollection alloc] init];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed((geometryCollection[0] = nil), NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testSetObjectAtIndexedSubscript_WithInvalidObjectTypeAndValidIndex {
