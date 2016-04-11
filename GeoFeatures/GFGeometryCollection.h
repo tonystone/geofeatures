@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * @class       GFGeometryCollection
  *
@@ -48,7 +50,23 @@
      * }
      * @endcode
      */
-    - (instancetype) initWithWKT:(NSString *)wkt;
+    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws instead.")));
+
+    /**
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))";
+     *
+     *   GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
 
     /**
      * Initialize this GFGeometryCollection with the given GeoJSON dictionary.
@@ -73,7 +91,32 @@
      * @endcode
      * @endparblock
      */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.")));
+
+    /**
+     * Initialize this GFGeometryCollection with the given GeoJSON dictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * Example:
+     *
+     * @code
+     *       {
+     *          "type": "GeometryCollection",
+     *          "geometries": [
+     *               { "type": "Point",
+     *                 "coordinates": [100.0, 0.0]
+     *               },
+     *               { "type": "LineString",
+     *                 "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
+     *               }
+     *           ]
+     *       }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(geoJSONGeometry:)"), swift_error(nonnull_error)));
 
     /**
      *
@@ -195,3 +238,5 @@
     - (void) setObject: (id) aGeometry atIndexedSubscript:(NSUInteger) index;
 
 @end
+
+NS_ASSUME_NONNULL_END
