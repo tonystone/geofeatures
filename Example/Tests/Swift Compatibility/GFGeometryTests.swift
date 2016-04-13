@@ -44,8 +44,16 @@ class GFGeometryTests: XCTestCase {
         XCTAssertEqual(try GFGeometry(wkt: "POLYGON((0 0,0 7,4 2,2 0,0 0))").area(), 16.0)
     }
     
+    func testArea_Throw () {
+        XCTAssertTrue(true /* NOTE: Currently there are no cases that Area throws.  It is marked with try to future proof it as boost evolves. */)
+    }
+    
     func testLength () {
         XCTAssertEqual(try GFGeometry(wkt: "LINESTRING(0 0,1 1)").length(), 1.4142135623730951)
+    }
+    
+    func testLength_Throw () {
+        XCTAssertTrue(true /* NOTE: Currently there are no cases that length throws.  It is marked with try to future proof it as boost evolves. */)
     }
     
     func testPerimeter () {
@@ -58,10 +66,18 @@ class GFGeometryTests: XCTestCase {
         XCTAssertEqual(centroid.toWKTString(), "POINT(4.04663 1.6349)")
     }
     
+    func testCentroid_Throws ()  {
+        XCTAssertThrowsError(try GFLineString().centroid())
+    }
+    
     func testBoundingBox () throws {
         let boundingBox = try GFGeometry(wkt: "POLYGON((0 1,0 9,7 9,7 1,0 1))").boundingBox()
         
         XCTAssertEqual(boundingBox.toWKTString(), "POLYGON((0 1,0 9,7 9,7 1,0 1))")
+    }
+    
+    func testBoundingBox_Throw () {
+        XCTAssertTrue(true /* NOTE: Currently there are no cases that boundingBox throws.  It is marked with try to future proof it as boost evolves. */)
     }
     
     func testWithin () throws {
@@ -71,6 +87,10 @@ class GFGeometryTests: XCTestCase {
         XCTAssertTrue(try point.within(other: polygon))
     }
     
+    func testWithin_Throws () throws {
+        XCTAssertTrue(true /* NOTE: Currently there are no cases that within throws.  It is marked with try to future proof it as boost evolves. */)
+    }
+    
     func testIntersects_Self () throws {
         // Self crossing POlygon
         let polygon = try GFGeometry(wkt: "POLYGON((-91.5494 42.0698,-91.5494 42.0698,-91.549 42.0698,-91.5489 42.0697,-91.5488 42.0696,-91.5485 42.0696,-91.5481 42.0695,-91.5477 42.0694,-91.5475 42.0694,-91.5474 42.0693,-91.5472 42.0692,-91.547 42.0691,-91.547 42.0685,-91.547 42.0684,-91.5468 42.0682,-91.5467 42.0682,-91.5465 42.0681,-91.5463 42.0679,-91.5462 42.0678,-91.5461 42.0677,-91.546 42.0675,-91.5457 42.0674,-91.5456 42.0673,-91.5456 42.0672,-91.5456 42.0671,-91.5456 42.067,-91.5457 42.0669,-91.5458 42.0668,-91.546 42.0667,-91.5463 42.0666,-91.5464 42.0665,-91.5465 42.0664,-91.5465 42.0663,-91.5465 42.066,-91.5464 42.0657,-91.5464 42.0656,-91.5464 42.0655,-91.5465 42.0654,-91.5466 42.0652,-91.5469 42.065,-91.547 42.065,-91.547 42.0649,-91.547 42.0648,-91.5468 42.0647,-91.5477 42.0647,-91.5499 42.0647,-91.5499 42.0649,-91.5498 42.0648,-91.5495 42.0648,-91.5493 42.0648,-91.5491 42.0649,-91.5489 42.065,-91.5486 42.065,-91.5484 42.065,-91.5483 42.0651,-91.5483 42.0652,-91.5483 42.0653,-91.5485 42.0654,-91.5487 42.0654,-91.5489 42.0654,-91.549 42.0654,-91.5491 42.0655,-91.5491 42.0656,-91.5491 42.0657,-91.549 42.0657,-91.5489 42.0658,-91.5486 42.0658,-91.5484 42.0658,-91.5483 42.0658,-91.5481 42.0659,-91.5479 42.0661,-91.5479 42.0662,-91.5479 42.0664,-91.548 42.0665,-91.5481 42.0666,-91.5482 42.0667,-91.5485 42.0667,-91.549 42.0668,-91.5491 42.0668,-91.5491 42.0668,-91.5489 42.0668,-91.5489 42.0668,-91.5489 42.0673,-91.549 42.0679,-91.5492 42.0696,-91.5494 42.0698))")
@@ -78,11 +98,19 @@ class GFGeometryTests: XCTestCase {
         XCTAssertTrue(try polygon.intersects())
     }
     
+    func testIntersects_Self_Throws () throws {
+        XCTAssertTrue(true /* NOTE: Currently there are no cases that intersects self throws.  It is marked with try to future proof it as boost evolves. */)
+    }
+    
     func testIntersects_Other () throws {
         let lineString = try GFGeometry(wkt: "LINESTRING(1 1,2 2)")
         let polygon    = try GFGeometry(wkt: "POLYGON((0 0,10 0,10 10,0 10,0 0))")
         
         XCTAssertTrue(try lineString.intersects(other: polygon))
+    }
+    
+    func testIntersects_Other_Throws () throws {
+        XCTAssertTrue(true /* NOTE: Currently there are no cases that intersects other throws.  It is marked with try to future proof it as boost evolves. */)
     }
     
     func testUnion () throws {
