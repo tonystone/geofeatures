@@ -88,14 +88,9 @@ namespace gf = geofeatures;
 #pragma mark - Public Interface
 
     - (BOOL) isValid {
-        try {
-            const auto variant = [self cppGeometryPtrVariant];
+        const auto variant = [self cppGeometryPtrVariant];
 
-            return gf::operators::isValid(variant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
+        return gf::operators::isValid(variant);
     }
 
     - (double)area {
@@ -109,6 +104,20 @@ namespace gf = geofeatures;
         }
     }
 
+    - (double)area: (NSError * __autoreleasing *) error {
+        double area = 0.0;
+        
+        try {
+            area = [self area];
+        
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return area;
+    }
+
     - (double)length {
         try {
             const auto variant = [self cppGeometryPtrVariant];
@@ -118,6 +127,20 @@ namespace gf = geofeatures;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+    }
+
+    - (double)length: (NSError * __autoreleasing *) error {
+        double length = 0.0;
+        
+        try {
+            length = [self length];
+        
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return length;
     }
 
     - (double)perimeter {
@@ -131,6 +154,20 @@ namespace gf = geofeatures;
         }
     }
 
+    - (double)perimeter: (NSError * __autoreleasing *) error {
+        double perimeter = 0.0;
+        
+        try {
+            perimeter = [self perimeter];
+        
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return perimeter;
+    }
+
     - (GFPoint *)centroid {
         try {
             const auto variant = [self cppGeometryPtrVariant];
@@ -142,6 +179,18 @@ namespace gf = geofeatures;
         }
     }
 
+    - (GFPoint *)centroid: (NSError **) error {
+        try {
+            return [self centroid];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return nil;
+    }
+
     - (GFBox *)boundingBox {
         try {
             const auto variant = [self cppGeometryPtrVariant];
@@ -151,6 +200,18 @@ namespace gf = geofeatures;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+    }
+
+    - (GFBox *)boundingBox: (NSError **) error {
+        try {
+            return [self boundingBox];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return nil;
     }
 
     - (BOOL)within:(GFGeometry *)other {
@@ -166,6 +227,20 @@ namespace gf = geofeatures;
         }
     }
 
+    - (BOOL)within:(GFGeometry *)other error: (NSError **) error {
+        BOOL within = NO;
+        
+        try {
+            within = [self within: other];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return within;
+    }
+
     - (BOOL) intersects {
 
         try {
@@ -178,6 +253,20 @@ namespace gf = geofeatures;
         }
     }
 
+    - (BOOL)intersectsError: (NSError **) error {
+        BOOL intersects = NO;
+        
+        try {
+            intersects = [self intersects];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return intersects;
+    }
+
     - (BOOL) intersects: (GFGeometry *) other {
         try {
             const auto variant        = [self cppGeometryPtrVariant];
@@ -188,6 +277,20 @@ namespace gf = geofeatures;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+    }
+
+    - (BOOL)intersects: (GFGeometry *) other error: (NSError **) error {
+        BOOL intersects = NO;
+        
+        try {
+            intersects = [self intersects: other];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return intersects;
     }
 
     - (GFGeometry *)union_: (GFGeometry *)other {
@@ -203,6 +306,20 @@ namespace gf = geofeatures;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+    }
+
+    - (GFGeometry *)union_: (GFGeometry *) other error: (NSError **) error {
+        GFGeometry * geometry = nil;
+        
+        try {
+            geometry = [self union_: other];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return geometry;
     }
 
     - (NSString *)description {
@@ -267,18 +384,28 @@ namespace gf = geofeatures;
         @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid WKT, %@ not supported.", wkt] userInfo:nil];
     }
 
-    - (NSString *) toWKTString {
+    + (instancetype) geometryWithWKT:(NSString *) wkt error: (NSError * __autoreleasing *) error {
+        GFGeometry * geometry = nil;
+        
         try {
-            gf::GeometryPtrVariant variant = [self cppGeometryPtrVariant];
-
-            std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), variant);
-
-            return [NSString stringWithFormat:@"%s",wkt.c_str()];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason:[NSString stringWithUTF8String:e.what()] userInfo:nil];
+            geometry = [self geometryWithWKT: wkt];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
         }
+        return geometry;
     }
+
+    - (NSString *) toWKTString {
+        gf::GeometryPtrVariant variant = [self cppGeometryPtrVariant];
+        
+        std::string wkt = boost::apply_visitor(gf::operators::WKTOperation(), variant);
+        
+        return [NSString stringWithFormat:@"%s",wkt.c_str()];
+    }
+
 
 @end
 
@@ -295,6 +422,20 @@ namespace gf = geofeatures;
             geometry = [(GFGeometry *)[geometryClass alloc] initWithGeoJSONGeometry: geoJSONGeometryDictionary];
         } else {
             @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithFormat:  @"Invalid GeoJSON Geometry Object, type %@ not supported.", geoJSONGeometryDictionary[@"type"]] userInfo:nil];
+        }
+        return geometry;
+    }
+
+    + (instancetype) geometryWithGeoJSONGeometry:(NSDictionary *)geoJSONGeometryDictionary  error: (NSError * __autoreleasing *) error {
+        GFGeometry * geometry = nil;
+        
+        try {
+            geometry = [self geometryWithGeoJSONGeometry: geoJSONGeometryDictionary];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
         }
         return geometry;
     }

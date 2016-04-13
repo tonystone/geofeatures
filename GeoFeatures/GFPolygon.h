@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "GFGeometry.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 // Forward declarations
 @class GFRing;
 @class GFGeometryCollection;
@@ -39,56 +41,109 @@
 @interface GFPolygon : GFGeometry
 
     /**
-    * Initialize this geometry with the given WKT (Well-Known-Text) string.
-    *
-    * Example:
-    * @code
-    * {
-    *
-    *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
-    *
-    *   GFPolygon * polygon = [[GFPolygon alloc] initWithWKT: wkt]];
-    *
-    * }
-    * @endcode
-    */
-    - (instancetype) initWithWKT:(NSString *)wkt;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
+     *
+     *   GFPolygon * polygon = [[GFPolygon alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws instead.")));
 
     /**
-    * Initialize this geometry with the given jsonDictionary.
-    *
-    * @note
-    * @parblock
-    *
-    * You must pass the geometry portion of the GeoJSON structure and
-    * not the entire GeoJSON object.
-    *
-    * Given the following JSON:
-    * @code
-    * {
-    *       "type": "Feature",
-    *
-    *       "geometry": {
-    *                       "type": "MultiPolygon",
-    *                       "coordinates": [
-    *                             [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
-    *                        ]
-    *                   }
-    *  }
-    * @endcode
-    *
-    * You would pass this section to the init method.
-    * @code
-    *      {
-    *           "type": "MultiPolygon",
-    *           "coordinates": [
-    *                 [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
-    *           ]
-    *      }
-    * @endcode
-    * @endparblock
-    */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
+     *
+     *   GFPolygon * polygon = [[GFPolygon alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Given the following JSON:
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry": {
+     *                       "type": "MultiPolygon",
+     *                       "coordinates": [
+     *                             [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+     *                        ]
+     *                   }
+     *  }
+     * @endcode
+     *
+     * You would pass this section to the init method.
+     * @code
+     *      {
+     *           "type": "MultiPolygon",
+     *           "coordinates": [
+     *                 [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+     *           ]
+     *      }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.")));
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Given the following JSON:
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry": {
+     *                       "type": "MultiPolygon",
+     *                       "coordinates": [
+     *                             [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+     *                        ]
+     *                   }
+     *  }
+     * @endcode
+     *
+     * You would pass this section to the init method.
+     * @code
+     *      {
+     *           "type": "MultiPolygon",
+     *           "coordinates": [
+     *                 [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+     *           ]
+     *      }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(geoJSONGeometry:)"), swift_error(nonnull_error)));
+
 
     /** The outer ring of this polygon.
      *
@@ -127,3 +182,5 @@
     - (void) setInnerRings: (GFGeometryCollection *) aRingCollection;
 
 @end
+
+NS_ASSUME_NONNULL_END

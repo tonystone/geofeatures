@@ -76,6 +76,19 @@ namespace gf = geofeatures;
         return self;
     }
 
+    - (instancetype) initWithWKT:(NSString *) wkt error: (NSError * __autoreleasing *) error {
+        
+        try {
+            self = [self initWithWKT: wkt];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return self;
+    }
+
     - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary {
         NSParameterAssert(jsonDictionary != nil);
         
@@ -87,6 +100,19 @@ namespace gf = geofeatures;
                 @throw [NSException exceptionWithName: NSInvalidArgumentException reason:@"Invalid GeoJSON Geometry Object, no coordinates found or coordinates of an invalid type." userInfo:nil];
             }
             _box = gf::GFBox::boxWithGeoJSONCoordinates(coordinates);
+        }
+        return self;
+    }
+
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error {
+        
+        try {
+            self = [self initWithGeoJSONGeometry: jsonDictionary];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
         }
         return self;
     }

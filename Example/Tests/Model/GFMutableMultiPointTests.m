@@ -45,8 +45,13 @@
 
     - (void) testAddPoint_WithNilPoint{
         GFMutableMultiPoint * multiPoint = [[GFMutableMultiPoint alloc] init];
-    
+   
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([multiPoint addGeometry: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testInsertPoint_WithValidPoint_BeforePoint {
@@ -77,8 +82,13 @@
 
     - (void) testInsertPoint_WithNilPoint{
         GFMutableMultiPoint * multiPoint = [[GFMutableMultiPoint alloc] init];
-    
+   
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([multiPoint  insertGeometry: nil atIndex: 0], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testRemoveAllPoints_WhileEmpty {
@@ -166,7 +176,12 @@
 
         GFMutableMultiPoint * multiPoint = [[GFMutableMultiPoint alloc] init];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed((multiPoint[0] = nil), NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testSetObjectAtIndexedSubscript_WithValidPointAndInvalidIndex {

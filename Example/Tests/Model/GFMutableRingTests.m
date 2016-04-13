@@ -48,8 +48,10 @@
 
     - (void) testAddPoint_WithNilPoint{
         GFMutableRing * ring = [[GFMutableRing alloc] init];
-    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
         XCTAssertThrowsSpecificNamed([ring addPoint: nil], NSException, NSInvalidArgumentException);
+#pragma clang diagnostic pop
     }
 
     - (void) testInsertPoint_WithValidPoint_BeforePoint {
@@ -87,7 +89,10 @@
     - (void) testInsertPoint_WithNilPoint{
         GFMutableRing * ring = [[GFMutableRing alloc] init];
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
         XCTAssertThrowsSpecificNamed([ring  insertPoint: nil atIndex: 0], NSException, NSInvalidArgumentException);
+#pragma clang diagnostic pop
     }
 
     - (void) testRemoveAllPoints_WhileEmpty {
@@ -188,7 +193,10 @@
 
         GFMutableRing * ring = [[GFMutableRing alloc] init];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
         XCTAssertThrowsSpecificNamed((ring[0] = nil), NSException, NSInvalidArgumentException);
+#pragma clang diagnostic pop
     }
 
     - (void) testSetObjectAtIndexedSubscript_WithValidPointAndInvalidIndex {

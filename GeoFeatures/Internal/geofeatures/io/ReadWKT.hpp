@@ -40,10 +40,29 @@ namespace geofeatures {
         template <typename Geometry, typename = typename std::enable_if<std::is_same<Geometry,GeometryCollection<>>::value>::type>
         inline void readWKT(std::string const &wkt, Geometry &geometryCollection)
         {
-            if (!boost::istarts_with(wkt, "GEOMETRYCOLLECTION")) {
+            static std::string GeometryCollectionToken = "GEOMETRYCOLLECTION";
+            static std::regex tokensRegex("\\b(POINT|MULTIPOINT|LINESTRING|MULTILINESTRING|POLYGON|MULTIPOLYGON)", std::regex_constants::icase);
+            static std::regex emptyTokenRegex("[ \\t]*EMPTY[ \\t]*", std::regex_constants::icase);
+            
+            if (!boost::istarts_with(wkt, GeometryCollectionToken)) {
                 throw std::invalid_argument("Should start with 'GEOMETRYCOLLECTION'' in (" + wkt + ")");
             }
+       
+            long tokensBegin = wkt.find_first_of("(");
+            long tokensEnd = wkt.find_last_of(")");
+            
+            bool openClosePerensFound = (tokensBegin != std::string::npos) && (tokensEnd != std::string::npos);
+            
+            if (tokensBegin != std::string::npos)
+                tokensBegin += 1;
+            else
+                tokensBegin = GeometryCollectionToken.length();
 
+            if (tokensEnd != std::string::npos)
+               tokensEnd -= 1;
+            else
+                tokensEnd = wkt.length();
+            
             GeometryCollection<>::value_type (*geometry)(std::string & wkt) =
                     [](std::string & wkt) -> GeometryCollection<>::value_type {
 
@@ -87,43 +106,45 @@ namespace geofeatures {
                         return GeometryCollection<>::value_type();
                     };
 
-            std::regex words_regex("\\b(EMPTY|POINT|MULTIPOINT|LINESTRING|MULTILINESTRING|POLYGON|MULTIPOLYGON)", std::regex_constants::icase);
+            auto matchesBegin = std::sregex_iterator(wkt.begin(), wkt.end(), tokensRegex);
+            auto matchesEnd = std::sregex_iterator();
 
-            std::string::const_iterator collectionBegin = wkt.begin();
-            std::string::const_iterator collectionEnd   = wkt.end();
+            if (std::distance(matchesBegin, matchesEnd) > 0) {
+                
+                std::sregex_iterator i = matchesBegin;
+                
+                std::smatch match = *i;
+                
+                long currentToken = match.position();
 
-            long beginOffset = wkt.find_first_of("(");
-            long endPosition = wkt.find_last_of(")");
+                i++;
+                
+                for (; i != matchesEnd; i++) {
+                    
+                    std::smatch match = *i;
+                    long nextToken = match.position();
 
-            std::advance(collectionBegin, beginOffset);
-
-            auto words_begin = std::sregex_iterator(collectionBegin, collectionEnd, words_regex);
-            auto words_end = std::sregex_iterator();
-
-            long beginPosition = beginOffset;;
-
-            for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
-
-                std::smatch token = *i;
-
-                if (beginPosition == beginOffset) {
-                    if (boost::iequals(token.str(), "EMPTY")) {
-                        continue;   // Nothing more to do, this
-                    }
-                } else {
-                    long nextPosition = token.position() + beginOffset;
-
-                    std::string str(wkt.substr(beginPosition, nextPosition - beginPosition));
+                    std::string str(wkt.substr(currentToken, nextToken - currentToken));
                     boost::algorithm::erase_last(str, ",");
-
+                    
                     geometryCollection.push_back(geometry(str));
+                    
+                    currentToken = nextToken;
                 }
-                beginPosition = token.position() + beginOffset;
-            }
-            if (beginPosition != beginOffset) {  // We had at least 1 so get the last
-                std::string str(wkt.substr(beginPosition, endPosition - beginPosition));
-
+                std::string str(wkt.substr(currentToken, tokensEnd - currentToken + 1));
+                
                 geometryCollection.push_back(geometry(str));
+
+            } else {
+                if (!openClosePerensFound) {
+                
+                    auto str = wkt.substr(tokensBegin, tokensEnd - tokensBegin + 1);
+                    
+                    auto matches = std::sregex_iterator(str.begin(), str.end(), emptyTokenRegex);
+                    if (std::distance(matches, std::sregex_iterator()) != 1) {
+                        throw std::invalid_argument("Invalid wkt, expected EMPTY but got " + str);
+                    }
+                }
             }
         }
     } // namespace io

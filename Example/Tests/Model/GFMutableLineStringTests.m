@@ -46,7 +46,12 @@
     - (void) testAddPoint_WithNilPoint{
         GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([lineString addPoint: nil], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testInsertPoint_WithValidPoint_BeforePoint {
@@ -78,7 +83,12 @@
     - (void) testInsertPoint_WithNilPoint{
         GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed([lineString  insertPoint: nil atIndex: 0], NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testRemoveAllPoints_WhileEmpty {
@@ -165,8 +175,13 @@
     - (void) testSetObjectAtIndexedSubscript_WithNilPointAndValidIndex {
 
         GFMutableLineString * lineString = [[GFMutableLineString alloc] init];
-
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+        
         XCTAssertThrowsSpecificNamed((lineString[0] = nil), NSException, NSInvalidArgumentException);
+        
+#pragma clang diagnostic pop
     }
 
     - (void) testSetObjectAtIndexedSubscript_WithValidPointAndInvalidIndex {

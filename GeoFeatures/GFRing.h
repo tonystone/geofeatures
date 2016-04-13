@@ -20,6 +20,8 @@
 #import <Foundation/Foundation.h>
 #import "GFLineString.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * @class       GFRing
  *
@@ -37,68 +39,130 @@
     /// @see GFLineString for methods
 
     /**
-    * Initialize this geometry with the given WKT (Well-Known-Text) string.
-    *
-    * @note
-    * @parblock
-    *
-    * WKT does not support rings. However, to be generic GeoFeatures
-    * supports reading and writing from and to rings. Rings are read
-    * and written as a standard LINESTRING WKT.
-    *
-    * @endparblock
-    *
-    * Example:
-    * @code
-    * {
-    *
-    *   NSString * wkt = @"LINESTRING(40 60,120 110)";
-    *
-    *   GFRing * ring = [[GFRing alloc] initWithWKT: wkt]];
-    *
-    * }
-    * @endcode
-    */
-    - (instancetype) initWithWKT:(NSString *)wkt;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * @note
+     * @parblock
+     *
+     * WKT does not support rings. However, to be generic GeoFeatures
+     * supports reading and writing from and to rings. Rings are read
+     * and written as a standard LINESTRING WKT.
+     *
+     * @endparblock
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"LINESTRING(40 60,120 110)";
+     *
+     *   GFRing * ring = [[GFRing alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message="Use init(wkt: String) throws instead.")));
 
     /**
-    * Initialize this geometry with the given jsonDictionary.
-    *
-    * @note
-    * @parblock
-    *
-    * GeoJSON does not support rings. However, to be generic GeoFeatures
-    * supports reading and writing from and to rings. Rings are read
-    * and written as a standard GeoJSON LineString.
-    *
-    * You must pass the geometry portion of the GeoJSON structure and
-    * not the entire GeoJSON object.
-    *
-    * Example:
-    *
-    * @code
-    * {
-    *       "type": "Feature",
-    *
-    *       "geometry": { "type": "LineString",
-    *                     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
-    *                   }
-    *  }
-    * @endcode
-    *
-    * In the above example only the dictionary below that
-    * represents the geometry portion is passed.
-    *
-    * @code
-    *     {
-    *           "type": "LineString",
-    *           "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
-    *     }
-    * @endcode
-    * @endparblock
-    */
-    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;
+     * Initialize this geometry with the given WKT (Well-Known-Text) string.
+     *
+     * @note
+     * @parblock
+     *
+     * WKT does not support rings. However, to be generic GeoFeatures
+     * supports reading and writing from and to rings. Rings are read
+     * and written as a standard LINESTRING WKT.
+     *
+     * @endparblock
+     *
+     * Example:
+     * @code
+     * {
+     *
+     *   NSString * wkt = @"LINESTRING(40 60,120 110)";
+     *
+     *   GFRing * ring = [[GFRing alloc] initWithWKT: wkt]];
+     *
+     * }
+     * @endcode
+     */
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_error(nonnull_error)));
 
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * GeoJSON does not support rings. However, to be generic GeoFeatures
+     * supports reading and writing from and to rings. Rings are read
+     * and written as a standard GeoJSON LineString.
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry": { "type": "LineString",
+     *                     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+     *                   }
+     *  }
+     * @endcode
+     *
+     * In the above example only the dictionary below that
+     * represents the geometry portion is passed.
+     *
+     * @code
+     *     {
+     *           "type": "LineString",
+     *           "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+     *     }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message="Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.")));
+
+    /**
+     * Initialize this geometry with the given jsonDictionary.
+     *
+     * @note
+     * @parblock
+     *
+     * GeoJSON does not support rings. However, to be generic GeoFeatures
+     * supports reading and writing from and to rings. Rings are read
+     * and written as a standard GeoJSON LineString.
+     *
+     * You must pass the geometry portion of the GeoJSON structure and
+     * not the entire GeoJSON object.
+     *
+     * Example:
+     *
+     * @code
+     * {
+     *       "type": "Feature",
+     *
+     *       "geometry": { "type": "LineString",
+     *                     "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+     *                   }
+     *  }
+     * @endcode
+     *
+     * In the above example only the dictionary below that
+     * represents the geometry portion is passed.
+     *
+     * @code
+     *     {
+     *           "type": "LineString",
+     *           "coordinates": [ [100.0, 0.0], [101.0, 1.0] ]
+     *     }
+     * @endcode
+     * @endparblock
+     */
+    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary  error: (NSError * __autoreleasing *) error __attribute__((swift_error(nonnull_error)));
 @end
 
 /**
@@ -160,3 +224,5 @@
     - (void) setObject: (GFPoint *) aPoint atIndexedSubscript:(NSUInteger) index;
 
 @end
+
+NS_ASSUME_NONNULL_END
