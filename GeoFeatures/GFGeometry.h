@@ -196,7 +196,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns true if self has at least one intersection with the other geometry.
      */
-    - (BOOL) intersects: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use intersects() throws -> Bool instead.")));
+    - (BOOL) intersects: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use intersects(other:) throws -> Bool instead.")));
 
     /**
      * Checks if self has at least one intersection with the other geometry.
@@ -221,7 +221,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
      *
-     * @returns A new GFGeometry instance that represents the union of the self and other.
+     * @returns A new GFGeometry instance that represents the union of the and other.
      *
      * @throws NSInvalidArgumentException if the one of the geometries is invalid.  You can test for an invalid geometry by calling isValid.
      */
@@ -229,7 +229,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
      *
-     * @returns A new GFGeometry instance that represents the union of the self and other.
+     * @returns A new GFGeometry instance that represents the union of self and other.
      */
     - (GFGeometry *) union_: (GFGeometry *)other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("union(other:)"), swift_error(nonnull_error)));
 
