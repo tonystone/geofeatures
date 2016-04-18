@@ -205,6 +205,20 @@ NS_ASSUME_NONNULL_BEGIN
      */
     - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects(other:)"), swift_error(nonnull_error)));
 
+    /**
+     * Calculate the difference of two geometries.
+     *
+     * @returns A new GFGeometry instance that represents the difference of self and other.
+     */
+    - (GFGeometry *) difference: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use difference(other:) throws -> GFGeometry instead.")));
+
+    /**
+     * Calculate the difference of two geometries.
+     *
+     * @returns A new GFGeometry instance that represents the difference of self and other.
+     */
+    - (GFGeometry *) difference: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("difference(other:)"), swift_error(nonnull_error)));
+
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
      *
      * @returns A new GFGeometry instance that represents the union of the self and other.

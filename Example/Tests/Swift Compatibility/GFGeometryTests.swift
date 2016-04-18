@@ -129,6 +129,23 @@ class GFGeometryTests: XCTestCase {
         XCTAssertThrowsError(try multiPolygon.union(other: polygon))
     }
     
+    func testDifference () throws {
+        let polygon1 = try GFGeometry(wkt: "POLYGON((0 0,0 90,90 90,90 0,0 0))")
+        let polygon2 = try GFGeometry(wkt: "POLYGON((120 0,120 90,210 90,210 0,120 0))")
+        
+        let result = try polygon1.difference(other: polygon2)
+        
+        XCTAssertEqual(result.toWKTString(), "POLYGON((0 0,0 90,90 90,90 0,0 0))")
+    }
+    
+    func testDifference_Throw () throws {
+        let multiPolygon = try GFGeometry(wkt: "GEOMETRYCOLLECTION()")
+        let polygon      = try GFGeometry(wkt: "GEOMETRYCOLLECTION()")
+        
+        XCTAssertThrowsError(try multiPolygon.difference(other: polygon))
+    }
+    
+    
     // MARK: Conversion not needed
     
     func testIsValid_True () {
