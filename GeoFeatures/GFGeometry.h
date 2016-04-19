@@ -209,6 +209,8 @@ NS_ASSUME_NONNULL_BEGIN
      * Calculate the difference of two geometries.
      *
      * @returns A new GFGeometry instance that represents the difference of self and other.
+     *
+     * @throws NSInvalidArgumentException If the difference between self and other are not supported.
      */
     - (GFGeometry *) difference: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use difference(other:) throws -> GFGeometry instead.")));
 
