@@ -20,7 +20,7 @@ env:
 script:
 #  - travis_wait pod lib lint
   
-  - xcodebuild  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build | xcpretty -c && ${PIPESTATUS[0]} 
+  - xcodebuild  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build  > build.log && ${PIPESTATUS[0]} 
   
   - open -a "simulator" --args -CurrentDeviceUDID $IPHONE_SIMULATOR_ID
   - xcodebuild  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test | xcpretty -c && ${PIPESTATUS[0]}
@@ -29,6 +29,9 @@ script:
   
   - open -a "simulator" --args -CurrentDeviceUDID $MAC_SIMULATOR_ID
   - xcodebuild  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test | xcpretty -c && ${PIPESTATUS[0]}
+
+after_failure:
+  - tail -n 500 build.log
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
