@@ -255,7 +255,7 @@ namespace gf = geofeatures;
         }
     }
 
-    - (BOOL)intersectsError: (NSError **) error {
+    - (BOOL)intersects_: (NSError **) error {
         BOOL intersects = NO;
         
         try {

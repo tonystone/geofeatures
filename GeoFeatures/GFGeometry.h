@@ -189,7 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns true if self has at least one intersection.
      */
-    - (BOOL) intersectsError: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects()"), swift_error(nonnull_error)));
+    - (BOOL) intersects_: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects()"), swift_error(nonnull_error)));
 
     /**
      * Checks if self has at least one intersection with the other geometry.
