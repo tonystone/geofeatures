@@ -129,6 +129,22 @@ class GFGeometryTests: XCTestCase {
         XCTAssertThrowsError(try multiPolygon.union(other: polygon))
     }
     
+    func testIntersection () throws {
+        let polygon1 = try GFGeometry(wkt: "POLYGON((20 20, 20 160, 160 160, 160 20, 20 20),(140 140, 40 140, 40 40, 140 40, 140 140))")
+        let polygon2 = try GFGeometry(wkt: "POLYGON((80 100, 220 100, 220 240, 80 240, 80 100))")
+        
+        let result = try polygon1.intersection(other: polygon2)
+        
+        XCTAssertEqual(result.toWKTString(), "POLYGON((80 160,80 140,40 140,40 40,140 40,140 100,160 100,160 20,20 20,20 160,80 160))")
+    }
+    
+    func testIntersection_Throw () throws {
+        let multiPolygon = try GFGeometry(wkt: "GEOMETRYCOLLECTION()")
+        let polygon      = try GFGeometry(wkt: "GEOMETRYCOLLECTION()")
+        
+        XCTAssertThrowsError(try multiPolygon.intersection(other: polygon))
+    }
+    
     // MARK: Conversion not needed
     
     func testIsValid_True () {

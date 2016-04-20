@@ -113,6 +113,8 @@
 		EADCE03F1BF39FE300BA10DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EADCE03C1BF39FE300BA10DA /* main.m */; };
 		EADCE0401BF39FE300BA10DA /* new-mexico.json in Resources */ = {isa = PBXBuildFile; fileRef = EADCE03D1BF39FE300BA10DA /* new-mexico.json */; };
 		EADCE0471BF3A02000BA10DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EADCE0451BF3A02000BA10DA /* InfoPlist.strings */; };
+		EAE9DF9E1CC5202600083528 /* GFIntersectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE9DF9D1CC5202600083528 /* GFIntersectionTests.m */; };
+		EAE9DF9F1CC5202600083528 /* GFIntersectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE9DF9D1CC5202600083528 /* GFIntersectionTests.m */; };
 		EAFEC2731CB5C0DB004AB31B /* GFRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */; };
 		EAFEC2741CB5C0DB004AB31B /* GFRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */; };
 		EAFEC2771CB5DAD4004AB31B /* GFBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFEC2751CB5DAC9004AB31B /* GFBoxTests.swift */; };
@@ -227,6 +229,7 @@
 		EADCE03C1BF39FE300BA10DA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "GeoFeatures-iOS/main.m"; sourceTree = SOURCE_ROOT; };
 		EADCE03D1BF39FE300BA10DA /* new-mexico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "new-mexico.json"; path = "GeoFeatures-iOS/new-mexico.json"; sourceTree = SOURCE_ROOT; };
 		EADCE0461BF3A02000BA10DA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "GeoFeatures-iOS/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
+		EAE9DF9D1CC5202600083528 /* GFIntersectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFIntersectionTests.m; sourceTree = "<group>"; };
 		EAFEC2711CB5C0CF004AB31B /* GFRingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFRingTests.swift; path = "Swift Compatibility/GFRingTests.swift"; sourceTree = "<group>"; };
 		EAFEC2751CB5DAC9004AB31B /* GFBoxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFBoxTests.swift; path = "Swift Compatibility/GFBoxTests.swift"; sourceTree = "<group>"; };
 		ECF990B987AFA12BFE7DB17F /* Pods_GeoFeatures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +307,7 @@
 				36698E4DA2252BF2E0933035 /* GFBoundingBoxTests.m */,
 				366980C6B5BA74C5C25BBC14 /* GFIntersectsSelfTests.m */,
 				366989C6512C7EF6B0152DF4 /* GFIntersectsOtherTests.m */,
+				EAE9DF9D1CC5202600083528 /* GFIntersectionTests.m */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -859,6 +863,7 @@
 				EA9E6F871CB8735400236F50 /* GFMultiPolygonTests.swift in Sources */,
 				EAC266C11CB42D3D003AB6E9 /* GFGeometryTests.swift in Sources */,
 				EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */,
+				EAE9DF9E1CC5202600083528 /* GFIntersectionTests.m in Sources */,
 				EAFEC2771CB5DAD4004AB31B /* GFBoxTests.swift in Sources */,
 				EA9E6F771CB72C4C00236F50 /* GFLineStringTests.swift in Sources */,
 				366987B4790476C2AA46A086 /* GFPolygonTests.m in Sources */,
@@ -918,6 +923,7 @@
 				EA9E6F881CB8735500236F50 /* GFMultiPolygonTests.swift in Sources */,
 				EAD891521BF3B02F00BD4FAC /* GFRingTests.m in Sources */,
 				EAD891531BF3B02F00BD4FAC /* GFBoxTests.m in Sources */,
+				EAE9DF9F1CC5202600083528 /* GFIntersectionTests.m in Sources */,
 				EAFEC2781CB5DAD6004AB31B /* GFBoxTests.swift in Sources */,
 				EA9E6F781CB72C4E00236F50 /* GFLineStringTests.swift in Sources */,
 				EA7389411CB58F20000E8697 /* GFGeometryTests.swift in Sources */,
