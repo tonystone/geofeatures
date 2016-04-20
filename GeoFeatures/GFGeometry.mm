@@ -39,6 +39,7 @@
 #include "internal/geofeatures/operators/IsValid.hpp"
 #include "internal/geofeatures/operators/Intersects.hpp"
 #include "internal/geofeatures/operators/Intersection.hpp"
+#include "internal/geofeatures/operators/Difference.hpp"
 
 #include <memory>
 
@@ -294,7 +295,7 @@ namespace gf = geofeatures;
         return intersects;
     }
 
-    - (GFGeometry *) intersection: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use intersection(other:) throws -> GFGeometry instead."))) {
+    - (GFGeometry *) intersection: (GFGeometry *) other  {
         try {
             const auto variant        = [self cppGeometryPtrVariant];
             const auto otherVariant   = [other cppGeometryPtrVariant];
@@ -310,7 +311,7 @@ namespace gf = geofeatures;
         }
     }
 
-    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersection(other:)"), swift_error(nonnull_error))) {
+    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error {
         GFGeometry * geometry = nil;
         
         try {
@@ -337,6 +338,36 @@ namespace gf = geofeatures;
         } catch (std::exception & e) {
             @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
         }
+    }
+
+    - (GFGeometry *) difference: (GFGeometry *)other {
+        try {
+            const auto variant        = [self cppGeometryPtrVariant];
+            const auto otherVariant   = [other cppGeometryPtrVariant];
+            
+            gf::GeometryVariant result(gf::operators::difference(variant, otherVariant));
+
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), result);
+            
+        } catch (std::invalid_argument & e) {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithUTF8String: e.what()]  userInfo: nil];
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFGeometry *) difference: (GFGeometry *) other error: (NSError **) error {
+        GFGeometry * geometry = nil;
+        
+        try {
+            geometry = [self difference: other];
+
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return geometry;
     }
 
     - (GFGeometry *)union_: (GFGeometry *) other error: (NSError **) error {
