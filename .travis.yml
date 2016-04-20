@@ -17,15 +17,11 @@ env:
   - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
 
 script:
-  - travis_wait pod lib lint
-  
-  - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build
+#  - travis_wait pod lib lint
   
   - open -a "simulator" --args -CurrentDeviceUDID $IPHONE_SIMULATOR_ID
   - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
-  - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build
-  
   - open -a "simulator" --args -CurrentDeviceUDID $MAC_SIMULATOR_ID
   - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
