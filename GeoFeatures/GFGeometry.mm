@@ -38,6 +38,7 @@
 #include "internal/geofeatures/operators/Within.hpp"
 #include "internal/geofeatures/operators/IsValid.hpp"
 #include "internal/geofeatures/operators/Intersects.hpp"
+#include "internal/geofeatures/operators/Intersection.hpp"
 #include "internal/geofeatures/operators/Difference.hpp"
 
 #include <memory>
@@ -294,6 +295,51 @@ namespace gf = geofeatures;
         return intersects;
     }
 
+    - (GFGeometry *) intersection: (GFGeometry *) other  {
+        try {
+            const auto variant        = [self cppGeometryPtrVariant];
+            const auto otherVariant   = [other cppGeometryPtrVariant];
+            
+            gf::GeometryVariant result(gf::operators::intersection(variant, otherVariant));
+            
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), result);
+            
+        } catch (std::invalid_argument & e) {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithUTF8String: e.what()]  userInfo: nil];
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
+    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error {
+        GFGeometry * geometry = nil;
+        
+        try {
+            geometry = [self intersection: other];
+            
+        } catch (NSException * e) {
+            if (error) {
+                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
+            }
+        }
+        return geometry;
+    }
+
+    - (GFGeometry *)union_: (GFGeometry *)other {
+        try {
+            const auto variant        = [self cppGeometryPtrVariant];
+            const auto otherVariant   = [other cppGeometryPtrVariant];
+            
+            gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), variant, otherVariant));
+
+            return boost::apply_visitor(gf::GFInstanceFromVariant(), result);
+        } catch (boost::geometry::overlay_invalid_input_exception & e) {
+            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithUTF8String: e.what()]  userInfo: nil];
+        } catch (std::exception & e) {
+            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
+        }
+    }
+
     - (GFGeometry *) difference: (GFGeometry *)other {
         try {
             const auto variant        = [self cppGeometryPtrVariant];
@@ -322,21 +368,6 @@ namespace gf = geofeatures;
             }
         }
         return geometry;
-    }
-
-    - (GFGeometry *)union_: (GFGeometry *)other {
-        try {
-            const auto variant        = [self cppGeometryPtrVariant];
-            const auto otherVariant   = [other cppGeometryPtrVariant];
-            
-            gf::GeometryVariant result(boost::apply_visitor( gf::operators::UnionOperation(), variant, otherVariant));
-
-            return boost::apply_visitor(gf::GFInstanceFromVariant(), result);
-        } catch (boost::geometry::overlay_invalid_input_exception & e) {
-            @throw [NSException exceptionWithName: NSInvalidArgumentException reason: [NSString stringWithUTF8String: e.what()]  userInfo: nil];
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
     }
 
     - (GFGeometry *)union_: (GFGeometry *) other error: (NSError **) error {

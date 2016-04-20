@@ -205,6 +205,22 @@ NS_ASSUME_NONNULL_BEGIN
      */
     - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects(other:)"), swift_error(nonnull_error)));
 
+    /** 
+     * Calculates the point set intersection of this geometry with other.
+     *
+     * @returns A geometry object that represents the point set intersection of this geometric object with other.
+     *
+     * @throws NSInvalidArgumentException If the an intersection between self and other are not supported.
+     */
+    - (GFGeometry *) intersection: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use intersection(other:) throws -> GFGeometry instead.")));
+
+    /** 
+     * Calculates the point set intersection of this geometry with other.
+     *
+     * @returns A geometry object that represents the point set intersection of this geometric object with other.
+     */
+    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersection(other:)"), swift_error(nonnull_error)));
+
     /**
      * Calculate the difference of two geometries.
      *
