@@ -20,10 +20,10 @@ script:
 #  - travis_wait pod lib lint
   
   - open -a "simulator" --args -CurrentDeviceUDID $IPHONE_SIMULATOR_ID
-  - travis_wait 30 xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
+  - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
   - open -a "simulator" --args -CurrentDeviceUDID $MAC_SIMULATOR_ID
-  - travis_wait 30 xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
+  - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
