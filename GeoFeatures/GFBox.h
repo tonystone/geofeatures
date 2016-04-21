@@ -98,7 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
      *
-     *   GFBox * box = [[GFBox alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFBox * box = [[GFBox alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

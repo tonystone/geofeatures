@@ -72,7 +72,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"POINT(1 1)";
      *
-     *   GFPoint * point = [[GFPoint alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFPoint * point = [[GFPoint alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

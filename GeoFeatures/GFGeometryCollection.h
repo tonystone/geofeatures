@@ -61,7 +61,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140))";
      *
-     *   GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFGeometryCollection * geometryCollection = [[GFGeometryCollection alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

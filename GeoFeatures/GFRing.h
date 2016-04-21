@@ -81,7 +81,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"LINESTRING(40 60,120 110)";
      *
-     *   GFRing * ring = [[GFRing alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFRing * ring = [[GFRing alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

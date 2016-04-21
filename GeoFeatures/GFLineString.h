@@ -64,7 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"LINESTRING(40 60,120 110)";
      *
-     *   GFLineString * lineString = [[GFLineString alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFLineString * lineString = [[GFLineString alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

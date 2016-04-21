@@ -64,7 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"MULTIPOLYGON(((20 0,20 10,40 10,40 0,20 0)),((5 5,5 8,8 8,8 5,5 5)))";
      *
-     *   GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFMultiPolygon * multiPolygon = [[GFMultiPolygon alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

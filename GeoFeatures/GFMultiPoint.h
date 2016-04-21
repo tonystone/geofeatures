@@ -64,7 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"MULTIPOINT((1 1),(2 2))";
      *
-     *   GFMultiPoint * multiPoint = [[GFMultiPoint alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFMultiPoint * multiPoint = [[GFMultiPoint alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode
