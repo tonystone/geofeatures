@@ -3,18 +3,18 @@ os: osx
 osx_image: xcode7.3
 
 before_install:
-- gem install xcpretty -N --no-ri --no-rdoc
+    - gem install xcpretty -N --no-ri --no-rdoc
 
 env:
-global:
-- COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
-matrix:
-- BUILD_TARGET="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator"
-- BUILD_TARGET="-scheme GeoFeatures-OSX-Example -sdk macosx"
-script:
+    global:
+        - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
+    matrix:
+        - MATRIX_TARGET="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator"
+        - MATRIX_TARGET="-scheme GeoFeatures-OSX-Example -sdk macosx"
 
-- set -o pipefail
-- xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace $BUILD_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+script:
+    - set -o pipefail
+    - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash)
