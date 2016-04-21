@@ -32,7 +32,11 @@ Collaboration diagram for G\+F\+Geometry\+Collection\+:\nopagebreak
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a13156620e5298fe7d286bb800df4097b}{init\+With\+W\+K\+T\+:}
 \item 
+(instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a7569568bacbb3b0f73c60369a0dc710e}{init\+With\+W\+K\+T\+:error\+:}
+\item 
 (instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a74b596f60b3363bb9f06b06847cb086d}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}{init\+With\+Array\+:}
 \item 
@@ -84,7 +88,35 @@ Example\+:
 \end{DoxyCode}
  
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a23cca8dc30634c3ac23c8cfaca41c569}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a003eb1cee88057991c210dd0cd63ef7f}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a321e0b2c64e6dbe079205f1c58a17a2f}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_a321e0b2c64e6dbe079205f1c58a17a2f}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a23cca8dc30634c3ac23c8cfaca41c569}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_a003eb1cee88057991c210dd0cd63ef7f}{G\+F\+Multi\+Point}.
+
+\hypertarget{interface_g_f_geometry_collection_a7569568bacbb3b0f73c60369a0dc710e}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}}
+\index{init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{init\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_a7569568bacbb3b0f73c60369a0dc710e}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"GEOMETRYCOLLECTION(POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40
+       140))"};
+
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_geometry_collection}{GFGeometryCollection} * geometryCollection = [[
+      \hyperlink{interface_g_f_geometry_collection}{GFGeometryCollection} alloc] initWithWKT: wkt error: &error]];
+
+\}
+\end{DoxyCode}
+ 
+
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_a719e2a53a9fa5e29735d53f8fc9d9071}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_aa3df77e980ea50a6bd3564b821635c15}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_ab144e594c2bc87ce0353ecc833525f94}{G\+F\+Multi\+Point}.
 
 \hypertarget{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
@@ -118,7 +150,42 @@ Example\+:
 \end{DoxyNote}
 
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a35fba00c08f785e70b47dda5067f84f8}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a08bc62987b4e8c0435b00367dd617e00}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a2c8f29141e272aad174a9f65190d7cab}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_a2c8f29141e272aad174a9f65190d7cab}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a35fba00c08f785e70b47dda5067f84f8}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_a08bc62987b4e8c0435b00367dd617e00}{G\+F\+Multi\+Point}.
+
+\hypertarget{interface_g_f_geometry_collection_a74b596f60b3363bb9f06b06847cb086d}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_collection_a74b596f60b3363bb9f06b06847cb086d}
+Initialize this \hyperlink{interface_g_f_geometry_collection}{G\+F\+Geometry\+Collection} with the given Geo\+J\+S\+O\+N dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+   \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"GeometryCollection"},
+   \textcolor{stringliteral}{"geometries"}: [
+        \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Point"},
+          \textcolor{stringliteral}{"coordinates"}: [100.0, 0.0]
+        \},
+        \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"LineString"},
+          \textcolor{stringliteral}{"coordinates"}: [ [101.0, 0.0], [102.0, 1.0] ]
+        \}
+    ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_acc419d7ae28145fa7d47186b9d125e98}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_aac8171121b256e48e0532c0a35099f34}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_aed5c1b63f03328cb0796d3be78f790b1}{G\+F\+Multi\+Point}.
 
 \hypertarget{interface_g_f_geometry_collection_a260bb3daa9d3324cb1cc2fa9ef3a61e9}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!init\+With\+Array\+:@{init\+With\+Array\+:}}
 \index{init\+With\+Array\+:@{init\+With\+Array\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
@@ -141,7 +208,7 @@ The count of G\+D\+Geometry instances this collection contains.
 \end{DoxyReturn}
 
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a49494350a429df86186d111b5496d66c}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_afb692f3668a3631fbec6739c7fd7bf2c}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a268a15cb86f1a8a57bb9f7c7f07b6443}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_a268a15cb86f1a8a57bb9f7c7f07b6443}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a49494350a429df86186d111b5496d66c}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_afb692f3668a3631fbec6739c7fd7bf2c}{G\+F\+Multi\+Point}.
 
 \hypertarget{interface_g_f_geometry_collection_a4cd182279facec2850b47634aa0f6297}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!geometry\+At\+Index\+:@{geometry\+At\+Index\+:}}
 \index{geometry\+At\+Index\+:@{geometry\+At\+Index\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
@@ -170,7 +237,7 @@ The \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} located at index.
 \end{DoxySince}
 
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a6724df65ee49b15e8778f965d3498bcb}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a679f88a16cfc5e7d2d2bd1fda95303be}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_ab18a262a8d02f4b15250bad1d8073f2a}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_ab18a262a8d02f4b15250bad1d8073f2a}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a6724df65ee49b15e8778f965d3498bcb}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_a679f88a16cfc5e7d2d2bd1fda95303be}{G\+F\+Multi\+Point}.
 
 \hypertarget{interface_g_f_geometry_collection_a610f72a22d76a3ce6c9eaeb2dad35c0e}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!first\+Geometry@{first\+Geometry}}
 \index{first\+Geometry@{first\+Geometry}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
@@ -189,7 +256,7 @@ The first \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances contained
 \end{DoxySince}
 
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a78586818fa6ddbce9c3cf2032eba7f2d}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a2f300bc57f0010bc65da0f151b916e33}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a7dca748ca40ba2e1de638d4aaf251144}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_a7dca748ca40ba2e1de638d4aaf251144}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a78586818fa6ddbce9c3cf2032eba7f2d}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_a2f300bc57f0010bc65da0f151b916e33}{G\+F\+Multi\+Point}.
 
 \hypertarget{interface_g_f_geometry_collection_a89b3b6e2097cf5899a6d635ddcb95ef3}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!last\+Geometry@{last\+Geometry}}
 \index{last\+Geometry@{last\+Geometry}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
@@ -208,7 +275,7 @@ The last \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instances contained 
 \end{DoxySince}
 
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a807c900c20062193febb780e4ecc6abd}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_aa0c216ccbac49420bb8694fdb3311c6b}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_a8aa2546c3a714b390a5d2580d1356b62}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_a8aa2546c3a714b390a5d2580d1356b62}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a807c900c20062193febb780e4ecc6abd}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_aa0c216ccbac49420bb8694fdb3311c6b}{G\+F\+Multi\+Point}.
 
 \hypertarget{interface_g_f_geometry_collection_ac67dd4526580a8a38408e39c489a7503}{}\index{G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}!object\+At\+Indexed\+Subscript\+:@{object\+At\+Indexed\+Subscript\+:}}
 \index{object\+At\+Indexed\+Subscript\+:@{object\+At\+Indexed\+Subscript\+:}!G\+F\+Geometry\+Collection@{G\+F\+Geometry\+Collection}}
@@ -251,7 +318,7 @@ Example\+:
 \end{DoxySince}
 
 
-Reimplemented in \hyperlink{interface_g_f_multi_line_string_a00496d2af8be614fe4cc11c6a6347591}{G\+F\+Multi\+Line\+String}, \hyperlink{interface_g_f_multi_point_a003241a11b6d6da14364bb8a07c05a35}{G\+F\+Multi\+Point}, and \hyperlink{interface_g_f_multi_polygon_ac0de2e4160cbb5e83522fc72502f681c}{G\+F\+Multi\+Polygon}.
+Reimplemented in \hyperlink{interface_g_f_multi_polygon_ac0de2e4160cbb5e83522fc72502f681c}{G\+F\+Multi\+Polygon}, \hyperlink{interface_g_f_multi_line_string_a00496d2af8be614fe4cc11c6a6347591}{G\+F\+Multi\+Line\+String}, and \hyperlink{interface_g_f_multi_point_a003241a11b6d6da14364bb8a07c05a35}{G\+F\+Multi\+Point}.
 
 
 

@@ -32,7 +32,11 @@ Collaboration diagram for G\+F\+Multi\+Point\+:\nopagebreak
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_multi_point_a003eb1cee88057991c210dd0cd63ef7f}{init\+With\+W\+K\+T\+:}
 \item 
+(instancetype) -\/ \hyperlink{interface_g_f_multi_point_ab144e594c2bc87ce0353ecc833525f94}{init\+With\+W\+K\+T\+:error\+:}
+\item 
 (instancetype) -\/ \hyperlink{interface_g_f_multi_point_a08bc62987b4e8c0435b00367dd617e00}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_multi_point_aed5c1b63f03328cb0796d3be78f790b1}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \item 
 (N\+S\+U\+Integer) -\/ \hyperlink{interface_g_f_multi_point_afb692f3668a3631fbec6739c7fd7bf2c}{count}
 \item 
@@ -82,6 +86,33 @@ Example\+:
 
 Reimplemented from \hyperlink{interface_g_f_geometry_collection_a13156620e5298fe7d286bb800df4097b}{G\+F\+Geometry\+Collection}.
 
+\hypertarget{interface_g_f_multi_point_ab144e594c2bc87ce0353ecc833525f94}{}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}!init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}}
+\index{init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}!G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}
+\subsubsection[{init\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_point_ab144e594c2bc87ce0353ecc833525f94}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTIPOINT((1 1),(2 2))"};
+
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_multi_point}{GFMultiPoint} * multiPoint = [[\hyperlink{interface_g_f_multi_point}{GFMultiPoint} alloc] initWithWKT: wkt error: &error]
+      ];
+
+\}
+\end{DoxyCode}
+ 
+
+Reimplemented from \hyperlink{interface_g_f_geometry_collection_a7569568bacbb3b0f73c60369a0dc710e}{G\+F\+Geometry\+Collection}.
+
 \hypertarget{interface_g_f_multi_point_a08bc62987b4e8c0435b00367dd617e00}{}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}
 \subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
@@ -124,6 +155,50 @@ In the above example only the dictionary below that represents the geometry port
 
 
 Reimplemented from \hyperlink{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}{G\+F\+Geometry\+Collection}.
+
+\hypertarget{interface_g_f_multi_point_aed5c1b63f03328cb0796d3be78f790b1}{}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_point_aed5c1b63f03328cb0796d3be78f790b1}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPoint"},
+                    \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPoint"},
+    \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Reimplemented from \hyperlink{interface_g_f_geometry_collection_a74b596f60b3363bb9f06b06847cb086d}{G\+F\+Geometry\+Collection}.
 
 \hypertarget{interface_g_f_multi_point_afb692f3668a3631fbec6739c7fd7bf2c}{}\index{G\+F\+Multi\+Point@{G\+F\+Multi\+Point}!count@{count}}
 \index{count@{count}!G\+F\+Multi\+Point@{G\+F\+Multi\+Point}}

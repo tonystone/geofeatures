@@ -32,7 +32,11 @@ Collaboration diagram for G\+F\+Polygon\+:\nopagebreak
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_polygon_a72e0e0e299103715f933177f57df2815}{init\+With\+W\+K\+T\+:}
 \item 
+(instancetype) -\/ \hyperlink{interface_g_f_polygon_a15d16c0aaa1076a068ecd000c69dbcdf}{init\+With\+W\+K\+T\+:error\+:}
+\item 
 (instancetype) -\/ \hyperlink{interface_g_f_polygon_a91f132a23f38e16d5e8dea762f43ef84}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_polygon_a46083a0507e17742cec90e68bc337717}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \item 
 (\hyperlink{interface_g_f_ring}{G\+F\+Ring} $\ast$) -\/ \hyperlink{interface_g_f_polygon_af984fc68777e9069cd2418f6077454c1}{outer\+Ring}
 \item 
@@ -72,6 +76,28 @@ Example\+:
 
 \}
 \end{DoxyCode}
+ \hypertarget{interface_g_f_polygon_a15d16c0aaa1076a068ecd000c69dbcdf}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}}
+\index{init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
+\subsubsection[{init\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_polygon_a15d16c0aaa1076a068ecd000c69dbcdf}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_polygon}{GFPolygon} * polygon = [[\hyperlink{interface_g_f_polygon}{GFPolygon} alloc] initWithWKT: wkt error: &error]];
+
+\}
+\end{DoxyCode}
  \hypertarget{interface_g_f_polygon_a91f132a23f38e16d5e8dea762f43ef84}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
 \subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
@@ -79,6 +105,47 @@ Example\+:
 \item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
 \end{DoxyParamCaption}
 }\label{interface_g_f_polygon_a91f132a23f38e16d5e8dea762f43ef84}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Given the following J\+S\+O\+N\+: 
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{
+                      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPolygon"},
+                      \textcolor{stringliteral}{"coordinates"}: [
+                            [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+                       ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+You would pass this section to the init method. 
+\begin{DoxyCode}
+\{
+     \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiPolygon"},
+     \textcolor{stringliteral}{"coordinates"}: [
+           [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+     ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+\hypertarget{interface_g_f_polygon_a46083a0507e17742cec90e68bc337717}{}\index{G\+F\+Polygon@{G\+F\+Polygon}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Polygon@{G\+F\+Polygon}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_polygon_a46083a0507e17742cec90e68bc337717}
 Initialize this geometry with the given json\+Dictionary.
 
 \begin{DoxyNote}{Note}

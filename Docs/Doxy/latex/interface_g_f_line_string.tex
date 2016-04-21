@@ -32,7 +32,11 @@ Collaboration diagram for G\+F\+Line\+String\+:\nopagebreak
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_line_string_a261a4d08fe5cb35f935d265c3a97f453}{init\+With\+W\+K\+T\+:}
 \item 
+(instancetype) -\/ \hyperlink{interface_g_f_line_string_acb421fc3195219e085f9bb69703ceb41}{init\+With\+W\+K\+T\+:error\+:}
+\item 
 (instancetype) -\/ \hyperlink{interface_g_f_line_string_ad7a913bc12b6099982229190d1debd71}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_line_string_affe0307951a95edbf4b35092fc1b92ed}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \item 
 (N\+S\+U\+Integer) -\/ \hyperlink{interface_g_f_line_string_a58fc2980cff73581d57943a64d60ddba}{count}
 \item 
@@ -82,6 +86,33 @@ Example\+:
 
 Reimplemented in \hyperlink{interface_g_f_ring_a063be826fc24346e1fb5d4830f641ef0}{G\+F\+Ring}.
 
+\hypertarget{interface_g_f_line_string_acb421fc3195219e085f9bb69703ceb41}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}}
+\index{init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{init\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_acb421fc3195219e085f9bb69703ceb41}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"LINESTRING(40 60,120 110)"};
+
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_line_string}{GFLineString} * lineString = [[\hyperlink{interface_g_f_line_string}{GFLineString} alloc] initWithWKT: wkt error: &error]
+      ];
+
+\}
+\end{DoxyCode}
+ 
+
+Reimplemented in \hyperlink{interface_g_f_ring_a22ccba4abea45feba6cbc9e6078bb465}{G\+F\+Ring}.
+
 \hypertarget{interface_g_f_line_string_ad7a913bc12b6099982229190d1debd71}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
 \subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
@@ -124,6 +155,50 @@ In the above example only the dictionary below that represents the geometry port
 
 
 Reimplemented in \hyperlink{interface_g_f_ring_a3562a7a5b8b37c53de97a0c31981c907}{G\+F\+Ring}.
+
+\hypertarget{interface_g_f_line_string_affe0307951a95edbf4b35092fc1b92ed}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Line\+String@{G\+F\+Line\+String}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_line_string_affe0307951a95edbf4b35092fc1b92ed}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"LineString"},
+                    \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"LineString"},
+      \textcolor{stringliteral}{"coordinates"}: [ [100.0, 0.0], [101.0, 1.0] ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Reimplemented in \hyperlink{interface_g_f_ring_a99cfb5fc3ca21698e9714e55c9bc394a}{G\+F\+Ring}.
 
 \hypertarget{interface_g_f_line_string_a58fc2980cff73581d57943a64d60ddba}{}\index{G\+F\+Line\+String@{G\+F\+Line\+String}!count@{count}}
 \index{count@{count}!G\+F\+Line\+String@{G\+F\+Line\+String}}
