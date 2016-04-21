@@ -11,7 +11,8 @@ env:
 
 script:
 
-  - set -o pipefail xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+  - set -o pipefail
+  - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 #  - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
