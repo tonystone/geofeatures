@@ -10,8 +10,8 @@ env:
     global:
         - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
     matrix:
-        - RUN_PARAMS=(-scheme GeoFeatures-iOS-Example -sdk iphonesimulator)
-        - RUN_PARAMS=(-scheme GeoFeatures-OSX-Example -sdk macosx)
+        - RUN_PARAMS="(-scheme GeoFeatures-iOS-Example -sdk iphonesimulator)"
+        - RUN_PARAMS="(-scheme GeoFeatures-OSX-Example -sdk macosx)"
 script:
 
   - set -o pipefail
