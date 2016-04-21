@@ -10,12 +10,12 @@ env:
     global:
         - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
     matrix:
-        - RUN_PARAMS="(-scheme GeoFeatures-iOS-Example -sdk iphonesimulator)"
-        - RUN_PARAMS="(-scheme GeoFeatures-OSX-Example -sdk macosx)"
+        - RUN_PARAMS="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator"
+        - RUN_PARAMS="-scheme GeoFeatures-OSX-Example -sdk macosx"
 script:
 
   - set -o pipefail
-  - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace "${RUN_PARAMS[@]}" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+  - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace "$RUN_PARAMS" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
