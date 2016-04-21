@@ -7,14 +7,15 @@ before_install:
     - gem install xcpretty -N --no-ri --no-rdoc
     
 env:
-  - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
-
+    global:
+        - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
+    matrix:
+        - RUN_PARAMS=( -scheme GeoFeatures-iOS-Example -sdk iphonesimulator )
+        - RUN_PARAMS=( -scheme GeoFeatures-OSX-Example -sdk macosx )
 script:
 
   - set -o pipefail
-  - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
-
-#  - travis_wait xctool/xctool.sh  -workspace Example/GeoFeatures.xcworkspace -scheme GeoFeatures-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
+  - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace "${RUN_PARAMS[@]}" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
