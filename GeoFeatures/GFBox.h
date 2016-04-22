@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
      * }
      * @endcode
      */
-    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
+    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
 
     /**
      * Initialize this geometry with the given jsonDictionary.
