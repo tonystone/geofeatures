@@ -66,7 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))";
      *
-     *   GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFMultiLineString * multiLineString = [[GFMultiLineString alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

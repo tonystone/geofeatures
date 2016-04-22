@@ -107,6 +107,8 @@ Instance Methods</h2></td></tr>
 Class Methods</h2></td></tr>
 <tr class="memitem:a5b730dcea33fc8b2c156199400e3014e"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="category_g_f_geometry_07_geo_j_s_o_n_08.html#a5b730dcea33fc8b2c156199400e3014e">geometryWithGeoJSONGeometry:</a></td></tr>
 <tr class="separator:a5b730dcea33fc8b2c156199400e3014e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac665565535c19e73e6b7a696e8109586"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="category_g_f_geometry_07_geo_j_s_o_n_08.html#ac665565535c19e73e6b7a696e8109586">geometryWithGeoJSONGeometry:error:</a></td></tr>
+<tr class="separator:ac665565535c19e73e6b7a696e8109586"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>GeoJSON interface to <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a>. </p>
@@ -165,6 +167,68 @@ Class Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac665565535c19e73e6b7a696e8109586"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (instancetype) geometryWithGeoJSONGeometry: </td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&#160;</td>
+          <td class="paramname"><em>geoJSONGeometryDictionary</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">error:</td>
+          <td></td>
+          <td class="paramtype">(NSError *__autoreleasing *)&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a> from the GeoJSON dictionary supplied.</p>
+<dl class="section note"><dt>Note</dt><dd>You must pass the geometry portion of the GeoJSON structure and not the entire GeoJSON object. <p class="startdd"></p>
+<p>Given the following GeoJSON: </p><div class="fragment"><div class="line">{</div>
+<div class="line">      <span class="stringliteral">&quot;type&quot;</span>: <span class="stringliteral">&quot;Feature&quot;</span>,</div>
+<div class="line"></div>
+<div class="line">      <span class="stringliteral">&quot;geometry&quot;</span>:  {</div>
+<div class="line">          <span class="stringliteral">&quot;type&quot;</span>: <span class="stringliteral">&quot;Box&quot;</span>,</div>
+<div class="line">          <span class="stringliteral">&quot;coordinates&quot;</span>: [[100.0, 0.0], [101.0, 1.0]]</div>
+<div class="line">      }</div>
+<div class="line"> }</div>
+</div><!-- fragment --><p class="enddd">You would pass the geometry section below to the init method. </p><div class="fragment"><div class="line">{</div>
+<div class="line">    <span class="stringliteral">&quot;type&quot;</span>: <span class="stringliteral">&quot;Box&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;coordinates&quot;</span>: [[100.0, 0.0], [101.0, 1.0]]</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
+<p>Example: </p><div class="fragment"><div class="line">{</div>
+<div class="line">    NSString * jsonString = <span class="stringliteral">@&quot;{ \&quot;</span>type\<span class="stringliteral">&quot;: \&quot;Polygon\&quot;,&quot;</span></div>
+<div class="line">                             <span class="stringliteral">&quot;    \&quot;coordinates\&quot;: [&quot;</span></div>
+<div class="line">                             <span class="stringliteral">&quot;      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0, 0.0] ],&quot;</span></div>
+<div class="line">                             <span class="stringliteral">&quot;      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2] ]&quot;</span></div>
+<div class="line">                             <span class="stringliteral">&quot;      ]&quot;</span></div>
+<div class="line">                             <span class="stringliteral">&quot;   }&quot;</span></div>
+<div class="line"></div>
+<div class="line">    NSDictionary * geometryDictionary = [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil];</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="interface_g_f_geometry.html">GFGeometry</a> * geometry = [<a class="code" href="interface_g_f_geometry.html">GFGeometry</a> geometryWithGeoJSONGeometry: geometryDictionary ]</div>
+<div class="line"></div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">NSException</td><td>This method will throw an exception if the geo json is invalid. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Extends class <a class="el" href="interface_g_f_geometry.html#ac665565535c19e73e6b7a696e8109586">GFGeometry</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a89a1dd53c1d9a51fd5b933fde28be5b7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +260,7 @@ Class Methods</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 8 2016 15:17:08 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 21 2016 16:44:37 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

@@ -34,7 +34,11 @@ Collaboration diagram for G\+F\+Point\+:\nopagebreak
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_point_ae5497af29fc8105557b2f6eb5c60ad1d}{init\+With\+W\+K\+T\+:}
 \item 
+(instancetype) -\/ \hyperlink{interface_g_f_point_a654f3533a3407c74bbdd11560b0275ee}{init\+With\+W\+K\+T\+:error\+:}
+\item 
 (instancetype) -\/ \hyperlink{interface_g_f_point_aed287f2d4f50a2efe3ffe6c7f58993b7}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_point_ab4ec12454534ef7c43f3928fef291839}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \item 
 (double) -\/ \hyperlink{interface_g_f_point_a5b9383f1c429724b6d938a64d468f63a}{x}
 \item 
@@ -82,6 +86,28 @@ Example\+:
 
 \}
 \end{DoxyCode}
+ \hypertarget{interface_g_f_point_a654f3533a3407c74bbdd11560b0275ee}{}\index{G\+F\+Point@{G\+F\+Point}!init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}}
+\index{init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{init\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_a654f3533a3407c74bbdd11560b0275ee}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POINT(1 1)"};
+
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_point}{GFPoint} * point = [[\hyperlink{interface_g_f_point}{GFPoint} alloc] initWithWKT: wkt error: &error]];
+
+\}
+\end{DoxyCode}
  \hypertarget{interface_g_f_point_aed287f2d4f50a2efe3ffe6c7f58993b7}{}\index{G\+F\+Point@{G\+F\+Point}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Point@{G\+F\+Point}}
 \subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
@@ -89,6 +115,46 @@ Example\+:
 \item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
 \end{DoxyParamCaption}
 }\label{interface_g_f_point_aed287f2d4f50a2efe3ffe6c7f58993b7}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Point"},
+                    \textcolor{stringliteral}{"coordinates"}: [100.0, 0.0]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Point"},
+    \textcolor{stringliteral}{"coordinates"}: [100.0, 0.0]
+\}
+\end{DoxyCode}
+  
+\end{DoxyNote}
+\hypertarget{interface_g_f_point_ab4ec12454534ef7c43f3928fef291839}{}\index{G\+F\+Point@{G\+F\+Point}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Point@{G\+F\+Point}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_point_ab4ec12454534ef7c43f3928fef291839}
 Initialize this geometry with the given json\+Dictionary.
 
 \begin{DoxyNote}{Note}

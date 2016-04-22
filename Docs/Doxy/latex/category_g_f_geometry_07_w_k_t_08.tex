@@ -18,6 +18,8 @@ W\+K\+T (well-\/known-\/text) interface to \hyperlink{interface_g_f_geometry}{G\
 \begin{DoxyCompactItemize}
 \item 
 (instancetype) + \hyperlink{category_g_f_geometry_07_w_k_t_08_a32a49e08fdbc2998735c26ddbfa88741}{geometry\+With\+W\+K\+T\+:}
+\item 
+(instancetype) + \hyperlink{category_g_f_geometry_07_w_k_t_08_a9517f77b573e92c5f1f76ce63ec53a89}{geometry\+With\+W\+K\+T\+:error\+:}
 \end{DoxyCompactItemize}
 
 
@@ -72,6 +74,49 @@ Example 2\+:
  
 
 Extends class \hyperlink{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}{G\+F\+Geometry}.
+
+\hypertarget{category_g_f_geometry_07_w_k_t_08_a9517f77b573e92c5f1f76ce63ec53a89}{}\index{G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}!geometry\+With\+W\+K\+T\+:error\+:@{geometry\+With\+W\+K\+T\+:error\+:}}
+\index{geometry\+With\+W\+K\+T\+:error\+:@{geometry\+With\+W\+K\+T\+:error\+:}!G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}}
+\subsubsection[{geometry\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{category_g_f_geometry_07_w_k_t_08_a9517f77b573e92c5f1f76ce63ec53a89}
+Create a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance from the W\+K\+T string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em wkt} & an N\+S\+String wkt representation of the geometry\\
+\hline
+\end{DoxyParams}
+Example 1\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+
+
+Example 2\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"};
+  
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt error: &error]];
+
+\}
+\end{DoxyCode}
+ 
+
+Extends class \hyperlink{interface_g_f_geometry_a9517f77b573e92c5f1f76ce63ec53a89}{G\+F\+Geometry}.
 
 \hypertarget{category_g_f_geometry_07_w_k_t_08_a9d257cce05d031211e2cece24b5530e4}{}\index{G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}!to\+W\+K\+T\+String@{to\+W\+K\+T\+String}}
 \index{to\+W\+K\+T\+String@{to\+W\+K\+T\+String}!G\+F\+Geometry(\+W\+K\+T)@{G\+F\+Geometry(\+W\+K\+T)}}

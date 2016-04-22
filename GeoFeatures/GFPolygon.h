@@ -65,7 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *   NSString * wkt = @"POLYGON((0 0,0 90,90 90,90 0,0 0))";
      *
-     *   GFPolygon * polygon = [[GFPolygon alloc] initWithWKT: wkt]];
+     *   NSError * error = nil;
+     *
+     *   GFPolygon * polygon = [[GFPolygon alloc] initWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

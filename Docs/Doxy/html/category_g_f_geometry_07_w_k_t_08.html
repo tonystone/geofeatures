@@ -107,6 +107,8 @@ Instance Methods</h2></td></tr>
 Class Methods</h2></td></tr>
 <tr class="memitem:a32a49e08fdbc2998735c26ddbfa88741"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="category_g_f_geometry_07_w_k_t_08.html#a32a49e08fdbc2998735c26ddbfa88741">geometryWithWKT:</a></td></tr>
 <tr class="separator:a32a49e08fdbc2998735c26ddbfa88741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9517f77b573e92c5f1f76ce63ec53a89"><td class="memItemLeft" align="right" valign="top">(instancetype)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="category_g_f_geometry_07_w_k_t_08.html#a9517f77b573e92c5f1f76ce63ec53a89">geometryWithWKT:error:</a></td></tr>
+<tr class="separator:a9517f77b573e92c5f1f76ce63ec53a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>WKT (well-known-text) interface to <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a>. </p>
@@ -152,6 +154,57 @@ Class Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a9517f77b573e92c5f1f76ce63ec53a89"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (instancetype) geometryWithWKT: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>wkt</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">error:</td>
+          <td></td>
+          <td class="paramtype">(NSError *__autoreleasing *_Nullable)&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Create a <a class="el" href="interface_g_f_geometry.html" title="An abstract class that represents a geometric shape. ">GFGeometry</a> instance from the WKT string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wkt</td><td>an NSString wkt representation of the geometry</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Example 1: </p><div class="fragment"><div class="line">{</div>
+<div class="line"></div>
+<div class="line">  NSString * wkt = <span class="stringliteral">@&quot;POLYGON((0 0,0 90,90 90,90 0,0 0))&quot;</span>;</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="interface_g_f_geometry.html">GFGeometry</a> * geometry = [<a class="code" href="interface_g_f_geometry.html">GFGeometry</a> geometryWithWKT: wkt]];</div>
+<div class="line"></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Example 2: </p><div class="fragment"><div class="line">{</div>
+<div class="line"></div>
+<div class="line">  NSString * wkt = <span class="stringliteral">@&quot;MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))&quot;</span>;</div>
+<div class="line">  </div>
+<div class="line">  NSError * error = nil;</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="interface_g_f_geometry.html">GFGeometry</a> * geometry = [<a class="code" href="interface_g_f_geometry.html">GFGeometry</a> geometryWithWKT: wkt error: &amp;error]];</div>
+<div class="line"></div>
+<div class="line">}</div>
+</div><!-- fragment --> 
+<p>Extends class <a class="el" href="interface_g_f_geometry.html#a9517f77b573e92c5f1f76ce63ec53a89">GFGeometry</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a9d257cce05d031211e2cece24b5530e4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -176,7 +229,7 @@ Class Methods</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 8 2016 15:17:08 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 21 2016 16:44:37 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

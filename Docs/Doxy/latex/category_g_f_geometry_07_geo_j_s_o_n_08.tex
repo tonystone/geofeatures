@@ -18,6 +18,8 @@ Geo\+J\+S\+O\+N interface to \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}.
 \begin{DoxyCompactItemize}
 \item 
 (instancetype) + \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_a5b730dcea33fc8b2c156199400e3014e}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) + \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_ac665565535c19e73e6b7a696e8109586}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \end{DoxyCompactItemize}
 
 
@@ -99,6 +101,74 @@ Example\+:
 
 
 Extends class \hyperlink{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}{G\+F\+Geometry}.
+
+\hypertarget{category_g_f_geometry_07_geo_j_s_o_n_08_ac665565535c19e73e6b7a696e8109586}{}\index{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}}
+\subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{geo\+J\+S\+O\+N\+Geometry\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{category_g_f_geometry_07_geo_j_s_o_n_08_ac665565535c19e73e6b7a696e8109586}
+Creates a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} from the Geo\+J\+S\+O\+N dictionary supplied.
+
+\begin{DoxyNote}{Note}
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object. 
+
+Given the following Geo\+J\+S\+O\+N\+: 
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}:  \{
+          \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+          \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+      \}
+ \}
+\end{DoxyCode}
+
+
+You would pass the geometry section below to the init method. 
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+    \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Example\+: 
+\begin{DoxyCode}
+\{
+    NSString * jsonString = \textcolor{stringliteral}{@"\{ \(\backslash\)"}type\(\backslash\)\textcolor{stringliteral}{": \(\backslash\)"Polygon\(\backslash\)","}
+                             \textcolor{stringliteral}{"    \(\backslash\)"coordinates\(\backslash\)": ["}
+                             \textcolor{stringliteral}{"      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0,
+       0.0] ],"}
+                             \textcolor{stringliteral}{"      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]
+       ]"}
+                             \textcolor{stringliteral}{"      ]"}
+                             \textcolor{stringliteral}{"   \}"}
+
+    NSDictionary * geometryDictionary = [NSJSONSerialization JSONObjectWithData: [jsonString 
+      dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil];
+
+    \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithGeoJSONGeometry: geometryDictionary
+       ]
+
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & This method will throw an exception if the geo json is invalid. \\
+\hline
+\end{DoxyExceptions}
+
+
+Extends class \hyperlink{interface_g_f_geometry_ac665565535c19e73e6b7a696e8109586}{G\+F\+Geometry}.
 
 \hypertarget{category_g_f_geometry_07_geo_j_s_o_n_08_a89a1dd53c1d9a51fd5b933fde28be5b7}{}\index{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}!to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}}
 \index{to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}!G\+F\+Geometry(\+Geo\+J\+S\+O\+N)@{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}}

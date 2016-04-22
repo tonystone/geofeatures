@@ -312,8 +312,10 @@ NS_ASSUME_NONNULL_BEGIN
      * {
      *
      *   NSString * wkt = @"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))";
+     *   
+     *   NSError * error = nil;
      *
-     *   GFGeometry * geometry = [GFGeometry geometryWithWKT: wkt]];
+     *   GFGeometry * geometry = [GFGeometry geometryWithWKT: wkt error: &error]];
      *
      * }
      * @endcode

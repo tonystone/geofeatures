@@ -32,7 +32,11 @@ Collaboration diagram for G\+F\+Multi\+Line\+String\+:\nopagebreak
 \item 
 (instancetype) -\/ \hyperlink{interface_g_f_multi_line_string_a23cca8dc30634c3ac23c8cfaca41c569}{init\+With\+W\+K\+T\+:}
 \item 
+(instancetype) -\/ \hyperlink{interface_g_f_multi_line_string_aa3df77e980ea50a6bd3564b821635c15}{init\+With\+W\+K\+T\+:error\+:}
+\item 
 (instancetype) -\/ \hyperlink{interface_g_f_multi_line_string_a35fba00c08f785e70b47dda5067f84f8}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) -\/ \hyperlink{interface_g_f_multi_line_string_aac8171121b256e48e0532c0a35099f34}{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
 \item 
 (N\+S\+U\+Integer) -\/ \hyperlink{interface_g_f_multi_line_string_a49494350a429df86186d111b5496d66c}{count}
 \item 
@@ -85,6 +89,33 @@ Example\+:
 
 Reimplemented from \hyperlink{interface_g_f_geometry_collection_a13156620e5298fe7d286bb800df4097b}{G\+F\+Geometry\+Collection}.
 
+\hypertarget{interface_g_f_multi_line_string_aa3df77e980ea50a6bd3564b821635c15}{}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}!init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}}
+\index{init\+With\+W\+K\+T\+:error\+:@{init\+With\+W\+K\+T\+:error\+:}!G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
+\subsubsection[{init\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$\+\_\+\+Nullable)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_line_string_aa3df77e980ea50a6bd3564b821635c15}
+Initialize this geometry with the given W\+K\+T (Well-\/\+Known-\/\+Text) string.
+
+Example\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"};
+
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_multi_line_string}{GFMultiLineString} * multiLineString = [[\hyperlink{interface_g_f_multi_line_string}{GFMultiLineString} alloc] 
+      initWithWKT: wkt error: &error]];
+
+\}
+\end{DoxyCode}
+ 
+
+Reimplemented from \hyperlink{interface_g_f_geometry_collection_a7569568bacbb3b0f73c60369a0dc710e}{G\+F\+Geometry\+Collection}.
+
 \hypertarget{interface_g_f_multi_line_string_a35fba00c08f785e70b47dda5067f84f8}{}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
 \index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
 \subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) init\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
@@ -133,6 +164,56 @@ In the above example only the dictionary below that represents the geometry port
 
 
 Reimplemented from \hyperlink{interface_g_f_geometry_collection_adc8a317a694f82808d1e02e53e300f8f}{G\+F\+Geometry\+Collection}.
+
+\hypertarget{interface_g_f_multi_line_string_aac8171121b256e48e0532c0a35099f34}{}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}!init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
+\subsubsection[{init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$json\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (instancetype) {\bf init\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{json\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_multi_line_string_aac8171121b256e48e0532c0a35099f34}
+Initialize this geometry with the given json\+Dictionary.
+
+\begin{DoxyNote}{Note}
+
+
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object.
+
+Example\+:
+
+
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}: \{ \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiLineString"},
+                    \textcolor{stringliteral}{"coordinates"}: [
+                              [ [100.0, 0.0], [101.0, 1.0] ],
+                              [ [102.0, 2.0], [103.0, 3.0] ]
+                      ]
+                  \}
+ \}
+\end{DoxyCode}
+
+
+In the above example only the dictionary below that represents the geometry portion is passed.
+
+
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"MultiLineString"},
+    \textcolor{stringliteral}{"coordinates"}: [
+            [ [100.0, 0.0], [101.0, 1.0] ],
+            [ [102.0, 2.0], [103.0, 3.0] ]
+      ]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Reimplemented from \hyperlink{interface_g_f_geometry_collection_a74b596f60b3363bb9f06b06847cb086d}{G\+F\+Geometry\+Collection}.
 
 \hypertarget{interface_g_f_multi_line_string_a49494350a429df86186d111b5496d66c}{}\index{G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}!count@{count}}
 \index{count@{count}!G\+F\+Multi\+Line\+String@{G\+F\+Multi\+Line\+String}}
