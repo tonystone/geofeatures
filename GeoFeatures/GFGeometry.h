@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The area of the geometry.
      */
-    - (double) area: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("area()"), swift_error(nonnull_error)));
+    - (double) area: (NSError * __autoreleasing *) error __attribute__((swift_name("area()"), swift_error(nonnull_error)));
 
     /** The length method calculates the length (the sum of distances between consecutive points) of a geometry.
      *
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The length of linear GFGeometry types (e.g. GFLineString).
      */
-    - (double) length: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("length()"), swift_error(nonnull_error)));
+    - (double) length: (NSError * __autoreleasing *) error __attribute__((swift_name("length()"), swift_error(nonnull_error)));
 
     /** Calculates the perimeter of a geometry
      *
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *  @returns The perimeter of areal GFGeometry types (e.g. GFPolygon).
      */
-    - (double) perimeter: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("perimeter()"), swift_error(nonnull_error)));
+    - (double) perimeter: (NSError * __autoreleasing *) error __attribute__((swift_name("perimeter()"), swift_error(nonnull_error)));
 
     /**  The centroid method calculates the geometric center (or: center of mass) of a geometry.
      *
@@ -151,7 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The calculated centroid as a GFPoint.
      */
-    - (GFPoint *) centroid: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("centroid()"), swift_error(nonnull_error)));
+    - (GFPoint *) centroid: (NSError * __autoreleasing *) error __attribute__((swift_name("centroid()"), swift_error(nonnull_error)));
 
     /** The boundingBox method calculates the boundingBox (also known as axis aligned bounding box, aabb, or minimum bounding rectangle, mbr) of a geometry.
      *
@@ -163,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The bounding box as a GFBox.
      */
-    - (GFBox *) boundingBox: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("boundingBox()"), swift_error(nonnull_error)));
+    - (GFBox *) boundingBox: (NSError * __autoreleasing *) error __attribute__((swift_name("boundingBox()"), swift_error(nonnull_error)));
 
     /** Checks if the geometry is completely inside the other geometry.
      *
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns True if self is within the other GFGeometry instance.  False otherwise.
      */
-    - (BOOL) within: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("within(other:)"), swift_error(nonnull_error)));
+    - (BOOL) within: (GFGeometry *) other error: (NSError * __autoreleasing *) error __attribute__((swift_name("within(other:)"), swift_error(nonnull_error)));
 
     /**
      * Checks if self has at least one intersection.
@@ -189,7 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns true if self has at least one intersection.
      */
-    - (BOOL) intersects_: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects()"), swift_error(nonnull_error)));
+    - (BOOL) intersects_: (NSError * __autoreleasing *) error __attribute__((swift_name("intersects()"), swift_error(nonnull_error)));
 
     /**
      * Checks if self has at least one intersection with the other geometry.
@@ -203,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns true if self has at least one intersection with the other geometry.
      */
-    - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersects(other:)"), swift_error(nonnull_error)));
+    - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing *) error __attribute__((swift_name("intersects(other:)"), swift_error(nonnull_error)));
 
     /** 
      * Calculates the point set intersection of this geometry with other.
@@ -219,7 +219,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns A geometry object that represents the point set intersection of this geometric object with other.
      */
-    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("intersection(other:)"), swift_error(nonnull_error)));
+    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing *) error __attribute__((swift_name("intersection(other:)"), swift_error(nonnull_error)));
 
     /**
      * Calculate the difference of two geometries.
@@ -235,7 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns A new GFGeometry instance that represents the difference of self and other.
      */
-    - (GFGeometry *) difference: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("difference(other:)"), swift_error(nonnull_error)));
+    - (GFGeometry *) difference: (GFGeometry *) other error: (NSError * __autoreleasing *) error __attribute__((swift_name("difference(other:)"), swift_error(nonnull_error)));
 
     /** Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
      *
@@ -249,7 +249,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns A new GFGeometry instance that represents the union of self and other.
      */
-    - (GFGeometry *) union_: (GFGeometry *)other error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("union(other:)"), swift_error(nonnull_error)));
+    - (GFGeometry *) union_: (GFGeometry *)other error: (NSError * __autoreleasing *) error __attribute__((swift_name("union(other:)"), swift_error(nonnull_error)));
 
 @end
 
@@ -321,7 +321,7 @@ NS_ASSUME_NONNULL_BEGIN
      * @endcode
      *
      */
-    + (instancetype) geometryWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
+    + (instancetype) geometryWithWKT:(NSString *)wkt error: (NSError * __autoreleasing *) error __attribute__((swift_name("init(wkt:)"), swift_error(nonnull_error)));
 
     /**
      *

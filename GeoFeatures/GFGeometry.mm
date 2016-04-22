@@ -311,7 +311,7 @@ namespace gf = geofeatures;
         }
     }
 
-    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing * _Nullable) error {
+    - (GFGeometry *) intersection: (GFGeometry *) other error: (NSError * __autoreleasing *) error {
         GFGeometry * geometry = nil;
         
         try {
