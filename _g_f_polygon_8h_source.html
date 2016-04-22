@@ -115,40 +115,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#import &quot;GFGeometry.h&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Forward declarations</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">@class</span> <a class="code" href="interface_g_f_ring.html">GFRing</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">@class</span> <a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="interface_g_f_polygon.html">   39</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_polygon.html">GFPolygon</a> : <a class="code" href="interface_g_f_geometry.html">GFGeometry</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    - (<a class="code" href="interface_g_f_ring.html">GFRing</a> *) <a class="code" href="interface_g_f_polygon.html#af984fc68777e9069cd2418f6077454c1">outerRing</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    - (<a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> *) <a class="code" href="interface_g_f_polygon.html#ae2a7ec1a59646496e5ed5e4a813909f9">innerRings</a>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">@end</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="interface_g_f_mutable_polygon.html">  115</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_mutable_polygon.html">GFMutablePolygon</a> : <a class="code" href="interface_g_f_polygon.html">GFPolygon</a></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    - (void) setOuterRing: (<a class="code" href="interface_g_f_ring.html">GFRing</a> *) outerRing;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    - (void) setInnerRings: (<a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> *) aRingCollection;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">@end</span></div>
-<div class="ttc" id="interface_g_f_geometry_html"><div class="ttname"><a href="interface_g_f_geometry.html">GFGeometry</a></div><div class="ttdoc">An abstract class that represents a geometric shape. </div><div class="ttdef"><b>Definition:</b> GFGeometry.h:46</div></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;NS_ASSUME_NONNULL_BEGIN</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// Forward declarations</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">@class</span> <a class="code" href="interface_g_f_ring.html">GFRing</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">@class</span> <a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="interface_g_f_polygon.html">   41</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_polygon.html">GFPolygon</a> : <a class="code" href="interface_g_f_geometry.html">GFGeometry</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt __attribute__((swift_private, availability(swift, unavailable, message=&quot;Use init(wkt: String) throws instead.&quot;)));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    - (instancetype) initWithWKT:(NSString *)wkt error: (NSError * __autoreleasing * _Nullable) error __attribute__((swift_name(&quot;init(wkt:)&quot;), swift_error(nonnull_error)));</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary __attribute__((swift_private, availability(swift, unavailable, message=&quot;Use init(geoJSONGeometry: [NSObject : AnyObject]) throws instead.&quot;)));</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    - (instancetype) initWithGeoJSONGeometry:(NSDictionary *)jsonDictionary error: (NSError * __autoreleasing *) error __attribute__((swift_name(&quot;init(geoJSONGeometry:)&quot;), swift_error(nonnull_error)));</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    - (<a class="code" href="interface_g_f_ring.html">GFRing</a> *) <a class="code" href="interface_g_f_polygon.html#af984fc68777e9069cd2418f6077454c1">outerRing</a>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    - (<a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> *) <a class="code" href="interface_g_f_polygon.html#ae2a7ec1a59646496e5ed5e4a813909f9">innerRings</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="interface_g_f_mutable_polygon.html">  172</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_g_f_mutable_polygon.html">GFMutablePolygon</a> : <a class="code" href="interface_g_f_polygon.html">GFPolygon</a></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    - (void) setOuterRing: (<a class="code" href="interface_g_f_ring.html">GFRing</a> *) outerRing;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    - (void) setInnerRings: (<a class="code" href="interface_g_f_geometry_collection.html">GFGeometryCollection</a> *) aRingCollection;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;NS_ASSUME_NONNULL_END</div>
+<div class="ttc" id="interface_g_f_geometry_html"><div class="ttname"><a href="interface_g_f_geometry.html">GFGeometry</a></div><div class="ttdoc">An abstract class that represents a geometric shape. </div><div class="ttdef"><b>Definition:</b> GFGeometry.h:48</div></div>
 <div class="ttc" id="interface_g_f_polygon_html_af984fc68777e9069cd2418f6077454c1"><div class="ttname"><a href="interface_g_f_polygon.html#af984fc68777e9069cd2418f6077454c1">-[GFPolygon outerRing]</a></div><div class="ttdeci">GFRing * outerRing()</div></div>
-<div class="ttc" id="interface_g_f_geometry_collection_html"><div class="ttname"><a href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div><div class="ttdoc">A container class containing an array of GFGeometry objects. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:35</div></div>
-<div class="ttc" id="interface_g_f_ring_html"><div class="ttname"><a href="interface_g_f_ring.html">GFRing</a></div><div class="ttdoc">A GFRing (aka linear ring) is a closed line which should not be self intersecting. </div><div class="ttdef"><b>Definition:</b> GFRing.h:36</div></div>
+<div class="ttc" id="interface_g_f_geometry_collection_html"><div class="ttname"><a href="interface_g_f_geometry_collection.html">GFGeometryCollection</a></div><div class="ttdoc">A container class containing an array of GFGeometry objects. </div><div class="ttdef"><b>Definition:</b> GFGeometryCollection.h:37</div></div>
+<div class="ttc" id="interface_g_f_ring_html"><div class="ttname"><a href="interface_g_f_ring.html">GFRing</a></div><div class="ttdoc">A GFRing (aka linear ring) is a closed line which should not be self intersecting. </div><div class="ttdef"><b>Definition:</b> GFRing.h:38</div></div>
 <div class="ttc" id="interface_g_f_polygon_html_ae2a7ec1a59646496e5ed5e4a813909f9"><div class="ttname"><a href="interface_g_f_polygon.html#ae2a7ec1a59646496e5ed5e4a813909f9">-[GFPolygon innerRings]</a></div><div class="ttdeci">GFGeometryCollection * innerRings()</div></div>
-<div class="ttc" id="interface_g_f_mutable_polygon_html"><div class="ttname"><a href="interface_g_f_mutable_polygon.html">GFMutablePolygon</a></div><div class="ttdoc">A a mutable representation of GFPolygon. </div><div class="ttdef"><b>Definition:</b> GFPolygon.h:115</div></div>
-<div class="ttc" id="interface_g_f_polygon_html"><div class="ttname"><a href="interface_g_f_polygon.html">GFPolygon</a></div><div class="ttdoc">A concrete Polygon implementation. </div><div class="ttdef"><b>Definition:</b> GFPolygon.h:39</div></div>
+<div class="ttc" id="interface_g_f_mutable_polygon_html"><div class="ttname"><a href="interface_g_f_mutable_polygon.html">GFMutablePolygon</a></div><div class="ttdoc">A a mutable representation of GFPolygon. </div><div class="ttdef"><b>Definition:</b> GFPolygon.h:172</div></div>
+<div class="ttc" id="interface_g_f_polygon_html"><div class="ttname"><a href="interface_g_f_polygon.html">GFPolygon</a></div><div class="ttdoc">A concrete Polygon implementation. </div><div class="ttdef"><b>Definition:</b> GFPolygon.h:41</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 8 2016 15:17:08 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 21 2016 16:44:37 for GeoFeatures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

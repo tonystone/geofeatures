@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['removeallgeometries',['removeAllGeometries',['../interface_g_f_mutable_geometry_collection.html#a2d260d5b39e15961283b27f6fa5f4cb1',1,'GFMutableGeometryCollection::removeAllGeometries()'],['../interface_g_f_mutable_multi_line_string.html#ae25e7e5a7a8fc6991b3647ff7fe7b600',1,'GFMutableMultiLineString::removeAllGeometries()'],['../interface_g_f_mutable_multi_point.html#a9f7115d35aa13393ee6ab6c6fc34db8d',1,'GFMutableMultiPoint::removeAllGeometries()'],['../interface_g_f_mutable_multi_polygon.html#a5001e5407d8f307dadd81e09dcd67476',1,'GFMutableMultiPolygon::removeAllGeometries()']]],
-  ['removeallpoints',['removeAllPoints',['../interface_g_f_mutable_line_string.html#aced95edba93ee37c02ecfdd738c17257',1,'GFMutableLineString::removeAllPoints()'],['../interface_g_f_mutable_ring.html#a98116745bd973cd9a206e289a9d501fb',1,'GFMutableRing::removeAllPoints()']]],
-  ['removegeometryatindex_3a',['removeGeometryAtIndex:',['../interface_g_f_mutable_geometry_collection.html#a8532baf7d75daa26227369cb26a41593',1,'GFMutableGeometryCollection::removeGeometryAtIndex:()'],['../interface_g_f_mutable_multi_line_string.html#a712b2e48823c1b6b488190118e662651',1,'GFMutableMultiLineString::removeGeometryAtIndex:()'],['../interface_g_f_mutable_multi_point.html#a1adb9a46ecac94fdb68b9b0b06929883',1,'GFMutableMultiPoint::removeGeometryAtIndex:()'],['../interface_g_f_mutable_multi_polygon.html#a5cd8e6bce7ce1d0a7c9c6338634f9e2f',1,'GFMutableMultiPolygon::removeGeometryAtIndex:()']]],
-  ['removepointatindex_3a',['removePointAtIndex:',['../interface_g_f_mutable_line_string.html#a72d2128ac8c0ddbbc3967e64695a73b3',1,'GFMutableLineString::removePointAtIndex:()'],['../interface_g_f_mutable_ring.html#a82f12ae57ae5bb09e30b74ee76b98ab6',1,'GFMutableRing::removePointAtIndex:()']]]
+  ['perimeter',['perimeter',['../interface_g_f_geometry.html#a31593eea12da7a9ed46b2dd4e6ca511e',1,'GFGeometry']]],
+  ['perimeter_3a',['perimeter:',['../interface_g_f_geometry.html#a746be63604d2e7563d17c1728c8fb8bf',1,'GFGeometry']]],
+  ['pointatindex_3a',['pointAtIndex:',['../interface_g_f_line_string.html#a51963123a916fd666131859f571e2609',1,'GFLineString']]]
 ];
