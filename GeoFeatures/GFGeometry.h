@@ -60,18 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The area of the geometry.
      */
-    - (double) area __attribute__((swift_private, availability(swift, unavailable, message="Use area() throws -> Double instead.")));
-
-    /**
-     *
-     * The area algorithm calculates the surface area of all geometries having a surface,
-     * namely box, polygon, ring, multipolygon. The units are the square of the units used
-     * for the points defining the surface. If subject geometry is defined in meters, then
-     * area is calculated in square meters
-     *
-     * @returns The area of the geometry.
-     */
-    - (double) area: (NSError * __autoreleasing *) error __attribute__((swift_name("area()"), swift_error(nonnull_error)));
+    - (double) area;
 
     /** The length method calculates the length (the sum of distances between consecutive points) of a geometry.
      *
@@ -88,24 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The length of linear GFGeometry types (e.g. GFLineString).
      */
-    - (double) length __attribute__((swift_private, availability(swift, unavailable, message="Use length() throws -> Double instead.")));
-
-    /** The length method calculates the length (the sum of distances between consecutive points) of a geometry.
-     *
-     * @note
-     * @parblock
-     *
-     *   point types (e.g. GFPoint) Return zero
-     *
-     *   linear types (e.g. GFLineString) Return the length
-     *
-     *   areal (e.g. GFPolygon)  Return zero
-     *
-     * @endparblcok
-     *
-     * @returns The length of linear GFGeometry types (e.g. GFLineString).
-     */
-    - (double) length: (NSError * __autoreleasing *) error __attribute__((swift_name("length()"), swift_error(nonnull_error)));
+    - (double) length;
 
     /** Calculates the perimeter of a geometry
      *
@@ -122,24 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      *  @returns The perimeter of areal GFGeometry types (e.g. GFPolygon).
      */
-    - (double) perimeter __attribute__((swift_private, availability(swift, unavailable, message="Use perimeter() throws -> Double instead.")));
-
-    /** Calculates the perimeter of a geometry
-     *
-     * @note
-     *  @parblock
-     *
-     *  point types (e.g. GFPoint) Returns zero
-     *
-     *  linear types (e.g. GFLineString) Returns zero
-     *
-     *  areal (e.g. GFPolygon)  Returns the perimeter
-     *
-     *  @endparblock
-     *
-     *  @returns The perimeter of areal GFGeometry types (e.g. GFPolygon).
-     */
-    - (double) perimeter: (NSError * __autoreleasing *) error __attribute__((swift_name("perimeter()"), swift_error(nonnull_error)));
+    - (double) perimeter;
 
     /**  The centroid method calculates the geometric center (or: center of mass) of a geometry.
      *
@@ -157,53 +112,27 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @returns The bounding box as a GFBox.
      */
-    - (GFBox *) boundingBox __attribute__((swift_private, availability(swift, unavailable, message="Use boundingBox() throws -> GFBox instead.")));
-
-    /** The boundingBox method calculates the boundingBox (also known as axis aligned bounding box, aabb, or minimum bounding rectangle, mbr) of a geometry.
-     *
-     * @returns The bounding box as a GFBox.
-     */
-    - (GFBox *) boundingBox: (NSError * __autoreleasing *) error __attribute__((swift_name("boundingBox()"), swift_error(nonnull_error)));
+    - (GFBox *) boundingBox;
 
     /** Checks if the geometry is completely inside the other geometry.
      *
      * @returns True if self is within the other GFGeometry instance.  False otherwise.
      */
-    - (BOOL) within: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use within(other: GFGeometry) throws -> Bool instead.")));
-
-    /** Checks if the geometry is completely inside the other geometry.
-     *
-     * @returns True if self is within the other GFGeometry instance.  False otherwise.
-     */
-    - (BOOL) within: (GFGeometry *) other error: (NSError * __autoreleasing *) error __attribute__((swift_name("within(other:)"), swift_error(nonnull_error)));
+    - (BOOL) within: (GFGeometry *) other __attribute__((swift_name("within(other:)")));
 
     /**
      * Checks if self has at least one intersection.
      *
      * @returns true if self has at least one intersection.
      */
-    - (BOOL) intersects __attribute__((swift_private, availability(swift, unavailable, message="Use intersects() throws -> Bool instead.")));
-
-    /**
-     * Checks if self has at least one intersection.
-     *
-     * @returns true if self has at least one intersection.
-     */
-    - (BOOL) intersects_: (NSError * __autoreleasing *) error __attribute__((swift_name("intersects()"), swift_error(nonnull_error)));
+    - (BOOL) intersects;
 
     /**
      * Checks if self has at least one intersection with the other geometry.
      *
      * @returns true if self has at least one intersection with the other geometry.
      */
-    - (BOOL) intersects: (GFGeometry *) other __attribute__((swift_private, availability(swift, unavailable, message="Use intersects(other:) throws -> Bool instead.")));
-
-    /**
-     * Checks if self has at least one intersection with the other geometry.
-     *
-     * @returns true if self has at least one intersection with the other geometry.
-     */
-    - (BOOL) intersects: (GFGeometry *) other error: (NSError * __autoreleasing *) error __attribute__((swift_name("intersects(other:)"), swift_error(nonnull_error)));
+    - (BOOL) intersects: (GFGeometry *) other __attribute__((swift_name("intersects(other:)")));
 
     /** 
      * Calculates the point set intersection of this geometry with other.
