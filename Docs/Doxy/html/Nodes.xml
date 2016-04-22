@@ -34,7 +34,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_box.html</Path>
-              <Anchor>aaf52166ac0f936a32a04346ab91f2033</Anchor>
+              <Anchor>a063713c81e197900aca5ef8b3ed40448</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -73,29 +73,14 @@
               <Anchor>a0028dc3b2c2315a24d803dfa4cf2250e</Anchor>
              </Node>
              <Node>
-              <Name>area:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>ace87d1a855e679bc7dad8efe01de05d9</Anchor>
-             </Node>
-             <Node>
               <Name>length</Name>
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>ab68dd3c418a3f06c6593d02dfebe2585</Anchor>
              </Node>
              <Node>
-              <Name>length:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a85cbb192882c5bcf6eede5caa0d3083e</Anchor>
-             </Node>
-             <Node>
               <Name>perimeter</Name>
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>a31593eea12da7a9ed46b2dd4e6ca511e</Anchor>
-             </Node>
-             <Node>
-              <Name>perimeter:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a746be63604d2e7563d17c1728c8fb8bf</Anchor>
              </Node>
              <Node>
               <Name>centroid</Name>
@@ -105,7 +90,7 @@
              <Node>
               <Name>centroid:</Name>
               <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a2c72f4e2f67d3cf79514e47f0973c10c</Anchor>
+              <Anchor>a16f03e92b3636e574d5f8659e822de69</Anchor>
              </Node>
              <Node>
               <Name>boundingBox</Name>
@@ -113,19 +98,9 @@
               <Anchor>a808ba7daf6d4c3d742668ad3fe5d0f0e</Anchor>
              </Node>
              <Node>
-              <Name>boundingBox:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a845ecba0fb20deca5dcaf3350329bf94</Anchor>
-             </Node>
-             <Node>
               <Name>within:</Name>
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>a832350c76f4a42a39889c9138108edd2</Anchor>
-             </Node>
-             <Node>
-              <Name>within:error:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a472aa2dddf6c10eec974d9851d186c06</Anchor>
              </Node>
              <Node>
               <Name>intersects</Name>
@@ -133,19 +108,9 @@
               <Anchor>a3735ea20bc337cff79944bbe08f3bdf0</Anchor>
              </Node>
              <Node>
-              <Name>intersects_:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>ac17c7387894066850c7cca9d3545be61</Anchor>
-             </Node>
-             <Node>
               <Name>intersects:</Name>
               <Path>interface_g_f_geometry.html</Path>
               <Anchor>a86d1a80435c6b838dfb8b1a22a17a0b8</Anchor>
-             </Node>
-             <Node>
-              <Name>intersects:error:</Name>
-              <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a836e4a35ecadb3a35c4f0bd8fb3a6740</Anchor>
              </Node>
              <Node>
               <Name>intersection:</Name>
@@ -155,7 +120,7 @@
              <Node>
               <Name>intersection:error:</Name>
               <Path>interface_g_f_geometry.html</Path>
-              <Anchor>a3b071da06cde8e37681d8dec934ca62d</Anchor>
+              <Anchor>a6faa39e502da86516c58b5ce65847924</Anchor>
              </Node>
              <Node>
               <Name>difference:</Name>
@@ -165,7 +130,7 @@
              <Node>
               <Name>difference:error:</Name>
               <Path>interface_g_f_geometry.html</Path>
-              <Anchor>ad84c62d6fee6b0169128bae069e84f53</Anchor>
+              <Anchor>a30eb0242f8e9f9e3e1d542af03e4144b</Anchor>
              </Node>
              <Node>
               <Name>union_:</Name>
@@ -175,7 +140,7 @@
              <Node>
               <Name>union_:error:</Name>
               <Path>interface_g_f_geometry.html</Path>
-              <Anchor>af05f89e6df33df7c59c99b57cf2c35f2</Anchor>
+              <Anchor>ac3fa56a053de364baf4b9c496b0b93a4</Anchor>
              </Node>
              <Node>
               <Name>toGeoJSONGeometry</Name>
@@ -239,7 +204,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_geometry_collection.html</Path>
-              <Anchor>a7569568bacbb3b0f73c60369a0dc710e</Anchor>
+              <Anchor>ab9106d38d85940ef0bfa6eeb89d90193</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -295,7 +260,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_line_string.html</Path>
-              <Anchor>acb421fc3195219e085f9bb69703ceb41</Anchor>
+              <Anchor>ad4f0785562bf698de516d1dc30c01d7a</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -350,7 +315,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_multi_line_string.html</Path>
-              <Anchor>aa3df77e980ea50a6bd3564b821635c15</Anchor>
+              <Anchor>adf3a49187e5b730dd9a7992c242ace9e</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -401,7 +366,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_multi_point.html</Path>
-              <Anchor>ab144e594c2bc87ce0353ecc833525f94</Anchor>
+              <Anchor>a3da732dd6a2635ab6ac56abf24168829</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -452,7 +417,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_multi_polygon.html</Path>
-              <Anchor>a719e2a53a9fa5e29735d53f8fc9d9071</Anchor>
+              <Anchor>a99c2205d625fa0430d5008b505cf1ebc</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -742,7 +707,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_point.html</Path>
-              <Anchor>a654f3533a3407c74bbdd11560b0275ee</Anchor>
+              <Anchor>a0793480ce53d67168442417baad4bd1d</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -782,7 +747,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_polygon.html</Path>
-              <Anchor>a15d16c0aaa1076a068ecd000c69dbcdf</Anchor>
+              <Anchor>aabc794c06956ee13f36acf6a61b2ec7c</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
@@ -822,7 +787,7 @@
              <Node>
               <Name>initWithWKT:error:</Name>
               <Path>interface_g_f_ring.html</Path>
-              <Anchor>a22ccba4abea45feba6cbc9e6078bb465</Anchor>
+              <Anchor>a89ebc00785f455c5ca2da11c701ab46e</Anchor>
              </Node>
              <Node>
               <Name>initWithGeoJSONGeometry:</Name>
