@@ -96,78 +96,21 @@ namespace gf = geofeatures;
     }
 
     - (double)area {
-        try {
-            const auto variant = [self cppGeometryPtrVariant];
+        const auto variant = [self cppGeometryPtrVariant];
 
-            return gf::operators::area(variant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (double)area: (NSError * __autoreleasing *) error {
-        double area = 0.0;
-        
-        try {
-            area = [self area];
-        
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return area;
+        return gf::operators::area(variant);
     }
 
     - (double)length {
-        try {
-            const auto variant = [self cppGeometryPtrVariant];
+        const auto variant = [self cppGeometryPtrVariant];
             
-            return gf::operators::length(variant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (double)length: (NSError * __autoreleasing *) error {
-        double length = 0.0;
-        
-        try {
-            length = [self length];
-        
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return length;
+        return gf::operators::length(variant);
     }
 
     - (double)perimeter {
-        try {
-            const auto variant = [self cppGeometryPtrVariant];
+        const auto variant = [self cppGeometryPtrVariant];
             
-            return boost::apply_visitor(gf::operators::PerimeterOperation(), variant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (double)perimeter: (NSError * __autoreleasing *) error {
-        double perimeter = 0.0;
-        
-        try {
-            perimeter = [self perimeter];
-        
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return perimeter;
+        return boost::apply_visitor(gf::operators::PerimeterOperation(), variant);
     }
 
     - (GFPoint *)centroid {
@@ -194,105 +137,29 @@ namespace gf = geofeatures;
     }
 
     - (GFBox *)boundingBox {
-        try {
-            const auto variant = [self cppGeometryPtrVariant];
+        const auto variant = [self cppGeometryPtrVariant];
             
-            return [[GFBox alloc] initWithCPPBox: gf::operators::boundingBox(variant)];
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (GFBox *)boundingBox: (NSError **) error {
-        try {
-            return [self boundingBox];
-
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return nil;
+        return [[GFBox alloc] initWithCPPBox: gf::operators::boundingBox(variant)];
     }
 
     - (BOOL)within:(GFGeometry *)other {
+        const auto variant        = [self cppGeometryPtrVariant];
+        const auto otherVariant   = [other cppGeometryPtrVariant];
 
-        try {
-            const auto variant        = [self cppGeometryPtrVariant];
-            const auto otherVariant   = [other cppGeometryPtrVariant];
-
-            return gf::operators::within(variant, otherVariant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (BOOL)within:(GFGeometry *)other error: (NSError **) error {
-        BOOL within = NO;
-        
-        try {
-            within = [self within: other];
-
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return within;
+        return gf::operators::within(variant, otherVariant);
     }
 
     - (BOOL) intersects {
+        const auto variant = [self cppGeometryPtrVariant];
 
-        try {
-            const auto variant = [self cppGeometryPtrVariant];
-
-            return gf::operators::intersects(variant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (BOOL)intersects_: (NSError **) error {
-        BOOL intersects = NO;
-        
-        try {
-            intersects = [self intersects];
-
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return intersects;
+        return gf::operators::intersects(variant);
     }
 
     - (BOOL) intersects: (GFGeometry *) other {
-        try {
-            const auto variant        = [self cppGeometryPtrVariant];
-            const auto otherVariant   = [other cppGeometryPtrVariant];
+        const auto variant        = [self cppGeometryPtrVariant];
+        const auto otherVariant   = [other cppGeometryPtrVariant];
 
-            return gf::operators::intersects(variant, otherVariant);
-
-        } catch (std::exception & e) {
-            @throw [NSException exceptionWithName:@"Exception" reason: [NSString stringWithUTF8String: e.what()] userInfo:nil];
-        }
-    }
-
-    - (BOOL)intersects: (GFGeometry *) other error: (NSError **) error {
-        BOOL intersects = NO;
-        
-        try {
-            intersects = [self intersects: other];
-
-        } catch (NSException * e) {
-            if (error) {
-                *error = [NSError errorWithDomain: @"GeoFeaturesDomain" code: 100 userInfo: @{NSLocalizedDescriptionKey: e.reason}];
-            }
-        }
-        return intersects;
+        return gf::operators::intersects(variant, otherVariant);
     }
 
     - (GFGeometry *) intersection: (GFGeometry *) other  {
