@@ -20,7 +20,7 @@
 import XCTest
 import GeoFeatures2
 
-private let geoetryDimension = 2    // Polygon are always 2 dimension
+private let geometryDimension = 2    // Polygon are always 2 dimension
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
@@ -30,7 +30,7 @@ class Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCa
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -42,7 +42,7 @@ class Polygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestC
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -54,7 +54,7 @@ class Polygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCa
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -66,7 +66,7 @@ class Polygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestC
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -78,7 +78,7 @@ class Polygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase 
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -90,7 +90,7 @@ class Polygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -102,7 +102,7 @@ class Polygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase 
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -114,6 +114,6 @@ class Polygon_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }

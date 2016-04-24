@@ -20,7 +20,7 @@
 import XCTest
 import GeoFeatures2
 
-private let geoetryDimension = 1    // MultiLineString are always 1 dimension
+private let geometryDimension = 1    // MultiLineString are always 1 dimension
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
@@ -30,7 +30,7 @@ class MultiLineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests : 
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -42,7 +42,7 @@ class MultiLineString_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests :
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -54,7 +54,7 @@ class MultiLineString_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests : 
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -66,7 +66,7 @@ class MultiLineString_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests :
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -78,7 +78,7 @@ class MultiLineString_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests : XCT
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -90,7 +90,7 @@ class MultiLineString_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests : XC
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -102,7 +102,7 @@ class MultiLineString_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests : XCT
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
@@ -114,6 +114,6 @@ class MultiLineString_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests : XC
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(MultiLineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geoetryDimension)
+        XCTAssertEqual(MultiLineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
