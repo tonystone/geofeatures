@@ -48,6 +48,11 @@ public protocol Geometry {
     var coordinateReferenceSystem: CoordinateReferenceSystem { get }
     
     /**
+        The inherent dimension of this Geoemetry.
+    */
+    var dimension: Int { get }
+    
+    /**
      - Returns true if this Geometry is an empty Geometry.
     */
     @warn_unused_result

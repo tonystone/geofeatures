@@ -23,6 +23,23 @@ import Swift
 
 extension GeometryCollection : Geometry  {
     
+    public var dimension: Int { get {
+        
+        return storage.withUnsafeMutablePointers { (count, elements)-> Int in
+            
+            var dimension: Int = -1 // No dimension
+            
+            if count.memory > 0 {
+                
+                for index in 0..<count.memory {
+                    dimension = max(dimension, elements[index].dimension)
+                }
+            }
+            return dimension
+        }
+        }
+    }
+    
     public func isEmpty() -> Bool {
         return self.count == 0
     }
