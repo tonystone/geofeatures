@@ -20,7 +20,9 @@
 import Swift
 
 extension MultiLineString : Geometry  {
-
+    
+    public var dimension: Int { return 1 }
+    
     public func isEmpty() -> Bool {
         return self.count == 0
     }
