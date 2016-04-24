@@ -54,7 +54,7 @@ class Point_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase
     let crs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
     
     func testIsEmpty() {
@@ -78,7 +78,7 @@ class Point_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase 
     let crs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
     
     func testIsEmpty() {
@@ -102,7 +102,7 @@ class Point_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase
     let crs       = Cartesian()
     
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
     
     func testIsEmpty() {
@@ -150,7 +150,7 @@ class Point_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     let crs       = Cartesian()
     
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
@@ -174,7 +174,7 @@ class Point_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     let crs       = Cartesian()
     
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
@@ -198,7 +198,7 @@ class Point_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     let crs       = Cartesian()
     
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
     
     func testIsEmpty() {
