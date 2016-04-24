@@ -32,6 +32,7 @@
 		BF5C19E555F0BB8ED799E286 /* Pods_GeoFeatures2_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B88AC2CCDA7AA09BD031B8E /* Pods_GeoFeatures2_Example.framework */; };
 		DABEEBC540582F4C4AB425AA /* Pods_GeoFeatures2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E76E80829A6C416EFFD976 /* Pods_GeoFeatures2_Tests.framework */; };
 		E7616A521C9146F5002149A9 /* WKTWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7616A501C9146CA002149A9 /* WKTWriterTests.swift */; };
+		EA0AD18A1CCD1A1E0066C511 /* Point+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0AD1891CCD1A1E0066C511 /* Point+GeometryTests.swift */; };
 		EA45B11B1CAD759C00BD7C23 /* LineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA45B11A1CAD759C00BD7C23 /* LineStringTests.swift */; };
 		EA45B11D1CAD86E000BD7C23 /* LinearRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA45B11C1CAD86E000BD7C23 /* LinearRingTests.swift */; };
 		EA45B11F1CAD8F0000BD7C23 /* MultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA45B11E1CAD8F0000BD7C23 /* MultiPointTests.swift */; };
@@ -80,6 +81,7 @@
 		CD829F37916D32011B39AD57 /* GeoFeatures2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures2.podspec; path = ../GeoFeatures2.podspec; sourceTree = "<group>"; };
 		E7616A501C9146CA002149A9 /* WKTWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTWriterTests.swift; sourceTree = "<group>"; };
 		EA043EC41C8CF4F600FBA8D4 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MultiPointTests.swift.gyb; path = Tests/MultiPointTests.swift.gyb; sourceTree = "<group>"; };
+		EA0AD1891CCD1A1E0066C511 /* Point+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Point+GeometryTests.swift"; sourceTree = "<group>"; };
 		EA45B11A1CAD759C00BD7C23 /* LineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringTests.swift; sourceTree = "<group>"; };
 		EA45B11C1CAD86E000BD7C23 /* LinearRingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingTests.swift; sourceTree = "<group>"; };
 		EA45B11E1CAD8F0000BD7C23 /* MultiPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointTests.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				EAB4C1B71C6F7C3F00F288D1 /* Coordinate3DTests.swift */,
 				36698529569A94F68DF66EEA /* Coordinate3DMTests.swift */,
 				EAB4C1BB1C6F7C3F00F288D1 /* PointTests.swift */,
+				EA0AD1891CCD1A1E0066C511 /* Point+GeometryTests.swift */,
 				EA45B11E1CAD8F0000BD7C23 /* MultiPointTests.swift */,
 				EA45B11A1CAD759C00BD7C23 /* LineStringTests.swift */,
 				EA4B1BD21CB03F3F0011174E /* LineString+CurveTests.swift */,
@@ -515,6 +518,7 @@
 				EAB4C1C91C6F7CC900F288D1 /* PointTests.swift in Sources */,
 				EAB4C1C61C6F7CBD00F288D1 /* FixedPrecisionTests.swift in Sources */,
 				EAB4C1C51C6F7CBA00F288D1 /* Coordinate3DTests.swift in Sources */,
+				EA0AD18A1CCD1A1E0066C511 /* Point+GeometryTests.swift in Sources */,
 				EAB4C1C71C6F7CC100F288D1 /* FloatingPrecisionTests.swift in Sources */,
 				EAB4C1C41C6F7CB600F288D1 /* Coordinate2DTests.swift in Sources */,
 				EA45B11B1CAD759C00BD7C23 /* LineStringTests.swift in Sources */,
