@@ -23,11 +23,11 @@ import Swift
 
 extension GeometryCollection : Geometry  {
     
-    public var dimension: Int { get {
+    public var dimension: Dimension { get {
         
-        return storage.withUnsafeMutablePointers { (count, elements)-> Int in
+        return storage.withUnsafeMutablePointers { (count, elements)-> Dimension in
             
-            var dimension: Int = -1 // No dimension
+            var dimension: Dimension = .EMPTY // No dimension
             
             if count.memory > 0 {
                 

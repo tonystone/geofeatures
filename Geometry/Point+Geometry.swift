@@ -21,7 +21,7 @@ import Swift
 
 extension Point : Geometry {
 
-    public var dimension: Int { return 0 }
+    public var dimension: Dimension { return .ZERO }
     
     public func isEmpty() -> Bool {
         return false    // Point can never be empty
