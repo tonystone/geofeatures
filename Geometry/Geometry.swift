@@ -50,7 +50,7 @@ public protocol Geometry {
     /**
         The inherent dimension of this Geoemetry.
     */
-    var dimension: Int { get }
+    var dimension: Dimension { get }
     
     /**
      - Returns true if this Geometry is an empty Geometry.
