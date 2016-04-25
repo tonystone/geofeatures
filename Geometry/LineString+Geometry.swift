@@ -21,7 +21,7 @@ import Swift
 
 extension LineString : Geometry  {
 
-    public var dimension: Int { return 1 }
+    public var dimension: Dimension { return .ONE }
     
     public func isEmpty() -> Bool {
         return self.count == 0

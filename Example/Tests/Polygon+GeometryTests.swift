@@ -20,7 +20,7 @@
 import XCTest
 import GeoFeatures2
 
-private let geometryDimension = 2    // Polygon are always 2 dimension
+private let geometryDimension = Dimension.TWO    // Polygon are always 2 dimension
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 

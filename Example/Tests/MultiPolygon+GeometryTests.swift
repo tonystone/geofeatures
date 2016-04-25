@@ -20,7 +20,7 @@
 import XCTest
 import GeoFeatures2
 
-private let geometryDimension = 2    // MultiPolygon are always 2 dimension
+private let geometryDimension = Dimension.TWO    // MultiPolygon are always 2 dimension
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
