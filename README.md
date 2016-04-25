@@ -61,6 +61,12 @@ pod "GeoFeatures"
 
 See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information.
 
+## Minimum Requirements
+
+| Xcode | Swift | iOS |  OS X |
+|:-----:|:-----:|:---:|:-----:|
+| 7.3.0 |  2.2  | 8.0 | 10.10 |
+
 ## Author
 
 Tony Stone ([https://github.com/tonystone] (https://github.com/tonystone))
