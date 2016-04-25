@@ -20,7 +20,7 @@
 import XCTest
 import GeoFeatures2
 
-private let geometryDimension = 0    // MultiPoint are always 0 dimension
+private let geometryDimension = Dimension.ZERO    // MultiPoint are always 0 dimension
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
