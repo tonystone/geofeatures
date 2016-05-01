@@ -1,5 +1,5 @@
 #
-#   CollectionBuffer.swift
+#   Vagrantfile
 #
 #   Copyright 2016 Tony Stone
 #
