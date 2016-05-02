@@ -24,25 +24,42 @@ require 'getoptlong'
 # command line.  At this point script arguments must come
 # before vagrant commands and arguments.
 #
-# Example:
+# Examples:
 #
-# > vagrant --swift-snapshot="2016-04-25-a" up --provider=virtualbox
+# > vagrant --swift-version="2016-04-25-a" up --provider=virtualbox
 #
-swiftSnapshot='2016-04-25-a'
+# > vagrant --release --swift-version="2.2.1" up --provider=virtualbox
+#
+sourceName=""
+sourceDirectory=""
+
+swiftRelease=false
+swiftVersion="2016-04-25-a"
 
 options = GetoptLong.new(
-    [ '--swift-snapshot', GetoptLong::OPTIONAL_ARGUMENT ]
+    [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],
+    [ '--release'      , GetoptLong::NO_ARGUMENT ]
 )
 options.quiet = true
 
 begin
     options.each do |option, value|
         case option
-            when '--swift-snapshot'
-            swiftSnapshot=value
+            when '--swift-version'
+            swiftVersion=value
+            when '--release'
+            swiftRelease=true
         end
     end
     rescue GetoptLong::InvalidOption
+end
+
+if swiftRelease
+    sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1404/swift-#{swiftVersion}-RELEASE"
+    sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu14.04"
+else
+    sourceDirectory = "builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
+    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu14.04"
 end
 
 Vagrant.configure("2") do |config|
@@ -52,7 +69,9 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox"
 
   config.vm.provider "parallels" do |v, override|
-     v.name = "Ubuntu Linux 14.04 - Swift Development"
+     v.name = "Ubuntu Linux 14.04 - GeoFeatures Development"
+     v.memory = 512
+     
      override.vm.box = "parallels/ubuntu-14.04"
   end
 
@@ -75,21 +94,21 @@ Vagrant.configure("2") do |config|
     #
     # Note: We're using wget here because of a display issue with curl and vagrant.  The display is corrupt using curl.
     #
-    wget --progress=bar:force https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-"#{swiftSnapshot}"/swift-DEVELOPMENT-SNAPSHOT-"#{swiftSnapshot}"-ubuntu14.04.tar.gz
+    wget --progress=bar:force https://swift.org/"#{sourceDirectory}"/"#{sourceName}".tar.gz
    
    #
     # Expand the swift code into our current directory
     # and update the permissions
     #
-    tar zxf swift-DEVELOPMENT-SNAPSHOT-"#{swiftSnapshot}"-ubuntu14.04.tar.gz
+    tar zxf "#{sourceName}".tar.gz
     
     sudo chown -R vagrant:vagrant swift-*
    
     # Update the path so we can get to swift
     #
-    echo "export PATH=/home/vagrant/swift-DEVELOPMENT-SNAPSHOT-#{swiftSnapshot}-ubuntu14.04/usr/bin:\"${PATH}\"" >> .profile
+    echo "export PATH=/home/vagrant/#{sourceName}/usr/bin:\"${PATH}\"" >> .profile
     echo ""
-    echo "Swift snapshot #{swiftSnapshot} has been successfully installed on Linux"
+    echo "Swift snapshot #{sourceName} has been successfully installed on Linux"
     echo "To use it, call 'vagrant ssh' and once logged in, cd to the /vagrant directory"
     echo ""
   SHELL
