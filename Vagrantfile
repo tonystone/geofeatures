@@ -1,5 +1,5 @@
 #
-#   CollectionBuffer.swift
+#   Vagrantfile
 #
 #   Copyright 2016 Tony Stone
 #
@@ -26,19 +26,19 @@ require 'getoptlong'
 #
 # Examples:
 #
-# > vagrant --swift-version="2.2.1" up --provider=virtualbox
+# > vagrant --swift-version="2016-04-25-a" up --provider=virtualbox
 #
-# > vagrant --snapshot --swift-version="2016-04-25-a" up --provider=virtualbox
+# > vagrant --release --swift-version="2.2.1" up --provider=virtualbox
 #
 sourceName=""
 sourceDirectory=""
 
-swiftSnapshot=false
-swiftVersion="2.2.1"
+swiftRelease=false
+swiftVersion="2016-04-25-a"
 
 options = GetoptLong.new(
     [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],
-    [ '--snapshot'     , GetoptLong::NO_ARGUMENT ]
+    [ '--release'      , GetoptLong::NO_ARGUMENT ]
 )
 options.quiet = true
 
@@ -47,19 +47,19 @@ begin
         case option
             when '--swift-version'
             swiftVersion=value
-            when '--snapshot'
-            swiftSnapshot=true
+            when '--release'
+            swiftRelease=true
         end
     end
     rescue GetoptLong::InvalidOption
 end
 
-if swiftSnapshot
-    sourceDirectory = "builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
-    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu14.04"
-else
+if swiftRelease
     sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1404/swift-#{swiftVersion}-RELEASE"
     sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu14.04"
+else
+    sourceDirectory = "builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
+    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu14.04"
 end
 
 Vagrant.configure("2") do |config|
@@ -69,7 +69,9 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox"
 
   config.vm.provider "parallels" do |v, override|
-     v.name = "Ubuntu Linux 14.04 - Swift Development"
+     v.name = "Ubuntu Linux 14.04 - GeoFeatures Development"
+     v.memory = 512
+     
      override.vm.box = "parallels/ubuntu-14.04"
   end
 
