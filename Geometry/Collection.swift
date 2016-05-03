@@ -102,5 +102,5 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    mutating func removeAll(keepCapacity keepCapacity: Bool)
+    mutating func removeAll(keepCapacity: Bool)
 }
