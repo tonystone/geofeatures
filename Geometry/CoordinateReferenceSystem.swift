@@ -30,10 +30,14 @@ public struct Cartesian: CoordinateReferenceSystem {
     public init() {}
 }
 
+@available(*, unavailable, message: "currently not supported")
 public struct Ellipsoidal: CoordinateReferenceSystem {}
 
+@available(*, unavailable, message: "currently not supported")
 public struct Spherical: CoordinateReferenceSystem {}
 
+@available(*, unavailable, message: "currently not supported")
 public struct Vertical: CoordinateReferenceSystem {}
 
+@available(*, unavailable, message: "currently not supported")
 public struct Polar: CoordinateReferenceSystem {}
