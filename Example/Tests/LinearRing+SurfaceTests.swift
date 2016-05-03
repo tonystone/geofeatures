@@ -80,7 +80,7 @@ class LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
     func testPerformanceArea_RegularQuadrilateral() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 8.29, y: 0.88), (x: 3.18, y: 3.12), (x: 5.43, y: 8.22), (x: 10.53, y: 5.98), (x: 8.29, y: 0.88)], precision: precision, coordinateReferenceSystem: crs)
         
-        self.measureBlock {
+        self.measure  {
             
             for _ in 1...500000 {
                 let _ = geometry.area()
@@ -147,7 +147,7 @@ class LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase
     func testPerformanceArea_RegularQuadrilateral() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 8.29, y: 0.88), (x: 3.18, y: 3.12), (x: 5.43, y: 8.22), (x: 10.53, y: 5.98), (x: 8.29, y: 0.88)], precision: precision, coordinateReferenceSystem: crs)
         
-        self.measureBlock {
+        self.measure {
             
             for _ in 1...500000 {
                 let _ = geometry.area()

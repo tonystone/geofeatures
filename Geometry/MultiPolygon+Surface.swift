@@ -28,9 +28,9 @@ extension MultiPolygon : Surface {
             
             var area: Double = 0.0
             
-            if count.memory > 0 {
+            if count.pointee > 0 {
                 
-                for index in 0..<count.memory {
+                for index in 0..<count.pointee {
                     area += elements[index].area()
                 }
             }

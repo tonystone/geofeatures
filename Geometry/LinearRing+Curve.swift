@@ -29,10 +29,10 @@ extension LinearRing : Curve {
         
         var length: Double  = 0.0
         
-        var generator = self.generate()
+        var Iterator = self.makeIterator()
         
-        if var c1 = generator.next() {
-            while let  c2 = generator.next() {
+        if var c1 = Iterator.next() {
+            while let  c2 = Iterator.next() {
                 var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
                 
                 if let c1 = c1 as? ThreeDimensional,

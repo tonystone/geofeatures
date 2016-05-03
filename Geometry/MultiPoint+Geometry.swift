@@ -27,17 +27,15 @@ extension MultiPoint : Geometry  {
         return self.count == 0
     }
     
-    public func equals(other: Geometry) -> Bool {
+    public func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPoint<CoordinateType> {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool in
-                return lhs.equals(rhs)
-            })
+            return self.elementsEqual(other)
         }
         return false
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: Geometry) -> Geometry {
+    public func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

@@ -74,28 +74,28 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
         switch (geometry) {
         
         case let point as Point<CoordinateType>:
-            return self.pointTaggedText(point)
+            return self.pointTaggedText(point: point)
 
         case let lineString as LineString<CoordinateType>:
-            return self.lineStringTaggedText(lineString)
+            return self.lineStringTaggedText(lineString: lineString)
             
         case let linearRing as LinearRing<CoordinateType>:
-            return self.linearRingTaggedText(linearRing)
+            return self.linearRingTaggedText(linearRing: linearRing)
         
         case let polygon as Polygon<CoordinateType>:
-            return self.polygonTaggedText(polygon)
+            return self.polygonTaggedText(polygon: polygon)
             
         case let multiPoint as MultiPoint<CoordinateType>:
-            return self.multiPointTaggedText(multiPoint)
+            return self.multiPointTaggedText(multiPoint: multiPoint)
         
         case let multiPolygon as MultiPolygon<CoordinateType>:
-            return self.multiPolygonTaggedText(multiPolygon)
+            return self.multiPolygonTaggedText(multiPolygon: multiPolygon)
             
         case let multiLineString as MultiLineString<CoordinateType>:
-            return self.multiLineStringTaggedText(multiLineString)
+            return self.multiLineStringTaggedText(multiLineString: multiLineString)
             
         case let geometryCollection as GeometryCollection:
-            return self.geometryCollectionTaggedText(geometryCollection)
+            return self.geometryCollectionTaggedText(geometryCollection: geometryCollection)
             
         default: return ""
         }
@@ -104,19 +104,19 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: <point tagged text> ::= point <point text>
     private func pointTaggedText(point: Point<CoordinateType>) -> String  {
         
-        return Token.POINT.rawValue + Token.SINGLE_SPACE.rawValue + zmText(point.coordinate) + pointText(point)
+        return Token.POINT.rawValue + Token.SINGLE_SPACE.rawValue + zmText(coordinate: point.coordinate) + pointText(point: point)
     }
     
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
     private func pointText(point: Point<CoordinateType>) -> String  {
         
-        return Token.LEFT_PAREN.rawValue + self.coordinateText(point.coordinate) + Token.RIGHT_PAREN.rawValue
+        return Token.LEFT_PAREN.rawValue + self.coordinateText(coordinate: point.coordinate) + Token.RIGHT_PAREN.rawValue
     }
     
     // BNF: <linestring tagged text> ::= linestring <linestring text>
     private func lineStringTaggedText(lineString: LineString<CoordinateType>) -> String {
         
-        return Token.LINESTRING.rawValue + Token.SINGLE_SPACE.rawValue + lineStringText(lineString)
+        return Token.LINESTRING.rawValue + Token.SINGLE_SPACE.rawValue + lineStringText(lineString: lineString)
     }
     
     // BNF: <linestring text> ::= <empty set> | <left paren> <point> {<comma> <point>}* <right paren>
@@ -132,7 +132,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 lineStringText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            lineStringText += self.coordinateText(lineString[index])
+            lineStringText += self.coordinateText(coordinate: lineString[index])
         }
         
         lineStringText += Token.RIGHT_PAREN.rawValue
@@ -143,7 +143,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: None defined by OGC
     private func linearRingTaggedText(linearRing: LinearRing<CoordinateType>) -> String {
         
-        return Token.LINEARRING.rawValue + Token.SINGLE_SPACE.rawValue + linearRingText(linearRing)
+        return Token.LINEARRING.rawValue + Token.SINGLE_SPACE.rawValue + linearRingText(linearRing: linearRing)
     }
     
     // BNF: None defined by OGC
@@ -159,7 +159,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 linearRingText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            linearRingText += self.coordinateText(linearRing[index])
+            linearRingText += self.coordinateText(coordinate: linearRing[index])
         }
         
         linearRingText += Token.RIGHT_PAREN.rawValue
@@ -170,7 +170,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: <polygon tagged text> ::= polygon <polygon text>
     private func polygonTaggedText(polygon: Polygon<CoordinateType> ) -> String {
         
-        return Token.POLYGON.rawValue + Token.SINGLE_SPACE.rawValue + polygonText(polygon)
+        return Token.POLYGON.rawValue + Token.SINGLE_SPACE.rawValue + polygonText(polygon: polygon)
     }
     
     // BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
@@ -180,13 +180,13 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             return Token.EMPTY.rawValue
         }
         
-        var polygonText = Token.LEFT_PAREN.rawValue + linearRingText(polygon.outerRing)
+        var polygonText = Token.LEFT_PAREN.rawValue + linearRingText(linearRing: polygon.outerRing)
 
         for index in 0..<polygon.innerRings.count {
             if (index < polygon.innerRings.count) {
                 polygonText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            polygonText += linearRingText(polygon.innerRings[index])
+            polygonText += linearRingText(linearRing: polygon.innerRings[index])
         }
         
         polygonText += Token.RIGHT_PAREN.rawValue
@@ -197,7 +197,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
     private func multiPointTaggedText(multiPoint: MultiPoint<CoordinateType>) -> String {
         
-        return Token.MULTIPOINT.rawValue + Token.SINGLE_SPACE.rawValue + multiPointText(multiPoint)
+        return Token.MULTIPOINT.rawValue + Token.SINGLE_SPACE.rawValue + multiPointText(multiPoint: multiPoint)
     }
     
     // BNF: <multipoint text> ::= <empty set> | <left paren> <point text> {<comma> <point text>}* <right paren>
@@ -213,7 +213,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 multiPointText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            multiPointText += pointText(multiPoint[index])
+            multiPointText += pointText(point: multiPoint[index])
         }
         
         return multiPointText + Token.RIGHT_PAREN.rawValue
@@ -222,7 +222,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
     private func multiLineStringTaggedText(multiLineString: MultiLineString<CoordinateType> ) -> String {
         
-        return Token.MULTILINESTRING.rawValue + Token.SINGLE_SPACE.rawValue +  multiLineStringText(multiLineString)
+        return Token.MULTILINESTRING.rawValue + Token.SINGLE_SPACE.rawValue +  multiLineStringText(multiLineString: multiLineString)
     }
     
     // BNF: <multilinestring text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
@@ -238,7 +238,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 multiLineStringText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            multiLineStringText += lineStringText(multiLineString[index])
+            multiLineStringText += lineStringText(lineString: multiLineString[index])
         }
         
         return multiLineStringText + Token.RIGHT_PAREN.rawValue
@@ -246,7 +246,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     
     // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
     private func multiPolygonTaggedText(multiPolygon: MultiPolygon<CoordinateType> ) -> String {
-        return Token.MULTIPOLYGON.rawValue + Token.SINGLE_SPACE.rawValue + multiPolygonText(multiPolygon)
+        return Token.MULTIPOLYGON.rawValue + Token.SINGLE_SPACE.rawValue + multiPolygonText(multiPolygon: multiPolygon)
     }
     
     // BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
@@ -262,7 +262,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 multiPolygonText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            multiPolygonText += polygonText(multiPolygon[index])
+            multiPolygonText += polygonText(polygon: multiPolygon[index])
         }
         
         return multiPolygonText + Token.RIGHT_PAREN.rawValue
@@ -270,7 +270,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
     private func geometryCollectionTaggedText(geometryCollection: GeometryCollection) -> String {
-        return Token.GEOMETRYCOLLECTION.rawValue + Token.SINGLE_SPACE.rawValue + geometryCollectionText(geometryCollection)
+        return Token.GEOMETRYCOLLECTION.rawValue + Token.SINGLE_SPACE.rawValue + geometryCollectionText(geometryCollection: geometryCollection)
     }
     
     // BNF: <geometrycollection text> ::= <empty set> | <left paren> <geometry tagged text> {<comma> <geometry tagged text>}* <right paren>
@@ -283,7 +283,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 geometryCollectionText += Token.COMMA.rawValue + Token.SINGLE_SPACE.rawValue
             }
-            geometryCollectionText += write(geometryCollection[index])
+            geometryCollectionText += write(geometry: geometryCollection[index])
         }
         
         return geometryCollectionText + Token.RIGHT_PAREN.rawValue

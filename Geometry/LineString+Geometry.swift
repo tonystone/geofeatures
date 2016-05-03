@@ -27,7 +27,7 @@ extension LineString : Geometry  {
         return self.count == 0
     }
 
-    public func equals(other: Geometry) -> Bool {
+    public func equals(_ other: Geometry) -> Bool {
         if let other = other as? LineString<Element> {
             return self.elementsEqual(other, isEquivalent: { (lhs: Element, rhs: Element) -> Bool in
                 return lhs == rhs
@@ -37,7 +37,7 @@ extension LineString : Geometry  {
     }
 
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: Geometry) -> Geometry {
+    public func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

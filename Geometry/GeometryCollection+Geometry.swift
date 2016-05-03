@@ -19,6 +19,12 @@
  */
 import Swift
 
+//#if os(Linux)
+//    import Glibc
+//#else
+//    import Darwin
+//#endif
+
 // MARK:  Geometry conformance
 
 extension GeometryCollection : Geometry  {
@@ -29,10 +35,11 @@ extension GeometryCollection : Geometry  {
             
             var dimension: Dimension = .EMPTY // No dimension
             
-            if count.memory > 0 {
+            if count.pointee > 0 {
                 
-                for index in 0..<count.memory {
-                    dimension = max(dimension, elements[index].dimension)
+                for index in 0..<count.pointee {
+                    
+                    dimension = Math.max(dimension, elements[index].dimension)
                 }
             }
             return dimension
@@ -44,7 +51,7 @@ extension GeometryCollection : Geometry  {
         return self.count == 0
     }
     
-    public func equals(other: Geometry) -> Bool {
+    public func equals(_ other: Geometry) -> Bool {
         if let other = other as? GeometryCollection {
             return self.elementsEqual(other, isEquivalent: { (lhs: Geometry, rhs: Geometry) -> Bool in
                 return lhs.equals(rhs)
@@ -54,7 +61,7 @@ extension GeometryCollection : Geometry  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: Geometry) -> Geometry {
+    public func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

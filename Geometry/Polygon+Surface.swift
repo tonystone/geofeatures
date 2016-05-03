@@ -36,7 +36,7 @@ extension Polygon : Surface {
         
         var area: Double = _outerRing.area()
         
-        var innerRings = _innerRings.generate()
+        var innerRings = _innerRings.makeIterator()
         
         while let ring = innerRings.next() {
             area += ring.area()

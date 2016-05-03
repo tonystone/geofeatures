@@ -43,7 +43,7 @@ class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
     func testPerformanceLength() {
         let lineString = LineString<Coordinate2D>(elements: [(x :0, y: 0),(x: 0, y: 2),(x: 0,y: 3),(x: 0, y: 4),(x: 0,y: 5)])
         
-        self.measureBlock {
+        self.measure {
             
             for _ in 1...500000 {
                 let _ = lineString.length()
@@ -59,7 +59,7 @@ class LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCas
     func testPerformanceLength() {
         let lineString = LineString<Coordinate3D>(elements: [(x :0, y: 0, z: 0),(x: 0, y: 2, z: 0),(x: 0,y: 3, z: 0),(x: 0, y: 4, z: 0),(x: 0,y: 5, z:0)])
         
-        self.measureBlock {
+        self.measure {
             
             for _ in 1...500000 {
                 let _ = lineString.length()

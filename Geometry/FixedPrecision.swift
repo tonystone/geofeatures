@@ -29,7 +29,7 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
         self.scale = Double.abs(scale)
     }
     
-    public func convert(value: Double) -> Double {
+    public func convert(_ value: Double) -> Double {
         return round(value * scale) / scale
     }
 }

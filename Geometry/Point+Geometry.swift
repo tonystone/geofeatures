@@ -27,7 +27,7 @@ extension Point : Geometry {
         return false    // Point can never be empty
     }
     
-    public func equals(other: Geometry) -> Bool {
+    public func equals(_ other: Geometry) -> Bool {
         if let other = other as? Point {
             return self.coordinate == other.coordinate
         }
@@ -35,7 +35,7 @@ extension Point : Geometry {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: Geometry) -> Geometry {
+    public func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }
