@@ -50,7 +50,7 @@ public struct LineString<CoordinateType : protocol<Coordinate, CopyConstructable
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
         
-        storage = CollectionBuffer<CoordinateType>.create(8) { _ in 0 } as! CollectionBuffer<CoordinateType>
+        storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<CoordinateType>
     }
 
     internal var storage: CollectionBuffer<CoordinateType>
@@ -67,7 +67,7 @@ extension LineString {
 
     @inline(__always)
     private mutating func _resizeIfNeeded() {
-        if storage.allocatedElementCount == count {
+        if storage.capacity == count {
             storage = storage.resize(count * 2)
         }
     }
@@ -85,34 +85,34 @@ extension LineString : Collection {
     }
     
     /**
-        LineString can be constructed from any SequenceType as long as it has an
+        LineString can be constructed from any Sequence as long as it has an
         Element type equal the Coordinate type specified in Element.
      */
-    public init<S : SequenceType where S.Generator.Element == CoordinateType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
-        
+    public init<S : Sequence where S.Iterator.Element == CoordinateType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
-        var generator = elements.generate()
+        var Iterator = elements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(coordinate)
         }
     }
     
     /**
-        LineString can be constructed from any CollectionType including Array as
+        LineString can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal the Coordinate type specified in Element 
         and the Distance is an Int type.
      */
-    public init<C : CollectionType where C.Generator.Element == CoordinateType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<C : Swift.Collection where C.Iterator.Element == CoordinateType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         self.reserveCapacity(numericCast(elements.count))
         
-        var generator = elements.generate()
+        var Iterator = elements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(coordinate)
         }
     }
@@ -128,7 +128,7 @@ extension LineString : Collection {
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.storage.allocatedElementCount }
+        get { return self.storage.capacity }
     }
     
     /**
@@ -136,13 +136,13 @@ extension LineString : Collection {
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func reserveCapacity(minimumCapacity: Int) {
+    public mutating func reserveCapacity(_ minimumCapacity: Int) {
         
-        if storage.allocatedElementCount < minimumCapacity {
+        if storage.capacity < minimumCapacity {
             
             _ensureUniquelyReferenced()
             
-            let newSize = max(storage.allocatedElementCount * 2, minimumCapacity)
+            let newSize = Math.max(storage.capacity * 2, minimumCapacity)
             
             storage = storage.resize(newSize)
         }
@@ -153,7 +153,7 @@ extension LineString : Collection {
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: CoordinateType) {
+    public mutating func append(_ newElement: CoordinateType) {
         
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
@@ -162,19 +162,19 @@ extension LineString : Collection {
          
         storage.withUnsafeMutablePointers { (value, elements)->Void in
             
-            (elements + value.memory).initialize(convertedCoordinate)
-            value.memory = value.memory &+ 1
+            (elements + value.pointee).initialize(with: convertedCoordinate)
+            value.pointee = value.pointee &+ 1
         }
     }
 
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func append<S : SequenceType where S.Generator.Element == CoordinateType>(contentsOf newElements: S) {
+    public mutating func append<S : Sequence where S.Iterator.Element == CoordinateType>(contentsOf newElements: S) {
         
-        var generator = newElements.generate()
+        var Iterator = newElements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(coordinate)
         }
     }
@@ -182,13 +182,13 @@ extension LineString : Collection {
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func append<C : CollectionType where C.Generator.Element == CoordinateType>(contentsOf newElements: C) {
+    public mutating func append<C : Swift.Collection where C.Iterator.Element == CoordinateType>(contentsOf newElements: C) {
         
         self.reserveCapacity(numericCast(newElements.count))
         
-        var generator = newElements.generate()
+        var Iterator = newElements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(coordinate)
         }
     }
@@ -198,7 +198,7 @@ extension LineString : Collection {
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: CoordinateType, atIndex index: Int) {
+    public mutating func insert(_ newElement: CoordinateType, atIndex index: Int) {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
 
         _ensureUniquelyReferenced()
@@ -207,16 +207,16 @@ extension LineString : Collection {
         let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
         
         storage.withUnsafeMutablePointers { (count, elements)->Void in
-            var m = count.memory
+            var m = count.pointee
             
-            count.memory = count.memory &+ 1
+            count.pointee = count.pointee &+ 1
             
             // Move the other elements
             while  m >= index {
                 (elements + (m &+ 1)).moveInitializeFrom((elements + m), count: 1)
                 m = m &- 1
             }
-            (elements + index).initialize(convertedCoordinate)
+            (elements + index).initialize(with: convertedCoordinate)
         }
     }
     
@@ -233,11 +233,11 @@ extension LineString : Collection {
             var m = index
             
             // Move the other elements
-            while  m <  count.memory {
+            while  m <  count.pointee {
                 (elements + m).moveInitializeFrom((elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
-            count.memory = count.memory &- 1
+            count.pointee = count.pointee &- 1
             
             return result
         }
@@ -253,9 +253,9 @@ extension LineString : Collection {
 
         return storage.withUnsafeMutablePointers { (count, elements)-> CoordinateType in
             
-            // No need to check for overflow in `count.memory - 1` because `i` is known to be positive.
-            count.memory = count.memory &- 1
-            return (elements + count.memory).move()
+            // No need to check for overflow in `count.pointee - 1` because `i` is known to be positive.
+            count.pointee = count.pointee &- 1
+            return (elements + count.pointee).move()
         }
     }
 
@@ -264,15 +264,15 @@ extension LineString : Collection {
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
+    public mutating func removeAll(keepCapacity: Bool = false) {
         
         if keepCapacity {
         
             storage.withUnsafeMutablePointers { (count, elements)-> Void in
-                count.memory = 0
+                count.pointee = 0
             }
         } else {
-            storage = CollectionBuffer<CoordinateType>.create(0) { _ in 0 } as! CollectionBuffer<CoordinateType>
+            storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<CoordinateType>
         }
     }
 }
@@ -285,41 +285,41 @@ extension LineString : Collection {
 extension LineString where CoordinateType : protocol<TupleConvertable, CopyConstructable> {
     
     /**
-        LineString can be constructed from any SequenceType if it's Elements are tuples that match
+        LineString can be constructed from any Sequence if it's Elements are tuples that match
         Self.Element's TupleType.  
      
         ----
      
         - seealso: TupleConvertable.
      */
-    public init<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<S : Sequence where S.Iterator.Element == CoordinateType.TupleType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
-        var generator = elements.generate()
+        var Iterator = elements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(coordinate)
         }
     }
     
     /**
-        LineString can be constructed from any CollectionType if it's Elements are tuples that match
+        LineString can be constructed from any Swift.Collection if it's Elements are tuples that match
         Self.Element's TupleType.  
      
         ----
      
         - seealso: TupleConvertable.
      */
-    public init<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<C : Swift.Collection where C.Iterator.Element == CoordinateType.TupleType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
         self.storage.resize(numericCast(elements.count))
         
-        var generator = elements.generate()
+        var Iterator = elements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(coordinate)
         }
     }
@@ -329,18 +329,18 @@ extension LineString where CoordinateType : protocol<TupleConvertable, CopyConst
      
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
-    public mutating func append(newElement: CoordinateType.TupleType) {
+    public mutating func append(_ newElement: CoordinateType.TupleType) {
         self.append(CoordinateType(tuple: newElement))
     }
     
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func append<S : SequenceType where S.Generator.Element == CoordinateType.TupleType>(contentsOf newElements: S) {
+    public mutating func append<S : Sequence where S.Iterator.Element == CoordinateType.TupleType>(contentsOf newElements: S) {
+
+        var Iterator = newElements.makeIterator()
         
-        var generator = newElements.generate()
-        
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(CoordinateType(tuple: coordinate))
         }
     }
@@ -348,15 +348,15 @@ extension LineString where CoordinateType : protocol<TupleConvertable, CopyConst
     /**
         Append the elements of `newElements` to this LineString.
      */
-    public mutating func append<C : CollectionType where C.Generator.Element == CoordinateType.TupleType>(contentsOf newElements: C) {
+    public mutating func append<C : Swift.Collection where C.Iterator.Element == CoordinateType.TupleType>(contentsOf newElements: C) {
         
         _ensureUniquelyReferenced()
         
         self.reserveCapacity(numericCast(newElements.count) + storage.value)
         
-        var generator = newElements.generate()
+        var Iterator = newElements.makeIterator()
         
-        while let coordinate = generator.next() {
+        while let coordinate = Iterator.next() {
             self.append(CoordinateType(tuple: coordinate))
         }
     }
@@ -366,15 +366,15 @@ extension LineString where CoordinateType : protocol<TupleConvertable, CopyConst
      
         - Requires: `i <= count`.
      */
-    public mutating func insert(newElement: CoordinateType.TupleType, atIndex i: Int) {
+    public mutating func insert(_ newElement: CoordinateType.TupleType, atIndex i: Int) {
         self.insert(CoordinateType(tuple: newElement), atIndex: i)
     }
 }
 
 
-// MARK: CollectionType conformance
+// MARK: Swift.Collection conformance
 
-extension LineString : CollectionType, MutableCollectionType, _DestructorSafeContainer {
+extension LineString : Swift.Collection, MutableCollection, _DestructorSafeContainer {
     
     /**
         Always zero, which is the index of the first element when non-empty.
@@ -399,12 +399,12 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
 
             _ensureUniquelyReferenced()
             
-            let convertedCoordinate = Element(other: newValue, precision: precision)
+            let convertedCoordinate = CoordinateType(other: newValue, precision: precision)
             
             storage.withUnsafeMutablePointerToElements { elements->Void in
                 
-                (elements + index).destroy()
-                (elements + index).initialize(convertedCoordinate)
+                (elements + index).deinitialize()
+                (elements + index).initialize(with: convertedCoordinate)
             }
         }
     }
@@ -415,7 +415,7 @@ extension LineString : CollectionType, MutableCollectionType, _DestructorSafeCon
 extension LineString : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(\(self.flatMap { String($0) }.joinWithSeparator(", ")))"
+        return "\(self.dynamicType)(\(self.flatMap { String($0) }.joined(separator: ", ")))"
     }
     
     public var debugDescription : String {

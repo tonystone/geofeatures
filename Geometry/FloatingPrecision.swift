@@ -25,7 +25,7 @@ public struct FloatingPrecision : Precision, Equatable, Hashable  {
     
     public init() {}
     
-    public func convert(value: Double) -> Double {
+    public func convert(_ value: Double) -> Double {
         return value
     }
 }

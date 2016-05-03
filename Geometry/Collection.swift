@@ -19,7 +19,7 @@
  */
 import Swift
 
-public protocol Collection: CollectionType, MutableCollectionType, _DestructorSafeContainer {
+public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafeContainer {
     
     /**
         Collection must define its Element
@@ -32,17 +32,18 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
     init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
     
     /**
-        Collection can be constructed from any SequenceType as long as it has an
+        Collection can be constructed from any Sequence as long as it has an
         Element type equal Self.Element.
      */
-    init<S : SequenceType where S.Generator.Element == Element>(elements: S, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
+    init<S : Sequence where S.Iterator.Element == Element>(elements: S, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
     
     /**
-        Collection can be constructed from any CollectionType including Array as
+        Collection can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal Self.Element and the Distance
         is an Int type.
      */
-    init<C : CollectionType where C.Generator.Element == Element>(elements: C, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
+    init<C : Swift.Collection where C.Iterator.Element == Element>(elements: C, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
+
     
     /**
         - Returns: The number of Geometry objects.
@@ -60,29 +61,29 @@ public protocol Collection: CollectionType, MutableCollectionType, _DestructorSa
         - Postcondition: `capacity >= minimumCapacity` and the array has
           mutable contiguous storage.
      */
-    mutating func reserveCapacity(minimumCapacity: Int)
+    mutating func reserveCapacity(_ minimumCapacity: Int)
     
     /**
         Append `newElement`.
      */
-    mutating func append(newElement: Element)
+    mutating func append(_ newElement: Element)
     
     /**
         Append the elements of `newElements`.
      */
-    mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S)
+    mutating func append<S : Sequence where S.Iterator.Element == Element>(contentsOf newElements: S)
     
     /**
         Append the elements of `newElements`.
      */
-    mutating func append<C : CollectionType where C.Generator.Element == Element>(contentsOf newElements: C)
+    mutating func append<C : Swift.Collection where C.Iterator.Element == Element>(contentsOf newElements: C)
     
     /**
         Insert `newElement` at index `i`.
      
         - Requires: `i <= count`.
      */
-    mutating func insert(newElement: Element, atIndex i: Int)
+    mutating func insert(_ newElement: Element, atIndex i: Int)
     
     /**
         Remove and return the element at index `i`.

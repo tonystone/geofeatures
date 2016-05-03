@@ -74,7 +74,7 @@ public protocol Geometry {
      - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
     */
     @warn_unused_result
-    func equals(other: Geometry) -> Bool
+    func equals(_ other: Geometry) -> Bool
     
 //    /**
 //     - Returns:  true if this GeoemetryType instance has no anomalous geometric points, such
@@ -166,7 +166,7 @@ public protocol Geometry {
 //    func intersection(other: Geometry) -> Geometry
    
     @warn_unused_result
-    func union(other: Geometry) ->  Geometry
+    func union(_ other: Geometry) ->  Geometry
 
 //    @warn_unused_result
 //    func difference(other: Geometry) -> Geometry

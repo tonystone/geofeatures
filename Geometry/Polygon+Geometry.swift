@@ -27,7 +27,7 @@ extension Polygon : Geometry  {
         return self.outerRing.count == 0
     }
 
-    public func equals(other: Geometry) -> Bool {
+    public func equals(_ other: Geometry) -> Bool {
         if let other = other as? Polygon<CoordinateType> {
             return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, isEquivalent: { (lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
@@ -37,7 +37,7 @@ extension Polygon : Geometry  {
     }
 
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(other: Geometry) -> Geometry {
+    public func union(_ other: Geometry) -> Geometry {
         return Polygon()
     }
 }

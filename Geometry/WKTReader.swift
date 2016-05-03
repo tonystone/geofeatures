@@ -19,7 +19,7 @@
  */
 import Swift
 
-public enum ParseError : ErrorType  {
+public enum ParseError : ErrorProtocol  {
     case UnsupportedType(String)
     case UnexpectedToken(String)
     case MissingElement(String)
@@ -51,7 +51,7 @@ private enum Token : String {
     case GEOMETRYCOLLECTION             = "geometrycollection"
     
     func match(string: String) -> Range<String.Index>? {
-        return string.rangeOfString(self.rawValue, options: [.RegularExpressionSearch, .CaseInsensitiveSearch, .AnchoredSearch])
+        return string.range(of: self.rawValue, options: [.regularExpressionSearch, .caseInsensitiveSearch, .anchoredSearch])
     }
 }
 
@@ -69,8 +69,8 @@ private class Tokenizer {
         }
     }
     
-    func accept(token: Token) -> String? {
-        if let range = token.match(stringStream) {
+    func accept(_ token: Token) -> String? {
+        if let range = token.match(string: stringStream) {
             
             if token == .NEW_LINE {
                 line += 1
@@ -80,15 +80,15 @@ private class Tokenizer {
             }
             let result = stringStream[range]
             
-            stringStream.removeRange(range)
+            stringStream.removeSubrange(range)
             
             return result
         }
         return nil
     }
     
-    func expect(token: Token) -> Bool {
-        return token.match(stringStream) != nil
+    func expect(_ token: Token) -> Bool {
+        return token.match(string: stringStream) != nil
     }
 }
 
@@ -108,9 +108,9 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     /**
         TODO: Full header func doc for read
      */
-    public func read(string: String) throws -> Geometry {
+    public func read(wkt: String) throws -> Geometry {
             
-        let tokenizer = Tokenizer(string: string)
+        let tokenizer = Tokenizer(string: wkt)
 
         // BNF: <geometry tagged text> ::= <point tagged text>
         //                          | <linestring tagged text>
@@ -126,77 +126,77 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         
         // BNF: <point tagged text> ::= point <point text>
         if tokenizer.accept(.POINT) != nil {
-            return try self.pointTaggedText(tokenizer)
+            return try self.pointTaggedText(tokenizer: tokenizer)
         }
         
         // BNF: <linestring tagged text> ::= linestring <linestring text>
         if tokenizer.accept(.LINESTRING) != nil {
-            return try self.lineStringTaggedText(tokenizer)
+            return try self.lineStringTaggedText(tokenizer: tokenizer)
         }
         
         // Currently unsupported by OGC
         if tokenizer.accept(.LINEARRING) != nil {
-            return try self.linearRingTaggedText(tokenizer)
+            return try self.linearRingTaggedText(tokenizer: tokenizer)
         }
         
         // BNF: <polygon tagged text> ::= polygon <polygon text>
         if tokenizer.accept(.POLYGON) != nil {
-            return try self.polygonTaggedText(tokenizer)
+            return try self.polygonTaggedText(tokenizer: tokenizer)
         }
         
         // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
         if tokenizer.accept(.MULTIPOINT) != nil {
-            return try self.multiPointTaggedText(tokenizer)
+            return try self.multiPointTaggedText(tokenizer: tokenizer)
         }
         
         // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
         if tokenizer.accept(.MULTILINESTRING) != nil  {
-            return try self.multiLineStringTaggedText(tokenizer)
+            return try self.multiLineStringTaggedText(tokenizer: tokenizer)
         }
         
         // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
         if tokenizer.accept(.MULTIPOLYGON) != nil  {
-            return try self.multiPolygonTaggedText(tokenizer)
+            return try self.multiPolygonTaggedText(tokenizer: tokenizer)
         }
         
         // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
         if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
-            return try self.geometryCollectionTaggedText(tokenizer)
+            return try self.geometryCollectionTaggedText(tokenizer: tokenizer)
         }
-        throw ParseError.UnsupportedType(string)
+        throw ParseError.UnsupportedType(wkt)
     }
 
     // BNF: <point tagged text> ::= point <point text>
-    private func pointTaggedText(tokenizer: Tokenizer) throws -> Point<CoordinateType> {
+    private func pointTaggedText(tokenizer:  Tokenizer) throws -> Point<CoordinateType> {
 
         if tokenizer.accept(.SINGLE_SPACE) == nil {
 
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try pointText(tokenizer)
+        return try pointText(tokenizer: tokenizer)
     }
 
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
     private func pointText(tokenizer: Tokenizer) throws -> Point<CoordinateType> {
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
-        let coordinate = try self.coordinate(tokenizer)
+        let coordinate = try self.coordinate(tokenizer: tokenizer)
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return Point<CoordinateType>(coordinate: coordinate, coordinateReferenceSystem: crs, precision: precision)
     }
 
     // BNF: <linestring tagged text> ::= linestring <linestring text>
-    private func lineStringTaggedText(tokenizer: Tokenizer) throws -> LineString<CoordinateType> {
+    private func lineStringTaggedText(tokenizer:  Tokenizer) throws -> LineString<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try lineStringText(tokenizer)
+        return try lineStringText(tokenizer: tokenizer)
     }
 
     // BNF: <linestring text> ::= <empty set> | <left paren> <point> {<comma> <point>}* <right paren>
@@ -207,7 +207,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var coordinates = [CoordinateType]()
@@ -215,11 +215,11 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         var done = false
         
         repeat {
-            coordinates.append(try self.coordinate(tokenizer))
+            coordinates.append(try self.coordinate(tokenizer: tokenizer))
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -227,17 +227,17 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return LineString<CoordinateType>(elements: coordinates, coordinateReferenceSystem: crs, precision: precision)
     }
 
     // BNF: None defined by OGC
-    private func linearRingTaggedText(tokenizer: Tokenizer) throws -> LinearRing<CoordinateType> {
+    private func linearRingTaggedText(tokenizer:  Tokenizer) throws -> LinearRing<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try linearRingText(tokenizer)
+        return try linearRingText(tokenizer: tokenizer)
     }
     
     // BNF: None defined by OGC
@@ -248,7 +248,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var coordinates = [CoordinateType]()
@@ -256,11 +256,11 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         var done = false
         
         repeat {
-            coordinates.append(try self.coordinate(tokenizer))
+            coordinates.append(try self.coordinate(tokenizer: tokenizer))
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -268,18 +268,18 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return LinearRing<CoordinateType>(elements: coordinates, coordinateReferenceSystem: crs, precision: precision)
     }
     
     
     // BNF: <polygon tagged text> ::= polygon <polygon text>
-    private func polygonTaggedText(tokenizer: Tokenizer) throws -> Polygon<CoordinateType> {
+    private func polygonTaggedText(tokenizer:  Tokenizer) throws -> Polygon<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try polygonText(tokenizer)
+        return try polygonText(tokenizer: tokenizer)
     }
 
     // BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
@@ -292,10 +292,10 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
             
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
-        let outerRing = try self.linearRingText(tokenizer)
+        let outerRing = try self.linearRingText(tokenizer: tokenizer)
         
         if tokenizer.accept(.RIGHT_PAREN) != nil {
             
@@ -304,12 +304,12 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     
         if tokenizer.accept(.COMMA) == nil {
             
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .COMMA))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .COMMA))
         }
         
         if tokenizer.accept(.SINGLE_SPACE) == nil {
             
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
         
         var innerRings = [LinearRing<CoordinateType>]()
@@ -317,11 +317,11 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         var done = false
         
         repeat {
-            innerRings.append(try self.linearRingText(tokenizer))
+            innerRings.append(try self.linearRingText(tokenizer: tokenizer))
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -332,11 +332,11 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     }
 
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
-    private func multiPointTaggedText(tokenizer: Tokenizer) throws -> MultiPoint<CoordinateType> {
+    private func multiPointTaggedText(tokenizer:  Tokenizer) throws -> MultiPoint<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try multiPointText(tokenizer)
+        return try multiPointText(tokenizer: tokenizer)
     }
     
     // BNF: <multipoint text> ::= <empty set> | <left paren> <point text> {<comma> <point text>}* <right paren>
@@ -347,7 +347,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var elements = [Point<CoordinateType>]()
@@ -355,11 +355,11 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         var done = false
         
         repeat {
-            elements.append(try self.pointText(tokenizer))
+            elements.append(try self.pointText(tokenizer: tokenizer))
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -367,17 +367,17 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return MultiPoint<CoordinateType>(elements: elements, coordinateReferenceSystem: crs, precision: precision)
     }
     
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
-    private func multiLineStringTaggedText(tokenizer: Tokenizer) throws -> MultiLineString<CoordinateType> {
+    private func multiLineStringTaggedText(tokenizer:  Tokenizer) throws -> MultiLineString<CoordinateType> {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try multiLineStringText(tokenizer)
+        return try multiLineStringText(tokenizer: tokenizer)
     }
     
     // BNF: <multilinestring text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
@@ -388,18 +388,18 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var elements = [LineString<CoordinateType>]()
         var done     = false
         
         repeat {
-            elements.append(try self.lineStringText(tokenizer))
+            elements.append(try self.lineStringText(tokenizer: tokenizer))
             
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -407,19 +407,19 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return MultiLineString<CoordinateType>(elements: elements, coordinateReferenceSystem: crs, precision: precision)
     }
     
     // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
-    private func multiPolygonTaggedText(tokenizer: Tokenizer) throws -> MultiPolygon<CoordinateType> {
+    private func multiPolygonTaggedText(tokenizer:  Tokenizer) throws -> MultiPolygon<CoordinateType> {
 
         if tokenizer.accept(.SINGLE_SPACE) == nil {
 
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try multiPolygonText(tokenizer)
+        return try multiPolygonText(tokenizer: tokenizer)
     }
 
     // BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
@@ -432,7 +432,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
 
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
 
         var elements = [Polygon<CoordinateType>]()
@@ -440,11 +440,11 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
 
         repeat {
             
-            elements.append(try self.polygonText(tokenizer))
+            elements.append(try self.polygonText(tokenizer: tokenizer))
 
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -452,18 +452,18 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         } while !done
 
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
 
         return MultiPolygon<CoordinateType>(elements: elements)
     }
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
-    private func geometryCollectionTaggedText(tokenizer: Tokenizer) throws -> GeometryCollection {
+    private func geometryCollectionTaggedText(tokenizer:  Tokenizer) throws -> GeometryCollection {
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
-        return try geometryCollectionText(tokenizer)
+        return try geometryCollectionText(tokenizer: tokenizer)
     }
     
     // BNF: <geometrycollection text> ::= <empty set> | <left paren> <geometry tagged text> {<comma> <geometry tagged text>}* <right paren>
@@ -474,7 +474,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         var elements = [Geometry]()
@@ -483,42 +483,42 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         repeat {
             // BNF: <point tagged text> ::= point <point text>
             if tokenizer.accept(.POINT) != nil {
-                elements.append(try self.pointTaggedText(tokenizer))
+                elements.append(try self.pointTaggedText(tokenizer: tokenizer))
                 
             // BNF: <linestring tagged text> ::= linestring <linestring text>
             } else if tokenizer.accept(.LINESTRING) != nil {
-                elements.append(try self.lineStringTaggedText(tokenizer))
+                elements.append(try self.lineStringTaggedText(tokenizer: tokenizer))
                 
             // Currently unsupported by OGC
             } else if tokenizer.accept(.LINEARRING) != nil {
-                elements.append(try self.linearRingTaggedText(tokenizer))
+                elements.append(try self.linearRingTaggedText(tokenizer: tokenizer))
                 
             // BNF: <polygon tagged text> ::= polygon <polygon text>
             } else if tokenizer.accept(.POLYGON) != nil {
-                elements.append(try self.polygonTaggedText(tokenizer))
+                elements.append(try self.polygonTaggedText(tokenizer: tokenizer))
         
             // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
             } else if tokenizer.accept(.MULTIPOINT) != nil {
-                elements.append(try self.multiPointTaggedText(tokenizer))
+                elements.append(try self.multiPointTaggedText(tokenizer: tokenizer))
         
             // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
             } else if tokenizer.accept(.MULTILINESTRING) != nil  {
-                elements.append(try self.multiLineStringTaggedText(tokenizer))
+                elements.append(try self.multiLineStringTaggedText(tokenizer: tokenizer))
                 
             // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
             } else if tokenizer.accept(.MULTIPOLYGON) != nil  {
-                elements.append(try self.multiPolygonTaggedText(tokenizer))
+                elements.append(try self.multiPolygonTaggedText(tokenizer: tokenizer))
                 
             // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
             } else if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
-                elements.append(try self.geometryCollectionTaggedText(tokenizer))
+                elements.append(try self.geometryCollectionTaggedText(tokenizer: tokenizer))
             } else {
                 throw ParseError.MissingElement("At least one Geometry is required unless you specify EMPTY for the GoemetryCollection")
             }
         
             if tokenizer.accept(.COMMA) != nil {
                 if tokenizer.accept(.SINGLE_SPACE) == nil {
-                    throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                    throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
                 }
             } else {
                 done = true;
@@ -526,7 +526,7 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         } while !done
         
         if tokenizer.accept(.RIGHT_PAREN) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .RIGHT_PAREN))
         }
         return GeometryCollection(elements: elements, coordinateReferenceSystem: crs, precision: precision)
     }
@@ -542,42 +542,42 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinates.append(Double(token)!)
         } else {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .NUMERIC_LITERAL))
         }
         
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
         }
         
         if let token = tokenizer.accept(.NUMERIC_LITERAL) {
             coordinates.append(Double(token)!)
         } else {
-            throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
+            throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .NUMERIC_LITERAL))
         }
         
         if CoordinateType.self is ThreeDimensional {
             
             if tokenizer.accept(.SINGLE_SPACE) == nil {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinates.append(Double(token)!)
             } else {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .NUMERIC_LITERAL))
             }
         }
         
         if CoordinateType.self is  Measured {
             
             if tokenizer.accept(.SINGLE_SPACE) == nil {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .SINGLE_SPACE))
             }
             
             if let token = tokenizer.accept(.NUMERIC_LITERAL) {
                 coordinates.append(Double(token)!)
             } else {
-                throw ParseError.UnexpectedToken(errorMessage(tokenizer, expectedToken: .NUMERIC_LITERAL))
+                throw ParseError.UnexpectedToken(errorMessage(tokenizer: tokenizer, expectedToken: .NUMERIC_LITERAL))
             }
         }
         return CoordinateType(array: coordinates)

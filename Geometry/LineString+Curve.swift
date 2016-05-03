@@ -31,11 +31,11 @@ extension LineString : Curve {
             
             var length: Double = 0.0
             
-            if count.memory > 0 {
+            if count.pointee > 0 {
                 
                 var c1 = elements[0]
                 
-                for index in 1..<count.memory {
+                for index in 1..<count.pointee {
                     
                     let c2 = elements[index]
                     

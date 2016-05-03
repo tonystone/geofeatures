@@ -22,7 +22,7 @@ import Swift
 public protocol Precision {
     
     @warn_unused_result
-    func convert(value: Double) -> Double
+    func convert(_ value: Double) -> Double
 }
 
 public func ==<T1 : protocol<Precision, Hashable>, T2 : protocol<Precision, Hashable>>(lhs: T1, rhs: T2) -> Bool {
