@@ -53,7 +53,6 @@
 		EA475C2A1CD906C20013AFA1 /* Polygon+SurfaceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475BF61CD9061F0013AFA1 /* Polygon+SurfaceTest.swift */; };
 		EA475C2B1CD906C60013AFA1 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475BF71CD9061F0013AFA1 /* WKTReaderTests.swift */; };
 		EA475C2C1CD906CA0013AFA1 /* WKTWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475BF81CD9061F0013AFA1 /* WKTWriterTests.swift */; };
-		EA475C2E1CD907290013AFA1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA475C2D1CD907290013AFA1 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,7 +364,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -415,7 +414,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA475C2E1CD907290013AFA1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
