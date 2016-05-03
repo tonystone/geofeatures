@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "GeoFeatures2"
-  s.version          = "0.1.0"
+  s.version          = "2.0.0"
   s.summary          = "A lightweight, high performance geometry library for Swift"
 
   s.homepage         = "https://github.com/tonystone/geofeatures"
@@ -24,16 +24,14 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.default_subspec = 'Geometry'
 
-  s.source_files = 'Geometry/**/*.swift'
-  s.preserve_paths = 'Geometry/**/*.swift.gyb'
-
   s.subspec 'Geometry' do |ss|
-    # Main spec
+    ss.source_files = 'Source/Geometry/**/*.swift'
+    ss.preserve_paths = 'Source/Geometry/**/*.swift.gyb'
   end
 
   s.subspec 'Visualization' do |ss|
-    ss.source_files = 'Visualization/**/*'
-    ss.preserve_paths = 'Visualization/**/*.swift.gyb'
+    ss.source_files = 'Source/Visualization/**/*.swift'
+    ss.preserve_paths = 'Source/Visualization/**/*.swift.gyb'
   end
 
 end

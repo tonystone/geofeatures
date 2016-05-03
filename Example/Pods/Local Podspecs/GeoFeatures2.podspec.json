@@ -1,6 +1,6 @@
 {
   "name": "GeoFeatures2",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "summary": "A lightweight, high performance geometry library for Swift",
   "homepage": "https://github.com/tonystone/geofeatures",
   "license": "Apache License, Version 2.0",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/tonystone/geofeatures2.git",
-    "tag": "0.1.0"
+    "tag": "2.0.0"
   },
   "platforms": {
     "ios": "5.0",
@@ -19,16 +19,16 @@
   },
   "requires_arc": true,
   "default_subspecs": "Geometry",
-  "source_files": "Geometry/**/*.swift",
-  "preserve_paths": "Geometry/**/*.swift.gyb",
   "subspecs": [
     {
-      "name": "Geometry"
+      "name": "Geometry",
+      "source_files": "Source/Geometry/**/*.swift",
+      "preserve_paths": "Source/Geometry/**/*.swift.gyb"
     },
     {
       "name": "Visualization",
-      "source_files": "Visualization/**/*",
-      "preserve_paths": "Visualization/**/*.swift.gyb"
+      "source_files": "Source/Visualization/**/*.swift",
+      "preserve_paths": "Source/Visualization/**/*.swift.gyb"
     }
   ]
 }

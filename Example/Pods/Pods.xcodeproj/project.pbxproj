@@ -1,872 +1,2839 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		05DC296F4537099B3AF6BBDCE3BDE2DD /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC15DC4F14722EEC1C7B0F324C3EE /* Coordinate.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		06B337F23B2507B513CDFCD6AF330C95 /* Pods-GeoFeatures2_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941BFDD3B54E76F804285CFFFB2AB71 /* Pods-GeoFeatures2_Tests-dummy.m */; };
-		0B03FBA0A3A9906EF10930AEEBDD64DF /* FloatingPrecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FE446A57CDD3BB3B295F60F1EED8F /* FloatingPrecision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		10F2B0400B31F712D08C4787E1B1F2F7 /* Coordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25AC7BB958CBF10215FD98FD4B01C03 /* Coordinate2D.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1A816EAD5740E51C8A588568355013DA /* Pods-GeoFeatures2_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1EFA098198F2711746206B1CAD2357C8 /* CopyConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB3DBC58D42C0F4424FCD550F8A1E3 /* CopyConstructable.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		27580D292383207DD32518EFD789676C /* CoordinateReferenceSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA6B97F43371FB59B2278ECBD60CFF1 /* CoordinateReferenceSystem.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		294183F6265451249DAF7A57C5167D99 /* MultiLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EE68CD7BE51AC408ADC22FEF2CF32 /* MultiLineString.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2BFA6492E0A4121F0EC7F3E0730107C5 /* Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D847406C9EBFCAAC974418ABA77709 /* Surface.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2C8D1E4E32752B2E3B44EC37ED4D8CA1 /* MultiPoint+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D12F0F6BA2883306A2B54664AC518 /* MultiPoint+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2ED9D41394192B3DD2AE6626055270AF /* WKTWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD52EF5E47A0C2008D0D1BA112A505B1 /* WKTWriter.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2FC8CFD9270A0FEB1A5ED21E1772FE89 /* TupleConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CF15CDCA48D7D977692E200EE8607A /* TupleConvertable.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		37A764730BC4CE787D2EE6930BE38CF5 /* GeoJSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C50C3F8901F04D39854886E66BB66 /* GeoJSONReader.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		3A1038FE54564471CC3D9FA9BA9E0A7F /* Pods-GeoFeatures2_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8538CB4903D76F1054C592341F25 /* Pods-GeoFeatures2_Example-dummy.m */; };
-		3B499F5E52EFF67F81A9DFAA40FAE075 /* Pods-GeoFeatures2_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		457B89DB39AD905FDD0C4AEBDE5BB50D /* Coordinate2DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F4F4E4112E6C3473379FD5D087C1A /* Coordinate2DM.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		48A90857CBB088A86FCC7D1BD9D62810 /* LinearRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739395F9C0FBEB466CD3BA82710FC87D /* LinearRing.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4B1412883C44DFD0AD0E6B5367FF43D5 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D10693B27397349D8C0CE4C657314CB /* Collection.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4B99844BFF58D27CAFF2C4790CC12176 /* Polygon+Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96DC1A3EB72479898FE404EB40E0C99 /* Polygon+Surface.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		508D8DA04B73404A6732952FE473D070 /* WKTReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E40483C4DAC7D2F41060C8BECEB5EDB /* WKTReader.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		538750CADA504EF63C33F519887E0277 /* MultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E771A5B76B737F29E63C48323E3939F /* MultiPoint.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		54742DB24EB6E03DA11B9BD490A28B03 /* LinearRing+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7702732D48A9F43E7EE42EEBACB2C7 /* LinearRing+Curve.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		5636E1FACBCC4535FE56D7C0E85C279D /* MultiPolygon+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AC0BD9B7D037C5D9D30DD68D3461D8 /* MultiPolygon+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		5CE9D387A39E232F6816F00736C864FE /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265392E2F63AC280E202965F6C5F93FA /* Curve.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		643119F19C3EAFCF008240ABB74207B1 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F72DF92FD15B5706EF88B201D03A /* Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		6565EC71C9C6D5DC346E2DE7975C314C /* LinearRing+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E65B18DE9584883ACF41A7CF494A9AD /* LinearRing+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		65FBA7387D50D3C3BA1D9C318CB3D084 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		665CC7DFAA88D05B868058DAF8204D90 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6BE7B79E7ABCFBD62DE09BB0BFF7EF /* Coordinate3D.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		69B5953CA407B270A03DCE2D3A2548B0 /* Coordinate3DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E64103F2216FAC29EA0F89542F57AE8 /* Coordinate3DM.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		75C763E0BA6A241D7C0B34E5CA97414A /* Point+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317C1623C359E17DB52811E05FFE4D19 /* Point+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		794C0D8D8A4589F2FE28C7EFC7DD04C5 /* Precision.swift in Sources */ = {isa = PBXBuildFile; fileRef = C114D3C9059113349D8668EB37E44611 /* Precision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		7A29A76573DBADA43139B58F1B203DE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		7AA64F298A03A38B583333DBA389C187 /* ArrayConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7931BBEC0956F9572F5367C6E3FF865 /* ArrayConstructable.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		801BD474C67F8188D09A3CCEB2F540F6 /* WKBReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77B9C6A60D5D92B89D2E5352BB36A1 /* WKBReader.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		803345B1BE8FC8C1804EED947EB591E6 /* LineString+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318A7DCE51D53183B2443FAE09E86372 /* LineString+Curve.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		820AF382217D8C85CFF6904F92DAA35B /* MultiPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073B40828E86F984339A1BB626C06AD /* MultiPolygon.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		86EBCF4560A81FE09F4C0C4AA0C58A05 /* Polygon+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E07E4680D4D992CB061B73F335ED656 /* Polygon+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8E472289869CE664C7E78E838B931ACE /* GeoFeatures2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 946385D66BB3366A9AEDE5E7446700BE /* GeoFeatures2-dummy.m */; };
-		912287F8BC4731FA786A825227CAC267 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		9638596C4A52A803E1FC6595806D81E3 /* GeometryCollection+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328458BBF9A51369A9CA2239FB254DF /* GeometryCollection+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9AFE24F4A3FF5C04817332DEE9978DA7 /* FixedPrecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21F32EE601FE7BE9B6244DCAD605D1D /* FixedPrecision.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9C1FD66489B883D66E33B9C1C80C4337 /* LineString+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688E4E7348FC2876C9D301FD544A5FE /* LineString+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A337F48C0889945403EB8BBB73332E7B /* GeoFeatures2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7253EDC94DA7CF51FBB12BBBDE5243D /* GeoFeatures2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AA9EBD90725F23BCA6FEFD603A576CD6 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FFEC6FD2679D96036BC7EC507FA839 /* Point.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		AACA9F0F48423D68504BF831EF2E6337 /* MultiLineString+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892F724176255C002DA2F00C7B042FE3 /* MultiLineString+Geometry.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C91AD62F148E58B7E829282642A9B0FB /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734A75FFE14DC84BFAEA010FB0B55951 /* LineString.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E114D8515C1774E180D86E9B53BF1221 /* GeometryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADB1D8DC931AF6FF59352D7A7487F0 /* GeometryCollection.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E41EC738E0B04A758D8165B5C5D987CB /* CollectionBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAE903E7477FF440EF7D625AAB71F2E /* CollectionBuffer.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EA108F501CD8217E00DB399A /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F4F1CD8217E00DB399A /* Math.swift */; };
-		EA10A1B41CCD78DE009F0A35 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10A1B31CCD78DE009F0A35 /* Dimension.swift */; };
-		EA6CCFE61CA9D510009EE96A /* LinearRing+Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6CCFE51CA9D510009EE96A /* LinearRing+Surface.swift */; };
-		EA6CCFED1CAACBD5009EE96A /* MultiPolygon+Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6CCFEC1CAACBD5009EE96A /* MultiPolygon+Surface.swift */; };
-		FD05386627ED89A4C6E188AA322716F5 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722681BCC1A7DDE3D7A8CA826BAC22B1 /* Renderer.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		FDDB0E05D6B86962AF2298337CF0DCC5 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB097C5DB15CA80A2DD082B9F2926149 /* Polygon.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		ACDDE935C21C3CAB87B6C50F2FC771C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A80199C2AE62722BA51045F689D179E;
-			remoteInfo = GeoFeatures2;
-		};
-		E968A1F6D61EDD723E81EE0CD3480033 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A80199C2AE62722BA51045F689D179E;
-			remoteInfo = GeoFeatures2;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Example-umbrella.h"; sourceTree = "<group>"; };
-		0073B40828E86F984339A1BB626C06AD /* MultiPolygon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiPolygon.swift; sourceTree = "<group>"; };
-		00D847406C9EBFCAAC974418ABA77709 /* Surface.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Surface.swift; sourceTree = "<group>"; };
-		027C50C3F8901F04D39854886E66BB66 /* GeoJSONReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeoJSONReader.swift; sourceTree = "<group>"; };
-		04AC0BD9B7D037C5D9D30DD68D3461D8 /* MultiPolygon+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MultiPolygon+Geometry.swift"; sourceTree = "<group>"; };
-		07547D2F13893830C1FCFD3BEA47F28E /* Pods-GeoFeatures2_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Example-frameworks.sh"; sourceTree = "<group>"; };
-		0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GeoFeatures2_Tests-umbrella.h"; sourceTree = "<group>"; };
-		0E65B18DE9584883ACF41A7CF494A9AD /* LinearRing+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LinearRing+Geometry.swift"; sourceTree = "<group>"; };
-		0E771A5B76B737F29E63C48323E3939F /* MultiPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiPoint.swift; sourceTree = "<group>"; };
-		14A3197FB09B808E659E0F104A617DE0 /* Pods_GeoFeatures2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		17FFEC6FD2679D96036BC7EC507FA839 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		1941BFDD3B54E76F804285CFFFB2AB71 /* Pods-GeoFeatures2_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GeoFeatures2_Tests-dummy.m"; sourceTree = "<group>"; };
-		1A0D12F0F6BA2883306A2B54664AC518 /* MultiPoint+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MultiPoint+Geometry.swift"; sourceTree = "<group>"; };
-		1B76535A101CE493E80666A437C8C849 /* Pods_GeoFeatures2_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures2_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E07E4680D4D992CB061B73F335ED656 /* Polygon+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Polygon+Geometry.swift"; sourceTree = "<group>"; };
-		1E77B9C6A60D5D92B89D2E5352BB36A1 /* WKBReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKBReader.swift; sourceTree = "<group>"; };
-		229FE446A57CDD3BB3B295F60F1EED8F /* FloatingPrecision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FloatingPrecision.swift; sourceTree = "<group>"; };
-		265392E2F63AC280E202965F6C5F93FA /* Curve.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
-		2FDF15D5FB0F438B3C174E512E8F8449 /* Pods-GeoFeatures2_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		317C1623C359E17DB52811E05FFE4D19 /* Point+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Point+Geometry.swift"; sourceTree = "<group>"; };
-		318A7DCE51D53183B2443FAE09E86372 /* LineString+Curve.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LineString+Curve.swift"; sourceTree = "<group>"; };
-		370E53CB906F1E6FE659B59E6AB874A4 /* Pods-GeoFeatures2_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GeoFeatures2_Tests.modulemap"; sourceTree = "<group>"; };
-		3CAE903E7477FF440EF7D625AAB71F2E /* CollectionBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectionBuffer.swift; sourceTree = "<group>"; };
-		3D10693B27397349D8C0CE4C657314CB /* Collection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3FA1F72DF92FD15B5706EF88B201D03A /* Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
-		4A9FC15DC4F14722EEC1C7B0F324C3EE /* Coordinate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		4D4EE68CD7BE51AC408ADC22FEF2CF32 /* MultiLineString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiLineString.swift; sourceTree = "<group>"; };
-		4EA6B97F43371FB59B2278ECBD60CFF1 /* CoordinateReferenceSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystem.swift; sourceTree = "<group>"; };
-		5B6BE7B79E7ABCFBD62DE09BB0BFF7EF /* Coordinate3D.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Coordinate3D.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		5ED9826237B3A3F5E77B1524A8A8D658 /* GeoFeatures2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GeoFeatures2-prefix.pch"; sourceTree = "<group>"; };
-		65CF15CDCA48D7D977692E200EE8607A /* TupleConvertable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TupleConvertable.swift; sourceTree = "<group>"; };
-		6A816A30072A63C10F70B2067EBF9EF1 /* GeoFeatures2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeoFeatures2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		722681BCC1A7DDE3D7A8CA826BAC22B1 /* Renderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		734A75FFE14DC84BFAEA010FB0B55951 /* LineString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LineString.swift; sourceTree = "<group>"; };
-		739395F9C0FBEB466CD3BA82710FC87D /* LinearRing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LinearRing.swift; sourceTree = "<group>"; };
-		73CB3DBC58D42C0F4424FCD550F8A1E3 /* CopyConstructable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CopyConstructable.swift; sourceTree = "<group>"; };
-		77AE4673386EBA17588FDBF0C505D48D /* Pods-GeoFeatures2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		79B1B84D7679D48C0E05449A61C52E98 /* Pods-GeoFeatures2_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GeoFeatures2_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		826751624532276DE06416AAD4833C65 /* Pods-GeoFeatures2_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-resources.sh"; sourceTree = "<group>"; };
-		86B918EAAE5B4A36EC9931468FD3BCCA /* Pods-GeoFeatures2_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GeoFeatures2_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		892F724176255C002DA2F00C7B042FE3 /* MultiLineString+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MultiLineString+Geometry.swift"; sourceTree = "<group>"; };
-		946385D66BB3366A9AEDE5E7446700BE /* GeoFeatures2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GeoFeatures2-dummy.m"; sourceTree = "<group>"; };
-		9A278F0E73A33E2C20658F4CBBB08F70 /* Pods-GeoFeatures2_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GeoFeatures2_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9E40483C4DAC7D2F41060C8BECEB5EDB /* WKTReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKTReader.swift; sourceTree = "<group>"; };
-		9E64103F2216FAC29EA0F89542F57AE8 /* Coordinate3DM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinate3DM.swift; sourceTree = "<group>"; };
-		A25AC7BB958CBF10215FD98FD4B01C03 /* Coordinate2D.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Coordinate2D.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A6F370EB40F365DBC2DCC472E3834473 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD52EF5E47A0C2008D0D1BA112A505B1 /* WKTWriter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKTWriter.swift; sourceTree = "<group>"; };
-		B07281D49FC010D594B3CBDC2A2DB00B /* Pods-GeoFeatures2_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Example-resources.sh"; sourceTree = "<group>"; };
-		B14F4F4E4112E6C3473379FD5D087C1A /* Coordinate2DM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Coordinate2DM.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		B52E8538CB4903D76F1054C592341F25 /* Pods-GeoFeatures2_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GeoFeatures2_Example-dummy.m"; sourceTree = "<group>"; };
-		B6ADB1D8DC931AF6FF59352D7A7487F0 /* GeometryCollection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeometryCollection.swift; sourceTree = "<group>"; };
-		B96DC1A3EB72479898FE404EB40E0C99 /* Polygon+Surface.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Polygon+Surface.swift"; sourceTree = "<group>"; };
-		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C114D3C9059113349D8668EB37E44611 /* Precision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Precision.swift; sourceTree = "<group>"; };
-		C7253EDC94DA7CF51FBB12BBBDE5243D /* GeoFeatures2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GeoFeatures2-umbrella.h"; sourceTree = "<group>"; };
-		C739B1A4D124E3A4152072EF97A59A19 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C80A78AD3A39859F0FB5F9D2D8E209B1 /* Pods-GeoFeatures2_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GeoFeatures2_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		CA7702732D48A9F43E7EE42EEBACB2C7 /* LinearRing+Curve.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LinearRing+Curve.swift"; sourceTree = "<group>"; };
-		CB097C5DB15CA80A2DD082B9F2926149 /* Polygon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
-		D372DB76FBEC709A722F228480E3D100 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7931BBEC0956F9572F5367C6E3FF865 /* ArrayConstructable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrayConstructable.swift; sourceTree = "<group>"; };
-		DA37933ECF19B3510850786956868B3C /* Pods-GeoFeatures2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E21F32EE601FE7BE9B6244DCAD605D1D /* FixedPrecision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FixedPrecision.swift; sourceTree = "<group>"; };
-		E328458BBF9A51369A9CA2239FB254DF /* GeometryCollection+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GeometryCollection+Geometry.swift"; sourceTree = "<group>"; };
-		E6392CA2CD2CBC958DEE63236539B16A /* GeoFeatures2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GeoFeatures2.xcconfig; sourceTree = "<group>"; };
-		EA108F4F1CD8217E00DB399A /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Math.swift; path = Platform/Math.swift; sourceTree = "<group>"; };
-		EA10A1B31CCD78DE009F0A35 /* Dimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
-		EA6CCFE51CA9D510009EE96A /* LinearRing+Surface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LinearRing+Surface.swift"; sourceTree = "<group>"; };
-		EA6CCFEC1CAACBD5009EE96A /* MultiPolygon+Surface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiPolygon+Surface.swift"; sourceTree = "<group>"; };
-		EF51A22053F9C611FE9E701B4A09E050 /* GeoFeatures2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GeoFeatures2.modulemap; sourceTree = "<group>"; };
-		F12800ACBBA09FA0D85736915F680E46 /* Pods-GeoFeatures2_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GeoFeatures2_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		F688E4E7348FC2876C9D301FD544A5FE /* LineString+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LineString+Geometry.swift"; sourceTree = "<group>"; };
-		FFD35A803619C151D8C535A4853A6989 /* Pods-GeoFeatures2_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-GeoFeatures2_Example.modulemap"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		099432D3A14E8034FAE4DAEBC3F60DF6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				912287F8BC4731FA786A825227CAC267 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		547865FB54D0E781BB59F81B0C751B48 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				65FBA7387D50D3C3BA1D9C318CB3D084 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C74BBCA417B6D6F1E8F8A6CD73A53B16 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A29A76573DBADA43139B58F1B203DE8 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		10FDC692168F6A8253FB27BE42AD389E /* Pods-GeoFeatures2_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				C739B1A4D124E3A4152072EF97A59A19 /* Info.plist */,
-				370E53CB906F1E6FE659B59E6AB874A4 /* Pods-GeoFeatures2_Tests.modulemap */,
-				86B918EAAE5B4A36EC9931468FD3BCCA /* Pods-GeoFeatures2_Tests-acknowledgements.markdown */,
-				C80A78AD3A39859F0FB5F9D2D8E209B1 /* Pods-GeoFeatures2_Tests-acknowledgements.plist */,
-				1941BFDD3B54E76F804285CFFFB2AB71 /* Pods-GeoFeatures2_Tests-dummy.m */,
-				F12800ACBBA09FA0D85736915F680E46 /* Pods-GeoFeatures2_Tests-frameworks.sh */,
-				826751624532276DE06416AAD4833C65 /* Pods-GeoFeatures2_Tests-resources.sh */,
-				0C1724BD9CB8371F5DD6D4404351D84D /* Pods-GeoFeatures2_Tests-umbrella.h */,
-				77AE4673386EBA17588FDBF0C505D48D /* Pods-GeoFeatures2_Tests.debug.xcconfig */,
-				CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */,
-			);
-			name = "Pods-GeoFeatures2_Tests";
-			path = "Target Support Files/Pods-GeoFeatures2_Tests";
-			sourceTree = "<group>";
-		};
-		116EED703BB2F25DDBE3A0E0DD2BF010 /* GeoFeatures2 */ = {
-			isa = PBXGroup;
-			children = (
-				5CA37277DC73BF4F938AA8A60DAAE325 /* Geometry */,
-				24D4B4616DBB26916AAFD4D437CCC92C /* Support Files */,
-				2C9AFEF4F6C64017BB06487641378979 /* Visualization */,
-			);
-			name = GeoFeatures2;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		24D4B4616DBB26916AAFD4D437CCC92C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EF51A22053F9C611FE9E701B4A09E050 /* GeoFeatures2.modulemap */,
-				E6392CA2CD2CBC958DEE63236539B16A /* GeoFeatures2.xcconfig */,
-				946385D66BB3366A9AEDE5E7446700BE /* GeoFeatures2-dummy.m */,
-				5ED9826237B3A3F5E77B1524A8A8D658 /* GeoFeatures2-prefix.pch */,
-				C7253EDC94DA7CF51FBB12BBBDE5243D /* GeoFeatures2-umbrella.h */,
-				A6F370EB40F365DBC2DCC472E3834473 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/GeoFeatures2";
-			sourceTree = "<group>";
-		};
-		2C9AFEF4F6C64017BB06487641378979 /* Visualization */ = {
-			isa = PBXGroup;
-			children = (
-				543CBC4A0C132F96A2A80E2D547B3DD1 /* Visualization */,
-			);
-			name = Visualization;
-			sourceTree = "<group>";
-		};
-		543CBC4A0C132F96A2A80E2D547B3DD1 /* Visualization */ = {
-			isa = PBXGroup;
-			children = (
-				722681BCC1A7DDE3D7A8CA826BAC22B1 /* Renderer.swift */,
-			);
-			path = Visualization;
-			sourceTree = "<group>";
-		};
-		5CA37277DC73BF4F938AA8A60DAAE325 /* Geometry */ = {
-			isa = PBXGroup;
-			children = (
-				EA108F4E1CD8216700DB399A /* Platform */,
-				3D10693B27397349D8C0CE4C657314CB /* Collection.swift */,
-				3CAE903E7477FF440EF7D625AAB71F2E /* CollectionBuffer.swift */,
-				D7931BBEC0956F9572F5367C6E3FF865 /* ArrayConstructable.swift */,
-				73CB3DBC58D42C0F4424FCD550F8A1E3 /* CopyConstructable.swift */,
-				4A9FC15DC4F14722EEC1C7B0F324C3EE /* Coordinate.swift */,
-				A25AC7BB958CBF10215FD98FD4B01C03 /* Coordinate2D.swift */,
-				B14F4F4E4112E6C3473379FD5D087C1A /* Coordinate2DM.swift */,
-				5B6BE7B79E7ABCFBD62DE09BB0BFF7EF /* Coordinate3D.swift */,
-				9E64103F2216FAC29EA0F89542F57AE8 /* Coordinate3DM.swift */,
-				4EA6B97F43371FB59B2278ECBD60CFF1 /* CoordinateReferenceSystem.swift */,
-				EA10A1B31CCD78DE009F0A35 /* Dimension.swift */,
-				265392E2F63AC280E202965F6C5F93FA /* Curve.swift */,
-				E21F32EE601FE7BE9B6244DCAD605D1D /* FixedPrecision.swift */,
-				229FE446A57CDD3BB3B295F60F1EED8F /* FloatingPrecision.swift */,
-				027C50C3F8901F04D39854886E66BB66 /* GeoJSONReader.swift */,
-				3FA1F72DF92FD15B5706EF88B201D03A /* Geometry.swift */,
-				B6ADB1D8DC931AF6FF59352D7A7487F0 /* GeometryCollection.swift */,
-				E328458BBF9A51369A9CA2239FB254DF /* GeometryCollection+Geometry.swift */,
-				739395F9C0FBEB466CD3BA82710FC87D /* LinearRing.swift */,
-				0E65B18DE9584883ACF41A7CF494A9AD /* LinearRing+Geometry.swift */,
-				CA7702732D48A9F43E7EE42EEBACB2C7 /* LinearRing+Curve.swift */,
-				EA6CCFE51CA9D510009EE96A /* LinearRing+Surface.swift */,
-				734A75FFE14DC84BFAEA010FB0B55951 /* LineString.swift */,
-				318A7DCE51D53183B2443FAE09E86372 /* LineString+Curve.swift */,
-				F688E4E7348FC2876C9D301FD544A5FE /* LineString+Geometry.swift */,
-				4D4EE68CD7BE51AC408ADC22FEF2CF32 /* MultiLineString.swift */,
-				892F724176255C002DA2F00C7B042FE3 /* MultiLineString+Geometry.swift */,
-				0E771A5B76B737F29E63C48323E3939F /* MultiPoint.swift */,
-				1A0D12F0F6BA2883306A2B54664AC518 /* MultiPoint+Geometry.swift */,
-				0073B40828E86F984339A1BB626C06AD /* MultiPolygon.swift */,
-				04AC0BD9B7D037C5D9D30DD68D3461D8 /* MultiPolygon+Geometry.swift */,
-				EA6CCFEC1CAACBD5009EE96A /* MultiPolygon+Surface.swift */,
-				17FFEC6FD2679D96036BC7EC507FA839 /* Point.swift */,
-				317C1623C359E17DB52811E05FFE4D19 /* Point+Geometry.swift */,
-				CB097C5DB15CA80A2DD082B9F2926149 /* Polygon.swift */,
-				1E07E4680D4D992CB061B73F335ED656 /* Polygon+Geometry.swift */,
-				B96DC1A3EB72479898FE404EB40E0C99 /* Polygon+Surface.swift */,
-				C114D3C9059113349D8668EB37E44611 /* Precision.swift */,
-				00D847406C9EBFCAAC974418ABA77709 /* Surface.swift */,
-				65CF15CDCA48D7D977692E200EE8607A /* TupleConvertable.swift */,
-				1E77B9C6A60D5D92B89D2E5352BB36A1 /* WKBReader.swift */,
-				9E40483C4DAC7D2F41060C8BECEB5EDB /* WKTReader.swift */,
-				AD52EF5E47A0C2008D0D1BA112A505B1 /* WKTWriter.swift */,
-			);
-			path = Geometry;
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				869AB03917DF7B266008C5D4CA2F153D /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				AB19288C9F30EC991389742C3A4D3823 /* Products */,
-				BA2CF86948652C7EDB42513E34837F3D /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		869AB03917DF7B266008C5D4CA2F153D /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				116EED703BB2F25DDBE3A0E0DD2BF010 /* GeoFeatures2 */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		AB19288C9F30EC991389742C3A4D3823 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6A816A30072A63C10F70B2067EBF9EF1 /* GeoFeatures2.framework */,
-				1B76535A101CE493E80666A437C8C849 /* Pods_GeoFeatures2_Example.framework */,
-				14A3197FB09B808E659E0F104A617DE0 /* Pods_GeoFeatures2_Tests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BA2CF86948652C7EDB42513E34837F3D /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E0B357837AE243C1DE01E0C44B294B20 /* Pods-GeoFeatures2_Example */,
-				10FDC692168F6A8253FB27BE42AD389E /* Pods-GeoFeatures2_Tests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		E0B357837AE243C1DE01E0C44B294B20 /* Pods-GeoFeatures2_Example */ = {
-			isa = PBXGroup;
-			children = (
-				D372DB76FBEC709A722F228480E3D100 /* Info.plist */,
-				FFD35A803619C151D8C535A4853A6989 /* Pods-GeoFeatures2_Example.modulemap */,
-				9A278F0E73A33E2C20658F4CBBB08F70 /* Pods-GeoFeatures2_Example-acknowledgements.markdown */,
-				79B1B84D7679D48C0E05449A61C52E98 /* Pods-GeoFeatures2_Example-acknowledgements.plist */,
-				B52E8538CB4903D76F1054C592341F25 /* Pods-GeoFeatures2_Example-dummy.m */,
-				07547D2F13893830C1FCFD3BEA47F28E /* Pods-GeoFeatures2_Example-frameworks.sh */,
-				B07281D49FC010D594B3CBDC2A2DB00B /* Pods-GeoFeatures2_Example-resources.sh */,
-				001FD520A7E07AB4248E0689B4466175 /* Pods-GeoFeatures2_Example-umbrella.h */,
-				2FDF15D5FB0F438B3C174E512E8F8449 /* Pods-GeoFeatures2_Example.debug.xcconfig */,
-				DA37933ECF19B3510850786956868B3C /* Pods-GeoFeatures2_Example.release.xcconfig */,
-			);
-			name = "Pods-GeoFeatures2_Example";
-			path = "Target Support Files/Pods-GeoFeatures2_Example";
-			sourceTree = "<group>";
-		};
-		EA108F4E1CD8216700DB399A /* Platform */ = {
-			isa = PBXGroup;
-			children = (
-				EA108F4F1CD8217E00DB399A /* Math.swift */,
-			);
-			name = Platform;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		01576439CE9D5BE5C09267DCF225120F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A337F48C0889945403EB8BBB73332E7B /* GeoFeatures2-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1D58F8B5943CB7449A75B7153A8A9D29 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3B499F5E52EFF67F81A9DFAA40FAE075 /* Pods-GeoFeatures2_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4AA8E939F0B499500E6D06CC54E02BF2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A816EAD5740E51C8A588568355013DA /* Pods-GeoFeatures2_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		6F42249F42322262C3BBDEA16622249A /* Pods-GeoFeatures2_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 841A3D72670F66352E8A9CA15DD27CAE /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Tests" */;
-			buildPhases = (
-				FFF97752C78BD5EE487FB44225B9A2D4 /* Sources */,
-				099432D3A14E8034FAE4DAEBC3F60DF6 /* Frameworks */,
-				1D58F8B5943CB7449A75B7153A8A9D29 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				052307BC9CFBD63ADF2F65D55F942478 /* PBXTargetDependency */,
-			);
-			name = "Pods-GeoFeatures2_Tests";
-			productName = "Pods-GeoFeatures2_Tests";
-			productReference = 14A3197FB09B808E659E0F104A617DE0 /* Pods_GeoFeatures2_Tests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		7A80199C2AE62722BA51045F689D179E /* GeoFeatures2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 318DD1D028A953D93C99D50767FF9DEF /* Build configuration list for PBXNativeTarget "GeoFeatures2" */;
-			buildPhases = (
-				8B70C5862F8FD168095746B293977D87 /* Sources */,
-				547865FB54D0E781BB59F81B0C751B48 /* Frameworks */,
-				01576439CE9D5BE5C09267DCF225120F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = GeoFeatures2;
-			productName = GeoFeatures2;
-			productReference = 6A816A30072A63C10F70B2067EBF9EF1 /* GeoFeatures2.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		8F1087B64099FA27905314F139630983 /* Pods-GeoFeatures2_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 331CE85B246FEC649E43DEB028E4AE6C /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Example" */;
-			buildPhases = (
-				56105C4969B0CC95B56DBC4895140D2D /* Sources */,
-				C74BBCA417B6D6F1E8F8A6CD73A53B16 /* Frameworks */,
-				4AA8E939F0B499500E6D06CC54E02BF2 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BBC7516C9AAE24DA94A5EEDC9C0E79B9 /* PBXTargetDependency */,
-			);
-			name = "Pods-GeoFeatures2_Example";
-			productName = "Pods-GeoFeatures2_Example";
-			productReference = 1B76535A101CE493E80666A437C8C849 /* Pods_GeoFeatures2_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
-			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = AB19288C9F30EC991389742C3A4D3823 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				7A80199C2AE62722BA51045F689D179E /* GeoFeatures2 */,
-				8F1087B64099FA27905314F139630983 /* Pods-GeoFeatures2_Example */,
-				6F42249F42322262C3BBDEA16622249A /* Pods-GeoFeatures2_Tests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		56105C4969B0CC95B56DBC4895140D2D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A1038FE54564471CC3D9FA9BA9E0A7F /* Pods-GeoFeatures2_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8B70C5862F8FD168095746B293977D87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7AA64F298A03A38B583333DBA389C187 /* ArrayConstructable.swift in Sources */,
-				4B1412883C44DFD0AD0E6B5367FF43D5 /* Collection.swift in Sources */,
-				E41EC738E0B04A758D8165B5C5D987CB /* CollectionBuffer.swift in Sources */,
-				05DC296F4537099B3AF6BBDCE3BDE2DD /* Coordinate.swift in Sources */,
-				10F2B0400B31F712D08C4787E1B1F2F7 /* Coordinate2D.swift in Sources */,
-				457B89DB39AD905FDD0C4AEBDE5BB50D /* Coordinate2DM.swift in Sources */,
-				665CC7DFAA88D05B868058DAF8204D90 /* Coordinate3D.swift in Sources */,
-				EA108F501CD8217E00DB399A /* Math.swift in Sources */,
-				69B5953CA407B270A03DCE2D3A2548B0 /* Coordinate3DM.swift in Sources */,
-				27580D292383207DD32518EFD789676C /* CoordinateReferenceSystem.swift in Sources */,
-				1EFA098198F2711746206B1CAD2357C8 /* CopyConstructable.swift in Sources */,
-				5CE9D387A39E232F6816F00736C864FE /* Curve.swift in Sources */,
-				9AFE24F4A3FF5C04817332DEE9978DA7 /* FixedPrecision.swift in Sources */,
-				0B03FBA0A3A9906EF10930AEEBDD64DF /* FloatingPrecision.swift in Sources */,
-				8E472289869CE664C7E78E838B931ACE /* GeoFeatures2-dummy.m in Sources */,
-				37A764730BC4CE787D2EE6930BE38CF5 /* GeoJSONReader.swift in Sources */,
-				643119F19C3EAFCF008240ABB74207B1 /* Geometry.swift in Sources */,
-				9638596C4A52A803E1FC6595806D81E3 /* GeometryCollection+Geometry.swift in Sources */,
-				E114D8515C1774E180D86E9B53BF1221 /* GeometryCollection.swift in Sources */,
-				54742DB24EB6E03DA11B9BD490A28B03 /* LinearRing+Curve.swift in Sources */,
-				6565EC71C9C6D5DC346E2DE7975C314C /* LinearRing+Geometry.swift in Sources */,
-				48A90857CBB088A86FCC7D1BD9D62810 /* LinearRing.swift in Sources */,
-				803345B1BE8FC8C1804EED947EB591E6 /* LineString+Curve.swift in Sources */,
-				EA6CCFE61CA9D510009EE96A /* LinearRing+Surface.swift in Sources */,
-				9C1FD66489B883D66E33B9C1C80C4337 /* LineString+Geometry.swift in Sources */,
-				C91AD62F148E58B7E829282642A9B0FB /* LineString.swift in Sources */,
-				AACA9F0F48423D68504BF831EF2E6337 /* MultiLineString+Geometry.swift in Sources */,
-				294183F6265451249DAF7A57C5167D99 /* MultiLineString.swift in Sources */,
-				2C8D1E4E32752B2E3B44EC37ED4D8CA1 /* MultiPoint+Geometry.swift in Sources */,
-				EA6CCFED1CAACBD5009EE96A /* MultiPolygon+Surface.swift in Sources */,
-				538750CADA504EF63C33F519887E0277 /* MultiPoint.swift in Sources */,
-				5636E1FACBCC4535FE56D7C0E85C279D /* MultiPolygon+Geometry.swift in Sources */,
-				820AF382217D8C85CFF6904F92DAA35B /* MultiPolygon.swift in Sources */,
-				75C763E0BA6A241D7C0B34E5CA97414A /* Point+Geometry.swift in Sources */,
-				AA9EBD90725F23BCA6FEFD603A576CD6 /* Point.swift in Sources */,
-				86EBCF4560A81FE09F4C0C4AA0C58A05 /* Polygon+Geometry.swift in Sources */,
-				4B99844BFF58D27CAFF2C4790CC12176 /* Polygon+Surface.swift in Sources */,
-				FDDB0E05D6B86962AF2298337CF0DCC5 /* Polygon.swift in Sources */,
-				794C0D8D8A4589F2FE28C7EFC7DD04C5 /* Precision.swift in Sources */,
-				EA10A1B41CCD78DE009F0A35 /* Dimension.swift in Sources */,
-				FD05386627ED89A4C6E188AA322716F5 /* Renderer.swift in Sources */,
-				2BFA6492E0A4121F0EC7F3E0730107C5 /* Surface.swift in Sources */,
-				2FC8CFD9270A0FEB1A5ED21E1772FE89 /* TupleConvertable.swift in Sources */,
-				801BD474C67F8188D09A3CCEB2F540F6 /* WKBReader.swift in Sources */,
-				508D8DA04B73404A6732952FE473D070 /* WKTReader.swift in Sources */,
-				2ED9D41394192B3DD2AE6626055270AF /* WKTWriter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFF97752C78BD5EE487FB44225B9A2D4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				06B337F23B2507B513CDFCD6AF330C95 /* Pods-GeoFeatures2_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		052307BC9CFBD63ADF2F65D55F942478 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GeoFeatures2;
-			target = 7A80199C2AE62722BA51045F689D179E /* GeoFeatures2 */;
-			targetProxy = ACDDE935C21C3CAB87B6C50F2FC771C1 /* PBXContainerItemProxy */;
-		};
-		BBC7516C9AAE24DA94A5EEDC9C0E79B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GeoFeatures2;
-			target = 7A80199C2AE62722BA51045F689D179E /* GeoFeatures2 */;
-			targetProxy = E968A1F6D61EDD723E81EE0CD3480033 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		0E3E47A02A92586DE2310DDE98C75420 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6392CA2CD2CBC958DEE63236539B16A /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GeoFeatures2/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GeoFeatures2/GeoFeatures2.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		10DE1947DAC0ED28F6C0A9F9BD75D546 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4BD69AB70131D04435EC51ACB479FFE6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA47280D4D9B43CE4938BAE1E51A4252 /* Pods-GeoFeatures2_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_GeoFeatures2_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		552D02D5BA751AC2E8790D2811D496CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				ONLY_ACTIVE_ARCH = YES;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		5A8A0ADF170D4F88BE3A0FAF3F7D5AAC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6392CA2CD2CBC958DEE63236539B16A /* GeoFeatures2.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GeoFeatures2/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GeoFeatures2/GeoFeatures2.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = GeoFeatures2;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A5596D85E4BE8E84F965226BD26D15F2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA37933ECF19B3510850786956868B3C /* Pods-GeoFeatures2_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_GeoFeatures2_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E62BF2E2BCC459F74DDFEFCFE02D0A22 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FDF15D5FB0F438B3C174E512E8F8449 /* Pods-GeoFeatures2_Example.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_GeoFeatures2_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E675EB73F1CED9F1EF5AD6DD90BB6DC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77AE4673386EBA17588FDBF0C505D48D /* Pods-GeoFeatures2_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_GeoFeatures2_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				552D02D5BA751AC2E8790D2811D496CA /* Debug */,
-				10DE1947DAC0ED28F6C0A9F9BD75D546 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		318DD1D028A953D93C99D50767FF9DEF /* Build configuration list for PBXNativeTarget "GeoFeatures2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5A8A0ADF170D4F88BE3A0FAF3F7D5AAC /* Debug */,
-				0E3E47A02A92586DE2310DDE98C75420 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		331CE85B246FEC649E43DEB028E4AE6C /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E62BF2E2BCC459F74DDFEFCFE02D0A22 /* Debug */,
-				A5596D85E4BE8E84F965226BD26D15F2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		841A3D72670F66352E8A9CA15DD27CAE /* Build configuration list for PBXNativeTarget "Pods-GeoFeatures2_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E675EB73F1CED9F1EF5AD6DD90BB6DC8 /* Debug */,
-				4BD69AB70131D04435EC51ACB479FFE6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>01919617D944291114B47F6A</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>72736D0E8C1BBFA8CA223F92</string>
+				<string>D4AF169852DCC15C7E36A241</string>
+				<string>9449E8804472647384200917</string>
+				<string>F0E60731ED6C4ED74D6E2B96</string>
+				<string>E77BBC7331597445B71920BD</string>
+				<string>4FA73FF4B863FABD0D6C6DA2</string>
+				<string>28AAD6D9AD2BC85CBE6F8CE1</string>
+				<string>EA83D5EF35DE5740F7D67973</string>
+				<string>861AFC88B1499EB69F8CD14B</string>
+				<string>E81EDF4B8669E9870B44B414</string>
+				<string>16455BB79751A4718BD00B66</string>
+				<string>6CE364394C61C28A5C6F5FF4</string>
+				<string>319562BFA24B76D6B7CE24DE</string>
+				<string>5737CA9EE421EEDEDC421166</string>
+				<string>6F163FDAE3020922AE76DAA3</string>
+				<string>6BDACD3468961B9BC046846B</string>
+				<string>1872DFC862177B5B8FD64F37</string>
+				<string>CE707C0C0DFBE7CAB5ADBA92</string>
+				<string>27FA56DD7CA6AEFC2ECC8B7A</string>
+				<string>A28945C391E32625381F67C3</string>
+				<string>1981C259DC6418D14ED6125B</string>
+				<string>66D44604C68660FB5FEC7017</string>
+				<string>6CE155658271D302D501239E</string>
+				<string>54191623080CC739E055984B</string>
+				<string>14A1DEBC0E0F2DA42BCC0247</string>
+				<string>36915DE5CA993AD34F8537D3</string>
+				<string>09B6AB64B0321E8F47A3E765</string>
+				<string>E2C0FF83A3BD4C287E860B84</string>
+				<string>BD87DD38500390D0EB084A7E</string>
+				<string>1CF20498EC0B52C8A6D8F174</string>
+				<string>9410F56CF3542B17E44E1727</string>
+				<string>9F724DD2EAF80991E8980462</string>
+				<string>F72A69C26D1103EEC91ADF89</string>
+				<string>26063F91DA8513CD54B17777</string>
+				<string>5189CE204C8C5E48418BBE73</string>
+				<string>D52D1641489B34E07045B172</string>
+				<string>66D88F701FD2BA24E822A52C</string>
+				<string>BCE9E01238D7E5E806702A5E</string>
+				<string>8CC0C271BF6B6AB7E9061849</string>
+				<string>D3A65898EB5508B1F99422AD</string>
+				<string>C5E9D52891FA108CCF3AE8AF</string>
+				<string>4A77A329EDC990FBD87EFF6B</string>
+				<string>E51EBF07417AD3D45753E5FB</string>
+				<string>21D7AF79C5154F541EF02339</string>
+				<string>D7A18047459BAF9D44404ABC</string>
+				<string>41591A67B289163870CB7A67</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>09B6AB64B0321E8F47A3E765</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B418A30A56AAB35770B82F79</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>09EF211CA9E20ECF32E1C98E</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E37A24389084841F67D19ED2</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/GeoFeatures2/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/GeoFeatures2/GeoFeatures2.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>GeoFeatures2</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>0EBE8FC4C67A9FB64FF4660C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LineString+Curve.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0F7CE6F07A94F217061320CE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0F9D5520E0900957DF42BFEE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BF66390641CE71001D25EABB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>10EF5D7BC427EC84AD993305</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiLineString+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>11ABAC9AA6916A448A8C6C6D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiPoint.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>12A033D9D6D2C2FF90880203</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>573A1C68135888666A07C964</string>
+				<string>F66730086C36E9AC16507635</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>13B6F0AD67DD40774D553040</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>4CA25860EA7475BAFEB807A2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Visualization</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>14A1DEBC0E0F2DA42BCC0247</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AF43ABD2F36FF2B4DE8D6FB0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>16455BB79751A4718BD00B66</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2B4D06A5D0193138AF6215BC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>1872DFC862177B5B8FD64F37</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C125BD3DD63ADA8ED09D96AB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>1981C259DC6418D14ED6125B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AA18D3A4D550546912E041A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>1A0F35F33DC8501F97157CD1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CollectionBuffer.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1B91EE31D6C6493636A99A65</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Polygon+Surface.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1CF20498EC0B52C8A6D8F174</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EFA62466142AA1A137D2E6A5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>2018897A6B07059194E62F0D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>EB4D69ADA97062A428289CC2</string>
+				<string>8F332D694E1A4027D4F816F2</string>
+				<string>2255DEFC1E71CFBF5875ED9E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>21D7AF79C5154F541EF02339</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9EF6822670E60E6869608E74</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>2255DEFC1E71CFBF5875ED9E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_GeoFeatures2_Tests.framework</string>
+			<key>path</key>
+			<string>Pods_GeoFeatures2_Tests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>24459C7A7B7E7D98D6919EA8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F43B11362FD81D8CA8124474</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>26063F91DA8513CD54B17777</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AD89B56479E58DB0133DC485</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>27A72455BAA614E7B9076E92</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8A3A75FCB4C5EA049EAFE6AA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Geometry</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>27FA56DD7CA6AEFC2ECC8B7A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FCE50B6E33A6C360321E2DF3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>289AF23C6C5FD4CE0B6CAE07</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Coordinate3D.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>28AAD6D9AD2BC85CBE6F8CE1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>289AF23C6C5FD4CE0B6CAE07</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>28EE68FD318FEBC16D9C4C17</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D3C620F4DD6F9C109031AC03</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>2AD7EFF9FDE5F9899350A856</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>WKTWriter.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2B4D06A5D0193138AF6215BC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Curve.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2E2DE694C120A20B8A618FC7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>655E054192DE3545412EDB4A</string>
+				<string>D6C4FAE5ECC39572F005F4E2</string>
+				<string>47162238EA91B3A116E46351</string>
+				<string>F3F0E6626282C2E0BEC2A36B</string>
+				<string>4E01EAEF68502F0EB47384E5</string>
+				<string>D621BFDD07A5D28175389E47</string>
+				<string>327931DB70FA8DFACD929203</string>
+				<string>A6A3FFDDC51D4A952106CCBF</string>
+				<string>4B7289909886A55763480A4C</string>
+				<string>BE78048998EC6AF9B95DDB3F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-GeoFeatures2_Example</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-GeoFeatures2_Example</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3069F58FD047FD6DC5C0E00C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GeoFeatures2-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>319562BFA24B76D6B7CE24DE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>64881AE4E8C481A7E71FFC94</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>327931DB70FA8DFACD929203</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>35E35F59CF4FE1078599B524</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Renderer.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>36915DE5CA993AD34F8537D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6B6115B75FCAF8BA541D0CFA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>3BEE8C789E6635A995ED30D8</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>71C691DA3341C0ED46DB0EA1</string>
+				<string>E37A24389084841F67D19ED2</string>
+				<string>46A86D5FA14900499F094BCD</string>
+				<string>3069F58FD047FD6DC5C0E00C</string>
+				<string>DCBF16AA9692702015598D15</string>
+				<string>BA8DDA77B69A3ACEADB6818C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>Example/Pods/Target Support Files/GeoFeatures2</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3E27E03866853680C5728BE4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FloatingPrecision.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3E3C9D60B14EBAD0C9CDA03D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>GeoFeatures2</string>
+			<key>target</key>
+			<string>E3F9AFF479E63BA64A9B4E23</string>
+			<key>targetProxy</key>
+			<string>BA415BE6B2B585A707F448A1</string>
+		</dict>
+		<key>3F1D599927852560F94F0615</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>27A72455BAA614E7B9076E92</string>
+				<string>3BEE8C789E6635A995ED30D8</string>
+				<string>13B6F0AD67DD40774D553040</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GeoFeatures2</string>
+			<key>path</key>
+			<string>../..</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>40881DB4E5FE98292C243DB9</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>71ACF1BF8479BDEEEA352BA0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>41591A67B289163870CB7A67</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2AD7EFF9FDE5F9899350A856</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>42FE3839432D99F4D12241FB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>SYMROOT</key>
+				<string>${SRCROOT}/../build</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>4457EBDFBF046FF11C189F24</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Point.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>46A86D5FA14900499F094BCD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>GeoFeatures2-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>47162238EA91B3A116E46351</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>471D82F444A4958EBF19A7DF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F43B11362FD81D8CA8124474</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>47983F02DC62995689E6E657</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>RELEASE=1</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>SYMROOT</key>
+				<string>${SRCROOT}/../build</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>47DF338019880A0C00D8AFA0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiLineString.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>496260FB105BB393BBD310B5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F43B11362FD81D8CA8124474</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4A77A329EDC990FBD87EFF6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6BBACF9305EBC82D6A6C6C47</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>4B7289909886A55763480A4C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4CA25860EA7475BAFEB807A2</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D1979A280E7E57F70B2D09D6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Source</string>
+			<key>path</key>
+			<string>Source</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4E01EAEF68502F0EB47384E5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4F13A2A451B8C1DF1A6C1850</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2E2DE694C120A20B8A618FC7</string>
+				<string>B9A32F7B0AD510EC16D04520</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4FA73FF4B863FABD0D6C6DA2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>79B85E4C441718075482F4D9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>5189CE204C8C5E48418BBE73</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BD494B85B91683E31C6210DA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>54191623080CC739E055984B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0EBE8FC4C67A9FB64FF4660C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>54D7E238697D4C186B8396AA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ArrayConstructable.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>55DE3F2DD9B106B81877ABFD</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>12A033D9D6D2C2FF90880203</string>
+			<key>buildPhases</key>
+			<array>
+				<string>28EE68FD318FEBC16D9C4C17</string>
+				<string>A0DDCD0783F4DF918C5A6A99</string>
+				<string>F56046C93B5961B122E10E3C</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>3E3C9D60B14EBAD0C9CDA03D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-GeoFeatures2_Example</string>
+			<key>productName</key>
+			<string>Pods-GeoFeatures2_Example</string>
+			<key>productReference</key>
+			<string>8F332D694E1A4027D4F816F2</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>5737CA9EE421EEDEDC421166</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E27E03866853680C5728BE4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>573A1C68135888666A07C964</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>4B7289909886A55763480A4C</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Example/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_GeoFeatures2_Example</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>5A19421968E1FB452DF5515F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Coordinate2D.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5C2D7DF9F95ECB403C2FA707</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8723B38FB31B5C37036CC654</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>5DD095D3C728C5E664084247</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E37A24389084841F67D19ED2</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/GeoFeatures2/GeoFeatures2-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/GeoFeatures2/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/GeoFeatures2/GeoFeatures2.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>GeoFeatures2</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>64881AE4E8C481A7E71FFC94</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FixedPrecision.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>655ACEA9AF264217F53DA63D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CopyConstructable.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>655E054192DE3545412EDB4A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>66D44604C68660FB5FEC7017</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CE7CD9DC281B3A53725257EB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>66D88F701FD2BA24E822A52C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D33ED07EFA6828BBA4152687</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>67B002A599A023657B9CA5CE</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>B74C349A673B1637A72B3921</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Tests/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_GeoFeatures2_Tests</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>67DA252D8C4150F38A411A28</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Polygon.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6B3A4CD2454977981751A701</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Precision.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6B6115B75FCAF8BA541D0CFA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LineString.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6BBACF9305EBC82D6A6C6C47</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Surface.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6BDACD3468961B9BC046846B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B4C4CBA77D90B7E6A18BDBCB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>6CE155658271D302D501239E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E70C579FB04E7B8B34976CC6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>6CE364394C61C28A5C6F5FF4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FAA42B549DFB347FB2514B1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>6F163FDAE3020922AE76DAA3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>46A86D5FA14900499F094BCD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FAA42B549DFB347FB2514B1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Dimension.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>71A2C9FE91AB8AD87479E714</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>name</key>
+			<string>Podfile</string>
+			<key>path</key>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>71ACF1BF8479BDEEEA352BA0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DCBF16AA9692702015598D15</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>71C691DA3341C0ED46DB0EA1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>GeoFeatures2.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>724612BF731B40AA7B3C5B83</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Collection.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>72736D0E8C1BBFA8CA223F92</key>
+		<dict>
+			<key>fileRef</key>
+			<string>54D7E238697D4C186B8396AA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>737B73C170B7EF1C14B84DC4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>TupleConvertable.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>73ADD483F5E5EA8C47BE7652</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiPolygon+Surface.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>79B85E4C441718075482F4D9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Coordinate2DM.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7CF9D5AEE71B38AEFA986317</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>861AFC88B1499EB69F8CD14B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>ED787E9F66F021DDF88CA621</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>8723B38FB31B5C37036CC654</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>87F4EA6A3C6D09E9A5299B17</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>71A2C9FE91AB8AD87479E714</string>
+				<string>A2C2F98C1881624D9651A665</string>
+				<string>8A942D157593AF2F75E90B80</string>
+				<string>2018897A6B07059194E62F0D</string>
+				<string>4F13A2A451B8C1DF1A6C1850</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>893F39D96A22DE854922E9BD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>GeometryCollection+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8A3A75FCB4C5EA049EAFE6AA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>AAE4A889D4CD94D1791C9C2C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Source</string>
+			<key>path</key>
+			<string>Source</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8A942D157593AF2F75E90B80</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>496260FB105BB393BBD310B5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC0C271BF6B6AB7E9061849</key>
+		<dict>
+			<key>fileRef</key>
+			<string>67DA252D8C4150F38A411A28</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>8F332D694E1A4027D4F816F2</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_GeoFeatures2_Example.framework</string>
+			<key>path</key>
+			<string>Pods_GeoFeatures2_Example.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>90F2451FAF99E5DCCF886C86</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>92B5B7476BB32A12EAC4908B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>GeoFeatures2</string>
+			<key>target</key>
+			<string>E3F9AFF479E63BA64A9B4E23</string>
+			<key>targetProxy</key>
+			<string>F59EA34AB3C9590AA2A3486D</string>
+		</dict>
+		<key>9410F56CF3542B17E44E1727</key>
+		<dict>
+			<key>fileRef</key>
+			<string>11ABAC9AA6916A448A8C6C6D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>9449E8804472647384200917</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1A0F35F33DC8501F97157CD1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>94A1A4410E00BB3B05C6C396</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>24459C7A7B7E7D98D6919EA8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9BC8F34C37162DD1C5F8BD4E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiPolygon+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9EF6822670E60E6869608E74</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>WKBReader.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9F724DD2EAF80991E8980462</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9BC8F34C37162DD1C5F8BD4E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>9FC566E9A28C17FF71084A1A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6A3FFDDC51D4A952106CCBF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A0DDCD0783F4DF918C5A6A99</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>471D82F444A4958EBF19A7DF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A28945C391E32625381F67C3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FF2B2E07287048E10263EBAA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>A2C2F98C1881624D9651A665</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3F1D599927852560F94F0615</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Development Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6A3FFDDC51D4A952106CCBF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A829B054F76B373CDB818C4B</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0700</string>
+				<key>LastUpgradeCheck</key>
+				<string>0700</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>CEB50E27D988AC1E4767B8F6</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>87F4EA6A3C6D09E9A5299B17</string>
+			<key>productRefGroup</key>
+			<string>2018897A6B07059194E62F0D</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>E3F9AFF479E63BA64A9B4E23</string>
+				<string>55DE3F2DD9B106B81877ABFD</string>
+				<string>CE47D27BC57F88F08BCBABA5</string>
+			</array>
+		</dict>
+		<key>A82FA4870AD04D4F1EAA5917</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B418A30A56AAB35770B82F79</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Platform</string>
+			<key>path</key>
+			<string>Platform</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A95CF9F6259548C8E6DEDE6E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>WKTReader.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AA18D3A4D550546912E041A6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LinearRing+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AAE4A889D4CD94D1791C9C2C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>54D7E238697D4C186B8396AA</string>
+				<string>724612BF731B40AA7B3C5B83</string>
+				<string>1A0F35F33DC8501F97157CD1</string>
+				<string>B6C2E7E333C1A81F1F917CE6</string>
+				<string>5A19421968E1FB452DF5515F</string>
+				<string>79B85E4C441718075482F4D9</string>
+				<string>289AF23C6C5FD4CE0B6CAE07</string>
+				<string>D8750AC29AB5884B953688EA</string>
+				<string>ED787E9F66F021DDF88CA621</string>
+				<string>655ACEA9AF264217F53DA63D</string>
+				<string>2B4D06A5D0193138AF6215BC</string>
+				<string>6FAA42B549DFB347FB2514B1</string>
+				<string>64881AE4E8C481A7E71FFC94</string>
+				<string>3E27E03866853680C5728BE4</string>
+				<string>B4C4CBA77D90B7E6A18BDBCB</string>
+				<string>C125BD3DD63ADA8ED09D96AB</string>
+				<string>FCE50B6E33A6C360321E2DF3</string>
+				<string>893F39D96A22DE854922E9BD</string>
+				<string>E70C579FB04E7B8B34976CC6</string>
+				<string>FF2B2E07287048E10263EBAA</string>
+				<string>AA18D3A4D550546912E041A6</string>
+				<string>CE7CD9DC281B3A53725257EB</string>
+				<string>6B6115B75FCAF8BA541D0CFA</string>
+				<string>0EBE8FC4C67A9FB64FF4660C</string>
+				<string>AF43ABD2F36FF2B4DE8D6FB0</string>
+				<string>47DF338019880A0C00D8AFA0</string>
+				<string>10EF5D7BC427EC84AD993305</string>
+				<string>11ABAC9AA6916A448A8C6C6D</string>
+				<string>EFA62466142AA1A137D2E6A5</string>
+				<string>AD89B56479E58DB0133DC485</string>
+				<string>9BC8F34C37162DD1C5F8BD4E</string>
+				<string>73ADD483F5E5EA8C47BE7652</string>
+				<string>4457EBDFBF046FF11C189F24</string>
+				<string>BD494B85B91683E31C6210DA</string>
+				<string>67DA252D8C4150F38A411A28</string>
+				<string>D33ED07EFA6828BBA4152687</string>
+				<string>1B91EE31D6C6493636A99A65</string>
+				<string>6B3A4CD2454977981751A701</string>
+				<string>6BBACF9305EBC82D6A6C6C47</string>
+				<string>737B73C170B7EF1C14B84DC4</string>
+				<string>9EF6822670E60E6869608E74</string>
+				<string>A95CF9F6259548C8E6DEDE6E</string>
+				<string>2AD7EFF9FDE5F9899350A856</string>
+				<string>A82FA4870AD04D4F1EAA5917</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Geometry</string>
+			<key>path</key>
+			<string>Geometry</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AD89B56479E58DB0133DC485</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiPolygon.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AF43ABD2F36FF2B4DE8D6FB0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LineString+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B418A30A56AAB35770B82F79</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Math.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B4C4CBA77D90B7E6A18BDBCB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>GeoJSONReader.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6C2E7E333C1A81F1F917CE6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Coordinate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B74C349A673B1637A72B3921</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B869CCEB753F183A48AAC747</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B9A32F7B0AD510EC16D04520</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>DA9A60F433272F633B5F4FC3</string>
+				<string>0F7CE6F07A94F217061320CE</string>
+				<string>90F2451FAF99E5DCCF886C86</string>
+				<string>D14BFB89266C2937880852FB</string>
+				<string>BF66390641CE71001D25EABB</string>
+				<string>7CF9D5AEE71B38AEFA986317</string>
+				<string>B869CCEB753F183A48AAC747</string>
+				<string>8723B38FB31B5C37036CC654</string>
+				<string>B74C349A673B1637A72B3921</string>
+				<string>E124EC5334E0F0DE7D0541C5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-GeoFeatures2_Tests</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-GeoFeatures2_Tests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA415BE6B2B585A707F448A1</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>A829B054F76B373CDB818C4B</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E3F9AFF479E63BA64A9B4E23</string>
+			<key>remoteInfo</key>
+			<string>GeoFeatures2</string>
+		</dict>
+		<key>BA8DDA77B69A3ACEADB6818C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BCE9E01238D7E5E806702A5E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1B91EE31D6C6493636A99A65</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>BD494B85B91683E31C6210DA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Point+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BD87DD38500390D0EB084A7E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>47DF338019880A0C00D8AFA0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>BE78048998EC6AF9B95DDB3F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BF66390641CE71001D25EABB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C125BD3DD63ADA8ED09D96AB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C5E9D52891FA108CCF3AE8AF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>35E35F59CF4FE1078599B524</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>CC740157AC39A78EC65110F3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>67B002A599A023657B9CA5CE</string>
+				<string>E908CB588CE536E5039B94FE</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>CE47D27BC57F88F08BCBABA5</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>CC740157AC39A78EC65110F3</string>
+			<key>buildPhases</key>
+			<array>
+				<string>DBE1CBDD6BA2027673F7C065</string>
+				<string>94A1A4410E00BB3B05C6C396</string>
+				<string>FF4F842D001970024A13B8A0</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>92B5B7476BB32A12EAC4908B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-GeoFeatures2_Tests</string>
+			<key>productName</key>
+			<string>Pods-GeoFeatures2_Tests</string>
+			<key>productReference</key>
+			<string>2255DEFC1E71CFBF5875ED9E</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>CE707C0C0DFBE7CAB5ADBA92</key>
+		<dict>
+			<key>fileRef</key>
+			<string>893F39D96A22DE854922E9BD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>CE7CD9DC281B3A53725257EB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LinearRing+Surface.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CEB50E27D988AC1E4767B8F6</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>42FE3839432D99F4D12241FB</string>
+				<string>47983F02DC62995689E6E657</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D14BFB89266C2937880852FB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D1979A280E7E57F70B2D09D6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>35E35F59CF4FE1078599B524</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Visualization</string>
+			<key>path</key>
+			<string>Visualization</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D33ED07EFA6828BBA4152687</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Polygon+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D3A65898EB5508B1F99422AD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6B3A4CD2454977981751A701</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>D3C620F4DD6F9C109031AC03</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4E01EAEF68502F0EB47384E5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D4AF169852DCC15C7E36A241</key>
+		<dict>
+			<key>fileRef</key>
+			<string>724612BF731B40AA7B3C5B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>D52D1641489B34E07045B172</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4457EBDFBF046FF11C189F24</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>D621BFDD07A5D28175389E47</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D6C4FAE5ECC39572F005F4E2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D7A18047459BAF9D44404ABC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A95CF9F6259548C8E6DEDE6E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>D8750AC29AB5884B953688EA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Coordinate3DM.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D8FCABCBAEECA59C24B1C28E</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>5DD095D3C728C5E664084247</string>
+				<string>09EF211CA9E20ECF32E1C98E</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>DA9A60F433272F633B5F4FC3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DBE1CBDD6BA2027673F7C065</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>0F9D5520E0900957DF42BFEE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>DCBF16AA9692702015598D15</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GeoFeatures2-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E124EC5334E0F0DE7D0541C5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Tests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E2C0FF83A3BD4C287E860B84</key>
+		<dict>
+			<key>fileRef</key>
+			<string>10EF5D7BC427EC84AD993305</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>E37A24389084841F67D19ED2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>GeoFeatures2.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E3F9AFF479E63BA64A9B4E23</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D8FCABCBAEECA59C24B1C28E</string>
+			<key>buildPhases</key>
+			<array>
+				<string>01919617D944291114B47F6A</string>
+				<string>E8EECACC530D10B27C2CF868</string>
+				<string>40881DB4E5FE98292C243DB9</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>GeoFeatures2</string>
+			<key>productName</key>
+			<string>GeoFeatures2</string>
+			<key>productReference</key>
+			<string>EB4D69ADA97062A428289CC2</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>E51EBF07417AD3D45753E5FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>737B73C170B7EF1C14B84DC4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>E70C579FB04E7B8B34976CC6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LinearRing.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E77BBC7331597445B71920BD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5A19421968E1FB452DF5515F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>E81EDF4B8669E9870B44B414</key>
+		<dict>
+			<key>fileRef</key>
+			<string>655ACEA9AF264217F53DA63D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>E8EECACC530D10B27C2CF868</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F3A651E7F17A67250E2EAD6A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E908CB588CE536E5039B94FE</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E124EC5334E0F0DE7D0541C5</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Tests/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_GeoFeatures2_Tests</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>EA83D5EF35DE5740F7D67973</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D8750AC29AB5884B953688EA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>EB4D69ADA97062A428289CC2</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>GeoFeatures2.framework</string>
+			<key>path</key>
+			<string>GeoFeatures2.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>ED787E9F66F021DDF88CA621</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CoordinateReferenceSystem.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EFA62466142AA1A137D2E6A5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>MultiPoint+Geometry.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F0E60731ED6C4ED74D6E2B96</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6C2E7E333C1A81F1F917CE6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>F3A651E7F17A67250E2EAD6A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F43B11362FD81D8CA8124474</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F3F0E6626282C2E0BEC2A36B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-GeoFeatures2_Example-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F43B11362FD81D8CA8124474</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>F56046C93B5961B122E10E3C</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9FC566E9A28C17FF71084A1A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F59EA34AB3C9590AA2A3486D</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>A829B054F76B373CDB818C4B</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E3F9AFF479E63BA64A9B4E23</string>
+			<key>remoteInfo</key>
+			<string>GeoFeatures2</string>
+		</dict>
+		<key>F66730086C36E9AC16507635</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>BE78048998EC6AF9B95DDB3F</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Example/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-GeoFeatures2_Example/Pods-GeoFeatures2_Example.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_GeoFeatures2_Example</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>F72A69C26D1103EEC91ADF89</key>
+		<dict>
+			<key>fileRef</key>
+			<string>73ADD483F5E5EA8C47BE7652</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>FCE50B6E33A6C360321E2DF3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>GeometryCollection.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FF2B2E07287048E10263EBAA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LinearRing+Curve.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FF4F842D001970024A13B8A0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>5C2D7DF9F95ECB403C2FA707</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>A829B054F76B373CDB818C4B</string>
+</dict>
+</plist>
