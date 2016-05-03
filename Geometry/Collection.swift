@@ -88,6 +88,7 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     /**
         Remove and return the element at index `i`.
      */
+    @discardableResult
     mutating func remove(at index: Int) -> Element
     
     /**
@@ -95,6 +96,7 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
      
         - Requires: `count > 0`.
      */
+    @discardableResult
     mutating func removeLast() -> Element
     
     /**

@@ -16,6 +16,7 @@ import Swift
 
 public final class Math {
     
+    @warn_unused_result
     public class func max<T : Comparable>(_ x: T, _ y: T) -> T {
         if y > x { return y }
         return x

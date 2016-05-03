@@ -226,6 +226,7 @@ extension MultiPoint : Collection {
     /**
         Remove and return the element at index `i` of this MultiPoint.
      */
+    @discardableResult
     public mutating func remove(at index: Int) -> Element {
         guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range, can't remove Point.") }
         
@@ -251,6 +252,7 @@ extension MultiPoint : Collection {
      
      - Requires: `count > 0`.
      */
+    @discardableResult
     public mutating func removeLast() -> Element {
         guard storage.value > 0 else { preconditionFailure("can't removeLast from an empty MultiPoint.") }
         

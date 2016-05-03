@@ -32,6 +32,7 @@ internal class CollectionBuffer<E> : ManagedBuffer<Int,E> {
 
 extension CollectionBuffer {
     
+    @warn_unused_result
     func clone() -> CollectionBuffer<Element> {
         return self.withUnsafeMutablePointerToElements { oldElements->CollectionBuffer<Element> in
             
