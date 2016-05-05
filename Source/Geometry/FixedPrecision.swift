@@ -19,6 +19,12 @@
  */
 import Swift
 
+#if os(Linux) || os(FreeBSD)
+    import Glibc
+#else
+    import Darwin
+#endif
+
 public struct FixedPrecision : Precision, Equatable, Hashable  {
     
     public let scale: Double

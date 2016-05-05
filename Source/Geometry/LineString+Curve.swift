@@ -19,6 +19,12 @@
  */
 import Swift
 
+#if os(Linux) || os(FreeBSD)
+    import Glibc
+#else
+    import Darwin
+#endif
+
 extension LineString : Curve {
     
     /**
