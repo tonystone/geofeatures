@@ -1,5 +1,5 @@
 /*
- *   Coordinate3DTests.swift
+ *   Coordinate2DMTests.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -18,10 +18,15 @@
  *   Created by Tony Stone on 2/10/16.
  */
 import XCTest
-@testable import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 class Coordinate2DMTests: XCTestCase {
-    
+
     // MARK: Coordinate2DM
     
     func testInit_XYM () {

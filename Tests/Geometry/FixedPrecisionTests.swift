@@ -18,7 +18,12 @@
  *   Created by Tony Stone on 2/11/16.
  */
 import XCTest
-import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 class FixedPrecisionTests: XCTestCase {
 

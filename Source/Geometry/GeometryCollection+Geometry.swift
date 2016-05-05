@@ -19,12 +19,6 @@
  */
 import Swift
 
-//#if os(Linux)
-//    import Glibc
-//#else
-//    import Darwin
-//#endif
-
 // MARK:  Geometry conformance
 
 extension GeometryCollection : Geometry  {

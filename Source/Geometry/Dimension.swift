@@ -30,13 +30,16 @@ import Swift
     - ONE:   (1)  for Curve types and Curve collections
     - TWO:   (2)  for Surface types and Surface collection
  */
-public enum Dimension : Int, Comparable {
+public enum Dimension : Int {
     
     case EMPTY = -1
     case ZERO = 0
     case ONE  = 1
     case TWO  = 2
 }
+
+
+extension Dimension : Comparable {}
 
 public func ==(lhs: Dimension, rhs: Dimension) -> Bool {
     return lhs.rawValue == rhs.rawValue
@@ -45,3 +48,5 @@ public func ==(lhs: Dimension, rhs: Dimension) -> Bool {
 public func <(lhs: Dimension, rhs: Dimension) -> Bool {
     return lhs.rawValue < rhs.rawValue
 }
+
+

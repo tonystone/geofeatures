@@ -18,7 +18,12 @@
  *   Created by Tony Stone on 2/16/16.
  */
 import XCTest
-import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
@@ -40,6 +45,8 @@ class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
         XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0),(x: 0, y: 2),(x: 0, y: 3),(x: 0, y: 4),(x: 0, y: 5)]).length(), 5.0)
     }
 
+#if os(Linux) || os(FreeBSD)
+#else
     func testPerformanceLength() {
         let lineString = LineString<Coordinate2D>(elements: [(x :0, y: 0),(x: 0, y: 2),(x: 0,y: 3),(x: 0, y: 4),(x: 0,y: 5)])
         
@@ -50,12 +57,15 @@ class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
             }
         }
     }
+#endif
 }
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
 class LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     
+#if os(Linux) || os(FreeBSD)
+#else
     func testPerformanceLength() {
         let lineString = LineString<Coordinate3D>(elements: [(x :0, y: 0, z: 0),(x: 0, y: 2, z: 0),(x: 0,y: 3, z: 0),(x: 0, y: 4, z: 0),(x: 0,y: 5, z:0)])
         
@@ -66,4 +76,5 @@ class LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCas
             }
         }
     }
+#endif
 }

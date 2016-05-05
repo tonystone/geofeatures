@@ -17,9 +17,13 @@
  *
  *   Created by Tony Stone on 2/10/16.
  */
-import UIKit
 import XCTest
-@testable import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 

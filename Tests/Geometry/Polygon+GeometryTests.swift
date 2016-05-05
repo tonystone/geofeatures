@@ -18,7 +18,12 @@
  *   Created by Tony Stone on 4/24/16.
  */
 import XCTest
-import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 private let geometryDimension = Dimension.TWO    // Polygon are always 2 dimension
 
