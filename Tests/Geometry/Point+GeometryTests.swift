@@ -18,7 +18,12 @@
  *   Created by Tony Stone on 4/24/16.
  */
 import XCTest
-@testable import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 private let geometryDimension = Dimension.ZERO   // Point always have a 0 dimension
 

@@ -19,7 +19,12 @@
  */
 
 import XCTest
-import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
@@ -77,6 +82,8 @@ class LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
         XCTAssertEqualWithAccuracy(LinearRing<Coordinate2D>(elements: [(x: 1.00, y: -1.00), (x: -1.00, y: -1.00), (x: -1.00, y: 1.00), (x: 1.00, y: 1.00), (x: 1.00, y: -1.00)], precision: precision, coordinateReferenceSystem: crs).area(), 4.0, accuracy: accuracy)
     }
     
+#if os(Linux) || os(FreeBSD)
+#else
     func testPerformanceArea_RegularQuadrilateral() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 8.29, y: 0.88), (x: 3.18, y: 3.12), (x: 5.43, y: 8.22), (x: 10.53, y: 5.98), (x: 8.29, y: 0.88)], precision: precision, coordinateReferenceSystem: crs)
         
@@ -87,6 +94,7 @@ class LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
             }
         }
     }
+#endif
 }
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
@@ -144,6 +152,8 @@ class LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [(x: 1.00, y: -1.00), (x: -1.00, y: -1.00), (x: -1.00, y: 1.00), (x: 1.00, y: 1.00), (x: 1.00, y: -1.00)], precision: precision, coordinateReferenceSystem: crs).area(), 4.0)
     }
     
+#if os(Linux) || os(FreeBSD)
+#else
     func testPerformanceArea_RegularQuadrilateral() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 8.29, y: 0.88), (x: 3.18, y: 3.12), (x: 5.43, y: 8.22), (x: 10.53, y: 5.98), (x: 8.29, y: 0.88)], precision: precision, coordinateReferenceSystem: crs)
         
@@ -154,4 +164,5 @@ class LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase
             }
         }
     }
+#endif
 }

@@ -18,7 +18,12 @@
  *   Created by Tony Stone on 3/28/16.
  */
 import XCTest
-import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
@@ -75,6 +80,8 @@ class Polygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(Polygon<Coordinate2D>(rings: ([(x: 1.00, y: -1.00), (x: -1.00, y: -1.00), (x: -1.00, y: 1.00), (x: 1.00, y: 1.00), (x: 1.00, y: -1.00)], []), precision: precision, coordinateReferenceSystem: crs).area(), 4.0)
     }
     
+#if os(Linux) || os(FreeBSD)
+#else
     func testPerformanceArea_Quadrilateral() {
         let geometry = Polygon<Coordinate2D>(rings: ([(x: 8.29, y: 0.88), (x: 3.18, y: 3.12), (x: 5.43, y: 8.22), (x: 10.53, y: 5.98), (x: 8.29, y: 0.88)], []), precision: precision, coordinateReferenceSystem: crs)
         
@@ -85,5 +92,5 @@ class Polygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
-    
+#endif
 }

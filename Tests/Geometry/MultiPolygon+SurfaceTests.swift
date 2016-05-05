@@ -18,7 +18,12 @@
  *   Created by Tony Stone on 3/29/16.
  */
 import XCTest
-import GeoFeatures2
+
+#if SWIFT_PACKAGE
+    import Geometry
+#else
+    import GeoFeatures2
+#endif
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
