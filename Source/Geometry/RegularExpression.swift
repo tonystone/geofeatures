@@ -41,7 +41,7 @@ internal class RegularExpression {
     func rangeOfFirstMatch(in string: String, options: MatchingOptions = []) -> Range<String.Index>? {
         
         if let regex = regex {
-            let range = regex.rangeOfFirstMatch(in: string, options: options, range: string.toNSRange())
+            let range = regex.rangeOfFirstMatch(in: string, options: options, range: NSRange(location: 0, length: string.characters.count))
             
             return range.toRange(for: string)
         }
@@ -59,20 +59,10 @@ private extension NSRange {
         guard self.location != NSNotFound else {
             return nil
         }
-        
-        let start = string.startIndex.advanced(by: self.location)
-        let end   = start.advanced(by: self.length)
-        
-        return start..<end
-    }
-}
-/**
- Private helper extension to Range
- */
-private extension String  {
+
+        let start = string.characters.index(string.characters.startIndex, offsetBy: self.location)
+        let end   = string.characters.index(string.characters.startIndex, offsetBy: self.location + self.length)
     
-    func toNSRange () -> NSRange {
-        // 
-        return NSMakeRange(0, self.startIndex.distance(to: self.endIndex))
+        return start..<end
     }
 }

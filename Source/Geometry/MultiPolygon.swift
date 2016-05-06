@@ -285,7 +285,16 @@ extension MultiPolygon : Collection {
 // MARK: Collection conformance
 
 extension MultiPolygon {
-    
+
+    /**
+        Returns the position immediately after `i`.
+     
+        - Precondition: `(startIndex..<endIndex).contains(i)`
+     */
+    public func index(after i: Int) -> Int {
+        return i+1
+    }
+
     /**
         Always zero, which is the index of the first element when non-empty.
      */

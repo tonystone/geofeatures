@@ -118,7 +118,7 @@ public struct Polygon<CoordinateType : protocol<Coordinate, CopyConstructable>> 
 
 extension Polygon where CoordinateType : TupleConvertable {
     
-    public  init<C : Swift.Collection where C.Iterator.Element == CoordinateType.TupleType, C.Index.Distance == Int>(rings: (C,[C]), coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
+    public  init<C : Swift.Collection where C.Iterator.Element == CoordinateType.TupleType>(rings: (C,[C]), coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem, precision: Precision = defaultPrecision) {
         
        self.init(coordinateReferenceSystem: coordinateReferenceSystem, precision: precision)
         

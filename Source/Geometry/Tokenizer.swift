@@ -45,7 +45,7 @@ internal class Tokenizer<T : Token> {
                 line += 1
                 column = 1
             } else {
-                column += range.count
+                column += stringStream.distance(from: range.lowerBound, to: range.upperBound)
             }
             let result = stringStream[range]
             

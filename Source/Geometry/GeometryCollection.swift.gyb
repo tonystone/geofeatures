@@ -291,7 +291,16 @@ extension ${Self} : Collection {
 // MARK: Collection conformance
 
 extension ${Self} {
-    
+
+    /**
+        Returns the position immediately after `i`.
+     
+        - Precondition: `(startIndex..<endIndex).contains(i)`
+     */
+    public func index(after i: Int) -> Int {
+        return i+1
+    }
+
     /**
         Always zero, which is the index of the first element when non-empty.
      */
@@ -339,16 +348,13 @@ extension ${Self} : CustomStringConvertible, CustomDebugStringConvertible {
 
 extension ${Self} : Equatable {}
 
-
 %if CoordinateSpecialized == 'true':
-
 @warn_unused_result
 public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: ${Self}<CoordinateType>, rhs: ${Self}<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
     
 %else:
-
 @warn_unused_result
 public func ==(lhs: ${Self}, rhs: ${Self}) -> Bool {
     return lhs.equals(rhs)

@@ -377,7 +377,16 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
 // MARK: Swift.Collection conformance
 
 extension LinearRing : Swift.Collection, MutableCollection, _DestructorSafeContainer {
-    
+
+    /**
+        Returns the position immediately after `i`.
+     
+        - Precondition: `(startIndex..<endIndex).contains(i)`
+     */
+    public func index(after i: Int) -> Int {
+        return i+1
+    }
+
     /**
         Always zero, which is the index of the first element when non-empty.
      */
