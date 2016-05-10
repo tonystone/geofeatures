@@ -66,8 +66,7 @@ struct IntersectionMatrix {
 }
 
 /**
- Sequence support for IntersectionMatrix
- 
+    Sequence support for IntersectionMatrix
  */
 extension IntersectionMatrix : Sequence {
     
@@ -77,7 +76,6 @@ extension IntersectionMatrix : Sequence {
         - Parameters:
             - row: the row in the matrix expressed as an Index value.
             - col: the column in the matrix expressed as an Index value.
-     
      
         Example:
      
@@ -93,7 +91,6 @@ extension IntersectionMatrix : Sequence {
         get {
             return matrix[row.rawValue][col.rawValue]
         }
-        
         set (newValue) {
             matrix[row.rawValue][col.rawValue] = newValue
         }
@@ -102,7 +99,7 @@ extension IntersectionMatrix : Sequence {
     /**
         IntersectionMatrix is a sequence that can be iterated on.
      
-       Example:
+        Example:
      
             let matrix = IntersectionMatrix(pattern: “T*T***T**”)
      
@@ -138,12 +135,11 @@ extension IntersectionMatrix : Sequence {
 extension IntersectionMatrix {
     
     /**
-     Constructs an IntersectionMatrix from the charactor
-     based pattern such as “T*T***T**”
+        Constructs an IntersectionMatrix from the charactor
+        based pattern such as “T*T***T**”
      
-     - parameter pattern: The pattern string consiting of legal charactors from the set of eum Value.
+        - parameter pattern: The pattern string consiting of legal charactors from the set of eum Value.
      */
-    
     internal
     init(pattern: String) {
         assert(pattern.characters.count == IntersectionMatrix.size, "Invalid pattern, the input pattern must be \(IntersectionMatrix.size) charactors long")
@@ -152,8 +148,8 @@ extension IntersectionMatrix {
         
         for row in 0...Index.EXTERIOR.rawValue {
             for col in 0...Index.EXTERIOR.rawValue {
-                
                 if let charactor = charactors.next() {
+                    
                     if let value = Value(rawValue: charactor) {
                         matrix[row][col] = value
                     }
@@ -169,20 +165,18 @@ extension IntersectionMatrix {
         
         for row in 0...Index.EXTERIOR.rawValue {
             for col in 0...Index.EXTERIOR.rawValue {
-                
                 if let charactor = charactors.next() {
+                    
                     if matrix[row][col] != Value(rawValue: charactor) {
                         return false
                     }
                 } else {
-                    return false  // Pattern is too short so it does not match
+                    return false  // Pattern is to short so it does not match
                 }
             }
         }
         return true
     }
-    
-    
 }
 
 extension IntersectionMatrix  {
