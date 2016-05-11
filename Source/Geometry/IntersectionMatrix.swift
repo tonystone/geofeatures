@@ -218,7 +218,7 @@ extension IntersectionMatrix : Sequence {
         var nextRow = Index.INTERIOR.rawValue
         var nextCol = Index.INTERIOR.rawValue - 1
         
-        // Construct a AnyGenerator<MatrixSymbol> instance, passing a closure that returns the next element in the iteration
+        // Construct a AnyGenerator<Dimension> instance, passing a closure that returns the next element in the iteration
         return AnyIterator<Dimension> {
             
             if nextCol + 1 <= Index.EXTERIOR.rawValue {     // New col
