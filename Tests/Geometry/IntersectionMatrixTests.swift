@@ -32,7 +32,6 @@ class IntersectionMatrixTests: XCTestCase {
     func testInit() {
         let matrix = IntersectionMatrix()
         
-        // All values should have the default value
         XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
         XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.EMPTY)
         XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.EMPTY)
@@ -53,7 +52,6 @@ class IntersectionMatrixTests: XCTestCase {
                                                           [.ONE,   .TWO,   .EMPTY],
                                                           ]
         )
-        // All elements should match input
         XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
         XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
         XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
@@ -79,7 +77,6 @@ class IntersectionMatrixTests: XCTestCase {
         
         var index: Int = 0
         
-        // All values should match the input using fast enumeration
         for value in matrix {
             XCTAssertEqual(value, expectedValues[index])
             index += 1
@@ -94,7 +91,6 @@ class IntersectionMatrixTests: XCTestCase {
                                                           ]
         )
         
-        // All values should match the input using subscripting
         XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
         XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
         XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
@@ -144,7 +140,6 @@ class IntersectionMatrixTests: XCTestCase {
                                                           [.ZERO, .EMPTY, .EMPTY],
                                                           ]
         )
-        // All elements should match input
         XCTAssertTrue(matrix.matches(pattern: "TF*012TF*"))
     }
 
@@ -155,7 +150,6 @@ class IntersectionMatrixTests: XCTestCase {
                                                           [.ZERO, .EMPTY, .EMPTY],
                                                           ]
         )
-        // All elements should match input
         XCTAssertFalse(matrix.matches(pattern: "TFF012TF1"))
     }
     
@@ -166,7 +160,6 @@ class IntersectionMatrixTests: XCTestCase {
                                                           [.ZERO, .EMPTY, .EMPTY],
                                                           ]
         )
-        // All elements should match input
         XCTAssertEqual(matrix.description, "2, -1, 1, 0, 1, 2, 0, -1, -1")
     }
     
