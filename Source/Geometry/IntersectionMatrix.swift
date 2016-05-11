@@ -182,12 +182,13 @@ extension IntersectionMatrix : Sequence {
      - col: the column in the matrix expressed as an Index value.
      
      Example:
+     ```
+        let matrix = IntersectionMatrix()
      
-     let matrix = IntersectionMatrix()
+        let dimension = matrix[.INTERIOR, .BOUNDARY]
      
-     let dimension = matrix[.INTERIOR, .BOUNDARY]
-     
-     matrix[.INTERIOR, .BOUNDARY] = .TRUE
+        matrix[.INTERIOR, .BOUNDARY] = .TRUE
+     ```
      */
     internal
     subscript (row: Index, col: Index) -> Dimension {
@@ -204,12 +205,13 @@ extension IntersectionMatrix : Sequence {
      IntersectionMatrix is a sequence that can be iterated on.
      
      Example:
+     ```
+        let matrix = IntersectionMatrix(pattern: “T*T***T**”)
      
-     let matrix = IntersectionMatrix(pattern: “T*T***T**”)
-     
-     for value in matrix {
-     print("\(value)")
-     }
+        for value in matrix {
+            print("\(value)")
+        }
+     ```
      */
     internal
     func makeIterator() -> AnyIterator<Dimension> {
