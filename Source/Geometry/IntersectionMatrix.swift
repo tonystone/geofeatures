@@ -51,12 +51,7 @@ struct IntersectionMatrix {
     enum Index : Int { case INTERIOR = 0, BOUNDARY, EXTERIOR }
     
     private
-    var matrix: [[Dimension]] =
-        [
-            [.EMPTY, .EMPTY, .EMPTY],
-            [.EMPTY, .EMPTY, .EMPTY],
-            [.EMPTY, .EMPTY, .EMPTY]
-        ]
+    var matrix: [[Dimension]]
 }
 
 /**
@@ -65,7 +60,20 @@ struct IntersectionMatrix {
 extension IntersectionMatrix  {
     
     /**
-     Initialize an IntersectionMatrix an Array of Arrays of
+     Initialize an IntersectionMatrix with the default values of .EMPTY
+    */
+    internal
+    init() {
+        self.matrix =
+            [
+                [.EMPTY, .EMPTY, .EMPTY],
+                [.EMPTY, .EMPTY, .EMPTY],
+                [.EMPTY, .EMPTY, .EMPTY]
+            ]
+    }
+    
+    /**
+     Initialize an IntersectionMatrix with an Array of Arrays of
      of Dimension values.
      
      - Prameter: arrayLiteral: [[Dimension]] Array of `Dimension` arrays.
@@ -82,12 +90,8 @@ extension IntersectionMatrix  {
                 elements[Index.BOUNDARY.rawValue].count == 3 &&
                 elements[Index.EXTERIOR.rawValue].count == 3
         )
-        for row in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-            for col in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-                
-                self.matrix[row][col] = elements[row][col]
-            }
-        }
+
+        self.matrix = elements
     }
 }
 
@@ -127,12 +131,12 @@ extension IntersectionMatrix {
                         continue
                     case "F":
                         
-                        if ![Dimension.EMPTY].contains(self.matrix[row][col]) {
+                        if Dimension.EMPTY != self.matrix[row][col] {
                             return false
                         }
                         continue
                     case "*":
-                       
+                        // All are valid
                         continue
                     case "0":
                         
