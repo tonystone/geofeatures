@@ -85,7 +85,7 @@ extension IntersectionMatrix  {
      */
     internal
     init(arrayLiteral elements: [[Dimension]]) {
-        assert(
+        assert( elements.count == 3 &&
                 elements[Index.INTERIOR.rawValue].count == 3 &&
                 elements[Index.BOUNDARY.rawValue].count == 3 &&
                 elements[Index.EXTERIOR.rawValue].count == 3
