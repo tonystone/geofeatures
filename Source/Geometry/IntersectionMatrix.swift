@@ -88,7 +88,6 @@ extension IntersectionMatrix  {
                 elements[Index.BOUNDARY.rawValue].count == 3 &&
                 elements[Index.EXTERIOR.rawValue].count == 3
         )
-
         self.matrix = elements
     }
 }
