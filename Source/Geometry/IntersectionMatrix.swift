@@ -20,7 +20,7 @@
 import Swift
 
 /**
- Implementation of the  Dimensionally Extended Nine-Intersection Model (DE-9IM)
+ Implementation of the Dimensionally Extended Nine-Intersection Model (DE-9IM)
  
  The intersection of two of either I(x), B(x), and E(x) will result in various combinations of geometry objects each with possibly different dimensions.
  
@@ -107,7 +107,7 @@ extension IntersectionMatrix {
      - 1: Matches when dim(x) = 1
      - 2: Matches when dim(x) = 2
      
-     - parameter pattern: The pattern string consiting of legal characters from the set above.
+     - parameter pattern: The pattern string consisting of legal characters from the set above.
      */
     internal
     func matches(pattern: String) -> Bool {
@@ -172,7 +172,7 @@ extension IntersectionMatrix {
 extension IntersectionMatrix : Sequence {
     
     /**
-     subscript the matrix returning a Dimension type
+     subscript the matrix returning a `Dimension` type
      
      - Parameters:
      - row: the row in the matrix expressed as an Index value.
@@ -184,7 +184,7 @@ extension IntersectionMatrix : Sequence {
      
         let dimension = matrix[.INTERIOR, .BOUNDARY]
      
-        matrix[.INTERIOR, .BOUNDARY] = .TRUE
+        matrix[.INTERIOR, .BOUNDARY] = .TWO
      ```
      */
     internal
@@ -203,7 +203,7 @@ extension IntersectionMatrix : Sequence {
      
      Example:
      ```
-        let matrix = IntersectionMatrix(pattern: “T*T***T**”)
+        let matrix = IntersectionMatrix()
      
         for value in matrix {
             print("\(value)")
