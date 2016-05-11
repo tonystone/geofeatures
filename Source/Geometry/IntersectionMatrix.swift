@@ -46,8 +46,6 @@ import Swift
 internal
 struct IntersectionMatrix {
     
-    static let size: Int = 9
-    
     enum Index : Int { case INTERIOR = 0, BOUNDARY, EXTERIOR }
     
     private
