@@ -33,76 +33,53 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix()
         
         // All values should have the default value
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], IntersectionMatrix.Value.FALSE)
+        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.EMPTY)
         
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], IntersectionMatrix.Value.FALSE)
+        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.EMPTY)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], IntersectionMatrix.Value.FALSE)
+        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
     }
     
     func testInit_ArrayLiteral() {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.DONTCARE, .TWO,   .DONTCARE],
-                                                          [.DONTCARE, .ONE,   .DONTCARE],
-                                                          [.DONTCARE, .FALSE, .DONTCARE],
+                                                          [.EMPTY, .ZERO,  .ONE],
+                                                          [.TWO,   .EMPTY, .ZERO],
+                                                          [.ONE,   .TWO,   .EMPTY],
                                                           ]
         )
         // All elements should match input
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], IntersectionMatrix.Value.TWO)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
+        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
+        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
         
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], IntersectionMatrix.Value.ONE)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
+        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.TWO)
+        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.ZERO)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
-    }
-    
-    func testInit_Pattern_Normal() {
-        let matrix = IntersectionMatrix(pattern: "*F*******")
-        
-        // All values should match the input pattern
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
-        
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
-        
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], IntersectionMatrix.Value.DONTCARE)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
-    }
-    
-    func testInit_Pattern_Short_ThrowsAssertion() {
-        XCTAssertTrue(true) /// TODO: Unfortunately at this time XCTest has no way of testing assertions so this was tested manually by uncommenting the line below. Change this when XCTest has this ability.
-        //XCTAssertThrowsError(IntersectionMatrix(pattern: "*F*"))
-
-    }
-    
-    func testInit_Pattern_Long_ThrowsAssertion() {
-         XCTAssertTrue(true) /// TODO: Unfortunately at this time XCTest has no way of testing assertions so this was tested manually by uncommenting the line below. Change this when XCTest has this ability.
-        //XCTAssertThrowsError(IntersectionMatrix(pattern: "*F*******123456789"))
+        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.ONE)
+        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.TWO)
+        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
     }
     
     func testMakeIterator() {
-        let expectedValues: [IntersectionMatrix.Value] = [.TRUE, .FALSE, .DONTCARE, .ZERO, .ONE, .TWO, .TRUE, .FALSE, .DONTCARE]
+        let expectedValues: [Dimension] = [.EMPTY, .ZERO, .ONE, .TWO, .EMPTY, .ZERO, .ONE, .TWO, .EMPTY]
         
-        let matrix = IntersectionMatrix(pattern: "TF*012TF*")
+        let matrix = IntersectionMatrix(arrayLiteral: [
+                                                          [.EMPTY, .ZERO,  .ONE],
+                                                          [.TWO,   .EMPTY, .ZERO],
+                                                          [.ONE,   .TWO,   .EMPTY],
+                                                          ]
+        )
         
         var index: Int = 0
         
-        // All values should match the input pattern using fast enumeration
+        // All values should match the input using fast enumeration
         for value in matrix {
             XCTAssertEqual(value, expectedValues[index])
             index += 1
@@ -110,105 +87,112 @@ class IntersectionMatrixTests: XCTestCase {
     }
     
     func testSubscript_Get() {
-        let matrix = IntersectionMatrix(pattern: "TF*012TF*")
+        let matrix = IntersectionMatrix(arrayLiteral: [
+                                                          [.EMPTY, .ZERO,  .ONE],
+                                                          [.TWO,   .EMPTY, .ZERO],
+                                                          [.ONE,   .TWO,   .EMPTY],
+                                                          ]
+        )
         
-        // All values should match the input pattern using subscripting
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], IntersectionMatrix.Value.TRUE)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
+        // All values should match the input using subscripting
+        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
+        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
 
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], IntersectionMatrix.Value.ZERO)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], IntersectionMatrix.Value.ONE)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], IntersectionMatrix.Value.TWO)
+        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.TWO)
+        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.ZERO)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], IntersectionMatrix.Value.TRUE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
+        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.ONE)
+        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.TWO)
+        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
     }
     
     func testSubscript_Set() {
         var matrix = IntersectionMatrix()
         
-        matrix[.INTERIOR, .INTERIOR] = .TRUE
-        matrix[.INTERIOR, .BOUNDARY] = .FALSE
-        matrix[.INTERIOR, .EXTERIOR] = .DONTCARE
+        matrix[.INTERIOR, .INTERIOR] = .EMPTY
+        matrix[.INTERIOR, .BOUNDARY] = .ZERO
+        matrix[.INTERIOR, .EXTERIOR] = .ONE
         
-        matrix[.BOUNDARY, .INTERIOR] = .ZERO
-        matrix[.BOUNDARY, .BOUNDARY] = .ONE
-        matrix[.BOUNDARY, .EXTERIOR] = .TWO
+        matrix[.BOUNDARY, .INTERIOR] = .TWO
+        matrix[.BOUNDARY, .BOUNDARY] = .EMPTY
+        matrix[.BOUNDARY, .EXTERIOR] = .ZERO
         
-        matrix[.EXTERIOR, .INTERIOR] = .TRUE
-        matrix[.EXTERIOR, .BOUNDARY] = .FALSE
-        matrix[.EXTERIOR, .EXTERIOR] = .DONTCARE
+        matrix[.EXTERIOR, .INTERIOR] = .ONE
+        matrix[.EXTERIOR, .BOUNDARY] = .TWO
+        matrix[.EXTERIOR, .EXTERIOR] = .EMPTY
         
         // All values should match the input
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], IntersectionMatrix.Value.TRUE)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
+        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
+        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
+
+        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.TWO)
+        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.ZERO)
         
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], IntersectionMatrix.Value.ZERO)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], IntersectionMatrix.Value.ONE)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], IntersectionMatrix.Value.TWO)
-        
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], IntersectionMatrix.Value.TRUE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], IntersectionMatrix.Value.FALSE)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], IntersectionMatrix.Value.DONTCARE)
+        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.ONE)
+        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.TWO)
+        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
     }
     
     func testMatches_True () {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.DONTCARE, .TWO,   .DONTCARE],
-                                                          [.DONTCARE, .ONE,   .DONTCARE],
-                                                          [.DONTCARE, .FALSE, .DONTCARE],
+                                                          [.TWO,  .EMPTY, .ONE],
+                                                          [.ZERO, .ONE,   .TWO],
+                                                          [.ZERO, .EMPTY, .EMPTY],
                                                           ]
         )
         // All elements should match input
-        XCTAssertTrue(matrix.matches(pattern: "*2**1**F*"))
+        XCTAssertTrue(matrix.matches(pattern: "TF*012TF*"))
     }
-    
+
     func testMatches_False () {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.DONTCARE, .TWO,   .DONTCARE],
-                                                          [.DONTCARE, .ONE,   .DONTCARE],
-                                                          [.DONTCARE, .FALSE, .DONTCARE],
+                                                          [.TWO,  .EMPTY, .ONE],
+                                                          [.ZERO, .ONE,   .TWO],
+                                                          [.ZERO, .EMPTY, .EMPTY],
                                                           ]
         )
         // All elements should match input
-        XCTAssertFalse(matrix.matches(pattern: "*********"))
+        XCTAssertFalse(matrix.matches(pattern: "TFF012TF1"))
     }
     
     func testDescription () {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.TRUE, .FALSE, .DONTCARE],
+                                                          [.TWO,  .EMPTY, .ONE],
                                                           [.ZERO, .ONE,   .TWO],
-                                                          [.TRUE, .FALSE, .DONTCARE],
+                                                          [.ZERO, .EMPTY, .EMPTY],
                                                           ]
         )
         // All elements should match input
-        XCTAssertEqual(matrix.description, "TF*012TF*")
+        XCTAssertEqual(matrix.description, "2, -1, 1, 0, 1, 2, 0, -1, -1")
     }
     
     func testEqual () {
-        let input: [[IntersectionMatrix.Value]] = [
-                        [.DONTCARE, .TWO,   .DONTCARE],
-                        [.DONTCARE, .ONE,   .DONTCARE],
-                        [.DONTCARE, .FALSE, .DONTCARE],
-                        ]
+        let input: [[Dimension]] = [
+                                       [.TWO,  .EMPTY, .ONE],
+                                       [.TWO,  .EMPTY, .TWO],
+                                       [.ZERO, .EMPTY, .TWO],
+                                       ]
 
         XCTAssertEqual(IntersectionMatrix(arrayLiteral: input), IntersectionMatrix(arrayLiteral: input))
     }
     
     func testEqual_False () {
-        let input1: [[IntersectionMatrix.Value]] = [
-                                                      [.DONTCARE, .TWO,   .DONTCARE],
-                                                      [.DONTCARE, .ONE,   .DONTCARE],
-                                                      [.DONTCARE, .FALSE, .DONTCARE],
-                                                      ]
-        let input2: [[IntersectionMatrix.Value]] = [
-                                                       [.FALSE,    .TWO,   .FALSE],
-                                                       [.DONTCARE, .ONE,   .DONTCARE],
-                                                       [.DONTCARE, .FALSE, .DONTCARE],
-                                                       ]
+        let input1: [[Dimension]] = [
+                                       [.TWO,  .EMPTY, .ONE],
+                                       [.TWO,  .EMPTY, .TWO],
+                                       [.ZERO, .EMPTY, .TWO],
+                                       ]
+        
+        let input2: [[Dimension]] = [
+                                        [.ONE,  .EMPTY, .ONE],
+                                        [.TWO,  .EMPTY, .TWO],
+                                        [.ZERO, .EMPTY, .TWO],
+                                        ]
+        
         XCTAssertNotEqual(IntersectionMatrix(arrayLiteral: input1), IntersectionMatrix(arrayLiteral: input2))
     }
 }

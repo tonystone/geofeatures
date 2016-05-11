@@ -20,8 +20,16 @@
 import Swift
 
 /**
- 
  Implementation of the  Dimensionally Extended Nine-Intersection Model (DE-9IM)
+ 
+ The intersection of two of either I(x), B(x), and E(x) will result in various combinations of geometry objects each with possibly different dimensions.
+ 
+ - dim(x) == Returns the maximum dimension (-1, 0, 1, 2) of the result geoemetries of an intersection. See `Dimension` for more information.
+ - I(x)   == Interior of geometry x
+ - B(x)   == Boundary of geometry x
+ - E(x)   == Exterior of geometry x
+ 
+ The table below shows the general form of the matrix.
  
  ```
  |-------------|------------------|------------------|------------------|
@@ -38,55 +46,147 @@ import Swift
 internal
 struct IntersectionMatrix {
     
-    internal
     static let size: Int = 9
     
-    internal
-    enum Value : Character, CustomStringConvertible {
-        case TRUE     = "T"
-        case FALSE    = "F"
-        case DONTCARE = "*"
-        case ZERO     = "0"
-        case ONE      = "1"
-        case TWO      = "2"
-        
-        var description: String { get { return String(self.rawValue) } }
-    }
-    
-    internal
     enum Index : Int { case INTERIOR = 0, BOUNDARY, EXTERIOR }
     
     private
-    var matrix: [[Value]] =
+    var matrix: [[Dimension]] =
         [
-            [.FALSE, .FALSE, .FALSE],
-            [.FALSE, .FALSE, .FALSE],
-            [.FALSE, .FALSE, .FALSE]
+            [.EMPTY, .EMPTY, .EMPTY],
+            [.EMPTY, .EMPTY, .EMPTY],
+            [.EMPTY, .EMPTY, .EMPTY]
         ]
 }
 
 /**
-    Sequence support for IntersectionMatrix
+ IntersectionMatrix Construction
+ */
+extension IntersectionMatrix  {
+    
+    /**
+     Initialize an IntersectionMatrix an Array of Arrays of
+     of Dimension values.
+     
+     - Prameter: arrayLiteral: [[Dimension]] Array of `Dimension` arrays.
+     
+     - Requires: arrayLiteral.count == 3
+     - Requires: arrayLiteral[0].count == 3
+     - Requires: arrayLiteral[1].count == 3
+     - Requires: arrayLiteral[2].count == 3
+     */
+    internal
+    init(arrayLiteral elements: [[Dimension]]) {
+        assert(
+                elements[Index.INTERIOR.rawValue].count == 3 &&
+                elements[Index.BOUNDARY.rawValue].count == 3 &&
+                elements[Index.EXTERIOR.rawValue].count == 3
+        )
+        for row in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
+            for col in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
+                
+                self.matrix[row][col] = elements[row][col]
+            }
+        }
+    }
+}
+
+
+extension IntersectionMatrix {
+    
+    /**
+     Match an IntersectionMatrix to a pattern matrix
+     such as “T*T***T**”
+     
+     Pattern Values:
+     - T: matches when dim(x) ∈ {0, 1, 2}, i.e. x ≠ ∅
+     - F: matches when dim(x) = -1, i.e. x = ∅
+     - *: Matches when dim(x) ∈ {-1, 0, 1, 2}, i.e. Don’t Care
+     - 0: Matches when dim(x) = 0
+     - 1: Matches when dim(x) = 1
+     - 2: Matches when dim(x) = 2
+     
+     - parameter pattern: The pattern string consiting of legal charactors from the set above.
+     */
+    internal
+    func matches(pattern: String) -> Bool {
+        
+        var charactors = pattern.characters.makeIterator()
+        
+        for row in 0...Index.EXTERIOR.rawValue {
+            for col in 0...Index.EXTERIOR.rawValue {
+                if let charactor = charactors.next() {
+                    
+                    switch charactor {
+                        
+                    case "T":
+                        
+                        if ![Dimension.ZERO, .ONE, .TWO].contains(self.matrix[row][col]) {
+                            return false
+                        }
+                        continue
+                    case "F":
+                        
+                        if ![Dimension.EMPTY].contains(self.matrix[row][col]) {
+                            return false
+                        }
+                        continue
+                    case "*":
+                       
+                        continue
+                    case "0":
+                        
+                        if Dimension.ZERO != self.matrix[row][col] {
+                            return false
+                        }
+                        continue
+                    case "1":
+                        
+                        if Dimension.ONE != self.matrix[row][col] {
+                            return false
+                        }
+                        continue
+                    case "2":
+                        
+                        if Dimension.TWO != self.matrix[row][col] {
+                            return false
+                        }
+                        continue
+                    default:
+                        return false    // Invalid charactor passed
+                    }
+ 
+                } else {
+                    return false  // Pattern is to short so it does not match
+                }
+            }
+        }
+        return true
+    }
+}
+
+/**
+ Sequence support for IntersectionMatrix
  */
 extension IntersectionMatrix : Sequence {
     
     /**
-        subscript the matrix returning a Value type
+     subscript the matrix returning a Dimension type
      
-        - Parameters:
-            - row: the row in the matrix expressed as an Index value.
-            - col: the column in the matrix expressed as an Index value.
+     - Parameters:
+     - row: the row in the matrix expressed as an Index value.
+     - col: the column in the matrix expressed as an Index value.
      
-        Example:
+     Example:
      
-            let matrix = IntersectionMatrix()
+     let matrix = IntersectionMatrix()
      
-            let value = matrix[.INTERIOR, .BOUNDARY]
+     let dimension = matrix[.INTERIOR, .BOUNDARY]
      
-            matrix[.INTERIOR, .BOUNDARY] = .TRUE
+     matrix[.INTERIOR, .BOUNDARY] = .TRUE
      */
     internal
-    subscript (row: Index, col: Index) -> Value {
+    subscript (row: Index, col: Index) -> Dimension {
         
         get {
             return matrix[row.rawValue][col.rawValue]
@@ -97,25 +197,25 @@ extension IntersectionMatrix : Sequence {
     }
     
     /**
-        IntersectionMatrix is a sequence that can be iterated on.
+     IntersectionMatrix is a sequence that can be iterated on.
      
-        Example:
+     Example:
      
-            let matrix = IntersectionMatrix(pattern: “T*T***T**”)
+     let matrix = IntersectionMatrix(pattern: “T*T***T**”)
      
-            for value in matrix {
-                print("\(value)")
-            }
+     for value in matrix {
+     print("\(value)")
+     }
      */
     internal
-    func makeIterator() -> AnyIterator<Value> {
+    func makeIterator() -> AnyIterator<Dimension> {
         
         // keep the index of the next element in the iteration
         var nextRow = Index.INTERIOR.rawValue
         var nextCol = Index.INTERIOR.rawValue - 1
         
         // Construct a AnyGenerator<MatrixSymbol> instance, passing a closure that returns the next element in the iteration
-        return AnyIterator<Value> {
+        return AnyIterator<Dimension> {
             
             if nextCol + 1 <= Index.EXTERIOR.rawValue {     // New col
                 nextCol += 1                                // Increment column
@@ -132,81 +232,18 @@ extension IntersectionMatrix : Sequence {
     }
 }
 
-extension IntersectionMatrix {
-    
-    /**
-        Constructs an IntersectionMatrix from the charactor
-        based pattern such as “T*T***T**”
-     
-        - parameter pattern: The pattern string consiting of legal charactors from the set of eum Value.
-     */
-    internal
-    init(pattern: String) {
-        assert(pattern.characters.count == IntersectionMatrix.size, "Invalid pattern, the input pattern must be \(IntersectionMatrix.size) charactors long")
-        
-        var charactors = pattern.characters.makeIterator()
-        
-        for row in 0...Index.EXTERIOR.rawValue {
-            for col in 0...Index.EXTERIOR.rawValue {
-                if let charactor = charactors.next() {
-                    
-                    if let value = Value(rawValue: charactor) {
-                        matrix[row][col] = value
-                    }
-                }
-            }
-        }
-    }
-    
-    internal
-    func matches(pattern: String) -> Bool {
-        
-        var charactors = pattern.characters.makeIterator()
-        
-        for row in 0...Index.EXTERIOR.rawValue {
-            for col in 0...Index.EXTERIOR.rawValue {
-                if let charactor = charactors.next() {
-                    
-                    if matrix[row][col] != Value(rawValue: charactor) {
-                        return false
-                    }
-                } else {
-                    return false  // Pattern is to short so it does not match
-                }
-            }
-        }
-        return true
-    }
-}
-
-extension IntersectionMatrix  {
-    
-    internal
-    init(arrayLiteral elements: [[Value]]) {
-        assert(
-                elements[Index.INTERIOR.rawValue].count == 3 &&
-                elements[Index.BOUNDARY.rawValue].count == 3 &&
-                elements[Index.EXTERIOR.rawValue].count == 3
-        )
-        for row in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-            for col in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-                
-                self.matrix[row][col] = elements[row][col]
-            }
-        }
-    }
-}
-
 extension IntersectionMatrix : CustomStringConvertible {
     
     public
     var description: String {
         get {
             var string = ""
-            for row in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-                for col in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-                    string += self.matrix[row][col].description
+            
+            for dimension in self {
+                if string.characters.count > 0 {
+                    string += ", "
                 }
+                string += "\(dimension.rawValue)"
             }
             return string
         }
