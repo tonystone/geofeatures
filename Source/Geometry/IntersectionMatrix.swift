@@ -24,7 +24,7 @@ import Swift
  
  The intersection of two of either I(x), B(x), and E(x) will result in various combinations of geometry objects each with possibly different dimensions.
  
- - dim(x) == Returns the maximum dimension (-1, 0, 1, 2) of the result geoemetries of an intersection. See `Dimension` for more information.
+ - dim(x) == Returns the maximum dimension (-1, 0, 1, 2) of the result geometries of an intersection. See `Dimension` for more information.
  - I(x)   == Interior of geometry x
  - B(x)   == Boundary of geometry x
  - E(x)   == Exterior of geometry x
@@ -110,18 +110,18 @@ extension IntersectionMatrix {
      - 1: Matches when dim(x) = 1
      - 2: Matches when dim(x) = 2
      
-     - parameter pattern: The pattern string consiting of legal charactors from the set above.
+     - parameter pattern: The pattern string consiting of legal characters from the set above.
      */
     internal
     func matches(pattern: String) -> Bool {
         
-        var charactors = pattern.characters.makeIterator()
+        var characters = pattern.characters.makeIterator()
         
         for row in 0...Index.EXTERIOR.rawValue {
             for col in 0...Index.EXTERIOR.rawValue {
-                if let charactor = charactors.next() {
+                if let character = characters.next() {
                     
-                    switch charactor {
+                    switch character {
                         
                     case "T":
                         
@@ -157,11 +157,11 @@ extension IntersectionMatrix {
                         }
                         continue
                     default:
-                        return false    // Invalid charactor passed
+                        return false    // Invalid character passed
                     }
  
                 } else {
-                    return false  // Pattern is to short so it does not match
+                    return false  // Pattern is too short so it does not match
                 }
             }
         }
