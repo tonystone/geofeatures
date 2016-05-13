@@ -83,11 +83,11 @@ public protocol Geometry {
 //    @warn_unused_result
 //    func envelop() -> Geometry
     
-    //: ## Algorythms
+    //: ## Algorithms
     //: Predicates
     
     /**
-     - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
+     - Returns: true if this GeoemetryType instance is equal to the other Geometry instance.
      */
     @warn_unused_result
     func equals(_ other: Geometry) -> Bool
@@ -112,7 +112,7 @@ public protocol Geometry {
     func touches(_ other: Geometry) -> Bool
     
     /**
-     - Returns: true if this geometric object “spatially crosses’ the other Geometry.
+     - Returns: true if this geometric object “spatially crosses" the other Geometry.
      */
     @warn_unused_result
     func crosses(_ other: Geometry) -> Bool
