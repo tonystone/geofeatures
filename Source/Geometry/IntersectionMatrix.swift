@@ -237,7 +237,7 @@ extension IntersectionMatrix : Sequence {
 
 extension IntersectionMatrix : CustomStringConvertible {
     
-    public
+    internal
     var description: String {
         get {
             var string = ""
