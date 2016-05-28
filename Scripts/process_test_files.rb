@@ -69,7 +69,7 @@ def createExtensionFile(fileName, classes)
          
          for classArray in classes
              file.write "extension " + classArray[0] + " {\n\n"
-             file.write "   static var allTests : [(String, " + classArray[0] + " -> () throws -> Void)] {\n"
+             file.write "   static var allTests : [(String, (" + classArray[0] + ") -> () throws -> Void)] {\n"
              file.write "      return [\n"
              
              for funcName in classArray[1]

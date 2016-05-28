@@ -27,7 +27,7 @@ import XCTest
 
 extension MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -47,7 +47,7 @@ extension MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -67,7 +67,7 @@ extension MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -87,7 +87,7 @@ extension MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -107,7 +107,7 @@ extension MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -127,7 +127,7 @@ extension MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -147,7 +147,7 @@ extension MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -167,7 +167,7 @@ extension MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
 extension MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),

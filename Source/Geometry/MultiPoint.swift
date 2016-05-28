@@ -342,8 +342,6 @@ extension MultiPoint : CustomStringConvertible, CustomDebugStringConvertible {
 
 extension MultiPoint : Equatable {}
 
-
-
 @warn_unused_result
 public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: MultiPoint<CoordinateType>, rhs: MultiPoint<CoordinateType>) -> Bool {
     return lhs.equals(rhs)

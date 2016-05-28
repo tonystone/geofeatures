@@ -34,7 +34,7 @@ sourceName=""
 sourceDirectory=""
 
 swiftRelease=false
-swiftVersion="2016-05-03-a"
+swiftVersion="2016-05-09-a"
 
 options = GetoptLong.new(
     [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],
@@ -85,6 +85,11 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provision "shell", inline: <<-SHELL
     #!/bin/sh
+
+    #
+    # Update apt-get first
+    #
+    sudo apt-get update
     
     #
     # Install the needed development and admin packages
@@ -92,24 +97,42 @@ Vagrant.configure("2") do |config|
     sudo apt-get --assume-yes install git cmake ninja-build clang uuid-dev libicu-dev icu-devtools libbsd-dev libedit-dev libxml2-dev libsqlite3-dev swig libpython-dev libncurses5-dev pkg-config
 
     #
+    # Import the gpg keys
+    #
+    wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
+    
+    gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift
+    
+    #
     # Note: We're using wget here because of a display issue with curl and vagrant.  The display is corrupt using curl.
     #
     wget --progress=bar:force https://swift.org/"#{sourceDirectory}"/"#{sourceName}".tar.gz
-   
-   #
-    # Expand the swift code into our current directory
-    # and update the permissions
+    wget --progress=bar:force https://swift.org/"#{sourceDirectory}"/"#{sourceName}".tar.gz.sig
+
+#
+    # Validate the file
     #
-    tar zxf "#{sourceName}".tar.gz
+    gpg --verify "#{sourceName}".tar.gz.sig
+   
+    if [ $? -eq 0 ]
+    then
+        #
+        # Expand the swift code into our current directory
+        # and update the permissions
+        #
+        tar zxf "#{sourceName}".tar.gz
     
-    sudo chown -R vagrant:vagrant swift-*
+        sudo chown -R vagrant:vagrant swift-*
    
-    # Update the path so we can get to swift
-    #
-    echo "export PATH=/home/vagrant/#{sourceName}/usr/bin:\"${PATH}\"" >> .profile
-    echo ""
-    echo "Swift snapshot #{sourceName} has been successfully installed on Linux"
-    echo "To use it, call 'vagrant ssh' and once logged in, cd to the /vagrant directory"
-    echo ""
+        # Update the path so we can get to swift
+        #
+        echo "export PATH=/home/vagrant/#{sourceName}/usr/bin:\"${PATH}\"" >> .profile
+        echo ""
+        echo "Swift snapshot #{sourceName} has been successfully installed on Linux"
+        echo "To use it, call 'vagrant ssh' and once logged in, cd to the /vagrant directory"
+        echo ""
+    else
+        echo "Error: Swift snapshot #{sourceName} failed signature validation."
+    fi
   SHELL
 end

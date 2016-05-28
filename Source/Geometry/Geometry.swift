@@ -273,14 +273,14 @@ extension Geometry {
     @warn_unused_result
     public
     func relate(_ other: Geometry, pattern :String) -> Bool {
-        var matrix = calculateIntersectionMatrix(other)
+        let matrix = calculateIntersectionMatrix(other)
         
         return matrix.matches(pattern: pattern)
     }
     
     private
     func calculateIntersectionMatrix(_ other: Geometry) -> IntersectionMatrix {
-        var matrix = IntersectionMatrix()
+        let matrix = IntersectionMatrix()
         
         return matrix
     }
