@@ -27,7 +27,7 @@ import XCTest
 
 extension LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testArea_Empty", testArea_Empty),
                 ("testArea_Triangle", testArea_Triangle),
@@ -47,7 +47,7 @@ extension LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
 extension LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testArea_Empty", testArea_Empty),
                 ("testArea_Triangle", testArea_Triangle),

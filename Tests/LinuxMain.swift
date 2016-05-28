@@ -37,6 +37,7 @@ import XCTest
          testCase(FloatingPrecisionTests.allTests),
          testCase(GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests.allTests),
          testCase(GeometryCollection_Geometry_FixedPrecision_Cartesian_Tests.allTests),
+         testCase(IntersectionMatrixTests.allTests),
          testCase(LinearRing_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests.allTests),
          testCase(LinearRing_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests.allTests),
          testCase(LinearRing_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests.allTests),

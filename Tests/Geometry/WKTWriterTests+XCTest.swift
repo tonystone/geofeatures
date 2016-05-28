@@ -27,7 +27,7 @@ import XCTest
 
 extension WKTWriter_Coordinate2D_Tests {
 
-   static var allTests : [(String, WKTWriter_Coordinate2D_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (WKTWriter_Coordinate2D_Tests) -> () throws -> Void)] {
       return [
                 ("testWrite_Point", testWrite_Point),
                 ("testWrite_LineString_Empty", testWrite_LineString_Empty),
@@ -53,7 +53,7 @@ extension WKTWriter_Coordinate2D_Tests {
 
 extension WKTWriter_Coordinate2DM_Tests {
 
-   static var allTests : [(String, WKTWriter_Coordinate2DM_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (WKTWriter_Coordinate2DM_Tests) -> () throws -> Void)] {
       return [
                 ("testWrite_Point", testWrite_Point),
                 ("testWrite_LineString_Empty", testWrite_LineString_Empty),
@@ -78,7 +78,7 @@ extension WKTWriter_Coordinate2DM_Tests {
 
 extension WKTWriter_Coordinate3D_Tests {
 
-   static var allTests : [(String, WKTWriter_Coordinate3D_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (WKTWriter_Coordinate3D_Tests) -> () throws -> Void)] {
       return [
                 ("testWrite_Point", testWrite_Point),
                 ("testWrite_LineString_Empty", testWrite_LineString_Empty),
@@ -103,7 +103,7 @@ extension WKTWriter_Coordinate3D_Tests {
 
 extension WKTWriter_Coordinate3DM_Tests {
 
-   static var allTests : [(String, WKTWriter_Coordinate3DM_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (WKTWriter_Coordinate3DM_Tests) -> () throws -> Void)] {
       return [
                 ("testWrite_Point", testWrite_Point),
                 ("testWrite_LineString_Empty", testWrite_LineString_Empty),

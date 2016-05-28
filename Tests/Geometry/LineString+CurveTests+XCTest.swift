@@ -27,7 +27,7 @@ import XCTest
 
 extension LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testLength_Test1", testLength_Test1),
                 ("testLength_Test2", testLength_Test2),
@@ -39,7 +39,7 @@ extension LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
 extension LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
            ]
    }

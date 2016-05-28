@@ -27,7 +27,7 @@ import XCTest
 
 extension Coordinate2DTests {
 
-   static var allTests : [(String, Coordinate2DTests -> () throws -> Void)] {
+   static var allTests : [(String, (Coordinate2DTests) -> () throws -> Void)] {
       return [
                 ("testInit_XY", testInit_XY),
                 ("testX", testX),

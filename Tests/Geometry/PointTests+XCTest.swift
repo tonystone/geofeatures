@@ -27,7 +27,7 @@ import XCTest
 
 extension Point_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate2D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -36,7 +36,7 @@ extension Point_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
 extension Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -45,7 +45,7 @@ extension Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
 extension Point_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate3D_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -54,7 +54,7 @@ extension Point_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
 extension Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -63,7 +63,7 @@ extension Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
 extension Point_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate2D_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -72,7 +72,7 @@ extension Point_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
 extension Point_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate2DM_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -81,7 +81,7 @@ extension Point_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
 extension Point_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate3D_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]
@@ -90,7 +90,7 @@ extension Point_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
 extension Point_Coordinate3DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, Point_Coordinate3DM_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (Point_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
            ]

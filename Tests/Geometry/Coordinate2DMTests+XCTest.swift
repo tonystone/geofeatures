@@ -27,7 +27,7 @@ import XCTest
 
 extension Coordinate2DMTests {
 
-   static var allTests : [(String, Coordinate2DMTests -> () throws -> Void)] {
+   static var allTests : [(String, (Coordinate2DMTests) -> () throws -> Void)] {
       return [
                 ("testInit_XYM", testInit_XYM),
                 ("testX", testX),

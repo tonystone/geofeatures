@@ -27,7 +27,7 @@ import XCTest
 
 extension FloatingPrecisionTests {
 
-   static var allTests : [(String, FloatingPrecisionTests -> () throws -> Void)] {
+   static var allTests : [(String, (FloatingPrecisionTests) -> () throws -> Void)] {
       return [
                 ("testConvert_Equal", testConvert_Equal),
                 ("testConvert_NotEqual1", testConvert_NotEqual1),

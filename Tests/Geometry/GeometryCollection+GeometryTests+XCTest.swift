@@ -27,7 +27,7 @@ import XCTest
 
 extension GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testDimension_Homogeneous_Point", testDimension_Homogeneous_Point),
@@ -41,7 +41,7 @@ extension GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests {
 
 extension GeometryCollection_Geometry_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, GeometryCollection_Geometry_FixedPrecision_Cartesian_Tests -> () throws -> Void)] {
+   static var allTests : [(String, (GeometryCollection_Geometry_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testDimension_Homogeneous_Point", testDimension_Homogeneous_Point),
