@@ -38,31 +38,13 @@ internal class RegularExpression {
     /**
         Apply self to the in (String) returning the range of the first match or nil if not matched.
      */
-    func rangeOfFirstMatch(in string: String, options: MatchingOptions = []) -> Range<String.Index>? {
+    func rangeOfFirstMatch(in string: String, options: MatchingOptions = [], matchRange: NSRange) -> NSRange {
         
         if let regex = regex {
-            let range = regex.rangeOfFirstMatch(in: string, options: options, range: NSRange(location: 0, length: string.characters.count))
-            
-            return range.toRange(for: string)
-        }
-        return nil
-    }
-}
+            let range = regex.rangeOfFirstMatch(in: string, options: options, range: matchRange)
 
-/**
-    Private helper extension to NSRange
- */
-private extension NSRange {
-    
-    func toRange (for string: String) -> Range<String.Index>? {
-        
-        guard self.location != NSNotFound else {
-            return nil
+            return range
         }
-
-        let start = string.characters.index(string.characters.startIndex, offsetBy: self.location)
-        let end   = string.characters.index(string.characters.startIndex, offsetBy: self.location + self.length)
-    
-        return start..<end
+        return NSMakeRange(0, NSNotFound)
     }
 }
