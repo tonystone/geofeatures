@@ -25,55 +25,45 @@ public enum ParseError : ErrorProtocol  {
     case MissingElement(String)
 }
 
-private class TokenExpression : RegularExpression, StringLiteralConvertible, Equatable {
-    
-    required init(stringLiteral value: StringLiteralType)  {
-        super.init(value, options: .caseInsensitive)
-    }
-    
-    required init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterType) {
-        super.init(value, options: .caseInsensitive)
-    }
-    
-    required init(unicodeScalarLiteral value: UnicodeScalarType) {
-        super.init("\(value)", options: .caseInsensitive)
-    }
-}
-private func ==(lhs: TokenExpression, rhs: TokenExpression) -> Bool {
+private func ==(lhs: RegularExpression, rhs: RegularExpression) -> Bool {
     return lhs.regex?.pattern == rhs.regex?.pattern
 }
 
-// Translated from BNF
-private enum WKT : TokenExpression, Token {
-    case WHITE_SPACE                    = "[ \\t]+"
-    case SINGLE_SPACE                   = " (?=[^ ])"
-    case NEW_LINE                       = "[\\n|\\r]"
-    case COMMA                          = ","
-    case LEFT_PAREN                     = "\\("
-    case RIGHT_PAREN                    = "\\)"
-    case LEFT_BRACKET                   = "\\["
-    case RIGHT_BRACKET                  = "\\]"
-    case LEFT_DELIMITER                 = "[\\(|\\[])"
-    case RIGHT_DELIMITER                = "[\\)|\\]])"
-    case NUMERIC_LITERAL                = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?"
-    case THREEDIMENSIONAL               = "z"
-    case MEASURED                       = "m"
-    case EMPTY                          = "empty"
-    case POINT                          = "point"
-    case LINESTRING                     = "linestring"
-    case LINEARRING                     = "linearring"
-    case POLYGON                        = "polygon"
-    case MULTIPOINT                     = "multipoint"
-    case MULTILINESTRING                = "multilinestring"
-    case MULTIPOLYGON                   = "multipolygon"
-    case GEOMETRYCOLLECTION             = "geometrycollection"
+private class WKT : RegularExpression, Token {
     
-    func match(string: String) -> Range<String.Index>? {
-        return self.rawValue.rangeOfFirstMatch(in: string, options: .anchored)
+    static let WHITE_SPACE                     = WKT(pattern: "[ \\t]+")
+    static let SINGLE_SPACE                    = WKT(pattern:  " (?=[^ ])")
+    static let NEW_LINE                        = WKT(pattern:  "[\\n|\\r]")
+    static let COMMA                           = WKT(pattern:  ",")
+    static let LEFT_PAREN                      = WKT(pattern:  "\\(")
+    static let RIGHT_PAREN                     = WKT(pattern:  "\\)")
+    static let LEFT_BRACKET                    = WKT(pattern:  "\\[")
+    static let RIGHT_BRACKET                   = WKT(pattern:  "\\]")
+    static let LEFT_DELIMITER                  = WKT(pattern:  "[\\(|\\[])")
+    static let RIGHT_DELIMITER                 = WKT(pattern:  "[\\)|\\]])")
+    static let NUMERIC_LITERAL                 = WKT(pattern:  "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?")
+    static let THREEDIMENSIONAL                = WKT(pattern:  "z")
+    static let MEASURED                        = WKT(pattern:  "m")
+    static let EMPTY                           = WKT(pattern:  "empty")
+    static let POINT                           = WKT(pattern:  "point")
+    static let LINESTRING                      = WKT(pattern:  "linestring")
+    static let LINEARRING                      = WKT(pattern:  "linearring")
+    static let POLYGON                         = WKT(pattern:  "polygon")
+    static let MULTIPOINT                      = WKT(pattern:  "multipoint")
+    static let MULTILINESTRING                 = WKT(pattern:  "multilinestring")
+    static let MULTIPOLYGON                    = WKT(pattern:  "multipolygon")
+    static let GEOMETRYCOLLECTION              = WKT(pattern:  "geometrycollection")
+
+    init(pattern value: StringLiteralType)  {
+        super.init(value, options: .caseInsensitive)
+    }
+    
+    func match(string: String, matchRange: NSRange) -> NSRange {
+        return self.rangeOfFirstMatch(in: string, options: .anchored, matchRange: matchRange)
     }
     
     func isNewLine() -> Bool {
-        return self == .NEW_LINE
+        return self == WKT.NEW_LINE.self
     }
 }
 
