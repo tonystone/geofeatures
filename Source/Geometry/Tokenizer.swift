@@ -20,7 +20,7 @@
 import Swift
 
 internal protocol Token {
-    func match(string: String) -> Range<String.Index>?
+    func match(string: String, matchRange: NSRange) -> NSRange
     func isNewLine() -> Bool
 }
 
@@ -30,8 +30,12 @@ internal class Tokenizer<T : Token> {
     var line = 0
     var column = 0
     
+    var matchRange: NSRange
+    
     init(string: String) {
         self.stringStream = string
+        self.matchRange = NSMakeRange(0, string.characters.count)
+        
         if self.stringStream.characters.count > 0 {
             line = 1
             column = 1
@@ -39,24 +43,26 @@ internal class Tokenizer<T : Token> {
     }
     
     func accept(_ token: T) -> String? {
-        if let range = token.match(string: stringStream) {
+        let range = token.match(string: stringStream, matchRange: matchRange)
+            
+        if range.location != NSNotFound {
             
             if token.isNewLine() {
                 line += 1
                 column = 1
             } else {
-                column += stringStream.distance(from: range.lowerBound, to: range.upperBound)
+                column += range.length
             }
-            let result = stringStream[range]
+            // Increment the range for matching
+            matchRange.location += range.length
+            matchRange.length   -= range.length
             
-            stringStream.removeSubrange(range)
-            
-            return result
+            return (stringStream as! NSString).substring(with: range)
         }
         return nil
     }
     
     func expect(_ token: T) -> Bool {
-        return token.match(string: stringStream) != nil
+        return token.match(string: stringStream, matchRange: matchRange).location != NSNotFound
     }
 }
