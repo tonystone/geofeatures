@@ -26,11 +26,13 @@ internal protocol Token {
 
 internal class Tokenizer<T : Token> {
     
-    var stringStream: String
     var line = 0
     var column = 0
+
+    var matchString: String { get { return (stringStream as! NSString).substring(with: matchRange) } }
     
-    var matchRange: NSRange
+    private var stringStream: String
+    private var matchRange: NSRange
     
     init(string: String) {
         self.stringStream = string
