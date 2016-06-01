@@ -29,32 +29,34 @@ private func ==(lhs: RegularExpression, rhs: RegularExpression) -> Bool {
     return lhs.regex?.pattern == rhs.regex?.pattern
 }
 
-private class WKT : RegularExpression, Token {
+private class WKT : RegularExpression, Token, CustomStringConvertible {
     
-    static let WHITE_SPACE                     = WKT(pattern: "[ \\t]+")
-    static let SINGLE_SPACE                    = WKT(pattern:  " (?=[^ ])")
-    static let NEW_LINE                        = WKT(pattern:  "[\\n|\\r]")
-    static let COMMA                           = WKT(pattern:  ",")
-    static let LEFT_PAREN                      = WKT(pattern:  "\\(")
-    static let RIGHT_PAREN                     = WKT(pattern:  "\\)")
-    static let LEFT_BRACKET                    = WKT(pattern:  "\\[")
-    static let RIGHT_BRACKET                   = WKT(pattern:  "\\]")
-    static let LEFT_DELIMITER                  = WKT(pattern:  "[\\(|\\[])")
-    static let RIGHT_DELIMITER                 = WKT(pattern:  "[\\)|\\]])")
-    static let NUMERIC_LITERAL                 = WKT(pattern:  "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?")
-    static let THREEDIMENSIONAL                = WKT(pattern:  "z")
-    static let MEASURED                        = WKT(pattern:  "m")
-    static let EMPTY                           = WKT(pattern:  "empty")
-    static let POINT                           = WKT(pattern:  "point")
-    static let LINESTRING                      = WKT(pattern:  "linestring")
-    static let LINEARRING                      = WKT(pattern:  "linearring")
-    static let POLYGON                         = WKT(pattern:  "polygon")
-    static let MULTIPOINT                      = WKT(pattern:  "multipoint")
-    static let MULTILINESTRING                 = WKT(pattern:  "multilinestring")
-    static let MULTIPOLYGON                    = WKT(pattern:  "multipolygon")
-    static let GEOMETRYCOLLECTION              = WKT(pattern:  "geometrycollection")
+    static let WHITE_SPACE                     = WKT("white space",         pattern: "[ \\t]+")
+    static let SINGLE_SPACE                    = WKT("single space",        pattern:  " (?=[^ ])")
+    static let NEW_LINE                        = WKT("\n or \r",            pattern:  "[\\n|\\r]")
+    static let COMMA                           = WKT(",",                   pattern:  ",")
+    static let LEFT_PAREN                      = WKT("(",                   pattern:  "\\(")
+    static let RIGHT_PAREN                     = WKT(")",                   pattern:  "\\)")
+    static let LEFT_BRACKET                    = WKT("[",                   pattern:  "\\[")
+    static let RIGHT_BRACKET                   = WKT("]",                   pattern:  "\\]")
+    static let LEFT_DELIMITER                  = WKT("( or [",              pattern:  "[\\(|\\[])")
+    static let RIGHT_DELIMITER                 = WKT(") or ]",              pattern:  "[\\)|\\]])")
+    static let NUMERIC_LITERAL                 = WKT("numeric literal",     pattern:  "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?")
+    static let THREEDIMENSIONAL                = WKT("Z",                   pattern:  "z")
+    static let MEASURED                        = WKT("M",                   pattern:  "m")
+    static let EMPTY                           = WKT("EMPTY",               pattern:  "empty")
+    static let POINT                           = WKT("POINT",               pattern:  "point")
+    static let LINESTRING                      = WKT("LINESTRING",          pattern:  "linestring")
+    static let LINEARRING                      = WKT("LINEARRING",          pattern:  "linearring")
+    static let POLYGON                         = WKT("POLYGON",             pattern:  "polygon")
+    static let MULTIPOINT                      = WKT("MULTIPOINT",          pattern:  "multipoint")
+    static let MULTILINESTRING                 = WKT("MULTILINESTRING",     pattern:  "multilinestring")
+    static let MULTIPOLYGON                    = WKT("MULTIPOLYGON",        pattern:  "multipolygon")
+    static let GEOMETRYCOLLECTION              = WKT("GEOMETRYCOLLECTION",  pattern:  "geometrycollection")
 
-    init(pattern value: StringLiteralType)  {
+    init(_ description: String, pattern value: StringLiteralType)  {
+        self.description = description
+        
         super.init(value, options: .caseInsensitive)
     }
     
@@ -65,6 +67,8 @@ private class WKT : RegularExpression, Token {
     func isNewLine() -> Bool {
         return self == WKT.NEW_LINE.self
     }
+    
+    var description: String
 }
 
 /**
@@ -559,6 +563,6 @@ public class WKTReader<CoordinateType : protocol<Coordinate, CopyConstructable, 
     }
 
     private func errorMessage(tokenizer: Tokenizer<WKT>, expectedToken: WKT) -> String {
-        return "Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column). Expected \(expectedToken) but found ->\(tokenizer.stringStream)"
+        return "Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column). Expected \(expectedToken) but found ->\(tokenizer.matchString)"
     }
 }
