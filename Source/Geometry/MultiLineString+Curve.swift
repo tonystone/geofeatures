@@ -1,5 +1,5 @@
 /*
- *   LinearRing+Curve.swift
+ *   MultiLineString+Curve.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,7 +15,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 2/15/16.
+ *   Created by Tony Stone on 5/30/16.
  */
 import Swift
 
@@ -25,8 +25,8 @@ import Swift
     import Darwin
 #endif
 
-extension LinearRing : Curve {
-
+extension MultiLineString : Curve {
+    
     /**
      - Returns: True if this curve is closed (begin and end coordinates are equal)
      */
@@ -35,14 +35,19 @@ extension LinearRing : Curve {
     func isClosed() -> Bool {
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Bool in
-            if count.pointee < 2 { return false }
+            if count.pointee == 0 { return false }
             
-            return elements[0] == elements[count.pointee - 1]
+            for i in 0..<count.pointee {
+                if !elements[i].isClosed() {
+                    return false
+                }
+            }
+            return true
         }
     }
     
     /**
-     The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
+     The length of this Curve calaculated using its associated CoordinateReferenceSystem.
      */
     @warn_unused_result
     public
@@ -54,21 +59,8 @@ extension LinearRing : Curve {
             
             if count.pointee > 0 {
                 
-                var c1 = elements[0]
-                
-                for index in 1..<count.pointee {
-                    
-                    let c2 = elements[index]
-                    
-                    var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
-                    
-                    if let c1 = c1 as? ThreeDimensional,
-                       let c2 = c2 as? ThreeDimensional {
-                        
-                        result += pow(abs(c1.z - c2.z), 2.0)
-                    }
-                    length += sqrt(result)
-                    c1 = c2
+                for i in 1..<count.pointee {
+                    length += elements[i].length()
                 }
             }
             return length
@@ -76,3 +68,4 @@ extension LinearRing : Curve {
         return self.precision.convert(length)
     }
 }
+

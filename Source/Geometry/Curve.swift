@@ -22,10 +22,16 @@ import Swift
 public protocol Curve {
     
     /**
+     - Returns: True if this curve is closed (begin and end coordinates are equal)
+     */
+    @warn_unused_result
+    func isClosed() -> Bool
+    
+    /**
         The length of this Curve calaculated using its associated CoordinateReferenceSystem.
      */
     @warn_unused_result
     func length() -> Double
-    
+
 }
 
