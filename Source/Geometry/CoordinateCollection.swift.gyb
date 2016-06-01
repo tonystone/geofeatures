@@ -317,7 +317,7 @@ extension ${Self} where CoordinateType : protocol<TupleConvertable, CopyConstruc
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
-        self.storage.resize(numericCast(elements.count))
+        self.reserveCapacity(numericCast(elements.count))
         
         var Iterator = elements.makeIterator()
         

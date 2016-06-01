@@ -317,7 +317,7 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
-        self.storage.resize(numericCast(elements.count))
+        self.reserveCapacity(numericCast(elements.count))
         
         var Iterator = elements.makeIterator()
         

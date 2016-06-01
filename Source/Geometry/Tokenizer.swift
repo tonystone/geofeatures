@@ -18,6 +18,7 @@
  *   Created by Tony Stone on 5/4/16.
  */
 import Swift
+import Foundation
 
 internal protocol Token {
     func match(string: String, matchRange: NSRange) -> NSRange
@@ -29,7 +30,12 @@ internal class Tokenizer<T : Token> {
     var line = 0
     var column = 0
 
+    // FIXME: This is temporary until the the following known issue is fixed. https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Issues.md#known-issues
+#if os(Linux) || os(FreeBSD)
+    var matchString: String { get { return stringStream.bridge().substring(with: matchRange) } }
+#else
     var matchString: String { get { return (stringStream as NSString).substring(with: matchRange) } }
+#endif
     
     private var stringStream: String
     private var matchRange: NSRange
@@ -59,7 +65,12 @@ internal class Tokenizer<T : Token> {
             matchRange.location += range.length
             matchRange.length   -= range.length
             
+    // FIXME: This is temporary until the the following known issue is fixed. https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Issues.md#known-issues
+#if os(Linux) || os(FreeBSD)
+            return stringStream.bridge().substring(with: range)
+#else
             return (stringStream as NSString).substring(with: range)
+#endif
         }
         return nil
     }

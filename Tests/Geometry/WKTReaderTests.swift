@@ -59,7 +59,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     func testRead_Point_Invalid_WhiteSpace() {
         
         do {
-            try wktReader.read(wkt: "POINT  (   1.0     1.0   ) ")
+            let _ = try wktReader.read(wkt: "POINT  (   1.0     1.0   ) ")
             
             XCTFail("Parsing failed")
             
@@ -97,7 +97,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     func testRead_Point_InvalidCoordinate() {
         
         do {
-            try wktReader.read(wkt: "POINT (1.01.0)")
+            let _ = try wktReader.read(wkt: "POINT (1.01.0)")
             
             XCTFail("Parsing failed")
             
@@ -135,7 +135,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     func testRead_MultiPoint_Invalid_MissingClosingParen() {
         
         do {
-            try wktReader.read(wkt: "MULTIPOINT ((1.0 2.0)")
+            let _ = try wktReader.read(wkt: "MULTIPOINT ((1.0 2.0)")
             
             XCTFail("Parsing failed")
             
@@ -161,7 +161,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     func testRead_MultiLineString_Invalid_MissingCLosingParen() {
         
         do {
-            try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
+            let _ = try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
             
             XCTFail("Parsing failed")
             
@@ -218,7 +218,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     func testRead_Polygon_MultipleOuterRings_Invalid_MissingComma() {
         
         do {
-            try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
+            let _ = try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
             
             XCTFail("Parsing failed")
             
