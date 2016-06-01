@@ -29,7 +29,7 @@ internal class Tokenizer<T : Token> {
     var line = 0
     var column = 0
 
-    var matchString: String { get { return (stringStream as! NSString).substring(with: matchRange) } }
+    var matchString: String { get { return (stringStream as NSString).substring(with: matchRange) } }
     
     private var stringStream: String
     private var matchRange: NSRange
@@ -59,7 +59,7 @@ internal class Tokenizer<T : Token> {
             matchRange.location += range.length
             matchRange.length   -= range.length
             
-            return (stringStream as! NSString).substring(with: range)
+            return (stringStream as NSString).substring(with: range)
         }
         return nil
     }
