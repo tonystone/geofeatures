@@ -34,7 +34,7 @@ sourceName=""
 sourceDirectory=""
 
 swiftRelease=false
-swiftVersion="2016-05-09-a"
+swiftVersion="2016-05-31-a"
 
 options = GetoptLong.new(
     [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],

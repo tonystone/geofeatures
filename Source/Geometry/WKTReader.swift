@@ -18,6 +18,7 @@
  *   Created by Tony Stone on 2/10/16.
  */
 import Swift
+import Foundation
 
 public enum ParseError : ErrorProtocol  {
     case UnsupportedType(String)
