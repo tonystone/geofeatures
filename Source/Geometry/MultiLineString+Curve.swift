@@ -28,7 +28,7 @@ import Swift
 extension MultiLineString : Curve {
     
     /**
-     - Returns: True if this curve is closed (begin and end coordinates are equal)
+     - Returns: True if all subelements are closed (begin and end coordinates are equal)
      */
     @warn_unused_result
     public
@@ -47,7 +47,7 @@ extension MultiLineString : Curve {
     }
     
     /**
-     The length of this Curve calaculated using its associated CoordinateReferenceSystem.
+    - Returns: The length of this Curve calculated using the sum of the length of the subelements.
      */
     @warn_unused_result
     public

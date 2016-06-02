@@ -42,7 +42,7 @@ extension LinearRing : Curve {
     }
     
     /**
-     The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
+     The length of this LinearType calculated using its associated CoordinateReferenceSystem.
      */
     @warn_unused_result
     public

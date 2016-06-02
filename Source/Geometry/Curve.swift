@@ -28,7 +28,7 @@ public protocol Curve {
     func isClosed() -> Bool
     
     /**
-        The length of this Curve calaculated using its associated CoordinateReferenceSystem.
+        The length of this Curve calculated using its associated CoordinateReferenceSystem.
      */
     @warn_unused_result
     func length() -> Double
