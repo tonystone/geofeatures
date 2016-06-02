@@ -30,6 +30,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		BF5C19E555F0BB8ED799E286 /* Pods_GeoFeatures2_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B88AC2CCDA7AA09BD031B8E /* Pods_GeoFeatures2_Example.framework */; };
 		DABEEBC540582F4C4AB425AA /* Pods_GeoFeatures2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E76E80829A6C416EFFD976 /* Pods_GeoFeatures2_Tests.framework */; };
+		EA0DF5F41CFD1EB100112C55 /* LinearRing+CurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0DF5F31CFD1EB100112C55 /* LinearRing+CurveTests.swift */; };
 		EA1ADE931CDF88B0007DA473 /* IntersectionMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1ADE921CDF88B0007DA473 /* IntersectionMatrixTests.swift */; };
 		EA475CB71CDA55E10013AFA1 /* Coordinate3DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475C9F1CDA55E10013AFA1 /* Coordinate3DMTests.swift */; };
 		EA475CB81CDA55E10013AFA1 /* Coordinate3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475CA01CDA55E10013AFA1 /* Coordinate3DTests.swift */; };
@@ -85,6 +86,7 @@
 		EA475D131CDBAFB50013AFA1 /* Polygon+SurfaceTest+XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475CFF1CDBAFB50013AFA1 /* Polygon+SurfaceTest+XCTest.swift */; };
 		EA475D141CDBAFB50013AFA1 /* WKTReaderTests+XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475D001CDBAFB50013AFA1 /* WKTReaderTests+XCTest.swift */; };
 		EA475D151CDBAFB50013AFA1 /* WKTWriterTests+XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475D011CDBAFB50013AFA1 /* WKTWriterTests+XCTest.swift */; };
+		EA5C141D1CFE8A490004732E /* MultiLineString+CurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C141B1CFE89BF0004732E /* MultiLineString+CurveTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,7 @@
 		607FACE51AFB9204008FA782 /* GeoFeatures2_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoFeatures2_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A452A8843B6059AC09DA6B21 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures2_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures2_Tests/Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CD829F37916D32011B39AD57 /* GeoFeatures2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures2.podspec; path = ../GeoFeatures2.podspec; sourceTree = "<group>"; };
+		EA0DF5F31CFD1EB100112C55 /* LinearRing+CurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LinearRing+CurveTests.swift"; sourceTree = "<group>"; };
 		EA1ADE921CDF88B0007DA473 /* IntersectionMatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersectionMatrixTests.swift; sourceTree = "<group>"; };
 		EA475C2D1CD907290013AFA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Tests/Info.plist; sourceTree = "<group>"; };
 		EA475C2F1CD9083A0013AFA1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 		EA475CFF1CDBAFB50013AFA1 /* Polygon+SurfaceTest+XCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Polygon+SurfaceTest+XCTest.swift"; sourceTree = "<group>"; };
 		EA475D001CDBAFB50013AFA1 /* WKTReaderTests+XCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKTReaderTests+XCTest.swift"; sourceTree = "<group>"; };
 		EA475D011CDBAFB50013AFA1 /* WKTWriterTests+XCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKTWriterTests+XCTest.swift"; sourceTree = "<group>"; };
+		EA5C141B1CFE89BF0004732E /* MultiLineString+CurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiLineString+CurveTests.swift"; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
 		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
@@ -212,7 +216,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				607FACF51AFB993E008FA782 /* Metadata */,
 				607FACD21AFB9204008FA782 /* Example for GeoFeatures2 */,
 				EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */,
 				EA799B4C1C723DEF00397C2A /* Docs */,
@@ -276,16 +280,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
+		607FACF51AFB993E008FA782 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
 				CD829F37916D32011B39AD57 /* GeoFeatures2.podspec */,
+				EA475C2F1CD9083A0013AFA1 /* Package.swift */,
 				0F243D2FCE8800EAB521DC72 /* README.md */,
 				2E8E8258ACE5267DDF6D0D4E /* LICENSE */,
 				EAE2CF5E1CD43D500050BC30 /* Vagrantfile */,
-				EA475C2F1CD9083A0013AFA1 /* Package.swift */,
 			);
-			name = "Podspec Metadata";
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 		6DBFAA283F83F17E5D472548 /* Pods */ = {
@@ -318,18 +322,20 @@
 				EA475CF01CDBAFB50013AFA1 /* GeometryCollection+GeometryTests+XCTest.swift */,
 				EA475CA51CDA55E10013AFA1 /* LinearRing+GeometryTests.swift */,
 				EA475CF11CDBAFB50013AFA1 /* LinearRing+GeometryTests+XCTest.swift */,
+				EA0DF5F31CFD1EB100112C55 /* LinearRing+CurveTests.swift */,
 				EA475CA61CDA55E10013AFA1 /* LinearRing+SurfaceTests.swift */,
 				EA475CF21CDBAFB50013AFA1 /* LinearRing+SurfaceTests+XCTest.swift */,
 				EA475CA71CDA55E10013AFA1 /* LinearRingTests.swift */,
 				EA475CF31CDBAFB50013AFA1 /* LinearRingTests+XCTest.swift */,
-				EA475CA81CDA55E10013AFA1 /* LineString+CurveTests.swift */,
-				EA475CF41CDBAFB50013AFA1 /* LineString+CurveTests+XCTest.swift */,
 				EA475CA91CDA55E10013AFA1 /* LineString+GeometryTests.swift */,
 				EA475CF51CDBAFB50013AFA1 /* LineString+GeometryTests+XCTest.swift */,
+				EA475CA81CDA55E10013AFA1 /* LineString+CurveTests.swift */,
+				EA475CF41CDBAFB50013AFA1 /* LineString+CurveTests+XCTest.swift */,
 				EA475CAA1CDA55E10013AFA1 /* LineStringTests.swift */,
 				EA475CF61CDBAFB50013AFA1 /* LineStringTests+XCTest.swift */,
 				EA475CAB1CDA55E10013AFA1 /* MultiLineString+GeometryTests.swift */,
 				EA475CF71CDBAFB50013AFA1 /* MultiLineString+GeometryTests+XCTest.swift */,
+				EA5C141B1CFE89BF0004732E /* MultiLineString+CurveTests.swift */,
 				EA475CAC1CDA55E10013AFA1 /* MultiPoint+GeometryTests.swift */,
 				EA475CF81CDBAFB50013AFA1 /* MultiPoint+GeometryTests+XCTest.swift */,
 				EA475CAD1CDA55E10013AFA1 /* MultiPointTests.swift */,
@@ -678,6 +684,7 @@
 				EA475CBD1CDA55E10013AFA1 /* LinearRing+GeometryTests.swift in Sources */,
 				EA475D0D1CDBAFB50013AFA1 /* MultiPointTests+XCTest.swift in Sources */,
 				EA1ADE931CDF88B0007DA473 /* IntersectionMatrixTests.swift in Sources */,
+				EA5C141D1CFE8A490004732E /* MultiLineString+CurveTests.swift in Sources */,
 				EA475CC71CDA55E10013AFA1 /* MultiPolygon+GeometryTests.swift in Sources */,
 				EA475CEA1CDA876A0013AFA1 /* Coordinate3DMTests+XCTest.swift in Sources */,
 				EA475CC01CDA55E10013AFA1 /* LineString+CurveTests.swift in Sources */,
@@ -688,6 +695,7 @@
 				EA475CC51CDA55E10013AFA1 /* MultiPointTests.swift in Sources */,
 				EA475D091CDBAFB50013AFA1 /* LineString+GeometryTests+XCTest.swift in Sources */,
 				EA475D0B1CDBAFB50013AFA1 /* MultiLineString+GeometryTests+XCTest.swift in Sources */,
+				EA0DF5F41CFD1EB100112C55 /* LinearRing+CurveTests.swift in Sources */,
 				EA475D031CDBAFB50013AFA1 /* FloatingPrecisionTests+XCTest.swift in Sources */,
 				EA475CB81CDA55E10013AFA1 /* Coordinate3DTests.swift in Sources */,
 				EA475CE41CDA833F0013AFA1 /* Coordinate2DTests+XCTest.swift in Sources */,

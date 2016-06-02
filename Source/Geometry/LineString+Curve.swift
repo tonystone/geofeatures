@@ -1,5 +1,5 @@
 /*
- *   LineString+LinearType.swift
+ *   LineString+Curve.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -28,10 +28,25 @@ import Swift
 extension LineString : Curve {
     
     /**
-     The length of this LinearType calaculated using its associated CoordinateReferenceSystem.
+     - Returns: True if this curve is closed (begin and end coordinates are equal)
      */
     @warn_unused_result
-    public func length() -> Double {
+    public
+    func isClosed() -> Bool {
+        
+        return storage.withUnsafeMutablePointers { (count, elements)-> Bool in
+            if count.pointee < 2 { return false }
+            
+            return elements[0] == elements[count.pointee - 1]
+        }
+    }
+    
+    /**
+     The length of this LinearType calculated using its associated CoordinateReferenceSystem.
+     */
+    @warn_unused_result
+    public
+    func length() -> Double {
         
         let length: Double  = storage.withUnsafeMutablePointers { (count, elements)->Double in
             

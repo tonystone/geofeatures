@@ -57,6 +57,7 @@
 		E51EBF07417AD3D45753E5FB /* TupleConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B73C170B7EF1C14B84DC4 /* TupleConvertable.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E77BBC7331597445B71920BD /* Coordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A19421968E1FB452DF5515F /* Coordinate2D.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E81EDF4B8669E9870B44B414 /* CopyConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655ACEA9AF264217F53DA63D /* CopyConstructable.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EA0DF5F21CFD176500112C55 /* MultiLineString+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0DF5F11CFD176500112C55 /* MultiLineString+Curve.swift */; };
 		EA1ADE951CDFAD93007DA473 /* IntersectionMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1ADE941CDFAD93007DA473 /* IntersectionMatrix.swift */; };
 		EA475C9C1CDA31F90013AFA1 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475C9B1CDA31F90013AFA1 /* Tokenizer.swift */; };
 		EA475C9E1CDA33D70013AFA1 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA475C9D1CDA33D70013AFA1 /* RegularExpression.swift */; };
@@ -153,6 +154,7 @@
 		E124EC5334E0F0DE7D0541C5 /* Pods-GeoFeatures2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GeoFeatures2_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E37A24389084841F67D19ED2 /* GeoFeatures2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GeoFeatures2.xcconfig; sourceTree = "<group>"; };
 		E70C579FB04E7B8B34976CC6 /* LinearRing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LinearRing.swift; sourceTree = "<group>"; };
+		EA0DF5F11CFD176500112C55 /* MultiLineString+Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiLineString+Curve.swift"; sourceTree = "<group>"; };
 		EA1ADE941CDFAD93007DA473 /* IntersectionMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersectionMatrix.swift; sourceTree = "<group>"; };
 		EA475C9B1CDA31F90013AFA1 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		EA475C9D1CDA33D70013AFA1 /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				0EBE8FC4C67A9FB64FF4660C /* LineString+Curve.swift */,
 				AF43ABD2F36FF2B4DE8D6FB0 /* LineString+Geometry.swift */,
 				47DF338019880A0C00D8AFA0 /* MultiLineString.swift */,
+				EA0DF5F11CFD176500112C55 /* MultiLineString+Curve.swift */,
 				10EF5D7BC427EC84AD993305 /* MultiLineString+Geometry.swift */,
 				11ABAC9AA6916A448A8C6C6D /* MultiPoint.swift */,
 				EFA62466142AA1A137D2E6A5 /* MultiPoint+Geometry.swift */,
@@ -538,6 +541,7 @@
 				E81EDF4B8669E9870B44B414 /* CopyConstructable.swift in Sources */,
 				EA1ADE951CDFAD93007DA473 /* IntersectionMatrix.swift in Sources */,
 				16455BB79751A4718BD00B66 /* Curve.swift in Sources */,
+				EA0DF5F21CFD176500112C55 /* MultiLineString+Curve.swift in Sources */,
 				6CE364394C61C28A5C6F5FF4 /* Dimension.swift in Sources */,
 				319562BFA24B76D6B7CE24DE /* FixedPrecision.swift in Sources */,
 				5737CA9EE421EEDEDC421166 /* FloatingPrecision.swift in Sources */,
