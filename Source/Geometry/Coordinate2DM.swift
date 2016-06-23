@@ -85,6 +85,14 @@ extension Coordinate2DM : CustomStringConvertible, CustomDebugStringConvertible 
     }
 }
 
+extension Coordinate2DM : Hashable {
+    public var hashValue: Int {
+        get {
+            return 31 &* x.hashValue ^ 37 &* y.hashValue ^ 41 &* m.hashValue
+        }
+    }
+}
+
 public func ==(lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.m == rhs.m
 }
