@@ -59,6 +59,12 @@ public protocol Geometry {
     func isEmpty() -> Bool
 
     /**
+     - Returns: the closure of the combinatorial boundary of this Geometry instance.
+     */
+    @warn_unused_result
+    func boundary() -> Geometry
+    
+    /**
      - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
      */
     @warn_unused_result
