@@ -21,13 +21,19 @@ import Swift
 
 extension MultiPolygon : Geometry {
     
-    public var dimension: Dimension { return .TWO }
+    public
+    var dimension: Dimension { return .TWO }
     
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPolygon<CoordinateType> {
             return self.elementsEqual(other, isEquivalent: { (lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
@@ -37,7 +43,9 @@ extension MultiPolygon : Geometry {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }
