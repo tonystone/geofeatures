@@ -21,13 +21,19 @@ import Swift
 
 extension MultiPoint : Geometry  {
     
-    public var dimension: Dimension { return .ZERO }
+    public
+    var dimension: Dimension { return .ZERO }
     
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+    
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPoint<CoordinateType> {
             return self.elementsEqual(other)
         }
@@ -35,8 +41,10 @@ extension MultiPoint : Geometry  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
-        return GeometryCollection()
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
+        return GeometryCollection(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
     }
 }
 
