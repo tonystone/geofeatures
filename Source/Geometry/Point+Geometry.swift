@@ -21,13 +21,19 @@ import Swift
 
 extension Point : Geometry {
 
-    public var dimension: Dimension { return .ZERO }
+    public
+    var dimension: Dimension { return .ZERO }
     
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return false    // Point can never be empty
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+    
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? Point {
             return self.coordinate == other.coordinate
         }
@@ -35,7 +41,9 @@ extension Point : Geometry {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
-        return GeometryCollection()
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
+        return GeometryCollection(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
     }
 }
