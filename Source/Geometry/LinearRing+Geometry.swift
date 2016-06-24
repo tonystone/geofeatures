@@ -21,13 +21,19 @@ import Swift
 
 extension LinearRing : Geometry  {
     
-    public var dimension: Dimension { return .ONE }
+    public
+    var dimension: Dimension { return .ONE }
     
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+    
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? LinearRing<Element> {
             return self.elementsEqual(other, isEquivalent: { (lhs: Element, rhs: Element) -> Bool in
                 return lhs == rhs
@@ -37,7 +43,9 @@ extension LinearRing : Geometry  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }
