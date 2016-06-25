@@ -30,6 +30,29 @@ extension LinearRing : Geometry  {
         return self.count == 0
     }
     
+    /**
+     - Returns: the closure of the combinatorial boundary of this Geometry instance.
+     
+     - Note: The boundary of a LineString if empty is the empty MultiPoint. If not empty it is the first and last point.
+     */
+    @warn_unused_result
+    public
+    func boundary() -> Geometry {
+        
+        return self.storage.withUnsafeMutablePointers { (count, elements) -> Geometry in
+            
+            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            
+            if !self.isClosed() && count.pointee >= 2 {
+                
+                // Note: direct subscripts protected by self.count >= 2 above.
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[0], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[count.pointee - 1], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                
+            }
+            return multiPoint
+        }
+    }
     
     @warn_unused_result
     public
