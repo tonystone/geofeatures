@@ -64,18 +64,6 @@ public protocol Geometry {
     @warn_unused_result
     func boundary() -> Geometry
     
-    /**
-     - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
-     */
-    @warn_unused_result
-    func ==(lhs: Geometry, rhs: Geometry) -> Bool
-    
-    /**
-     - Returns: true if this GeoemetryType instance is not equal the other Geometry instance.
-     */
-    @warn_unused_result
-    func !=(lhs: Geometry, rhs: Geometry) -> Bool
-    
 //    /**
 //     - Returns:  true if this GeoemetryType instance has no anomalous geometric points, such
 //     as self intersection or self tangency.
@@ -191,10 +179,28 @@ public func ==(lhs: Geometry, rhs: Geometry) -> Bool {
 }
 
 @warn_unused_result
-public func !=(lhs: Geometry, rhs: Geometry) -> Bool {
+public func ==<T : Geometry>(lhs: Geometry, rhs: T) -> Bool {
+    return lhs.equals(rhs)
+}
+
+@warn_unused_result
+public func ==<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
+    return lhs.equals(rhs)
+}
+
+@warn_unused_result
+public func !=(lhs: Geometry, rhs:Geometry) -> Bool {
     return !lhs.equals(rhs)
 }
 
+@warn_unused_result
+public func !=<T : Geometry>(lhs: Geometry, rhs: T) -> Bool {
+    return !lhs.equals(rhs)
+}
+@warn_unused_result
+public func !=<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
+    return !lhs.equals(rhs)
+}
 /**
     Predicate implementation for `Geometry` protocol
  
