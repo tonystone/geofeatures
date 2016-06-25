@@ -53,7 +53,7 @@ public protocol Geometry {
     var dimension: Dimension { get }
     
     /**
-     - Returns true if this Geometry is an empty Geometry.
+     - Returns: true if this Geometry is an empty Geometry.
     */
     @warn_unused_result
     func isEmpty() -> Bool
