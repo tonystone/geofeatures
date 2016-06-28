@@ -109,4 +109,14 @@
                                                                    ]] area]),  32);
     }
 
+    - (void) testPerformanceArea_RegularQuadrilateral {
+        GFRing * ring = [[GFRing alloc] initWithWKT: @"LINESTRING (8.29 0.88, 3.18 3.12, 5.43 8.22, 10.53 5.98, 8.29 0.88)"];
+    
+        [self measureBlock:^{
+            for (int i = 1; i <= 500000; i++) {
+                (void) [ring area];
+            }
+        }];
+    }
+
 @end

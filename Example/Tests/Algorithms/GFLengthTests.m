@@ -101,4 +101,15 @@
         LengthTest(GFGeometryCollection, @"GEOMETRYCOLLECTION(LINESTRING(0 0,0 2))", 2.0);
     }
 
+    - (void) testLengthPerformance {
+        GFLineString * lineString = [[GFLineString alloc] initWithWKT: @"LINESTRING (0 0, 0 2, 0 3, 0 4, 0 5)"];
+    
+        [self measureBlock:^{
+            
+            for (int i = 1; i <= 500000; i++) {
+                (void) [lineString length];
+            }
+        }];
+    }
+
 @end
