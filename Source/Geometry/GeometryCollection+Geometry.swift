@@ -27,7 +27,7 @@ extension GeometryCollection : Geometry  {
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Dimension in
             
-            var dimension: Dimension = .EMPTY // No dimension
+            var dimension: Dimension = .empty // No dimension
             
             if count.pointee > 0 {
                 

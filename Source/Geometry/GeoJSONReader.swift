@@ -21,7 +21,7 @@ import Swift
 
 public class GeoJSONReader  {
 
-    public func read(string: String, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) throws -> Geometry {
+    public func read(_ string: String, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) throws -> Geometry {
         return GeometryCollection()
     }
 }

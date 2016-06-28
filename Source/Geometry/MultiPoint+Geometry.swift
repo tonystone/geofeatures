@@ -21,7 +21,7 @@ import Swift
 
 extension MultiPoint : Geometry  {
     
-    public var dimension: Dimension { return .ZERO }
+    public var dimension: Dimension { return .zero }
     
     public func isEmpty() -> Bool {
         return self.count == 0

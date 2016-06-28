@@ -32,46 +32,46 @@ class IntersectionMatrixTests: XCTestCase {
     func testInit() {
         let matrix = IntersectionMatrix()
         
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
+        XCTAssertEqual(matrix[.interior, .boundary], Dimension.empty)
+        XCTAssertEqual(matrix[.interior, .exterior], Dimension.empty)
         
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.boundary, .interior], Dimension.empty)
+        XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
+        XCTAssertEqual(matrix[.boundary, .exterior], Dimension.empty)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.exterior, .interior], Dimension.empty)
+        XCTAssertEqual(matrix[.exterior, .boundary], Dimension.empty)
+        XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
     func testInit_ArrayLiteral() {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.EMPTY, .ZERO,  .ONE],
-                                                          [.TWO,   .EMPTY, .ZERO],
-                                                          [.ONE,   .TWO,   .EMPTY],
+                                                          [.empty, .zero,  .one],
+                                                          [.two,   .empty, .zero],
+                                                          [.one,   .two,   .empty],
                                                           ]
         )
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
+        XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
+        XCTAssertEqual(matrix[.interior, .boundary], GeoFeatures2.Dimension.zero)
+        XCTAssertEqual(matrix[.interior, .exterior], GeoFeatures2.Dimension.one)
         
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.TWO)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.ZERO)
+        XCTAssertEqual(matrix[.boundary, .interior], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
+        XCTAssertEqual(matrix[.boundary, .exterior], GeoFeatures2.Dimension.zero)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.ONE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.TWO)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.exterior, .interior], GeoFeatures2.Dimension.one)
+        XCTAssertEqual(matrix[.exterior, .boundary], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
     func testMakeIterator() {
-        let expectedValues: [Dimension] = [.EMPTY, .ZERO, .ONE, .TWO, .EMPTY, .ZERO, .ONE, .TWO, .EMPTY]
+        let expectedValues: [GeoFeatures2.Dimension] = [.empty, .zero, .one, .two, .empty, .zero, .one, .two, .empty]
         
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.EMPTY, .ZERO,  .ONE],
-                                                          [.TWO,   .EMPTY, .ZERO],
-                                                          [.ONE,   .TWO,   .EMPTY],
+                                                          [.empty, .zero,  .one],
+                                                          [.two,   .empty, .zero],
+                                                          [.one,   .two,   .empty],
                                                           ]
         )
         
@@ -85,105 +85,105 @@ class IntersectionMatrixTests: XCTestCase {
     
     func testSubscript_Get() {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.EMPTY, .ZERO,  .ONE],
-                                                          [.TWO,   .EMPTY, .ZERO],
-                                                          [.ONE,   .TWO,   .EMPTY],
+                                                          [.empty, .zero,  .one],
+                                                          [.two,   .empty, .zero],
+                                                          [.one,   .two,   .empty],
                                                           ]
         )
         
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
+        XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
+        XCTAssertEqual(matrix[.interior, .boundary], GeoFeatures2.Dimension.zero)
+        XCTAssertEqual(matrix[.interior, .exterior], GeoFeatures2.Dimension.one)
 
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.TWO)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.ZERO)
+        XCTAssertEqual(matrix[.boundary, .interior], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
+        XCTAssertEqual(matrix[.boundary, .exterior], GeoFeatures2.Dimension.zero)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.ONE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.TWO)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.exterior, .interior], GeoFeatures2.Dimension.one)
+        XCTAssertEqual(matrix[.exterior, .boundary], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
     func testSubscript_Set() {
         var matrix = IntersectionMatrix()
         
-        matrix[.INTERIOR, .INTERIOR] = .EMPTY
-        matrix[.INTERIOR, .BOUNDARY] = .ZERO
-        matrix[.INTERIOR, .EXTERIOR] = .ONE
+        matrix[.interior, .interior] = .empty
+        matrix[.interior, .boundary] = .zero
+        matrix[.interior, .exterior] = .one
         
-        matrix[.BOUNDARY, .INTERIOR] = .TWO
-        matrix[.BOUNDARY, .BOUNDARY] = .EMPTY
-        matrix[.BOUNDARY, .EXTERIOR] = .ZERO
+        matrix[.boundary, .interior] = .two
+        matrix[.boundary, .boundary] = .empty
+        matrix[.boundary, .exterior] = .zero
         
-        matrix[.EXTERIOR, .INTERIOR] = .ONE
-        matrix[.EXTERIOR, .BOUNDARY] = .TWO
-        matrix[.EXTERIOR, .EXTERIOR] = .EMPTY
+        matrix[.exterior, .interior] = .one
+        matrix[.exterior, .boundary] = .two
+        matrix[.exterior, .exterior] = .empty
         
         // All values should match the input
-        XCTAssertEqual(matrix[.INTERIOR, .INTERIOR], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.INTERIOR, .BOUNDARY], Dimension.ZERO)
-        XCTAssertEqual(matrix[.INTERIOR, .EXTERIOR], Dimension.ONE)
+        XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
+        XCTAssertEqual(matrix[.interior, .boundary], GeoFeatures2.Dimension.zero)
+        XCTAssertEqual(matrix[.interior, .exterior], GeoFeatures2.Dimension.one)
 
-        XCTAssertEqual(matrix[.BOUNDARY, .INTERIOR], Dimension.TWO)
-        XCTAssertEqual(matrix[.BOUNDARY, .BOUNDARY], Dimension.EMPTY)
-        XCTAssertEqual(matrix[.BOUNDARY, .EXTERIOR], Dimension.ZERO)
+        XCTAssertEqual(matrix[.boundary, .interior], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
+        XCTAssertEqual(matrix[.boundary, .exterior], GeoFeatures2.Dimension.zero)
         
-        XCTAssertEqual(matrix[.EXTERIOR, .INTERIOR], Dimension.ONE)
-        XCTAssertEqual(matrix[.EXTERIOR, .BOUNDARY], Dimension.TWO)
-        XCTAssertEqual(matrix[.EXTERIOR, .EXTERIOR], Dimension.EMPTY)
+        XCTAssertEqual(matrix[.exterior, .interior], GeoFeatures2.Dimension.one)
+        XCTAssertEqual(matrix[.exterior, .boundary], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
     func testMatches_True () {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.TWO,  .EMPTY, .ONE],
-                                                          [.ZERO, .ONE,   .TWO],
-                                                          [.ZERO, .EMPTY, .EMPTY],
+                                                          [.two,  .empty, .one],
+                                                          [.zero, .one,   .two],
+                                                          [.zero, .empty, .empty],
                                                           ]
         )
-        XCTAssertTrue(matrix.matches(pattern: "TF*012TF*"))
+        XCTAssertTrue(matrix.matches("TF*012TF*"))
     }
 
     func testMatches_False () {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.TWO,  .EMPTY, .ONE],
-                                                          [.ZERO, .ONE,   .TWO],
-                                                          [.ZERO, .EMPTY, .EMPTY],
+                                                          [.two,  .empty, .one],
+                                                          [.zero, .one,   .two],
+                                                          [.zero, .empty, .empty],
                                                           ]
         )
-        XCTAssertFalse(matrix.matches(pattern: "TFF012TF1"))
+        XCTAssertFalse(matrix.matches("TFF012TF1"))
     }
     
     func testDescription () {
         let matrix = IntersectionMatrix(arrayLiteral: [
-                                                          [.TWO,  .EMPTY, .ONE],
-                                                          [.ZERO, .ONE,   .TWO],
-                                                          [.ZERO, .EMPTY, .EMPTY],
+                                                          [.two,  .empty, .one],
+                                                          [.zero, .one,   .two],
+                                                          [.zero, .empty, .empty],
                                                           ]
         )
         XCTAssertEqual(matrix.description, "2, -1, 1, 0, 1, 2, 0, -1, -1")
     }
     
     func testEqual () {
-        let input: [[Dimension]] = [
-                                       [.TWO,  .EMPTY, .ONE],
-                                       [.TWO,  .EMPTY, .TWO],
-                                       [.ZERO, .EMPTY, .TWO],
+        let input: [[GeoFeatures2.Dimension]] = [
+                                       [.two,  .empty, .one],
+                                       [.two,  .empty, .two],
+                                       [.zero, .empty, .two],
                                        ]
 
         XCTAssertEqual(IntersectionMatrix(arrayLiteral: input), IntersectionMatrix(arrayLiteral: input))
     }
     
     func testEqual_False () {
-        let input1: [[Dimension]] = [
-                                       [.TWO,  .EMPTY, .ONE],
-                                       [.TWO,  .EMPTY, .TWO],
-                                       [.ZERO, .EMPTY, .TWO],
+        let input1: [[GeoFeatures2.Dimension]] = [
+                                       [.two,  .empty, .one],
+                                       [.two,  .empty, .two],
+                                       [.zero, .empty, .two],
                                        ]
         
-        let input2: [[Dimension]] = [
-                                        [.ONE,  .EMPTY, .ONE],
-                                        [.TWO,  .EMPTY, .TWO],
-                                        [.ZERO, .EMPTY, .TWO],
+        let input2: [[GeoFeatures2.Dimension]] = [
+                                        [.one,  .empty, .one],
+                                        [.two,  .empty, .two],
+                                        [.zero, .empty, .two],
                                         ]
         
         XCTAssertNotEqual(IntersectionMatrix(arrayLiteral: input1), IntersectionMatrix(arrayLiteral: input2))

@@ -25,7 +25,7 @@ import XCTest
     import GeoFeatures2
 #endif
 
-private let geometryDimension = Dimension.ZERO   // Point always have a 0 dimension
+private let geometryDimension = Dimension.zero   // Point always have a 0 dimension
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 

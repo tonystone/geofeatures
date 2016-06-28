@@ -58,7 +58,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
      - returns: WKT string for supported types. If unsupported, an empty string is returned.
      - note: This method does not check the validity of the geometry.
      */
-    public func write(geometry: Geometry) -> String {
+    public func write(_ geometry: Geometry) -> String {
         
         // BNF: <geometry tagged text> ::= <point tagged text>
         //                          | <linestring tagged text>
@@ -74,53 +74,53 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
         switch (geometry) {
         
         case let point as Point<CoordinateType>:
-            return self.pointTaggedText(point: point)
+            return self.pointTaggedText(point)
 
         case let lineString as LineString<CoordinateType>:
-            return self.lineStringTaggedText(lineString: lineString)
+            return self.lineStringTaggedText(lineString)
             
         case let linearRing as LinearRing<CoordinateType>:
-            return self.linearRingTaggedText(linearRing: linearRing)
+            return self.linearRingTaggedText(linearRing)
         
         case let polygon as Polygon<CoordinateType>:
-            return self.polygonTaggedText(polygon: polygon)
+            return self.polygonTaggedText(polygon)
             
         case let multiPoint as MultiPoint<CoordinateType>:
-            return self.multiPointTaggedText(multiPoint: multiPoint)
+            return self.multiPointTaggedText(multiPoint)
         
         case let multiPolygon as MultiPolygon<CoordinateType>:
-            return self.multiPolygonTaggedText(multiPolygon: multiPolygon)
+            return self.multiPolygonTaggedText(multiPolygon)
             
         case let multiLineString as MultiLineString<CoordinateType>:
-            return self.multiLineStringTaggedText(multiLineString: multiLineString)
+            return self.multiLineStringTaggedText(multiLineString)
             
         case let geometryCollection as GeometryCollection:
-            return self.geometryCollectionTaggedText(geometryCollection: geometryCollection)
+            return self.geometryCollectionTaggedText(geometryCollection)
             
         default: return ""
         }
     }
 
     // BNF: <point tagged text> ::= point <point text>
-    private func pointTaggedText(point: Point<CoordinateType>) -> String  {
+    private func pointTaggedText(_ point: Point<CoordinateType>) -> String  {
         
-        return WKT.POINT.rawValue + WKT.SINGLE_SPACE.rawValue + zmText(coordinate: point.coordinate) + pointText(point: point)
+        return WKT.POINT.rawValue + WKT.SINGLE_SPACE.rawValue + zmText(point.coordinate) + pointText(point)
     }
     
     // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
-    private func pointText(point: Point<CoordinateType>) -> String  {
+    private func pointText(_ point: Point<CoordinateType>) -> String  {
         
-        return WKT.LEFT_PAREN.rawValue + self.coordinateText(coordinate: point.coordinate) + WKT.RIGHT_PAREN.rawValue
+        return WKT.LEFT_PAREN.rawValue + self.coordinateText(point.coordinate) + WKT.RIGHT_PAREN.rawValue
     }
     
     // BNF: <linestring tagged text> ::= linestring <linestring text>
-    private func lineStringTaggedText(lineString: LineString<CoordinateType>) -> String {
+    private func lineStringTaggedText(_ lineString: LineString<CoordinateType>) -> String {
         
-        return WKT.LINESTRING.rawValue + WKT.SINGLE_SPACE.rawValue + lineStringText(lineString: lineString)
+        return WKT.LINESTRING.rawValue + WKT.SINGLE_SPACE.rawValue + lineStringText(lineString)
     }
     
     // BNF: <linestring text> ::= <empty set> | <left paren> <point> {<comma> <point>}* <right paren>
-    private func lineStringText(lineString: LineString<CoordinateType>) -> String {
+    private func lineStringText(_ lineString: LineString<CoordinateType>) -> String {
         
         if lineString.isEmpty() {
             return WKT.EMPTY.rawValue
@@ -132,7 +132,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 lineStringText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            lineStringText += self.coordinateText(coordinate: lineString[index])
+            lineStringText += self.coordinateText(lineString[index])
         }
         
         lineStringText += WKT.RIGHT_PAREN.rawValue
@@ -141,13 +141,13 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     }
     
     // BNF: None defined by OGC
-    private func linearRingTaggedText(linearRing: LinearRing<CoordinateType>) -> String {
+    private func linearRingTaggedText(_ linearRing: LinearRing<CoordinateType>) -> String {
         
-        return WKT.LINEARRING.rawValue + WKT.SINGLE_SPACE.rawValue + linearRingText(linearRing: linearRing)
+        return WKT.LINEARRING.rawValue + WKT.SINGLE_SPACE.rawValue + linearRingText(linearRing)
     }
     
     // BNF: None defined by OGC
-    private func linearRingText(linearRing: LinearRing<CoordinateType>) -> String  {
+    private func linearRingText(_ linearRing: LinearRing<CoordinateType>) -> String  {
 
         if linearRing.isEmpty() {
             return WKT.EMPTY.rawValue
@@ -159,7 +159,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 linearRingText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            linearRingText += self.coordinateText(coordinate: linearRing[index])
+            linearRingText += self.coordinateText(linearRing[index])
         }
         
         linearRingText += WKT.RIGHT_PAREN.rawValue
@@ -168,25 +168,25 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     }
     
     // BNF: <polygon tagged text> ::= polygon <polygon text>
-    private func polygonTaggedText(polygon: Polygon<CoordinateType> ) -> String {
+    private func polygonTaggedText(_ polygon: Polygon<CoordinateType> ) -> String {
         
-        return WKT.POLYGON.rawValue + WKT.SINGLE_SPACE.rawValue + polygonText(polygon: polygon)
+        return WKT.POLYGON.rawValue + WKT.SINGLE_SPACE.rawValue + polygonText(polygon)
     }
     
     // BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
-    private func polygonText(polygon: Polygon<CoordinateType> ) -> String {
+    private func polygonText(_ polygon: Polygon<CoordinateType> ) -> String {
         
         if polygon.isEmpty() {
             return WKT.EMPTY.rawValue
         }
         
-        var polygonText = WKT.LEFT_PAREN.rawValue + linearRingText(linearRing: polygon.outerRing)
+        var polygonText = WKT.LEFT_PAREN.rawValue + linearRingText(polygon.outerRing)
 
         for index in 0..<polygon.innerRings.count {
             if (index < polygon.innerRings.count) {
                 polygonText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            polygonText += linearRingText(linearRing: polygon.innerRings[index])
+            polygonText += linearRingText(polygon.innerRings[index])
         }
         
         polygonText += WKT.RIGHT_PAREN.rawValue
@@ -195,13 +195,13 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     }
     
     // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
-    private func multiPointTaggedText(multiPoint: MultiPoint<CoordinateType>) -> String {
+    private func multiPointTaggedText(_ multiPoint: MultiPoint<CoordinateType>) -> String {
         
-        return WKT.MULTIPOINT.rawValue + WKT.SINGLE_SPACE.rawValue + multiPointText(multiPoint: multiPoint)
+        return WKT.MULTIPOINT.rawValue + WKT.SINGLE_SPACE.rawValue + multiPointText(multiPoint)
     }
     
     // BNF: <multipoint text> ::= <empty set> | <left paren> <point text> {<comma> <point text>}* <right paren>
-    private func multiPointText(multiPoint: MultiPoint<CoordinateType>) -> String {
+    private func multiPointText(_ multiPoint: MultiPoint<CoordinateType>) -> String {
         
         if multiPoint.isEmpty() {
             return WKT.EMPTY.rawValue
@@ -213,20 +213,20 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 multiPointText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            multiPointText += pointText(point: multiPoint[index])
+            multiPointText += pointText(multiPoint[index])
         }
         
         return multiPointText + WKT.RIGHT_PAREN.rawValue
     }
     
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
-    private func multiLineStringTaggedText(multiLineString: MultiLineString<CoordinateType> ) -> String {
+    private func multiLineStringTaggedText(_ multiLineString: MultiLineString<CoordinateType> ) -> String {
         
-        return WKT.MULTILINESTRING.rawValue + WKT.SINGLE_SPACE.rawValue +  multiLineStringText(multiLineString: multiLineString)
+        return WKT.MULTILINESTRING.rawValue + WKT.SINGLE_SPACE.rawValue +  multiLineStringText(multiLineString)
     }
     
     // BNF: <multilinestring text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
-    private func multiLineStringText(multiLineString: MultiLineString<CoordinateType>) -> String {
+    private func multiLineStringText(_ multiLineString: MultiLineString<CoordinateType>) -> String {
         
         if multiLineString.isEmpty() {
             return WKT.EMPTY.rawValue
@@ -238,19 +238,19 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 multiLineStringText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            multiLineStringText += lineStringText(lineString: multiLineString[index])
+            multiLineStringText += lineStringText(multiLineString[index])
         }
         
         return multiLineStringText + WKT.RIGHT_PAREN.rawValue
     }
     
     // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
-    private func multiPolygonTaggedText(multiPolygon: MultiPolygon<CoordinateType> ) -> String {
-        return WKT.MULTIPOLYGON.rawValue + WKT.SINGLE_SPACE.rawValue + multiPolygonText(multiPolygon: multiPolygon)
+    private func multiPolygonTaggedText(_ multiPolygon: MultiPolygon<CoordinateType> ) -> String {
+        return WKT.MULTIPOLYGON.rawValue + WKT.SINGLE_SPACE.rawValue + multiPolygonText(multiPolygon)
     }
     
     // BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
-    private func multiPolygonText(multiPolygon: MultiPolygon<CoordinateType> ) -> String  {
+    private func multiPolygonText(_ multiPolygon: MultiPolygon<CoordinateType> ) -> String  {
         
         if multiPolygon.isEmpty() {
             return WKT.EMPTY.rawValue
@@ -262,19 +262,19 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 multiPolygonText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            multiPolygonText += polygonText(polygon: multiPolygon[index])
+            multiPolygonText += polygonText(multiPolygon[index])
         }
         
         return multiPolygonText + WKT.RIGHT_PAREN.rawValue
     }
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
-    private func geometryCollectionTaggedText(geometryCollection: GeometryCollection) -> String {
-        return WKT.GEOMETRYCOLLECTION.rawValue + WKT.SINGLE_SPACE.rawValue + geometryCollectionText(geometryCollection: geometryCollection)
+    private func geometryCollectionTaggedText(_ geometryCollection: GeometryCollection) -> String {
+        return WKT.GEOMETRYCOLLECTION.rawValue + WKT.SINGLE_SPACE.rawValue + geometryCollectionText(geometryCollection)
     }
     
     // BNF: <geometrycollection text> ::= <empty set> | <left paren> <geometry tagged text> {<comma> <geometry tagged text>}* <right paren>
-    private func geometryCollectionText(geometryCollection: GeometryCollection) -> String {
+    private func geometryCollectionText(_ geometryCollection: GeometryCollection) -> String {
         
         var geometryCollectionText = WKT.LEFT_PAREN.rawValue
         
@@ -283,7 +283,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
             if index > 0 {
                 geometryCollectionText += WKT.COMMA.rawValue + WKT.SINGLE_SPACE.rawValue
             }
-            geometryCollectionText += write(geometry: geometryCollection[index])
+            geometryCollectionText += write(geometryCollection[index])
         }
         
         return geometryCollectionText + WKT.RIGHT_PAREN.rawValue
@@ -293,7 +293,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
     // BNF: <point z> ::= <x> <y> <z>
     // BNF: <point m> ::= <x> <y> <m>
     // BNF: <point zm> ::= <x> <y> <z> <m>
-    private func coordinateText(coordinate: CoordinateType) -> String {
+    private func coordinateText(_ coordinate: CoordinateType) -> String {
         
         var coordinateText = "\(coordinate.x) \(coordinate.y)"
         
@@ -308,7 +308,7 @@ public class WKTWriter<CoordinateType : protocol<Coordinate, CopyConstructable, 
         return coordinateText
     }
     
-    private func zmText(coordinate: CoordinateType) -> String {
+    private func zmText(_ coordinate: CoordinateType) -> String {
         
         var zmText = ""
         
