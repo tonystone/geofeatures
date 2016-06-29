@@ -32,10 +32,5 @@ public protocol Surface {
 //    */
 //    @warn_unused_result
 //    func centroid() -> Geometry
-//
-//    /**
-//
-//    */
-//    @warn_unused_result
-//    func boundary() -> Geometry
+
 }

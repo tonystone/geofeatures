@@ -20,14 +20,75 @@
 import Swift
 
 extension MultiLineString : Geometry  {
+
+    public
+    var dimension: Dimension { return .one }
     
-    public var dimension: Dimension { return .one }
-    
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+    /**
+     - Returns: the closure of the combinatorial boundary of this Geometry instance.
+     
+     - Note: The boundary of a MultiCurve is obtained by applying the “mod 2” union rule: A Point is in the boundary of a
+     MultiCurve if it is in the boundaries of an odd number of elements of the MultiCurve (Reference [1], section
+     3.12.3.2).
+     */
+    @warn_unused_result
+    public
+    func boundary() -> Geometry {
+        
+        return self.storage.withUnsafeMutablePointers { (count, elements) -> Geometry in
+            
+            var endCoordinates = [CoordinateType: Int]()
+            
+            for i in 0 ..< count.pointee {
+                let lineString = elements[i]
+                
+                if lineString.count >= 2 && !lineString.isClosed() {
+                    var i = 0;
+                    
+                    // Start point
+                    if var count = endCoordinates[lineString[i]] {
+                        count += 1
+                        
+                        endCoordinates[lineString[i]] = count
+                        
+                    } else {
+                        endCoordinates[lineString[i]] = 1
+                    }
+                    
+                    i = lineString.count - 1
+                    
+                    // End point
+                    if var count = endCoordinates[lineString[i]] {
+                        count += 1
+                        
+                        endCoordinates[lineString[i]] = count
+                        
+                    } else {
+                        endCoordinates[lineString[i]] = 1
+                    }
+                }
+            }
+            
+            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            
+            for (coordinate, count) in endCoordinates {
+                if count % 2 == 1 {
+                    multiPoint.append(Point(coordinate: coordinate, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                }
+            }
+            return multiPoint
+        }
+    }
+    
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiLineString<CoordinateType> {
             return self.elementsEqual(other)
         }
@@ -35,7 +96,9 @@ extension MultiLineString : Geometry  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

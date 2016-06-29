@@ -21,13 +21,42 @@ import Swift
 
 extension LinearRing : Geometry  {
     
-    public var dimension: Dimension { return .one }
+    public
+    var dimension: Dimension { return .one }
     
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+    /**
+     - Returns: the closure of the combinatorial boundary of this Geometry instance.
+     
+     - Note: The boundary of a LineString if empty is the empty MultiPoint. If not empty it is the first and last point.
+     */
+    @warn_unused_result
+    public
+    func boundary() -> Geometry {
+        
+        return self.storage.withUnsafeMutablePointers { (count, elements) -> Geometry in
+            
+            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            
+            if !self.isClosed() && count.pointee >= 2 {
+                
+                // Note: direct subscripts protected by self.count >= 2 above.
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[0], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[count.pointee - 1], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                
+            }
+            return multiPoint
+        }
+    }
+    
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? LinearRing<Element> {
             return self.elementsEqual(other, isEquivalent: { (lhs: Element, rhs: Element) -> Bool in
                 return lhs == rhs
@@ -37,7 +66,9 @@ extension LinearRing : Geometry  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

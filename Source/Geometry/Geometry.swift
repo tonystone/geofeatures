@@ -53,22 +53,16 @@ public protocol Geometry {
     var dimension: Dimension { get }
     
     /**
-     - Returns true if this Geometry is an empty Geometry.
+     - Returns: true if this Geometry is an empty Geometry.
     */
     @warn_unused_result
     func isEmpty() -> Bool
 
     /**
-     - Returns: true if this GeoemetryType instance is equal the other Geometry instance.
+     - Returns: the closure of the combinatorial boundary of this Geometry instance.
      */
     @warn_unused_result
-    func ==(lhs: Geometry, rhs: Geometry) -> Bool
-    
-    /**
-     - Returns: true if this GeoemetryType instance is not equal the other Geometry instance.
-     */
-    @warn_unused_result
-    func !=(lhs: Geometry, rhs: Geometry) -> Bool
+    func boundary() -> Geometry
     
 //    /**
 //     - Returns:  true if this GeoemetryType instance has no anomalous geometric points, such
@@ -185,10 +179,28 @@ public func ==(lhs: Geometry, rhs: Geometry) -> Bool {
 }
 
 @warn_unused_result
-public func !=(lhs: Geometry, rhs: Geometry) -> Bool {
+public func ==<T : Geometry>(lhs: Geometry, rhs: T) -> Bool {
+    return lhs.equals(rhs)
+}
+
+@warn_unused_result
+public func ==<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
+    return lhs.equals(rhs)
+}
+
+@warn_unused_result
+public func !=(lhs: Geometry, rhs:Geometry) -> Bool {
     return !lhs.equals(rhs)
 }
 
+@warn_unused_result
+public func !=<T : Geometry>(lhs: Geometry, rhs: T) -> Bool {
+    return !lhs.equals(rhs)
+}
+@warn_unused_result
+public func !=<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
+    return !lhs.equals(rhs)
+}
 /**
     Predicate implementation for `Geometry` protocol
  

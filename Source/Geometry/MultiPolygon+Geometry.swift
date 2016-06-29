@@ -21,13 +21,39 @@ import Swift
 
 extension MultiPolygon : Geometry {
     
-    public var dimension: Dimension { return .two }
+    public
+    var dimension: Dimension { return .two }
     
-    public func isEmpty() -> Bool {
+    @warn_unused_result
+    public
+    func isEmpty() -> Bool {
         return self.count == 0
     }
     
-    public func equals(_ other: Geometry) -> Bool {
+    /**
+     - Returns: the closure of the combinatorial boundary of this Geometry instance.
+     
+     - Note: The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
+     */
+    @warn_unused_result
+    public
+    func boundary() -> Geometry {
+        return self.storage.withUnsafeMutablePointers({ (count, elements) -> Geometry in
+            var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            
+            for i in 0..<count.pointee {
+                
+                for lineString in elements[i].boundary() as! [LineString<CoordinateType>]{
+                    multiLineString.append(lineString)
+                }
+            }
+            return multiLineString
+        })
+    }
+
+    @warn_unused_result
+    public
+    func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPolygon<CoordinateType> {
             return self.elementsEqual(other, isEquivalent: { (lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
@@ -37,7 +63,9 @@ extension MultiPolygon : Geometry {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
+    @warn_unused_result
+    public
+    func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
     }
 }

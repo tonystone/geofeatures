@@ -37,6 +37,29 @@ class Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCa
     func testDimension ()   {
         XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
+    
+    func testBoundary_OuterRing() {
+        let geometry = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), precision: precision, coordinateReferenceSystem: crs).boundary()
+        let expected = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)]) ], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
+    }
+    
+    
+    func testBoundary_OuterRing_1InnerRing() {
+        let geometry = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs).boundary()
+        let expected = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)]), LineString<Coordinate2D>(elements: [(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)])], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
+    }
+    
+    func testBoundary_Empty() {
+        let geometry = Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).boundary()
+        let expected = MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
+    }
+    
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -

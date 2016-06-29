@@ -83,6 +83,14 @@ extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
+extension Coordinate2D : Hashable {
+    public var hashValue: Int {
+        get {
+            return 31 &* x.hashValue ^ 37 &* y.hashValue
+        }
+    }
+}
+
 public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y
 }
