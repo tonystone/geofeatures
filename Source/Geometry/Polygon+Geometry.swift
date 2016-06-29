@@ -21,7 +21,7 @@ import Swift
 
 extension Polygon : Geometry  {
 
-    public var dimension: Dimension { return .TWO }
+    public var dimension: Dimension { return .two }
     
     public func isEmpty() -> Bool {
         return self.outerRing.count == 0

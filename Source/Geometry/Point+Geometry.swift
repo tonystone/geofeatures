@@ -22,7 +22,7 @@ import Swift
 extension Point : Geometry {
 
     public
-    var dimension: Dimension { return .ZERO }
+    var dimension: Dimension { return .zero }
     
     @warn_unused_result
     public

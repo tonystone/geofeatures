@@ -20,9 +20,9 @@
 import Swift
 
 extension MultiLineString : Geometry  {
-    
+
     public
-    var dimension: Dimension { return .ONE }
+    var dimension: Dimension { return .one }
     
     @warn_unused_result
     public

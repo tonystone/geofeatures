@@ -22,7 +22,7 @@ import Swift
 extension MultiPolygon : Geometry {
     
     public
-    var dimension: Dimension { return .TWO }
+    var dimension: Dimension { return .two }
     
     @warn_unused_result
     public

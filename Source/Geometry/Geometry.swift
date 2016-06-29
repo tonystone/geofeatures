@@ -231,7 +231,7 @@ extension Geometry {
     public
     func touches(_ other: Geometry) -> Bool {
         
-        if self.dimension == .ZERO && other.dimension == .ZERO {
+        if self.dimension == .zero && other.dimension == .zero {
             return false
         }
         return relate(other, pattern: "FT*******") || relate(other, pattern: "F**T*****") || relate(other, pattern: "F***T****")
@@ -241,13 +241,13 @@ extension Geometry {
     public
     func crosses(_ other: Geometry) -> Bool {
         
-        if self.dimension == .ZERO && other.dimension == .ONE ||
-           self.dimension == .ZERO && other.dimension == .TWO ||
-           self.dimension == .ONE  && other.dimension == .TWO {
+        if self.dimension == .zero && other.dimension == .one ||
+           self.dimension == .zero && other.dimension == .two ||
+           self.dimension == .one  && other.dimension == .two {
             
             return relate(other, pattern: "T*T******")
             
-        } else if self.dimension == .ONE && other.dimension == .ONE {
+        } else if self.dimension == .one && other.dimension == .one {
             
             return relate(other, pattern: "0********")
         }
@@ -270,12 +270,12 @@ extension Geometry {
     public
     func overlaps(_ other: Geometry) -> Bool {
         
-        if self.dimension == .ZERO && other.dimension == .ZERO ||
-           self.dimension == .TWO  && other.dimension == .TWO {
+        if self.dimension == .zero && other.dimension == .zero ||
+           self.dimension == .two  && other.dimension == .two {
 
             return relate(other, pattern: "T*T***T**")
             
-        } else if self.dimension == .ONE && other.dimension == .ONE {
+        } else if self.dimension == .one && other.dimension == .one {
             
             return relate(other, pattern: "1*T***T**")
         }
@@ -287,7 +287,7 @@ extension Geometry {
     func relate(_ other: Geometry, pattern :String) -> Bool {
         let matrix = calculateIntersectionMatrix(other)
         
-        return matrix.matches(pattern: pattern)
+        return matrix.matches(pattern)
     }
     
     private

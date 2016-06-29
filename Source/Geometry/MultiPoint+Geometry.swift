@@ -20,9 +20,9 @@
 import Swift
 
 extension MultiPoint : Geometry  {
-    
+
     public
-    var dimension: Dimension { return .ZERO }
+    var dimension: Dimension { return .zero }
     
     @warn_unused_result
     public
