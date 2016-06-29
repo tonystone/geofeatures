@@ -63,7 +63,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             
             XCTFail("Parsing failed")
             
-        } catch ParseError.UnexpectedToken {
+        } catch ParseError.unexpectedToken {
             XCTAssertTrue(true)
         } catch {
             XCTFail("Parsing failed")
@@ -101,7 +101,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             
             XCTFail("Parsing failed")
             
-        } catch ParseError.UnexpectedToken {
+        } catch ParseError.unexpectedToken {
             XCTAssertTrue(true)
         } catch {
             XCTFail("Parsing failed")
@@ -139,7 +139,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             
             XCTFail("Parsing failed")
             
-        } catch ParseError.UnexpectedToken {
+        } catch ParseError.unexpectedToken {
             XCTAssertTrue(true)
         } catch {
             XCTFail("Parsing failed")
@@ -165,7 +165,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             
             XCTFail("Parsing failed")
             
-        } catch ParseError.UnexpectedToken {
+        } catch ParseError.unexpectedToken {
             XCTAssertTrue(true)
         } catch {
             XCTFail("Parsing failed")
@@ -222,7 +222,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             
             XCTFail("Parsing failed")
             
-        } catch ParseError.UnexpectedToken {
+        } catch ParseError.unexpectedToken {
             XCTAssertTrue(true)
         } catch {
             XCTFail("Parsing failed")

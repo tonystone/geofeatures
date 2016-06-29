@@ -21,7 +21,7 @@ import Swift
 
 extension MultiPolygon : Geometry {
     
-    public var dimension: Dimension { return .TWO }
+    public var dimension: Dimension { return .two }
     
     public func isEmpty() -> Bool {
         return self.count == 0

@@ -46,7 +46,7 @@ import Swift
 internal
 struct IntersectionMatrix {
     
-    enum Index : Int { case INTERIOR = 0, BOUNDARY, EXTERIOR }
+    enum Index : Int { case interior = 0, boundary, exterior }
     
     private
     var matrix: [[Dimension]]
@@ -58,15 +58,15 @@ struct IntersectionMatrix {
 extension IntersectionMatrix  {
     
     /**
-     Initialize an IntersectionMatrix with the default values of .EMPTY
+     Initialize an IntersectionMatrix with the default values of .empty
     */
     internal
     init() {
         self.matrix =
             [
-                [.EMPTY, .EMPTY, .EMPTY],
-                [.EMPTY, .EMPTY, .EMPTY],
-                [.EMPTY, .EMPTY, .EMPTY]
+                [.empty, .empty, .empty],
+                [.empty, .empty, .empty],
+                [.empty, .empty, .empty]
             ]
     }
     
@@ -84,9 +84,9 @@ extension IntersectionMatrix  {
     internal
     init(arrayLiteral elements: [[Dimension]]) {
         assert( elements.count == 3 &&
-                elements[Index.INTERIOR.rawValue].count == 3 &&
-                elements[Index.BOUNDARY.rawValue].count == 3 &&
-                elements[Index.EXTERIOR.rawValue].count == 3
+                elements[Index.interior.rawValue].count == 3 &&
+                elements[Index.boundary.rawValue].count == 3 &&
+                elements[Index.exterior.rawValue].count == 3
         )
         self.matrix = elements
     }
@@ -110,25 +110,25 @@ extension IntersectionMatrix {
      - parameter pattern: The pattern string consisting of legal characters from the set above.
      */
     internal
-    func matches(pattern: String) -> Bool {
+    func matches(_ pattern: String) -> Bool {
         
         var characters = pattern.characters.makeIterator()
         
-        for row in 0...Index.EXTERIOR.rawValue {
-            for col in 0...Index.EXTERIOR.rawValue {
+        for row in 0...Index.exterior.rawValue {
+            for col in 0...Index.exterior.rawValue {
                 if let character = characters.next() {
                     
                     switch character {
                         
                     case "T":
                         
-                        if ![Dimension.ZERO, .ONE, .TWO].contains(self.matrix[row][col]) {
+                        if ![Dimension.zero, .one, .two].contains(self.matrix[row][col]) {
                             return false
                         }
                         continue
                     case "F":
                         
-                        if Dimension.EMPTY != self.matrix[row][col] {
+                        if Dimension.empty != self.matrix[row][col] {
                             return false
                         }
                         continue
@@ -137,19 +137,19 @@ extension IntersectionMatrix {
                         continue
                     case "0":
                         
-                        if Dimension.ZERO != self.matrix[row][col] {
+                        if Dimension.zero != self.matrix[row][col] {
                             return false
                         }
                         continue
                     case "1":
                         
-                        if Dimension.ONE != self.matrix[row][col] {
+                        if Dimension.one != self.matrix[row][col] {
                             return false
                         }
                         continue
                     case "2":
                         
-                        if Dimension.TWO != self.matrix[row][col] {
+                        if Dimension.two != self.matrix[row][col] {
                             return false
                         }
                         continue
@@ -182,9 +182,9 @@ extension IntersectionMatrix : Sequence {
      ```
         let matrix = IntersectionMatrix()
      
-        let dimension = matrix[.INTERIOR, .BOUNDARY]
+        let dimension = matrix[.interior, .boundary]
      
-        matrix[.INTERIOR, .BOUNDARY] = .TWO
+        matrix[.interior, .boundary] = .two
      ```
      */
     internal
@@ -214,18 +214,18 @@ extension IntersectionMatrix : Sequence {
     func makeIterator() -> AnyIterator<Dimension> {
         
         // keep the index of the next element in the iteration
-        var nextRow = Index.INTERIOR.rawValue
-        var nextCol = Index.INTERIOR.rawValue - 1
+        var nextRow = Index.interior.rawValue
+        var nextCol = Index.interior.rawValue - 1
         
         // Construct a AnyGenerator<Dimension> instance, passing a closure that returns the next element in the iteration
         return AnyIterator<Dimension> {
             
-            if nextCol + 1 <= Index.EXTERIOR.rawValue {     // New col
+            if nextCol + 1 <= Index.exterior.rawValue {     // New col
                 nextCol += 1                                // Increment column
             } else {
-                if nextRow + 1 <= Index.EXTERIOR.rawValue { // New row
+                if nextRow + 1 <= Index.exterior.rawValue { // New row
                     nextRow += 1                            // Increment row and
-                    nextCol = Index.INTERIOR.rawValue       // reset column
+                    nextCol = Index.interior.rawValue       // reset column
                 } else {
                     return nil                              // End of Matrix
                 }
@@ -258,8 +258,8 @@ extension IntersectionMatrix : Equatable {}
 internal
 func == (lhs: IntersectionMatrix, rhs: IntersectionMatrix) -> Bool {
     
-    for row in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
-        for col in 0...IntersectionMatrix.Index.EXTERIOR.rawValue {
+    for row in 0...IntersectionMatrix.Index.exterior.rawValue {
+        for col in 0...IntersectionMatrix.Index.exterior.rawValue {
             
             if lhs.matrix[row][col] != rhs.matrix[row][col] {
                 return false

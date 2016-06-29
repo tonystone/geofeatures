@@ -21,7 +21,7 @@ import Swift
 
 extension LinearRing : Geometry  {
     
-    public var dimension: Dimension { return .ONE }
+    public var dimension: Dimension { return .one }
     
     public func isEmpty() -> Bool {
         return self.count == 0

@@ -32,10 +32,10 @@ import Swift
  */
 public enum Dimension : Int {
     
-    case EMPTY = -1
-    case ZERO = 0
-    case ONE  = 1
-    case TWO  = 2
+    case empty = -1
+    case zero = 0
+    case one  = 1
+    case two  = 2
 }
 
 

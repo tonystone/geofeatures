@@ -33,27 +33,27 @@ class GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests : XCTestCase
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(GeometryCollection(precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.EMPTY)
+        XCTAssertEqual(GeometryCollection(precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.empty)
     }
     
     func testDimension_Homogeneous_Point ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1))] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.ZERO)
+        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1))] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.zero)
     }
     
     func testDimension_Homogeneous_LineString ()   {
-        XCTAssertEqual(GeometryCollection(elements: [LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.ONE)
+        XCTAssertEqual(GeometryCollection(elements: [LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.one)
     }
     
     func testDimension_Homogeneous_Polygon ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.TWO)
+        XCTAssertEqual(GeometryCollection(elements: [Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.two)
     }
     
     func testDimension_Non_Homogeneous_Point_Polygon ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.TWO)
+        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.two)
     }
     
     func testDimension_Non_Homogeneous_Point_LineString ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.ONE)
+        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.one)
     }
 }
 
@@ -65,26 +65,26 @@ class GeometryCollection_Geometry_FixedPrecision_Cartesian_Tests : XCTestCase {
     let crs       = Cartesian()
     
     func testDimension ()   {
-        XCTAssertEqual(GeometryCollection(precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.EMPTY)
+        XCTAssertEqual(GeometryCollection(precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.empty)
     }
     
     func testDimension_Homogeneous_Point ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1))] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.ZERO)
+        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1))] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.zero)
     }
     
     func testDimension_Homogeneous_LineString ()   {
-        XCTAssertEqual(GeometryCollection(elements: [LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.ONE)
+        XCTAssertEqual(GeometryCollection(elements: [LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.one)
     }
     
     func testDimension_Homogeneous_Polygon ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.TWO)
+        XCTAssertEqual(GeometryCollection(elements: [Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.two)
     }
     
     func testDimension_Non_Homogeneous_Point_Polygon ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.TWO)
+        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), Polygon<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.two)
     }
     
     func testDimension_Non_Homogeneous_Point_LineString ()   {
-        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.ONE)
+        XCTAssertEqual(GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (x: 1, y: 1)), LineString<Coordinate2D>()] as [Geometry], precision: precision, coordinateReferenceSystem: crs).dimension, Dimension.one)
     }
 }
