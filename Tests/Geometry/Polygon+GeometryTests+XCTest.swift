@@ -30,6 +30,9 @@ extension Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
    static var allTests : [(String, (Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
+                ("testBoundary_OuterRing", testBoundary_OuterRing),
+                ("testBoundary_OuterRing_1InnerRing", testBoundary_OuterRing_1InnerRing),
+                ("testBoundary_Empty", testBoundary_Empty),
            ]
    }
 }

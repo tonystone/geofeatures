@@ -30,6 +30,15 @@ extension MultiLineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Test
    static var allTests : [(String, (MultiLineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
+                ("testBoundary_1Element_Invalid", testBoundary_1Element_Invalid),
+                ("testBoundary_2Element", testBoundary_2Element),
+                ("testBoundary_3Element_Open", testBoundary_3Element_Open),
+                ("testBoundary_4Element_Closed", testBoundary_4Element_Closed),
+                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_OGC_MultiCurve_A", testBoundary_OGC_MultiCurve_A),
+                ("testBoundary_OGC_MultiCurve_B", testBoundary_OGC_MultiCurve_B),
+                ("testBoundary_OGC_MultiCurve_C", testBoundary_OGC_MultiCurve_C),
+                ("testBoundary_Odd_Intersection", testBoundary_Odd_Intersection),
            ]
    }
 }

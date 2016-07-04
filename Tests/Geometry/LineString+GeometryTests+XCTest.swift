@@ -30,6 +30,11 @@ extension LineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
    static var allTests : [(String, (LineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
+                ("testBoundary_1Element_Invalid", testBoundary_1Element_Invalid),
+                ("testBoundary_2Element", testBoundary_2Element),
+                ("testBoundary_3Element_Open", testBoundary_3Element_Open),
+                ("testBoundary_4Element_Closed", testBoundary_4Element_Closed),
+                ("testBoundary_Empty", testBoundary_Empty),
            ]
    }
 }
