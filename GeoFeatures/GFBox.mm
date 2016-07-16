@@ -24,10 +24,10 @@
 #include "GFBox+Protected.hpp"
 #include "GFPoint+Protected.hpp"
 
-#include "internal/geofeatures/Box.hpp"
-#include "internal/geofeatures/GeometryVariant.hpp"
+#include "Box.hpp"
+#include "GeometryVariant.hpp"
 
-#include <boost/geometry/io/wkt/wkt.hpp>
+#include "boost/geometry/io/wkt/wkt.hpp"
 
 namespace gf = geofeatures;
 

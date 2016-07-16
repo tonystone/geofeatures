@@ -1,1 +1,0 @@
-../../../../../../../../../GeoFeatures/boost/geometry/strategies/cartesian/side_by_triangle.hpp

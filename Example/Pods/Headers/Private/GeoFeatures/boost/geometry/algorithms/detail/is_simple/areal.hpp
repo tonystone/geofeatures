@@ -1,1 +1,0 @@
-../../../../../../../../../../GeoFeatures/boost/geometry/algorithms/detail/is_simple/areal.hpp

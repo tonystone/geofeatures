@@ -23,9 +23,9 @@
 #include "GFPoint+Protected.hpp"
 #include "GFLineString+Protected.hpp"
 
-#include "internal/geofeatures/Ring.hpp"
-#include "internal/geofeatures/LineString.hpp"
-#include "internal/geofeatures/GeometryVariant.hpp"
+#include "geofeatures/Ring.hpp"
+#include "geofeatures/LineString.hpp"
+#include "geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
