@@ -24,8 +24,8 @@
 #include "GFMultiLineString+Protected.hpp"
 #include "GFLineString+Protected.hpp"
 
-#include "internal/geofeatures/MultiLineString.hpp"
-#include "internal/geofeatures/GeometryVariant.hpp"
+#include "MultiLineString.hpp"
+#include "GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 #include <vector>

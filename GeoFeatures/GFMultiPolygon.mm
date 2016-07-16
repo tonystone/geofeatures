@@ -24,8 +24,8 @@
 #include "GFMultiPolygon+Protected.hpp"
 #include "GFPolygon+Protected.hpp"
 
-#include "internal/geofeatures/MultiPolygon.hpp"
-#include "internal/geofeatures/GeometryVariant.hpp"
+#include "geofeatures/MultiPolygon.hpp"
+#include "geofeatures/GeometryVariant.hpp"
 
 #include <vector>
 

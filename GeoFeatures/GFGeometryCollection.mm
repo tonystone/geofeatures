@@ -24,19 +24,19 @@
 #include "GFGeometryCollection+Protected.hpp"
 #include "GFGeometry+Protected.hpp"
 
-#include "internal/GFPoint+Protected.hpp"
-#include "internal/GFLineString+Protected.hpp"
-#include "internal/GFRing+Protected.hpp"
-#include "internal/GFBox+Protected.hpp"
-#include "internal/GFPolygon+Protected.hpp"
-#include "internal/GFMultiPoint+Protected.hpp"
-#include "internal/GFMultiLineString+Protected.hpp"
-#include "internal/GFMultiPolygon+Protected.hpp"
+#include "GFPoint+Protected.hpp"
+#include "GFLineString+Protected.hpp"
+#include "GFRing+Protected.hpp"
+#include "GFBox+Protected.hpp"
+#include "GFPolygon+Protected.hpp"
+#include "GFMultiPoint+Protected.hpp"
+#include "GFMultiLineString+Protected.hpp"
+#include "GFMultiPolygon+Protected.hpp"
 
-#include "internal/geofeatures/GeometryVariant.hpp"
-#include "internal/geofeatures/GeometryCollection.hpp"
+#include "GeometryVariant.hpp"
+#include "GeometryCollection.hpp"
 
-#include "internal/geofeatures/io/ReadWKT.hpp"
+#include "ReadWKT.hpp"
 
 namespace gf = geofeatures;
 

@@ -23,7 +23,7 @@
 #define __GFGeometryCollectionProtected_hpp
 
 #import <Foundation/Foundation.h>
-#import <GeoFeatures/internal/geofeatures/GeometryCollection.hpp>
+#import "GeometryCollection.hpp"
 #import "GFGeometryCollection.h"
 
 // Note: we must specifically include GeometryCollection.hpp here instead of forward declaring GeometryCollection

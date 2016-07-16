@@ -24,8 +24,8 @@
 #include "GFMultiPoint+Protected.hpp"
 #include "GFPoint+Protected.hpp"
 
-#include "internal/geofeatures/MultiPoint.hpp"
-#include "internal/geofeatures/GeometryVariant.hpp"
+#include "MultiPoint.hpp"
+#include "GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
