@@ -2,25 +2,27 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-target 'GeoFeatures-iOS', :exclusive => true do
+install! 'cocoapods', :deterministic_uuids => false
+
+target 'GeoFeatures-iOS' do
   platform :ios, '8.0'
   
   pod "GeoFeatures", :path => "../"
 end
 
-target 'GeoFeatures-iOS-Tests', :exclusive => true do
+target 'GeoFeatures-iOS-Tests' do
   platform :ios, '8.0'
   
   pod "GeoFeatures", :path => "../"
 end
 
-target 'GeoFeatures-OSX', :exclusive => true do
+target 'GeoFeatures-OSX' do
     platform :osx, '10.10'
     
     pod "GeoFeatures", :path => "../"
 end
 
-target 'GeoFeatures-OSX-Tests', :exclusive => true do
+target 'GeoFeatures-OSX-Tests' do
     platform :osx, '10.10'
     
     pod "GeoFeatures", :path => "../"
