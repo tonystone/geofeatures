@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name              = "GeoFeatures"
-    s.version           = "1.6.1"
+    s.version           = "1.6.2"
     s.summary           = "A lightweight, high performance geometry library for Objective-C"
     s.homepage          = "https://github.com/tonystone/geofeatures"
     s.license           = 'Apache License, Version 2.0'
@@ -22,11 +22,9 @@ Pod::Spec.new do |s|
     s.requires_arc = true
 
     s.public_header_files  = 'GeoFeatures/*.h'
-    s.header_mappings_dir =  'GeoFeatures'
-
+    s.private_header_files = 'GeoFeatures/internal/**/*.{hpp,h}'
     s.source_files         = 'GeoFeatures/**/*'
     s.preserve_paths       = 'LICENSE_BOOST_1_0'
-
     s.exclude_files        = 'GeoFeatures/**/*.pl'
 
     s.frameworks = 'MapKit'
@@ -35,12 +33,12 @@ Pod::Spec.new do |s|
     # Note: __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES flag required to work around
     #       conflict with Apple headers defined in https://svn.boost.org/trac/boost/ticket/10471
     #
-    s.xcconfig = {
-        'GCC_C_LANGUAGE_STANDARD' => 'c11',
+    s.pod_target_xcconfig = {
+       'GCC_C_LANGUAGE_STANDARD' => 'c11',
         'CLANG_CXX_LANGUAGE_STANDARD' => 'c++0x',
         'CLANG_CXX_LIBRARY' => 'libc++',
         'OTHER_LDFLAGS' => '-lc++',
         'OTHER_CFLAGS' => '-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0',
+        'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_ROOT)/GeoFeatures/GeoFeatures/internal" "$(PODS_ROOT)/../../GeoFeatures/internal"',
     }
-
 end
