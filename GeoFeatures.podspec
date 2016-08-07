@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name              = "GeoFeatures"
-    s.version           = "1.6.3"
+    s.version           = "1.6.4"
     s.summary           = "A lightweight, high performance geometry library for Objective-C"
     s.homepage          = "https://github.com/tonystone/geofeatures"
     s.license           = 'Apache License, Version 2.0'
@@ -25,7 +25,27 @@ Pod::Spec.new do |s|
     s.private_header_files = 'GeoFeatures/internal/**/*.{hpp,h}'
     s.source_files         = 'GeoFeatures/**/*'
     s.preserve_paths       = 'LICENSE_BOOST_1_0'
-    s.exclude_files        = 'GeoFeatures/**/*.pl'
+
+    s.exclude_files        =    'GeoFeatures/**/*.pl',
+                                'GeoFeatures/internal/boost/test/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/bcc/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/bcc551/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/bcc_pre590/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/dmc/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/msvc60/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/msvc70/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/mwcw/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/np_ctps/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/no_ttp/**/*',
+                                'GeoFeatures/internal/boost/mpl/aux_/preprocessed/plain/**/*',
+                                'GeoFeatures/internal/boost/mpl/vector/aux_/preprocessed/plain/**/*',
+                                'GeoFeatures/internal/boost/mpl/vector/aux_/preprocessed/no_ctps/**/*',
+                                'GeoFeatures/internal/boost/parameter/aux_/preprocessed/**/*',
+                                'GeoFeatures/internal/boost/fusion/container/deque/detail/cpp03/preprocessed/**/*',
+                                'GeoFeatures/internal/boost/fusion/container/list/detail/cpp03/preprocessed/**/*',
+                                'GeoFeatures/internal/boost/fusion/container/map/detail/cpp03/preprocessed/**/*',
+                                'GeoFeatures/internal/boost/fusion/container/set/detail/cpp03/preprocessed/**/*',
+                                'GeoFeatures/internal/boost/fusion/container/vector/detail/cpp03/preprocessed/**/*'
 
     s.frameworks = 'MapKit'
 
