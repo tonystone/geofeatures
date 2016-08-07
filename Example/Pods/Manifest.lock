@@ -1,5 +1,5 @@
 PODS:
-  - GeoFeatures (1.6.2)
+  - GeoFeatures (1.6.3)
 
 DEPENDENCIES:
   - GeoFeatures (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GeoFeatures: 80e08ec4305ac7c86470413b6745dd46e6b35ee0
+  GeoFeatures: af611a879c350821e1f2925ac2e2adff7657e494
 
 PODFILE CHECKSUM: c0b054d38a86a1f52af82aeb5983dda2cb3f7d7a
 
