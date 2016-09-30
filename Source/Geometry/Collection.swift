@@ -35,14 +35,14 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
         Collection can be constructed from any Sequence as long as it has an
         Element type equal Self.Element.
      */
-    init<S : Sequence where S.Iterator.Element == Element>(elements: S, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
+    init<S : Sequence>(elements: S, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) where S.Iterator.Element == Element
     
     /**
         Collection can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal Self.Element and the Distance
         is an Int type.
      */
-    init<C : Swift.Collection where C.Iterator.Element == Element>(elements: C, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
+    init<C : Swift.Collection>(elements: C, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) where C.Iterator.Element == Element
 
     
     /**
@@ -71,12 +71,12 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     /**
         Append the elements of `newElements`.
      */
-    mutating func append<S : Sequence where S.Iterator.Element == Element>(contentsOf newElements: S)
+    mutating func append<S : Sequence>(contentsOf newElements: S) where S.Iterator.Element == Element
     
     /**
         Append the elements of `newElements`.
      */
-    mutating func append<C : Swift.Collection where C.Iterator.Element == Element>(contentsOf newElements: C)
+    mutating func append<C : Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == Element
     
     /**
         Insert `newElement` at index `i`.
@@ -104,5 +104,5 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    mutating func removeAll(keepCapacity: Bool)
+    mutating func removeAll(_ keepCapacity: Bool)
 }

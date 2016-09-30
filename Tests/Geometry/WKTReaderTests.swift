@@ -30,7 +30,7 @@ import XCTest
 
 class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
-    private var wktReader = WKTReader<Coordinate2D>(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    fileprivate var wktReader = WKTReader<Coordinate2D>(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
     
     func testRead_Point_Float_Valid() {
         

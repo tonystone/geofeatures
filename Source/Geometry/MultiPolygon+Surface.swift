@@ -21,7 +21,7 @@ import Swift
 
 extension MultiPolygon : Surface {
     
-    @warn_unused_result
+    
     public func area() -> Double {
         
         return storage.withUnsafeMutablePointers { (count, elements)->Double in

@@ -83,7 +83,7 @@ extension Coordinate3DM : CustomStringConvertible, CustomDebugStringConvertible 
     }
     
     public var debugDescription : String {
-        return String(self) + self.description
+        return String(describing: self) + self.description
     }
 }
 

@@ -21,12 +21,12 @@ import Swift
 
 public protocol Precision {
     
-    @warn_unused_result
+    
     func convert(_ value: Double) -> Double
 }
 
-public func ==<T1 : protocol<Precision, Hashable>, T2 : protocol<Precision, Hashable>>(lhs: T1, rhs: T2) -> Bool {
-    if (lhs.dynamicType == rhs.dynamicType) {
+public func ==<T1 : Precision & Hashable, T2 : Precision & Hashable>(lhs: T1, rhs: T2) -> Bool {
+    if (type(of: lhs) == type(of: rhs)) {
         return lhs.hashValue == rhs.hashValue
     }
     return false

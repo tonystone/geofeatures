@@ -26,7 +26,7 @@ import Swift
  x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
  have coordinate values for z.
  */
-public struct Point<CoordinateType : protocol<Coordinate, CopyConstructable>> {
+public struct Point<CoordinateType : Coordinate & CopyConstructable> {
     
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
@@ -62,24 +62,24 @@ extension Point where CoordinateType : TupleConvertable {
 
 extension Point : CustomStringConvertible, CustomDebugStringConvertible {
     
-    public var description : String { return "\(self.dynamicType)(\(self.coordinate))"  }
+    public var description : String { return "\(type(of: self))(\(self.coordinate))"  }
     public var debugDescription : String { return self.description  }
 }
 
 extension Point : Equatable {}
 
-@warn_unused_result
-public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
+
+public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
 
-@warn_unused_result
-public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>, GeometryType : Geometry>(lhs: Point<CoordinateType>, rhs: GeometryType) -> Bool {
+
+public func ==<CoordinateType : Coordinate & CopyConstructable, GeometryType : Geometry>(lhs: Point<CoordinateType>, rhs: GeometryType) -> Bool {
     return lhs.equals(rhs)
 }
 
-@warn_unused_result
-public func ==<GeometryType : Geometry, CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: GeometryType, rhs: Point<CoordinateType>) -> Bool {
+
+public func ==<GeometryType : Geometry, CoordinateType : Coordinate & CopyConstructable>(lhs: GeometryType, rhs: Point<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
 

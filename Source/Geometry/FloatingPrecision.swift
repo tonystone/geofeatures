@@ -32,7 +32,7 @@ public struct FloatingPrecision : Precision, Equatable, Hashable  {
 extension FloatingPrecision : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)"
+        return "\(type(of: self))"
     }
     
     public var debugDescription : String {

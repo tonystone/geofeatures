@@ -25,24 +25,24 @@ internal class CollectionBuffer<E> : ManagedBuffer<Int,E> {
     
     deinit {
         self.withUnsafeMutablePointerToElements { elements->Void in
-            elements.deinitialize(count: self.value)
+            elements.deinitialize(count: self.header)
         }
     }
 }
 
 extension CollectionBuffer {
     
-    @warn_unused_result
+    
     func clone() -> CollectionBuffer<Element> {
         return self.withUnsafeMutablePointerToElements { oldElements->CollectionBuffer<Element> in
             
             return CollectionBuffer<Element>.create(minimumCapacity: self.capacity) { newBuffer in
                 
                 newBuffer.withUnsafeMutablePointerToElements { newElements->Void in
-                    newElements.initializeFrom(oldElements, count: self.value)
+                    newElements.initialize(from: oldElements, count: self.header)
                 }
             
-                return self.value
+                return self.header
             
             } as! CollectionBuffer<Element>
             
@@ -52,16 +52,16 @@ extension CollectionBuffer {
     func resize(_ newSize: Int) -> CollectionBuffer<Element> {
         return self.withUnsafeMutablePointerToElements { oldElems->CollectionBuffer<Element> in
             
-            let elementCount = self.value
+            let elementCount = self.header
             
             return CollectionBuffer<Element>.create(minimumCapacity: newSize) { newBuffer in
                 
                 newBuffer.withUnsafeMutablePointerToElements { newElements->Void in
                     
-                    newElements.moveInitializeFrom(oldElems, count: elementCount)
+                    newElements.moveInitialize(from: oldElems, count: elementCount)
                 }
                 
-                self.value = 0
+                self.header = 0
                 
                 return elementCount
         

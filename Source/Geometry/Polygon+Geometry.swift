@@ -32,7 +32,7 @@ extension Polygon : Geometry  {
      
      - Note: The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries
      */
-    @warn_unused_result
+    
     public
     func boundary() -> Geometry {
         
@@ -50,7 +50,7 @@ extension Polygon : Geometry  {
     
     public func equals(_ other: Geometry) -> Bool {
         if let other = other as? Polygon<CoordinateType> {
-            return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, isEquivalent: { (lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool in
+            return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, by: { (lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
             })
         }

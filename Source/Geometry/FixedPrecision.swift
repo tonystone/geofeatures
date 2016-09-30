@@ -32,7 +32,7 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
     public var hashValue: Int { get { return 31.hashValue + scale.hashValue } }
     
     public init(scale: Double) {
-        self.scale = Double.abs(scale)
+        self.scale = abs(scale)
     }
     
     public func convert(_ value: Double) -> Double {
@@ -42,7 +42,7 @@ public struct FixedPrecision : Precision, Equatable, Hashable  {
 extension FixedPrecision : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(scale: \(self.scale))"
+        return "\(type(of: self))(scale: \(self.scale))"
     }
     
     public var debugDescription : String {

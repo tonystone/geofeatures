@@ -33,7 +33,7 @@ import Swift
     A LinearRing is a Curve with linear interpolation between Coordinates. Each consecutive pair of
     Coordinates defines a Line segment.
  */
-public struct LinearRing<CoordinateType : protocol<Coordinate, CopyConstructable>> {
+public struct LinearRing<CoordinateType : Coordinate & CopyConstructable> {
 
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
@@ -59,14 +59,14 @@ public struct LinearRing<CoordinateType : protocol<Coordinate, CopyConstructable
 extension LinearRing {
     
     @inline(__always)
-    private mutating func _ensureUniquelyReferenced() {
-        if !isUniquelyReferencedNonObjC(&storage) {
+    fileprivate mutating func _ensureUniquelyReferenced() {
+        if !isKnownUniquelyReferenced(&storage) {
             storage = storage.clone()
         }
     }
 
     @inline(__always)
-    private mutating func _resizeIfNeeded() {
+    fileprivate mutating func _resizeIfNeeded() {
         if storage.capacity == count {
             storage = storage.resize(count * 2)
         }
@@ -88,7 +88,7 @@ extension LinearRing : Collection {
         LinearRing can be constructed from any Sequence as long as it has an
         Element type equal the Coordinate type specified in Element.
      */
-    public init<S : Sequence where S.Iterator.Element == CoordinateType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<S : Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
@@ -104,7 +104,7 @@ extension LinearRing : Collection {
         long as it has an Element type equal the Coordinate type specified in Element 
         and the Distance is an Int type.
      */
-    public init<C : Swift.Collection where C.Iterator.Element == CoordinateType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<C : Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
@@ -121,7 +121,7 @@ extension LinearRing : Collection {
         - Returns: The number of Coordinate3D objects.
      */
     public var count: Int {
-        get { return self.storage.value }
+        get { return self.storage.header }
     }
     
     /**
@@ -162,7 +162,7 @@ extension LinearRing : Collection {
          
         storage.withUnsafeMutablePointers { (value, elements)->Void in
             
-            (elements + value.pointee).initialize(with: convertedCoordinate)
+            (elements + value.pointee).initialize(to: convertedCoordinate)
             value.pointee = value.pointee &+ 1
         }
     }
@@ -170,7 +170,7 @@ extension LinearRing : Collection {
     /**
         Append the elements of `newElements` to this LinearRing.
      */
-    public mutating func append<S : Sequence where S.Iterator.Element == CoordinateType>(contentsOf newElements: S) {
+    public mutating func append<S : Sequence>(contentsOf newElements: S) where S.Iterator.Element == CoordinateType {
         
         var Iterator = newElements.makeIterator()
         
@@ -182,7 +182,7 @@ extension LinearRing : Collection {
     /**
         Append the elements of `newElements` to this LinearRing.
      */
-    public mutating func append<C : Swift.Collection where C.Iterator.Element == CoordinateType>(contentsOf newElements: C) {
+    public mutating func append<C : Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == CoordinateType {
         
         self.reserveCapacity(numericCast(newElements.count))
         
@@ -199,7 +199,7 @@ extension LinearRing : Collection {
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: CoordinateType, atIndex index: Int) {
-        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+        guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
 
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
@@ -213,10 +213,10 @@ extension LinearRing : Collection {
             
             // Move the other elements
             while  m >= index {
-                (elements + (m &+ 1)).moveInitializeFrom((elements + m), count: 1)
+                (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
                 m = m &- 1
             }
-            (elements + index).initialize(with: convertedCoordinate)
+            (elements + index).initialize(to: convertedCoordinate)
         }
     }
     
@@ -225,7 +225,7 @@ extension LinearRing : Collection {
      */
     @discardableResult
     public mutating func remove(at index: Int) -> CoordinateType {
-        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+        guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
 
         return storage.withUnsafeMutablePointers { (count, elements)-> CoordinateType in
             
@@ -235,7 +235,7 @@ extension LinearRing : Collection {
             
             // Move the other elements
             while  m <  count.pointee {
-                (elements + m).moveInitializeFrom((elements + (m &+ 1)), count: 1)
+                (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
             count.pointee = count.pointee &- 1
@@ -251,7 +251,7 @@ extension LinearRing : Collection {
      */
     @discardableResult
     public mutating func removeLast() -> CoordinateType {
-        guard storage.value > 0 else { preconditionFailure("can't removeLast from an empty LinearRing.") }
+        guard storage.header > 0 else { preconditionFailure("can't removeLast from an empty LinearRing.") }
 
         return storage.withUnsafeMutablePointers { (count, elements)-> CoordinateType in
             
@@ -266,7 +266,7 @@ extension LinearRing : Collection {
      
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    public mutating func removeAll(keepCapacity: Bool = false) {
+    public mutating func removeAll(_ keepCapacity: Bool = false) {
         
         if keepCapacity {
         
@@ -284,7 +284,7 @@ extension LinearRing : Collection {
  
     Coordinates that are TupleConvertable allow initialization via an ordinary Swift tuple.
  */
-extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConstructable> {
+extension LinearRing where CoordinateType : TupleConvertable & CopyConstructable {
     
     /**
         LinearRing can be constructed from any Sequence if it's Elements are tuples that match
@@ -294,7 +294,7 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
      
         - seealso: TupleConvertable.
      */
-    public init<S : Sequence where S.Iterator.Element == CoordinateType.TupleType>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<S : Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType.TupleType {
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
@@ -313,7 +313,7 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
      
         - seealso: TupleConvertable.
      */
-    public init<C : Swift.Collection where C.Iterator.Element == CoordinateType.TupleType>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init<C : Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
         
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
         
@@ -338,7 +338,7 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
     /**
         Append the elements of `newElements` to this LinearRing.
      */
-    public mutating func append<S : Sequence where S.Iterator.Element == CoordinateType.TupleType>(contentsOf newElements: S) {
+    public mutating func append<S : Sequence>(contentsOf newElements: S) where S.Iterator.Element == CoordinateType.TupleType {
 
         var Iterator = newElements.makeIterator()
         
@@ -350,11 +350,11 @@ extension LinearRing where CoordinateType : protocol<TupleConvertable, CopyConst
     /**
         Append the elements of `newElements` to this LinearRing.
      */
-    public mutating func append<C : Swift.Collection where C.Iterator.Element == CoordinateType.TupleType>(contentsOf newElements: C) {
+    public mutating func append<C : Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == CoordinateType.TupleType {
         
         _ensureUniquelyReferenced()
         
-        self.reserveCapacity(numericCast(newElements.count) + storage.value)
+        self.reserveCapacity(numericCast(newElements.count) + storage.header)
         
         var Iterator = newElements.makeIterator()
         
@@ -395,18 +395,18 @@ extension LinearRing : Swift.Collection, MutableCollection, _DestructorSafeConta
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
-    public var endIndex  : Int { return storage.value }
+    public var endIndex  : Int { return storage.header }
     
     public subscript(index : Int) -> CoordinateType {
         
         get {
-            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+            guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
             
             return storage.withUnsafeMutablePointerToElements { $0[index] }
         }
         
         set (newValue) {
-            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+            guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
 
             _ensureUniquelyReferenced()
             
@@ -415,7 +415,7 @@ extension LinearRing : Swift.Collection, MutableCollection, _DestructorSafeConta
             storage.withUnsafeMutablePointerToElements { elements->Void in
                 
                 (elements + index).deinitialize()
-                (elements + index).initialize(with: convertedCoordinate)
+                (elements + index).initialize(to: convertedCoordinate)
             }
         }
     }
@@ -426,7 +426,7 @@ extension LinearRing : Swift.Collection, MutableCollection, _DestructorSafeConta
 extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description : String {
-        return "\(self.dynamicType)(\(self.flatMap { String($0) }.joined(separator: ", ")))"
+        return "\(type(of: self))(\(self.flatMap { String(describing: $0) }.joined(separator: ", ")))"
     }
     
     public var debugDescription : String {
@@ -438,7 +438,7 @@ extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
 
 extension LinearRing : Equatable {}
 
-@warn_unused_result
-public func ==<CoordinateType : protocol<Coordinate, CopyConstructable>>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
+
+public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

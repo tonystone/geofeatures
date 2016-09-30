@@ -24,7 +24,7 @@ public protocol Surface {
     /**
         The area of this Surface calaculated using its associated CoordinateReferenceSystem.
     */
-    @warn_unused_result
+    
     func area() -> Double
 
 //    /**

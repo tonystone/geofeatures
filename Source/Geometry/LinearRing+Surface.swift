@@ -32,7 +32,7 @@ extension LinearRing : Surface {
         - requires: isSimple == true
         - requires: isClosed == true
      */
-    @warn_unused_result
+    
     public func area() -> Double {
         
         return storage.withUnsafeMutablePointers { (count, elements)->Double in

@@ -30,7 +30,7 @@ extension MultiLineString : Curve {
     /**
      - Returns: True if all subelements are closed (begin and end coordinates are equal)
      */
-    @warn_unused_result
+    
     public
     func isClosed() -> Bool {
         
@@ -49,7 +49,7 @@ extension MultiLineString : Curve {
     /**
     - Returns: The length of this Curve calculated using the sum of the length of the subelements.
      */
-    @warn_unused_result
+    
     public
     func length() -> Double {
         

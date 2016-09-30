@@ -21,7 +21,7 @@ import Swift
 import Foundation
 
 internal protocol Token {
-    func match(string: String, matchRange: NSRange) -> NSRange
+    func match(_ string: String, matchRange: NSRange) -> NSRange
     func isNewLine() -> Bool
 }
 
@@ -37,8 +37,8 @@ internal class Tokenizer<T : Token> {
     var matchString: String { get { return (stringStream as NSString).substring(with: matchRange) } }
 #endif
     
-    private var stringStream: String
-    private var matchRange: NSRange
+    fileprivate var stringStream: String
+    fileprivate var matchRange: NSRange
     
     init(string: String) {
         self.stringStream = string
@@ -51,7 +51,7 @@ internal class Tokenizer<T : Token> {
     }
     
     func accept(_ token: T) -> String? {
-        let range = token.match(string: stringStream, matchRange: matchRange)
+        let range = token.match(stringStream, matchRange: matchRange)
             
         if range.location != NSNotFound {
             
@@ -76,6 +76,6 @@ internal class Tokenizer<T : Token> {
     }
     
     func expect(_ token: T) -> Bool {
-        return token.match(string: stringStream, matchRange: matchRange).location != NSNotFound
+        return token.match(stringStream, matchRange: matchRange).location != NSNotFound
     }
 }

@@ -24,7 +24,7 @@ extension LineString : Geometry  {
     public
     var dimension: Dimension { return .one }
     
-    @warn_unused_result
+    
     public
     func isEmpty() -> Bool {
         return self.count == 0
@@ -35,7 +35,7 @@ extension LineString : Geometry  {
      
      - Note: The boundary of a LineString if empty is the empty MultiPoint. If not empty it is the first and last point.
      */
-    @warn_unused_result
+    
     public
     func boundary() -> Geometry {
 
@@ -54,11 +54,11 @@ extension LineString : Geometry  {
         }
     }
     
-    @warn_unused_result
+    
     public
     func equals(_ other: Geometry) -> Bool {
         if let other = other as? LineString<Element> {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Element, rhs: Element) -> Bool in
+            return self.elementsEqual(other, by: { (lhs: Element, rhs: Element) -> Bool in
                 return lhs == rhs
             })
         }
@@ -66,7 +66,7 @@ extension LineString : Geometry  {
     }
 
     // TODO: Must be implenented.  Here just to test protocol
-    @warn_unused_result    
+      
     public
     func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()

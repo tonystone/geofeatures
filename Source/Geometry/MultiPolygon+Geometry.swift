@@ -24,7 +24,7 @@ extension MultiPolygon : Geometry {
     public
     var dimension: Dimension { return .two }
     
-    @warn_unused_result
+    
     public
     func isEmpty() -> Bool {
         return self.count == 0
@@ -35,7 +35,7 @@ extension MultiPolygon : Geometry {
      
      - Note: The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
      */
-    @warn_unused_result
+    
     public
     func boundary() -> Geometry {
         return self.storage.withUnsafeMutablePointers({ (count, elements) -> Geometry in
@@ -51,11 +51,11 @@ extension MultiPolygon : Geometry {
         })
     }
 
-    @warn_unused_result
+    
     public
     func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPolygon<CoordinateType> {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool in
+            return self.elementsEqual(other, by: { (lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool in
                 return lhs.equals(rhs)
             })
         }
@@ -63,7 +63,7 @@ extension MultiPolygon : Geometry {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    @warn_unused_result
+    
     public
     func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()

@@ -133,7 +133,7 @@ extension ${Self} : Collection {
         - Returns: The number of ${Element} objects.
      */
     public var count: Int {
-        get { return self.storage.value }
+        get { return self.storage.header }
     }
 
     /**
@@ -208,7 +208,7 @@ extension ${Self} : Collection {
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: Element, atIndex index: Int) {
-        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range, can't insert ${Element}.") }
+        guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range, can't insert ${Element}.") }
         
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
@@ -234,7 +234,7 @@ extension ${Self} : Collection {
      */
     @discardableResult
     public mutating func remove(at index: Int) -> Element {
-        guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range, can't remove ${Element}.") }
+        guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range, can't remove ${Element}.") }
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in
             
@@ -260,7 +260,7 @@ extension ${Self} : Collection {
      */
     @discardableResult
     public mutating func removeLast() -> Element {
-        guard storage.value > 0 else { preconditionFailure("can't removeLast from an empty ${Self}.") }
+        guard storage.header > 0 else { preconditionFailure("can't removeLast from an empty ${Self}.") }
         
         return storage.withUnsafeMutablePointers { (count, elements)-> Element in
             
@@ -309,16 +309,16 @@ extension ${Self} {
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
-    public var endIndex   : Int { return storage.value  }
+    public var endIndex   : Int { return storage.header  }
     
     public subscript(index : Int) -> Element {
         get {
-            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+            guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
             
             return storage.withUnsafeMutablePointerToElements { $0[index] }
         }
         set (newValue) {
-            guard ((index >= 0) && (index < storage.value)) else { preconditionFailure("Index out of range.") }
+            guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
             
             _ensureUniquelyReferenced()
         

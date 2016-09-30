@@ -24,14 +24,14 @@ import Foundation
  */
 internal class RegularExpression {
     
-    typealias RegularExpressionOptions = Foundation.RegularExpression.Options
-    typealias MatchingOptions = Foundation.RegularExpression.MatchingOptions
+    typealias RegularExpressionOptions = Foundation.NSRegularExpression.Options
+    typealias MatchingOptions = Foundation.NSRegularExpression.MatchingOptions
     
-    var regex: Foundation.RegularExpression? = nil
+    var regex: Foundation.NSRegularExpression? = nil
     
     init(_ pattern: String, options: RegularExpressionOptions = []) {
         do {
-            regex = try Foundation.RegularExpression(pattern: pattern, options: options)
+            regex = try Foundation.NSRegularExpression(pattern: pattern, options: options)
         } catch {}
     }
     

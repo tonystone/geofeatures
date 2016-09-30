@@ -48,7 +48,7 @@ extension GeometryCollection : Geometry  {
     /**
      - Returns: the closure of the combinatorial boundary of this Geometry instance.
      */
-    @warn_unused_result
+    
     public
     func boundary() -> Geometry {
         // TODO: implement boundary
@@ -57,7 +57,7 @@ extension GeometryCollection : Geometry  {
     
     public func equals(_ other: Geometry) -> Bool {
         if let other = other as? GeometryCollection {
-            return self.elementsEqual(other, isEquivalent: { (lhs: Geometry, rhs: Geometry) -> Bool in
+            return self.elementsEqual(other, by: { (lhs: Geometry, rhs: Geometry) -> Bool in
                 return lhs.equals(rhs)
             })
         }

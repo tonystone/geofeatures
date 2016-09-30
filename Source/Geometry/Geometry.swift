@@ -55,13 +55,13 @@ public protocol Geometry {
     /**
      - Returns: true if this Geometry is an empty Geometry.
     */
-    @warn_unused_result
+    
     func isEmpty() -> Bool
 
     /**
      - Returns: the closure of the combinatorial boundary of this Geometry instance.
      */
-    @warn_unused_result
+    
     func boundary() -> Geometry
     
 //    /**
@@ -83,57 +83,57 @@ public protocol Geometry {
     /**
      - Returns: true if this GeoemetryType instance is equal to the other Geometry instance.
      */
-    @warn_unused_result
+    
     func equals(_ other: Geometry) -> Bool
     
     /**
     - Returns: true if this geometric object is “spatially disjoint” from the other Geometry.
     */
-    @warn_unused_result
+    
     func disjoint(_ other: Geometry) -> Bool
     
     /**
      - Returns: true if this geometric object “spatially intersects” the other Geometry.
      */
-    @warn_unused_result
+    
     func intersects(_ other: Geometry) -> Bool
     
     /**
      - Returns: true if this geometric object “spatially touches” the other Geometry.
      - Returns: false is self and other are both 0-Dimensional (Point and MultiPoint)
      */
-    @warn_unused_result
+    
     func touches(_ other: Geometry) -> Bool
     
     /**
      - Returns: true if this geometric object “spatially crosses" the other Geometry.
      */
-    @warn_unused_result
+    
     func crosses(_ other: Geometry) -> Bool
     
     /**
      - Returns: true if this geometric object is “spatially within” the other Geometry.
      */
-    @warn_unused_result
+    
     func within(_ other: Geometry) -> Bool
     
     /**
      - Returns: true if this geometric object “spatially contains” the other Geometry
      */
-    @warn_unused_result
+    
     func contains(_ other: Geometry) -> Bool
     
     /**
      - Returns: true if this geometric object “spatially overlaps” the other Geometry.
      */
-    @warn_unused_result
+    
     func overlaps(_ other: Geometry) -> Bool
     
     /**
      - Returns true if this geometric object is spatially related to the other Geometry by testing for intersections between the interior, boundary and exterior of the two geometric objects as specified by the values in the intersectionPatternMatrix.
      - Returns: false if all the tested intersections are empty except exterior (this) intersect exterior (another).
      */
-    @warn_unused_result
+    
     func relate(_ other: Geometry, pattern :String) -> Bool
 //
 //    /**
@@ -161,7 +161,7 @@ public protocol Geometry {
 //    @warn_unused_result
 //    func intersection(other: Geometry) -> Geometry
    
-    @warn_unused_result
+    
     func union(_ other: Geometry) ->  Geometry
 
 //    @warn_unused_result
@@ -173,31 +173,31 @@ public protocol Geometry {
 
 // MARK: Operators
 
-@warn_unused_result
+
 public func ==(lhs: Geometry, rhs: Geometry) -> Bool {
     return lhs.equals(rhs)
 }
 
-@warn_unused_result
+
 public func ==<T : Geometry>(lhs: Geometry, rhs: T) -> Bool {
     return lhs.equals(rhs)
 }
 
-@warn_unused_result
+
 public func ==<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
     return lhs.equals(rhs)
 }
 
-@warn_unused_result
+
 public func !=(lhs: Geometry, rhs:Geometry) -> Bool {
     return !lhs.equals(rhs)
 }
 
-@warn_unused_result
+
 public func !=<T : Geometry>(lhs: Geometry, rhs: T) -> Bool {
     return !lhs.equals(rhs)
 }
-@warn_unused_result
+
 public func !=<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
     return !lhs.equals(rhs)
 }
@@ -210,24 +210,24 @@ public func !=<T : Geometry>(lhs: T, rhs: Geometry) -> Bool {
  */
 extension Geometry {
     
-    @warn_unused_result
+    
     func equals(_ other: Geometry) -> Bool {
         return relate(other, pattern: "TFFFTFFFT")
     }
     
-    @warn_unused_result
+    
     public
     func disjoint(_ other: Geometry) -> Bool {
         return relate(other, pattern: "FF*FF****")
     }
     
-    @warn_unused_result
+    
     public
     func intersects(_ other: Geometry) -> Bool {
         return !disjoint(other)
     }
     
-    @warn_unused_result
+    
     public
     func touches(_ other: Geometry) -> Bool {
         
@@ -237,7 +237,7 @@ extension Geometry {
         return relate(other, pattern: "FT*******") || relate(other, pattern: "F**T*****") || relate(other, pattern: "F***T****")
     }
     
-    @warn_unused_result
+    
     public
     func crosses(_ other: Geometry) -> Bool {
         
@@ -254,19 +254,19 @@ extension Geometry {
         return false
     }
     
-    @warn_unused_result
+    
     public
     func within(_ other: Geometry) -> Bool {
         return relate(other, pattern: "T*F**F***")
     }
     
-    @warn_unused_result
+    
     public
     func contains(_ other: Geometry) -> Bool {
         return other.within(self)
     }
 
-    @warn_unused_result
+    
     public
     func overlaps(_ other: Geometry) -> Bool {
         
@@ -282,7 +282,7 @@ extension Geometry {
         return false
     }
     
-    @warn_unused_result
+    
     public
     func relate(_ other: Geometry, pattern :String) -> Bool {
         let matrix = calculateIntersectionMatrix(other)
@@ -290,7 +290,7 @@ extension Geometry {
         return matrix.matches(pattern)
     }
     
-    private
+    fileprivate
     func calculateIntersectionMatrix(_ other: Geometry) -> IntersectionMatrix {
         let matrix = IntersectionMatrix()
         

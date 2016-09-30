@@ -31,7 +31,7 @@ extension Polygon : Surface {
         - requires: isSimple == true
         - requires: isClosed == true for "outerRing" and all "innerRings"
      */
-    @warn_unused_result
+    
     public func area() -> Double {
         
         var area: Double = _outerRing.area()

@@ -48,7 +48,7 @@ struct IntersectionMatrix {
     
     enum Index : Int { case interior = 0, boundary, exterior }
     
-    private
+    fileprivate
     var matrix: [[Dimension]]
 }
 

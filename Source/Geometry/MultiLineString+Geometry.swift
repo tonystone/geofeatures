@@ -24,7 +24,7 @@ extension MultiLineString : Geometry  {
     public
     var dimension: Dimension { return .one }
     
-    @warn_unused_result
+    
     public
     func isEmpty() -> Bool {
         return self.count == 0
@@ -37,7 +37,7 @@ extension MultiLineString : Geometry  {
      MultiCurve if it is in the boundaries of an odd number of elements of the MultiCurve (Reference [1], section
      3.12.3.2).
      */
-    @warn_unused_result
+    
     public
     func boundary() -> Geometry {
         
@@ -86,7 +86,7 @@ extension MultiLineString : Geometry  {
         }
     }
     
-    @warn_unused_result
+    
     public
     func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiLineString<CoordinateType> {
@@ -96,7 +96,7 @@ extension MultiLineString : Geometry  {
     }
     
     // TODO: Must be implenented.  Here just to test protocol
-    @warn_unused_result
+    
     public
     func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()

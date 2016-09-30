@@ -30,7 +30,7 @@ extension LinearRing : Curve {
     /**
      - Returns: True if this curve is closed (begin and end coordinates are equal)
      */
-    @warn_unused_result
+    
     public
     func isClosed() -> Bool {
         
@@ -44,7 +44,7 @@ extension LinearRing : Curve {
     /**
      The length of this LinearType calculated using its associated CoordinateReferenceSystem.
      */
-    @warn_unused_result
+    
     public
     func length() -> Double {
         

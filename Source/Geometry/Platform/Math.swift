@@ -22,7 +22,7 @@ import Swift
 
 internal final class Math {
     
-    @warn_unused_result
+    
     internal class func max<T : Comparable>(_ x: T, _ y: T) -> T {
         return y >= x ? y : x
     }
