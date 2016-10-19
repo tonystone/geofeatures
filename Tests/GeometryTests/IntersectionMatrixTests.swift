@@ -53,20 +53,20 @@ class IntersectionMatrixTests: XCTestCase {
                                                           ]
         )
         XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
-        XCTAssertEqual(matrix[.interior, .boundary], GeoFeatures2.Dimension.zero)
-        XCTAssertEqual(matrix[.interior, .exterior], GeoFeatures2.Dimension.one)
+        XCTAssertEqual(matrix[.interior, .boundary], Dimension.zero)
+        XCTAssertEqual(matrix[.interior, .exterior], Dimension.one)
         
-        XCTAssertEqual(matrix[.boundary, .interior], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.boundary, .interior], Dimension.two)
         XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
-        XCTAssertEqual(matrix[.boundary, .exterior], GeoFeatures2.Dimension.zero)
+        XCTAssertEqual(matrix[.boundary, .exterior], Dimension.zero)
         
-        XCTAssertEqual(matrix[.exterior, .interior], GeoFeatures2.Dimension.one)
-        XCTAssertEqual(matrix[.exterior, .boundary], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.exterior, .interior], Dimension.one)
+        XCTAssertEqual(matrix[.exterior, .boundary], Dimension.two)
         XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
     func testMakeIterator() {
-        let expectedValues: [GeoFeatures2.Dimension] = [.empty, .zero, .one, .two, .empty, .zero, .one, .two, .empty]
+        let expectedValues = [Dimension.empty, .zero, .one, .two, .empty, .zero, .one, .two, .empty]
         
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .zero,  .one],
@@ -92,15 +92,15 @@ class IntersectionMatrixTests: XCTestCase {
         )
         
         XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
-        XCTAssertEqual(matrix[.interior, .boundary], GeoFeatures2.Dimension.zero)
-        XCTAssertEqual(matrix[.interior, .exterior], GeoFeatures2.Dimension.one)
+        XCTAssertEqual(matrix[.interior, .boundary], Dimension.zero)
+        XCTAssertEqual(matrix[.interior, .exterior], Dimension.one)
 
-        XCTAssertEqual(matrix[.boundary, .interior], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.boundary, .interior], Dimension.two)
         XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
-        XCTAssertEqual(matrix[.boundary, .exterior], GeoFeatures2.Dimension.zero)
+        XCTAssertEqual(matrix[.boundary, .exterior], Dimension.zero)
         
-        XCTAssertEqual(matrix[.exterior, .interior], GeoFeatures2.Dimension.one)
-        XCTAssertEqual(matrix[.exterior, .boundary], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.exterior, .interior], Dimension.one)
+        XCTAssertEqual(matrix[.exterior, .boundary], Dimension.two)
         XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
@@ -121,15 +121,15 @@ class IntersectionMatrixTests: XCTestCase {
         
         // All values should match the input
         XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
-        XCTAssertEqual(matrix[.interior, .boundary], GeoFeatures2.Dimension.zero)
-        XCTAssertEqual(matrix[.interior, .exterior], GeoFeatures2.Dimension.one)
+        XCTAssertEqual(matrix[.interior, .boundary], Dimension.zero)
+        XCTAssertEqual(matrix[.interior, .exterior], Dimension.one)
 
-        XCTAssertEqual(matrix[.boundary, .interior], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.boundary, .interior], Dimension.two)
         XCTAssertEqual(matrix[.boundary, .boundary], Dimension.empty)
-        XCTAssertEqual(matrix[.boundary, .exterior], GeoFeatures2.Dimension.zero)
+        XCTAssertEqual(matrix[.boundary, .exterior], Dimension.zero)
         
-        XCTAssertEqual(matrix[.exterior, .interior], GeoFeatures2.Dimension.one)
-        XCTAssertEqual(matrix[.exterior, .boundary], GeoFeatures2.Dimension.two)
+        XCTAssertEqual(matrix[.exterior, .interior], Dimension.one)
+        XCTAssertEqual(matrix[.exterior, .boundary], Dimension.two)
         XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
     
@@ -164,26 +164,26 @@ class IntersectionMatrixTests: XCTestCase {
     }
     
     func testEqual () {
-        let input: [[GeoFeatures2.Dimension]] = [
-                                       [.two,  .empty, .one],
-                                       [.two,  .empty, .two],
-                                       [.zero, .empty, .two],
+        let input = [
+                                       [Dimension.two,  .empty, .one],
+                                       [Dimension.two,  .empty, .two],
+                                       [Dimension.zero, .empty, .two],
                                        ]
 
         XCTAssertEqual(IntersectionMatrix(arrayLiteral: input), IntersectionMatrix(arrayLiteral: input))
     }
     
     func testEqual_False () {
-        let input1: [[GeoFeatures2.Dimension]] = [
-                                       [.two,  .empty, .one],
-                                       [.two,  .empty, .two],
-                                       [.zero, .empty, .two],
+        let input1 = [
+                                       [Dimension.two,  .empty, .one],
+                                       [Dimension.two,  .empty, .two],
+                                       [Dimension.zero, .empty, .two],
                                        ]
         
-        let input2: [[GeoFeatures2.Dimension]] = [
-                                        [.one,  .empty, .one],
-                                        [.two,  .empty, .two],
-                                        [.zero, .empty, .two],
+        let input2 = [
+                                        [Dimension.one,  .empty, .one],
+                                        [Dimension.two,  .empty, .two],
+                                        [Dimension.zero, .empty, .two],
                                         ]
         
         XCTAssertNotEqual(IntersectionMatrix(arrayLiteral: input1), IntersectionMatrix(arrayLiteral: input2))
