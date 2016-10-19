@@ -20,56 +20,61 @@
 import Swift
 import Foundation
 
+#if os(Linux) || os(FreeBSD)
+#else
+    typealias RegularExpression = NSRegularExpression
+#endif
+
 public enum ParseError : Error  {
     case unsupportedType(String)
     case unexpectedToken(String)
     case missingElement(String)
 }
 
-private func ==(lhs: RegularExpression, rhs: RegularExpression) -> Bool {
-    return lhs.regex?.pattern == rhs.regex?.pattern
-}
+//private func ==(lhs: RegularExpression, rhs: RegularExpression) -> Bool {
+//    return lhs.regex?.pattern == rhs.regex?.pattern
+//}
 
-private class WKT : RegularExpression, Token, CustomStringConvertible {
+private class WKT : Token, CustomStringConvertible {
     
-    static let WHITE_SPACE                     = WKT("white space",         pattern: "[ \\t]+")
-    static let SINGLE_SPACE                    = WKT("single space",        pattern:  " (?=[^ ])")
-    static let NEW_LINE                        = WKT("\n or \r",            pattern:  "[\\n|\\r]")
-    static let COMMA                           = WKT(",",                   pattern:  ",")
-    static let LEFT_PAREN                      = WKT("(",                   pattern:  "\\(")
-    static let RIGHT_PAREN                     = WKT(")",                   pattern:  "\\)")
-    static let LEFT_BRACKET                    = WKT("[",                   pattern:  "\\[")
-    static let RIGHT_BRACKET                   = WKT("]",                   pattern:  "\\]")
-    static let LEFT_DELIMITER                  = WKT("( or [",              pattern:  "[\\(|\\[])")
-    static let RIGHT_DELIMITER                 = WKT(") or ]",              pattern:  "[\\)|\\]])")
-    static let NUMERIC_LITERAL                 = WKT("numeric literal",     pattern:  "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?")
-    static let THREEDIMENSIONAL                = WKT("Z",                   pattern:  "z")
-    static let MEASURED                        = WKT("M",                   pattern:  "m")
-    static let EMPTY                           = WKT("EMPTY",               pattern:  "empty")
-    static let POINT                           = WKT("POINT",               pattern:  "point")
-    static let LINESTRING                      = WKT("LINESTRING",          pattern:  "linestring")
-    static let LINEARRING                      = WKT("LINEARRING",          pattern:  "linearring")
-    static let POLYGON                         = WKT("POLYGON",             pattern:  "polygon")
-    static let MULTIPOINT                      = WKT("MULTIPOINT",          pattern:  "multipoint")
-    static let MULTILINESTRING                 = WKT("MULTILINESTRING",     pattern:  "multilinestring")
-    static let MULTIPOLYGON                    = WKT("MULTIPOLYGON",        pattern:  "multipolygon")
-    static let GEOMETRYCOLLECTION              = WKT("GEOMETRYCOLLECTION",  pattern:  "geometrycollection")
+    static let WHITE_SPACE                     = WKT("white space",         pattern:  "^[ \\t]+")
+    static let SINGLE_SPACE                    = WKT("single space",        pattern:  "^ (?=[^ ])")
+    static let NEW_LINE                        = WKT("\n or \r",            pattern:  "^[\\n|\\r]")
+    static let COMMA                           = WKT(",",                   pattern:  "^,")
+    static let LEFT_PAREN                      = WKT("(",                   pattern:  "^\\(")
+    static let RIGHT_PAREN                     = WKT(")",                   pattern:  "^\\)")
+    static let LEFT_BRACKET                    = WKT("[",                   pattern:  "^\\[")
+    static let RIGHT_BRACKET                   = WKT("]",                   pattern:  "^\\]")
+    static let LEFT_DELIMITER                  = WKT("( or [",              pattern:  "^[\\(|\\[])")
+    static let RIGHT_DELIMITER                 = WKT(") or ]",              pattern:  "^[\\)|\\]])")
+    static let NUMERIC_LITERAL                 = WKT("numeric literal",     pattern:  "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?")
+    static let THREEDIMENSIONAL                = WKT("Z",                   pattern:  "^z")
+    static let MEASURED                        = WKT("M",                   pattern:  "^m")
+    static let EMPTY                           = WKT("EMPTY",               pattern:  "^empty")
+    static let POINT                           = WKT("POINT",               pattern:  "^point")
+    static let LINESTRING                      = WKT("LINESTRING",          pattern:  "^linestring")
+    static let LINEARRING                      = WKT("LINEARRING",          pattern:  "^linearring")
+    static let POLYGON                         = WKT("POLYGON",             pattern:  "^polygon")
+    static let MULTIPOINT                      = WKT("MULTIPOINT",          pattern:  "^multipoint")
+    static let MULTILINESTRING                 = WKT("MULTILINESTRING",     pattern:  "^multilinestring")
+    static let MULTIPOLYGON                    = WKT("MULTIPOLYGON",        pattern:  "^multipolygon")
+    static let GEOMETRYCOLLECTION              = WKT("GEOMETRYCOLLECTION",  pattern:  "^geometrycollection")
 
     init(_ description: String, pattern value: StringLiteralType)  {
         self.description = description
-        
-        super.init(value, options: .caseInsensitive)
+        self.pattern     = value
     }
     
-    func match(_ string: String, matchRange: NSRange) -> NSRange {
-        return self.rangeOfFirstMatch(in: string, options: .anchored, matchRange: matchRange)
+    func match(_ string: String, matchRange: Range<String.Index>) -> Range<String.Index>? {
+        return string.range(of: self.pattern, options: [.regularExpression, .caseInsensitive], range: matchRange, locale: Locale(identifier: "en_US"))
     }
     
     func isNewLine() -> Bool {
-        return self == WKT.NEW_LINE.self
+        return self.description == WKT.NEW_LINE.description
     }
     
     var description: String
+    var pattern: String
 }
 
 /**
@@ -150,7 +155,6 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
     fileprivate func pointTaggedText(_ tokenizer:  Tokenizer<WKT>) throws -> Point<CoordinateType> {
 
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try pointText(tokenizer)
@@ -173,6 +177,7 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
 
     // BNF: <linestring tagged text> ::= linestring <linestring text>
     fileprivate func lineStringTaggedText(_ tokenizer:  Tokenizer<WKT>) throws -> LineString<CoordinateType> {
+        
         if tokenizer.accept(.SINGLE_SPACE) == nil {
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
@@ -266,29 +271,24 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
     fileprivate func polygonText(_ tokenizer: Tokenizer<WKT>) throws -> Polygon<CoordinateType> {
         
         if tokenizer.accept(.EMPTY) != nil {
-            
             return Polygon<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
         
         if tokenizer.accept(.LEFT_PAREN) == nil {
-            
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
         
         let outerRing = try self.linearRingText(tokenizer)
         
         if tokenizer.accept(.RIGHT_PAREN) != nil {
-            
             return Polygon<CoordinateType>(outerRing: outerRing, innerRings: [])
         }
     
         if tokenizer.accept(.COMMA) == nil {
-            
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .COMMA))
         }
         
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-            
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         
@@ -354,6 +354,7 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
     
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
     fileprivate func multiLineStringTaggedText(_ tokenizer:  Tokenizer<WKT>) throws -> MultiLineString<CoordinateType> {
+        
         if tokenizer.accept(.SINGLE_SPACE) == nil {
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
@@ -396,7 +397,6 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
     fileprivate func multiPolygonTaggedText(_ tokenizer:  Tokenizer<WKT>) throws -> MultiPolygon<CoordinateType> {
 
         if tokenizer.accept(.SINGLE_SPACE) == nil {
-
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
         return try multiPolygonText(tokenizer)
@@ -406,12 +406,10 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
     fileprivate func multiPolygonText(_ tokenizer: Tokenizer<WKT>) throws -> MultiPolygon<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-
             return MultiPolygon<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
-
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .LEFT_PAREN))
         }
 
@@ -440,6 +438,7 @@ open class WKTReader<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
     
     // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
     fileprivate func geometryCollectionTaggedText(_ tokenizer:  Tokenizer<WKT>) throws -> GeometryCollection {
+       
         if tokenizer.accept(.SINGLE_SPACE) == nil {
             throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
         }
