@@ -161,7 +161,7 @@ extension LinearRing : Collection {
         let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
          
         storage.withUnsafeMutablePointers { (value, elements)->Void in
-            
+
             (elements + value.pointee).initialize(to: convertedCoordinate)
             value.pointee = value.pointee &+ 1
         }
@@ -437,7 +437,6 @@ extension LinearRing : CustomStringConvertible, CustomDebugStringConvertible {
 // MARK: Equatable Conformance
 
 extension LinearRing : Equatable {}
-
 
 public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
     return lhs.equals(rhs)

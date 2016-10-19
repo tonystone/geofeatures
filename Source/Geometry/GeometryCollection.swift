@@ -342,7 +342,6 @@ extension GeometryCollection : CustomStringConvertible, CustomDebugStringConvert
 
 extension GeometryCollection : Equatable {}
 
-
 public func ==(lhs: GeometryCollection, rhs: GeometryCollection) -> Bool {
     return lhs.equals(rhs)
 }

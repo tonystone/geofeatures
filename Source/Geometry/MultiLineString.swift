@@ -342,7 +342,6 @@ extension MultiLineString : CustomStringConvertible, CustomDebugStringConvertibl
 
 extension MultiLineString : Equatable {}
 
-
 public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: MultiLineString<CoordinateType>, rhs: MultiLineString<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

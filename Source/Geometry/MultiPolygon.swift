@@ -342,7 +342,6 @@ extension MultiPolygon : CustomStringConvertible, CustomDebugStringConvertible {
 
 extension MultiPolygon : Equatable {}
 
-
 public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: MultiPolygon<CoordinateType>, rhs: MultiPolygon<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

@@ -161,7 +161,7 @@ extension LineString : Collection {
         let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
          
         storage.withUnsafeMutablePointers { (value, elements)->Void in
-            
+
             (elements + value.pointee).initialize(to: convertedCoordinate)
             value.pointee = value.pointee &+ 1
         }
@@ -437,7 +437,6 @@ extension LineString : CustomStringConvertible, CustomDebugStringConvertible {
 // MARK: Equatable Conformance
 
 extension LineString : Equatable {}
-
 
 public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: LineString<CoordinateType>, rhs: LineString<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
