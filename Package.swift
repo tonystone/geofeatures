@@ -20,6 +20,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "GeoFeatures2",
+    name: "GeoFeatures",
+    
+    targets: [
+        Target(
+            name: "Geometry",
+            dependencies: []),
+        Target(
+            name: "Visualization",
+            dependencies: [])
+    ],
+    
     exclude: ["_Pods.xcodeproj", "Docs", "Example", "GeoFeatures2.podspec", "Visualization"]
 )
+
+/// Added the modules to a framework module
+let dylib = Product(name: "GeoFeatures", type: .Library(.Dynamic), modules: ["Geometry", "Visualization"])
+
+products.append(dylib)
