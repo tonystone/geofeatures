@@ -124,13 +124,13 @@
 		EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTWriterTests.swift; sourceTree = "<group>"; };
 		EA8D591B1DB8374100713261 /* HowTo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = HowTo.md; path = ../Docs/HowTo.md; sourceTree = "<group>"; };
 		EA8D591C1DB83EA300713261 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		EA8D591E1DB8414200713261 /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollection.swift.gyb; path = Sources/GeoFeatures/CoordinateCollection.swift.gyb; sourceTree = "<group>"; };
+		EA8D591F1DB8414200713261 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = Sources/GeoFeatures/GeometryCollection.swift.gyb; sourceTree = "<group>"; };
+		EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/GeoFeaturesTests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
+		EA8D59211DB8416100713261 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = MultiPointTests.swift.gyb; path = Tests/GeoFeaturesTests/MultiPointTests.swift.gyb; sourceTree = "<group>"; };
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
 		EAE2CF5E1CD43D500050BC30 /* Vagrantfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Vagrantfile; path = ../Vagrantfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EAE6C76D1DB7CDD200E2E492 /* Gemfile.osx */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile.osx; path = ../Gemfile.osx; sourceTree = "<group>"; };
-		EAE6C7A41DB7D69000E2E492 /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CoordinateCollection.swift.gyb; path = Source/CoordinateCollection.swift.gyb; sourceTree = "<group>"; };
-		EAE6C7A51DB7D69000E2E492 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = Source/GeometryCollection.swift.gyb; sourceTree = "<group>"; };
-		EAE6C7A81DB7D6B800E2E492 /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
-		EAE6C7A91DB7D6B800E2E492 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = MultiPointTests.swift.gyb; path = Tests/MultiPointTests.swift.gyb; sourceTree = "<group>"; };
 		EAEE789D1DB5A0B8002D984E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,10 +319,10 @@
 		EAC75E831C91E5B200BA35F8 /* Gyb */ = {
 			isa = PBXGroup;
 			children = (
-				EAE6C7A81DB7D6B800E2E492 /* CoordinateCollectionTests.swift.gyb */,
-				EAE6C7A91DB7D6B800E2E492 /* MultiPointTests.swift.gyb */,
-				EAE6C7A41DB7D69000E2E492 /* CoordinateCollection.swift.gyb */,
-				EAE6C7A51DB7D69000E2E492 /* GeometryCollection.swift.gyb */,
+				EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */,
+				EA8D59211DB8416100713261 /* MultiPointTests.swift.gyb */,
+				EA8D591E1DB8414200713261 /* CoordinateCollection.swift.gyb */,
+				EA8D591F1DB8414200713261 /* GeometryCollection.swift.gyb */,
 			);
 			name = Gyb;
 			path = ..;
@@ -540,7 +540,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../\nScripts/process_test_files.rb";
+			shellScript = "cd ../\n\nScripts/process_test_files.rb";
 		};
 		EAC75E8C1C91E86600BA35F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -553,7 +553,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../Scripts/process_geometry_gyb.sh;
+			shellScript = "cd ../Sources/GeoFeatures\n\n$PROJECT_DIR/../Scripts/process_geometry_gyb.sh";
 		};
 		EAC75E8D1C91E86800BA35F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -566,7 +566,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../Scripts/process_tests_gyb.sh;
+			shellScript = "cd ../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/process_tests_gyb.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -6,8 +6,6 @@
 #  Created by Tony Stone on 3/10/16.
 #  Copyright © 2016 CocoaPods. All rights reserved.
 
-cd ../Source/Geometry
-
 ../../bin/gyb --line-directive '' -DSelf=LinearRing -o LinearRing.swift CoordinateCollection.swift.gyb
 
 ../../bin/gyb --line-directive '' -DSelf=LineString -o LineString.swift CoordinateCollection.swift.gyb
