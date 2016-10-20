@@ -65,3 +65,15 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+
+#
+# Ruby bundler
+#
+Gemfile*.lock
+
+#
+# Python
+#
+# Don't check in the compiled version of Python scripts.
+#'
+*.pyc

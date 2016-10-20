@@ -33,8 +33,8 @@ require 'getoptlong'
 sourceName=""
 sourceDirectory=""
 
-swiftRelease=false
-swiftVersion="2016-05-31-a"
+swiftRelease=true
+swiftVersion="3.0"
 
 options = GetoptLong.new(
     [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],
@@ -55,24 +55,22 @@ begin
 end
 
 if swiftRelease
-    sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1404/swift-#{swiftVersion}-RELEASE"
-    sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu14.04"
+    sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1510/swift-#{swiftVersion}-RELEASE"
+    sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu15.10"
 else
-    sourceDirectory = "builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
-    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu14.04"
+    sourceDirectory = "builds/development/ubuntu1510/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
+    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu15.10"
 end
 
 Vagrant.configure("2") do |config|
   
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "bento/ubuntu-15.10"
 
   config.vm.provider "virtualbox"
 
-  config.vm.provider "parallels" do |v, override|
-     v.name = "Ubuntu Linux 14.04 - GeoFeatures Development"
+  config.vm.provider "parallels" do |v|
+     v.name = "Ubuntu Linux 15.10 - GeoFeatures Development"
      v.memory = 512
-     
-     override.vm.box = "parallels/ubuntu-14.04"
   end
 
   config.vm.provision "fix-no-tty", type: "shell" do |s|
@@ -94,8 +92,7 @@ Vagrant.configure("2") do |config|
     #
     # Install the needed development and admin packages
     #
-    sudo apt-get --assume-yes install git cmake ninja-build clang uuid-dev libicu-dev icu-devtools libbsd-dev libedit-dev libxml2-dev libsqlite3-dev swig libpython-dev libncurses5-dev pkg-config
-
+    sudo apt-get --assume-yes install clang libicu-dev libcurl3 libpython2.7-dev
     #
     # Import the gpg keys
     #
@@ -109,7 +106,7 @@ Vagrant.configure("2") do |config|
     wget --progress=bar:force https://swift.org/"#{sourceDirectory}"/"#{sourceName}".tar.gz
     wget --progress=bar:force https://swift.org/"#{sourceDirectory}"/"#{sourceName}".tar.gz.sig
 
-#
+    #
     # Validate the file
     #
     gpg --verify "#{sourceName}".tar.gz.sig
@@ -128,11 +125,11 @@ Vagrant.configure("2") do |config|
         #
         echo "export PATH=/home/vagrant/#{sourceName}/usr/bin:\"${PATH}\"" >> .profile
         echo ""
-        echo "Swift snapshot #{sourceName} has been successfully installed on Linux"
+        echo "Swift #{sourceName} has been successfully installed on Linux"
         echo "To use it, call 'vagrant ssh' and once logged in, cd to the /vagrant directory"
         echo ""
     else
-        echo "Error: Swift snapshot #{sourceName} failed signature validation."
+        echo "Error: Swift #{sourceName} failed signature validation."
     fi
   SHELL
 end

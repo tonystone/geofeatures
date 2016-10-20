@@ -1,6 +1,0 @@
-framework module GeoFeatures2 {
-  umbrella header "GeoFeatures2-umbrella.h"
-
-  export *
-  module * { export * }
-}

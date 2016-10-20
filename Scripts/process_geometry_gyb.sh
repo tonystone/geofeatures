@@ -1,12 +1,10 @@
 #!/bin/sh
 
 #  process_geometry_gyb.sh
-#  GeoFeatures2
+#  GeoFeatures
 #
 #  Created by Tony Stone on 3/10/16.
 #  Copyright © 2016 CocoaPods. All rights reserved.
-
-cd ../Source/Geometry
 
 ../../bin/gyb --line-directive '' -DSelf=LinearRing -o LinearRing.swift CoordinateCollection.swift.gyb
 
