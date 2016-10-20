@@ -25,8 +25,8 @@
 /* Begin PBXBuildFile section */
 		150B3974ACAF9C9F32A906B2 /* Pods_GeoFeatures_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F56601FAE47CDB9C5EFC43 /* Pods_GeoFeatures_Tests.framework */; };
 		44E29733FD59AEADF8848759 /* Pods_GeoFeatures_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9A080E0173D715C8FC58BE /* Pods_GeoFeatures_Example.framework */; };
-		EA475CDF1CDA63060013AFA1 /* process_geometry_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDD1CDA63060013AFA1 /* process_geometry_gyb.sh */; };
-		EA475CE01CDA63060013AFA1 /* process_tests_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDE1CDA63060013AFA1 /* process_tests_gyb.sh */; };
+		EA475CDF1CDA63060013AFA1 /* generate_geometry_from_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */; };
+		EA475CE01CDA63060013AFA1 /* generate_tests_from_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */; };
 		EA8D58991DB7D7C200713261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58971DB7D7C200713261 /* AppDelegate.swift */; };
 		EA8D589A1DB7D7C200713261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58981DB7D7C200713261 /* ViewController.swift */; };
 		EA8D589C1DB7D7D700713261 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8D589B1DB7D7D700713261 /* Images.xcassets */; };
@@ -84,9 +84,9 @@
 		CD829F37916D32011B39AD57 /* GeoFeatures.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures.podspec; path = ../GeoFeatures.podspec; sourceTree = "<group>"; };
 		D0F56601FAE47CDB9C5EFC43 /* Pods_GeoFeatures_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA475C2F1CD9083A0013AFA1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
-		EA475CDD1CDA63060013AFA1 /* process_geometry_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = process_geometry_gyb.sh; path = Scripts/process_geometry_gyb.sh; sourceTree = "<group>"; };
-		EA475CDE1CDA63060013AFA1 /* process_tests_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = process_tests_gyb.sh; path = Scripts/process_tests_gyb.sh; sourceTree = "<group>"; };
-		EA475CED1CDAA4EB0013AFA1 /* process_test_files.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = process_test_files.rb; path = Scripts/process_test_files.rb; sourceTree = "<group>"; };
+		EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = generate_geometry_from_gyb.sh; path = Scripts/generate_geometry_from_gyb.sh; sourceTree = "<group>"; };
+		EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = generate_tests_from_gyb.sh; path = Scripts/generate_tests_from_gyb.sh; sourceTree = "<group>"; };
+		EA475CED1CDAA4EB0013AFA1 /* generate_xctest_linux_runner.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = generate_xctest_linux_runner.rb; path = Scripts/generate_xctest_linux_runner.rb; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
 		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
 		EA8D58971DB7D7C200713261 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GeoFeatures/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -308,9 +308,9 @@
 		EAC75E7C1C91CD0100BA35F8 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				EA475CDD1CDA63060013AFA1 /* process_geometry_gyb.sh */,
-				EA475CDE1CDA63060013AFA1 /* process_tests_gyb.sh */,
-				EA475CED1CDAA4EB0013AFA1 /* process_test_files.rb */,
+				EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */,
+				EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */,
+				EA475CED1CDAA4EB0013AFA1 /* generate_xctest_linux_runner.rb */,
 			);
 			name = Scripts;
 			path = ..;
@@ -431,8 +431,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA475CE01CDA63060013AFA1 /* process_tests_gyb.sh in Resources */,
-				EA475CDF1CDA63060013AFA1 /* process_geometry_gyb.sh in Resources */,
+				EA475CE01CDA63060013AFA1 /* generate_tests_from_gyb.sh in Resources */,
+				EA475CDF1CDA63060013AFA1 /* generate_geometry_from_gyb.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +540,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../\n\nScripts/process_test_files.rb";
+			shellScript = "cd ../\n\nScripts/generate_xctest_linux_runner.rb";
 		};
 		EAC75E8C1C91E86600BA35F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -553,7 +553,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../Sources/GeoFeatures\n\n$PROJECT_DIR/../Scripts/process_geometry_gyb.sh";
+			shellScript = "cd ../Sources/GeoFeatures\n\n$PROJECT_DIR/../Scripts/generate_geometry_from_gyb.sh";
 		};
 		EAC75E8D1C91E86800BA35F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -566,7 +566,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/process_tests_gyb.sh";
+			shellScript = "cd ../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/generate_tests_from_gyb.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
