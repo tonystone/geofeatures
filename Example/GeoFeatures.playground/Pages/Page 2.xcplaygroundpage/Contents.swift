@@ -1,7 +1,7 @@
 //: [Previous](@previous)
 
 import Swift
-import GeoFeatures2
+import GeoFeatures
 
 /*:
 

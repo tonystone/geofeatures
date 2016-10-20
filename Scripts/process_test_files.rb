@@ -93,7 +93,7 @@ def createLinuxMain(files)
         file.write "\n"
         
         file.write "#if os(Linux) || os(FreeBSD)\n"
-        file.write "   @testable import GeometryTests\n"
+        file.write "   @testable import GeoFeaturesTests\n"
         file.write "\n"
         file.write "   XCTMain([\n"
 

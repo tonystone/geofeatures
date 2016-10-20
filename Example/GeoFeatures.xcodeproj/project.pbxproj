@@ -1,0 +1,859 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		EAC75E881C91E84900BA35F8 /* Process Source Files */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source Files" */;
+			buildPhases = (
+				EAC75E8C1C91E86600BA35F8 /* ShellScript */,
+				EAC75E8D1C91E86800BA35F8 /* ShellScript */,
+				EA475D161CDBDD4B0013AFA1 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Process Source Files";
+			productName = "Process GYB Files";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		150B3974ACAF9C9F32A906B2 /* Pods_GeoFeatures_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F56601FAE47CDB9C5EFC43 /* Pods_GeoFeatures_Tests.framework */; };
+		44E29733FD59AEADF8848759 /* Pods_GeoFeatures_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9A080E0173D715C8FC58BE /* Pods_GeoFeatures_Example.framework */; };
+		EA475CDF1CDA63060013AFA1 /* process_geometry_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDD1CDA63060013AFA1 /* process_geometry_gyb.sh */; };
+		EA475CE01CDA63060013AFA1 /* process_tests_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDE1CDA63060013AFA1 /* process_tests_gyb.sh */; };
+		EA8D58991DB7D7C200713261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58971DB7D7C200713261 /* AppDelegate.swift */; };
+		EA8D589A1DB7D7C200713261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58981DB7D7C200713261 /* ViewController.swift */; };
+		EA8D589C1DB7D7D700713261 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8D589B1DB7D7D700713261 /* Images.xcassets */; };
+		EA8D58A11DB7D7F800713261 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D589D1DB7D7F800713261 /* LaunchScreen.xib */; };
+		EA8D58A21DB7D7F800713261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8D589F1DB7D7F800713261 /* Main.storyboard */; };
+		EA8D58E21DB7E34C00713261 /* Coordinate2DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58A81DB7E34C00713261 /* Coordinate2DMTests.swift */; };
+		EA8D58E41DB7E34C00713261 /* Coordinate2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58AA1DB7E34C00713261 /* Coordinate2DTests.swift */; };
+		EA8D58E61DB7E34C00713261 /* Coordinate3DMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58AC1DB7E34C00713261 /* Coordinate3DMTests.swift */; };
+		EA8D58E81DB7E34C00713261 /* Coordinate3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58AE1DB7E34C00713261 /* Coordinate3DTests.swift */; };
+		EA8D58EB1DB7E34C00713261 /* FixedPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58B11DB7E34C00713261 /* FixedPrecisionTests.swift */; };
+		EA8D58ED1DB7E34C00713261 /* FloatingPrecisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58B31DB7E34C00713261 /* FloatingPrecisionTests.swift */; };
+		EA8D58EF1DB7E34C00713261 /* GeometryCollection+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58B51DB7E34C00713261 /* GeometryCollection+GeometryTests.swift */; };
+		EA8D58F21DB7E34C00713261 /* IntersectionMatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58B81DB7E34C00713261 /* IntersectionMatrixTests.swift */; };
+		EA8D58F41DB7E34C00713261 /* LinearRing+CurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58BA1DB7E34C00713261 /* LinearRing+CurveTests.swift */; };
+		EA8D58F61DB7E34C00713261 /* LinearRing+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58BC1DB7E34C00713261 /* LinearRing+GeometryTests.swift */; };
+		EA8D58F81DB7E34C00713261 /* LinearRing+SurfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58BE1DB7E34C00713261 /* LinearRing+SurfaceTests.swift */; };
+		EA8D58FA1DB7E34C00713261 /* LinearRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58C01DB7E34C00713261 /* LinearRingTests.swift */; };
+		EA8D58FC1DB7E34C00713261 /* LineString+CurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58C21DB7E34C00713261 /* LineString+CurveTests.swift */; };
+		EA8D58FE1DB7E34C00713261 /* LineString+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58C41DB7E34C00713261 /* LineString+GeometryTests.swift */; };
+		EA8D59001DB7E34C00713261 /* LineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58C61DB7E34C00713261 /* LineStringTests.swift */; };
+		EA8D59031DB7E34C00713261 /* MultiLineString+CurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58C91DB7E34C00713261 /* MultiLineString+CurveTests.swift */; };
+		EA8D59051DB7E34C00713261 /* MultiLineString+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58CB1DB7E34C00713261 /* MultiLineString+GeometryTests.swift */; };
+		EA8D59071DB7E34C00713261 /* MultiPoint+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58CD1DB7E34C00713261 /* MultiPoint+GeometryTests.swift */; };
+		EA8D59091DB7E34C00713261 /* MultiPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58CF1DB7E34C00713261 /* MultiPointTests.swift */; };
+		EA8D590C1DB7E34C00713261 /* MultiPolygon+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58D21DB7E34C00713261 /* MultiPolygon+GeometryTests.swift */; };
+		EA8D590E1DB7E34C00713261 /* MultiPolygon+SurfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58D41DB7E34C00713261 /* MultiPolygon+SurfaceTests.swift */; };
+		EA8D59101DB7E34C00713261 /* Point+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */; };
+		EA8D59121DB7E34C00713261 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58D81DB7E34C00713261 /* PointTests.swift */; };
+		EA8D59141DB7E34C00713261 /* Polygon+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */; };
+		EA8D59161DB7E34C00713261 /* Polygon+SurfaceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTest.swift */; };
+		EA8D59181DB7E34C00713261 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */; };
+		EA8D591A1DB7E34C00713261 /* WKTWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		607FACE61AFB9204008FA782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
+			remoteInfo = GeoFeatures2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F243D2FCE8800EAB521DC72 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		2E8E8258ACE5267DDF6D0D4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		3570807BEA12508BC5987DDB /* Pods-GeoFeatures_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Tests/Pods-GeoFeatures_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		402534F70096EBD0C273C7E4 /* Pods-GeoFeatures_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Tests/Pods-GeoFeatures_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		52F2ACCACE34D9B4E9E59058 /* Pods-GeoFeatures_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example.release.xcconfig"; sourceTree = "<group>"; };
+		607FACD01AFB9204008FA782 /* GeoFeatures_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoFeatures_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* GeoFeatures_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoFeatures_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A9A080E0173D715C8FC58BE /* Pods_GeoFeatures_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB6C0A7372E6C0217066A27E /* Pods-GeoFeatures_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		CD829F37916D32011B39AD57 /* GeoFeatures.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GeoFeatures.podspec; path = ../GeoFeatures.podspec; sourceTree = "<group>"; };
+		D0F56601FAE47CDB9C5EFC43 /* Pods_GeoFeatures_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoFeatures_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA475C2F1CD9083A0013AFA1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		EA475CDD1CDA63060013AFA1 /* process_geometry_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = process_geometry_gyb.sh; path = Scripts/process_geometry_gyb.sh; sourceTree = "<group>"; };
+		EA475CDE1CDA63060013AFA1 /* process_tests_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = process_tests_gyb.sh; path = Scripts/process_tests_gyb.sh; sourceTree = "<group>"; };
+		EA475CED1CDAA4EB0013AFA1 /* process_test_files.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = process_test_files.rb; path = Scripts/process_test_files.rb; sourceTree = "<group>"; };
+		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
+		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
+		EA8D58971DB7D7C200713261 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GeoFeatures/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		EA8D58981DB7D7C200713261 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = GeoFeatures/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		EA8D589B1DB7D7D700713261 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GeoFeatures/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		EA8D589E1DB7D7F800713261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = GeoFeatures/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		EA8D58A01DB7D7F800713261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = GeoFeatures/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		EA8D58A31DB7D82900713261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = GeoFeatures/Info.plist; sourceTree = SOURCE_ROOT; };
+		EA8D58A81DB7E34C00713261 /* Coordinate2DMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DMTests.swift; sourceTree = "<group>"; };
+		EA8D58AA1DB7E34C00713261 /* Coordinate2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate2DTests.swift; sourceTree = "<group>"; };
+		EA8D58AC1DB7E34C00713261 /* Coordinate3DMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DMTests.swift; sourceTree = "<group>"; };
+		EA8D58AE1DB7E34C00713261 /* Coordinate3DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate3DTests.swift; sourceTree = "<group>"; };
+		EA8D58B11DB7E34C00713261 /* FixedPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedPrecisionTests.swift; sourceTree = "<group>"; };
+		EA8D58B31DB7E34C00713261 /* FloatingPrecisionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPrecisionTests.swift; sourceTree = "<group>"; };
+		EA8D58B51DB7E34C00713261 /* GeometryCollection+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GeometryCollection+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58B81DB7E34C00713261 /* IntersectionMatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersectionMatrixTests.swift; sourceTree = "<group>"; };
+		EA8D58BA1DB7E34C00713261 /* LinearRing+CurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LinearRing+CurveTests.swift"; sourceTree = "<group>"; };
+		EA8D58BC1DB7E34C00713261 /* LinearRing+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LinearRing+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58BE1DB7E34C00713261 /* LinearRing+SurfaceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LinearRing+SurfaceTests.swift"; sourceTree = "<group>"; };
+		EA8D58C01DB7E34C00713261 /* LinearRingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRingTests.swift; sourceTree = "<group>"; };
+		EA8D58C21DB7E34C00713261 /* LineString+CurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineString+CurveTests.swift"; sourceTree = "<group>"; };
+		EA8D58C41DB7E34C00713261 /* LineString+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineString+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58C61DB7E34C00713261 /* LineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringTests.swift; sourceTree = "<group>"; };
+		EA8D58C91DB7E34C00713261 /* MultiLineString+CurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiLineString+CurveTests.swift"; sourceTree = "<group>"; };
+		EA8D58CB1DB7E34C00713261 /* MultiLineString+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiLineString+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58CD1DB7E34C00713261 /* MultiPoint+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiPoint+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58CF1DB7E34C00713261 /* MultiPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPointTests.swift; sourceTree = "<group>"; };
+		EA8D58D21DB7E34C00713261 /* MultiPolygon+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiPolygon+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58D41DB7E34C00713261 /* MultiPolygon+SurfaceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiPolygon+SurfaceTests.swift"; sourceTree = "<group>"; };
+		EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Point+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58D81DB7E34C00713261 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Polygon+GeometryTests.swift"; sourceTree = "<group>"; };
+		EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Polygon+SurfaceTest.swift"; sourceTree = "<group>"; };
+		EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTReaderTests.swift; sourceTree = "<group>"; };
+		EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTWriterTests.swift; sourceTree = "<group>"; };
+		EA8D591B1DB8374100713261 /* HowTo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = HowTo.md; path = ../Docs/HowTo.md; sourceTree = "<group>"; };
+		EA8D591C1DB83EA300713261 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
+		EAE2CF5E1CD43D500050BC30 /* Vagrantfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Vagrantfile; path = ../Vagrantfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EAE6C76D1DB7CDD200E2E492 /* Gemfile.osx */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile.osx; path = ../Gemfile.osx; sourceTree = "<group>"; };
+		EAE6C7A41DB7D69000E2E492 /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CoordinateCollection.swift.gyb; path = Source/CoordinateCollection.swift.gyb; sourceTree = "<group>"; };
+		EAE6C7A51DB7D69000E2E492 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = Source/GeometryCollection.swift.gyb; sourceTree = "<group>"; };
+		EAE6C7A81DB7D6B800E2E492 /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
+		EAE6C7A91DB7D6B800E2E492 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = MultiPointTests.swift.gyb; path = Tests/MultiPointTests.swift.gyb; sourceTree = "<group>"; };
+		EAEE789D1DB5A0B8002D984E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		607FACCD1AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44E29733FD59AEADF8848759 /* Pods_GeoFeatures_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE21AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				150B3974ACAF9C9F32A906B2 /* Pods_GeoFeatures_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		16B16CC3F4CC578EFB14C40F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C0A7372E6C0217066A27E /* Pods-GeoFeatures_Example.debug.xcconfig */,
+				52F2ACCACE34D9B4E9E59058 /* Pods-GeoFeatures_Example.release.xcconfig */,
+				3570807BEA12508BC5987DDB /* Pods-GeoFeatures_Tests.debug.xcconfig */,
+				402534F70096EBD0C273C7E4 /* Pods-GeoFeatures_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		607FACC71AFB9204008FA782 = {
+			isa = PBXGroup;
+			children = (
+				607FACF51AFB993E008FA782 /* Metadata */,
+				607FACD21AFB9204008FA782 /* Example for GeoFeatures */,
+				EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */,
+				EA799B4C1C723DEF00397C2A /* Docs */,
+				607FACE81AFB9204008FA782 /* Tests */,
+				EAC75E7C1C91CD0100BA35F8 /* Scripts */,
+				EAC75E831C91E5B200BA35F8 /* Gyb */,
+				607FACD11AFB9204008FA782 /* Products */,
+				16B16CC3F4CC578EFB14C40F /* Pods */,
+				B87A8B728EBB5CC5883E5FA8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		607FACD11AFB9204008FA782 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD01AFB9204008FA782 /* GeoFeatures_Example.app */,
+				607FACE51AFB9204008FA782 /* GeoFeatures_Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		607FACD21AFB9204008FA782 /* Example for GeoFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				EA8D58971DB7D7C200713261 /* AppDelegate.swift */,
+				EA8D58981DB7D7C200713261 /* ViewController.swift */,
+				EA8D589B1DB7D7D700713261 /* Images.xcassets */,
+				EA8D589D1DB7D7F800713261 /* LaunchScreen.xib */,
+				EA8D589F1DB7D7F800713261 /* Main.storyboard */,
+				607FACD31AFB9204008FA782 /* Supporting Files */,
+			);
+			name = "Example for GeoFeatures";
+			path = GeoFeatures2;
+			sourceTree = "<group>";
+		};
+		607FACD31AFB9204008FA782 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA8D58A31DB7D82900713261 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		607FACE81AFB9204008FA782 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EA8D58A61DB7E34C00713261 /* GeoFeaturesTests */,
+				607FACE91AFB9204008FA782 /* Supporting Files */,
+			);
+			name = Tests;
+			path = ../Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		607FACE91AFB9204008FA782 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EAEE789D1DB5A0B8002D984E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		607FACF51AFB993E008FA782 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				CD829F37916D32011B39AD57 /* GeoFeatures.podspec */,
+				EA475C2F1CD9083A0013AFA1 /* Package.swift */,
+				0F243D2FCE8800EAB521DC72 /* README.md */,
+				2E8E8258ACE5267DDF6D0D4E /* LICENSE */,
+				EAE2CF5E1CD43D500050BC30 /* Vagrantfile */,
+				EAE6C76D1DB7CDD200E2E492 /* Gemfile.osx */,
+				EA8D591C1DB83EA300713261 /* .gitignore */,
+			);
+			name = Metadata;
+			sourceTree = "<group>";
+		};
+		B87A8B728EBB5CC5883E5FA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A9A080E0173D715C8FC58BE /* Pods_GeoFeatures_Example.framework */,
+				D0F56601FAE47CDB9C5EFC43 /* Pods_GeoFeatures_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA799B4C1C723DEF00397C2A /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */,
+				EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */,
+				EA8D591B1DB8374100713261 /* HowTo.md */,
+			);
+			name = Docs;
+			sourceTree = "<group>";
+		};
+		EA8D58A61DB7E34C00713261 /* GeoFeaturesTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA8D58A81DB7E34C00713261 /* Coordinate2DMTests.swift */,
+				EA8D58AA1DB7E34C00713261 /* Coordinate2DTests.swift */,
+				EA8D58AC1DB7E34C00713261 /* Coordinate3DMTests.swift */,
+				EA8D58AE1DB7E34C00713261 /* Coordinate3DTests.swift */,
+				EA8D58B11DB7E34C00713261 /* FixedPrecisionTests.swift */,
+				EA8D58B31DB7E34C00713261 /* FloatingPrecisionTests.swift */,
+				EA8D58B51DB7E34C00713261 /* GeometryCollection+GeometryTests.swift */,
+				EA8D58B81DB7E34C00713261 /* IntersectionMatrixTests.swift */,
+				EA8D58BA1DB7E34C00713261 /* LinearRing+CurveTests.swift */,
+				EA8D58BC1DB7E34C00713261 /* LinearRing+GeometryTests.swift */,
+				EA8D58BE1DB7E34C00713261 /* LinearRing+SurfaceTests.swift */,
+				EA8D58C01DB7E34C00713261 /* LinearRingTests.swift */,
+				EA8D58C21DB7E34C00713261 /* LineString+CurveTests.swift */,
+				EA8D58C41DB7E34C00713261 /* LineString+GeometryTests.swift */,
+				EA8D58C61DB7E34C00713261 /* LineStringTests.swift */,
+				EA8D58C91DB7E34C00713261 /* MultiLineString+CurveTests.swift */,
+				EA8D58CB1DB7E34C00713261 /* MultiLineString+GeometryTests.swift */,
+				EA8D58CD1DB7E34C00713261 /* MultiPoint+GeometryTests.swift */,
+				EA8D58CF1DB7E34C00713261 /* MultiPointTests.swift */,
+				EA8D58D21DB7E34C00713261 /* MultiPolygon+GeometryTests.swift */,
+				EA8D58D41DB7E34C00713261 /* MultiPolygon+SurfaceTests.swift */,
+				EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */,
+				EA8D58D81DB7E34C00713261 /* PointTests.swift */,
+				EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */,
+				EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTest.swift */,
+				EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */,
+				EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */,
+			);
+			path = GeoFeaturesTests;
+			sourceTree = "<group>";
+		};
+		EAB4C1CB1C6F7D6B00F288D1 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */,
+			);
+			name = Playgrounds;
+			sourceTree = "<group>";
+		};
+		EAC75E7C1C91CD0100BA35F8 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				EA475CDD1CDA63060013AFA1 /* process_geometry_gyb.sh */,
+				EA475CDE1CDA63060013AFA1 /* process_tests_gyb.sh */,
+				EA475CED1CDAA4EB0013AFA1 /* process_test_files.rb */,
+			);
+			name = Scripts;
+			path = ..;
+			sourceTree = SOURCE_ROOT;
+		};
+		EAC75E831C91E5B200BA35F8 /* Gyb */ = {
+			isa = PBXGroup;
+			children = (
+				EAE6C7A81DB7D6B800E2E492 /* CoordinateCollectionTests.swift.gyb */,
+				EAE6C7A91DB7D6B800E2E492 /* MultiPointTests.swift.gyb */,
+				EAE6C7A41DB7D69000E2E492 /* CoordinateCollection.swift.gyb */,
+				EAE6C7A51DB7D69000E2E492 /* GeometryCollection.swift.gyb */,
+			);
+			name = Gyb;
+			path = ..;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		607FACCF1AFB9204008FA782 /* GeoFeatures_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Example" */;
+			buildPhases = (
+				582E738BDE3D4097C8D1668C /* [CP] Check Pods Manifest.lock */,
+				607FACCC1AFB9204008FA782 /* Sources */,
+				607FACCD1AFB9204008FA782 /* Frameworks */,
+				607FACCE1AFB9204008FA782 /* Resources */,
+				E2B2D6F54D14F398F8BC0D40 /* [CP] Embed Pods Frameworks */,
+				DBC3871CB11F8DC9E395469A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeoFeatures_Example;
+			productName = GeoFeatures2;
+			productReference = 607FACD01AFB9204008FA782 /* GeoFeatures_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		607FACE41AFB9204008FA782 /* GeoFeatures_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Tests" */;
+			buildPhases = (
+				A6ABAC75D3E3424E4140B8DE /* [CP] Check Pods Manifest.lock */,
+				607FACE11AFB9204008FA782 /* Sources */,
+				607FACE21AFB9204008FA782 /* Frameworks */,
+				607FACE31AFB9204008FA782 /* Resources */,
+				D774D48071DA8BAAEF6A64AB /* [CP] Embed Pods Frameworks */,
+				30A74FCD00183709E525DE60 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
+			);
+			name = GeoFeatures_Tests;
+			productName = Tests;
+			productReference = 607FACE51AFB9204008FA782 /* GeoFeatures_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		607FACC81AFB9204008FA782 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = CocoaPods;
+				TargetAttributes = {
+					607FACCF1AFB9204008FA782 = {
+						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
+					};
+					607FACE41AFB9204008FA782 = {
+						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
+						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					EAC75E881C91E84900BA35F8 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "GeoFeatures" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 607FACC71AFB9204008FA782;
+			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				607FACCF1AFB9204008FA782 /* GeoFeatures_Example */,
+				607FACE41AFB9204008FA782 /* GeoFeatures_Tests */,
+				EAC75E881C91E84900BA35F8 /* Process Source Files */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		607FACCE1AFB9204008FA782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8D58A21DB7D7F800713261 /* Main.storyboard in Resources */,
+				EA8D58A11DB7D7F800713261 /* LaunchScreen.xib in Resources */,
+				EA8D589C1DB7D7D700713261 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE31AFB9204008FA782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA475CE01CDA63060013AFA1 /* process_tests_gyb.sh in Resources */,
+				EA475CDF1CDA63060013AFA1 /* process_geometry_gyb.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30A74FCD00183709E525DE60 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures_Tests/Pods-GeoFeatures_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		582E738BDE3D4097C8D1668C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A6ABAC75D3E3424E4140B8DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D774D48071DA8BAAEF6A64AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures_Tests/Pods-GeoFeatures_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBC3871CB11F8DC9E395469A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2B2D6F54D14F398F8BC0D40 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA475D161CDBDD4B0013AFA1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../\nScripts/process_test_files.rb";
+		};
+		EAC75E8C1C91E86600BA35F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../Scripts/process_geometry_gyb.sh;
+		};
+		EAC75E8D1C91E86800BA35F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../Scripts/process_tests_gyb.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		607FACCC1AFB9204008FA782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8D589A1DB7D7C200713261 /* ViewController.swift in Sources */,
+				EA8D58991DB7D7C200713261 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE11AFB9204008FA782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8D58F81DB7E34C00713261 /* LinearRing+SurfaceTests.swift in Sources */,
+				EA8D58F61DB7E34C00713261 /* LinearRing+GeometryTests.swift in Sources */,
+				EA8D59181DB7E34C00713261 /* WKTReaderTests.swift in Sources */,
+				EA8D58FA1DB7E34C00713261 /* LinearRingTests.swift in Sources */,
+				EA8D59141DB7E34C00713261 /* Polygon+GeometryTests.swift in Sources */,
+				EA8D59091DB7E34C00713261 /* MultiPointTests.swift in Sources */,
+				EA8D59031DB7E34C00713261 /* MultiLineString+CurveTests.swift in Sources */,
+				EA8D59001DB7E34C00713261 /* LineStringTests.swift in Sources */,
+				EA8D590E1DB7E34C00713261 /* MultiPolygon+SurfaceTests.swift in Sources */,
+				EA8D59071DB7E34C00713261 /* MultiPoint+GeometryTests.swift in Sources */,
+				EA8D590C1DB7E34C00713261 /* MultiPolygon+GeometryTests.swift in Sources */,
+				EA8D58E21DB7E34C00713261 /* Coordinate2DMTests.swift in Sources */,
+				EA8D58F21DB7E34C00713261 /* IntersectionMatrixTests.swift in Sources */,
+				EA8D58FC1DB7E34C00713261 /* LineString+CurveTests.swift in Sources */,
+				EA8D59101DB7E34C00713261 /* Point+GeometryTests.swift in Sources */,
+				EA8D59161DB7E34C00713261 /* Polygon+SurfaceTest.swift in Sources */,
+				EA8D58E81DB7E34C00713261 /* Coordinate3DTests.swift in Sources */,
+				EA8D58E61DB7E34C00713261 /* Coordinate3DMTests.swift in Sources */,
+				EA8D58FE1DB7E34C00713261 /* LineString+GeometryTests.swift in Sources */,
+				EA8D58E41DB7E34C00713261 /* Coordinate2DTests.swift in Sources */,
+				EA8D58F41DB7E34C00713261 /* LinearRing+CurveTests.swift in Sources */,
+				EA8D59051DB7E34C00713261 /* MultiLineString+GeometryTests.swift in Sources */,
+				EA8D59121DB7E34C00713261 /* PointTests.swift in Sources */,
+				EA8D58EF1DB7E34C00713261 /* GeometryCollection+GeometryTests.swift in Sources */,
+				EA8D58ED1DB7E34C00713261 /* FloatingPrecisionTests.swift in Sources */,
+				EA8D58EB1DB7E34C00713261 /* FixedPrecisionTests.swift in Sources */,
+				EA8D591A1DB7E34C00713261 /* WKTWriterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607FACCF1AFB9204008FA782 /* GeoFeatures_Example */;
+			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA8D589D1DB7D7F800713261 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA8D589E1DB7D7F800713261 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		EA8D589F1DB7D7F800713261 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA8D58A01DB7D7F800713261 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		607FACED1AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		607FACEE1AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		607FACF01AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB6C0A7372E6C0217066A27E /* Pods-GeoFeatures_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/GeoFeatures/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		607FACF11AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52F2ACCACE34D9B4E9E59058 /* Pods-GeoFeatures_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/GeoFeatures/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		607FACF31AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3570807BEA12508BC5987DDB /* Pods-GeoFeatures_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ../Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoFeatures_Example.app/GeoFeatures_Example";
+			};
+			name = Debug;
+		};
+		607FACF41AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 402534F70096EBD0C273C7E4 /* Pods-GeoFeatures_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ../Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoFeatures_Example.app/GeoFeatures_Example";
+			};
+			name = Release;
+		};
+		EAC75E8A1C91E84900BA35F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EAC75E8B1C91E84900BA35F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "GeoFeatures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACED1AFB9204008FA782 /* Debug */,
+				607FACEE1AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACF01AFB9204008FA782 /* Debug */,
+				607FACF11AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACF31AFB9204008FA782 /* Debug */,
+				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source Files" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAC75E8A1C91E84900BA35F8 /* Debug */,
+				EAC75E8B1C91E84900BA35F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
+}

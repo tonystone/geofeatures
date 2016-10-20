@@ -1,5 +1,5 @@
 /*
- *   Package.swift
+ *   MultiPolygon+SurfaceTests.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,23 +15,21 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 4/29/16.
+ *   Created by Tony Stone on 3/29/16.
  */
-import PackageDescription
+import XCTest
 
-let package = Package(
-    name: "GeoFeatures",
+import GeoFeatures
+
+// MARK: - Coordinate2D, FixedPrecision, Cartesian -
+
+class MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
+
+    let precision = FixedPrecision(scale: 100000)
+    let crs       = Cartesian()
     
-    targets: [
-        Target(
-            name: "GeoFeatures",
-            dependencies: [])
-    ],
-    
-    exclude: ["_Pods.xcodeproj", "Docs", "Example", "GeoFeatures.podspec", "Visualization"]
-)
+    func testArea_Empty() {
+        XCTAssertEqual(MultiPolygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).area(), 0.0)
+    }
 
-/// Added the modules to a framework module
-let dylib = Product(name: "GeoFeatures", type: .Library(.Dynamic), modules: "GeoFeatures")
-
-products.append(dylib)
+}

@@ -26,7 +26,7 @@ import XCTest
 ///
 
 #if os(Linux) || os(FreeBSD)
-   @testable import GeometryTests
+   @testable import GeoFeaturesTests
 
    XCTMain([
          testCase(Coordinate2DMTests.allTests),

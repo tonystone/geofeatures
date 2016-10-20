@@ -1,5 +1,5 @@
 /*
- *   Package.swift
+ *   FloatingPrecisionTests.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -15,23 +15,26 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 4/29/16.
+ *   Created by Tony Stone on 2/11/16.
  */
-import PackageDescription
+import XCTest
 
-let package = Package(
-    name: "GeoFeatures",
+import GeoFeatures
+
+class FloatingPrecisionTests: XCTestCase {
+
+    let precision  = FloatingPrecision()
     
-    targets: [
-        Target(
-            name: "GeoFeatures",
-            dependencies: [])
-    ],
+    func testConvert_Equal() {
+        XCTAssertEqual(precision.convert(100.003), 100.003)
+    }
     
-    exclude: ["_Pods.xcodeproj", "Docs", "Example", "GeoFeatures.podspec", "Visualization"]
-)
+    func testConvert_NotEqual1() {
+        XCTAssertNotEqual(precision.convert(100.0), 100.003)
+    }
+    
+    func testConvert_NotEqual2() {
+        XCTAssertNotEqual(precision.convert(100.003), 100.0003)
+    }
 
-/// Added the modules to a framework module
-let dylib = Product(name: "GeoFeatures", type: .Library(.Dynamic), modules: "GeoFeatures")
-
-products.append(dylib)
+}

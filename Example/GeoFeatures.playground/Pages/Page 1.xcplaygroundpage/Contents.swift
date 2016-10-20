@@ -1,5 +1,5 @@
 import Swift
-import GeoFeatures2
+import GeoFeatures
 
 let fixedPrecision1 = FixedPrecision(scale: 10)
 let fixedPrecision2 = FixedPrecision(scale: 10)
