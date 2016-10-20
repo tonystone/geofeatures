@@ -205,7 +205,7 @@ Dir[testsDirectory + '/*'].each do |subDirectory|
     
     if File.directory?(subDirectory)
         
-        Dir[subDirectory + '/*Tests.swift'].each do |fileName|
+        Dir[subDirectory + '/*Test{s,}.swift'].each do |fileName|
         
             if File.file? fileName
         

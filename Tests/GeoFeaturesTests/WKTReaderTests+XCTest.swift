@@ -46,6 +46,7 @@ extension WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testRead_Polygon_MultipleOuterRings_Invalid_MissingComma", testRead_Polygon_MultipleOuterRings_Invalid_MissingComma),
                 ("testRead_MultiPolygon_Valid", testRead_MultiPolygon_Valid),
                 ("testRead_GeometryCollection_Valid", testRead_GeometryCollection_Valid),
+                ("testReadPerformance_Polygon_California", testReadPerformance_Polygon_California),
            ]
    }
 }
