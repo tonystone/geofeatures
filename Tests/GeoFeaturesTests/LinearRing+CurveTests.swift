@@ -44,8 +44,6 @@ class LinearRing_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [(x: 0, y: 0),(x: 0, y: 2),(x: 0, y: 3),(x: 0, y: 4),(x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs).length(), 5.0)
     }
     
-    #if os(Linux) || os(FreeBSD)
-    #else
     func testLengthPerformance() {
         let lineString = LinearRing<Coordinate2D>(elements: [(x :0, y: 0),(x: 0, y: 2),(x: 0,y: 3),(x: 0, y: 4),(x: 0,y: 5)], precision: precision, coordinateReferenceSystem: crs)
         
@@ -56,7 +54,6 @@ class LinearRing_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
             }
         }
     }
-    #endif
     
     func testIsClosed_Closed() {
         XCTAssertTrue(LinearRing<Coordinate2D>(elements: [(x: 0, y: 0),(x: 0, y: 2),(x: 0, y: 3),(x: 2, y: 0),(x: 0, y: 0)], precision: precision, coordinateReferenceSystem: crs).isClosed())
@@ -78,8 +75,6 @@ class LinearRing_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCas
     let precision = FloatingPrecision()
     let crs       = Cartesian()
     
-    #if os(Linux) || os(FreeBSD)
-    #else
     func testPerformanceLength() {
         let lineString = LinearRing<Coordinate3D>(elements: [(x :0, y: 0, z: 0),(x: 0, y: 2, z: 0),(x: 0,y: 3, z: 0),(x: 0, y: 4, z: 0),(x: 0,y: 5, z:0)], precision: precision, coordinateReferenceSystem: crs)
         
@@ -90,5 +85,4 @@ class LinearRing_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCas
             }
         }
     }
-    #endif
 }

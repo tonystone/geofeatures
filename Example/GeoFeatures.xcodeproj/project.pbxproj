@@ -56,7 +56,7 @@
 		EA8D59101DB7E34C00713261 /* Point+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */; };
 		EA8D59121DB7E34C00713261 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58D81DB7E34C00713261 /* PointTests.swift */; };
 		EA8D59141DB7E34C00713261 /* Polygon+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */; };
-		EA8D59161DB7E34C00713261 /* Polygon+SurfaceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTest.swift */; };
+		EA8D59161DB7E34C00713261 /* Polygon+SurfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTests.swift */; };
 		EA8D59181DB7E34C00713261 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */; };
 		EA8D591A1DB7E34C00713261 /* WKTWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */; };
 /* End PBXBuildFile section */
@@ -119,7 +119,7 @@
 		EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Point+GeometryTests.swift"; sourceTree = "<group>"; };
 		EA8D58D81DB7E34C00713261 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Polygon+GeometryTests.swift"; sourceTree = "<group>"; };
-		EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Polygon+SurfaceTest.swift"; sourceTree = "<group>"; };
+		EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Polygon+SurfaceTests.swift"; sourceTree = "<group>"; };
 		EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTReaderTests.swift; sourceTree = "<group>"; };
 		EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKTWriterTests.swift; sourceTree = "<group>"; };
 		EA8D591B1DB8374100713261 /* HowTo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = HowTo.md; path = ../Docs/HowTo.md; sourceTree = "<group>"; };
@@ -290,7 +290,7 @@
 				EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */,
 				EA8D58D81DB7E34C00713261 /* PointTests.swift */,
 				EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */,
-				EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTest.swift */,
+				EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTests.swift */,
 				EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */,
 				EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */,
 			);
@@ -599,7 +599,7 @@
 				EA8D58F21DB7E34C00713261 /* IntersectionMatrixTests.swift in Sources */,
 				EA8D58FC1DB7E34C00713261 /* LineString+CurveTests.swift in Sources */,
 				EA8D59101DB7E34C00713261 /* Point+GeometryTests.swift in Sources */,
-				EA8D59161DB7E34C00713261 /* Polygon+SurfaceTest.swift in Sources */,
+				EA8D59161DB7E34C00713261 /* Polygon+SurfaceTests.swift in Sources */,
 				EA8D58E81DB7E34C00713261 /* Coordinate3DTests.swift in Sources */,
 				EA8D58E61DB7E34C00713261 /* Coordinate3DMTests.swift in Sources */,
 				EA8D58FE1DB7E34C00713261 /* LineString+GeometryTests.swift in Sources */,

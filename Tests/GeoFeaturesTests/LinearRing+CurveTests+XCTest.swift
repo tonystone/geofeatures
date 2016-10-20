@@ -33,6 +33,7 @@ extension LinearRing_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testLength_Test2", testLength_Test2),
                 ("testLength_Test3", testLength_Test3),
                 ("testLength_Test4", testLength_Test4),
+                ("testLengthPerformance", testLengthPerformance),
                 ("testIsClosed_Closed", testIsClosed_Closed),
                 ("testIsClosed_Open", testIsClosed_Open),
                 ("testIsClosed_Empty", testIsClosed_Empty),
@@ -44,6 +45,7 @@ extension LinearRing_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
    static var allTests : [(String, (LinearRing_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
+                ("testPerformanceLength", testPerformanceLength),
            ]
    }
 }
