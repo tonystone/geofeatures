@@ -21,6 +21,8 @@
 #
 require 'getoptlong'
 require 'fileutils'
+require 'pathname'
+
 include FileUtils
 
 def header(fileName)
@@ -83,7 +85,7 @@ def createExtensionFile(fileName, classes)
      }
 end
 
-def createLinuxMain(testsDirectory, files)
+def createLinuxMain(testsDirectory, allTestSubDirectories, files)
     
     fileName = testsDirectory + "/LinuxMain.swift"
     print "Creating file: " + fileName + "\n"
@@ -94,7 +96,9 @@ def createLinuxMain(testsDirectory, files)
         file.write "\n"
         
         file.write "#if os(Linux) || os(FreeBSD)\n"
-        file.write "   @testable import GeoFeaturesTests\n"
+        for testSubDirectory in allTestSubDirectories
+            file.write "   @testable import " + testSubDirectory + "\n"
+        end
         file.write "\n"
         file.write "   XCTMain([\n"
 
@@ -199,11 +203,14 @@ begin
     rescue GetoptLong::InvalidOption
 end
 
+allTestSubDirectories = Array.new
 allFiles = Array.new
 
 Dir[testsDirectory + '/*'].each do |subDirectory|
     
     if File.directory?(subDirectory)
+        
+        directoryHasClasses = false
         
         Dir[subDirectory + '/*Test{s,}.swift'].each do |fileName|
         
@@ -219,10 +226,15 @@ Dir[testsDirectory + '/*'].each do |subDirectory|
                 if fileClasses.count > 0
         
                     createExtensionFile(fileName, fileClasses)
-        
+                    
+                    directoryHasClasses = true
                     allFiles << fileClasses
                 end
             end
+        end
+        
+        if directoryHasClasses
+            allTestSubDirectories << Pathname.new(subDirectory).split.last.to_s
         end
     end
 end
@@ -232,6 +244,6 @@ end
 # references all the classes and funcs in the source files.
 #
 if allFiles.count > 0
-    createLinuxMain(testsDirectory, allFiles)
+    createLinuxMain(testsDirectory, allTestSubDirectories, allFiles)
 end
 # eof
