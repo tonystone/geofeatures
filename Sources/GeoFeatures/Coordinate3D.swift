@@ -24,13 +24,13 @@ import Swift
  
     Low level 3 dimensional Coorodinate type
  */
-public final class Coordinate3D : Coordinate, ThreeDimensional {
+public struct Coordinate3D : Coordinate, ThreeDimensional {
     
     public let x: Double
     public let y: Double
     public let z: Double
 
-    public required init(x: Double, y: Double, z: Double) {
+    public init(x: Double, y: Double, z: Double) {
         self.x = x
         self.y = y
         self.z = z
@@ -39,7 +39,7 @@ public final class Coordinate3D : Coordinate, ThreeDimensional {
 
 extension Coordinate3D : _ArrayConstructable {
     
-    public convenience init(array: [Double]) {
+    public init(array: [Double]) {
         precondition(array.count == 3)
         
         self.init(x: array[0], y: array[1], z: array[2])
@@ -48,11 +48,11 @@ extension Coordinate3D : _ArrayConstructable {
 
 extension Coordinate3D : CopyConstructable {
     
-    public convenience init(other: Coordinate3D) {
+    public init(other: Coordinate3D) {
         self.init(x: other.x, y: other.y, z: other.z)
     }
     
-    public convenience init(other: Coordinate3D, precision: Precision) {
+    public init(other: Coordinate3D, precision: Precision) {
         self.init(x: precision.convert(other.x), y: precision.convert(other.y), z: precision.convert(other.z))
     }
 }
@@ -65,11 +65,11 @@ extension Coordinate3D : TupleConvertable {
         get { return (x: self.x, y: self.y, z: self.z)  }
     }
     
-    public convenience init(tuple: TupleType) {
+    public init(tuple: TupleType) {
         self.init(x: tuple.x, y: tuple.y, z: tuple.z)
     }
     
-    public convenience init(tuple: TupleType, precision: Precision) {
+    public init(tuple: TupleType, precision: Precision) {
         self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), z: precision.convert(tuple.z))
     }
 }

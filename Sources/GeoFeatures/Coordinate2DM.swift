@@ -24,13 +24,13 @@ import Swift
  
     Low level 2 dimensional Coorodinate type with an m value.
  */
-public final class Coordinate2DM : Coordinate, Measured {
+public struct Coordinate2DM : Coordinate, Measured {
     
     public let x: Double
     public let y: Double
     public let m: Double
     
-    public required init(x: Double, y: Double, m: Double) {
+    public init(x: Double, y: Double, m: Double) {
         self.x = x
         self.y = y
         self.m = m
@@ -39,7 +39,7 @@ public final class Coordinate2DM : Coordinate, Measured {
 
 extension Coordinate2DM : _ArrayConstructable {
     
-    public convenience init(array: [Double]) {
+    public init(array: [Double]) {
         precondition(array.count == 3)
         
         self.init(x: array[0], y: array[1], m: array[2])
@@ -48,11 +48,11 @@ extension Coordinate2DM : _ArrayConstructable {
 
 extension Coordinate2DM : CopyConstructable {
     
-    public convenience init(other: Coordinate2DM) {
+    public init(other: Coordinate2DM) {
         self.init(x: other.x, y: other.y, m: other.m)
     }
     
-    public convenience init(other: Coordinate2DM, precision: Precision) {
+    public init(other: Coordinate2DM, precision: Precision) {
         self.init(x: precision.convert(other.x), y: precision.convert(other.y), m: precision.convert(other.m))
     }
 }
@@ -65,11 +65,11 @@ extension Coordinate2DM : TupleConvertable {
         get { return (x: self.x, y: self.y, m: self.m)  }
     }
     
-    public convenience init(tuple: TupleType) {
+    public init(tuple: TupleType) {
         self.init(x: tuple.x, y: tuple.y, m: tuple.m)
     }
     
-    public convenience init(tuple: TupleType, precision: Precision) {
+    public init(tuple: TupleType, precision: Precision) {
         self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), m: precision.convert(tuple.m))
     }
 }

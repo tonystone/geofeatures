@@ -24,14 +24,14 @@ import Swift
  
     Low level 3 dimensional Coorodinate type with an m value.
  */
-public final class Coordinate3DM : Coordinate, ThreeDimensional, Measured {
+public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured {
     
     public let x: Double
     public let y: Double
     public let z: Double
     public let m: Double
     
-    public required init(x: Double, y: Double, z: Double, m: Double) {
+    public init(x: Double, y: Double, z: Double, m: Double) {
         self.x = x
         self.y = y
         self.z = z
@@ -41,7 +41,7 @@ public final class Coordinate3DM : Coordinate, ThreeDimensional, Measured {
 
 extension Coordinate3DM : _ArrayConstructable {
     
-    public convenience init(array: [Double]) {
+    public init(array: [Double]) {
         precondition(array.count == 4)
         
         self.init(x: array[0], y: array[1], z: array[2], m: array[3])
@@ -50,11 +50,11 @@ extension Coordinate3DM : _ArrayConstructable {
 
 extension Coordinate3DM : CopyConstructable {
     
-    public convenience init(other: Coordinate3DM) {
+    public init(other: Coordinate3DM) {
         self.init(x: other.x, y: other.y, z: other.z, m: other.m)
     }
     
-    public convenience init(other: Coordinate3DM, precision: Precision) {
+    public init(other: Coordinate3DM, precision: Precision) {
         self.init(x: precision.convert(other.x), y: precision.convert(other.y), z: precision.convert(other.z), m: precision.convert(other.m))
     }
 }
@@ -67,11 +67,11 @@ extension Coordinate3DM : TupleConvertable {
         get { return (x: self.x, y: self.y, z: self.z, m: self.m)  }
     }
     
-    public convenience init(tuple: TupleType) {
+    public init(tuple: TupleType) {
         self.init(x: tuple.x, y: tuple.y, z: tuple.z, m: tuple.m)
     }
     
-    public convenience init(tuple: TupleType, precision: Precision) {
+    public init(tuple: TupleType, precision: Precision) {
         self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), z: precision.convert(tuple.z), m: precision.convert(tuple.m))
     }
 }
