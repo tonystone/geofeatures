@@ -19,6 +19,7 @@
 #
 #   Created by Tony Stone on 5/4/16.
 #
+require 'getoptlong'
 require 'fileutils'
 include FileUtils
 
@@ -82,9 +83,9 @@ def createExtensionFile(fileName, classes)
      }
 end
 
-def createLinuxMain(files)
+def createLinuxMain(testsDirectory, files)
     
-    fileName = "Tests/LinuxMain.swift"
+    fileName = testsDirectory + "/LinuxMain.swift"
     print "Creating file: " + fileName + "\n"
     
     File.open(fileName, 'w') { |file|
@@ -180,24 +181,48 @@ end
 # Main routine
 #
 #
+
+testsDirectory="Tests"
+
+options = GetoptLong.new(
+                         [ '--tests-dir', GetoptLong::OPTIONAL_ARGUMENT ]
+                         )
+options.quiet = true
+
+begin
+    options.each do |option, value|
+        case option
+            when '--tests-dir'
+            testsDirectory=value
+        end
+    end
+    rescue GetoptLong::InvalidOption
+end
+
 allFiles = Array.new
 
-Dir['Tests/GeometryTests/*Tests.swift'].each do |fileName|
+Dir[testsDirectory + '/*'].each do |subDirectory|
     
-    if File.file? fileName
+    if File.directory?(subDirectory)
         
-        fileClasses = parseSourceFile(fileName)
+        Dir[subDirectory + '/*Tests.swift'].each do |fileName|
         
-        #
-        # If there are classes in the
-        # test source file, create an extension
-        # file for it.
-        #
-        if fileClasses.count > 0
-            
-            createExtensionFile(fileName, fileClasses)
-            
-            allFiles << fileClasses
+            if File.file? fileName
+        
+                fileClasses = parseSourceFile(fileName)
+        
+                #
+                # If there are classes in the
+                # test source file, create an extension
+                # file for it.
+                #
+                if fileClasses.count > 0
+        
+                    createExtensionFile(fileName, fileClasses)
+        
+                    allFiles << fileClasses
+                end
+            end
         end
     end
 end
@@ -206,6 +231,7 @@ end
 # Last step is the create a LinuxMain.swift file that
 # references all the classes and funcs in the source files.
 #
-createLinuxMain(allFiles)
-
+if allFiles.count > 0
+    createLinuxMain(testsDirectory, allFiles)
+end
 # eof
