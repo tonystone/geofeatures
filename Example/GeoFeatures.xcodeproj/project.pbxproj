@@ -87,6 +87,7 @@
 		EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = generate_geometry_from_gyb.sh; path = Scripts/generate_geometry_from_gyb.sh; sourceTree = "<group>"; };
 		EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = generate_tests_from_gyb.sh; path = Scripts/generate_tests_from_gyb.sh; sourceTree = "<group>"; };
 		EA475CED1CDAA4EB0013AFA1 /* generate_xctest_linux_runner.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = generate_xctest_linux_runner.rb; path = Scripts/generate_xctest_linux_runner.rb; sourceTree = "<group>"; };
+		EA4CFEC91DCB9CF70050634D /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
 		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
 		EA8D58971DB7D7C200713261 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GeoFeatures/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -239,6 +240,7 @@
 				2E8E8258ACE5267DDF6D0D4E /* LICENSE */,
 				EAE2CF5E1CD43D500050BC30 /* Vagrantfile */,
 				EAE6C76D1DB7CDD200E2E492 /* Gemfile.osx */,
+				EA4CFEC91DCB9CF70050634D /* circle.yml */,
 				EA8D591C1DB83EA300713261 /* .gitignore */,
 			);
 			name = Metadata;
