@@ -1,0 +1,25 @@
+machine:
+
+  timezone:
+    America/Los_Angeles # Set the timezone
+
+  environment:
+    PATH: ${HOME}/${CIRCLE_PROJECT_REPONAME}/swift-3.0-RELEASE-ubuntu14.04/usr/bin:${PATH}
+
+database:
+  override:
+    - echo "Skipping DB section."
+
+dependencies:
+  pre:
+    - wget https://swift.org/builds/swift-3.0-release/ubuntu1404/swift-3.0-RELEASE/swift-3.0-RELEASE-ubuntu14.04.tar.gz
+    - tar xzvf swift-3.0-RELEASE-ubuntu14.04.tar.gz
+    # Swift on Ubuntu 14.04 requires clang 3.6 or higher to be the default.  On Ubuntu just installing clang-3.8 does not set it as the default so you must update-alternatives
+    - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+    - sudo apt-get install clang-3.8 lldb-3.8
+    - sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 100
+    - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 100
+
+test:
+  override:
+    - swift test # use Swift PM to build and test
