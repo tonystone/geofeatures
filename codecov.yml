@@ -12,9 +12,7 @@ coverage:
     slack:
       default:
         url: https://hooks.slack.com/services/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
-        threshold: null
-        branches: null
-        attachments: "sunburst, diff, tree"
+        attachments: "sunburst, diff"
   precision: 2
   range:
   - 70.0
