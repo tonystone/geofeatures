@@ -34,6 +34,20 @@ public struct Point<CoordinateType : Coordinate & CopyConstructable> {
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
     
+    ///
+    /// Constructs a Point with another point of the same type.
+    ///
+    public init(other: Point<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+        
+        self.precision = precision
+        self.coordinateReferenceSystem = coordinateReferenceSystem
+        
+        self.coordinate = CoordinateType(other: other.coordinate, precision: precision)
+    }
+    
+    ///
+    /// Constructs a Point with a Coordinate of type CoordinateType.
+    ///
     public init(coordinate: CoordinateType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         
         self.precision = precision
