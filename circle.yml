@@ -3,6 +3,7 @@ machine:
     version: 8.0
 
   environment:
+    XCODE_PRODUCTNAME: GeoFeatures
     XCODE_WORKSPACE: Example/GeoFeatures.xcworkspace
     XCODE_SCHEME: GeoFeatures-Example
 
@@ -26,5 +27,5 @@ test:
       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
       bundler exec xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
   post:
-    - bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash) -F ios -J "$XCODE_PRODUCTNAME"
 
