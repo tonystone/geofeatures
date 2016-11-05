@@ -4,7 +4,7 @@ codecov:
     
 comment:
   behavior: default
-  layout: header, diff
+  layout: header, diff, tree
   require_changes: false
   
 coverage:
@@ -14,7 +14,7 @@ coverage:
   - 100.0
   round: down
   status:
-    changes: false
+    changes: true
     patch: true
     project: true
   ignore:
