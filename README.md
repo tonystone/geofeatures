@@ -10,6 +10,7 @@
    <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
 </a>
 [![Version](https://img.shields.io/cocoapods/v/GeoFeatures2.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures2)
+[![CircleCI](https://circleci.com/gh/tonystone/geofeatures2/tree/master.svg?style=svg&circle-token=b51ae264e7ce933be2262043ae3faa6a7eb9b4c4)](https://circleci.com/gh/tonystone/geofeatures2/tree/master)
 <a href="https://codecov.io/gh/tonystone/geofeatures2">
    <img src="https://codecov.io/gh/tonystone/geofeatures2/branch/master/graph/badge.svg?token=pR1BEC4A1s" alt="Codecov" />
 </a>
