@@ -1,9 +1,25 @@
-# GeoFeatures
+# GeoFeatures ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
 
-[![CI Status](http://img.shields.io/travis/Tony Stone/GeoFeatures2.svg?style=flat)](https://travis-ci.org/Tony Stone/GeoFeatures2)
+<a href="https://github.com/tonystone/geofeatures2/" target="_blank">
+    <img src="https://img.shields.io/badge/Platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos%20%7C%20linux%20-lightgray.svg?style=flat" alt="Platforms: ios | osx | watchos | tvos | Linux">
+</a>
+<a href="https://github.com/tonystone/geofeatures2/" target="_blank">
+    <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
+</a>
+<a href="https://github.com/tonystone/geofeatures2/" target="_blank">
+   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+</a>
 [![Version](https://img.shields.io/cocoapods/v/GeoFeatures2.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures2)
-[![License](https://img.shields.io/cocoapods/l/GeoFeatures2.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures2)
-[![Platform](https://img.shields.io/cocoapods/p/GeoFeatures2.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures2)
+<a href="https://codecov.io/gh/tonystone/geofeatures2">
+   <img src="https://codecov.io/gh/tonystone/geofeatures2/branch/master/graph/badge.svg?token=pR1BEC4A1s" alt="Codecov" />
+</a>
+
+## Code Coverage Graph
+
+<a href="https://codecov.io/gh/tonystone/geofeatures2">
+   <img src="https://codecov.io/gh/tonystone/geofeatures2/branch/master/graphs/tree.svg?token=pR1BEC4A1s" alt="Codecov Graph" />
+</a>
+
 
 ## Usage
 
