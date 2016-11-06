@@ -76,14 +76,13 @@ public struct Polygon<CoordinateType : Coordinate & CopyConstructable>  {
     }
 
     /**
-        Construct a Polygon from another Polygon.
+        Construct a Polygon from another Polygon (copy constructor).
      
      - parameters:
-        - other: Another Polygon of the same type.
+        - other: The Polygon of the same type that you want to construct a new Polygon from.
         - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
         - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
      
-     - seealso: `CollectionType`
      - seealso: `CoordinateReferenceSystem`
      - seealso: `Precision`
      */
