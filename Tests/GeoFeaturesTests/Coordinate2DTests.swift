@@ -86,6 +86,20 @@ class Coordinate2DTests: XCTestCase {
         XCTAssertEqual(coordinate.y, 3.0)
     }
     
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let coordinate = Coordinate2D(x: 2.0, y: 3.0)
+        
+        XCTAssertEqual(coordinate.description, "(x: 2.0, y: 3.0)")
+    }
+    
+    func testDebugDescription() {
+        let coordinate = Coordinate2D(x: 2.0, y: 3.0)
+        
+        XCTAssertEqual(coordinate.description, "(x: 2.0, y: 3.0)")
+    }
+    
     // MARK: Equal
     
     func testEqual () {

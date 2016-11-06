@@ -95,6 +95,20 @@ class Coordinate3DTests: XCTestCase {
         XCTAssertEqual(coordinate.z, 4.0)
     }
     
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let coordinate = Coordinate3D(x: 2.0, y: 3.0, z: 4.0)
+        
+        XCTAssertEqual(coordinate.description, "(x: 2.0, y: 3.0, z: 4.0)")
+    }
+    
+    func testDebugDescription() {
+        let coordinate = Coordinate3D(x: 2.0, y: 3.0, z: 4.0)
+        
+        XCTAssertEqual(coordinate.description, "(x: 2.0, y: 3.0, z: 4.0)")
+    }
+    
     // MARK: Equal
     
     func testEqual () {
