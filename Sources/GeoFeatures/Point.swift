@@ -76,7 +76,7 @@ extension Point where CoordinateType : TupleConvertable {
 
 extension Point : CustomStringConvertible, CustomDebugStringConvertible {
     
-    public var description : String { return "\(type(of: self))(\(self.coordinate))"  }
+    public var description : String { return "\(type(of: self))\(self.coordinate)"  }
     public var debugDescription : String { return self.description  }
 }
 
