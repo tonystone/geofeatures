@@ -164,7 +164,7 @@ extension MultiLineString : Collection {
         
         storage.withUnsafeMutablePointers { (value, elements)->Void in
 
-            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the element before adding.
+            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
             (elements + value.pointee).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
             value.pointee += 1
         }
@@ -320,7 +320,7 @@ extension MultiLineString {
             storage.withUnsafeMutablePointerToElements { elements->Void in
                 
                 (elements + index).deinitialize()
-                /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the element before adding.
+                /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
                 (elements + index).initialize(to: Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
             }
         }

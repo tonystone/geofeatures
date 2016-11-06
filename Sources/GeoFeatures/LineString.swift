@@ -54,14 +54,13 @@ public struct LineString<CoordinateType : Coordinate & CopyConstructable> {
     }
 
     /**
-        Construct a LineString from another LineString.
+        Construct a LineString from another LineString (copy constructor).
      
         - parameters:
-            - other: Another LineString of the same type.
+            - other: The LineString of the same type that you want to construct a new LineString from.
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
             - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
-     
-        - seealso: `CollectionType`
+
         - seealso: `CoordinateReferenceSystem`
         - seealso: `Precision`
      */

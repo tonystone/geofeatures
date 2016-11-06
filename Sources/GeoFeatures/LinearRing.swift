@@ -54,14 +54,13 @@ public struct LinearRing<CoordinateType : Coordinate & CopyConstructable> {
     }
 
     /**
-        Construct a LinearRing from another LinearRing.
+        Construct a LinearRing from another LinearRing (copy constructor).
      
         - parameters:
-            - other: Another LinearRing of the same type.
+            - other: The LinearRing of the same type that you want to construct a new LinearRing from.
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
             - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
-     
-        - seealso: `CollectionType`
+
         - seealso: `CoordinateReferenceSystem`
         - seealso: `Precision`
      */
