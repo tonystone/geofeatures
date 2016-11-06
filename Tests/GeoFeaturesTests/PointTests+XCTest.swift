@@ -30,6 +30,8 @@ extension Point_Coordinate2D_FloatingPrecision_Cartesian_Tests {
    static var allTests : [(String, (Point_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -39,6 +41,8 @@ extension Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
    static var allTests : [(String, (Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -48,6 +52,8 @@ extension Point_Coordinate3D_FloatingPrecision_Cartesian_Tests {
    static var allTests : [(String, (Point_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -57,6 +63,8 @@ extension Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
    static var allTests : [(String, (Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }

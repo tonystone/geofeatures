@@ -123,6 +123,20 @@ class MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
         XCTAssertEqual(geometry.isEmpty(), true)
     }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
+    }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
@@ -218,6 +232,20 @@ class MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
         geometry.removeAll()
 
         XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
     }
 }
 
@@ -315,6 +343,20 @@ class MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
         XCTAssertEqual(geometry.isEmpty(), true)
     }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
+    }
 }
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
@@ -410,6 +452,20 @@ class MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
         geometry.removeAll()
 
         XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
     }
 }
 
@@ -507,6 +563,20 @@ class MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
         XCTAssertEqual(geometry.isEmpty(), true)
     }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
+    }
 }
 
 // MARK: - Coordinate2DM, FixedPrecision, Cartesian -
@@ -602,6 +672,20 @@ class MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
         geometry.removeAll()
 
         XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
     }
 }
 
@@ -699,6 +783,20 @@ class MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
         XCTAssertEqual(geometry.isEmpty(), true)
     }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
+    }
 }
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
@@ -794,5 +892,19 @@ class MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
         geometry.removeAll()
 
         XCTAssertEqual(geometry.isEmpty(), true)
+    }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
     }
 }
