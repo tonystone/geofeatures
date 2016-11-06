@@ -53,6 +53,32 @@ public struct LinearRing<CoordinateType : Coordinate & CopyConstructable> {
         storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<CoordinateType>
     }
 
+    /**
+        Construct a LinearRing from another LinearRing.
+     
+        - parameters:
+            - other: Another LinearRing of the same type.
+            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
+            - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+     
+        - seealso: `CollectionType`
+        - seealso: `CoordinateReferenceSystem`
+        - seealso: `Precision`
+     */
+    public init(other: LinearRing<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+        
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        
+        other.storage.withUnsafeMutablePointers { (count, elements) -> Void in
+            
+            self.reserveCapacity(numericCast(count.pointee))
+            
+            for index in 0..<count.pointee {
+                self.append(elements[index])
+            }
+        }
+    }
+
     internal var storage: CollectionBuffer<CoordinateType>
 }
 

@@ -163,7 +163,7 @@ extension GeometryCollection : Collection {
         _resizeIfNeeded()
         
         storage.withUnsafeMutablePointers { (value, elements)->Void in
-            
+
             (elements + value.pointee).initialize(to: newElement)
             value.pointee += 1
         }
