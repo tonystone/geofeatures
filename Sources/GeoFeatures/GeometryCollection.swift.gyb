@@ -169,8 +169,13 @@ extension ${Self} : Collection {
         _resizeIfNeeded()
         
         storage.withUnsafeMutablePointers { (value, elements)->Void in
-            
+
+%if CoordinateSpecialized == 'true':
+            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+            (elements + value.pointee).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+%else:
             (elements + value.pointee).initialize(to: newElement)
+%end
             value.pointee += 1
         }
     }
@@ -325,7 +330,12 @@ extension ${Self} {
             storage.withUnsafeMutablePointerToElements { elements->Void in
                 
                 (elements + index).deinitialize()
+%if CoordinateSpecialized == 'true':
+                /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+                (elements + index).initialize(to: Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+%else:
                 (elements + index).initialize(to: newValue)
+%end
             }
         }
     }

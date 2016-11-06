@@ -84,7 +84,19 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
             }
         ), "\(geometry) is not equal to \(expected)")
     }
-    
+
+    func testInit_Copy() {
+        let geometry = ${GeometryType}<${CoordinateType}>(other: ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}]), precision: precision, coordinateReferenceSystem: crs)
+        let expected = ${GeometryType}<${CoordinateType}>(elements: [${ExpectedTuple0},${ExpectedTuple1}], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertTrue(
+            (geometry.elementsEqual(expected)
+                { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+                    return lhs == rhs
+            }
+        ), "\(geometry) is not equal to \(expected)")
+    }
+
     func testSubscript_Get() {
         let geometry = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
         

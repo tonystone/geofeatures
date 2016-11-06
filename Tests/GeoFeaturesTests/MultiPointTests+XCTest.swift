@@ -41,6 +41,8 @@ extension MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -61,6 +63,8 @@ extension MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -81,6 +85,8 @@ extension MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -101,6 +107,8 @@ extension MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -121,6 +129,8 @@ extension MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -141,6 +151,8 @@ extension MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -161,6 +173,8 @@ extension MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }
@@ -181,6 +195,8 @@ extension MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testCount", testCount),
                 ("testAppend", testAppend),
                 ("testRemoveAll", testRemoveAll),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
            ]
    }
 }

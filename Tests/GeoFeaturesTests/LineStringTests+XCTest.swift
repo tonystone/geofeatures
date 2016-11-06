@@ -31,6 +31,7 @@ extension LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -52,6 +53,7 @@ extension LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -73,6 +75,7 @@ extension LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -94,6 +97,7 @@ extension LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -115,6 +119,7 @@ extension LineString_Coordinate2D_FixedPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -136,6 +141,7 @@ extension LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -157,6 +163,7 @@ extension LineString_Coordinate3D_FixedPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),
@@ -178,6 +185,7 @@ extension LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
+                ("testInit_Copy", testInit_Copy),
                 ("testSubscript_Get", testSubscript_Get),
                 ("testSubscript_Set", testSubscript_Set),
                 ("testAppend_LineString", testAppend_LineString),

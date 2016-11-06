@@ -40,6 +40,8 @@ extension Coordinate3DMTests {
                 ("testInit_Array_Invalid", testInit_Array_Invalid),
                 ("testInit_Copy", testInit_Copy),
                 ("testInit_Copy_FixedPrecision", testInit_Copy_FixedPrecision),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
                 ("testEqual", testEqual),
                 ("testNotEqual", testNotEqual),
            ]

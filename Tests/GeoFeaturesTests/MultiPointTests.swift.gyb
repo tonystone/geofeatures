@@ -156,5 +156,19 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
 
         XCTAssertEqual(geometry.isEmpty(), true)
     }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<${CoordinateType}>(Point<${CoordinateType}>${ExpectedTuple0}, Point<${CoordinateType}>${ExpectedTuple1})")
+    }
+    
+    func testDebugDescription() {
+        let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(geometry.description, "MultiPoint<${CoordinateType}>(Point<${CoordinateType}>${ExpectedTuple0}, Point<${CoordinateType}>${ExpectedTuple1})")
+    }
 }
 %end

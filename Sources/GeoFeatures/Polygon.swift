@@ -75,7 +75,39 @@ public struct Polygon<CoordinateType : Coordinate & CopyConstructable>  {
         self.coordinateReferenceSystem = coordinateReferenceSystem
     }
 
-        /**
+    /**
+        Construct a Polygon from another Polygon (copy constructor).
+     
+     - parameters:
+        - other: The Polygon of the same type that you want to construct a new Polygon from.
+        - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
+        - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+     
+     - seealso: `CoordinateReferenceSystem`
+     - seealso: `Precision`
+     */
+    public  init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+        
+        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        
+        var outerRingsGenerator = other.outerRing.makeIterator()
+        
+        self._outerRing.reserveCapacity(numericCast(outerRing.count))
+        
+        while let coordinate = outerRingsGenerator.next() {
+            
+            self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
+        }
+        self._innerRings.reserveCapacity(innerRings.count)
+        
+        var innerRingsGenerator = other.innerRings.makeIterator()
+        
+        while let ring = innerRingsGenerator.next() {
+            self._innerRings.append(RingType(elements: ring, precision: precision))
+        }
+    }
+    
+    /**
         A Polygon can be constructed from any `CollectionType` for it's rings including Array as
         long as it has an Element type equal the `CoordinateType` specified.
      
