@@ -34,6 +34,20 @@ class Point_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(point.x, 1.001)
         XCTAssertEqual(point.y, 1.001)
     }
+    
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let point = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate2D>(x: 1.001, y: 1.001)")
+    }
+    
+    func testDebugDescription() {
+        let point = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate2D>(x: 1.001, y: 1.001)")
+    }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
@@ -49,6 +63,20 @@ class Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(point.x, 1.001)
         XCTAssertEqual(point.y, 1.001)
         XCTAssertEqual(point.m, 1.001)
+    }
+    
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let point = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate2DM>(x: 1.001, y: 1.001, m: 1.001)")
+    }
+    
+    func testDebugDescription() {
+        let point = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate2DM>(x: 1.001, y: 1.001, m: 1.001)")
     }
 }
 
@@ -66,6 +94,20 @@ class Point_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(point.y, 1.001)
         XCTAssertEqual(point.z, 1.001)
     }
+    
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let point = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate3D>(x: 1.001, y: 1.001, z: 1.001)")
+    }
+    
+    func testDebugDescription() {
+        let point = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate3D>(x: 1.001, y: 1.001, z: 1.001)")
+    }
 }
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
@@ -82,6 +124,20 @@ class Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(point.y, 1.001)
         XCTAssertEqual(point.z, 1.001)
         XCTAssertEqual(point.m, 1.001)
+    }
+    
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+    
+    func testDescription() {
+        let point = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate3DM>(x: 1.001, y: 1.001, z: 1.001, m: 1.001)")
+    }
+    
+    func testDebugDescription() {
+        let point = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        
+        XCTAssertEqual(point.description, "Point<Coordinate3DM>(x: 1.001, y: 1.001, z: 1.001, m: 1.001)")
     }
 }
 
