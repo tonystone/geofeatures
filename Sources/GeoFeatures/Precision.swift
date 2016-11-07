@@ -20,15 +20,13 @@
 import Swift
 
 public protocol Precision {
-    
-    
+
     func convert(_ value: Double) -> Double
 }
 
-public func ==<T1 : Precision & Hashable, T2 : Precision & Hashable>(lhs: T1, rhs: T2) -> Bool {
-    if (type(of: lhs) == type(of: rhs)) {
+public func == <T1: Precision & Hashable, T2: Precision & Hashable>(lhs: T1, rhs: T2) -> Bool {
+    if type(of: lhs) == type(of: rhs) {
         return lhs.hashValue == rhs.hashValue
     }
     return false
 }
-

@@ -19,35 +19,35 @@
  */
 import Swift
 
-extension Polygon : Geometry  {
+extension Polygon: Geometry {
 
     public var dimension: Dimension { return .two }
-    
+
     public func isEmpty() -> Bool {
         return self.outerRing.count == 0
     }
 
     /**
      - Returns: the closure of the combinatorial boundary of this Geometry instance.
-     
+
      - Note: The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries
      */
-    
+
     public
     func boundary() -> Geometry {
-        
+
         var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
-        
+
         if _outerRing.count > 0 {
             multiLineString.append(LineString<CoordinateType>(elements: _outerRing, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-        
+
             for ring in _innerRings {
                 multiLineString.append(LineString<CoordinateType>(elements: ring, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
             }
         }
         return multiLineString
     }
-    
+
     public func equals(_ other: Geometry) -> Bool {
         if let other = other as? Polygon<CoordinateType> {
             return self.outerRing.equals(other.outerRing) && self.innerRings.elementsEqual(other.innerRings, by: { (lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool in
@@ -62,4 +62,3 @@ extension Polygon : Geometry  {
         return Polygon()
     }
 }
-

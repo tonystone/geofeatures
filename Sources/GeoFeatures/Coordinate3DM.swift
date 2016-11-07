@@ -21,16 +21,16 @@ import Swift
 
 /**
     Measured 3D Coordinate
- 
+
     Low level 3 dimensional Coorodinate type with an m value.
  */
-public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured {
-    
+public struct Coordinate3DM: Coordinate, ThreeDimensional, Measured {
+
     public let x: Double
     public let y: Double
     public let z: Double
     public let m: Double
-    
+
     public init(x: Double, y: Double, z: Double, m: Double) {
         self.x = x
         self.y = y
@@ -39,55 +39,57 @@ public struct Coordinate3DM : Coordinate, ThreeDimensional, Measured {
     }
 }
 
-extension Coordinate3DM : _ArrayConstructable {
-    
+extension Coordinate3DM: _ArrayConstructable {
+
     public init(array: [Double]) {
         precondition(array.count == 4)
-        
+
         self.init(x: array[0], y: array[1], z: array[2], m: array[3])
     }
 }
 
-extension Coordinate3DM : CopyConstructable {
-    
+extension Coordinate3DM: CopyConstructable {
+
     public init(other: Coordinate3DM) {
         self.init(x: other.x, y: other.y, z: other.z, m: other.m)
     }
-    
+
     public init(other: Coordinate3DM, precision: Precision) {
         self.init(x: precision.convert(other.x), y: precision.convert(other.y), z: precision.convert(other.z), m: precision.convert(other.m))
     }
 }
 
-extension Coordinate3DM : TupleConvertable {
-    
+extension Coordinate3DM: TupleConvertable {
+
     public typealias TupleType = (x: Double, y: Double, z: Double, m: Double)
-    
+
     public var tuple: TupleType {
-        get { return (x: self.x, y: self.y, z: self.z, m: self.m)  }
+        get {
+            return (x: self.x, y: self.y, z: self.z, m: self.m)
+        }
     }
-    
+
     public init(tuple: TupleType) {
         self.init(x: tuple.x, y: tuple.y, z: tuple.z, m: tuple.m)
     }
-    
+
     public init(tuple: TupleType, precision: Precision) {
         self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), z: precision.convert(tuple.z), m: precision.convert(tuple.m))
     }
 }
 
-extension Coordinate3DM : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
+extension Coordinate3DM: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
         return "(x: \(self.x), y: \(self.y), z: \(self.z), m: \(self.m))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return String(describing: self) + self.description
     }
 }
 
-extension Coordinate3DM : Hashable {
+extension Coordinate3DM: Hashable {
     public var hashValue: Int {
         get {
             return 31 &* x.hashValue ^ 37 &* y.hashValue ^ 41 &* z.hashValue ^ 43 &* m.hashValue
@@ -95,6 +97,6 @@ extension Coordinate3DM : Hashable {
     }
 }
 
-public func ==(lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool {
+public func == (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.m == rhs.m
 }

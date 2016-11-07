@@ -31,92 +31,90 @@ import GeoFeatures
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.0, y: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.0, y: 1.0)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -125,108 +123,106 @@ class MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.0, y: 1.0)),Point(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
     }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
 
-class MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.0, y: 1.0, m: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -235,108 +231,106 @@ class MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
     }
 }
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
-class MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.0, y: 1.0, z: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -345,108 +339,106 @@ class MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
     }
 }
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
 
-class MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -455,108 +447,106 @@ class MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
     }
 }
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
-class MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.001, y: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.001, y: 1.001)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2D>, rhs: Point<Coordinate2D>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -565,108 +555,106 @@ class MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate2D>(elements: [Point(coordinate: (x: 1.001, y: 1.001)),Point(coordinate: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2D>(Point<Coordinate2D>(x: 1.0, y: 1.0), Point<Coordinate2D>(x: 2.0, y: 2.0))")
     }
 }
 
 // MARK: - Coordinate2DM, FixedPrecision, Cartesian -
 
-class MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.001, y: 1.001, m: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)),Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate2DM>, rhs: Point<Coordinate2DM>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -675,108 +663,106 @@ class MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate2DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate2DM>(Point<Coordinate2DM>(x: 1.0, y: 1.0, m: 1.0), Point<Coordinate2DM>(x: 2.0, y: 2.0, m: 2.0))")
     }
 }
 
 // MARK: - Coordinate3D, FixedPrecision, Cartesian -
 
-class MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.001, y: 1.001, z: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)),Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3D>, rhs: Point<Coordinate3D>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -785,108 +771,106 @@ class MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate3D>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3D>(Point<Coordinate3D>(x: 1.0, y: 1.0, z: 1.0), Point<Coordinate3D>(x: 2.0, y: 2.0, z: 2.0))")
     }
 }
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
 
-class MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
+class MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
         geometry.append(Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<Coordinate3DM>, rhs: Point<Coordinate3DM>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -895,16 +879,16 @@ class MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<Coordinate3DM>(elements: [Point(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)),Point(coordinate: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<Coordinate3DM>(Point<Coordinate3DM>(x: 1.0, y: 1.0, z: 1.0, m: 1.0), Point<Coordinate3DM>(x: 2.0, y: 2.0, z: 2.0, m: 2.0))")
     }
 }

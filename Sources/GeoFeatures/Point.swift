@@ -21,84 +21,80 @@ import Swift
 
 /**
  Point
- 
+
  A Point is a 0-dimensional geometric object and represents a single location in coordinate space. A Point has an
  x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
  have coordinate values for z.
  */
-public struct Point<CoordinateType : Coordinate & CopyConstructable> {
-    
+public struct Point<CoordinateType: Coordinate & CopyConstructable> {
+
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
-    
+
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
-    
+
     ///
     /// Constructs a Point with another Point of the same type.
     ///
     public init(other: Point<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
-        
+
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
-        
+
         self.coordinate = CoordinateType(other: other.coordinate, precision: precision)
     }
-    
+
     ///
     /// Constructs a Point with a Coordinate of type CoordinateType.
     ///
     public init(coordinate: CoordinateType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
-        
+
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
-        
+
         self.coordinate = CoordinateType(other: coordinate, precision: precision)
     }
-    
+
     internal let coordinate: CoordinateType
 }
 
-extension Point where CoordinateType : ThreeDimensional {
+extension Point where CoordinateType: ThreeDimensional {
     public var z: Double { get { return coordinate.z } }
 }
 
-extension Point where CoordinateType : Measured {
+extension Point where CoordinateType: Measured {
     public var m: Double { get { return coordinate.m } }
 }
 
-extension Point where CoordinateType : TupleConvertable {
-    
+extension Point where CoordinateType: TupleConvertable {
+
     public init(coordinate: CoordinateType.TupleType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         self.init(coordinate: CoordinateType(tuple: coordinate, precision: precision))
     }
 }
 
-extension Point : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String { return "\(type(of: self))\(self.coordinate)"  }
-    public var debugDescription : String { return self.description  }
+extension Point: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
+        return "\(type(of: self))\(self.coordinate)"
+    }
+
+    public var debugDescription: String {
+        return self.description
+    }
 }
 
-extension Point : Equatable {}
+extension Point: Equatable {}
 
-
-public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
+public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
 
-
-public func ==<CoordinateType : Coordinate & CopyConstructable, GeometryType : Geometry>(lhs: Point<CoordinateType>, rhs: GeometryType) -> Bool {
+public func == <CoordinateType: Coordinate & CopyConstructable, GeometryType: Geometry>(lhs: Point<CoordinateType>, rhs: GeometryType) -> Bool {
     return lhs.equals(rhs)
 }
 
-
-public func ==<GeometryType : Geometry, CoordinateType : Coordinate & CopyConstructable>(lhs: GeometryType, rhs: Point<CoordinateType>) -> Bool {
+public func == <GeometryType: Geometry, CoordinateType: Coordinate & CopyConstructable>(lhs: GeometryType, rhs: Point<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
-
-
-
-
-
-

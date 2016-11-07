@@ -19,10 +19,10 @@
  */
 import Swift
 
-internal class CollectionBuffer<E> : ManagedBuffer<Int,E> {
+internal class CollectionBuffer<E>: ManagedBuffer<Int,E> {
 
     internal typealias Element = E
-    
+
     deinit {
         self.withUnsafeMutablePointerToElements { elements->Void in
             elements.deinitialize(count: self.header)
@@ -31,42 +31,40 @@ internal class CollectionBuffer<E> : ManagedBuffer<Int,E> {
 }
 
 extension CollectionBuffer {
-    
-    
+
     func clone() -> CollectionBuffer<Element> {
         return self.withUnsafeMutablePointerToElements { oldElements->CollectionBuffer<Element> in
-            
+
             return CollectionBuffer<Element>.create(minimumCapacity: self.capacity) { newBuffer in
-                
+
                 newBuffer.withUnsafeMutablePointerToElements { newElements->Void in
                     newElements.initialize(from: oldElements, count: self.header)
                 }
-            
+
                 return self.header
-            
-            } as! CollectionBuffer<Element>
-            
+
+            } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
+
         }
     }
-    
+
     func resize(_ newSize: Int) -> CollectionBuffer<Element> {
         return self.withUnsafeMutablePointerToElements { oldElems->CollectionBuffer<Element> in
-            
+
             let elementCount = self.header
-            
+
             return CollectionBuffer<Element>.create(minimumCapacity: newSize) { newBuffer in
-                
+
                 newBuffer.withUnsafeMutablePointerToElements { newElements->Void in
-                    
+
                     newElements.moveInitialize(from: oldElems, count: elementCount)
                 }
-                
+
                 self.header = 0
-                
+
                 return elementCount
-        
-            } as! CollectionBuffer<Element>
+
+            } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
         }
     }
 }
-

@@ -27,41 +27,41 @@ import Swift
     - requires: isSimple == true
     - requires: isClosed == true for "outerRing" and all "innerRings"
  */
-public struct Polygon<CoordinateType : Coordinate & CopyConstructable>  {
-    
+public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
+
     public typealias RingType = LinearRing<CoordinateType>
-    
+
     /**
         - returns: The `Precision` of this Polygon
-     
+
         - seealso: `Precision`
      */
     public let precision: Precision
-    
+
     /**
         - returns: The `CoordinateReferenceSystem` of this Polygon
-     
+
         - seealso: `CoordinateReferenceSystem`
      */
     public let coordinateReferenceSystem: CoordinateReferenceSystem
 
     /**
         - returns: The `LinearRing` representing the outerRing of this Polygon
-     
+
         - seealso: `LinearRing`
      */
-    public var outerRing:  RingType   { get { return _outerRing } }
-    
+    public var outerRing: RingType { get { return _outerRing } }
+
     /**
         - returns: An Array of `LinearRing`s representing the innerRings of this Polygon
-     
+
         - seealso: `LinearRing`
      */
     public var innerRings: [RingType] { get { return _innerRings } }
 
     /**
         A Polygon initializer to create an empty polygon.
-     
+
         - parameters:
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
             - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
@@ -77,40 +77,40 @@ public struct Polygon<CoordinateType : Coordinate & CopyConstructable>  {
 
     /**
         Construct a Polygon from another Polygon (copy constructor).
-     
+
      - parameters:
         - other: The Polygon of the same type that you want to construct a new Polygon from.
         - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
         - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
-     
+
      - seealso: `CoordinateReferenceSystem`
      - seealso: `Precision`
      */
     public  init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
-        
+
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         var outerRingsGenerator = other.outerRing.makeIterator()
-        
+
         self._outerRing.reserveCapacity(numericCast(outerRing.count))
-        
+
         while let coordinate = outerRingsGenerator.next() {
-            
+
             self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
-        
+
         var innerRingsGenerator = other.innerRings.makeIterator()
-        
+
         while let ring = innerRingsGenerator.next() {
             self._innerRings.append(RingType(elements: ring, precision: precision))
         }
     }
-    
+
     /**
         A Polygon can be constructed from any `CollectionType` for it's rings including Array as
         long as it has an Element type equal the `CoordinateType` specified.
-     
+
         - parameters:
             - outerRing: A `CollectionType` who's elements are of type `CoordinateType`.
             - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType`.
@@ -121,38 +121,37 @@ public struct Polygon<CoordinateType : Coordinate & CopyConstructable>  {
         - seealso: `CoordinateReferenceSystem`
         - seealso: `Precision`
      */
-    public  init<C : Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
+    public  init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         var outerRingsGenerator = outerRing.makeIterator()
-        
+
         self._outerRing.reserveCapacity(numericCast(outerRing.count))
-        
+
         while let coordinate = outerRingsGenerator.next() {
-            
+
             self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
-        
+
         var innerRingsGenerator = innerRings.makeIterator()
-        
+
         while let ring = innerRingsGenerator.next() {
             self._innerRings.append(RingType(elements: ring, precision: precision))
         }
     }
-    
-    internal var _outerRing = RingType()
-    internal var _innerRings = [RingType]()
 
+    internal var _outerRing = RingType()    // swiftlint:disable:this variable_name
+    internal var _innerRings = [RingType]() // swiftlint:disable:this variable_name
 }
 
-extension Polygon where CoordinateType : TupleConvertable {
-    
+extension Polygon where CoordinateType: TupleConvertable {
+
     /**
         A Polygon can be constructed from any `Swift.Sequence` for it's rings including Array as
         long as it has an Element type equal the `CoordinateType` specified.
-     
+
         - parameters:
             - outerRing: A `CollectionType` who's elements are of type `CoordinateType.TupleType`.
             - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType.TupleType`.
@@ -163,29 +162,29 @@ extension Polygon where CoordinateType : TupleConvertable {
         - seealso: `CoordinateReferenceSystem`
         - seealso: `Precision`
      */
-    public  init<S : Swift.Sequence>(outerRing: S, innerRings: [S] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType.TupleType {
-        
+    public  init<S: Swift.Sequence>(outerRing: S, innerRings: [S] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType.TupleType {
+
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         var outerRingsGenerator = outerRing.makeIterator()
 
         while let coordinate = outerRingsGenerator.next() {
-            
+
             self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
-        
+
         var innerRingsGenerator = innerRings.makeIterator()
-        
+
         while let ring = innerRingsGenerator.next() {
             self._innerRings.append(RingType(elements: ring, precision: precision))
         }
     }
-    
+
     /**
         A Polygon can be constructed from any `CollectionType` for it's rings including Array as
         long as it has an Element type equal the `CoordinateType` specified.
-     
+
         - parameters:
             - outerRing: A `CollectionType` who's elements are of type `CoordinateType.TupleType`.
             - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType.TupleType`.
@@ -196,43 +195,43 @@ extension Polygon where CoordinateType : TupleConvertable {
         - seealso: `CoordinateReferenceSystem`
         - seealso: `Precision`
      */
-    public  init<C : Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public  init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         var outerRingsGenerator = outerRing.makeIterator()
-        
+
         self._outerRing.reserveCapacity(numericCast(outerRing.count))
-        
+
         while let coordinate = outerRingsGenerator.next() {
-            
+
             self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
-        
+
         var innerRingsGenerator = innerRings.makeIterator()
-        
+
         while let ring = innerRingsGenerator.next() {
             self._innerRings.append(RingType(elements: ring, precision: precision))
         }
     }
-    
-    public  init<C : Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
-        
+
+    public  init<C: Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
+
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         var outerRingsGenerator = rings.0.makeIterator()
-        
+
         self._outerRing.reserveCapacity(outerRing.count)
-        
+
         while let coordinate = outerRingsGenerator.next() {
 
             self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
         }
         self._innerRings.reserveCapacity(innerRings.count)
-        
+
         var innerRingsGenerator = rings.1.makeIterator()
-        
+
         while let ring = innerRingsGenerator.next() {
             self._innerRings.append(RingType(elements: ring, precision: precision))
         }
@@ -241,45 +240,45 @@ extension Polygon where CoordinateType : TupleConvertable {
 
 // MARK: CustomStringConvertible & CustomDebugStringConvertible Conformance
 
-extension Polygon : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
-        
+extension Polygon: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
+
         let outerRingDescription = { () -> String in
             var string: String = ""
-            
+
             var ringGenerator = self.outerRing.makeIterator()
-            
+
             while let coordinate = ringGenerator.next() {
-                if string.characters.count > 0  { string += "," }
+                if string.characters.count > 0 { string += "," }
                 string += "\(coordinate)"
             }
             if string.characters.count == 0 { string += "[]" }
             return string
         }
-        
+
         let innerRingsDescription = { () -> String in
             var string: String = ""
-            
+
             var innerRingsGenerator = self.innerRings.makeIterator()
-            
+
             while let ring = innerRingsGenerator.next() {
-                
+
                 var ringGenerator = ring.makeIterator()
-                
+
                 while let coordinate = ringGenerator.next() {
-                    if string.characters.count > 0  { string += "," }
+                    if string.characters.count > 0 { string += "," }
                     string += "\(coordinate)"
                 }
             }
-            
+
             if string.characters.count == 0 { string += "[]" }
             return string
         }
         return "\(type(of: self))(\(outerRingDescription()),\(innerRingsDescription()))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return  self.description
     }
 }

@@ -20,12 +20,12 @@
 import Swift
 
 public protocol CopyConstructable {
-    
+
     /**
      Copy constructor
      */
     init(other: Self)
-    
+
     /**
      Copy constructor with new precision
      */

@@ -25,13 +25,13 @@ import Swift
     Specifies the contract for a type that is convertable to and from a tuple type
 */
 public protocol TupleConvertable {
-    
+
     /// Tuple conversion type (what does the tuple look like)
     associatedtype TupleType
-    
+
     /// returns the tuple representation of self.
     var tuple: TupleType { get }
-    
+
     /// Instantiates an instance of Self with tuple.
     init(tuple: TupleType)
 

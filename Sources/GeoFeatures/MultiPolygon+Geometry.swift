@@ -19,39 +19,40 @@
  */
 import Swift
 
-extension MultiPolygon : Geometry {
-    
+extension MultiPolygon: Geometry {
+
     public
     var dimension: Dimension { return .two }
-    
-    
+
     public
     func isEmpty() -> Bool {
         return self.count == 0
     }
-    
+
     /**
      - Returns: the closure of the combinatorial boundary of this Geometry instance.
-     
+
      - Note: The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
      */
-    
+
     public
     func boundary() -> Geometry {
         return self.storage.withUnsafeMutablePointers({ (count, elements) -> Geometry in
             var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
-            
+
             for i in 0..<count.pointee {
-                
-                for lineString in elements[i].boundary() as! [LineString<CoordinateType>]{
-                    multiLineString.append(lineString)
+
+                if let boundary = elements[i].boundary() as? [LineString<CoordinateType>] {
+
+                    for lineString in boundary {
+                        multiLineString.append(lineString)
+                    }
                 }
             }
             return multiLineString
         })
     }
 
-    
     public
     func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPolygon<CoordinateType> {
@@ -61,9 +62,9 @@ extension MultiPolygon : Geometry {
         }
         return false
     }
-    
+
     // TODO: Must be implenented.  Here just to test protocol
-    
+
     public
     func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()

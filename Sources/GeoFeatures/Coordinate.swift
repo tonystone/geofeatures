@@ -21,31 +21,31 @@ import Swift
 
 /**
     Coordinate (2 dimensional protocol)
- 
+
     Implenented by all Coordinate structs.
 */
-public protocol Coordinate : Equatable, Hashable, CopyConstructable  {
-    
+public protocol Coordinate: Equatable, Hashable, CopyConstructable {
+
     var x: Double { get }
     var y: Double { get }
 }
 
 /**
     3D
- 
+
     Implenented if this Coordinate has z value.
 */
 public protocol ThreeDimensional {
-    
+
     var z: Double { get }
 }
 
 /**
     Measured
- 
+
     Implenented if this Coordinate has m value.
 */
 public protocol Measured {
-    
+
     var m: Double { get }
 }

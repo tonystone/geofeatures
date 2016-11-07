@@ -19,7 +19,7 @@
  */
 import Swift
 
-/** 
+/**
  Coordinate System Types
 
  These are used by the algorythms when they are applyed to the types

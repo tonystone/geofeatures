@@ -88,5 +88,3 @@ let writer2D = WKTWriter<Coordinate2D>()
 writer2D.write(Point<Coordinate2D>(coordinate: (x: 24.0, y: 12.0)))
 
 writer2D.write(LineString<Coordinate2D>(elements: [(x: 24.0, y: 12.0), (1.0, 1.0), (2.0, 2.0)]))
-
-

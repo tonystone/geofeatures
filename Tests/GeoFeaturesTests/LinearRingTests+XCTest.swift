@@ -27,7 +27,7 @@ import XCTest
 
 extension LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -46,10 +46,9 @@ extension LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -68,10 +67,9 @@ extension LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -90,10 +88,9 @@ extension LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -112,10 +109,9 @@ extension LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -134,10 +130,9 @@ extension LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -156,10 +151,9 @@ extension LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -178,10 +172,9 @@ extension LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testInit_NoArg", testInit_NoArg),
                 ("testInit_Tuple", testInit_Tuple),
@@ -200,4 +193,3 @@ extension LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-

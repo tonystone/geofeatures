@@ -19,25 +19,25 @@
  */
 import Foundation
 
-extension Polygon : Surface {
+extension Polygon: Surface {
 
     /**
         Calculates the area of this `Polygon`
-     
+
         - returns: The area of this `Polygon`.
-     
+
         - requires: The "outerRing" be oriented clockwise
         - requires: The "innerRings" be oriented counter clockwise
         - requires: isSimple == true
         - requires: isClosed == true for "outerRing" and all "innerRings"
      */
-    
+
     public func area() -> Double {
-        
+
         var area: Double = _outerRing.area()
-        
+
         var innerRings = _innerRings.makeIterator()
-        
+
         while let ring = innerRings.next() {
             area += ring.area()
         }

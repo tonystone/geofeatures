@@ -19,29 +19,27 @@
  */
 import Swift
 
-extension MultiPoint : Geometry  {
+extension MultiPoint: Geometry {
 
     public
     var dimension: Dimension { return .zero }
-    
-    
+
     public
     func isEmpty() -> Bool {
         return self.count == 0
     }
-    
+
     /**
      - Returns: the closure of the combinatorial boundary of this Geometry instance.
-     
+
      - Note: The boundary of a MultiPoint is the empty set.
      */
-    
+
     public
     func boundary() -> Geometry {
         return MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
     }
-    
-    
+
     public
     func equals(_ other: Geometry) -> Bool {
         if let other = other as? MultiPoint<CoordinateType> {
@@ -49,12 +47,11 @@ extension MultiPoint : Geometry  {
         }
         return false
     }
-    
+
     // TODO: Must be implenented.  Here just to test protocol
-    
+
     public
     func union(_ other: Geometry) -> Geometry {
         return GeometryCollection(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
     }
 }
-

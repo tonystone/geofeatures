@@ -27,7 +27,7 @@ import XCTest
 
 extension IntersectionMatrixTests {
 
-   static var allTests : [(String, (IntersectionMatrixTests) -> () throws -> Void)] {
+   static var allTests: [(String, (IntersectionMatrixTests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
                 ("testInit_ArrayLiteral", testInit_ArrayLiteral),
@@ -42,4 +42,3 @@ extension IntersectionMatrixTests {
            ]
    }
 }
-

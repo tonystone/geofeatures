@@ -27,23 +27,23 @@ class MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTe
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
-    
+
     func testIsClosed_Closed() {
         XCTAssertTrue(MultiLineString<Coordinate2D>(elements:
             [
-                LineString<Coordinate2D>(elements: [(x: 0, y: 0),(x: 0, y: 2),(x: 0, y: 3),(x: 2, y: 0),(x: 0, y: 0)], precision: precision, coordinateReferenceSystem: crs),
-                LineString<Coordinate2D>(elements: [(x: 0, y: 1),(x: 0, y: 2),(x: 0, y: 3),(x: 2, y: 0),(x: 0, y: 1)], precision: precision, coordinateReferenceSystem: crs)
+                LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 2, y: 0), (x: 0, y: 0)], precision: precision, coordinateReferenceSystem: crs),
+                LineString<Coordinate2D>(elements: [(x: 0, y: 1), (x: 0, y: 2), (x: 0, y: 3), (x: 2, y: 0), (x: 0, y: 1)], precision: precision, coordinateReferenceSystem: crs)
             ], precision: precision, coordinateReferenceSystem: crs).isClosed())
     }
-    
+
     func testIsClosed_Open() {
         XCTAssertFalse(MultiLineString<Coordinate2D>(elements:
             [
-                LineString<Coordinate2D>(elements: [(x: 0, y: 0),(x: 0, y: 2),(x: 0, y: 3),(x: 0, y: 4),(x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs),
-                LineString<Coordinate2D>(elements: [(x: 0, y: 0),(x: 0, y: 2),(x: 0, y: 3),(x: 0, y: 4),(x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs)
+                LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs),
+                LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs)
             ], precision: precision, coordinateReferenceSystem: crs).isClosed())
     }
-    
+
     func testIsClosed_Empty() {
         XCTAssertFalse(MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isClosed())
     }
@@ -52,26 +52,26 @@ class MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTe
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
 class MultiLineString_Curve_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
-    
+
     let precision = FixedPrecision(scale: 1000)
     let crs       = Cartesian()
-    
+
     func testIsClosed_Closed() {
         XCTAssertTrue(MultiLineString<Coordinate2D>(elements:
             [
-                LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0),(x: 0.0, y: 2.002),(x: 0.0, y: 3.003),(x: 2.002, y: 0.0),(x: 0.0, y: 0.0)], precision: precision, coordinateReferenceSystem: crs),
-                LineString<Coordinate2D>(elements: [(x: 0.0, y: 1.001),(x: 0.0, y: 2.002),(x: 0.0, y: 3.003),(x: 2.002, y: 0.0),(x: 0.0, y: 1.001)], precision: precision, coordinateReferenceSystem: crs)
+                LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0), (x: 0.0, y: 2.002), (x: 0.0, y: 3.003), (x: 2.002, y: 0.0), (x: 0.0, y: 0.0)], precision: precision, coordinateReferenceSystem: crs),
+                LineString<Coordinate2D>(elements: [(x: 0.0, y: 1.001), (x: 0.0, y: 2.002), (x: 0.0, y: 3.003), (x: 2.002, y: 0.0), (x: 0.0, y: 1.001)], precision: precision, coordinateReferenceSystem: crs)
             ], precision: precision, coordinateReferenceSystem: crs).isClosed())
     }
-    
+
     func testIsClosed_Open() {
         XCTAssertFalse(MultiLineString<Coordinate2D>(elements:
             [
-                LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0),(x: 0.0, y: 2.0),(x: 0.0, y: 3.003),(x: 0.0, y: 4.004),(x: 0.0, y: 5.001)], precision: precision, coordinateReferenceSystem: crs),
-                LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0),(x: 0.0, y: 2.002),(x: 0.0, y: 3.003),(x: 0.0, y: 4.004),(x: 0.0, y: 5.001)], precision: precision, coordinateReferenceSystem: crs)
+                LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0), (x: 0.0, y: 2.0), (x: 0.0, y: 3.003), (x: 0.0, y: 4.004), (x: 0.0, y: 5.001)], precision: precision, coordinateReferenceSystem: crs),
+                LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0), (x: 0.0, y: 2.002), (x: 0.0, y: 3.003), (x: 0.0, y: 4.004), (x: 0.0, y: 5.001)], precision: precision, coordinateReferenceSystem: crs)
             ], precision: precision, coordinateReferenceSystem: crs).isClosed())
     }
-    
+
     func testIsClosed_Empty() {
         XCTAssertFalse(MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isClosed())
     }

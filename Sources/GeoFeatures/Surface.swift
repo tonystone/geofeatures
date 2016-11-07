@@ -20,11 +20,11 @@
 import Swift
 
 public protocol Surface {
-    
+
     /**
         The area of this Surface calaculated using its associated CoordinateReferenceSystem.
     */
-    
+
     func area() -> Double
 
 //    /**

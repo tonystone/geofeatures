@@ -25,96 +25,96 @@ private let geometryDimension = Dimension.two    // MultiPolygon are always 2 di
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FloatingPrecision()
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FloatingPrecision()
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FloatingPrecision()
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FloatingPrecision()
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate2DM, FixedPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate3D, FixedPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
 
-class MultiPolygon_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
-    
+class MultiPolygon_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
-    
-    func testDimension ()   {
+
+    func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
     }
 }

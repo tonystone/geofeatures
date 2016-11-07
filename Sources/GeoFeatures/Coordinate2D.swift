@@ -21,69 +21,69 @@ import Swift
 
 /**
     2D Coordinate
- 
+
     Low level 2 dimensional Coorodinate type
  */
-public struct Coordinate2D : Coordinate {
-    
+public struct Coordinate2D: Coordinate {
+
     public let x: Double
     public let y: Double
-    
+
     public init(x: Double, y: Double) {
         self.x = x
         self.y = y
     }
 }
 
-extension Coordinate2D : _ArrayConstructable {
-    
+extension Coordinate2D: _ArrayConstructable {
+
     public init(array: [Double]) {
         precondition(array.count == 2)
-        
+
         self.init(x: array[0], y: array[1])
     }
 }
 
-extension Coordinate2D : CopyConstructable {
-    
+extension Coordinate2D: CopyConstructable {
+
     public init(other: Coordinate2D) {
         self.init(x: other.x, y: other.y)
     }
-    
+
     public init(other: Coordinate2D, precision: Precision) {
         self.init(x: precision.convert(other.x), y: precision.convert(other.y))
     }
 }
 
-extension Coordinate2D : TupleConvertable {
-    
+extension Coordinate2D: TupleConvertable {
+
     public typealias TupleType = (x: Double, y: Double)
-    
+
     public var tuple: TupleType {
         get { return (x: self.x, y: self.y) }
     }
-    
+
     public init(tuple: TupleType) {
         self.init(x: tuple.x, y: tuple.y)
     }
-    
+
     public init(tuple: TupleType, precision: Precision) {
         self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y))
     }
 }
 
-extension Coordinate2D : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
+extension Coordinate2D: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
         return "(x: \(self.x), y: \(self.y))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return self.description
     }
 }
 
-extension Coordinate2D : Hashable {
+extension Coordinate2D: Hashable {
     public var hashValue: Int {
         get {
             return 31 &* x.hashValue ^ 37 &* y.hashValue
@@ -91,6 +91,6 @@ extension Coordinate2D : Hashable {
     }
 }
 
-public func ==(lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
+public func == (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y
 }

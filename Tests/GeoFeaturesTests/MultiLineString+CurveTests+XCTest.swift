@@ -27,7 +27,7 @@ import XCTest
 
 extension MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testIsClosed_Closed", testIsClosed_Closed),
                 ("testIsClosed_Open", testIsClosed_Open),
@@ -35,10 +35,9 @@ extension MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiLineString_Curve_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiLineString_Curve_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiLineString_Curve_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testIsClosed_Closed", testIsClosed_Closed),
                 ("testIsClosed_Open", testIsClosed_Open),
@@ -46,4 +45,3 @@ extension MultiLineString_Curve_Coordinate2D_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-

@@ -21,13 +21,11 @@ import PackageDescription
 
 let package = Package(
     name: "GeoFeatures",
-    
     targets: [
         Target(
             name: "GeoFeatures",
             dependencies: [])
     ],
-    
     exclude: ["_Pods.xcodeproj", "Docs", "Example", "GeoFeatures.podspec", "Visualization"]
 )
 

@@ -19,23 +19,23 @@
  */
 import Swift
 
-public struct FloatingPrecision : Precision, Equatable, Hashable  {
-    
+public struct FloatingPrecision: Precision, Equatable, Hashable {
+
     public var hashValue: Int { get { return 31.hashValue } }
-    
+
     public init() {}
-    
+
     public func convert(_ value: Double) -> Double {
         return value
     }
 }
-extension FloatingPrecision : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
+extension FloatingPrecision: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
         return "\(type(of: self))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return self.description
     }
 }

@@ -64,22 +64,21 @@ FunctionQualifier = CoordinateType + '_' + PrecisionType + '_' + ReferenceSystem
 
 // MARK: - ${CoordinateType}, ${PrecisionType}, ${ReferenceSystemType} -
 
-class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
+class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     let precision = ${Precision}
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -90,8 +89,7 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
         let expected = ${GeometryType}<${CoordinateType}>(elements: [${ExpectedTuple0},${ExpectedTuple1}], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -99,35 +97,35 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], ${CoordinateType}(tuple: ${ExpectedTuple1}))
     }
-    
+
     func testSubscript_Set() {
         var geometry = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = ${CoordinateType}(tuple: ${TestTuple0})
-        
+
         XCTAssertEqual(geometry[1], ${CoordinateType}(tuple: ${ExpectedTuple0}))
     }
-    
+
     func testAppend_${GeometryType}() {
-        
+
         let geometry1 = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
         geometry.append(contentsOf: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -136,27 +134,26 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).equals(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0})]
 
         geometry.append(${TestTuple0})
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -167,8 +164,7 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
 
         geometry.insert(${CoordinateType}(tuple: ${TestTuple1}), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -182,5 +178,3 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
     }
 }
 %end
-
-

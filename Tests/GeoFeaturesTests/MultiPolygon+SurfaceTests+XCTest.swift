@@ -27,10 +27,9 @@ import XCTest
 
 extension MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testArea_Empty", testArea_Empty),
            ]
    }
 }
-
