@@ -27,7 +27,7 @@ import XCTest
 
 extension WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testRead_Point_Float_Valid", testRead_Point_Float_Valid),
                 ("testRead_Point_Int_Valid", testRead_Point_Int_Valid),
@@ -50,4 +50,3 @@ extension WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-

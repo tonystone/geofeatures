@@ -21,16 +21,16 @@ import Swift
 
 /**
  Implementation of the Dimensionally Extended Nine-Intersection Model (DE-9IM)
- 
+
  The intersection of two of either I(x), B(x), and E(x) will result in various combinations of geometry objects each with possibly different dimensions.
- 
+
  - dim(x) == Returns the maximum dimension (-1, 0, 1, 2) of the result geometries of an intersection. See `Dimension` for more information.
  - I(x)   == Interior of geometry x
  - B(x)   == Boundary of geometry x
  - E(x)   == Exterior of geometry x
- 
+
  The table below shows the general form of the matrix.
- 
+
  ```
  |-------------|------------------|------------------|------------------|
  |             |  INTERIOR        |  BOUNDARY        |  EXTERIOR        |
@@ -45,9 +45,9 @@ import Swift
  */
 internal
 struct IntersectionMatrix {
-    
-    enum Index : Int { case interior = 0, boundary, exterior }
-    
+
+    enum Index: Int { case interior = 0, boundary, exterior }
+
     fileprivate
     var matrix: [[Dimension]]
 }
@@ -55,8 +55,8 @@ struct IntersectionMatrix {
 /**
  IntersectionMatrix Construction
  */
-extension IntersectionMatrix  {
-    
+extension IntersectionMatrix {
+
     /**
      Initialize an IntersectionMatrix with the default values of .empty
     */
@@ -69,13 +69,13 @@ extension IntersectionMatrix  {
                 [.empty, .empty, .empty]
             ]
     }
-    
+
     /**
      Initialize an IntersectionMatrix with an Array of Arrays of
      of Dimension values.
-     
+
      - Prameter: arrayLiteral: [[Dimension]] Array of `Dimension` arrays.
-     
+
      - Requires: arrayLiteral.count == 3
      - Requires: arrayLiteral[0].count == 3
      - Requires: arrayLiteral[1].count == 3
@@ -92,13 +92,12 @@ extension IntersectionMatrix  {
     }
 }
 
-
 extension IntersectionMatrix {
-    
+
     /**
      Match an IntersectionMatrix to a pattern matrix
      such as “T*T***T**”
-     
+
      Pattern Values:
      - T: matches when dim(x) ∈ {0, 1, 2}, i.e. x ≠ ∅
      - F: matches when dim(x) = -1, i.e. x = ∅
@@ -106,28 +105,28 @@ extension IntersectionMatrix {
      - 0: Matches when dim(x) = 0
      - 1: Matches when dim(x) = 1
      - 2: Matches when dim(x) = 2
-     
+
      - parameter pattern: The pattern string consisting of legal characters from the set above.
      */
     internal
     func matches(_ pattern: String) -> Bool {
-        
+
         var characters = pattern.characters.makeIterator()
-        
+
         for row in 0...Index.exterior.rawValue {
             for col in 0...Index.exterior.rawValue {
                 if let character = characters.next() {
-                    
+
                     switch character {
-                        
+
                     case "T":
-                        
+
                         if ![Dimension.zero, .one, .two].contains(self.matrix[row][col]) {
                             return false
                         }
                         continue
                     case "F":
-                        
+
                         if Dimension.empty != self.matrix[row][col] {
                             return false
                         }
@@ -136,19 +135,19 @@ extension IntersectionMatrix {
                         // All are valid
                         continue
                     case "0":
-                        
+
                         if Dimension.zero != self.matrix[row][col] {
                             return false
                         }
                         continue
                     case "1":
-                        
+
                         if Dimension.one != self.matrix[row][col] {
                             return false
                         }
                         continue
                     case "2":
-                        
+
                         if Dimension.two != self.matrix[row][col] {
                             return false
                         }
@@ -156,7 +155,7 @@ extension IntersectionMatrix {
                     default:
                         return false    // Invalid character passed
                     }
- 
+
                 } else {
                     return false  // Pattern is too short so it does not match
                 }
@@ -169,27 +168,27 @@ extension IntersectionMatrix {
 /**
  Sequence support for IntersectionMatrix
  */
-extension IntersectionMatrix : Sequence {
-    
+extension IntersectionMatrix: Sequence {
+
     /**
      subscript the matrix returning a `Dimension` type
-     
+
      - Parameters:
      - row: the row in the matrix expressed as an Index value.
      - col: the column in the matrix expressed as an Index value.
-     
+
      Example:
      ```
         let matrix = IntersectionMatrix()
-     
+
         let dimension = matrix[.interior, .boundary]
-     
+
         matrix[.interior, .boundary] = .two
      ```
      */
     internal
     subscript (row: Index, col: Index) -> Dimension {
-        
+
         get {
             return matrix[row.rawValue][col.rawValue]
         }
@@ -197,14 +196,14 @@ extension IntersectionMatrix : Sequence {
             matrix[row.rawValue][col.rawValue] = newValue
         }
     }
-    
+
     /**
      IntersectionMatrix is a sequence that can be iterated on.
-     
+
      Example:
      ```
         let matrix = IntersectionMatrix()
-     
+
         for value in matrix {
             print("\(value)")
         }
@@ -212,14 +211,14 @@ extension IntersectionMatrix : Sequence {
      */
     internal
     func makeIterator() -> AnyIterator<Dimension> {
-        
+
         // keep the index of the next element in the iteration
         var nextRow = Index.interior.rawValue
         var nextCol = Index.interior.rawValue - 1
-        
+
         // Construct a AnyGenerator<Dimension> instance, passing a closure that returns the next element in the iteration
         return AnyIterator<Dimension> {
-            
+
             if nextCol + 1 <= Index.exterior.rawValue {     // New col
                 nextCol += 1                                // Increment column
             } else {
@@ -235,13 +234,13 @@ extension IntersectionMatrix : Sequence {
     }
 }
 
-extension IntersectionMatrix : CustomStringConvertible {
-    
+extension IntersectionMatrix: CustomStringConvertible {
+
     internal
     var description: String {
         get {
             var string = ""
-            
+
             for dimension in self {
                 if string.characters.count > 0 {
                     string += ", "
@@ -253,14 +252,14 @@ extension IntersectionMatrix : CustomStringConvertible {
     }
 }
 
-extension IntersectionMatrix : Equatable {}
+extension IntersectionMatrix: Equatable {}
 
 internal
 func == (lhs: IntersectionMatrix, rhs: IntersectionMatrix) -> Bool {
-    
+
     for row in 0...IntersectionMatrix.Index.exterior.rawValue {
         for col in 0...IntersectionMatrix.Index.exterior.rawValue {
-            
+
             if lhs.matrix[row][col] != rhs.matrix[row][col] {
                 return false
             }
@@ -268,5 +267,3 @@ func == (lhs: IntersectionMatrix, rhs: IntersectionMatrix) -> Bool {
     }
     return true
 }
-
-

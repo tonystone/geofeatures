@@ -27,7 +27,7 @@ import XCTest
 
 extension Coordinate3DMTests {
 
-   static var allTests : [(String, (Coordinate3DMTests) -> () throws -> Void)] {
+   static var allTests: [(String, (Coordinate3DMTests) -> () throws -> Void)] {
       return [
                 ("testInit_XYZM", testInit_XYZM),
                 ("testX", testX),
@@ -47,4 +47,3 @@ extension Coordinate3DMTests {
            ]
    }
 }
-

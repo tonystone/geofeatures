@@ -21,11 +21,11 @@ import Swift
 
 /**
     3D Coordinate
- 
+
     Low level 3 dimensional Coorodinate type
  */
-public struct Coordinate3D : Coordinate, ThreeDimensional {
-    
+public struct Coordinate3D: Coordinate, ThreeDimensional {
+
     public let x: Double
     public let y: Double
     public let z: Double
@@ -37,55 +37,57 @@ public struct Coordinate3D : Coordinate, ThreeDimensional {
     }
 }
 
-extension Coordinate3D : _ArrayConstructable {
-    
+extension Coordinate3D: _ArrayConstructable {
+
     public init(array: [Double]) {
         precondition(array.count == 3)
-        
+
         self.init(x: array[0], y: array[1], z: array[2])
     }
 }
 
-extension Coordinate3D : CopyConstructable {
-    
+extension Coordinate3D: CopyConstructable {
+
     public init(other: Coordinate3D) {
         self.init(x: other.x, y: other.y, z: other.z)
     }
-    
+
     public init(other: Coordinate3D, precision: Precision) {
         self.init(x: precision.convert(other.x), y: precision.convert(other.y), z: precision.convert(other.z))
     }
 }
 
-extension Coordinate3D : TupleConvertable {
-    
+extension Coordinate3D: TupleConvertable {
+
     public typealias TupleType = (x: Double, y: Double, z: Double)
-    
+
     public var tuple: TupleType {
-        get { return (x: self.x, y: self.y, z: self.z)  }
+        get {
+            return (x: self.x, y: self.y, z: self.z)
+        }
     }
-    
+
     public init(tuple: TupleType) {
         self.init(x: tuple.x, y: tuple.y, z: tuple.z)
     }
-    
+
     public init(tuple: TupleType, precision: Precision) {
         self.init(x: precision.convert(tuple.x), y: precision.convert(tuple.y), z: precision.convert(tuple.z))
     }
 }
 
-extension Coordinate3D : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
+extension Coordinate3D: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
         return "(x: \(self.x), y: \(self.y), z: \(self.z))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return self.description
     }
 }
 
-extension Coordinate3D : Hashable {
+extension Coordinate3D: Hashable {
     public var hashValue: Int {
         get {
             return 31 &* x.hashValue ^ 37 &* y.hashValue ^ 41 &* z.hashValue
@@ -93,6 +95,6 @@ extension Coordinate3D : Hashable {
     }
 }
 
-public func ==(lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
+public func == (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }

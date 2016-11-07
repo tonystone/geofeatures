@@ -17,7 +17,6 @@ lineString1.append((3.001, 3.001))
 
 lineString1.length()
 
-
 let fixedPrecision = FixedPrecision(scale: 100)
 
 let lineString = LineString<Coordinate2D>(elements: lineString1, precision: fixedPrecision)
@@ -62,4 +61,3 @@ Point<Coordinate2D>(coordinate: (1.0,2.0))
 Point<Coordinate3DM>(coordinate: (1.0,2.0,3.0,4.0))
 
 LinearRing<Coordinate2D>(elements: [(x: 1.00, y: -1.00), (-1.00,-1.00), (-1.00,1.00), (1.00,1.00), (1.00,-1.00)]).area()
-

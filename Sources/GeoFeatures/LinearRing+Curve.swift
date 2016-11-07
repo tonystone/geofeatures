@@ -25,46 +25,46 @@ import Swift
     import Darwin
 #endif
 
-extension LinearRing : Curve {
+extension LinearRing: Curve {
 
     /**
      - Returns: True if this curve is closed (begin and end coordinates are equal)
      */
-    
+
     public
     func isClosed() -> Bool {
-        
-        return storage.withUnsafeMutablePointers { (count, elements)-> Bool in
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Bool in
             if count.pointee < 2 { return false }
-            
+
             return elements[0] == elements[count.pointee - 1]
         }
     }
-    
+
     /**
      The length of this LinearType calculated using its associated CoordinateReferenceSystem.
      */
-    
+
     public
     func length() -> Double {
-        
-        let length: Double  = storage.withUnsafeMutablePointers { (count, elements)->Double in
-            
+
+        let length: Double  = storage.withUnsafeMutablePointers { (count, elements) -> Double in
+
             var length: Double = 0.0
-            
+
             if count.pointee > 0 {
-                
+
                 var c1 = elements[0]
-                
+
                 for index in 1..<count.pointee {
-                    
+
                     let c2 = elements[index]
-                    
+
                     var result = pow(abs(c1.x - c2.x), 2.0) + pow(abs(c1.y - c2.y), 2.0)
-                    
+
                     if let c1 = c1 as? ThreeDimensional,
                        let c2 = c2 as? ThreeDimensional {
-                        
+
                         result += pow(abs(c1.z - c2.z), 2.0)
                     }
                     length += sqrt(result)

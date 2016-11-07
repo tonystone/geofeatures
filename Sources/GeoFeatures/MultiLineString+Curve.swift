@@ -25,18 +25,18 @@ import Swift
     import Darwin
 #endif
 
-extension MultiLineString : Curve {
-    
+extension MultiLineString: Curve {
+
     /**
      - Returns: True if all subelements are closed (begin and end coordinates are equal)
      */
-    
+
     public
     func isClosed() -> Bool {
-        
-        return storage.withUnsafeMutablePointers { (count, elements)-> Bool in
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Bool in
             if count.pointee == 0 { return false }
-            
+
             for i in 0..<count.pointee {
                 if !elements[i].isClosed() {
                     return false
@@ -45,20 +45,20 @@ extension MultiLineString : Curve {
             return true
         }
     }
-    
+
     /**
     - Returns: The length of this Curve calculated using the sum of the length of the subelements.
      */
-    
+
     public
     func length() -> Double {
-        
-        let length: Double  = storage.withUnsafeMutablePointers { (count, elements)->Double in
-            
+
+        let length: Double  = storage.withUnsafeMutablePointers { (count, elements) -> Double in
+
             var length: Double = 0.0
-            
+
             if count.pointee > 0 {
-                
+
                 for i in 1..<count.pointee {
                     length += elements[i].length()
                 }
@@ -68,4 +68,3 @@ extension MultiLineString : Curve {
         return self.precision.convert(length)
     }
 }
-

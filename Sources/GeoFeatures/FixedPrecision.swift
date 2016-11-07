@@ -25,29 +25,27 @@ import Swift
     import Darwin
 #endif
 
-public struct FixedPrecision : Precision, Equatable, Hashable  {
-    
+public struct FixedPrecision: Precision, Equatable, Hashable  {
+
     public let scale: Double
-    
+
     public var hashValue: Int { get { return 31.hashValue + scale.hashValue } }
-    
+
     public init(scale: Double) {
         self.scale = abs(scale)
     }
-    
+
     public func convert(_ value: Double) -> Double {
         return round(value * scale) / scale
     }
 }
-extension FixedPrecision : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
+extension FixedPrecision: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
         return "\(type(of: self))(scale: \(self.scale))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return self.description
     }
 }
-
-

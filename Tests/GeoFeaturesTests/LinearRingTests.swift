@@ -31,22 +31,21 @@ import GeoFeatures
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -57,8 +56,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -66,35 +64,35 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         geometry.append(contentsOf: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -103,27 +101,26 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
 
         geometry.append((x: 1.0, y: 1.0))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -134,8 +131,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate2D(tuple: (x: 2.0, y: 2.0)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -151,22 +147,21 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
 
-class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -177,8 +172,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -186,35 +180,35 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -223,27 +217,26 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
 
         geometry.append((x: 1.0, y: 1.0, m: 1.0))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -254,8 +247,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -271,22 +263,21 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
-class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -297,8 +288,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -306,35 +296,35 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -343,27 +333,26 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
 
         geometry.append((x: 1.0, y: 1.0, z: 1.0))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -374,8 +363,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -391,22 +379,21 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
 
-class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -417,8 +404,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -426,35 +412,35 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
-        
+
         XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -463,27 +449,26 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
         geometry.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -494,8 +479,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -511,22 +495,21 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
-class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -537,8 +520,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -546,35 +528,35 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         geometry.append(contentsOf: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -583,27 +565,26 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
 
         geometry.append((x: 1.001, y: 1.001))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -614,8 +595,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate2D(tuple: (x: 2.002, y: 2.002)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -631,22 +611,21 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate2DM, FixedPrecision, Cartesian -
 
-class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -657,8 +636,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -666,35 +644,35 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -703,27 +681,26 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
 
         geometry.append((x: 1.001, y: 1.001, m: 1.001))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -734,8 +711,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -751,22 +727,21 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate3D, FixedPrecision, Cartesian -
 
-class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -777,8 +752,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -786,35 +760,35 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -823,27 +797,26 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
 
         geometry.append((x: 1.001, y: 1.001, z: 1.001))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -854,8 +827,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -871,22 +843,21 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests : XCTestCase {
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
 
-class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
+class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg()   {
+    func testInit_NoArg() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
+
     func testInit_Tuple() {
         let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -897,8 +868,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
         let expected = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
@@ -906,35 +876,35 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
 
     func testSubscript_Get() {
         let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
-    
+
     func testSubscript_Set() {
         var geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
-        
+
         XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
-    
+
     func testAppend_LinearRing() {
-        
+
         let geometry1 = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
+
     func testAppend_Array() {
-        
+
         var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         geometry.append(contentsOf: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
@@ -943,27 +913,26 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
     func testEquals() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
-    
+
     func testIsEmpty() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
+
     func testCount() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
+
     func testAppend() {
         var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
         geometry.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
@@ -974,8 +943,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
 
         geometry.insert(Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002)), atIndex: 0)
 
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                 return lhs == rhs
             }, "\(geometry) is not equal to \(expected)")
     }
@@ -988,5 +956,3 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests : XCTestCase {
         XCTAssertEqual(geometry.isEmpty(), true)
     }
 }
-
-

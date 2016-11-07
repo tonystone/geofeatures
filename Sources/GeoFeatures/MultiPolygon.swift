@@ -29,48 +29,48 @@ import Swift
 
 /**
     MultiPolygon
- 
+
     A MultiPolygon is a collection of some number of Polygon objects.
- 
+
     All the elements in a MultiPolygon shall be in the same Spatial Reference System. This is also the Spatial Reference System for the MultiPolygon.
  */
 
-public struct MultiPolygon<CoordinateType : Coordinate & CopyConstructable> {
+public struct MultiPolygon<CoordinateType: Coordinate & CopyConstructable> {
 
     public typealias Element = Polygon<CoordinateType>
-    
+
     public let precision: Precision
     public let coordinateReferenceSystem: CoordinateReferenceSystem
 
     public init(coordinateReferenceSystem: CoordinateReferenceSystem) {
         self.init(precision: defaultPrecision, coordinateReferenceSystem: coordinateReferenceSystem)
     }
-    
+
     public init(precision: Precision) {
         self.init(precision: precision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
     }
-    
+
     public init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
-        
-        storage = CollectionBuffer<Element>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<Element>
+
+        storage = CollectionBuffer<Element>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
     }
-    
+
     internal var storage: CollectionBuffer<Element>
 }
 
 // MARK: Private methods
 
 extension MultiPolygon {
-    
+
     @inline(__always)
     fileprivate mutating func _ensureUniquelyReferenced() {
         if !isKnownUniquelyReferenced(&storage) {
             storage = storage.clone()
         }
     }
-    
+
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
         if storage.capacity == count {
@@ -81,7 +81,7 @@ extension MultiPolygon {
 
 // MARK:  Collection conformance
 
-extension MultiPolygon : Collection {
+extension MultiPolygon: Collection {
 
     /**
         MultiPolygons are empty constructable
@@ -89,40 +89,40 @@ extension MultiPolygon : Collection {
     public init() {
         self.init(precision: defaultPrecision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
     }
-    
+
     /**
         MultiPolygon can be constructed from any Sequence as long as it has an
         Element type equal the Geometry Element.
      */
-    public init<S : Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == Element {
-    
+    public init<S: Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == Element {
+
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         var Iterator = elements.makeIterator()
-        
+
         while let element = Iterator.next() {
             self.append(element)
         }
     }
-    
+
     /**
         MultiPolygon can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C : Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == Element {
-        
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == Element {
+
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-        
+
         self.reserveCapacity(numericCast(elements.count))
 
         var Iterator = elements.makeIterator()
-        
+
         while let element = Iterator.next() {
             self.append(element)
         }
     }
-    
+
     /**
         - Returns: The number of Polygon objects.
      */
@@ -139,17 +139,17 @@ extension MultiPolygon : Collection {
 
     /**
         Reserve enough space to store `minimumCapacity` elements.
-     
+
         - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
      */
     public mutating func reserveCapacity(_ minimumCapacity: Int) {
-        
+
         if storage.capacity < minimumCapacity {
-            
+
             _ensureUniquelyReferenced()
-            
+
             let newSize = Math.max(storage.capacity * 2, minimumCapacity)
-            
+
             storage = storage.resize(newSize)
         }
     }
@@ -158,11 +158,11 @@ extension MultiPolygon : Collection {
         Append `newElement` to this MultiPolygon.
      */
     public mutating func append(_ newElement: Element) {
-        
+
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
-        
-        storage.withUnsafeMutablePointers { (value, elements)->Void in
+
+        storage.withUnsafeMutablePointers { (value, elements) -> Void in
 
             /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
             (elements + value.pointee).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
@@ -173,10 +173,10 @@ extension MultiPolygon : Collection {
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
-    public mutating func append<S : Sequence>(contentsOf newElements: S) where S.Iterator.Element == Element {
-       
+    public mutating func append<S: Sequence>(contentsOf newElements: S) where S.Iterator.Element == Element {
+
         var Iterator = newElements.makeIterator()
-        
+
         while let element = Iterator.next() {
             self.append(element)
         }
@@ -185,35 +185,34 @@ extension MultiPolygon : Collection {
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
-    public mutating func append<C : Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == Element {
-        
+    public mutating func append<C: Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == Element {
+
         self.reserveCapacity(numericCast(newElements.count))
-        
+
         var Iterator = newElements.makeIterator()
-        
+
         while let element = Iterator.next() {
             self.append(element)
         }
     }
 
-
     /**
         Insert `newElement` at index `i` of this MultiPolygon.
-     
+
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: Element, atIndex index: Int) {
-        guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range, can't insert Polygon.") }
-        
+        guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range, can't insert Polygon.") }
+
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
-        
-        storage.withUnsafeMutablePointers { (count, elements)->Void in
-            
+
+        storage.withUnsafeMutablePointers { (count, elements) -> Void in
+
             var m = count.pointee
-            
+
             count.pointee = count.pointee &+ 1
-            
+
             // Move the other elements
             while  m >= index {
                 (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
@@ -223,42 +222,41 @@ extension MultiPolygon : Collection {
         }
     }
 
-    
     /**
         Remove and return the element at index `i` of this MultiPolygon.
      */
     @discardableResult
     public mutating func remove(at index: Int) -> Element {
-        guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range, can't remove Polygon.") }
-        
-        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
-            
+        guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range, can't remove Polygon.") }
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Element in
+
             let result = (elements + index).move()
-            
+
             var m = index
-            
+
             // Move the other elements
             while  m <  count.pointee {
                 (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
             count.pointee = count.pointee &- 1
-            
+
             return result
         }
     }
-    
+
     /**
      Remove an element from the end of this MultiPolygon.
-     
+
      - Requires: `count > 0`.
      */
     @discardableResult
     public mutating func removeLast() -> Element {
         guard storage.header > 0 else { preconditionFailure("can't removeLast from an empty MultiPolygon.") }
-        
-        return storage.withUnsafeMutablePointers { (count, elements)-> Element in
-            
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Element in
+
             // No need to check for overflow in `count.pointee - 1` because `count.pointee` is known to be positive.
             count.pointee = count.pointee &- 1
             return (elements + count.pointee).move()
@@ -267,18 +265,18 @@ extension MultiPolygon : Collection {
 
     /**
         Remove all elements of this MultiPolygon.
-     
+
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
     public mutating func removeAll(_ keepCapacity: Bool = false) {
-        
+
         if keepCapacity {
-        
-            storage.withUnsafeMutablePointers { (count, elements)-> Void in
+
+            storage.withUnsafeMutablePointers { (count, elements) -> Void in
                 count.pointee = 0
             }
         } else {
-            storage = CollectionBuffer<Element>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<Element>
+            storage = CollectionBuffer<Element>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
         }
     }
 }
@@ -289,7 +287,7 @@ extension MultiPolygon {
 
     /**
         Returns the position immediately after `i`.
-     
+
         - Precondition: `(startIndex..<endIndex).contains(i)`
      */
     public func index(after i: Int) -> Int {
@@ -299,26 +297,30 @@ extension MultiPolygon {
     /**
         Always zero, which is the index of the first element when non-empty.
      */
-    public var startIndex : Int { return 0 }
+    public var startIndex: Int {
+       return 0
+    }
 
     /**
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
-    public var endIndex   : Int { return storage.header  }
-    
-    public subscript(index : Int) -> Element {
+    public var endIndex: Int {
+        return storage.header
+    }
+
+    public subscript(index: Int) -> Element {
         get {
-            guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
-            
+            guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+
             return storage.withUnsafeMutablePointerToElements { $0[index] }
         }
         set (newValue) {
-            guard ((index >= 0) && (index < storage.header)) else { preconditionFailure("Index out of range.") }
-            
+            guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+
             _ensureUniquelyReferenced()
-        
+
             storage.withUnsafeMutablePointerToElements { elements->Void in
-                
+
                 (elements + index).deinitialize()
                 /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
                 (elements + index).initialize(to: Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
@@ -329,25 +331,21 @@ extension MultiPolygon {
 
 // MARK: CustomStringConvertible & CustomDebugStringConvertible protocol conformance
 
-extension MultiPolygon : CustomStringConvertible, CustomDebugStringConvertible {
-    
-    public var description : String {
+extension MultiPolygon: CustomStringConvertible, CustomDebugStringConvertible {
+
+    public var description: String {
         return "\(type(of: self))(\(self.flatMap { String(describing: $0) }.joined(separator: ", ")))"
     }
-    
-    public var debugDescription : String {
+
+    public var debugDescription: String {
         return self.description
     }
 }
 
 // MARK: Equatable Conformance
 
-extension MultiPolygon : Equatable {}
+extension MultiPolygon: Equatable {}
 
-public func ==<CoordinateType : Coordinate & CopyConstructable>(lhs: MultiPolygon<CoordinateType>, rhs: MultiPolygon<CoordinateType>) -> Bool {
+public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: MultiPolygon<CoordinateType>, rhs: MultiPolygon<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
-    
-
-
-

@@ -19,11 +19,9 @@
  */
 import Swift
 
-
 internal final class Math {
-    
-    
-    internal class func max<T : Comparable>(_ x: T, _ y: T) -> T {
+
+    internal class func max<T: Comparable>(_ x: T, _ y: T) -> T {
         return y >= x ? y : x
     }
 

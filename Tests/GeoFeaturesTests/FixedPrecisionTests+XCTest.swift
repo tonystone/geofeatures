@@ -27,7 +27,7 @@ import XCTest
 
 extension FixedPrecisionTests {
 
-   static var allTests : [(String, (FixedPrecisionTests) -> () throws -> Void)] {
+   static var allTests: [(String, (FixedPrecisionTests) -> () throws -> Void)] {
       return [
                 ("testConvert_Scale10_Lower", testConvert_Scale10_Lower),
                 ("testConvert_Scale10_Middle", testConvert_Scale10_Middle),
@@ -38,4 +38,3 @@ extension FixedPrecisionTests {
            ]
    }
 }
-

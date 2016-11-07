@@ -21,18 +21,18 @@ import Swift
 
 // MARK:  Geometry conformance
 
-extension GeometryCollection : Geometry  {
-    
+extension GeometryCollection: Geometry {
+
     public var dimension: Dimension { get {
-        
-        return storage.withUnsafeMutablePointers { (count, elements)-> Dimension in
-            
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Dimension in
+
             var dimension: Dimension = .empty // No dimension
-            
+
             if count.pointee > 0 {
-                
+
                 for index in 0..<count.pointee {
-                    
+
                     dimension = Math.max(dimension, elements[index].dimension)
                 }
             }
@@ -40,21 +40,21 @@ extension GeometryCollection : Geometry  {
         }
         }
     }
-    
+
     public func isEmpty() -> Bool {
         return self.count == 0
     }
-    
+
     /**
      - Returns: the closure of the combinatorial boundary of this Geometry instance.
      */
-    
+
     public
     func boundary() -> Geometry {
         // TODO: implement boundary
         return GeometryCollection()
     }
-    
+
     public func equals(_ other: Geometry) -> Bool {
         if let other = other as? GeometryCollection {
             return self.elementsEqual(other, by: { (lhs: Geometry, rhs: Geometry) -> Bool in
@@ -63,7 +63,7 @@ extension GeometryCollection : Geometry  {
         }
         return false
     }
-    
+
     // TODO: Must be implenented.  Here just to test protocol
     public func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()

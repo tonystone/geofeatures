@@ -27,7 +27,7 @@ import XCTest
 
 extension MultiPoint_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -35,10 +35,9 @@ extension MultiPoint_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -46,10 +45,9 @@ extension MultiPoint_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -57,10 +55,9 @@ extension MultiPoint_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -68,10 +65,9 @@ extension MultiPoint_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -79,10 +75,9 @@ extension MultiPoint_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -90,10 +85,9 @@ extension MultiPoint_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -101,10 +95,9 @@ extension MultiPoint_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-
 extension MultiPoint_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests {
 
-   static var allTests : [(String, (MultiPoint_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+   static var allTests: [(String, (MultiPoint_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
@@ -112,4 +105,3 @@ extension MultiPoint_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests {
            ]
    }
 }
-

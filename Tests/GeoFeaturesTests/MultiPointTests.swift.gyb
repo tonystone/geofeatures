@@ -64,92 +64,90 @@ FunctionQualifier = CoordinateType + '_' + PrecisionType + '_' + ReferenceSystem
 
 // MARK: - ${CoordinateType}, ${PrecisionType}, ${ReferenceSystemType} -
 
-class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
+class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     let precision = ${Precision}
     let crs       = Cartesian()
 
-    func testInit_NoArg ()   {
+    func testInit_NoArg() {
         XCTAssertEqual(MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
-    
-    func testInit_Tuple () {
+
+    func testInit_Tuple() {
         let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<${CoordinateType}>(coordinate: ${ExpectedTuple0}),Point<${CoordinateType}>(coordinate: ${ExpectedTuple1})]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected)
-                { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
+            (geometry.elementsEqual(expected) { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
                     return lhs == rhs
             }
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get () {
+    func testSubscript_Get() {
         let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry[1], Point<${CoordinateType}>(coordinate: ${ExpectedTuple1}))
     }
-    
-    func testSubscript_Set () {
+
+    func testSubscript_Set() {
         var geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry[1] = Point(coordinate: ${TestTuple0})
-        
+
         XCTAssertEqual(geometry[1], Point<${CoordinateType}>(coordinate: ${ExpectedTuple0}))
     }
-    
-    func testAppend_MultiPoint () {
-        
+
+    func testAppend_MultiPoint() {
+
         let geometry1 = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
-        
+
         geometry2.append(contentsOf: geometry1)
-        
+
         XCTAssertEqual(geometry1, geometry2)
     }
-    
-    func testAppend_Array () {
-        
+
+    func testAppend_Array() {
+
         var geometry = MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<${CoordinateType}>(coordinate: ${ExpectedTuple0}),Point<${CoordinateType}>(coordinate: ${ExpectedTuple1})]
 
         geometry.append(contentsOf: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})])
-        
+
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEquals () {
+    func testEquals() {
         XCTAssertEqual(MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).equals(MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
-    func testIsEmpty () {
+    func testIsEmpty() {
         XCTAssertEqual(MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
-    
+
     func testIsEmpty_False() {
         XCTAssertEqual(MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
-    
-    func testCount () {
+
+    func testCount() {
         XCTAssertEqual(MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
-    
-    func testAppend () {
+
+    func testAppend() {
         var geometry = MultiPoint<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Point<${CoordinateType}>(coordinate: ${ExpectedTuple0})]
 
         geometry.append(Point(coordinate: ${TestTuple0}))
-        
-        XCTAssertTrue(geometry.elementsEqual(expected)
-            { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
+
+        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Point<${CoordinateType}>, rhs: Point<${CoordinateType}>) -> Bool in
                 return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
     }
 
-    func testRemoveAll () {
+    func testRemoveAll() {
         var geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
 
         geometry.removeAll()
@@ -158,16 +156,16 @@ class ${Self}_${FunctionQualifier}_Tests : XCTestCase {
     }
 
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
-    
+
     func testDescription() {
         let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<${CoordinateType}>(Point<${CoordinateType}>${ExpectedTuple0}, Point<${CoordinateType}>${ExpectedTuple1})")
     }
-    
+
     func testDebugDescription() {
         let geometry = MultiPoint<${CoordinateType}>(elements: [Point(coordinate: ${TestTuple0}),Point(coordinate: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        
+
         XCTAssertEqual(geometry.description, "MultiPoint<${CoordinateType}>(Point<${CoordinateType}>${ExpectedTuple0}, Point<${CoordinateType}>${ExpectedTuple1})")
     }
 }

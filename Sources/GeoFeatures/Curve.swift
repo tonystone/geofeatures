@@ -20,18 +20,17 @@
 import Swift
 
 public protocol Curve {
-    
+
     /**
      - Returns: True if this curve is closed (begin and end coordinates are equal)
      */
-    
+
     func isClosed() -> Bool
-    
+
     /**
         The length of this Curve calculated using its associated CoordinateReferenceSystem.
      */
-    
+
     func length() -> Double
 
 }
-

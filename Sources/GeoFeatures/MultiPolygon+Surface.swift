@@ -19,17 +19,16 @@
  */
 import Swift
 
-extension MultiPolygon : Surface {
-    
-    
+extension MultiPolygon: Surface {
+
     public func area() -> Double {
-        
-        return storage.withUnsafeMutablePointers { (count, elements)->Double in
-            
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Double in
+
             var area: Double = 0.0
-            
+
             if count.pointee > 0 {
-                
+
                 for index in 0..<count.pointee {
                     area += elements[index].area()
                 }

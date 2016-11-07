@@ -22,41 +22,41 @@ import Swift
 /**
     Surface extension for LinearRing
  */
-extension LinearRing : Surface {
-    
+extension LinearRing: Surface {
+
     /**
         Calculates the area of this `LinearRing`
-        
+
         - returns: The area of this `LinearRing`. If the orientation of the ring is clockwise, area will be postive, otherwise it will be negative.
-     
+
         - requires: isSimple == true
         - requires: isClosed == true
      */
-    
+
     public func area() -> Double {
-        
-        return storage.withUnsafeMutablePointers { (count, elements)->Double in
-            
+
+        return storage.withUnsafeMutablePointers { (count, elements) -> Double in
+
             var area: Double = 0.0
-            
+
             if count.pointee > 0 {
-                
+
                 var c1 = elements[0]
-                
+
                 for index in 1..<count.pointee {
-                    
+
                     let c2 = elements[index]
-                    
+
                     let height = (c1.y + c2.y) / 2
                     let width  = c2.x - c1.x
-                    
+
                     area += width * height
-                    
+
                     c1 = c2
                 }
             }
             return self.precision.convert(area)
         }
     }
-    
+
 }

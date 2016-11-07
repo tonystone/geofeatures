@@ -25,27 +25,27 @@ internal protocol Token {
     func isNewLine() -> Bool
 }
 
-internal class Tokenizer<T : Token> {
-    
+internal class Tokenizer<T: Token> {
+
     var line = 0
     var column = 0
-    
+
     fileprivate var stringStream: String
     fileprivate var matchRange: Range<String.Index>
-    
+
     init(string: String) {
         self.stringStream = string
         self.matchRange = string.startIndex..<string.endIndex
-        
+
         if self.stringStream.characters.count > 0 {
             line = 1
             column = 1
         }
     }
-    
+
     func accept(_ token: T) -> String? {
         if let range = token.match(stringStream, matchRange: matchRange) {
-            
+
             if token.isNewLine() {
                 line += 1
                 column = 1
@@ -54,16 +54,16 @@ internal class Tokenizer<T : Token> {
             }
             // Increment the range for matching
             matchRange = range.upperBound..<matchRange.upperBound
-            
+
             return stringStream.substring(with: range)
         }
         return nil
     }
-    
+
     func expect(_ token: T) -> Bool {
         return token.match(stringStream, matchRange: matchRange) != nil
     }
-    
+
     var matchString: String {
         get {
             return stringStream.substring(with: matchRange)
