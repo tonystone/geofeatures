@@ -11,8 +11,13 @@ database:
   override:
     - echo "Skipping DB section."
 
+dependencies:
+  override:
+    - brew install swiftlint
+
 test:
   override:
+    - swiftlint lint
     - set -o pipefail &&
       xcodebuild
         CODE_SIGNING_REQUIRED=NO

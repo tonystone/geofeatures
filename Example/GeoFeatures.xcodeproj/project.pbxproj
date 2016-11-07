@@ -90,6 +90,8 @@
 		EA4CFEC91DCB9CF70050634D /* circle.yml.linux */ = {isa = PBXFileReference; lastKnownFileType = text; name = circle.yml.linux; path = ../circle.yml.linux; sourceTree = "<group>"; };
 		EA634EFD1DCE32F800AC93E7 /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = circle.yml; path = ../circle.yml; sourceTree = "<group>"; };
 		EA634EFE1DCE481C00AC93E7 /* codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
+		EA634F021DCFB94300AC93E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		EA634F061DD0341200AC93E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
 		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
 		EA8D58971DB7D7C200713261 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GeoFeatures/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -218,6 +220,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EA634F021DCFB94300AC93E7 /* .swiftlint.yml */,
 				EA8D58A61DB7E34C00713261 /* GeoFeaturesTests */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -245,6 +248,7 @@
 				EA634EFD1DCE32F800AC93E7 /* circle.yml */,
 				EA4CFEC91DCB9CF70050634D /* circle.yml.linux */,
 				EA634EFE1DCE481C00AC93E7 /* codecov.yml */,
+				EA634F061DD0341200AC93E7 /* .swiftlint.yml */,
 				EA8D591C1DB83EA300713261 /* .gitignore */,
 			);
 			name = Metadata;
@@ -342,6 +346,7 @@
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Example" */;
 			buildPhases = (
 				582E738BDE3D4097C8D1668C /* [CP] Check Pods Manifest.lock */,
+				EA634F071DD0356D00AC93E7 /* Swift Lint */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
@@ -547,6 +552,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ../\n\nScripts/generate_xctest_linux_runner.rb";
+		};
+		EA634F071DD0356D00AC93E7 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --path ../\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		EAC75E8C1C91E86600BA35F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
