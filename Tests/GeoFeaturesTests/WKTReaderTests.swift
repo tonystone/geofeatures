@@ -33,7 +33,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     fileprivate typealias WKTReaderType = WKTReader<Coordinate2D>
     fileprivate var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
 
-    /// Mark: Init
+    /// MARK: - Init
 
     func testRead_Point_Float_Valid() {
 
@@ -43,12 +43,12 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
     }
 
-    /// Mark: General
+    /// MARK: - General
 
     func testRead_Invalid_Geometry() {
 
         let input = "INVALID (1.0 1.0)"
-        let expected = "INVALID (1.0 1.0)"
+        let expected = "INVALID (1.0 1.0)"  /// TODO: Invalid message, please update the class to throw a more descriptive message.
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
             if case ParseError.unsupportedType(let message) = error {
@@ -59,7 +59,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
-    /// Mark: Point
+    /// MARK: - Point
 
     func testRead_Point_Int_Valid() {
 
@@ -141,7 +141,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
-    /// Mark: LineString
+    /// MARK: - LineString
 
     func testRead_LineString_Valid() {
 
@@ -215,7 +215,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
-    /// Mark: LinearRing
+    /// MARK: - LinearRing
 
     func testRead_LinearRing_Valid() {
 
@@ -289,7 +289,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
-    /// Mark: MultiPoint
+    /// MARK: - MultiPoint
 
     func testRead_MultiPoint_Valid() {
 
@@ -363,7 +363,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
-    /// Mark: MultiLineString
+    /// MARK: - MultiLineString
 
     func testRead_MultiLineString_Valid() {
 
@@ -437,7 +437,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
-    /// Mark: Polygon
+    /// MARK: - Polygon
 
     func testRead_Polygon_ZeroInnerRings_Valid() {
 
@@ -496,6 +496,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    /// MARK: - MultiPolygon
+
     func testRead_MultiPolygon_Valid() {
 
         let input = "MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))"
@@ -503,6 +505,72 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
         XCTAssertEqual(try wktReader.read(wkt: input) as? MultiPolygon<Coordinate2D>, expected)
     }
+
+    func testRead_MultiPolygon_Valid_Empty() {
+
+        let input = "MULTIPOLYGON EMPTY"
+        let expected = MultiPolygon<Coordinate2D>(elements: [])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? MultiPolygon<Coordinate2D>, expected)
+    }
+
+    func testRead_MultiPolygon_Invalid_WhiteSpace() {
+
+        let input = "MULTIPOLYGON  (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))"
+        let expected = "Unexpected token at line: 1 column: 13. Expected 'single space' but found -> '  (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiPolygon_Invalid_DoubleSapceAfterComma() {
+
+        let input = "MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)),  ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))"
+        let expected = "Unexpected token at line: 1 column: 54. Expected 'single space' but found -> '  ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiPolygon_Invalid_MissingLeftParen() {
+
+        let input = "MULTIPOLYGON 1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))"
+        let expected = "Unexpected token at line: 1 column: 14. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiPolygon_Invalid_MissingRightParen() {
+
+        let input = "MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0))"
+        let expected = "Unexpected token at line: 1 column: 101. Expected ')' but found -> ''"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    /// MARK: - GoemetryCollection
 
     func testRead_GeometryCollection_Valid() {
 
