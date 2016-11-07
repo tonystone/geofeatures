@@ -565,6 +565,6 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
     }
 
     fileprivate func errorMessage(_ tokenizer: Tokenizer<WKT>, expectedToken: WKT) -> String {
-        return "Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column). Expected \(expectedToken) but found ->\(tokenizer.matchString)"
+        return "Unexpected token at line: \(tokenizer.line) column: \(tokenizer.column). Expected '\(expectedToken)' but found -> '\(tokenizer.matchString)'"
     }
 }
