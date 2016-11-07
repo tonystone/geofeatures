@@ -33,6 +33,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     fileprivate typealias WKTReaderType = WKTReader<Coordinate2D>
     fileprivate var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
 
+    /// Mark: Init
+
     func testRead_Point_Float_Valid() {
 
         let input = "POINT (1.0 1.0)"
@@ -40,6 +42,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
         XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
     }
+
+    /// Mark: General
 
     func testRead_Invalid_Geometry() {
 
@@ -54,6 +58,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+
+    /// Mark: Point
 
     func testRead_Point_Int_Valid() {
 
@@ -135,6 +141,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    /// Mark: LineString
+
     func testRead_LineString_Valid() {
 
         let input = "LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)"
@@ -206,6 +214,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+
+    /// Mark: LinearRing
 
     func testRead_LinearRing_Valid() {
 
@@ -279,6 +289,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    /// Mark: MultiPoint
+
     func testRead_MultiPoint_Valid() {
 
         let input = "MULTIPOINT ((1.0 2.0), (3.0 4.0))"
@@ -351,6 +363,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    /// Mark: MultiLineString
+
     func testRead_MultiLineString_Valid() {
 
         let input = "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))"
@@ -359,7 +373,57 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(try wktReader.read(wkt: input) as? MultiLineString<Coordinate2D>, expected)
     }
 
-    func testRead_MultiLineString_Invalid_MissingClosingParen() {
+    func testRead_MultiLineString_Valid_Empty() {
+
+        let input = "MULTILINESTRING EMPTY"
+        let expected = MultiLineString<Coordinate2D>(elements: [])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? MultiLineString<Coordinate2D>, expected)
+    }
+
+    func testRead_MultiLineString_Invalid_WhiteSpace() {
+
+        let input = "MULTILINESTRING  ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))"
+        let expected = "Unexpected token at line: 1 column: 16. Expected 'single space' but found -> '  ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiLineString_Invalid_DoubleSapceAfterComma() {
+
+        let input = "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0),  (4.0 4.0, 5.0 5.0, 6.0 6.0))"
+        let expected = "Unexpected token at line: 1 column: 46. Expected 'single space' but found -> '  (4.0 4.0, 5.0 5.0, 6.0 6.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiLineString_Invalid_MissingLeftParen() {
+
+        let input = "MULTILINESTRING 1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))"
+        let expected = "Unexpected token at line: 1 column: 17. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiLineString_Invalid_MissingRightParen() {
 
         let input = "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)"
         let expected = "Unexpected token at line: 1 column: 74. Expected ')' but found -> ''"
@@ -372,6 +436,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+
+    /// Mark: Polygon
 
     func testRead_Polygon_ZeroInnerRings_Valid() {
 
