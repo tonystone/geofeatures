@@ -30,145 +30,346 @@ import GeoFeatures
 
 class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
-    fileprivate var wktReader = WKTReader<Coordinate2D>(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    fileprivate typealias WKTReaderType = WKTReader<Coordinate2D>
+    fileprivate var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
 
     func testRead_Point_Float_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POINT (1.0 1.0)")
-            let expected = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))
+        let input = "POINT (1.0 1.0)"
+        let expected = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
+    }
+
+    func testRead_Invalid_Geometry() {
+
+        let input = "INVALID (1.0 1.0)"
+        let expected = "INVALID (1.0 1.0)"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unsupportedType(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
     func testRead_Point_Int_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POINT (1 1)")
-            let expected = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))
+        let input = "POINT (1 1)"
+        let expected = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0))
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
+    }
+
+    func testRead_Point_Valid_Exponent_UpperCase() {
+
+        let input = "POINT (1.0E-5 1.0E-5)"
+        let expected = Point<Coordinate2D>(coordinate: (x: 1.0E-5, y: 1.0E-5))
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
+    }
+
+    func testRead_Point_Valid_Exponent_LowerCase() {
+
+        let input = "POINT (1.0e-5 1.0e-5)"
+        let expected = Point<Coordinate2D>(coordinate: (x: 1.0E-5, y: 1.0E-5))
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
+    }
+
+    func testRead_Point_InvalidCoordinate() {
+
+        let input = "POINT (1.01.0)"
+        let expected = "Unexpected token at line: 1 column: 12. Expected 'single space' but found -> '.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
     func testRead_Point_Invalid_WhiteSpace() {
 
-        do {
-            let _ = try wktReader.read(wkt: "POINT  (   1.0     1.0   ) ")
+        let input = "POINT  (   1.0     1.0   ) "
+        let expected = "Unexpected token at line: 1 column: 6. Expected 'single space' but found -> '  (   1.0     1.0   ) '"
 
-            XCTFail("Parsing failed")
-
-        } catch ParseError.unexpectedToken {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail("Parsing failed")
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
-    func testRead_Point_Valid_Exponent_UpperCase() {
+    func testRead_Point_Invalid_MissingLeftParen() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POINT (1.0E-5 1.0E-5)")
-            let expected = Point<Coordinate2D>(coordinate: (x: 1.0E-5, y: 1.0E-5))
+        let input = "POINT 1 1)"
+        let expected = "Unexpected token at line: 1 column: 7. Expected '(' but found -> '1 1)'"
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
-    func testRead_Point_Valid_Exponent_LowerCase() {
+    func testRead_Point_Invalid_MissingRightParen() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POINT (1.0e-5 1.0e-5)")
-            let expected = Point<Coordinate2D>(coordinate: (x: 1.0E-5, y: 1.0E-5))
+        let input = "POINT (1 1"
+        let expected = "Unexpected token at line: 1 column: 11. Expected ')' but found -> ''"
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
-    }
-
-    func testRead_Point_InvalidCoordinate() {
-
-        do {
-            let _ = try wktReader.read(wkt: "POINT (1.01.0)")
-
-            XCTFail("Parsing failed")
-
-        } catch ParseError.unexpectedToken {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail("Parsing failed")
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
     func testRead_LineString_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)")
-            let expected = LineString<Coordinate2D>(elements: [( x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])
+        let input = "LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)"
+        let expected = LineString<Coordinate2D>(elements: [( x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
+        XCTAssertEqual(try wktReader.read(wkt: input) as? LineString<Coordinate2D>, expected)
+    }
+
+    func testRead_LineString_Valid_Empty() {
+
+        let input = "LINESTRING EMPTY"
+        let expected = LineString<Coordinate2D>(elements: [])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? LineString<Coordinate2D>, expected)
+    }
+
+    func testRead_LineString_Invalid_WhiteSpace() {
+
+        let input = "LINESTRING   ( 1.0 1.0, 2.0 2.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 11. Expected 'single space' but found -> '   ( 1.0 1.0, 2.0 2.0, 3.0 3.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LineString_Invalid_DoubleSapceAfterComma() {
+
+        let input = "LINESTRING (1.0 1.0,  2.0 2.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 21. Expected 'single space' but found -> '  2.0 2.0, 3.0 3.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LineString_Invalid_MissingLeftParen() {
+
+        let input = "LINESTRING 1.0 1.0, 2.0 2.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 12. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LineString_Invalid_MissingRightParen() {
+
+        let input = "LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0"
+        let expected = "Unexpected token at line: 1 column: 38. Expected ')' but found -> ''"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LinearRing_Valid() {
+
+        let input = "LINEARRING (1.0 1.0, 2.0 2.0, 3.0 3.0)"
+        let expected = LinearRing<Coordinate2D>(elements: [( x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? LinearRing<Coordinate2D>, expected)
+    }
+
+    func testRead_LinearRing_Valid_Empty() {
+
+        let input = "LINEARRING EMPTY"
+        let expected = LinearRing<Coordinate2D>(elements: [])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? LinearRing<Coordinate2D>, expected)
+    }
+
+    func testRead_LinearRing_Invalid_WhiteSpace() {
+
+        let input = "LINEARRING   ( 1.0 1.0, 2.0 2.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 11. Expected 'single space' but found -> '   ( 1.0 1.0, 2.0 2.0, 3.0 3.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LinearRing_Invalid_DoubleSapceAfterComma() {
+
+        let input = "LINEARRING (1.0 1.0,  2.0 2.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 21. Expected 'single space' but found -> '  2.0 2.0, 3.0 3.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LinearRing_Invalid_MissingLeftParen() {
+
+        let input = "LINEARRING 1.0 1.0, 2.0 2.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 12. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_LinearRing_Invalid_MissingRightParen() {
+
+        let input = "LINEARRING (1.0 1.0, 2.0 2.0, 3.0 3.0"
+        let expected = "Unexpected token at line: 1 column: 38. Expected ')' but found -> ''"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
     func testRead_MultiPoint_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "MULTIPOINT ((1.0 2.0))")
-            let expected = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))])
+        let input = "MULTIPOINT ((1.0 2.0), (3.0 4.0))"
+        let expected = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0)), Point<Coordinate2D>(coordinate: (x: 3.0, y: 4.0))])
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
+        XCTAssertEqual(try wktReader.read(wkt: input) as? MultiPoint<Coordinate2D>, expected)
+    }
+
+    func testRead_MultiPoint_Valid_Empty() {
+
+        let input = "MULTIPOINT EMPTY"
+        let expected = MultiPoint<Coordinate2D>(elements: [])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? MultiPoint<Coordinate2D>, expected)
+    }
+
+    func testRead_MultiPoint_Invalid_WhiteSpace() {
+
+        let input = "MULTIPOINT   ((1.0 2.0))"
+        let expected = "Unexpected token at line: 1 column: 11. Expected 'single space' but found -> '   ((1.0 2.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
-    func testRead_MultiPoint_Invalid_MissingClosingParen() {
+    func testRead_MultiPoint_Invalid_DoubleSapceAfterComma() {
 
-        do {
-            let _ = try wktReader.read(wkt: "MULTIPOINT ((1.0 2.0)")
+        let input = "MULTIPOINT ((1.0 2.0),  (3.0 4.0))"
+        let expected = "Unexpected token at line: 1 column: 23. Expected 'single space' but found -> '  (3.0 4.0))'"
 
-            XCTFail("Parsing failed")
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
 
-        } catch ParseError.unexpectedToken {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail("Parsing failed")
+    func testRead_MultiPoint_Invalid_MissingLeftParen() {
+
+        let input = "MULTIPOINT 1.0 2.0), (3.0 4.0))"
+        let expected = "Unexpected token at line: 1 column: 12. Expected '(' but found -> '1.0 2.0), (3.0 4.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_MultiPoint_Invalid_MissingRightParen() {
+
+        let input = "MULTIPOINT ((1.0 2.0), (3.0 4.0)"
+        let expected = "Unexpected token at line: 1 column: 33. Expected ')' but found -> ''"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
     func testRead_MultiLineString_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))")
-            let expected = MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])])
+        let input = "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))"
+        let expected = MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])])
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
+        XCTAssertEqual(try wktReader.read(wkt: input) as? MultiLineString<Coordinate2D>, expected)
     }
 
-    func testRead_MultiLineString_Invalid_MissingCLosingParen() {
+    func testRead_MultiLineString_Invalid_MissingClosingParen() {
 
-        do {
-            let _ = try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
+        let input = "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)"
+        let expected = "Unexpected token at line: 1 column: 74. Expected ')' but found -> ''"
 
-            XCTFail("Parsing failed")
-
-        } catch ParseError.unexpectedToken {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail("Parsing failed")
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
@@ -217,49 +418,41 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRead_Polygon_MultipleOuterRings_Invalid_MissingComma() {
 
-        do {
-            let _ = try wktReader.read(wkt: "MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)")
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0) (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
+        let expected = "Unexpected token at line: 1 column: 46. Expected ',' but found -> ' (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
-            XCTFail("Parsing failed")
-
-        } catch ParseError.unexpectedToken {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail("Parsing failed")
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
         }
     }
 
     func testRead_MultiPolygon_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))")
-            let expected = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 10.0, y: 10.0), (x: 20.0, y: 20.0), (x: 30.0, y: 30.0), (x: 10.0, y: 10.0)]), innerRings: [])])
+        let input = "MULTIPOLYGON (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))"
+        let expected = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: []), Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 10.0, y: 10.0), (x: 20.0, y: 20.0), (x: 30.0, y: 30.0), (x: 10.0, y: 10.0)]), innerRings: [])])
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
+        XCTAssertEqual(try wktReader.read(wkt: input) as? MultiPolygon<Coordinate2D>, expected)
     }
 
     func testRead_GeometryCollection_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "GEOMETRYCOLLECTION (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0), MULTIPOINT ((1.0 2.0)), MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)), GEOMETRYCOLLECTION (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)))")
-            let expected = GeometryCollection(elements:
-                [
+        let input = "GEOMETRYCOLLECTION (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0), MULTIPOINT ((1.0 2.0)), MULTILINESTRING ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0)), GEOMETRYCOLLECTION (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0)))"
+        let expected = GeometryCollection(elements:
+            [
+                Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
+                LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]),
+                MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))]),
+                MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])]),
+                GeometryCollection(elements:  [
                     Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
-                    LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]),
-                    MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 2.0))]),
-                    MultiLineString<Coordinate2D>(elements: [LineString(elements:  [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)]), LineString(elements:  [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0)])]),
-                    GeometryCollection(elements:  [
-                            Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)),
-                            LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])] as [Geometry])
+                    LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)])] as [Geometry])
                 ] as [Geometry])
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
+        XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
     }
 
     func testReadPerformance_Polygon_California() {
