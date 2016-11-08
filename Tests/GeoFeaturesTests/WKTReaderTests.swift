@@ -746,6 +746,20 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    func testRead_Point_Invalid_Coordinate_NoSpaceBeforeM() {
+
+        let input = "POINT M (1.0 1.01.0)"
+        let expected = "Unexpected token at line: 1 column: 18. Expected 'single space' but found -> '.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
     // MARK: - GoemetryCollection
 
     func testRead_GeometryCollection_Valid() {
@@ -796,6 +810,20 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
         let input = "POINT Z (1.0 1.0 )"
         let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> ')'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Point_Invalid_Coordinate_NoSpaceBeforeZ() {
+
+        let input = "POINT Z (1.0 1.01.0)"
+        let expected = "Unexpected token at line: 1 column: 18. Expected 'single space' but found -> '.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
             if case ParseError.unexpectedToken(let message) = error {
@@ -866,6 +894,19 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    func testRead_Point_Invalid_Coordinate_NoSpaceBeforeM() {
+
+        let input = "POINT ZM (1.0 1.0 1.01.0)"
+        let expected = "Unexpected token at line: 1 column: 23. Expected 'single space' but found -> '.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
     // MARK: - GoemetryCollection
 
     func testRead_GeometryCollection_Valid() {
