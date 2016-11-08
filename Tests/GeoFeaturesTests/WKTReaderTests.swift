@@ -746,6 +746,20 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    func testRead_Point_Invalid_Coordinate_NoSpaceAfterM() {
+
+        let input = "POINT M(1.0 1.0 1.0)"
+        let expected = "Unexpected token at line: 1 column: 8. Expected 'single space' but found -> '(1.0 1.0 1.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
     func testRead_Point_Invalid_Coordinate_NoSpaceBeforeM() {
 
         let input = "POINT M (1.0 1.01.0)"
@@ -772,6 +786,20 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
             ] as [Geometry])
 
         XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
+    }
+
+    func testRead_GeometryCollection_Invalid_ElementNoM() {
+
+        let input = "GEOMETRYCOLLECTION M (POINT (1.0 1.0 1.0))"
+        let expected = "Unexpected token at line: 1 column: 29. Expected 'M' but found -> '(1.0 1.0 1.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
     }
 }
 
@@ -820,6 +848,20 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    func testRead_Point_Invalid_Coordinate_NoSpaceAfterZ() {
+
+        let input = "POINT Z(1.0 1.01.0)"
+        let expected = "Unexpected token at line: 1 column: 8. Expected 'single space' but found -> '(1.0 1.01.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
     func testRead_Point_Invalid_Coordinate_NoSpaceBeforeZ() {
 
         let input = "POINT Z (1.0 1.01.0)"
@@ -846,6 +888,20 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             ] as [Geometry])
 
         XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
+    }
+
+    func testRead_GeometryCollection_Invalid_ElementNoZ() {
+
+        let input = "GEOMETRYCOLLECTION Z (POINT (1.0 1.0 1.0))"
+        let expected = "Unexpected token at line: 1 column: 29. Expected 'Z' but found -> '(1.0 1.0 1.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
     }
 }
 
@@ -894,6 +950,20 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         }
     }
 
+    func testRead_Point_Invalid_Coordinate_NoSpaceAfterM() {
+
+        let input = "POINT ZM(1.0 1.0 1.01.0)"
+        let expected = "Unexpected token at line: 1 column: 9. Expected 'single space' but found -> '(1.0 1.0 1.01.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
     func testRead_Point_Invalid_Coordinate_NoSpaceBeforeM() {
 
         let input = "POINT ZM (1.0 1.0 1.01.0)"
@@ -907,6 +977,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+
     // MARK: - GoemetryCollection
 
     func testRead_GeometryCollection_Valid() {
@@ -919,5 +990,33 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
             ] as [Geometry])
 
         XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
+    }
+
+    func testRead_GeometryCollection_Invalid_ElementNoZ() {
+
+        let input = "GEOMETRYCOLLECTION ZM (POINT M (1.0 1.0 1.0 1.0))"
+        let expected = "Unexpected token at line: 1 column: 30. Expected 'Z' but found -> 'M (1.0 1.0 1.0 1.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_GeometryCollection_Invalid_ElementNoM() {
+
+        let input = "GEOMETRYCOLLECTION ZM (POINT Z(1.0 1.0 1.0 1.0))"
+        let expected = "Unexpected token at line: 1 column: 31. Expected 'M' but found -> '(1.0 1.0 1.0 1.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
     }
 }
