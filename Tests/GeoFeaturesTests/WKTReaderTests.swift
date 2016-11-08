@@ -469,51 +469,96 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRead_Polygon_ZeroInnerRings_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))")
-            let expected = Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: [])
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0))"
+        let expected = Polygon<Coordinate2D>(outerRing: LinearRing(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: [])
 
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Polygon<Coordinate2D>, expected)
     }
 
     func testRead_Polygon_SingleOuterRing_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))")
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0))"
+        let expected = Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: [LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])])
 
-            let outerRing = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
-            let innerRing = LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])
-            let expected  = Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing])
-
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Polygon<Coordinate2D>, expected)
     }
 
-    func testRead_Polygon_MultipleOuterRings_Valid() {
+    func testRead_Polygon_MultipleInnerRings_Valid() {
 
-        do {
-            let geometry = try wktReader.read(wkt: "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))")
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
+        let expected = Polygon<Coordinate2D>(outerRing: LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)]), innerRings: [LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)]), LinearRing<Coordinate2D>(elements: [(x: 3.0, y: 3.0), (x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 3.0, y: 3.0)])])
 
-            let outerRing  = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)])
-            let innerRing1 = LinearRing<Coordinate2D>(elements: [(x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 6.0, y: 6.0), (x: 4.0, y: 4.0)])
-            let innerRing2 = LinearRing<Coordinate2D>(elements: [(x: 3.0, y: 3.0), (x: 4.0, y: 4.0), (x: 5.0, y: 5.0), (x: 3.0, y: 3.0)])
-            let expected  = Polygon<Coordinate2D>(outerRing: outerRing, innerRings: [innerRing1, innerRing2])
-
-            XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
-        } catch {
-            XCTFail("Parsing failed: \(error).")
-        }
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Polygon<Coordinate2D>, expected)
     }
 
     func testRead_Polygon_MultipleOuterRings_Invalid_MissingComma() {
 
         let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0) (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
         let expected = "Unexpected token at line: 1 column: 46. Expected ',' but found -> ' (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Polygon_Valid_Empty() {
+
+        let input = "POLYGON EMPTY"
+        let expected = Polygon<Coordinate2D>()
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Polygon<Coordinate2D>, expected)
+    }
+
+    func testRead_Polygon_Invalid_WhiteSpace() {
+
+        let input = "POLYGON  ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
+        let expected = "Unexpected token at line: 1 column: 8. Expected 'single space' but found -> '  ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Polygon_Invalid_DoubleSapceAfterComma() {
+
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0),  (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
+        let expected = "Unexpected token at line: 1 column: 47. Expected 'single space' but found -> '  (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Polygon_Invalid_MissingLeftParen() {
+
+        let input = "POLYGON 1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
+        let expected = "Unexpected token at line: 1 column: 9. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Polygon_Invalid_MissingRightParen() {
+
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0)"
+        let expected = "Unexpected token at line: 1 column: 122. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
             if case ParseError.unexpectedToken(let message) = error {
