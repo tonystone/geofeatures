@@ -30,8 +30,8 @@ import GeoFeatures
 
 class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
-    fileprivate typealias WKTReaderType = WKTReader<Coordinate2D>
-    fileprivate var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    private typealias WKTReaderType = WKTReader<Coordinate2D>
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
 
     // MARK: - Init
 
@@ -85,10 +85,38 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2D>, expected)
     }
 
-    func testRead_Point_InvalidCoordinate() {
+    func testRead_Point_Invalid_Coordinate_NoSpace() {
 
         let input = "POINT (1.01.0)"
         let expected = "Unexpected token at line: 1 column: 12. Expected 'single space' but found -> '.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Point_Invalid_Coordinate_X() {
+
+        let input = "POINT (K 1.0)"
+        let expected = "Unexpected token at line: 1 column: 8. Expected 'numeric literal' but found -> 'K 1.0)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Point_Invalid_Coordinate_Y() {
+
+        let input = "POINT (1.0 K)"
+        let expected = "Unexpected token at line: 1 column: 12. Expected 'numeric literal' but found -> 'K)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
             if case ParseError.unexpectedToken(let message) = error {
@@ -671,5 +699,142 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+}
 
+// MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
+
+class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
+    private typealias WKTReaderType = WKTReader<Coordinate2DM>
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+
+    // MARK: Point
+
+    func testRead_Point_Valid() {
+
+        let input = "POINT M (1.0 1.0 1.0)"
+        let expected = Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0))
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate2DM>, expected)
+    }
+
+    func testRead_Point_Invalid_Coordinate_M() {
+
+        let input = "POINT M (1.0 1.0 K)"
+        let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> 'K)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Point_Invalid_Coordinate_MissingM() {
+
+        let input = "POINT M (1.0 1.0 )"
+        let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> ')'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+}
+
+// MARK: - Coordinate3D, FloatingPrecision, Cartesian -
+
+class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
+    private typealias WKTReaderType = WKTReader<Coordinate3D>
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+
+    // MARK: Point
+
+    func testRead_Point_Valid() {
+
+        let input = "POINT Z (1.0 1.0 1.0)"
+        let expected = Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0))
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate3D>, expected)
+    }
+
+    func testRead_Point_Invalid_Coordinate_Z() {
+
+        let input = "POINT Z (1.0 1.0 K)"
+        let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> 'K)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Point_Invalid_Coordinate_MissingZ() {
+
+        let input = "POINT Z (1.0 1.0 )"
+        let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> ')'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+}
+
+// MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
+
+class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+
+    private typealias WKTReaderType = WKTReader<Coordinate3DM>
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+
+    // MARK: Point
+
+    func testRead_Point_Valid() {
+
+        let input = "POINT ZM (1.0 1.0 1.0 1.0)"
+        let expected = Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? Point<Coordinate3DM>, expected)
+    }
+
+    func testRead_Point_Invalid_Coordinate_M() {
+
+        let input = "POINT ZM (1.0 1.0 1.0 K)"
+        let expected = "Unexpected token at line: 1 column: 23. Expected 'numeric literal' but found -> 'K)'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Point_Invalid_Coordinate_MissingM() {
+
+        let input = "POINT ZM (1.0 1.0 1.0 )"
+        let expected = "Unexpected token at line: 1 column: 23. Expected 'numeric literal' but found -> ')'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
 }
