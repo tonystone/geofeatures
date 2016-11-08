@@ -154,41 +154,6 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
         throw ParseError.unsupportedType(wkt)
     }
 
-    fileprivate func dimensionText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> (z: Bool, m: Bool) {
-
-        var result = (z: false, m: false)
-
-        if tokenizer.accept(.SINGLE_SPACE) == nil {
-            throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
-        }
-
-        if let requireZ = require.z, requireZ  == true { // Z is required and must be present
-
-            if tokenizer.accept(.THREEDIMENSIONAL) == nil {
-                throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .THREEDIMENSIONAL))
-            }
-        } else {
-            result.z = tokenizer.accept(.THREEDIMENSIONAL) != nil
-        }
-
-        if let requireM = require.m, requireM == true { // M is required and must be present
-
-            if tokenizer.accept(.MEASURED) == nil {
-                throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .MEASURED))
-            }
-        } else {
-            result.m = tokenizer.accept(.MEASURED) != nil
-        }
-
-        // If either was present, a single space after it is required.
-        if result.z || result.m {
-            if tokenizer.accept(.SINGLE_SPACE) == nil {
-                throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
-            }
-        }
-        return result
-    }
-
     // BNF: <point tagged text> ::= point <point text>
     fileprivate func pointTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> Point<CoordinateType> {
 
@@ -586,6 +551,45 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
         }
 
         return CoordinateType(array: coordinates)
+    }
+
+    fileprivate func dimensionText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> (z: Bool, m: Bool) {
+
+        var result = (z: false, m: false)
+
+        if tokenizer.accept(.SINGLE_SPACE) == nil {
+            throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+        }
+
+        if let requireZ = require.z, requireZ  == true { // Z is required and must be present
+
+            result.z = requireZ
+            
+            if tokenizer.accept(.THREEDIMENSIONAL) == nil {
+                throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .THREEDIMENSIONAL))
+            }
+        } else {
+            result.z = tokenizer.accept(.THREEDIMENSIONAL) != nil
+        }
+
+        if let requireM = require.m, requireM == true { // M is required and must be present
+
+            result.m = requireM
+
+            if tokenizer.accept(.MEASURED) == nil {
+                throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .MEASURED))
+            }
+        } else {
+            result.m = tokenizer.accept(.MEASURED) != nil
+        }
+
+        // If either was present, a single space after it is required.
+        if result.z || result.m {
+            if tokenizer.accept(.SINGLE_SPACE) == nil {
+                throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))
+            }
+        }
+        return result
     }
 
     fileprivate func errorMessage(_ tokenizer: Tokenizer<WKT>, expectedToken: WKT) -> String {
