@@ -549,7 +549,7 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
         ///  want to make sure we have an array the size of the largest
         ///  possible coorinate type.
         ///
-        for i in coordinates.count..<4 {
+        for _ in coordinates.count..<4 {
             coordinates.append(Double.nan)
         }
 
