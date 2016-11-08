@@ -300,6 +300,9 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
             }
         } while !done
 
+        if tokenizer.accept(.RIGHT_PAREN) == nil {
+            throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
+        }
         return Polygon<CoordinateType>(outerRing: outerRing, innerRings: innerRings)
     }
 
@@ -564,7 +567,7 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
         if let requireZ = require.z, requireZ  == true { // Z is required and must be present
 
             result.z = requireZ
-            
+
             if tokenizer.accept(.THREEDIMENSIONAL) == nil {
                 throw ParseError.unexpectedToken(errorMessage(tokenizer, expectedToken: .THREEDIMENSIONAL))
             }
