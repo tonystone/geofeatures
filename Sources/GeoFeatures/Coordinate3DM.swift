@@ -42,7 +42,7 @@ public struct Coordinate3DM: Coordinate, ThreeDimensional, Measured {
 extension Coordinate3DM: _ArrayConstructable {
 
     public init(array: [Double]) {
-        precondition(array.count == 4)
+        precondition(array.count >= 4)
 
         self.init(x: array[0], y: array[1], z: array[2], m: array[3])
     }

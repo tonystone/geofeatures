@@ -40,7 +40,7 @@ public struct Coordinate3D: Coordinate, ThreeDimensional {
 extension Coordinate3D: _ArrayConstructable {
 
     public init(array: [Double]) {
-        precondition(array.count == 3)
+        precondition(array.count >= 3)
 
         self.init(x: array[0], y: array[1], z: array[2])
     }
