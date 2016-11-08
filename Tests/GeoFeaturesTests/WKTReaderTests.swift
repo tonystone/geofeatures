@@ -745,6 +745,20 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+
+    // MARK: - GoemetryCollection
+
+    func testRead_GeometryCollection_Valid() {
+
+        let input = "GEOMETRYCOLLECTION M (POINT M (1.0 1.0 1.0), LINESTRING M (1.0 1.0 1.0, 2.0 2.0 2.0, 3.0 3.0 3.0))"
+        let expected = GeometryCollection(elements:
+            [
+                Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)),
+                LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0), (x: 3.0, y: 3.0, m: 3.0)]),
+            ] as [Geometry])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
+    }
 }
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
@@ -791,6 +805,20 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
             }
         }
     }
+
+    // MARK: - GoemetryCollection
+
+    func testRead_GeometryCollection_Valid() {
+
+        let input = "GEOMETRYCOLLECTION Z (POINT Z (1.0 1.0 1.0), LINESTRING Z (1.0 1.0 1.0, 2.0 2.0 2.0, 3.0 3.0 3.0))"
+        let expected = GeometryCollection(elements:
+            [
+                Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)),
+                LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0), (x: 3.0, y: 3.0, z: 3.0)]),
+            ] as [Geometry])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
+    }
 }
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
@@ -836,5 +864,19 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
                 XCTFail("Wrong error thrown")
             }
         }
+    }
+
+    // MARK: - GoemetryCollection
+
+    func testRead_GeometryCollection_Valid() {
+
+        let input = "GEOMETRYCOLLECTION ZM (POINT ZM (1.0 1.0 1.0 1.0), LINESTRING ZM (1.0 1.0 1.0 1.0, 2.0 2.0 2.0 2.0, 3.0 3.0 3.0 3.0))"
+        let expected = GeometryCollection(elements:
+            [
+                Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),
+                LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0), (x: 3.0, y: 3.0, z: 3.0, m: 3.0)]),
+            ] as [Geometry])
+
+        XCTAssertEqual(try wktReader.read(wkt: input) as? GeometryCollection, expected)
     }
 }
