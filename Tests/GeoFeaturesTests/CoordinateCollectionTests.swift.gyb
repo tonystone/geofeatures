@@ -154,23 +154,44 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
         XCTAssertEqual(input1, input2)
     }
 
-    func testAppend_Array() {
+    func testAppend_ContentsOf_Coordinates() {
 
         var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
-        input.append(contentsOf: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})])
+        input.append(contentsOf: expected)
 
         XCTAssertTrue(input.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
             return lhs == rhs
         }, "\(input) is not equal to \(expected)")
     }
 
-    func testInsert() {
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [${ExpectedTuple0}, ${ExpectedTuple1}])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
         var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple1}), ${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
-        input.insert(${CoordinateType}(tuple: ${TestTuple1}), atIndex: 0)
+        input.insert(${CoordinateType}(tuple: ${TestTuple1}), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [${CoordinateType}(tuple: ${ExpectedTuple1}), ${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
+
+        input.insert(${TestTuple1}, at: 0)
 
         XCTAssertTrue(input.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
                 return lhs == rhs
@@ -208,10 +229,12 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
         var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
-        input.removeAll(true)
+        input.removeAll(keepingCapacity: true)
 
         XCTAssertEqual(input.capacity, expected)
     }
+
+    // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
         let input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
@@ -241,6 +264,33 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testCount() {
         XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).count, 2)
+    }
+
+    // MARK: Misc Internal
+
+    func testEnsureUniquelyReferenced() {
+
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testResizeIfNeeded() {
+
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append(${TestTuple0})
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 %end

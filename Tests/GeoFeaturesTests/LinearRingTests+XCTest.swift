@@ -39,8 +39,10 @@ extension LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -51,6 +53,8 @@ extension LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -68,8 +72,10 @@ extension LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -80,6 +86,8 @@ extension LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -97,8 +105,10 @@ extension LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -109,6 +119,8 @@ extension LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -126,8 +138,10 @@ extension LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -138,6 +152,8 @@ extension LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -155,8 +171,10 @@ extension LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -167,6 +185,8 @@ extension LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -184,8 +204,10 @@ extension LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -196,6 +218,8 @@ extension LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -213,8 +237,10 @@ extension LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -225,6 +251,8 @@ extension LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
@@ -242,8 +270,10 @@ extension LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testReserveCapacity", testReserveCapacity),
                 ("testAppend", testAppend),
                 ("testAppend_ContentsOf", testAppend_ContentsOf),
-                ("testAppend_Array", testAppend_Array),
-                ("testInsert", testInsert),
+                ("testAppend_ContentsOf_Coordinates", testAppend_ContentsOf_Coordinates),
+                ("testAppend_ContentsOf_Tuples", testAppend_ContentsOf_Tuples),
+                ("testInsert_Coordinate", testInsert_Coordinate),
+                ("testInsert_Tuple", testInsert_Tuple),
                 ("testRemove", testRemove),
                 ("testRemoveLast", testRemoveLast),
                 ("testRemoveAll", testRemoveAll),
@@ -254,6 +284,8 @@ extension LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
+                ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
+                ("testResizeIfNeeded", testResizeIfNeeded),
            ]
    }
 }
