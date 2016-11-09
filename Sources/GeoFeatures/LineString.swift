@@ -93,7 +93,7 @@ extension LineString {
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
         if storage.capacity == count {
-            storage = storage.resize(count * 2)
+            storage = storage.resize(storage.capacity * 2)
         }
     }
 }
@@ -196,7 +196,7 @@ extension LineString: Collection {
 
         - Requires: `i <= count`.
      */
-    public mutating func insert(_ newElement: CoordinateType, atIndex index: Int) {
+    public mutating func insert(_ newElement: CoordinateType, at index: Int) {
         guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
 
         _ensureUniquelyReferenced()
@@ -264,7 +264,7 @@ extension LineString: Collection {
 
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    public mutating func removeAll(_ keepCapacity: Bool = false) {
+    public mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
 
         if keepCapacity {
 
@@ -335,8 +335,8 @@ extension LineString where CoordinateType: TupleConvertable & CopyConstructable 
 
         - Requires: `i <= count`.
      */
-    public mutating func insert(_ newElement: CoordinateType.TupleType, atIndex i: Int) {
-        self.insert(CoordinateType(tuple: newElement), atIndex: i)
+    public mutating func insert(_ newElement: CoordinateType.TupleType, at i: Int) {
+        self.insert(CoordinateType(tuple: newElement), at: i)
     }
 }
 

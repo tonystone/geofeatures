@@ -74,7 +74,7 @@ extension GeometryCollection {
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
         if storage.capacity == count {
-            storage = storage.resize(count * 2)
+            storage = storage.resize(storage.capacity * 2)
         }
     }
 }
@@ -173,7 +173,7 @@ extension GeometryCollection: Collection {
 
         - Requires: `i <= count`.
      */
-    public mutating func insert(_ newElement: Element, atIndex index: Int) {
+    public mutating func insert(_ newElement: Element, at index: Int) {
         guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range, can't insert Geometry.") }
 
         _ensureUniquelyReferenced()
@@ -240,7 +240,7 @@ extension GeometryCollection: Collection {
 
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    public mutating func removeAll(_ keepCapacity: Bool = false) {
+    public mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
 
         if keepCapacity {
 

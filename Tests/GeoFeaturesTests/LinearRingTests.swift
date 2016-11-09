@@ -36,66 +36,185 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate2D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate2D>(other: LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2D>(other: LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
+
+        input.append((x: 1.0, y: 1.0))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+
+        input.insert(Coordinate2D(tuple: (x: 2.0, y: 2.0)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+
+        input.insert((x: 2.0, y: 2.0), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
+        input[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
 
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
     }
 
     func testEquals() {
@@ -114,34 +233,31 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.0, y: 1.0))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate2D(tuple: (x: 2.0, y: 2.0)), atIndex: 0)
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.0, y: 1.0))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -152,66 +268,185 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate2DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate2DM>(other: LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2DM>(other: LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
+
+        input.append((x: 1.0, y: 1.0, m: 1.0))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+
+        input.insert(Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+
+        input.insert((x: 2.0, y: 2.0, m: 2.0), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
+        input[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
 
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -230,34 +465,31 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.0, y: 1.0, m: 1.0))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), atIndex: 0)
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.0, y: 1.0, m: 1.0))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -268,66 +500,185 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate3D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate3D>(other: LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3D>(other: LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
+
+        input.append((x: 1.0, y: 1.0, z: 1.0))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+
+        input.insert(Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+
+        input.insert((x: 2.0, y: 2.0, z: 2.0), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
+        input[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
 
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
     }
 
     func testEquals() {
@@ -346,34 +697,31 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.0, y: 1.0, z: 1.0))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), atIndex: 0)
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.0, y: 1.0, z: 1.0))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -384,66 +732,185 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate3DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate3DM>(other: LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3DM>(other: LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
+
+        input.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+
+        input.insert(Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+
+        input.insert((x: 2.0, y: 2.0, z: 2.0, m: 2.0), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
+        input[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
 
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -462,34 +929,31 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), atIndex: 0)
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -500,66 +964,185 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate2D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate2D>(other: LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2D>(other: LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
+
+        input.append((x: 1.001, y: 1.001))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+
+        input.insert(Coordinate2D(tuple: (x: 2.002, y: 2.002)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+
+        input.insert((x: 2.002, y: 2.002), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
+        input[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
 
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
     }
 
     func testEquals() {
@@ -578,34 +1161,31 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.001, y: 1.001))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate2D(tuple: (x: 2.002, y: 2.002)), atIndex: 0)
+        var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.001, y: 1.001))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -616,66 +1196,185 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate2DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate2DM>(other: LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate2DM>(other: LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
+
+        input.append((x: 1.001, y: 1.001, m: 1.001))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+
+        input.insert(Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+
+        input.insert((x: 2.002, y: 2.002, m: 2.002), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
+        input[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
 
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -694,34 +1393,31 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.001, y: 1.001, m: 1.001))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002)), atIndex: 0)
+        var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.001, y: 1.001, m: 1.001))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -732,66 +1428,185 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate3D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate3D>(other: LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3D>(other: LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
+
+        input.append((x: 1.001, y: 1.001, z: 1.001))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+
+        input.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+
+        input.insert((x: 2.002, y: 2.002, z: 2.002), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
+        input[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
 
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
     }
 
     func testEquals() {
@@ -810,34 +1625,31 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.001, y: 1.001, z: 1.001))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), atIndex: 0)
+        var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.001, y: 1.001, z: 1.001))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
 
@@ -848,66 +1660,185 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
+    func testInit_Precision() {
+        XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LinearRing<Coordinate3DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+    }
+
     func testInit_Tuple() {
-        let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
     func testInit_Copy() {
-        let geometry = LinearRing<Coordinate3DM>(other: LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
+        let input = LinearRing<Coordinate3DM>(other: LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertTrue(
-            (geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            (input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
                     return lhs == rhs
             }
-        ), "\(geometry) is not equal to \(expected)")
+        ), "\(input) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testDebugDescription() {
+        let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend() {
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
+
+        input.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf() {
+
+        let input1 = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input2 = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input2.append(contentsOf: input1)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testAppend_ContentsOf_Coordinates() {
+
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+
+        input.append(contentsOf: expected)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+            return lhs == rhs
+        }, "\(input) is not equal to \(expected)")
+    }
+
+    func testAppend_ContentsOf_Tuples() {
+
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0)])
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testInsert_Coordinate() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+
+        input.insert(Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002)), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testInsert_Tuple() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+
+        input.insert((x: 2.002, y: 2.002, z: 2.002, m: 2.002), at: 0)
+
+        XCTAssertTrue(input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
+                return lhs == rhs
+            }, "\(input) is not equal to \(expected)")
+    }
+
+    func testRemove() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.remove(at: 0)
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveLast() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        let _ = input.removeLast()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+
+        input.removeAll()
+
+        XCTAssertEqual(input, expected)
+    }
+
+    func testRemoveAll_KeepCapacity() {
+        var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity
+
+        input.removeAll(keepingCapacity: true)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    // MARK: Swift.Collection Conformance
+
+    func testSubscript_Get() {
+        let input = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
-        var geometry = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
-        geometry[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+        input[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
 
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
-    }
-
-    func testAppend_LinearRing() {
-
-        let geometry1 = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var geometry2 = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-
-        geometry2.append(contentsOf: geometry1)
-
-        XCTAssertEqual(geometry1, geometry2)
-    }
-
-    func testAppend_Array() {
-
-        var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
-
-        geometry.append(contentsOf: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))])
-
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
-            return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -926,33 +1857,30 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
-    func testAppend() {
-        var geometry = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
+    // MARK: Misc Internal
 
-        geometry.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+    func testEnsureUniquelyReferenced() {
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
-                return lhs == rhs
-        }, "\(geometry) is not equal to \(expected)")
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        let copy = input    // This should force the reserveCapacity to clone
+        let _ = copy.capacity
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
     }
 
-    func testInsert() {
-        var geometry = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
+    func testResizeIfNeeded() {
 
-        geometry.insert(Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002)), atIndex: 0)
+        var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
 
-        XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
-                return lhs == rhs
-            }, "\(geometry) is not equal to \(expected)")
-    }
-
-    func testRemoveAll() {
-        var geometry = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-
-        geometry.removeAll()
-
-        XCTAssertEqual(geometry.isEmpty(), true)
+        // Force it beyond its initial capacity
+        for _ in 0..<input.capacity + 1 {
+            input.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+        }
+        XCTAssertEqual(input.capacity, expected)
     }
 }
