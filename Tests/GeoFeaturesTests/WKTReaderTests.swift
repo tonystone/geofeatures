@@ -491,10 +491,24 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertEqual(try wktReader.read(wkt: input) as? Polygon<Coordinate2D>, expected)
     }
 
-    func testRead_Polygon_MultipleOuterRings_Invalid_MissingComma() {
+    func testRead_Polygon_MultipleInnerRings_Invalid_MissingComma() {
 
         let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0) (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
         let expected = "Unexpected token at line: 1 column: 46. Expected ',' but found -> ' (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+            if case ParseError.unexpectedToken(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_Polygon_MultipleInnerRings_Invalid_ExtraWhiteSpace_InnerRing() {
+
+        let input = "POLYGON ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0),  (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))"
+        let expected = "Unexpected token at line: 1 column: 85. Expected 'single space' but found -> '  (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
             if case ParseError.unexpectedToken(let message) = error {
