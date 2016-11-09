@@ -74,7 +74,7 @@ extension GeometryCollection {
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
         if storage.capacity == count {
-            storage = storage.resize(count * 2)
+            storage = storage.resize(storage.capacity * 2)
         }
     }
 }
