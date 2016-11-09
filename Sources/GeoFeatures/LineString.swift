@@ -110,21 +110,6 @@ extension LineString: Collection {
     }
 
     /**
-        LineString can be constructed from any Sequence as long as it has an
-        Element type equal the Coordinate type specified in Element.
-     */
-    public init<S: Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType {
-
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-
-        var Iterator = elements.makeIterator()
-
-        while let coordinate = Iterator.next() {
-            self.append(coordinate)
-        }
-    }
-
-    /**
         LineString can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal the Coordinate type specified in Element
         and the Distance is an Int type.
@@ -189,18 +174,6 @@ extension LineString: Collection {
 
             (elements + value.pointee).initialize(to: convertedCoordinate)
             value.pointee = value.pointee &+ 1
-        }
-    }
-
-    /**
-        Append the elements of `newElements` to this LineString.
-     */
-    public mutating func append<S: Sequence>(contentsOf newElements: S) where S.Iterator.Element == CoordinateType {
-
-        var Iterator = newElements.makeIterator()
-
-        while let coordinate = Iterator.next() {
-            self.append(coordinate)
         }
     }
 
@@ -312,25 +285,6 @@ extension LineString: Collection {
 extension LineString where CoordinateType: TupleConvertable & CopyConstructable {
 
     /**
-        LineString can be constructed from any Sequence if it's Elements are tuples that match
-        Self.Element's TupleType.
-
-        ----
-
-        - seealso: TupleConvertable.
-     */
-    public init<S: Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType.TupleType {
-
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-
-        var Iterator = elements.makeIterator()
-
-        while let coordinate = Iterator.next() {
-            self.append(coordinate)
-        }
-    }
-
-    /**
         LineString can be constructed from any Swift.Collection if it's Elements are tuples that match
         Self.Element's TupleType.
 
@@ -358,18 +312,6 @@ extension LineString where CoordinateType: TupleConvertable & CopyConstructable 
      */
     public mutating func append(_ newElement: CoordinateType.TupleType) {
         self.append(CoordinateType(tuple: newElement))
-    }
-
-    /**
-        Append the elements of `newElements` to this LineString.
-     */
-    public mutating func append<S: Sequence>(contentsOf newElements: S) where S.Iterator.Element == CoordinateType.TupleType {
-
-        var Iterator = newElements.makeIterator()
-
-        while let coordinate = Iterator.next() {
-            self.append(CoordinateType(tuple: coordinate))
-        }
     }
 
     /**

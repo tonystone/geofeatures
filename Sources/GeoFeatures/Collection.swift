@@ -32,12 +32,6 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
 
     /**
-        Collection can be constructed from any Sequence as long as it has an
-        Element type equal Self.Element.
-     */
-    init<S: Sequence>(elements: S, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) where S.Iterator.Element == Element
-
-    /**
         Collection can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal Self.Element and the Distance
         is an Int type.
@@ -66,11 +60,6 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
         Append `newElement`.
      */
     mutating func append(_ newElement: Element)
-
-    /**
-        Append the elements of `newElements`.
-     */
-    mutating func append<S: Sequence>(contentsOf newElements: S) where S.Iterator.Element == Element
 
     /**
         Append the elements of `newElements`.

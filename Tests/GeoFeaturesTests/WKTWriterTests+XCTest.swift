@@ -29,6 +29,7 @@ extension WKTWriter_Coordinate2D_Tests {
 
    static var allTests: [(String, (WKTWriter_Coordinate2D_Tests) -> () throws -> Void)] {
       return [
+                ("testWrite_Unsupported_Geometry", testWrite_Unsupported_Geometry),
                 ("testWrite_Point", testWrite_Point),
                 ("testWrite_LineString_Empty", testWrite_LineString_Empty),
                 ("testWrite_LineString_singlePoint", testWrite_LineString_singlePoint),

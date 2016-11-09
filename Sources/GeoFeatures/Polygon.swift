@@ -149,39 +149,6 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
 extension Polygon where CoordinateType: TupleConvertable {
 
     /**
-        A Polygon can be constructed from any `Swift.Sequence` for it's rings including Array as
-        long as it has an Element type equal the `CoordinateType` specified.
-
-        - parameters:
-            - outerRing: A `CollectionType` who's elements are of type `CoordinateType.TupleType`.
-            - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType.TupleType`.
-            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
-
-        - seealso: `CollectionType`
-        - seealso: `CoordinateReferenceSystem`
-        - seealso: `Precision`
-     */
-    public  init<S: Swift.Sequence>(outerRing: S, innerRings: [S] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == CoordinateType.TupleType {
-
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-
-        var outerRingsGenerator = outerRing.makeIterator()
-
-        while let coordinate = outerRingsGenerator.next() {
-
-            self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
-
-        var innerRingsGenerator = innerRings.makeIterator()
-
-        while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(elements: ring, precision: precision))
-        }
-    }
-
-    /**
         A Polygon can be constructed from any `CollectionType` for it's rings including Array as
         long as it has an Element type equal the `CoordinateType` specified.
 
