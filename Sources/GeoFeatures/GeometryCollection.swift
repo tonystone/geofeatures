@@ -91,21 +91,6 @@ extension GeometryCollection: Collection {
     }
 
     /**
-        GeometryCollection can be constructed from any Sequence as long as it has an
-        Element type equal the Geometry Element.
-     */
-    public init<S: Sequence>(elements: S, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where S.Iterator.Element == Element {
-
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
-
-        var Iterator = elements.makeIterator()
-
-        while let element = Iterator.next() {
-            self.append(element)
-        }
-    }
-
-    /**
         GeometryCollection can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
@@ -166,18 +151,6 @@ extension GeometryCollection: Collection {
 
             (elements + value.pointee).initialize(to: newElement)
             value.pointee += 1
-        }
-    }
-
-    /**
-        Append the elements of `newElements` to this GeometryCollection.
-     */
-    public mutating func append<S: Sequence>(contentsOf newElements: S) where S.Iterator.Element == Element {
-
-        var Iterator = newElements.makeIterator()
-
-        while let element = Iterator.next() {
-            self.append(element)
         }
     }
 
