@@ -26,11 +26,41 @@ import GeoFeatures
     import struct GeoFeatures.Polygon
 #endif
 
+fileprivate struct UnsupportedGeometry: Geometry {
+
+    let precision: Precision = FloatingPrecision()
+
+    let coordinateReferenceSystem: CoordinateReferenceSystem = Cartesian()
+
+    let dimension: GeoFeatures.Dimension = .one
+
+    func isEmpty() -> Bool {
+        return true
+    }
+
+    func boundary() -> Geometry {
+        return GeometryCollection()
+    }
+
+    func equals(_ other: Geometry) -> Bool { return false } 
+
+    func union(_ other: Geometry) -> Geometry {
+        return GeometryCollection()
+    }
+}
+
 // MARK: - Coordinate2D -
 
 class WKTWriter_Coordinate2D_Tests: XCTestCase {
 
     var writer = WKTWriter<Coordinate2D>()
+
+    // MARK: - General
+
+    func testWrite_Unsupported_Geometry() {
+
+        XCTAssertEqual("", writer.write(UnsupportedGeometry()))
+    }
 
     func testWrite_Point() {
 
