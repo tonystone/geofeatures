@@ -38,7 +38,7 @@ public struct Coordinate2D: Coordinate {
 extension Coordinate2D: _ArrayConstructable {
 
     public init(array: [Double]) {
-        precondition(array.count == 2)
+        precondition(array.count >= 2)
 
         self.init(x: array[0], y: array[1])
     }

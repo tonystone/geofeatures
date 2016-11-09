@@ -282,3 +282,17 @@ extension Polygon: CustomStringConvertible, CustomDebugStringConvertible {
         return  self.description
     }
 }
+
+extension Polygon: Equatable {}
+
+public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool {
+    return lhs.equals(rhs)
+}
+
+public func == <CoordinateType: Coordinate & CopyConstructable, GeometryType: Geometry>(lhs: Polygon<CoordinateType>, rhs: GeometryType) -> Bool {
+    return lhs.equals(rhs)
+}
+
+public func == <GeometryType: Geometry, CoordinateType: Coordinate & CopyConstructable>(lhs: GeometryType, rhs: Polygon<CoordinateType>) -> Bool {
+    return lhs.equals(rhs)
+}

@@ -1,5 +1,6 @@
 disabled_rules:
   - file_length
+  - type_body_length
   - line_length
   - type_name
   - comma
@@ -107,10 +108,6 @@ trailing_whitespace:
     warning:
       ignores_empty_lines: false
       ignores_comments: true
-
-type_body_length:
-  warning: 200
-  error: 350
 
 type_name:
   min_length:
