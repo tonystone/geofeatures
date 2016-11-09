@@ -85,14 +85,14 @@ extension Coordinate3DM: CustomStringConvertible, CustomDebugStringConvertible {
     }
 
     public var debugDescription: String {
-        return String(describing: self) + self.description
+        return self.description
     }
 }
 
 extension Coordinate3DM: Hashable {
     public var hashValue: Int {
         get {
-            return 31 &* x.hashValue ^ 37 &* y.hashValue ^ 41 &* z.hashValue ^ 43 &* m.hashValue
+            return 31 &* x.hashValue ^ 37 &* y.hashValue ^ 41 &* z.hashValue ^ 53 &* m.hashValue
         }
     }
 }
