@@ -30,6 +30,10 @@ public struct Cartesian: CoordinateReferenceSystem {
     public init() {}
 }
 
+extension Cartesian: Equatable, Hashable {
+    public var hashValue: Int { get { return String(reflecting: self).hashValue } }
+}
+
 @available(*, unavailable, message: "currently not supported")
 public struct Ellipsoidal: CoordinateReferenceSystem {}
 
@@ -41,3 +45,10 @@ public struct Vertical: CoordinateReferenceSystem {}
 
 @available(*, unavailable, message: "currently not supported")
 public struct Polar: CoordinateReferenceSystem {}
+
+public func == <T1: CoordinateReferenceSystem & Hashable, T2: CoordinateReferenceSystem & Hashable>(lhs: T1, rhs: T2) -> Bool {
+    if type(of: lhs) == type(of: rhs) {
+        return lhs.hashValue == rhs.hashValue
+    }
+    return false
+}
