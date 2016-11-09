@@ -36,8 +36,18 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -62,21 +72,35 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
-        geometry[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
-
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
@@ -96,6 +120,20 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
+
+        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
     }
 
     func testEquals() {
@@ -152,8 +190,18 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -178,21 +226,35 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
-        geometry[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
-
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
@@ -212,6 +274,20 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
+
+        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -268,8 +344,18 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -294,21 +380,35 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
-        geometry[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
-
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
@@ -328,6 +428,20 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
+
+        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
     }
 
     func testEquals() {
@@ -384,8 +498,18 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     let precision = FloatingPrecision()
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision).precision as? FloatingPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -410,21 +534,35 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
-        geometry[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
-
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
@@ -444,6 +582,20 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
+
+        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -500,8 +652,18 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -526,21 +688,35 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
-        geometry[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
-
-        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
@@ -560,6 +736,20 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
+
+        XCTAssertEqual(geometry[1], Coordinate2D(tuple: (x: 1.0, y: 1.0)))
     }
 
     func testEquals() {
@@ -616,8 +806,18 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -642,21 +842,35 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
-        geometry[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
-
-        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
@@ -676,6 +890,20 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
+
+        XCTAssertEqual(geometry[1], Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)))
     }
 
     func testEquals() {
@@ -732,8 +960,18 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -758,21 +996,35 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
-        geometry[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
-
-        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
@@ -792,6 +1044,20 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
+
+        XCTAssertEqual(geometry[1], Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)))
     }
 
     func testEquals() {
@@ -848,8 +1114,18 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     let precision = FixedPrecision(scale: 100)
     let crs       = Cartesian()
 
-    func testInit_NoArg() {
+    // MARK: Construction
+
+    func testInit_Precision_CRS() {
         XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+    }
+
+    func testInit_Precision() {
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision).precision as? FixedPrecision, precision)
+    }
+
+    func testInit_CRS() {
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
@@ -874,21 +1150,35 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
         ), "\(geometry) is not equal to \(expected)")
     }
 
-    func testSubscript_Get() {
-        let geometry = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
+    func testDescription() {
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
+
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testSubscript_Set() {
-        var geometry = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+    func testDebugDescription() {
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
-        geometry[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
-
-        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
+        XCTAssertEqual(input.description, expected)
     }
 
-    func testAppend_LineString() {
+    // MARK: Collection conformance
+
+    func testReserveCapacity() {
+
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = input.capacity * 2
+
+        input.reserveCapacity(expected)
+
+        XCTAssertEqual(input.capacity, expected)
+    }
+
+    func testAppend_ContentsOf() {
 
         let geometry1 = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         var geometry2 = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
@@ -908,6 +1198,20 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
         XCTAssertTrue(geometry.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
             return lhs == rhs
         }, "\(geometry) is not equal to \(expected)")
+    }
+
+    func testSubscript_Get() {
+        let geometry = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
+    }
+
+    func testSubscript_Set() {
+        var geometry = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+
+        geometry[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
+
+        XCTAssertEqual(geometry[1], Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
     }
 
     func testEquals() {
