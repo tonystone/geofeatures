@@ -42,7 +42,7 @@ fileprivate struct UnsupportedGeometry: Geometry {
         return GeometryCollection()
     }
 
-    func equals(_ other: Geometry) -> Bool { return false } 
+    func equals(_ other: Geometry) -> Bool { return false }
 
     func union(_ other: Geometry) -> Geometry {
         return GeometryCollection()
