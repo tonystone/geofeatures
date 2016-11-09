@@ -47,8 +47,8 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRead_Invalid_Geometry() {
 
-        let input = "INVALID (1.0 1.0)"
-        let expected = "INVALID (1.0 1.0)"  /// TODO: Invalid message, please update the class to throw a more descriptive message.
+        let input = "DUMMYTYPE (1.0 1.0)"
+        let expected = "Unsupported type -> 'DUMMYTYPE (1.0 1.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
             if case ParseError.unsupportedType(let message) = error {
