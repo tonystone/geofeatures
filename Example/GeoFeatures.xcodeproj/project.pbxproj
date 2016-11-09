@@ -59,6 +59,7 @@
 		EA8D59161DB7E34C00713261 /* Polygon+SurfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTests.swift */; };
 		EA8D59181DB7E34C00713261 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */; };
 		EA8D591A1DB7E34C00713261 /* WKTWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */; };
+		EAA325A11DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		EA8D591F1DB8414200713261 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = Sources/GeoFeatures/GeometryCollection.swift.gyb; sourceTree = "<group>"; };
 		EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/GeoFeaturesTests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
 		EA8D59211DB8416100713261 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = MultiPointTests.swift.gyb; path = Tests/GeoFeaturesTests/MultiPointTests.swift.gyb; sourceTree = "<group>"; };
+		EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystemTests.swift; sourceTree = "<group>"; };
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
 		EAE2CF5E1CD43D500050BC30 /* Vagrantfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Vagrantfile; path = ../Vagrantfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EAE6C76D1DB7CDD200E2E492 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		EA8D58A61DB7E34C00713261 /* GeoFeaturesTests */ = {
 			isa = PBXGroup;
 			children = (
+				EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */,
 				EA8D58A81DB7E34C00713261 /* Coordinate2DMTests.swift */,
 				EA8D58AA1DB7E34C00713261 /* Coordinate2DTests.swift */,
 				EA8D58AC1DB7E34C00713261 /* Coordinate3DMTests.swift */,
@@ -623,6 +626,7 @@
 				EA8D58E21DB7E34C00713261 /* Coordinate2DMTests.swift in Sources */,
 				EA8D58F21DB7E34C00713261 /* IntersectionMatrixTests.swift in Sources */,
 				EA8D58FC1DB7E34C00713261 /* LineString+CurveTests.swift in Sources */,
+				EAA325A11DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift in Sources */,
 				EA8D59101DB7E34C00713261 /* Point+GeometryTests.swift in Sources */,
 				EA8D59161DB7E34C00713261 /* Polygon+SurfaceTests.swift in Sources */,
 				EA8D58E81DB7E34C00713261 /* Coordinate3DTests.swift in Sources */,
