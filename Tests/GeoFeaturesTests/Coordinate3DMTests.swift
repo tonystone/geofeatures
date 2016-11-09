@@ -114,7 +114,7 @@ class Coordinate3DMTests: XCTestCase {
     func testDebugDescription() {
         let coordinate = Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0)
 
-        XCTAssertEqual(coordinate.description, "(x: 2.0, y: 3.0, z: 4.0, m: 5.0)")
+        XCTAssertEqual(coordinate.debugDescription, "(x: 2.0, y: 3.0, z: 4.0, m: 5.0)")
     }
 
     // MARK: Equal
@@ -125,5 +125,34 @@ class Coordinate3DMTests: XCTestCase {
 
     func testNotEqual () {
         XCTAssertNotEqual(Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 4.0, m: 5.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 4.0, m: 5.0)))
+    }
+
+    // MARK: Hashable
+
+    func testHashValue_Zero () {
+        let zero         = Coordinate3DM(tuple: (x: 0.0, y: 0.0, z: 0.0, m: 0.0))
+        let negativeZero = Coordinate3DM(tuple: (x: -0.0, y: -0.0, z: -0.0, m: -0.0))
+
+        XCTAssertEqual(zero.hashValue, negativeZero.hashValue)
+    }
+
+    func testHashValue_PositiveValue () {
+        let zero = Coordinate3DM(tuple: (x: 0.0, y: 0.0, z: 0.0, m: 0.0))
+        var last = zero
+        let limit = 10000
+
+        for n in -limit...limit {
+
+            let input    = Coordinate3DM(tuple: (x: Double(n), y: Double(n), z: Double(n), m: Double(n)))
+            let expected = Coordinate3DM(tuple: (x: Double(n), y: Double(n), z: Double(n), m: Double(n)))
+
+            XCTAssertEqual   (input.hashValue, expected.hashValue)
+            XCTAssertNotEqual(input.hashValue, last.hashValue, "\(input.hashValue) is equal to \(zero.hashValue) for input \(input.description)")
+
+            if n != 0 {
+                XCTAssertNotEqual(input.hashValue, zero.hashValue, "\(input.hashValue) is equal to \(zero.hashValue) for input \(input.description)")
+            }
+            last = input
+        }
     }
 }
