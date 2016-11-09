@@ -151,7 +151,7 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
         if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
             return try self.geometryCollectionTaggedText(tokenizer, require: (z: nil, m: nil))
         }
-        throw ParseError.unsupportedType(wkt)
+        throw ParseError.unsupportedType("Unsupported type -> '\(wkt)'")
     }
 
     // BNF: <point tagged text> ::= point <point text>
