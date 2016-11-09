@@ -71,7 +71,7 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
 
         - Requires: `i <= count`.
      */
-    mutating func insert(_ newElement: Element, atIndex i: Int)
+    mutating func insert(_ newElement: Element, at i: Int)
 
     /**
         Remove and return the element at index `i`.
@@ -92,5 +92,5 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
 
         - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
      */
-    mutating func removeAll(_ keepCapacity: Bool)
+    mutating func removeAll(keepingCapacity keepCapacity: Bool)
 }
