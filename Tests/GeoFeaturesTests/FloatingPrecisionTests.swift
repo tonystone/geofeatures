@@ -37,4 +37,13 @@ class FloatingPrecisionTests: XCTestCase {
         XCTAssertNotEqual(precision.convert(100.003), 100.0003)
     }
 
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+
+    func testDescription() {
+        XCTAssertEqual(precision.description, "FloatingPrecision")
+    }
+
+    func testDebugDescription() {
+        XCTAssertEqual(precision.debugDescription, "FloatingPrecision")
+    }
 }
