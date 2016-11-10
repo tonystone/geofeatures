@@ -96,7 +96,7 @@ class Coordinate2DTests: XCTestCase {
     func testDebugDescription() {
         let coordinate = Coordinate2D(x: 2.0, y: 3.0)
 
-        XCTAssertEqual(coordinate.description, "(x: 2.0, y: 3.0)")
+        XCTAssertEqual(coordinate.debugDescription, "(x: 2.0, y: 3.0)")
     }
 
     // MARK: Equal
@@ -107,5 +107,34 @@ class Coordinate2DTests: XCTestCase {
 
     func testNotEqual () {
         XCTAssertNotEqual(Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0)))
+    }
+
+    // MARK: Hashable
+
+    func testHashValue_Zero () {
+        let zero         = Coordinate2D(tuple: (x: 0.0, y: 0.0))
+        let negativeZero = Coordinate2D(tuple: (x: -0.0, y: -0.0))
+
+        XCTAssertEqual(zero.hashValue, negativeZero.hashValue)
+    }
+
+    func testHashValue_PositiveValue () {
+        let zero = Coordinate2D(tuple: (x: 0.0, y: 0.0))
+        var last = zero
+        let limit = 10000
+
+        for n in -limit...limit {
+
+            let input    = Coordinate2D(tuple: (x: Double(n), y: Double(n)))
+            let expected = Coordinate2D(tuple: (x: Double(n), y: Double(n)))
+
+            XCTAssertEqual   (input.hashValue, expected.hashValue)
+            XCTAssertNotEqual(input.hashValue, last.hashValue, "\(input.hashValue) is equal to \(zero.hashValue) for input \(input.description)")
+
+            if n != 0 {
+                XCTAssertNotEqual(input.hashValue, zero.hashValue, "\(input.hashValue) is equal to \(zero.hashValue) for input \(input.description)")
+            }
+            last = input
+        }
     }
 }
