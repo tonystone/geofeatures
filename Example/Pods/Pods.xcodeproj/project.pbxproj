@@ -12,7 +12,6 @@
 		198AF363C6B2ECC74A2C1911 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05549309886141E8FF37B25D /* Foundation.framework */; };
 		19B8CE8E6A5A044E7C862B0F /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333C76B6A110FEEC1C62323 /* Dimension.swift */; };
 		1C66F6A686420CE0EA7096B0 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBDE7CF4917B38AB1C2B26 /* Geometry.swift */; };
-		2158B84BF6E7B6FC2A6D6859 /* WKBReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6BF82D3CA713A5DD1370A /* WKBReader.swift */; };
 		21FFC53BB24D33F4D9106CBE /* FixedPrecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B651C7DAA87CB3362BA96F9 /* FixedPrecision.swift */; };
 		227919937552CCD337E0972C /* GeoFeatures-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07981CBA9828F76301EE2066 /* GeoFeatures-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D6686C8B35B5435179DE0CB /* CoordinateReferenceSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8422DDEC61CC16DB661E7E2 /* CoordinateReferenceSystem.swift */; };
@@ -119,7 +118,6 @@
 		6009057F8CEADA38A59EC472 /* MultiPolygon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultiPolygon.swift; sourceTree = "<group>"; };
 		645E2F06C08EE7B34F9B6329 /* Pods-GeoFeatures_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GeoFeatures_Example-dummy.m"; sourceTree = "<group>"; };
 		676DB15F8AB0CDE3ABC8013B /* CopyConstructable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CopyConstructable.swift; sourceTree = "<group>"; };
-		6AF6BF82D3CA713A5DD1370A /* WKBReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKBReader.swift; sourceTree = "<group>"; };
 		6C66C8677B748E2B2E29ABE2 /* Precision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Precision.swift; sourceTree = "<group>"; };
 		712865886924EA6357084F51 /* LinearRing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LinearRing.swift; sourceTree = "<group>"; };
 		71D92196C547D6AD93C42D4D /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 				FC25DABBFD02D0CEBBD9DD82 /* Surface.swift */,
 				04A64E3A9FFA2D77258E6A80 /* Tokenizer.swift */,
 				D4DFB5DA09E9B37E106AB070 /* TupleConvertable.swift */,
-				6AF6BF82D3CA713A5DD1370A /* WKBReader.swift */,
 				DD4B4C6B40ED8724284AD15B /* WKTReader.swift */,
 				793FEACC4D9B05269696BAB5 /* WKTWriter.swift */,
 			);
@@ -528,7 +525,6 @@
 				8CF8F87B1E31E779DFBEE153 /* Surface.swift in Sources */,
 				B9A7E23D4A14A0D2E96E2AAE /* Tokenizer.swift in Sources */,
 				B4BD3BF9A88AC472B8B9BA49 /* TupleConvertable.swift in Sources */,
-				2158B84BF6E7B6FC2A6D6859 /* WKBReader.swift in Sources */,
 				61CC6DA3DCA42BFE928840E9 /* WKTReader.swift in Sources */,
 				8834A9AA2528774D0590A8E0 /* WKTWriter.swift in Sources */,
 			);
