@@ -48,4 +48,14 @@ class FixedPrecisionTests: XCTestCase {
     func testConvert_Scale10_Upper2() {
         XCTAssertEqual(precision.convert(1.0999), 1.1)
     }
+
+    // MARK: CustomStringConvertible & CustomDebugStringConvertible
+
+    func testDescription() {
+        XCTAssertEqual(precision.description, "FixedPrecision(scale: 10.0)")
+    }
+
+    func testDebugDescription() {
+        XCTAssertEqual(precision.debugDescription, "FixedPrecision(scale: 10.0)")
+    }
 }
