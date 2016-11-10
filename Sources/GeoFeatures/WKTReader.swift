@@ -22,7 +22,7 @@ import Foundation
 
 #if os(Linux) || os(FreeBSD)
 #else
-    typealias RegularExpression = NSRegularExpression
+    fileprivate typealias RegularExpression = NSRegularExpression
 #endif
 
 public enum ParseError: Error  {
