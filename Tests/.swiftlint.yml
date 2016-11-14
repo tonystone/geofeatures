@@ -11,8 +11,10 @@ disabled_rules:
   - overridden_super_call
   - missing_docs
 
-opt_in_rules:
   - closure_spacing
+  - opening_brace
+
+opt_in_rules:
   - explicit_init
   - force_unwrapping
   - private_outlet
