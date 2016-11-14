@@ -11,9 +11,9 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source Files" */;
 			buildPhases = (
-				EAC75E8C1C91E86600BA35F8 /* ShellScript */,
-				EAC75E8D1C91E86800BA35F8 /* ShellScript */,
-				EA475D161CDBDD4B0013AFA1 /* ShellScript */,
+				EAC75E8C1C91E86600BA35F8 /* [Run Script] Generate Geometry from GYB */,
+				EAC75E8D1C91E86800BA35F8 /* [Run Script] Generate Tests from GYB */,
+				EA475D161CDBDD4B0013AFA1 /* [Run Script] Generate Linux Runner XCTest files. */,
 			);
 			dependencies = (
 			);
@@ -352,6 +352,7 @@
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Example" */;
 			buildPhases = (
 				582E738BDE3D4097C8D1668C /* [CP] Check Pods Manifest.lock */,
+				EAA325A91DD4E33F004534F3 /* [Run Script] Generate Geometry from GYB */,
 				EA634F071DD0356D00AC93E7 /* Swift Lint */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
@@ -373,6 +374,7 @@
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GeoFeatures_Tests" */;
 			buildPhases = (
 				A6ABAC75D3E3424E4140B8DE /* [CP] Check Pods Manifest.lock */,
+				EAA325AA1DD4E36F004534F3 /* [Run Script] Generate Tests from GYB */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -546,18 +548,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA475D161CDBDD4B0013AFA1 /* ShellScript */ = {
+		EA475D161CDBDD4B0013AFA1 /* [Run Script] Generate Linux Runner XCTest files. */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[Run Script] Generate Linux Runner XCTest files.";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../\n\nScripts/generate_xctest_linux_runner.rb";
+			shellScript = "cd $PROJECT_DIR\n\n$PROJECT_DIR/../Scripts/generate_xctest_linux_runner.rb";
 		};
 		EA634F071DD0356D00AC93E7 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -573,31 +576,61 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --path ../\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		EAC75E8C1C91E86600BA35F8 /* ShellScript */ = {
+		EAA325A91DD4E33F004534F3 /* [Run Script] Generate Geometry from GYB */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[Run Script] Generate Geometry from GYB";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ../Sources/GeoFeatures\n\n$PROJECT_DIR/../Scripts/generate_geometry_from_gyb.sh";
 		};
-		EAC75E8D1C91E86800BA35F8 /* ShellScript */ = {
+		EAA325AA1DD4E36F004534F3 /* [Run Script] Generate Tests from GYB */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[Run Script] Generate Tests from GYB";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/generate_tests_from_gyb.sh";
+			shellScript = "cd $PROJECT_DIR/../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/generate_tests_from_gyb.sh\n\ncd $PROJECT_DIR\n\n$PROJECT_DIR/../Scripts/generate_xctest_linux_runner.rb";
+		};
+		EAC75E8C1C91E86600BA35F8 /* [Run Script] Generate Geometry from GYB */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[Run Script] Generate Geometry from GYB";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../Sources/GeoFeatures\n\n$PROJECT_DIR/../Scripts/generate_geometry_from_gyb.sh";
+		};
+		EAC75E8D1C91E86800BA35F8 /* [Run Script] Generate Tests from GYB */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[Run Script] Generate Tests from GYB";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $PROJECT_DIR/../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/generate_tests_from_gyb.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
