@@ -134,11 +134,15 @@
 		EA8D591E1DB8414200713261 /* CoordinateCollection.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollection.swift.gyb; path = Sources/GeoFeatures/CoordinateCollection.swift.gyb; sourceTree = "<group>"; };
 		EA8D591F1DB8414200713261 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = Sources/GeoFeatures/GeometryCollection.swift.gyb; sourceTree = "<group>"; };
 		EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/GeoFeaturesTests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
-		EA8D59211DB8416100713261 /* MultiPointTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = MultiPointTests.swift.gyb; path = Tests/GeoFeaturesTests/MultiPointTests.swift.gyb; sourceTree = "<group>"; };
+		EA8D59211DB8416100713261 /* MultiPointTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = MultiPointTestInput.py; path = Tests/GeoFeaturesTests/MultiPointTestInput.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
 		EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystemTests.swift; sourceTree = "<group>"; };
 		EAA325A41DD407BC004534F3 /* TokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizerTests.swift; sourceTree = "<group>"; };
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
+		EAD9F3921DD7621D0059122C /* MultiLineStringTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = MultiLineStringTestInput.py; path = Tests/GeoFeaturesTests/MultiLineStringTestInput.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
+		EAD9F3931DD76B6E0059122C /* MultiPolygonTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = MultiPolygonTestInput.py; path = Tests/GeoFeaturesTests/MultiPolygonTestInput.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
+		EAD9F3941DD77AFE0059122C /* GeometryCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = GeometryCollectionTests.swift.gyb; path = Tests/GeoFeaturesTests/GeometryCollectionTests.swift.gyb; sourceTree = "<group>"; };
 		EAE2CF5E1CD43D500050BC30 /* Vagrantfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Vagrantfile; path = ../Vagrantfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EAE591A11DD8BD430022BB86 /* GeometryCollectionTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = GeometryCollectionTestInput.py; path = Tests/GeoFeaturesTests/GeometryCollectionTestInput.py; sourceTree = "<group>"; };
 		EAE6C76D1DB7CDD200E2E492 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
 		EAEE789D1DB5A0B8002D984E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,10 +339,14 @@
 		EAC75E831C91E5B200BA35F8 /* Gyb */ = {
 			isa = PBXGroup;
 			children = (
-				EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */,
-				EA8D59211DB8416100713261 /* MultiPointTests.swift.gyb */,
 				EA8D591E1DB8414200713261 /* CoordinateCollection.swift.gyb */,
+				EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */,
 				EA8D591F1DB8414200713261 /* GeometryCollection.swift.gyb */,
+				EAD9F3941DD77AFE0059122C /* GeometryCollectionTests.swift.gyb */,
+				EA8D59211DB8416100713261 /* MultiPointTestInput.py */,
+				EAD9F3921DD7621D0059122C /* MultiLineStringTestInput.py */,
+				EAD9F3931DD76B6E0059122C /* MultiPolygonTestInput.py */,
+				EAE591A11DD8BD430022BB86 /* GeometryCollectionTestInput.py */,
 			);
 			name = Gyb;
 			path = ..;

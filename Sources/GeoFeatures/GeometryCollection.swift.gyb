@@ -192,7 +192,7 @@ extension ${Self}: Collection {
 
         storage.withUnsafeMutablePointers { (count, elements) -> Void in
 
-            var m = count.pointee
+            var m = count.pointee &- 1
 
             count.pointee = count.pointee &+ 1
 
@@ -201,7 +201,13 @@ extension ${Self}: Collection {
                 (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
                 m = m &- 1
             }
+
+%if CoordinateSpecialized == 'true':
+            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+            (elements + index).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+%else:
             (elements + index).initialize(to: newElement)
+%end
         }
     }
 
@@ -214,7 +220,11 @@ extension ${Self}: Collection {
 
         return storage.withUnsafeMutablePointers { (count, elements) -> Element in
 
+            /// Move the element to the variable so it can be returned
             let result = (elements + index).move()
+
+            /// Decrement the count of items since we removed it
+            count.pointee = count.pointee &- 1
 
             var m = index
 
@@ -223,8 +233,6 @@ extension ${Self}: Collection {
                 (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
-            count.pointee = count.pointee &- 1
-
             return result
         }
     }
