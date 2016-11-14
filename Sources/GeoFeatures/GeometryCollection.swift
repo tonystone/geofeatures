@@ -54,7 +54,7 @@ public struct GeometryCollection {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
 
-        storage = CollectionBuffer<Element>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
+        storage = CollectionBuffer<Element>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
     }
 
     internal var storage: CollectionBuffer<Element>
@@ -181,7 +181,7 @@ extension GeometryCollection: Collection {
 
         storage.withUnsafeMutablePointers { (count, elements) -> Void in
 
-            var m = count.pointee
+            var m = count.pointee &- 1
 
             count.pointee = count.pointee &+ 1
 
@@ -190,6 +190,7 @@ extension GeometryCollection: Collection {
                 (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
                 m = m &- 1
             }
+
             (elements + index).initialize(to: newElement)
         }
     }
@@ -203,7 +204,11 @@ extension GeometryCollection: Collection {
 
         return storage.withUnsafeMutablePointers { (count, elements) -> Element in
 
+            /// Move the element to the variable so it can be returned
             let result = (elements + index).move()
+
+            /// Decrement the count of items since we removed it
+            count.pointee = count.pointee &- 1
 
             var m = index
 
@@ -212,8 +217,6 @@ extension GeometryCollection: Collection {
                 (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
-            count.pointee = count.pointee &- 1
-
             return result
         }
     }
@@ -238,7 +241,7 @@ extension GeometryCollection: Collection {
     /**
         Remove all elements of this GeometryCollection.
 
-        - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
+        - Postcondition: `capacity == 0` if `keepCapacity` is `false`.
      */
     public mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
 

@@ -54,7 +54,7 @@ public struct MultiLineString<CoordinateType: Coordinate & CopyConstructable> {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
 
-        storage = CollectionBuffer<Element>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
+        storage = CollectionBuffer<Element>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
     }
 
     internal var storage: CollectionBuffer<Element>
@@ -182,7 +182,7 @@ extension MultiLineString: Collection {
 
         storage.withUnsafeMutablePointers { (count, elements) -> Void in
 
-            var m = count.pointee
+            var m = count.pointee &- 1
 
             count.pointee = count.pointee &+ 1
 
@@ -191,7 +191,9 @@ extension MultiLineString: Collection {
                 (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
                 m = m &- 1
             }
-            (elements + index).initialize(to: newElement)
+
+            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+            (elements + index).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
         }
     }
 
@@ -204,7 +206,11 @@ extension MultiLineString: Collection {
 
         return storage.withUnsafeMutablePointers { (count, elements) -> Element in
 
+            /// Move the element to the variable so it can be returned
             let result = (elements + index).move()
+
+            /// Decrement the count of items since we removed it
+            count.pointee = count.pointee &- 1
 
             var m = index
 
@@ -213,8 +219,6 @@ extension MultiLineString: Collection {
                 (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
                 m = m &+ 1
             }
-            count.pointee = count.pointee &- 1
-
             return result
         }
     }
@@ -239,7 +243,7 @@ extension MultiLineString: Collection {
     /**
         Remove all elements of this MultiLineString.
 
-        - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
+        - Postcondition: `capacity == 0` if `keepCapacity` is `false`.
      */
     public mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
 

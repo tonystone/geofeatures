@@ -50,7 +50,7 @@ public struct LinearRing<CoordinateType: Coordinate & CopyConstructable> {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
 
-        storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 8) { _ in 0 } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
+        storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
     }
 
     /**
@@ -262,7 +262,7 @@ extension LinearRing: Collection {
     /**
         Remove all elements of this LinearRing.
 
-        - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
+        - Postcondition: `capacity == 0` if `keepCapacity` is `false`.
      */
     public mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
 
