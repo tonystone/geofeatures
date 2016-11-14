@@ -249,7 +249,7 @@ extension ${Self}: Collection {
     /**
         Remove all elements of this ${Self}.
 
-        - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
+        - Postcondition: `capacity == 0` if `keepCapacity` is `false`.
      */
     public mutating func removeAll(keepingCapacity keepCapacity: Bool = false) {
 
