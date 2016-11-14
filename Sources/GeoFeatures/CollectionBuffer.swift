@@ -37,7 +37,7 @@ extension CollectionBuffer {
 
             return CollectionBuffer<Element>.create(minimumCapacity: self.capacity) { newBuffer in
 
-                newBuffer.withUnsafeMutablePointerToElements { newElements->Void in
+                newBuffer.withUnsafeMutablePointerToElements { newElements -> Void in
                     newElements.initialize(from: oldElements, count: self.header)
                 }
 
@@ -55,7 +55,7 @@ extension CollectionBuffer {
 
             return CollectionBuffer<Element>.create(minimumCapacity: newSize) { newBuffer in
 
-                newBuffer.withUnsafeMutablePointerToElements { newElements->Void in
+                newBuffer.withUnsafeMutablePointerToElements { newElements -> Void in
 
                     newElements.moveInitialize(from: oldElems, count: elementCount)
                 }
