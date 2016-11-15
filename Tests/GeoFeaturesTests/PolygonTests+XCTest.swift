@@ -29,9 +29,35 @@ extension Polygon_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testInit", testInit),
+                ("testInit_NoArg", testInit_NoArg),
+                ("testInit_NoArg_Defaults", testInit_NoArg_Defaults),
+                ("testInit_Precision_CRS", testInit_Precision_CRS),
+                ("testInit_Precision", testInit_Precision),
+                ("testInit_CRS", testInit_CRS),
+                ("testInit_RIngs", testInit_RIngs),
+                ("testInit_Tuple", testInit_Tuple),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
+                ("testOperatorEqual_Geometry_Polygon", testOperatorEqual_Geometry_Polygon),
+                ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry),
+           ]
+   }
+}
+extension Polygon_Coordinate2D_FixedPrecision_Cartesian_Tests {
+
+   static var allTests: [(String, (Polygon_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+      return [
+                ("testInit_NoArg", testInit_NoArg),
+                ("testInit_NoArg_Defaults", testInit_NoArg_Defaults),
+                ("testInit_Precision_CRS", testInit_Precision_CRS),
+                ("testInit_Precision", testInit_Precision),
+                ("testInit_CRS", testInit_CRS),
+                ("testInit_RIngs", testInit_RIngs),
+                ("testInit_Tuple", testInit_Tuple),
+                ("testDescription", testDescription),
+                ("testDebugDescription", testDebugDescription),
+                ("testOperatorEqual_Geometry_Polygon", testOperatorEqual_Geometry_Polygon),
+                ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry),
            ]
    }
 }
