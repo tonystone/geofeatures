@@ -43,10 +43,6 @@ fileprivate struct UnsupportedGeometry: Geometry {
     }
 
     func equals(_ other: Geometry) -> Bool { return false }
-
-    func union(_ other: Geometry) -> Geometry {
-        return GeometryCollection()
-    }
 }
 
 // MARK: - Coordinate2D -
