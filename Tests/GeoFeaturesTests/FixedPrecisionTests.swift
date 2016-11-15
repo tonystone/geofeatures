@@ -58,4 +58,25 @@ class FixedPrecisionTests: XCTestCase {
     func testDebugDescription() {
         XCTAssertEqual(precision.debugDescription, "FixedPrecision(scale: 10.0)")
     }
+
+    func testEqual_True() {
+        let input1 = FixedPrecision(scale: 10)
+        let input2 = FixedPrecision(scale: 10)
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testEqual_False() {
+        let input1 = FixedPrecision(scale: 10)
+        let input2 = FixedPrecision(scale: 100)
+
+        XCTAssertNotEqual(input1, input2)
+    }
+
+    func testEqual_False_DifferentType() {
+        let input1 = FixedPrecision(scale: 10)
+        let input2 = FloatingPrecision()
+
+        XCTAssertFalse(input1 == input2)
+    }
 }
