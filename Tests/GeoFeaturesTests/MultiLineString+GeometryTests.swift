@@ -62,6 +62,13 @@ class MultiLineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: X
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
+    func testBoundary_2EqaulPoints() {
+        let geometry = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)]), LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 3.0, y: 3.0)])], precision: precision, coordinateReferenceSystem: crs).boundary()
+        let expected = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0)), Point<Coordinate2D>(coordinate: (x: 3.0, y: 3.0))], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
+    }
+
     func testBoundary_Empty() {
         let geometry = MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).boundary()
         let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)  // Empty Set
