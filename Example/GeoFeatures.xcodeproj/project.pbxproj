@@ -13,7 +13,7 @@
 			buildPhases = (
 				EAC75E8C1C91E86600BA35F8 /* [Run Script] Generate Geometry from GYB */,
 				EAC75E8D1C91E86800BA35F8 /* [Run Script] Generate Tests from GYB */,
-				EA475D161CDBDD4B0013AFA1 /* [Run Script] Generate Linux Runner XCTest files. */,
+				EA475D161CDBDD4B0013AFA1 /* [Run Script] Generate XCTest runner files */,
 			);
 			dependencies = (
 			);
@@ -392,6 +392,7 @@
 			buildPhases = (
 				A6ABAC75D3E3424E4140B8DE /* [CP] Check Pods Manifest.lock */,
 				EAA325AA1DD4E36F004534F3 /* [Run Script] Generate Tests from GYB */,
+				EA940DC31DDAB0B700F7DA69 /* [Run Script] Generate XCTest Runner files */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -565,19 +566,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA475D161CDBDD4B0013AFA1 /* [Run Script] Generate Linux Runner XCTest files. */ = {
+		EA475D161CDBDD4B0013AFA1 /* [Run Script] Generate XCTest runner files */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[Run Script] Generate Linux Runner XCTest files.";
+			name = "[Run Script] Generate XCTest runner files";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR\n\n$PROJECT_DIR/../Scripts/generate_xctest_linux_runner.rb";
+			shellScript = "cd $PROJECT_DIR/../\n\nexport LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8\n\n$PROJECT_DIR/../Scripts/generate_xctest_linux_runner.rb";
 		};
 		EA634F071DD0356D00AC93E7 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -592,6 +593,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --path ../\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		EA940DC31DDAB0B700F7DA69 /* [Run Script] Generate XCTest Runner files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[Run Script] Generate XCTest Runner files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $PROJECT_DIR/../\n\nexport LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8\n\n$PROJECT_DIR/../Scripts/generate_xctest_linux_runner.rb";
 		};
 		EAA325A91DD4E33F004534F3 /* [Run Script] Generate Geometry from GYB */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -619,7 +634,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/generate_tests_from_gyb.sh\n\ncd $PROJECT_DIR\n\n$PROJECT_DIR/../Scripts/generate_xctest_linux_runner.rb";
+			shellScript = "cd $PROJECT_DIR/../Tests/GeoFeaturesTests\n\n$PROJECT_DIR/../Scripts/generate_tests_from_gyb.sh";
 		};
 		EAC75E8C1C91E86600BA35F8 /* [Run Script] Generate Geometry from GYB */ = {
 			isa = PBXShellScriptBuildPhase;
