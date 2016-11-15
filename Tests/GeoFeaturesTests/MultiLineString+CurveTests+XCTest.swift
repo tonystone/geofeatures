@@ -32,6 +32,7 @@ extension MultiLineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testIsClosed_Closed", testIsClosed_Closed),
                 ("testIsClosed_Open", testIsClosed_Open),
                 ("testIsClosed_Empty", testIsClosed_Empty),
+                ("testLength_Test", testLength_Test),
            ]
    }
 }
@@ -42,6 +43,7 @@ extension MultiLineString_Curve_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testIsClosed_Closed", testIsClosed_Closed),
                 ("testIsClosed_Open", testIsClosed_Open),
                 ("testIsClosed_Empty", testIsClosed_Empty),
+                ("testLength_Test", testLength_Test),
            ]
    }
 }
