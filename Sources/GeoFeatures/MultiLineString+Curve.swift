@@ -34,10 +34,10 @@ extension MultiLineString: Curve {
     public
     func isClosed() -> Bool {
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> Bool in
-            if count.pointee == 0 { return false }
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Bool in
+            if header.pointee.count == 0 { return false }
 
-            for i in 0..<count.pointee {
+            for i in 0..<header.pointee.count {
                 if !elements[i].isClosed() {
                     return false
                 }
@@ -53,13 +53,13 @@ extension MultiLineString: Curve {
     public
     func length() -> Double {
 
-        let length: Double  = storage.withUnsafeMutablePointers { (count, elements) -> Double in
+        let length: Double  = buffer.withUnsafeMutablePointers { (header, elements) -> Double in
 
             var length: Double = 0.0
 
-            if count.pointee > 0 {
+            if header.pointee.count > 0 {
 
-                for i in 1..<count.pointee {
+                for i in 1..<header.pointee.count {
                     length += elements[i].length()
                 }
             }

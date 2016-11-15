@@ -23,13 +23,13 @@ extension MultiPolygon: Surface {
 
     public func area() -> Double {
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> Double in
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Double in
 
             var area: Double = 0.0
 
-            if count.pointee > 0 {
+            if header.pointee.count > 0 {
 
-                for index in 0..<count.pointee {
+                for index in 0..<header.pointee.count {
                     area += elements[index].area()
                 }
             }

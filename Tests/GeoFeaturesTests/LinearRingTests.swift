@@ -39,18 +39,22 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision).precision as? FloatingPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
@@ -62,6 +66,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate2D>(other: LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -75,6 +80,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
@@ -82,6 +88,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
@@ -101,6 +108,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
 
@@ -144,6 +152,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
@@ -155,6 +164,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
@@ -166,6 +176,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -175,6 +186,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -184,6 +196,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -193,6 +206,7 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -204,12 +218,14 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
@@ -218,18 +234,22 @@ class LinearRing_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -271,18 +291,22 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision).precision as? FloatingPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
@@ -294,6 +318,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate2DM>(other: LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -307,6 +332,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
@@ -314,6 +340,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
@@ -333,6 +360,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
 
@@ -376,6 +404,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
@@ -387,6 +416,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
@@ -398,6 +428,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -407,6 +438,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -416,6 +448,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -425,6 +458,7 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -436,12 +470,14 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
@@ -450,18 +486,22 @@ class LinearRing_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -503,18 +543,22 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision).precision as? FloatingPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
@@ -526,6 +570,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate3D>(other: LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -539,6 +584,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
@@ -546,6 +592,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
@@ -565,6 +612,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
 
@@ -608,6 +656,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
@@ -619,6 +668,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
@@ -630,6 +680,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -639,6 +690,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -648,6 +700,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -657,6 +710,7 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -668,12 +722,14 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
@@ -682,18 +738,22 @@ class LinearRing_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -735,18 +795,22 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision).precision as? FloatingPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
@@ -758,6 +822,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate3DM>(other: LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -771,6 +836,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
@@ -778,6 +844,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
@@ -797,6 +864,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
@@ -840,6 +908,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
@@ -851,6 +920,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
@@ -862,6 +932,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -871,6 +942,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -880,6 +952,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -889,6 +962,7 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -900,12 +974,14 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
@@ -914,18 +990,22 @@ class LinearRing_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -967,18 +1047,22 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision).precision as? FixedPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
@@ -990,6 +1074,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate2D>(other: LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1003,6 +1088,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
@@ -1010,6 +1096,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
@@ -1029,6 +1116,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
 
@@ -1072,6 +1160,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
@@ -1083,6 +1172,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
@@ -1094,6 +1184,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1103,6 +1194,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1112,6 +1204,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -1121,6 +1214,7 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -1132,12 +1226,14 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
@@ -1146,18 +1242,22 @@ class LinearRing_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -1199,18 +1299,22 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision).precision as? FixedPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
@@ -1222,6 +1326,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate2DM>(other: LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1235,6 +1340,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
@@ -1242,6 +1348,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
@@ -1261,6 +1368,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
 
@@ -1304,6 +1412,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
@@ -1315,6 +1424,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
@@ -1326,6 +1436,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1335,6 +1446,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1344,6 +1456,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -1353,6 +1466,7 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -1364,12 +1478,14 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
@@ -1378,18 +1494,22 @@ class LinearRing_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -1431,18 +1551,22 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision).precision as? FixedPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
@@ -1454,6 +1578,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate3D>(other: LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1467,6 +1592,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
@@ -1474,6 +1600,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
@@ -1493,6 +1620,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
 
@@ -1536,6 +1664,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
@@ -1547,6 +1676,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
@@ -1558,6 +1688,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1567,6 +1698,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1576,6 +1708,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -1585,6 +1718,7 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -1596,12 +1730,14 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
@@ -1610,18 +1746,22 @@ class LinearRing_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 
@@ -1663,18 +1803,22 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Construction
 
     func testInit_Precision_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
     }
 
     func testInit_Precision() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision).precision as? FixedPrecision, precision)
     }
 
     func testInit_CRS() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
     }
 
     func testInit_Tuple() {
+
         let input = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
@@ -1686,6 +1830,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInit_Copy() {
+
         let input = LinearRing<Coordinate3DM>(other: LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1699,6 +1844,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: CustomStringConvertible & CustomDebugStringConvertible
 
     func testDescription() {
+
         let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
@@ -1706,6 +1852,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testDebugDescription() {
+
         let input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = "LinearRing<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
@@ -1725,6 +1872,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testAppend() {
+
         var input = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
@@ -1768,6 +1916,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Coordinate() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
@@ -1779,6 +1928,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testInsert_Tuple() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
@@ -1790,6 +1940,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemove() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1799,6 +1950,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveLast() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
 
@@ -1808,6 +1960,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
 
@@ -1817,6 +1970,7 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testRemoveAll_KeepCapacity() {
+
         var input = LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
         let expected = input.capacity
 
@@ -1828,12 +1982,14 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     // MARK: Swift.Collection Conformance
 
     func testSubscript_Get() {
+
         let input = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
+
         var input = LinearRing<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
 
         input[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
@@ -1842,18 +1998,22 @@ class LinearRing_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     }
 
     func testEquals() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
     }
 
     func testIsEmpty() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
     }
 
     func testCount() {
+
         XCTAssertEqual(LinearRing<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
     }
 

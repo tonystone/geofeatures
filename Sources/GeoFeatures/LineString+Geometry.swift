@@ -38,15 +38,15 @@ extension LineString: Geometry {
     public
     func boundary() -> Geometry {
 
-        return self.storage.withUnsafeMutablePointers { (count, elements) -> Geometry in
+        return self.buffer.withUnsafeMutablePointers { (header, elements) -> Geometry in
 
             var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
 
-            if !self.isClosed() && count.pointee >= 2 {
+            if !self.isClosed() && header.pointee.count >= 2 {
 
                 // Note: direct subscripts protected by self.count >= 2 above.
                 multiPoint.append(Point<CoordinateType>(coordinate: elements[0], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-                multiPoint.append(Point<CoordinateType>(coordinate: elements[count.pointee - 1], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[header.pointee.count - 1], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
 
             }
             return multiPoint
