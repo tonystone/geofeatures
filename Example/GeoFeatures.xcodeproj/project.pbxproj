@@ -60,6 +60,7 @@
 		EA8D59161DB7E34C00713261 /* Polygon+SurfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTests.swift */; };
 		EA8D59181DB7E34C00713261 /* WKTReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */; };
 		EA8D591A1DB7E34C00713261 /* WKTWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */; };
+		EA940DC51DDAB9DB00F7DA69 /* PolygonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA940DC41DDAB9DB00F7DA69 /* PolygonTests.swift */; };
 		EAA325A11DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */; };
 		EAA325A51DD407BC004534F3 /* TokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A41DD407BC004534F3 /* TokenizerTests.swift */; };
 		EAA325A81DD4E2CA004534F3 /* MultiLineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A71DD4E2CA004534F3 /* MultiLineStringTests.swift */; };
@@ -139,6 +140,7 @@
 		EA8D591F1DB8414200713261 /* GeometryCollection.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = GeometryCollection.swift.gyb; path = Sources/GeoFeatures/GeometryCollection.swift.gyb; sourceTree = "<group>"; };
 		EA8D59201DB8416100713261 /* CoordinateCollectionTests.swift.gyb */ = {isa = PBXFileReference; lastKnownFileType = text; name = CoordinateCollectionTests.swift.gyb; path = Tests/GeoFeaturesTests/CoordinateCollectionTests.swift.gyb; sourceTree = "<group>"; };
 		EA8D59211DB8416100713261 /* MultiPointTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = MultiPointTestInput.py; path = Tests/GeoFeaturesTests/MultiPointTestInput.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
+		EA940DC41DDAB9DB00F7DA69 /* PolygonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolygonTests.swift; sourceTree = "<group>"; };
 		EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystemTests.swift; sourceTree = "<group>"; };
 		EAA325A41DD407BC004534F3 /* TokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizerTests.swift; sourceTree = "<group>"; };
 		EAA325A71DD4E2CA004534F3 /* MultiLineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineStringTests.swift; sourceTree = "<group>"; };
@@ -315,8 +317,9 @@
 				EA5CE1241DD62CB600F773F2 /* MultiPolygonTests.swift */,
 				EA8D58D21DB7E34C00713261 /* MultiPolygon+GeometryTests.swift */,
 				EA8D58D41DB7E34C00713261 /* MultiPolygon+SurfaceTests.swift */,
-				EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */,
 				EA8D58D81DB7E34C00713261 /* PointTests.swift */,
+				EA8D58D61DB7E34C00713261 /* Point+GeometryTests.swift */,
+				EA940DC41DDAB9DB00F7DA69 /* PolygonTests.swift */,
 				EA8D58DA1DB7E34C00713261 /* Polygon+GeometryTests.swift */,
 				EA8D58DC1DB7E34C00713261 /* Polygon+SurfaceTests.swift */,
 				EAA325A41DD407BC004534F3 /* TokenizerTests.swift */,
@@ -695,6 +698,7 @@
 				EA8D58E21DB7E34C00713261 /* Coordinate2DMTests.swift in Sources */,
 				EA5CE1251DD62CB600F773F2 /* MultiPolygonTests.swift in Sources */,
 				EA8D58F21DB7E34C00713261 /* IntersectionMatrixTests.swift in Sources */,
+				EA940DC51DDAB9DB00F7DA69 /* PolygonTests.swift in Sources */,
 				EA8D58FC1DB7E34C00713261 /* LineString+CurveTests.swift in Sources */,
 				EAA325A11DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift in Sources */,
 				EA8D59101DB7E34C00713261 /* Point+GeometryTests.swift in Sources */,
