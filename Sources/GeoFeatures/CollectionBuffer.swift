@@ -19,13 +19,19 @@
  */
 import Swift
 
-internal class CollectionBuffer<E>: ManagedBuffer<Int,E> {
+internal struct CollectionBufferHeader {
+    var capacity: Int
+    var count: Int
+}
+
+internal class CollectionBuffer<E>: ManagedBuffer<CollectionBufferHeader,E> {
 
     internal typealias Element = E
 
     deinit {
-        self.withUnsafeMutablePointerToElements { elements->Void in
-            elements.deinitialize(count: self.header)
+        self.withUnsafeMutablePointers { header, elements -> Void in
+            elements.deinitialize(count: header.pointee.count)
+            header.deinitialize()
         }
     }
 }
@@ -33,15 +39,15 @@ internal class CollectionBuffer<E>: ManagedBuffer<Int,E> {
 extension CollectionBuffer {
 
     func clone() -> CollectionBuffer<Element> {
-        return self.withUnsafeMutablePointerToElements { oldElements->CollectionBuffer<Element> in
+        return self.withUnsafeMutablePointerToElements { oldElements -> CollectionBuffer<Element> in
 
-            return CollectionBuffer<Element>.create(minimumCapacity: self.capacity) { newBuffer in
+            return CollectionBuffer<Element>.create(minimumCapacity: self.header.capacity) { newBuffer in
 
                 newBuffer.withUnsafeMutablePointerToElements { newElements -> Void in
-                    newElements.initialize(from: oldElements, count: self.header)
+                    newElements.initialize(from: oldElements, count: self.header.count)
                 }
 
-                return self.header
+                return CollectionBufferHeader(capacity: self.header.capacity, count: self.header.count)
 
             } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
 
@@ -49,20 +55,21 @@ extension CollectionBuffer {
     }
 
     func resize(_ newSize: Int) -> CollectionBuffer<Element> {
-        return self.withUnsafeMutablePointerToElements { oldElems->CollectionBuffer<Element> in
+        return self.withUnsafeMutablePointerToElements { oldElems -> CollectionBuffer<Element> in
 
-            let elementCount = self.header
+            let elementCount = self.header.count
 
-            return CollectionBuffer<Element>.create(minimumCapacity: newSize) { newBuffer in
+            return CollectionBuffer<Element>.create(minimumCapacity: newSize) { newBuffer -> CollectionBufferHeader in
 
                 newBuffer.withUnsafeMutablePointerToElements { newElements -> Void in
 
                     newElements.moveInitialize(from: oldElems, count: elementCount)
                 }
 
-                self.header = 0
+                // Clear the old buffer since we moved the values
+                self.header.count = 0
 
-                return elementCount
+                return CollectionBufferHeader(capacity: newSize, count: elementCount)
 
             } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
         }
