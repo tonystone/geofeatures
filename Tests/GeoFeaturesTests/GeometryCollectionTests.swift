@@ -94,7 +94,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
     func testDescription() {
 
         let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected = "GeometryCollection(Polygon<Coordinate2D>((x: 6.0, y: 1.0),(x: 1.0, y: 1.0),(x: 1.0, y: 3.0),(x: 3.5, y: 4.0),(x: 6.0, y: 3.0),[]), Polygon<Coordinate2D>((x: 6.0, y: 1.0),(x: 1.0, y: 1.0),(x: 1.0, y: 3.0),(x: 3.5, y: 4.0),(x: 6.0, y: 3.0),[]))"
+        let expected = "GeometryCollection(Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))"
 
         XCTAssertEqual(input.description, expected)
     }
@@ -102,7 +102,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
     func testDebugDescription() {
 
         let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected = "GeometryCollection(Polygon<Coordinate2D>((x: 6.0, y: 1.0),(x: 1.0, y: 1.0),(x: 1.0, y: 3.0),(x: 3.5, y: 4.0),(x: 6.0, y: 3.0),[]), Polygon<Coordinate2D>((x: 6.0, y: 1.0),(x: 1.0, y: 1.0),(x: 1.0, y: 3.0),(x: 3.5, y: 4.0),(x: 6.0, y: 3.0),[]))"
+        let expected = "GeometryCollection(Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))"
 
         XCTAssertEqual(input.debugDescription, expected)
     }

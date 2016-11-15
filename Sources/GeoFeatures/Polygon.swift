@@ -212,37 +212,23 @@ extension Polygon: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
 
         let outerRingDescription = { () -> String in
-            var string: String = ""
-
-            var ringGenerator = self.outerRing.makeIterator()
-
-            while let coordinate = ringGenerator.next() {
-                if string.characters.count > 0 { string += "," }
-                string += "\(coordinate)"
-            }
-            if string.characters.count == 0 { string += "[]" }
-            return string
+            return "[\(self.outerRing.flatMap { String(describing: $0) }.joined(separator: ", "))]"
         }
 
         let innerRingsDescription = { () -> String in
-            var string: String = ""
+            var string: String = "["
 
             var innerRingsGenerator = self.innerRings.makeIterator()
 
             while let ring = innerRingsGenerator.next() {
+                if !string.hasSuffix("[") { string += ", " }
 
-                var ringGenerator = ring.makeIterator()
-
-                while let coordinate = ringGenerator.next() {
-                    if string.characters.count > 0 { string += "," }
-                    string += "\(coordinate)"
-                }
+                string += "[\(ring.flatMap { String(describing: $0) }.joined(separator: ", "))]"
             }
-
-            if string.characters.count == 0 { string += "[]" }
+            string += "]"
             return string
         }
-        return "\(type(of: self))(\(outerRingDescription()),\(innerRingsDescription()))"
+        return "\(type(of: self))(\(outerRingDescription()), \(innerRingsDescription()))"
     }
 
     public var debugDescription: String {
