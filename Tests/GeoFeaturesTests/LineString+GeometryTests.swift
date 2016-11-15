@@ -68,6 +68,20 @@ class LineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTest
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
+
+    func testEqual_True() {
+        let input1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input2 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input1, input2)
+     }
+
+     func testEqual_False() {
+        let input1            = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input2: Geometry  = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
+     }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
