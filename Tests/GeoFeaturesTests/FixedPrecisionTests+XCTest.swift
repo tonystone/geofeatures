@@ -37,6 +37,9 @@ extension FixedPrecisionTests {
                 ("testConvert_Scale10_Upper2", testConvert_Scale10_Upper2),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_False", testEqual_False),
+                ("testEqual_False_DifferentType", testEqual_False_DifferentType),
            ]
    }
 }

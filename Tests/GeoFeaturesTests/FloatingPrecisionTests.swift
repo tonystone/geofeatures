@@ -46,4 +46,18 @@ class FloatingPrecisionTests: XCTestCase {
     func testDebugDescription() {
         XCTAssertEqual(precision.debugDescription, "FloatingPrecision")
     }
+
+    func testEqual_True() {
+        let input1 = FloatingPrecision()
+        let input2 = FloatingPrecision()
+
+        XCTAssertEqual(input1, input2)
+    }
+
+    func testEqual_False_DifferentType() {
+        let input1 = FixedPrecision(scale: 10)
+        let input2 = FloatingPrecision()
+
+        XCTAssertFalse(input1 == input2)
+    }
 }

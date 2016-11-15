@@ -33,6 +33,7 @@ extension Point_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -45,6 +46,7 @@ extension Point_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -57,6 +59,7 @@ extension Point_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -69,6 +72,7 @@ extension Point_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -81,6 +85,7 @@ extension Point_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -93,6 +98,7 @@ extension Point_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -105,6 +111,7 @@ extension Point_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }
@@ -117,6 +124,7 @@ extension Point_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty", testIsEmpty),
                 ("testEquals_IntOne_True", testEquals_IntOne_True),
                 ("testEquals_IntOne_False", testEquals_IntOne_False),
+                ("testEquals_Point_NonPoint_False", testEquals_Point_NonPoint_False),
                 ("testBoundary", testBoundary),
            ]
    }

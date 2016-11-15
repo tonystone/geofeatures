@@ -40,6 +40,8 @@ extension MultiLineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Test
                 ("testBoundary_OGC_MultiCurve_B", testBoundary_OGC_MultiCurve_B),
                 ("testBoundary_OGC_MultiCurve_C", testBoundary_OGC_MultiCurve_C),
                 ("testBoundary_Odd_Intersection", testBoundary_Odd_Intersection),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_False", testEqual_False),
            ]
    }
 }
