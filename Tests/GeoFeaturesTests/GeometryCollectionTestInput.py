@@ -9,11 +9,11 @@ Variants = [
              # Test Values 1
                 'Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))',
                 'Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))',
-                'Polygon<Coordinate2D>((x: 6.0, y: 1.0),(x: 1.0, y: 1.0),(x: 1.0, y: 3.0),(x: 3.5, y: 4.0),(x: 6.0, y: 3.0),[])',
+                'Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])',
              # Test Values 2
                 'Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))',
                 'Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))',
-                'Polygon<Coordinate2D>((x: 6.0, y: 1.0),(x: 1.0, y: 1.0),(x: 1.0, y: 3.0),(x: 3.5, y: 4.0),(x: 6.0, y: 3.0),[])'),
+                'Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])'),
             
             #    ('Coordinate2DM','FloatingPrecision', '()', 'Cartesian', '()', '(x: 1.0, y: 1.0, m: 1.0)', '(x: 2.0, y: 2.0, m: 2.0)','(x: 1.0, y: 1.0, m: 1.0)', '(x: 2.0, y: 2.0, m: 2.0)'),
             #    ('Coordinate3D', 'FloatingPrecision', '()', 'Cartesian', '()', '(x: 1.0, y: 1.0, z: 1.0)', '(x: 2.0, y: 2.0, z: 2.0)','(x: 1.0, y: 1.0, z: 1.0)', '(x: 2.0, y: 2.0, z: 2.0)'),
