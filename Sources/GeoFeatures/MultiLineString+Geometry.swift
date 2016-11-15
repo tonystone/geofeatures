@@ -40,11 +40,11 @@ extension MultiLineString: Geometry {
     public
     func boundary() -> Geometry {
 
-        return self.storage.withUnsafeMutablePointers { (count, elements) -> Geometry in
+        return self.buffer.withUnsafeMutablePointers { (header, elements) -> Geometry in
 
             var endCoordinates = [CoordinateType: Int]()
 
-            for i in 0 ..< count.pointee {
+            for i in 0 ..< header.pointee.count {
                 let lineString = elements[i]
 
                 if lineString.count >= 2 && !lineString.isClosed() {

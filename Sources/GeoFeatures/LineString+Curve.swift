@@ -34,10 +34,10 @@ extension LineString: Curve {
     public
     func isClosed() -> Bool {
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> Bool in
-            if count.pointee < 2 { return false }
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Bool in
+            if header.pointee.count < 2 { return false }
 
-            return elements[0] == elements[count.pointee - 1]
+            return elements[0] == elements[header.pointee.count - 1]
         }
     }
 
@@ -48,15 +48,15 @@ extension LineString: Curve {
     public
     func length() -> Double {
 
-        let length: Double  = storage.withUnsafeMutablePointers { (count, elements) -> Double in
+        let length: Double  = buffer.withUnsafeMutablePointers { (header, elements) -> Double in
 
             var length: Double = 0.0
 
-            if count.pointee > 0 {
+            if header.pointee.count > 0 {
 
                 var c1 = elements[0]
 
-                for index in 1..<count.pointee {
+                for index in 1..<header.pointee.count {
 
                     let c2 = elements[index]
 

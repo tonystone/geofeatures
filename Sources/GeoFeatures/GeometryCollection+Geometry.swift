@@ -25,13 +25,13 @@ extension GeometryCollection: Geometry {
 
     public var dimension: Dimension { get {
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> Dimension in
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Dimension in
 
             var dimension: Dimension = .empty // No dimension
 
-            if count.pointee > 0 {
+            if header.pointee.count > 0 {
 
-                for index in 0..<count.pointee {
+                for index in 0..<header.pointee.count {
 
                     dimension = Math.max(dimension, elements[index].dimension)
                 }

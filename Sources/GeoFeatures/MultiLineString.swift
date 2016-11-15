@@ -54,10 +54,10 @@ public struct MultiLineString<CoordinateType: Coordinate & CopyConstructable> {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
 
-        storage = CollectionBuffer<Element>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
+        buffer = CollectionBuffer<Element>.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
     }
 
-    internal var storage: CollectionBuffer<Element>
+    internal var buffer: CollectionBuffer<Element>
 }
 
 // MARK: Private methods
@@ -66,15 +66,15 @@ extension MultiLineString {
 
     @inline(__always)
     fileprivate mutating func _ensureUniquelyReferenced() {
-        if !isKnownUniquelyReferenced(&storage) {
-            storage = storage.clone()
+        if !isKnownUniquelyReferenced(&buffer) {
+            buffer = buffer.clone()
         }
     }
 
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
-        if storage.capacity == count {
-            storage = storage.resize(storage.capacity * 2)
+        if buffer.capacity == count {
+            buffer = buffer.resize(buffer.capacity * 2)
         }
     }
 }
@@ -112,30 +112,30 @@ extension MultiLineString: Collection {
         - Returns: The number of LineString objects.
      */
     public var count: Int {
-        get { return self.storage.header }
+        get { return self.buffer.header.count }
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.storage.capacity }
+        get { return self.buffer.header.capacity }
     }
 
     /**
         Reserve enough space to store `minimumCapacity` elements.
 
-        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
+        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous buffer.
      */
     public mutating func reserveCapacity(_ minimumCapacity: Int) {
 
-        if storage.capacity < minimumCapacity {
+        if buffer.capacity < minimumCapacity {
 
             _ensureUniquelyReferenced()
 
-            let newSize = Math.max(storage.capacity * 2, minimumCapacity)
+            let newSize = Math.max(buffer.capacity * 2, minimumCapacity)
 
-            storage = storage.resize(newSize)
+            buffer = buffer.resize(newSize)
         }
     }
 
@@ -147,11 +147,11 @@ extension MultiLineString: Collection {
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
-        storage.withUnsafeMutablePointers { (value, elements) -> Void in
+        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
 
             /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
-            (elements + value.pointee).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-            value.pointee += 1
+            elements.advanced(by: header.pointee.count).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+            header.pointee.count += 1
         }
     }
 
@@ -175,25 +175,25 @@ extension MultiLineString: Collection {
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: Element, at index: Int) {
-        guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range, can't insert LineString.") }
+        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range, can't insert LineString.") }
 
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
-        storage.withUnsafeMutablePointers { (count, elements) -> Void in
+        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
 
-            var m = count.pointee &- 1
+            var m = header.pointee.count &- 1
 
-            count.pointee = count.pointee &+ 1
+            header.pointee.count = header.pointee.count &+ 1
 
             // Move the other elements
             while  m >= index {
-                (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
+                elements.advanced(by: m &+ 1).moveInitialize(from: elements.advanced(by: m), count: 1)
                 m = m &- 1
             }
 
             /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
-            (elements + index).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+            elements.advanced(by: index).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
         }
     }
 
@@ -202,21 +202,21 @@ extension MultiLineString: Collection {
      */
     @discardableResult
     public mutating func remove(at index: Int) -> Element {
-        guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range, can't remove LineString.") }
+        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range, can't remove LineString.") }
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> Element in
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Element in
 
             /// Move the element to the variable so it can be returned
             let result = (elements + index).move()
 
             /// Decrement the count of items since we removed it
-            count.pointee = count.pointee &- 1
+            header.pointee.count = header.pointee.count &- 1
 
             var m = index
 
             // Move the other elements
-            while  m <  count.pointee {
-                (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
+            while  m <  header.pointee.count {
+                elements.advanced(by: m).moveInitialize(from: elements.advanced(by: m &+ 1), count: 1)
                 m = m &+ 1
             }
             return result
@@ -230,13 +230,13 @@ extension MultiLineString: Collection {
      */
     @discardableResult
     public mutating func removeLast() -> Element {
-        guard storage.header > 0 else { preconditionFailure("can't removeLast from an empty MultiLineString.") }
+        guard buffer.header.count > 0 else { preconditionFailure("can't removeLast from an empty MultiLineString.") }
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> Element in
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Element in
 
-            // No need to check for overflow in `count.pointee - 1` because `count.pointee` is known to be positive.
-            count.pointee = count.pointee &- 1
-            return (elements + count.pointee).move()
+            // No need to check for overflow in `header.pointee.count - 1` because `header.pointee.count` is known to be positive.
+            header.pointee.count = header.pointee.count &- 1
+            return elements.advanced(by: header.pointee.count).move()
         }
     }
 
@@ -249,11 +249,11 @@ extension MultiLineString: Collection {
 
         if keepCapacity {
 
-            storage.withUnsafeMutablePointers { (count, elements) -> Void in
-                count.pointee = 0
+            buffer.withUnsafeMutablePointers { (header, elements) -> Void in
+                header.pointee.count = 0
             }
         } else {
-            storage = CollectionBuffer<Element>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
+            buffer = CollectionBuffer<Element>.create(minimumCapacity: 0) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
         }
     }
 }
@@ -282,25 +282,26 @@ extension MultiLineString {
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
     public var endIndex: Int {
-        return storage.header
+        return buffer.header.count
     }
 
     public subscript(index: Int) -> Element {
         get {
-            guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
-            return storage.withUnsafeMutablePointerToElements { $0[index] }
+            return buffer.withUnsafeMutablePointerToElements { $0[index] }
         }
         set (newValue) {
-            guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
             _ensureUniquelyReferenced()
 
-            storage.withUnsafeMutablePointerToElements { elements->Void in
+            buffer.withUnsafeMutablePointerToElements { elements->Void in
+                let element = elements.advanced(by: index)
 
-                (elements + index).deinitialize()
+                element.deinitialize()
                 /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
-                (elements + index).initialize(to: Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                element.initialize(to: Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
             }
         }
     }

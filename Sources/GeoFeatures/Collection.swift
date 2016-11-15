@@ -52,7 +52,7 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
         Reserve enough space to store `minimumCapacity` elements.
 
         - Postcondition: `capacity >= minimumCapacity` and the array has
-          mutable contiguous storage.
+          mutable contiguous buffer.
      */
     mutating func reserveCapacity(_ minimumCapacity: Int)
 

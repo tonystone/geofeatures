@@ -50,7 +50,7 @@ public struct LineString<CoordinateType: Coordinate & CopyConstructable> {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
 
-        storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
+        buffer = CollectionBuffer<CoordinateType>.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
     }
 
     /**
@@ -68,32 +68,32 @@ public struct LineString<CoordinateType: Coordinate & CopyConstructable> {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
 
-        other.storage.withUnsafeMutablePointers { (count, elements) -> Void in
+        other.buffer.withUnsafeMutablePointers { (header, elements) -> Void in
 
-            self.reserveCapacity(numericCast(count.pointee))
+            self.reserveCapacity(numericCast(header.pointee.count))
 
-            for index in 0..<count.pointee {
+            for index in 0..<header.pointee.count {
                 self.append(elements[index])
             }
         }
     }
 
-    internal var storage: CollectionBuffer<CoordinateType>
+    internal var buffer: CollectionBuffer<CoordinateType>
 }
 
 extension LineString {
 
     @inline(__always)
     fileprivate mutating func _ensureUniquelyReferenced() {
-        if !isKnownUniquelyReferenced(&storage) {
-            storage = storage.clone()
+        if !isKnownUniquelyReferenced(&buffer) {
+            buffer = buffer.clone()
         }
     }
 
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
-        if storage.capacity == count {
-            storage = storage.resize(storage.capacity * 2)
+        if buffer.capacity == count {
+            buffer = buffer.resize(buffer.capacity * 2)
         }
     }
 }
@@ -131,37 +131,37 @@ extension LineString: Collection {
         - Returns: The number of Coordinate3D objects.
      */
     public var count: Int {
-        get { return self.storage.header }
+        get { return self.buffer.header.count }
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.storage.capacity }
+        get { return self.buffer.header.capacity }
     }
 
     /**
         Reserve enough space to store `minimumCapacity` elements.
 
-        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
+        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous buffer.
      */
     public mutating func reserveCapacity(_ minimumCapacity: Int) {
 
-        if storage.capacity < minimumCapacity {
+        if buffer.capacity < minimumCapacity {
 
             _ensureUniquelyReferenced()
 
-            let newSize = Math.max(storage.capacity * 2, minimumCapacity)
+            let newSize = Math.max(buffer.capacity * 2, minimumCapacity)
 
-            storage = storage.resize(newSize)
+            buffer = buffer.resize(newSize)
         }
     }
 
     /**
         Reserve enough space to store `minimumCapacity` elements.
 
-        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
+        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous buffer.
      */
     public mutating func append(_ newElement: CoordinateType) {
 
@@ -170,10 +170,10 @@ extension LineString: Collection {
 
         let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
 
-        storage.withUnsafeMutablePointers { (value, elements) -> Void in
+        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
 
-            (elements + value.pointee).initialize(to: convertedCoordinate)
-            value.pointee = value.pointee &+ 1
+            elements.advanced(by: header.pointee.count).initialize(to: convertedCoordinate)
+            header.pointee.count = header.pointee.count &+ 1
         }
     }
 
@@ -197,21 +197,21 @@ extension LineString: Collection {
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: CoordinateType, at index: Int) {
-        guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
         let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
 
-        storage.withUnsafeMutablePointers { (count, elements) -> Void in
-            var m = count.pointee
+        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
+            var m = header.pointee.count
 
-            count.pointee = count.pointee &+ 1
+            header.pointee.count = header.pointee.count &+ 1
 
             // Move the other elements
             while  m >= index {
-                (elements + (m &+ 1)).moveInitialize(from: (elements + m), count: 1)
+                elements.advanced(by: m &+ 1).moveInitialize(from: elements.advanced(by: m), count: 1)
                 m = m &- 1
             }
             (elements + index).initialize(to: convertedCoordinate)
@@ -223,20 +223,20 @@ extension LineString: Collection {
      */
     @discardableResult
     public mutating func remove(at index: Int) -> CoordinateType {
-        guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> CoordinateType in
+        return buffer.withUnsafeMutablePointers { (header, elements) -> CoordinateType in
 
             let result = (elements + index).move()
 
             var m = index
 
             // Move the other elements
-            while  m <  count.pointee {
-                (elements + m).moveInitialize(from: (elements + (m &+ 1)), count: 1)
+            while  m <  header.pointee.count {
+                elements.advanced(by: m).moveInitialize(from: elements.advanced(by: m &+ 1), count: 1)
                 m = m &+ 1
             }
-            count.pointee = count.pointee &- 1
+            header.pointee.count = header.pointee.count &- 1
 
             return result
         }
@@ -249,13 +249,13 @@ extension LineString: Collection {
      */
     @discardableResult
     public mutating func removeLast() -> CoordinateType {
-        guard storage.header > 0 else { preconditionFailure("can't removeLast from an empty LineString.") }
+        guard buffer.header.count > 0 else { preconditionFailure("can't removeLast from an empty LineString.") }
 
-        return storage.withUnsafeMutablePointers { (count, elements) -> CoordinateType in
+        return buffer.withUnsafeMutablePointers { (header, elements) -> CoordinateType in
 
-            // No need to check for overflow in `count.pointee - 1` because `i` is known to be positive.
-            count.pointee = count.pointee &- 1
-            return (elements + count.pointee).move()
+            // No need to check for overflow in `header.pointee.count - 1` because `i` is known to be positive.
+            header.pointee.count = header.pointee.count &- 1
+            return elements.advanced(by: header.pointee.count).move()
         }
     }
 
@@ -268,11 +268,11 @@ extension LineString: Collection {
 
         if keepCapacity {
 
-            storage.withUnsafeMutablePointers { (count, elements) -> Void in
-                count.pointee = 0
+            buffer.withUnsafeMutablePointers { (header, elements) -> Void in
+                header.pointee.count = 0
             }
         } else {
-            storage = CollectionBuffer<CoordinateType>.create(minimumCapacity: 0) { _ in 0 } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
+            buffer = CollectionBuffer<CoordinateType>.create(minimumCapacity: 0) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
         }
     }
 }
@@ -308,7 +308,7 @@ extension LineString where CoordinateType: TupleConvertable & CopyConstructable 
     /**
         Reserve enough space to store `minimumCapacity` elements.
 
-        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous storage.
+        - Postcondition: `capacity >= minimumCapacity` and the array has mutable contiguous buffer.
      */
     public mutating func append(_ newElement: CoordinateType.TupleType) {
         self.append(CoordinateType(tuple: newElement))
@@ -321,7 +321,7 @@ extension LineString where CoordinateType: TupleConvertable & CopyConstructable 
 
         _ensureUniquelyReferenced()
 
-        self.reserveCapacity(numericCast(newElements.count) + storage.header)
+        self.reserveCapacity(numericCast(newElements.count) + buffer.header.count)
 
         var Iterator = newElements.makeIterator()
 
@@ -364,28 +364,29 @@ extension LineString: Swift.Collection, MutableCollection, _DestructorSafeContai
         A "past-the-end" element index; the successor of the last valid subscript argument.
      */
     public var endIndex: Int {
-        return storage.header
+        return buffer.header.count
     }
 
     public subscript(index: Int) -> CoordinateType {
 
         get {
-            guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
-            return storage.withUnsafeMutablePointerToElements { $0[index] }
+            return buffer.withUnsafeMutablePointerToElements { $0[index] }
         }
 
         set (newValue) {
-            guard (index >= 0) && (index < storage.header) else { preconditionFailure("Index out of range.") }
+            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
             _ensureUniquelyReferenced()
 
             let convertedCoordinate = CoordinateType(other: newValue, precision: precision)
 
-            storage.withUnsafeMutablePointerToElements { elements -> Void in
+            buffer.withUnsafeMutablePointerToElements { elements -> Void in
+                let element = elements.advanced(by: index)
 
-                (elements + index).deinitialize()
-                (elements + index).initialize(to: convertedCoordinate)
+                element.deinitialize()
+                element.initialize(to: convertedCoordinate)
             }
         }
     }
