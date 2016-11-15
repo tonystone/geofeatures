@@ -160,9 +160,9 @@ public protocol Geometry {
 //
 //    @warn_unused_result
 //    func intersection(other: Geometry) -> Geometry
-
-    func union(_ other: Geometry) -> Geometry
-
+//
+//    func union(_ other: Geometry) -> Geometry
+//
 //    @warn_unused_result
 //    func difference(other: Geometry) -> Geometry
 //
