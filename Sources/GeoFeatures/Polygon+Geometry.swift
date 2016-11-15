@@ -56,9 +56,4 @@ extension Polygon: Geometry {
         }
         return false
     }
-
-    // TODO: Must be implenented.  Here just to test protocol
-    public func union(_ other: Geometry) -> Geometry {
-        return Polygon()
-    }
 }
