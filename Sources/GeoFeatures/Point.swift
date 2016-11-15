@@ -90,11 +90,3 @@ extension Point: Equatable {}
 public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
-
-public func == <CoordinateType: Coordinate & CopyConstructable, GeometryType: Geometry>(lhs: Point<CoordinateType>, rhs: GeometryType) -> Bool {
-    return lhs.equals(rhs)
-}
-
-public func == <GeometryType: Geometry, CoordinateType: Coordinate & CopyConstructable>(lhs: GeometryType, rhs: Point<CoordinateType>) -> Bool {
-    return lhs.equals(rhs)
-}
