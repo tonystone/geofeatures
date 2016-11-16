@@ -17,7 +17,7 @@ dependencies:
 
 test:
   override:
-    - swiftlint lint --strict
+    - swiftlint lint
     - set -o pipefail &&
       xcodebuild
         CODE_SIGNING_REQUIRED=NO
