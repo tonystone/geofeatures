@@ -30,6 +30,13 @@ extension MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
    static var allTests: [(String, (MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testDimension", testDimension),
+                ("testBoundary_Single_Polygon_NoInnerRings", testBoundary_Single_Polygon_NoInnerRings),
+                ("testBoundary_Single_Polygon_InnnerRings", testBoundary_Single_Polygon_InnnerRings),
+                ("testBoundary_Multiple_Polygons", testBoundary_Multiple_Polygons),
+                ("testBoundary_Empty", testBoundary_Empty),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_SameTypes_False", testEqual_SameTypes_False),
+                ("testEqual_DifferentTypes_False", testEqual_DifferentTypes_False),
            ]
    }
 }
