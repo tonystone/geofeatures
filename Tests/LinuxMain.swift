@@ -36,6 +36,7 @@ import XCTest
          testCase(CoordinateReferenceSystemTests.allTests),
          testCase(FixedPrecisionTests.allTests),
          testCase(FloatingPrecisionTests.allTests),
+         testCase(GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests.allTests),
          testCase(GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests.allTests),
          testCase(GeometryCollection_Geometry_FixedPrecision_Cartesian_Tests.allTests),
          testCase(GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests.allTests),
