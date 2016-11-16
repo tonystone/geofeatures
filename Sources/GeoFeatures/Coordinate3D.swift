@@ -22,7 +22,7 @@ import Swift
 /**
     3D Coordinate
 
-    Low level 3 dimensional Coorodinate type
+    Low level 3 dimensional Coordinate type
  */
 public struct Coordinate3D: Coordinate, ThreeDimensional {
 
@@ -57,7 +57,7 @@ extension Coordinate3D: CopyConstructable {
     }
 }
 
-extension Coordinate3D: TupleConvertable {
+extension Coordinate3D: TupleConvertible {
 
     public typealias TupleType = (x: Double, y: Double, z: Double)
 

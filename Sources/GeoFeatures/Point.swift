@@ -67,7 +67,7 @@ extension Point where CoordinateType: Measured {
     public var m: Double { get { return coordinate.m } }
 }
 
-extension Point where CoordinateType: TupleConvertable {
+extension Point where CoordinateType: TupleConvertible {
 
     public init(coordinate: CoordinateType.TupleType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         self.init(coordinate: CoordinateType(tuple: coordinate, precision: precision))

@@ -1,5 +1,5 @@
 /*
- *   TupleConvertable.swift
+ *   TupleConvertible.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -20,11 +20,11 @@
 import Swift
 
 /**
-    TupleConvertable
+    TupleConvertible
 
-    Specifies the contract for a type that is convertable to and from a tuple type
+    Specifies the contract for a type that is convertible to and from a tuple type
 */
-public protocol TupleConvertable {
+public protocol TupleConvertible {
 
     /// Tuple conversion type (what does the tuple look like)
     associatedtype TupleType

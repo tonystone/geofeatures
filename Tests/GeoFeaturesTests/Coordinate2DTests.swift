@@ -39,7 +39,7 @@ class Coordinate2DTests: XCTestCase {
         XCTAssertEqual(Coordinate2D(x: 1001.0, y: 1002.0).y, 1002.0)
     }
 
-    // MARK: TupleConvertable
+    // MARK: TupleConvertible
 
     func testInit_Tuple () {
         let coordinate = Coordinate2D(tuple: (x: 2.0, y: 3.0))

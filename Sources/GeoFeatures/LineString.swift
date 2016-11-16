@@ -278,11 +278,11 @@ extension LineString: Collection {
 }
 
 /**
-    TupleConvertable extensions
+    TupleConvertible extensions
 
-    Coordinates that are TupleConvertable allow initialization via an ordinary Swift tuple.
+    Coordinates that are TupleConvertible allow initialization via an ordinary Swift tuple.
  */
-extension LineString where CoordinateType: TupleConvertable & CopyConstructable {
+extension LineString where CoordinateType: TupleConvertible & CopyConstructable {
 
     /**
         LineString can be constructed from any Swift.Collection if it's Elements are tuples that match
@@ -290,7 +290,7 @@ extension LineString where CoordinateType: TupleConvertable & CopyConstructable 
 
         ----
 
-        - seealso: TupleConvertable.
+        - seealso: TupleConvertible.
      */
     public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
 
