@@ -18,7 +18,6 @@
  *   Created by Tony Stone on 3/6/16.
  */
 import XCTest
-
 import GeoFeatures
 
 #if (os(OSX) || os(iOS) || os(tvOS) || os(watchOS)) && SWIFT_PACKAGE

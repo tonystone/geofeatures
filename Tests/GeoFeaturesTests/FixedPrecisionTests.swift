@@ -18,7 +18,6 @@
  *   Created by Tony Stone on 2/11/16.
  */
 import XCTest
-
 import GeoFeatures
 
 class FixedPrecisionTests: XCTestCase {

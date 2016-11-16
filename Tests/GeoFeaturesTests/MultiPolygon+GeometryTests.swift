@@ -18,8 +18,12 @@
  *   Created by Tony Stone on 4/24/16.
  */
 import XCTest
-
 import GeoFeatures
+
+#if (os(OSX) || os(iOS) || os(tvOS) || os(watchOS)) && SWIFT_PACKAGE
+    /// TODO: Remove this after figuring out why there seems to be a symbol conflict (error: cannot specialize a non-generic definition) with another Polygon on Swift PM on Apple platforms only.
+    import struct GeoFeatures.Polygon
+#endif
 
 private let geometryDimension = Dimension.two    // MultiPolygon are always 2 dimension
 
