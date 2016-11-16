@@ -35,6 +35,10 @@ extension GeometryCollection_Geometry_FloatingPrecision_Cartesian_Tests {
                 ("testDimension_Homogeneous_Polygon", testDimension_Homogeneous_Polygon),
                 ("testDimension_Non_Homogeneous_Point_Polygon", testDimension_Non_Homogeneous_Point_Polygon),
                 ("testDimension_Non_Homogeneous_Point_LineString", testDimension_Non_Homogeneous_Point_LineString),
+                ("testBoundary", testBoundary),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_SameTypes_False", testEqual_SameTypes_False),
+                ("testEqual_DifferentTypes_False", testEqual_DifferentTypes_False),
            ]
    }
 }
