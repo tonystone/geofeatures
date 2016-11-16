@@ -92,6 +92,8 @@ extension MultiPoint_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
                 ("testBoundary_Empty", testBoundary_Empty),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_False", testEqual_False),
            ]
    }
 }
@@ -102,6 +104,8 @@ extension MultiPoint_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
                 ("testBoundary_Empty", testBoundary_Empty),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_False", testEqual_False),
            ]
    }
 }

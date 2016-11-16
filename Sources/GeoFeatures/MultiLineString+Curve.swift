@@ -59,7 +59,7 @@ extension MultiLineString: Curve {
 
             if header.pointee.count > 0 {
 
-                for i in 1..<header.pointee.count {
+                for i in 0..<header.pointee.count {
                     length += elements[i].length()
                 }
             }

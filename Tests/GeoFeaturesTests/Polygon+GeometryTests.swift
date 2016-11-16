@@ -59,6 +59,19 @@ class Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
+    func testEqual_True() {
+        let input1 = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs)
+        let input2 = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertEqual(input1, input2)
+     }
+
+     func testEqual_False() {
+        let input1            = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs)
+        let input2: Geometry  = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateReferenceSystem: crs)
+
+        XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
+     }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -

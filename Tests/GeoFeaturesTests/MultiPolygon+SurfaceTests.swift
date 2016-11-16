@@ -29,7 +29,25 @@ class MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCa
     let crs       = Cartesian()
 
     func testArea_Empty() {
-        XCTAssertEqual(MultiPolygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).area(), 0.0)
+        let input    = MultiPolygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = 0.0
+
+        XCTAssertEqual(input.area(), expected)
     }
 
+    func testArea_2_Same_Polygons() {
+
+        let input    = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], [[(x: 1, y: 1), (x: 4, y: 1), (x: 4, y: 2), (x: 1, y: 2), (x: 1, y: 1)]])), Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], [[(x: 1, y: 1), (x: 4, y: 1), (x: 4, y: 2), (x: 1, y: 2), (x: 1, y: 1)]]))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = 66.0
+
+        XCTAssertEqual(input.area(), expected)
+    }
+
+    func testArea_2_Different_Polygons() {
+
+        let input    = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], [[(x: 1, y: 1), (x: 4, y: 1), (x: 4, y: 2), (x: 1, y: 2), (x: 1, y: 1)]])), Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], []))], precision: precision, coordinateReferenceSystem: crs)
+        let expected = 69.0
+
+        XCTAssertEqual(input.area(), expected)
+    }
 }

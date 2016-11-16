@@ -35,6 +35,8 @@ extension LinearRing_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testBoundary_3Element_Open", testBoundary_3Element_Open),
                 ("testBoundary_4Element_Closed", testBoundary_4Element_Closed),
                 ("testBoundary_Empty", testBoundary_Empty),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_False", testEqual_False),
            ]
    }
 }
