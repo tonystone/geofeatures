@@ -42,7 +42,7 @@ extension MultiPolygon: Geometry {
 
             for i in 0..<header.pointee.count {
 
-                if let boundary = elements[i].boundary() as? [LineString<CoordinateType>] {
+                if let boundary = elements[i].boundary() as? MultiLineString<CoordinateType> {
 
                     for lineString in boundary {
                         multiLineString.append(lineString)
