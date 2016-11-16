@@ -22,7 +22,7 @@ import Swift
 /**
     2D Coordinate
 
-    Low level 2 dimensional Coorodinate type
+    Low level 2 dimensional Coordinate type
  */
 public struct Coordinate2D: Coordinate {
 
@@ -55,7 +55,7 @@ extension Coordinate2D: CopyConstructable {
     }
 }
 
-extension Coordinate2D: TupleConvertable {
+extension Coordinate2D: TupleConvertible {
 
     public typealias TupleType = (x: Double, y: Double)
 
