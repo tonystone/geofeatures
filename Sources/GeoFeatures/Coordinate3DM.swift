@@ -22,7 +22,7 @@ import Swift
 /**
     Measured 3D Coordinate
 
-    Low level 3 dimensional Coorodinate type with an m value.
+    Low level 3 dimensional Coordinate type with an m value.
  */
 public struct Coordinate3DM: Coordinate, ThreeDimensional, Measured {
 
@@ -59,7 +59,7 @@ extension Coordinate3DM: CopyConstructable {
     }
 }
 
-extension Coordinate3DM: TupleConvertable {
+extension Coordinate3DM: TupleConvertible {
 
     public typealias TupleType = (x: Double, y: Double, z: Double, m: Double)
 

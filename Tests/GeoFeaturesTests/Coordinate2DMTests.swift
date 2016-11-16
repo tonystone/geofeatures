@@ -44,7 +44,7 @@ class Coordinate2DMTests: XCTestCase {
         XCTAssertEqual(Coordinate2DM(x: 1001.0, y: 1002.0, m: 1003.0).m, 1003.0)
     }
 
-    // MARK: TupleConvertable
+    // MARK: TupleConvertible
 
     func testInit_Tuple () {
         let coordinate = Coordinate2DM(tuple: (x: 2.0, y: 3.0, m: 4.0))

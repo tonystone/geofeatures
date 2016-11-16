@@ -48,7 +48,7 @@
 		A709491581F3D4B4FE4555FF /* LinearRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712865886924EA6357084F51 /* LinearRing.swift */; };
 		B23BFCCA75E79428995EC36D /* LinearRing+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B20757F497C58C9ED68DA /* LinearRing+Curve.swift */; };
 		B3335698DDBC909A17C2EC45 /* Pods-GeoFeatures_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5790A97316B7B4AAC3604E46 /* Pods-GeoFeatures_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4BD3BF9A88AC472B8B9BA49 /* TupleConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB5DA09E9B37E106AB070 /* TupleConvertable.swift */; };
+		B4BD3BF9A88AC472B8B9BA49 /* TupleConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB5DA09E9B37E106AB070 /* TupleConvertible.swift */; };
 		B9A7E23D4A14A0D2E96E2AAE /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A64E3A9FFA2D77258E6A80 /* Tokenizer.swift */; };
 		BBFFB31BAE52415C4D204990 /* CopyConstructable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676DB15F8AB0CDE3ABC8013B /* CopyConstructable.swift */; };
 		C6D26CF0FFC9EBC17A6AC1A8 /* MultiLineString+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA5EED879238A55DDB727D /* MultiLineString+Geometry.swift */; };
@@ -145,7 +145,7 @@
 		D1EA5EED879238A55DDB727D /* MultiLineString+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MultiLineString+Geometry.swift"; sourceTree = "<group>"; };
 		D41288F255AF93A0186927AA /* LinearRing+Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LinearRing+Geometry.swift"; sourceTree = "<group>"; };
 		D480739D2031C8B4448AEE3F /* Coordinate3DM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinate3DM.swift; sourceTree = "<group>"; };
-		D4DFB5DA09E9B37E106AB070 /* TupleConvertable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TupleConvertable.swift; sourceTree = "<group>"; };
+		D4DFB5DA09E9B37E106AB070 /* TupleConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TupleConvertible.swift; sourceTree = "<group>"; };
 		D8422DDEC61CC16DB661E7E2 /* CoordinateReferenceSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystem.swift; sourceTree = "<group>"; };
 		DD4B4C6B40ED8724284AD15B /* WKTReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WKTReader.swift; sourceTree = "<group>"; };
 		DEF5EAA16F8CB925DB4E4D15 /* Polygon+Surface.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Polygon+Surface.swift"; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				6C66C8677B748E2B2E29ABE2 /* Precision.swift */,
 				FC25DABBFD02D0CEBBD9DD82 /* Surface.swift */,
 				04A64E3A9FFA2D77258E6A80 /* Tokenizer.swift */,
-				D4DFB5DA09E9B37E106AB070 /* TupleConvertable.swift */,
+				D4DFB5DA09E9B37E106AB070 /* TupleConvertible.swift */,
 				DD4B4C6B40ED8724284AD15B /* WKTReader.swift */,
 				793FEACC4D9B05269696BAB5 /* WKTWriter.swift */,
 			);
@@ -524,7 +524,7 @@
 				9F29FD0D4A3C8D21F118DDDA /* Precision.swift in Sources */,
 				8CF8F87B1E31E779DFBEE153 /* Surface.swift in Sources */,
 				B9A7E23D4A14A0D2E96E2AAE /* Tokenizer.swift in Sources */,
-				B4BD3BF9A88AC472B8B9BA49 /* TupleConvertable.swift in Sources */,
+				B4BD3BF9A88AC472B8B9BA49 /* TupleConvertible.swift in Sources */,
 				61CC6DA3DCA42BFE928840E9 /* WKTReader.swift in Sources */,
 				8834A9AA2528774D0590A8E0 /* WKTWriter.swift in Sources */,
 			);

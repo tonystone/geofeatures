@@ -45,7 +45,7 @@ class Coordinate3DTests: XCTestCase {
         XCTAssertEqual(Coordinate3D(x: 1001.0, y: 1002.0, z: 1003.0).z, 1003.0)
     }
 
-    // MARK: TupleConvertable
+    // MARK: TupleConvertible
 
     func testInit_Tuple () {
         let coordinate = Coordinate3D(tuple: (x: 2.0, y: 3.0, z: 4.0))

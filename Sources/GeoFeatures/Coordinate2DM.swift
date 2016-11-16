@@ -22,7 +22,7 @@ import Swift
 /**
     Measuted 2D Coordinate
 
-    Low level 2 dimensional Coorodinate type with an m value.
+    Low level 2 dimensional Coordinate type with an m value.
  */
 public struct Coordinate2DM: Coordinate, Measured {
 
@@ -57,7 +57,7 @@ extension Coordinate2DM: CopyConstructable {
     }
 }
 
-extension Coordinate2DM: TupleConvertable {
+extension Coordinate2DM: TupleConvertible {
 
     public typealias TupleType = (x: Double, y: Double, m: Double)
 

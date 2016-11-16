@@ -146,7 +146,7 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
     internal var _innerRings = [RingType]() // swiftlint:disable:this variable_name
 }
 
-extension Polygon where CoordinateType: TupleConvertable {
+extension Polygon where CoordinateType: TupleConvertible {
 
     /**
         A Polygon can be constructed from any `CollectionType` for it's rings including Array as
