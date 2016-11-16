@@ -30,6 +30,8 @@ extension MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests {
    static var allTests: [(String, (MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testArea_Empty", testArea_Empty),
+                ("testArea_2_Same_Polygons", testArea_2_Same_Polygons),
+                ("testArea_2_Different_Polygons", testArea_2_Different_Polygons),
            ]
    }
 }

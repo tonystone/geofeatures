@@ -33,6 +33,8 @@ extension Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testBoundary_OuterRing", testBoundary_OuterRing),
                 ("testBoundary_OuterRing_1InnerRing", testBoundary_OuterRing_1InnerRing),
                 ("testBoundary_Empty", testBoundary_Empty),
+                ("testEqual_True", testEqual_True),
+                ("testEqual_False", testEqual_False),
            ]
    }
 }
