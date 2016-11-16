@@ -46,13 +46,15 @@ extension GeometryCollection: Geometry {
     }
 
     /**
-     - Returns: the closure of the combinatorial boundary of this Geometry instance.
+        - Returns: the closure of the combinatorial boundary of this Geometry instance.
+        
+        - Note: GeometryCollection at this point does not implement boundary as there is no clear defination of what the boundary of this type would be.
      */
 
     public
     func boundary() -> Geometry {
-        // TODO: implement boundary
-        return GeometryCollection()
+        // Return an empty GeometryCollection
+        return GeometryCollection(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
     }
 
     public func equals(_ other: Geometry) -> Bool {
