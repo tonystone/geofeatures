@@ -18,7 +18,6 @@
  *   Created by Tony Stone on 4/24/16.
  */
 import XCTest
-
 import GeoFeatures
 
 private let geometryDimension = Dimension.one    // MultiLineString are always 1 dimension

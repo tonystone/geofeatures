@@ -18,7 +18,6 @@
  *   Created by Tony Stone on 3/29/16.
  */
 import XCTest
-
 import GeoFeatures
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -

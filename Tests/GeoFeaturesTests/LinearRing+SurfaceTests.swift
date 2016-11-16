@@ -19,7 +19,6 @@
  */
 
 import XCTest
-
 import GeoFeatures
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -

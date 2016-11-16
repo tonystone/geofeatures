@@ -18,7 +18,6 @@
  *   Created by Tony Stone on 4/24/16.
  */
 import XCTest
-
 import GeoFeatures
 
 private let geometryDimension = Dimension.two    // MultiPolygon are always 2 dimension
