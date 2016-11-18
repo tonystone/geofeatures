@@ -39,9 +39,10 @@ public struct Coordinate2DM: Coordinate, Measured {
 
 extension Coordinate2DM: _ArrayConstructable {
 
-    public init(array: [Double]) {
-        precondition(array.count >= 3)
-
+    public init(array: [Double]) throws {
+        guard array.count == 3 else {
+            throw _ArrayConstructableError.invalidArraySize("Invalid array size (\(array.count)).")
+        }
         self.init(x: array[0], y: array[1], m: array[2])
     }
 }
