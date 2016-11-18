@@ -36,7 +36,7 @@ public enum GeoJSONReaderError: Error {
 ///
 /// For more information see [Internet Engineering Task Force (IETF) - The GeoJSON Format](https://tools.ietf.org/html/rfc7946#section-4)
 ///
-open class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
+public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
 
     fileprivate let expectedStringEncoding = String.Encoding.utf8
 
@@ -66,7 +66,7 @@ open class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Array
     ///
     /// - Returns: A Geometry object representing the GeoJSON
     ///
-    open func read(string: String) throws -> Geometry {
+    public func read(string: String) throws -> Geometry {
         return try self.read(data: Data(bytes: Array(string.utf8)))
     }
 
@@ -78,7 +78,7 @@ open class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Array
     ///
     /// - Returns: A Geometry object representing the GeoJSON
     ///
-    open func read(data: Data) throws -> Geometry {
+    public func read(data: Data) throws -> Geometry {
 
         var parsedJSON: Any = ""
 
