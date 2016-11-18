@@ -37,7 +37,7 @@ internal class Tokenizer<T: Token> {
         self.stringStream = string
         self.matchRange = string.startIndex..<string.endIndex
 
-        if self.stringStream.characters.count > 0 {
+        if !self.stringStream.isEmpty {
             line = 1
             column = 1
         }
