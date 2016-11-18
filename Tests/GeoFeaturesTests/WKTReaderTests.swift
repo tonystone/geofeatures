@@ -45,13 +45,28 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     // MARK: - General
 
+    func testRead_InvalidNumberOfCoordinates() {
+
+        let input = "POINT Z (1.0 1.0 1.0)"
+        let expected = "Invalid number of coordinates (3) supplied for type GeoFeatures.Coordinate2D."
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+
+            if case WKTReaderError.invalidNumberOfCoordinates(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
+            }
+        }
+    }
+
     func testRead_Invalid_Geometry() {
 
         let input = "DUMMYTYPE (1.0 1.0)"
         let expected = "Unsupported type -> 'DUMMYTYPE (1.0 1.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unsupportedType(let message) = error {
+            if case WKTReaderError.unsupportedType(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -91,7 +106,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 12. Expected 'single space' but found -> '.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -105,7 +120,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 8. Expected 'numeric literal' but found -> 'K 1.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -119,7 +134,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 12. Expected 'numeric literal' but found -> 'K)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -133,7 +148,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 6. Expected 'single space' but found -> '  (   1.0     1.0   ) '"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -147,7 +162,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 7. Expected '(' but found -> '1 1)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -161,7 +176,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 11. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -193,7 +208,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 11. Expected 'single space' but found -> '   ( 1.0 1.0, 2.0 2.0, 3.0 3.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -207,7 +222,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 21. Expected 'single space' but found -> '  2.0 2.0, 3.0 3.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -221,7 +236,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 12. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -235,7 +250,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 38. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -267,7 +282,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 11. Expected 'single space' but found -> '   ( 1.0 1.0, 2.0 2.0, 3.0 3.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -281,7 +296,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 21. Expected 'single space' but found -> '  2.0 2.0, 3.0 3.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -295,7 +310,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 12. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -309,7 +324,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 38. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -341,7 +356,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 11. Expected 'single space' but found -> '   ((1.0 2.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -355,7 +370,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 23. Expected 'single space' but found -> '  (3.0 4.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -369,7 +384,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 12. Expected '(' but found -> '1.0 2.0), (3.0 4.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -383,7 +398,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 33. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -415,7 +430,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 16. Expected 'single space' but found -> '  ((1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -429,7 +444,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 46. Expected 'single space' but found -> '  (4.0 4.0, 5.0 5.0, 6.0 6.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -443,7 +458,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 17. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0), (4.0 4.0, 5.0 5.0, 6.0 6.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -457,7 +472,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 74. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -497,7 +512,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 46. Expected ',' but found -> ' (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -511,7 +526,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 85. Expected 'single space' but found -> '  (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -533,7 +548,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 8. Expected 'single space' but found -> '  ((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -547,7 +562,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 47. Expected 'single space' but found -> '  (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -561,7 +576,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 9. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0), (4.0 4.0, 5.0 5.0, 6.0 6.0, 4.0 4.0), (3.0 3.0, 4.0 4.0, 5.0 5.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -575,7 +590,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 122. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -607,7 +622,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 13. Expected 'single space' but found -> '  (((1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -621,7 +636,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 54. Expected 'single space' but found -> '  ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -635,7 +650,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 14. Expected '(' but found -> '1.0 1.0, 2.0 2.0, 3.0 3.0, 1.0 1.0)), ((10.0 10.0, 20.0 20.0, 30.0 30.0, 10.0 10.0)))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -649,7 +664,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 101. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -693,7 +708,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 19. Expected 'single space' but found -> '  (POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -707,7 +722,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 37. Expected 'single space' but found -> '  LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -721,7 +736,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 20. Expected '(' but found -> 'POINT (1.0 1.0), LINESTRING (1.0 1.0, 2.0 2.0, 3.0 3.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -735,7 +750,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 76. Expected ')' but found -> ''"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -783,7 +798,7 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> 'K)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -797,7 +812,7 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> ')'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -811,7 +826,7 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 8. Expected 'single space' but found -> '(1.0 1.0 1.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -825,10 +840,25 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 18. Expected 'single space' but found -> '.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
+            }
+        }
+    }
+
+    func testRead_InvalidNumberOfCoordinates() {
+
+        let input = "POINT ZM (1.0 1.0 1.0 1.0)"
+        let expected = "Invalid number of coordinates (4) supplied for type GeoFeatures.Coordinate2DM."
+
+        XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
+
+            if case WKTReaderError.invalidNumberOfCoordinates(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
             }
         }
     }
@@ -853,7 +883,7 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 29. Expected 'M' but found -> '(1.0 1.0 1.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -885,7 +915,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> 'K)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -899,7 +929,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 18. Expected 'numeric literal' but found -> ')'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -913,7 +943,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 8. Expected 'single space' but found -> '(1.0 1.01.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -927,7 +957,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 18. Expected 'single space' but found -> '.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -955,7 +985,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 29. Expected 'Z' but found -> '(1.0 1.0 1.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -987,7 +1017,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 23. Expected 'numeric literal' but found -> 'K)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -1001,7 +1031,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 23. Expected 'numeric literal' but found -> ')'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -1015,7 +1045,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 9. Expected 'single space' but found -> '(1.0 1.0 1.01.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -1029,7 +1059,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 23. Expected 'single space' but found -> '.0)'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -1057,7 +1087,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 30. Expected 'Z' but found -> 'M (1.0 1.0 1.0 1.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
@@ -1071,7 +1101,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Unexpected token at line: 1 column: 31. Expected 'M' but found -> '(1.0 1.0 1.0 1.0))'"
 
         XCTAssertThrowsError(try wktReader.read(wkt: input)) { error in
-            if case ParseError.unexpectedToken(let message) = error {
+            if case WKTReaderError.unexpectedToken(let message) = error {
                 XCTAssertEqual(message, expected)
             } else {
                 XCTFail("Wrong error thrown")
