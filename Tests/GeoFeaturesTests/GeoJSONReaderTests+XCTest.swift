@@ -30,11 +30,14 @@ extension GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
    static var allTests: [(String, (GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testReadWithInvalidJSON", testReadWithInvalidJSON),
+                ("testReadWithInvalidRoot", testReadWithInvalidRoot),
                 ("testReadWithMissingTypeAttribute", testReadWithMissingTypeAttribute),
                 ("testReadWithUnsupportedType", testReadWithUnsupportedType),
                 ("testReadWithMissingCoordinates", testReadWithMissingCoordinates),
                 ("testReadWithInvalidCoordinateStructure", testReadWithInvalidCoordinateStructure),
                 ("testReadWithInvalidNumberOfCoordinates", testReadWithInvalidNumberOfCoordinates),
+                ("testReadWithMissingGeometries", testReadWithMissingGeometries),
+                ("testReadWithInvalidGeometriesStructure", testReadWithInvalidGeometriesStructure),
                 ("testReadWithValidPoint", testReadWithValidPoint),
                 ("testReadWithValidLineString", testReadWithValidLineString),
                 ("testReadWithValidPolygon", testReadWithValidPolygon),
