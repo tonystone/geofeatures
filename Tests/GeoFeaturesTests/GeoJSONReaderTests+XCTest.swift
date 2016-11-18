@@ -29,7 +29,34 @@ extension GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testRead_Point_Float_Valid", testRead_Point_Float_Valid),
+                ("testReadWithInvalidJSON", testReadWithInvalidJSON),
+                ("testReadWithMissingTypeAttribute", testReadWithMissingTypeAttribute),
+                ("testReadWithUnsupportedType", testReadWithUnsupportedType),
+                ("testReadWithMissingCoordinates", testReadWithMissingCoordinates),
+                ("testReadWithInvalidCoordinateStructure", testReadWithInvalidCoordinateStructure),
+                ("testReadWithInvalidNumberOfCoordinates", testReadWithInvalidNumberOfCoordinates),
+                ("testReadWithValidPoint", testReadWithValidPoint),
+                ("testReadWithValidLineString", testReadWithValidLineString),
+                ("testReadWithValidPolygon", testReadWithValidPolygon),
+                ("testReadWithValidMultiPoint", testReadWithValidMultiPoint),
+                ("testReadWithValidMultiLineString", testReadWithValidMultiLineString),
+                ("testReadWithValidMultiPolygon", testReadWithValidMultiPolygon),
+                ("testReadWithValidGeometryCollection", testReadWithValidGeometryCollection),
+           ]
+   }
+}
+extension GeoJSONReader_Coordinate3DM_FixedPrecision_Cartesian_Tests {
+
+   static var allTests: [(String, (GeoJSONReader_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
+      return [
+                ("testReadWithInvalidNumberOfCoordinates", testReadWithInvalidNumberOfCoordinates),
+                ("testReadWithValidPoint", testReadWithValidPoint),
+                ("testReadWithValidLineString", testReadWithValidLineString),
+                ("testReadWithValidPolygon", testReadWithValidPolygon),
+                ("testReadWithValidMultiPoint", testReadWithValidMultiPoint),
+                ("testReadWithValidMultiLineString", testReadWithValidMultiLineString),
+                ("testReadWithValidMultiPolygon", testReadWithValidMultiPolygon),
+                ("testReadWithValidGeometryCollection", testReadWithValidGeometryCollection),
            ]
    }
 }
