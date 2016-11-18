@@ -67,11 +67,7 @@ open class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Array
     /// - Returns: A Geometry object representing the GeoJSON
     ///
     open func read(string: String) throws -> Geometry {
-
-        guard let data = string.data(using: expectedStringEncoding) else {
-            throw GeoJSONReaderError.invalidEncoding("GeoJSON supplied is not an \(expectedStringEncoding) encoded String.")
-        }
-        return try self.read(data: data)
+        return try self.read(data: Data(bytes: Array(string.utf8)))
     }
 
     ///
