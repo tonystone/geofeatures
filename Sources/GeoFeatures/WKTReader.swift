@@ -80,7 +80,7 @@ private class WKT: Token, CustomStringConvertible {
 /**
     TODO: Full header class doc with examples
  */
-open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
+public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
 
     fileprivate let crs: CoordinateReferenceSystem
     fileprivate let precision: Precision
@@ -93,7 +93,7 @@ open class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCons
     /**
         TODO: Full header func doc for read
      */
-    open func read(wkt: String) throws -> Geometry {
+    public func read(wkt: String) throws -> Geometry {
 
         let tokenizer = Tokenizer<WKT>(string: wkt)
 

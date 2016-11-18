@@ -46,7 +46,7 @@ private enum WKT: String {
 
  WKTWriter generates a WKT – Well-known Text – representation of a `Geometry` object.
  */
-open class WKTWriter<CoordinateType : Coordinate & CopyConstructable & _ArrayConstructable> {
+public class WKTWriter<CoordinateType : Coordinate & CopyConstructable & _ArrayConstructable> {
 
     public init() {}
 
@@ -58,7 +58,7 @@ open class WKTWriter<CoordinateType : Coordinate & CopyConstructable & _ArrayCon
      - returns: WKT string for supported types. If unsupported, an empty string is returned.
      - note: This method does not check the validity of the geometry.
      */
-    open func write(_ geometry: Geometry) -> String {
+    public func write(_ geometry: Geometry) -> String {
 
         // BNF: <geometry tagged text> ::= <point tagged text>
         //                          | <linestring tagged text>
