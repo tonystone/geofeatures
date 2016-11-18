@@ -30,6 +30,9 @@ extension WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
    static var allTests: [(String, (WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
                 ("testRead_Point_Float_Valid", testRead_Point_Float_Valid),
+                ("testRead_UsingDataUTF8", testRead_UsingDataUTF8),
+                ("testRead_UsingDataUnicode", testRead_UsingDataUnicode),
+                ("testRead_DataNotConvertableUsingUTF8", testRead_DataNotConvertableUsingUTF8),
                 ("testRead_InvalidNumberOfCoordinates", testRead_InvalidNumberOfCoordinates),
                 ("testRead_Invalid_Geometry", testRead_Invalid_Geometry),
                 ("testRead_Point_Int_Valid", testRead_Point_Int_Valid),
