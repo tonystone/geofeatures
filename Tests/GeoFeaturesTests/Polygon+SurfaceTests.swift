@@ -24,6 +24,7 @@ import GeoFeatures
     /// TODO: Remove this after figuring out why there seems to be a symbol conflict (error: cannot specialize a non-generic definition) with another Polygon on Swift PM on Apple platforms only.
     import struct GeoFeatures.Polygon
 #endif
+
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
 class Polygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
