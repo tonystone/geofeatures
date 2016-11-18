@@ -28,6 +28,7 @@
 		EA475CDF1CDA63060013AFA1 /* generate_geometry_from_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */; };
 		EA475CE01CDA63060013AFA1 /* generate_tests_from_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */; };
 		EA5CE1251DD62CB600F773F2 /* MultiPolygonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5CE1241DD62CB600F773F2 /* MultiPolygonTests.swift */; };
+		EA87EB861DDCD60500E679FA /* GeoJSONReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA87EB851DDCD60500E679FA /* GeoJSONReaderTests.swift */; };
 		EA8D58991DB7D7C200713261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58971DB7D7C200713261 /* AppDelegate.swift */; };
 		EA8D589A1DB7D7C200713261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8D58981DB7D7C200713261 /* ViewController.swift */; };
 		EA8D589C1DB7D7D700713261 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8D589B1DB7D7D700713261 /* Images.xcassets */; };
@@ -101,6 +102,7 @@
 		EA634F061DD0341200AC93E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
 		EA799B4E1C723E0700397C2A /* GeoFeatures-Inheritance-Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GeoFeatures-Inheritance-Diagram.png"; path = "../Docs/GeoFeatures-Inheritance-Diagram.png"; sourceTree = "<group>"; };
+		EA87EB851DDCD60500E679FA /* GeoJSONReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoJSONReaderTests.swift; sourceTree = "<group>"; };
 		EA8D58971DB7D7C200713261 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = GeoFeatures/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		EA8D58981DB7D7C200713261 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = GeoFeatures/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		EA8D589B1DB7D7D700713261 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GeoFeatures/Images.xcassets; sourceTree = SOURCE_ROOT; };
@@ -325,6 +327,7 @@
 				EAA325A41DD407BC004534F3 /* TokenizerTests.swift */,
 				EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */,
 				EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */,
+				EA87EB851DDCD60500E679FA /* GeoJSONReaderTests.swift */,
 			);
 			path = GeoFeaturesTests;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				EA8D58FE1DB7E34C00713261 /* LineString+GeometryTests.swift in Sources */,
 				EAA325A51DD407BC004534F3 /* TokenizerTests.swift in Sources */,
 				EA8D58E41DB7E34C00713261 /* Coordinate2DTests.swift in Sources */,
+				EA87EB861DDCD60500E679FA /* GeoJSONReaderTests.swift in Sources */,
 				EA8D58F41DB7E34C00713261 /* LinearRing+CurveTests.swift in Sources */,
 				EA8D59051DB7E34C00713261 /* MultiLineString+GeometryTests.swift in Sources */,
 				EA8D59121DB7E34C00713261 /* PointTests.swift in Sources */,

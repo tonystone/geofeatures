@@ -37,9 +37,10 @@ public struct Coordinate2D: Coordinate {
 
 extension Coordinate2D: _ArrayConstructable {
 
-    public init(array: [Double]) {
-        precondition(array.count >= 2)
-
+    public init(array: [Double]) throws {
+        guard array.count == 2 else {
+            throw _ArrayConstructableError.invalidArraySize("Invalid array size (\(array.count)).")
+        }
         self.init(x: array[0], y: array[1])
     }
 }

@@ -206,7 +206,6 @@
 				2333C76B6A110FEEC1C62323 /* Dimension.swift */,
 				2B651C7DAA87CB3362BA96F9 /* FixedPrecision.swift */,
 				E27CAA8637CA48CF5FDCFF04 /* FloatingPrecision.swift */,
-				3F0328894E9009C88F31681E /* GeoJSONReader.swift */,
 				C3BBDE7CF4917B38AB1C2B26 /* Geometry.swift */,
 				2B893A61BED64A42EB7DBBDA /* GeometryCollection.swift */,
 				43BDB6DD53D9B0DF8B5C5165 /* GeometryCollection+Geometry.swift */,
@@ -238,6 +237,7 @@
 				D4DFB5DA09E9B37E106AB070 /* TupleConvertible.swift */,
 				DD4B4C6B40ED8724284AD15B /* WKTReader.swift */,
 				793FEACC4D9B05269696BAB5 /* WKTWriter.swift */,
+				3F0328894E9009C88F31681E /* GeoJSONReader.swift */,
 			);
 			path = GeoFeatures;
 			sourceTree = "<group>";

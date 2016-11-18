@@ -20,6 +20,13 @@
 import Swift
 
 // Internal use only
-public protocol _ArrayConstructable {
-    init(array: [Double])
+public
+enum _ArrayConstructableError: Error {  // swiftlint:disable:this type_name
+    case invalidArraySize(String)
+}
+
+// Internal use only
+public
+protocol _ArrayConstructable {  // swiftlint:disable:this type_name
+    init(array: [Double]) throws
 }
