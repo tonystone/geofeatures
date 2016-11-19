@@ -73,8 +73,8 @@ extension GeometryCollection {
 
     @inline(__always)
     fileprivate mutating func _resizeIfNeeded() {
-        if buffer.capacity == count {
-            buffer = buffer.resize(buffer.capacity * 2)
+        if buffer.header.capacity == buffer.header.count {
+            buffer = buffer.resize(buffer.header.capacity * 2)
         }
     }
 }

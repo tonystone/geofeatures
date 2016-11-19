@@ -43,7 +43,7 @@ extension LinearRing: Surface {
 
                 var c1 = elements[0]
 
-                for index in 1..<header.pointee.count {
+                for index in stride(from: 1, to: header.pointee.count, by: 1) {
 
                     let c2 = elements[index]
 
