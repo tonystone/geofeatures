@@ -35,7 +35,7 @@ internal class Tokenizer<T: Token> {
 
     init(string: String) {
         self.stringStream = string
-        self.matchRange = string.startIndex..<string.endIndex
+        self.matchRange = stringStream.startIndex..<stringStream.endIndex
 
         if !self.stringStream.isEmpty {
             line = 1
@@ -46,16 +46,19 @@ internal class Tokenizer<T: Token> {
     func accept(_ token: T) -> String? {
         if let range = token.match(stringStream, matchRange: matchRange) {
 
+            let match = stringStream.substring(with: range)
+
+            // Increment the range for matching
+            matchRange = range.upperBound..<matchRange.upperBound
+
             if token.isNewLine() {
                 line += 1
                 column = 1
             } else {
-                column += stringStream.distance(from: range.lowerBound, to: range.upperBound)
+                // Note: we're counting visual charactors not the number of Code Units it takes to hold a charactor which is why we use the charactor view.
+                column += match.characters.count
             }
-            // Increment the range for matching
-            matchRange = range.upperBound..<matchRange.upperBound
-
-            return stringStream.substring(with: range)
+            return match
         }
         return nil
     }
