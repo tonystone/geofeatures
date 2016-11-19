@@ -18,7 +18,7 @@
  *   Created by Tony Stone on 11/14/16.
  */
 import XCTest
-import GeoFeatures
+@testable import GeoFeatures
 
 #if (os(OSX) || os(iOS) || os(tvOS) || os(watchOS)) && SWIFT_PACKAGE
     /// TODO: Remove this after figuring out why there seems to be a symbol conflict (error: cannot specialize a non-generic definition) with another Polygon on Swift PM on Apple platforms only.
@@ -102,6 +102,14 @@ class Polygon_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = "Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 3.0, y: 1.5), (x: 3.0, y: 3.0), (x: 4.0, y: 3.5), (x: 5.0, y: 3.0)]])"
 
         XCTAssertEqual(input.debugDescription, expected)
+    }
+
+    func testDescription_Empty() {
+
+        let input    = Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let expected = "Polygon<Coordinate2D>([], [])"
+
+        XCTAssertEqual(input.description, expected)
     }
 
     func testOperatorEqual_Geometry_Polygon() {

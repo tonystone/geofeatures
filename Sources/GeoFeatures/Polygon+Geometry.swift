@@ -36,16 +36,15 @@ extension Polygon: Geometry {
     public
     func boundary() -> Geometry {
 
-        var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+        return buffer.withUnsafeMutablePointers { (header, elements) -> MultiLineString<CoordinateType> in
 
-        if _outerRing.count > 0 {
-            multiLineString.append(LineString<CoordinateType>(elements: _outerRing, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+            var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
 
-            for ring in _innerRings {
-                multiLineString.append(LineString<CoordinateType>(elements: ring, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+            for i in 0..<header.pointee.count {
+                multiLineString.append(LineString<CoordinateType>(elements: elements[i], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
             }
+            return multiLineString
         }
-        return multiLineString
     }
 
     public func equals(_ other: Geometry) -> Bool {
