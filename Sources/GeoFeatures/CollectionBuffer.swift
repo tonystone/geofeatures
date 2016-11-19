@@ -36,7 +36,7 @@ internal class CollectionBuffer<E>: ManagedBuffer<CollectionBufferHeader,E> {
     }
 }
 
-extension CollectionBuffer {
+internal extension CollectionBuffer {
 
     func clone() -> CollectionBuffer<Element> {
         return self.withUnsafeMutablePointerToElements { oldElements -> CollectionBuffer<Element> in
@@ -74,4 +74,80 @@ extension CollectionBuffer {
             } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
         }
     }
+}
+
+internal extension CollectionBuffer {
+
+    func append(_ newElement: Element) {
+
+        self.withUnsafeMutablePointers { (header, elements) -> Void in
+
+            elements.advanced(by: header.pointee.count).initialize(to: newElement)
+            header.pointee.count += 1
+        }
+    }
+
+    func insert(_ newElement: Element, at index: Int) {
+        guard (index >= 0) && (index < self.header.count) else { preconditionFailure("Index out of range, can't insert \(Element.self).") }
+
+        self.withUnsafeMutablePointers { (header, elements) -> Void in
+
+            var m = header.pointee.count &- 1
+
+            header.pointee.count = header.pointee.count &+ 1
+
+            // Move the other elements
+            while  m >= index {
+                elements.advanced(by: m &+ 1).moveInitialize(from: elements.advanced(by: m), count: 1)
+                m = m &- 1
+            }
+
+            elements.advanced(by: index).initialize(to: newElement)
+        }
+    }
+
+    func update(_ newElement: Element, at index: Int) {
+           guard (index >= 0) && (index < self.header.count) else { preconditionFailure("Index out of range.") }
+
+            self.withUnsafeMutablePointerToElements { elements->Void in
+                let element = elements.advanced(by: index)
+
+                element.deinitialize()
+                element.initialize(to: newElement)
+            }
+    }
+
+    func remove(at index: Int) -> Element {
+        guard (index >= 0) && (index < self.header.count) else { preconditionFailure("Index out of range, can't remove \(Element.self).") }
+
+        return self.withUnsafeMutablePointers { (header, elements) -> Element in
+
+            /// Move the element to the variable so it can be returned
+            let result = (elements + index).move()
+
+            /// Decrement the count of items since we removed it
+            header.pointee.count = header.pointee.count &- 1
+
+            var m = index
+
+            // Move the other elements
+            while  m <  header.pointee.count {
+                elements.advanced(by: m).moveInitialize(from: elements.advanced(by: m &+ 1), count: 1)
+                m = m &+ 1
+            }
+            return result
+        }
+    }
+
+    func removeLast() -> Element {
+        guard self.header.count > 0 else { preconditionFailure("can't removeLast from an empty Collection.") }
+
+        return self.withUnsafeMutablePointers { (header, elements) -> Element in
+
+            // No need to check for overflow in `header.pointee.count - 1` because `header.pointee.count` is known to be positive.
+            header.pointee.count = header.pointee.count &- 1
+            return elements.advanced(by: header.pointee.count).move()
+        }
+    }
+
 }
