@@ -147,12 +147,8 @@ extension MultiPolygon: Collection {
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
-        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
-
-            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
-            elements.advanced(by: header.pointee.count).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-            header.pointee.count += 1
-        }
+        /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+        buffer.append(Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
     }
 
     /**
@@ -175,26 +171,12 @@ extension MultiPolygon: Collection {
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: Element, at index: Int) {
-        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range, can't insert Polygon.") }
 
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
-        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
-
-            var m = header.pointee.count &- 1
-
-            header.pointee.count = header.pointee.count &+ 1
-
-            // Move the other elements
-            while  m >= index {
-                elements.advanced(by: m &+ 1).moveInitialize(from: elements.advanced(by: m), count: 1)
-                m = m &- 1
-            }
-
-            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
-            elements.advanced(by: index).initialize(to: Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-        }
+        /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+        buffer.insert(Element(other: newElement, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem), at: index)
     }
 
     /**
@@ -202,25 +184,7 @@ extension MultiPolygon: Collection {
      */
     @discardableResult
     public mutating func remove(at index: Int) -> Element {
-        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range, can't remove Polygon.") }
-
-        return buffer.withUnsafeMutablePointers { (header, elements) -> Element in
-
-            /// Move the element to the variable so it can be returned
-            let result = (elements + index).move()
-
-            /// Decrement the count of items since we removed it
-            header.pointee.count = header.pointee.count &- 1
-
-            var m = index
-
-            // Move the other elements
-            while  m <  header.pointee.count {
-                elements.advanced(by: m).moveInitialize(from: elements.advanced(by: m &+ 1), count: 1)
-                m = m &+ 1
-            }
-            return result
-        }
+        return buffer.remove(at: index)
     }
 
     /**
@@ -230,14 +194,7 @@ extension MultiPolygon: Collection {
      */
     @discardableResult
     public mutating func removeLast() -> Element {
-        guard buffer.header.count > 0 else { preconditionFailure("can't removeLast from an empty MultiPolygon.") }
-
-        return buffer.withUnsafeMutablePointers { (header, elements) -> Element in
-
-            // No need to check for overflow in `header.pointee.count - 1` because `header.pointee.count` is known to be positive.
-            header.pointee.count = header.pointee.count &- 1
-            return elements.advanced(by: header.pointee.count).move()
-        }
+        return buffer.removeLast()
     }
 
     /**
@@ -292,17 +249,11 @@ extension MultiPolygon {
             return buffer.withUnsafeMutablePointerToElements { $0[index] }
         }
         set (newValue) {
-            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
             _ensureUniquelyReferenced()
 
-            buffer.withUnsafeMutablePointerToElements { elements->Void in
-                let element = elements.advanced(by: index)
-
-                element.deinitialize()
-                /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
-                element.initialize(to: Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-            }
+            /// We create a new instance of the Element so we can adjust the precision and Coordinate reference system of the Element before adding.
+            buffer.update(Element(other: newValue, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem), at: index)
         }
     }
 }
