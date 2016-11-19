@@ -27,6 +27,7 @@ import Foundation
 
 public enum WKTReaderError: Error  {
     case invalidNumberOfCoordinates(String)
+    case invalidData(String)
     case unsupportedType(String)
     case unexpectedToken(String)
     case missingElement(String)
@@ -77,25 +78,43 @@ private class WKT: Token, CustomStringConvertible {
     var pattern: String
 }
 
-/**
-    TODO: Full header class doc with examples
- */
+///
+/// Well Known Text (WKT) parser for GeoFeatures based on the OGC WKT specification
+///
+/// - Parameters:
+///     - CoordinateType: The coordinate type to use for all generated Geometry types.
+///
 public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
 
     fileprivate let crs: CoordinateReferenceSystem
     fileprivate let precision: Precision
 
+    ///
+    /// Initialize this reader
+    ///
+    /// - Parameters:
+    ///     - precision: The `Precision` model that should used for all coordinates.
+    ///     - coordinateReferenceSystem: The 'CoordinateReferenceSystem` the result Geometries should use in calculations on their coordinates.
+    ///
+    /// - SeeAlso: `Precision`
+    /// - SeeAlso: `CoordinateReferenceSystem`
+    ///
     public init(precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         self.crs = coordinateReferenceSystem
         self.precision = precision
     }
 
-    /**
-        TODO: Full header func doc for read
-     */
-    public func read(wkt: String) throws -> Geometry {
+    ///
+    /// Parse a WKT String into Geometry objects.
+    ///
+    /// - Parameters:
+    ///     - string: The WKT string to parse
+    ///
+    /// - Returns: A Geometry object representing the WKT
+    ///
+    public func read(string: String) throws -> Geometry {
 
-        let tokenizer = Tokenizer<WKT>(string: wkt)
+        let tokenizer = Tokenizer<WKT>(string: string)
 
         // BNF: <geometry tagged text> ::= <point tagged text>
         //                          | <linestring tagged text>
@@ -148,7 +167,24 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
             return try self.geometryCollectionTaggedText(tokenizer, require: (z: nil, m: nil))
         }
-        throw WKTReaderError.unsupportedType("Unsupported type -> '\(wkt)'")
+        throw WKTReaderError.unsupportedType("Unsupported type -> '\(string)'")
+    }
+
+    ///
+    /// Parse the WKT Data object into Geometry objects.
+    ///
+    /// - Parameters:
+    ///     - data: The Data object to parse
+    ///     - encoding: The encoding that should be used to read the data.
+    ///
+    /// - Returns: A Geometry object representing the WKT
+    ///
+    public func read(data: Data, encoding: String.Encoding = .utf8) throws -> Geometry {
+
+        guard let string = String(data: data, encoding: encoding) else {
+            throw WKTReaderError.invalidData("The Data object can not be converted using the given encoding '\(encoding)'.")
+        }
+        return try self.read(string: string)
     }
 
     // BNF: <point tagged text> ::= point <point text>
