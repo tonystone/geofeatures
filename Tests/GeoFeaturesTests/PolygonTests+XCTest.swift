@@ -38,6 +38,7 @@ extension Polygon_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testInit_Tuple", testInit_Tuple),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
+                ("testDescription_Empty", testDescription_Empty),
                 ("testOperatorEqual_Geometry_Polygon", testOperatorEqual_Geometry_Polygon),
                 ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry),
            ]

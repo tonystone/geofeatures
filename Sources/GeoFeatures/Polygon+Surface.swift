@@ -34,14 +34,14 @@ extension Polygon: Surface {
 
     public func area() -> Double {
 
-        var area: Double = _outerRing.area()
+        return buffer.withUnsafeMutablePointers { (header, elements) -> Double in
 
-        var innerRings = _innerRings.makeIterator()
+            var area: Double = 0.0
 
-        while let ring = innerRings.next() {
-            area += ring.area()
+            for i in 0..<header.pointee.count {
+                area += elements[i].area()
+            }
+            return self.precision.convert(area)
         }
-        return self.precision.convert(area)
     }
-
 }

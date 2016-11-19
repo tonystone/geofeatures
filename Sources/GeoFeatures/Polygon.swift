@@ -50,14 +50,35 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
 
         - seealso: `LinearRing`
      */
-    public var outerRing: RingType { get { return _outerRing } }
+    public var outerRing: RingType {
+        get {
+            if buffer.header.count > 0 {
+                return buffer.withUnsafeMutablePointerToElements { $0[0] }
+            }
+            return RingType(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+        }
+    }
 
     /**
         - returns: An Array of `LinearRing`s representing the innerRings of this Polygon
 
         - seealso: `LinearRing`
      */
-    public var innerRings: [RingType] { get { return _innerRings } }
+    public var innerRings: [RingType] {
+        get {
+            if buffer.header.count > 1 {
+                return buffer.withUnsafeMutablePointers { header, elements in
+                    var rings = [RingType]()
+
+                    for i in stride(from: 1, to: header.pointee.count, by: 1) {
+                        rings.append(elements[i])
+                    }
+                    return rings
+                }
+            }
+            return []
+        }
+    }
 
     /**
         A Polygon initializer to create an empty polygon.
@@ -73,6 +94,8 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
     public init (precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
         self.precision = precision
         self.coordinateReferenceSystem = coordinateReferenceSystem
+
+        self.buffer = BufferType.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! BufferType // swiftlint:disable:this force_cast
     }
 
     /**
@@ -86,25 +109,11 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
      - seealso: `CoordinateReferenceSystem`
      - seealso: `Precision`
      */
-    public  init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
 
-        var outerRingsGenerator = other.outerRing.makeIterator()
-
-        self._outerRing.reserveCapacity(numericCast(outerRing.count))
-
-        while let coordinate = outerRingsGenerator.next() {
-
-            self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
-
-        var innerRingsGenerator = other.innerRings.makeIterator()
-
-        while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(elements: ring, precision: precision))
-        }
+        self.buffer = other.buffer
     }
 
     /**
@@ -121,29 +130,21 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         - seealso: `CoordinateReferenceSystem`
         - seealso: `Precision`
      */
-    public  init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
+    public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
 
-        var outerRingsGenerator = outerRing.makeIterator()
-
-        self._outerRing.reserveCapacity(numericCast(outerRing.count))
-
-        while let coordinate = outerRingsGenerator.next() {
-
-            self._outerRing.append(CoordinateType(other: coordinate, precision: precision))
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
+        buffer.append(RingType(elements: outerRing, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
 
         var innerRingsGenerator = innerRings.makeIterator()
 
         while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(elements: ring, precision: precision))
+            buffer.append(RingType(elements: ring, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
         }
     }
 
-    internal var _outerRing = RingType()    // swiftlint:disable:this variable_name
-    internal var _innerRings = [RingType]() // swiftlint:disable:this variable_name
+    internal typealias BufferType = CollectionBuffer<RingType>
+    internal var buffer: BufferType
 }
 
 extension Polygon where CoordinateType: TupleConvertible {
@@ -166,20 +167,12 @@ extension Polygon where CoordinateType: TupleConvertible {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
 
-        var outerRingsGenerator = outerRing.makeIterator()
-
-        self._outerRing.reserveCapacity(numericCast(outerRing.count))
-
-        while let coordinate = outerRingsGenerator.next() {
-
-            self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
+        buffer.append(RingType(elements: outerRing, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
 
         var innerRingsGenerator = innerRings.makeIterator()
 
         while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(elements: ring, precision: precision))
+            buffer.append(RingType(elements: ring, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
         }
     }
 
@@ -187,20 +180,12 @@ extension Polygon where CoordinateType: TupleConvertible {
 
         self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
 
-        var outerRingsGenerator = rings.0.makeIterator()
-
-        self._outerRing.reserveCapacity(outerRing.count)
-
-        while let coordinate = outerRingsGenerator.next() {
-
-            self._outerRing.append(CoordinateType(tuple: coordinate, precision: precision))
-        }
-        self._innerRings.reserveCapacity(innerRings.count)
+        buffer.append(RingType(elements: rings.0, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
 
         var innerRingsGenerator = rings.1.makeIterator()
 
         while let ring = innerRingsGenerator.next() {
-            self._innerRings.append(RingType(elements: ring, precision: precision))
+            buffer.append(RingType(elements: ring, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
         }
     }
 }
@@ -211,24 +196,28 @@ extension Polygon: CustomStringConvertible, CustomDebugStringConvertible {
 
     public var description: String {
 
-        let outerRingDescription = { () -> String in
-            return "[\(self.outerRing.flatMap { String(describing: $0) }.joined(separator: ", "))]"
-        }
+        return buffer.withUnsafeMutablePointers({ (header, elements) -> String in
 
-        let innerRingsDescription = { () -> String in
-            var string: String = "["
-
-            var innerRingsGenerator = self.innerRings.makeIterator()
-
-            while let ring = innerRingsGenerator.next() {
-                if !string.hasSuffix("[") { string += ", " }
-
-                string += "[\(ring.flatMap { String(describing: $0) }.joined(separator: ", "))]"
+            let outerRingDescription = { () -> String in
+                if header.pointee.count > 0 {
+                    return "[\(elements[0].flatMap { String(describing: $0) }.joined(separator: ", "))]"
+                }
+                return "[]"
             }
-            string += "]"
-            return string
-        }
-        return "\(type(of: self))(\(outerRingDescription()), \(innerRingsDescription()))"
+
+            let innerRingsDescription = { () -> String in
+                var string: String = "["
+
+                for i in stride(from: 1, to: header.pointee.count, by: 1) {
+                    if !string.hasSuffix("[") { string += ", " }
+
+                    string += "[\(elements[i].flatMap { String(describing: $0) }.joined(separator: ", "))]"
+                }
+                string += "]"
+                return string
+            }
+            return "\(type(of: self))(\(outerRingDescription()), \(innerRingsDescription()))"
+        })
     }
 
     public var debugDescription: String {
