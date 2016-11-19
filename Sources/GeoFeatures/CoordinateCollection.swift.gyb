@@ -168,13 +168,7 @@ extension ${Self}: Collection {
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
-        let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
-
-        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
-
-            elements.advanced(by: header.pointee.count).initialize(to: convertedCoordinate)
-            header.pointee.count = header.pointee.count &+ 1
-        }
+        buffer.append(CoordinateType(other: newElement, precision: precision))
     }
 
     /**
@@ -197,25 +191,11 @@ extension ${Self}: Collection {
         - Requires: `i <= count`.
      */
     public mutating func insert(_ newElement: CoordinateType, at index: Int) {
-        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
         _ensureUniquelyReferenced()
         _resizeIfNeeded()
 
-        let convertedCoordinate = CoordinateType(other: newElement, precision: precision)
-
-        buffer.withUnsafeMutablePointers { (header, elements) -> Void in
-            var m = header.pointee.count
-
-            header.pointee.count = header.pointee.count &+ 1
-
-            // Move the other elements
-            while  m >= index {
-                elements.advanced(by: m &+ 1).moveInitialize(from: elements.advanced(by: m), count: 1)
-                m = m &- 1
-            }
-            (elements + index).initialize(to: convertedCoordinate)
-        }
+        buffer.insert(CoordinateType(other: newElement, precision: precision), at: index)
     }
 
     /**
@@ -223,23 +203,7 @@ extension ${Self}: Collection {
      */
     @discardableResult
     public mutating func remove(at index: Int) -> CoordinateType {
-        guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
-
-        return buffer.withUnsafeMutablePointers { (header, elements) -> CoordinateType in
-
-            let result = (elements + index).move()
-
-            var m = index
-
-            // Move the other elements
-            while  m <  header.pointee.count {
-                elements.advanced(by: m).moveInitialize(from: elements.advanced(by: m &+ 1), count: 1)
-                m = m &+ 1
-            }
-            header.pointee.count = header.pointee.count &- 1
-
-            return result
-        }
+        return buffer.remove(at: index)
     }
 
     /**
@@ -249,14 +213,7 @@ extension ${Self}: Collection {
      */
     @discardableResult
     public mutating func removeLast() -> CoordinateType {
-        guard buffer.header.count > 0 else { preconditionFailure("can't removeLast from an empty ${Self}.") }
-
-        return buffer.withUnsafeMutablePointers { (header, elements) -> CoordinateType in
-
-            // No need to check for overflow in `header.pointee.count - 1` because `i` is known to be positive.
-            header.pointee.count = header.pointee.count &- 1
-            return elements.advanced(by: header.pointee.count).move()
-        }
+        return buffer.removeLast()
     }
 
     /**
@@ -376,18 +333,10 @@ extension ${Self}: Swift.Collection, MutableCollection, _DestructorSafeContainer
         }
 
         set (newValue) {
-            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
             _ensureUniquelyReferenced()
 
-            let convertedCoordinate = CoordinateType(other: newValue, precision: precision)
-
-            buffer.withUnsafeMutablePointerToElements { elements -> Void in
-                let element = elements.advanced(by: index)
-
-                element.deinitialize()
-                element.initialize(to: convertedCoordinate)
-            }
+            buffer.update(CoordinateType(other: newValue, precision: precision), at: index)
         }
     }
 }
