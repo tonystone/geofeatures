@@ -191,7 +191,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         }
 
         // Get the inner rings
-        for i in 1..<coordinates.count {
+        for i in stride(from: 1, to: coordinates.count, by: 1) {
             innerRings.append(LinearRing<CoordinateType>(elements: try self.coordinates(jsonArray: coordinates[i]), precision: self.precision, coordinateReferenceSystem: self.crs))
         }
         return Polygon<CoordinateType>(outerRing: outerRing, innerRings: innerRings, precision: self.precision, coordinateReferenceSystem: self.crs)
