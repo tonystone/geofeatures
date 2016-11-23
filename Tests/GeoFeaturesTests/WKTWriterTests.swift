@@ -30,7 +30,7 @@ fileprivate struct UnsupportedGeometry: Geometry {
 
     let precision: Precision = FloatingPrecision()
 
-    let coordinateReferenceSystem: CoordinateReferenceSystem = Cartesian()
+    let coordinateSystem: CoordinateSystem = Cartesian()
 
     let dimension: GeoFeatures.Dimension = .one
 

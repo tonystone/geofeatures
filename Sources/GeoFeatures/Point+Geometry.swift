@@ -37,7 +37,7 @@ extension Point: Geometry {
 
     public
     func boundary() -> Geometry {
-        return MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+        return MultiPoint<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)
     }
 
     public

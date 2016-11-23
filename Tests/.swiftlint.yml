@@ -124,8 +124,8 @@ valid_docs:
 
 variable_name:
   min_length:
-    warning: 3
-    error: 3
+    warning: 2
+    error: 2
   max_length:
     warning: 40
     error: 60

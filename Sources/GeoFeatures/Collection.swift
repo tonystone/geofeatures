@@ -29,14 +29,14 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     /**
         Collections are empty constructable
      */
-    init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem)
+    init(precision: Precision, coordinateSystem: CoordinateSystem)
 
     /**
         Collection can be constructed from any Swift.Collection including Array as
         long as it has an Element type equal Self.Element and the Distance
         is an Int type.
      */
-    init<C: Swift.Collection>(elements: C, precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) where C.Iterator.Element == Element
+    init<C: Swift.Collection>(elements: C, precision: Precision, coordinateSystem: CoordinateSystem) where C.Iterator.Element == Element
 
     /**
         - Returns: The number of Geometry objects.

@@ -25,9 +25,9 @@ Default Precision for all class
 public let defaultPrecision = FloatingPrecision()
 
 /**
-Default CoordinateReferenceSystem
+Default CoordinateSystem
 */
-public let defaultCoordinateReferenceSystem = Cartesian()
+public let defaultCoordinateSystem = Cartesian()
 
 /**
  Geometry
@@ -45,7 +45,7 @@ public protocol Geometry {
     /**
         The Coordinate Reference System used in algorithms applied to this GeoemetryType
     */
-    var coordinateReferenceSystem: CoordinateReferenceSystem { get }
+    var coordinateSystem: CoordinateSystem { get }
 
     /**
         The inherent dimension of this Geoemetry.

@@ -38,7 +38,7 @@ extension MultiPolygon: Geometry {
     public
     func boundary() -> Geometry {
         return self.buffer.withUnsafeMutablePointers({ (header, elements) -> Geometry in
-            var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)
 
             for i in 0..<header.pointee.count {
 

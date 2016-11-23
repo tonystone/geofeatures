@@ -36,19 +36,19 @@ import Swift
 public struct LineString<CoordinateType: Coordinate & CopyConstructable> {
 
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem
+    public let coordinateSystem: CoordinateSystem
 
-    public init(coordinateReferenceSystem: CoordinateReferenceSystem) {
-        self.init(precision: defaultPrecision, coordinateReferenceSystem: coordinateReferenceSystem)
+    public init(coordinateSystem: CoordinateSystem) {
+        self.init(precision: defaultPrecision, coordinateSystem: coordinateSystem)
     }
 
     public init(precision: Precision) {
-        self.init(precision: precision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: defaultCoordinateSystem)
     }
 
-    public init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) {
+    public init(precision: Precision, coordinateSystem: CoordinateSystem) {
         self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
+        self.coordinateSystem = coordinateSystem
 
         buffer = CollectionBuffer<CoordinateType>.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<CoordinateType> // swiftlint:disable:this force_cast
     }
@@ -59,14 +59,14 @@ public struct LineString<CoordinateType: Coordinate & CopyConstructable> {
         - parameters:
             - other: The LineString of the same type that you want to construct a new LineString from.
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
 
-        - seealso: `CoordinateReferenceSystem`
+        - seealso: `CoordinateSystem`
         - seealso: `Precision`
      */
-    public init(other: LineString<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init(other: LineString<CoordinateType>, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
         other.buffer.withUnsafeMutablePointers { (header, elements) -> Void in
 
@@ -106,7 +106,7 @@ extension LineString: Collection {
         LineStrings are empty constructable
      */
     public init() {
-        self.init(precision: defaultPrecision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
+        self.init(precision: defaultPrecision, coordinateSystem: defaultCoordinateSystem)
     }
 
     /**
@@ -114,9 +114,9 @@ extension LineString: Collection {
         long as it has an Element type equal the Coordinate type specified in Element
         and the Distance is an Int type.
      */
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
         self.reserveCapacity(numericCast(elements.count))
 
@@ -249,9 +249,9 @@ extension LineString where CoordinateType: TupleConvertible & CopyConstructable 
 
         - seealso: TupleConvertible.
      */
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType.TupleType {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
         self.reserveCapacity(numericCast(elements.count))
 

@@ -40,19 +40,19 @@ public struct GeometryCollection {
     public typealias Element = Geometry
 
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem
+    public let coordinateSystem: CoordinateSystem
 
-    public init(coordinateReferenceSystem: CoordinateReferenceSystem) {
-        self.init(precision: defaultPrecision, coordinateReferenceSystem: coordinateReferenceSystem)
+    public init(coordinateSystem: CoordinateSystem) {
+        self.init(precision: defaultPrecision, coordinateSystem: coordinateSystem)
     }
 
     public init(precision: Precision) {
-        self.init(precision: precision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: defaultCoordinateSystem)
     }
 
-    public init(precision: Precision, coordinateReferenceSystem: CoordinateReferenceSystem) {
+    public init(precision: Precision, coordinateSystem: CoordinateSystem) {
         self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
+        self.coordinateSystem = coordinateSystem
 
         buffer = CollectionBuffer<Element>.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
     }
@@ -87,7 +87,7 @@ extension GeometryCollection: Collection {
         GeometryCollections are empty constructable
      */
     public init() {
-        self.init(precision: defaultPrecision, coordinateReferenceSystem: defaultCoordinateReferenceSystem)
+        self.init(precision: defaultPrecision, coordinateSystem: defaultCoordinateSystem)
     }
 
     /**
@@ -95,9 +95,9 @@ extension GeometryCollection: Collection {
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == Element {
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == Element {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
         self.reserveCapacity(numericCast(elements.count))
 

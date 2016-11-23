@@ -1,5 +1,5 @@
 /*
- *   CoordinateReferenceSystem.swift
+ *   CoordinateSystem.swift
  *
  *   Copyright 2016 Tony Stone
  *
@@ -24,9 +24,9 @@ import Swift
 
  These are used by the algorythms when they are applyed to the types
 */
-public protocol CoordinateReferenceSystem {}
+public protocol CoordinateSystem {}
 
-public struct Cartesian: CoordinateReferenceSystem {
+public struct Cartesian: CoordinateSystem {
     public init() {}
 }
 
@@ -35,18 +35,18 @@ extension Cartesian: Equatable, Hashable {
 }
 
 @available(*, unavailable, message: "currently not supported")
-public struct Ellipsoidal: CoordinateReferenceSystem {}
+public struct Ellipsoidal: CoordinateSystem {}
 
 @available(*, unavailable, message: "currently not supported")
-public struct Spherical: CoordinateReferenceSystem {}
+public struct Spherical: CoordinateSystem {}
 
 @available(*, unavailable, message: "currently not supported")
-public struct Vertical: CoordinateReferenceSystem {}
+public struct Vertical: CoordinateSystem {}
 
 @available(*, unavailable, message: "currently not supported")
-public struct Polar: CoordinateReferenceSystem {}
+public struct Polar: CoordinateSystem {}
 
-public func == <T1: CoordinateReferenceSystem & Hashable, T2: CoordinateReferenceSystem & Hashable>(lhs: T1, rhs: T2) -> Bool {
+public func == <T1: CoordinateSystem & Hashable, T2: CoordinateSystem & Hashable>(lhs: T1, rhs: T2) -> Bool {
     if type(of: lhs) == type(of: rhs) {
         return lhs.hashValue == rhs.hashValue
     }

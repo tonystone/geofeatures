@@ -21,7 +21,7 @@ class GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
     private typealias CoordinateType = Coordinate2D
     private typealias GeoJSONReaderType = GeoJSONReader<CoordinateType>
 
-    private var reader = GeoJSONReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    private var reader = GeoJSONReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
 
     // MARK: - Negative Tests
 
@@ -253,7 +253,7 @@ class GeoJSONReader_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
     private typealias CoordinateType = Coordinate3DM
     private typealias GeoJSONReaderType = GeoJSONReader<CoordinateType>
 
-    private var reader = GeoJSONReaderType(precision: FixedPrecision(scale: 100), coordinateReferenceSystem: Cartesian())
+    private var reader = GeoJSONReaderType(precision: FixedPrecision(scale: 100), coordinateSystem: Cartesian())
 
     // MARK: negative Tests
 

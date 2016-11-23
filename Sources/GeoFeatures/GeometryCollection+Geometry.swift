@@ -54,7 +54,7 @@ extension GeometryCollection: Geometry {
     public
     func boundary() -> Geometry {
         // Return an empty GeometryCollection
-        return GeometryCollection(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+        return GeometryCollection(precision: self.precision, coordinateSystem: self.coordinateSystem)
     }
 
     public func equals(_ other: Geometry) -> Bool {

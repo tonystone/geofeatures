@@ -38,10 +38,10 @@ extension Polygon: Geometry {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> MultiLineString<CoordinateType> in
 
-            var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)
 
             for i in 0..<header.pointee.count {
-                multiLineString.append(LineString<CoordinateType>(elements: elements[i], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                multiLineString.append(LineString<CoordinateType>(elements: elements[i], precision: self.precision, coordinateSystem: self.coordinateSystem))
             }
             return multiLineString
         }

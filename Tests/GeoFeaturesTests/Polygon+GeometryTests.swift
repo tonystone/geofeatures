@@ -32,43 +32,43 @@ private let geometryDimension = Dimension.two    // Polygon are always 2 dimensi
 class Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testBoundary_OuterRing() {
-        let geometry = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)])], precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)])], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
     func testBoundary_OuterRing_1InnerRing() {
-        let geometry = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)]), LineString<Coordinate2D>(elements: [(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)])], precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiLineString<Coordinate2D>(elements: [LineString<Coordinate2D>(elements: [(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)]), LineString<Coordinate2D>(elements: [(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)])], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
     func testBoundary_Empty() {
-        let geometry = Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiLineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Polygon<Coordinate2D>(precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiLineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
     func testEqual_True() {
-        let input1 = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs)
-        let input2 = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs)
+        let input1 = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateSystem: cs)
+        let input2 = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input1, input2)
      }
 
      func testEqual_False() {
-        let input1            = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateReferenceSystem: crs)
-        let input2: Geometry  = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateReferenceSystem: crs)
+        let input1            = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]]), precision: precision, coordinateSystem: cs)
+        let input2: Geometry  = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateSystem: cs)
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
      }
@@ -79,10 +79,10 @@ class Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
 class Polygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }
 
@@ -91,10 +91,10 @@ class Polygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCa
 class Polygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }
 
@@ -103,10 +103,10 @@ class Polygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCas
 class Polygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }
 
@@ -115,10 +115,10 @@ class Polygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCa
 class Polygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate2D>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }
 
@@ -127,10 +127,10 @@ class Polygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 class Polygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate2DM>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }
 
@@ -139,10 +139,10 @@ class Polygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase 
 class Polygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate3D>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }
 
@@ -151,9 +151,9 @@ class Polygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 class Polygon_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension () {
-        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Polygon<Coordinate3DM>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 }

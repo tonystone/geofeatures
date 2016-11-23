@@ -31,7 +31,7 @@ import GeoFeatures
 class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     private typealias WKTReaderType = WKTReader<Coordinate2D>
-    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
 
     // MARK: - Init
 
@@ -812,7 +812,7 @@ class WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     private typealias WKTReaderType = WKTReader<Coordinate2DM>
-    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
 
     // MARK: Point
 
@@ -929,7 +929,7 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     private typealias WKTReaderType = WKTReader<Coordinate3D>
-    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
 
     // MARK: Point
 
@@ -1031,7 +1031,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     private typealias WKTReaderType = WKTReader<Coordinate3DM>
-    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateReferenceSystem: Cartesian())
+    private var wktReader = WKTReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
 
     // MARK: Point
 
