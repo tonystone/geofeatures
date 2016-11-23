@@ -42,7 +42,7 @@ extension LineString: Curve {
     }
 
     /**
-     The length of this LinearType calculated using its associated CoordinateReferenceSystem.
+     The length of this LinearType calculated using its associated CoordinateSystem.
      */
 
     public

@@ -29,7 +29,7 @@ import Swift
 public struct Point<CoordinateType: Coordinate & CopyConstructable> {
 
     public let precision: Precision
-    public let coordinateReferenceSystem: CoordinateReferenceSystem
+    public let coordinateSystem: CoordinateSystem
 
     public var x: Double { get { return coordinate.x } }
     public var y: Double { get { return coordinate.y } }
@@ -37,10 +37,10 @@ public struct Point<CoordinateType: Coordinate & CopyConstructable> {
     ///
     /// Constructs a Point with another Point of the same type.
     ///
-    public init(other: Point<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init(other: Point<CoordinateType>, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
 
         self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
+        self.coordinateSystem = coordinateSystem
 
         self.coordinate = CoordinateType(other: other.coordinate, precision: precision)
     }
@@ -48,10 +48,10 @@ public struct Point<CoordinateType: Coordinate & CopyConstructable> {
     ///
     /// Constructs a Point with a Coordinate of type CoordinateType.
     ///
-    public init(coordinate: CoordinateType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init(coordinate: CoordinateType, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
 
         self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
+        self.coordinateSystem = coordinateSystem
 
         self.coordinate = CoordinateType(other: coordinate, precision: precision)
     }
@@ -69,7 +69,7 @@ extension Point where CoordinateType: Measured {
 
 extension Point where CoordinateType: TupleConvertible {
 
-    public init(coordinate: CoordinateType.TupleType, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init(coordinate: CoordinateType.TupleType, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
         self.init(coordinate: CoordinateType(tuple: coordinate, precision: precision))
     }
 }

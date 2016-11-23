@@ -27,34 +27,34 @@ private let geometryDimension = Dimension.zero   // Point always have a 0 dimens
 class Point_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate2D>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -65,34 +65,34 @@ class Point_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase 
 class Point_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2DM>(coordinate: (x: 2.002, y: 2.002, m: 2.002), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2DM>(coordinate: (x: 2.002, y: 2.002, m: 2.002), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate2DM>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate2DM>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -103,34 +103,34 @@ class Point_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase
 class Point_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate3D>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate3D>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -141,34 +141,34 @@ class Point_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase 
 class Point_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate3DM>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate3DM>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -179,34 +179,34 @@ class Point_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase
 class Point_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate2D>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -217,34 +217,34 @@ class Point_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 class Point_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate2DM>(coordinate: (x: 2.0, y: 2.0, m: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate2DM>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate2DM>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -255,34 +255,34 @@ class Point_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 class Point_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3D>(coordinate: (x: 2.0, y: 2.0, z: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate3D>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate3D>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
@@ -293,34 +293,34 @@ class Point_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 class Point_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testDimension() {
-        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).dimension, geometryDimension)
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
     func testIsEmpty() {
-        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testEquals_IntOne_True() {
-        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_IntOne_False() {
-        XCTAssertNotEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs), Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0), precision: precision, coordinateReferenceSystem: crs))
+        XCTAssertNotEqual(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs), Point<Coordinate3DM>(coordinate: (x: 2.0, y: 2.0, z: 2.0, m: 2.0), precision: precision, coordinateSystem: cs))
     }
 
     func testEquals_Point_NonPoint_False() {
-        let input1           = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs)
+        let input1           = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs)
         let input2: Geometry = LineString<Coordinate3DM>()
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
     func testBoundary() {
-        let geometry = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateReferenceSystem: crs).boundary()
-        let expected = MultiPoint<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let geometry = Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001), precision: precision, coordinateSystem: cs).boundary()
+        let expected = MultiPoint<Coordinate3DM>(precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }

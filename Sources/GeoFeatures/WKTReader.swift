@@ -86,7 +86,7 @@ private class WKT: Token, CustomStringConvertible {
 ///
 public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
 
-    fileprivate let crs: CoordinateReferenceSystem
+    fileprivate let cs: CoordinateSystem
     fileprivate let precision: Precision
 
     ///
@@ -94,13 +94,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     ///
     /// - Parameters:
     ///     - precision: The `Precision` model that should used for all coordinates.
-    ///     - coordinateReferenceSystem: The 'CoordinateReferenceSystem` the result Geometries should use in calculations on their coordinates.
+    ///     - coordinateSystem: The 'CoordinateSystem` the result Geometries should use in calculations on their coordinates.
     ///
     /// - SeeAlso: `Precision`
-    /// - SeeAlso: `CoordinateReferenceSystem`
+    /// - SeeAlso: `CoordinateSystem`
     ///
-    public init(precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
-        self.crs = coordinateReferenceSystem
+    public init(precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
+        self.cs = coordinateSystem
         self.precision = precision
     }
 
@@ -205,7 +205,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.RIGHT_PAREN) == nil {
             throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
-        return Point<CoordinateType>(coordinate: coordinate, precision: precision, coordinateReferenceSystem: crs)
+        return Point<CoordinateType>(coordinate: coordinate, precision: precision, coordinateSystem: cs)
     }
 
     // BNF: <linestring tagged text> ::= linestring <linestring text>
@@ -218,7 +218,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func lineStringText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> LineString<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return LineString<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
+            return LineString<CoordinateType>(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -244,7 +244,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.RIGHT_PAREN) == nil {
             throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
-        return LineString<CoordinateType>(elements: coordinates, precision: precision, coordinateReferenceSystem: crs)
+        return LineString<CoordinateType>(elements: coordinates, precision: precision, coordinateSystem: cs)
     }
 
     // BNF: None defined by OGC
@@ -257,7 +257,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func linearRingText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> LinearRing<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return LinearRing<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
+            return LinearRing<CoordinateType>(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -283,7 +283,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.RIGHT_PAREN) == nil {
             throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
-        return LinearRing<CoordinateType>(elements: coordinates, precision: precision, coordinateReferenceSystem: crs)
+        return LinearRing<CoordinateType>(elements: coordinates, precision: precision, coordinateSystem: cs)
     }
 
     // BNF: <polygon tagged text> ::= polygon <polygon text>
@@ -296,7 +296,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func polygonText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> Polygon<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return Polygon<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
+            return Polygon<CoordinateType>(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -349,7 +349,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func multiPointText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> MultiPoint<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return MultiPoint<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
+            return MultiPoint<CoordinateType>(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -375,7 +375,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.RIGHT_PAREN) == nil {
             throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
-        return MultiPoint<CoordinateType>(elements: elements, precision: precision, coordinateReferenceSystem: crs)
+        return MultiPoint<CoordinateType>(elements: elements, precision: precision, coordinateSystem: cs)
     }
 
     // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
@@ -388,7 +388,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func multiLineStringText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> MultiLineString<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return MultiLineString<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
+            return MultiLineString<CoordinateType>(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -413,7 +413,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.RIGHT_PAREN) == nil {
             throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
-        return MultiLineString<CoordinateType>(elements: elements, precision: precision, coordinateReferenceSystem: crs)
+        return MultiLineString<CoordinateType>(elements: elements, precision: precision, coordinateSystem: cs)
     }
 
     // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
@@ -426,7 +426,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func multiPolygonText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> MultiPolygon<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return MultiPolygon<CoordinateType>(precision: precision, coordinateReferenceSystem: crs)
+            return MultiPolygon<CoordinateType>(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -466,7 +466,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
     fileprivate func geometryCollectionText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> GeometryCollection {
 
         if tokenizer.accept(.EMPTY) != nil {
-            return GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+            return GeometryCollection(precision: precision, coordinateSystem: cs)
         }
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -524,7 +524,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         if tokenizer.accept(.RIGHT_PAREN) == nil {
             throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .RIGHT_PAREN))
         }
-        return GeometryCollection(elements: elements, precision: precision, coordinateReferenceSystem: crs)
+        return GeometryCollection(elements: elements, precision: precision, coordinateSystem: cs)
     }
 
     // BNF: <point> ::= <x> <y>

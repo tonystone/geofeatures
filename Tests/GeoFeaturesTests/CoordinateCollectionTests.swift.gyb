@@ -55,7 +55,7 @@ import GeoFeatures
 
 Precision = PrecisionType + PrecisionParameters
 
-CoordinateReferenceSystem = ReferenceSystemType + ReferenceSystemParameters
+CoordinateSystem = ReferenceSystemType + ReferenceSystemParameters
 
 FunctionQualifier = CoordinateType + '_' + PrecisionType + '_' + ReferenceSystemType
 
@@ -66,13 +66,13 @@ FunctionQualifier = CoordinateType + '_' + PrecisionType + '_' + ReferenceSystem
 class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     let precision = ${Precision}
-    let crs       = ${CoordinateReferenceSystem}
+    let cs       = ${CoordinateSystem}
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -82,12 +82,12 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(${GeometryType}<${CoordinateType}>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? ${ReferenceSystemType}, crs)
+        XCTAssertEqual(${GeometryType}<${CoordinateType}>(coordinateSystem: cs).coordinateSystem as? ${ReferenceSystemType}, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
+        let input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateSystem: cs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
         XCTAssertTrue(
@@ -99,8 +99,8 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = ${GeometryType}<${CoordinateType}>(other: ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = ${GeometryType}<${CoordinateType}>(elements: [${ExpectedTuple0},${ExpectedTuple1}], precision: precision, coordinateReferenceSystem: crs)
+        let input = ${GeometryType}<${CoordinateType}>(other: ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}]), precision: precision, coordinateSystem: cs)
+        let expected = ${GeometryType}<${CoordinateType}>(elements: [${ExpectedTuple0},${ExpectedTuple1}], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: ${CoordinateType}, rhs: ${CoordinateType}) -> Bool in
@@ -113,7 +113,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        let input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
         let expected = "${GeometryType}<${CoordinateType}>(${ExpectedTuple0}, ${ExpectedTuple1})"
 
         XCTAssertEqual(input.description, expected)
@@ -121,7 +121,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        let input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
         let expected = "${GeometryType}<${CoordinateType}>(${ExpectedTuple0}, ${ExpectedTuple1})"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -131,7 +131,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -141,7 +141,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0})]
 
         input.append(${TestTuple0})
@@ -153,8 +153,8 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateSystem: cs)
+        var input2 = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -163,7 +163,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
         input.append(contentsOf: expected)
@@ -175,8 +175,8 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
+        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [${ExpectedTuple0}, ${ExpectedTuple1}])
 
@@ -185,7 +185,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple1}), ${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
         input.insert(${CoordinateType}(tuple: ${TestTuple1}), at: 0)
@@ -197,7 +197,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
         let expected = [${CoordinateType}(tuple: ${ExpectedTuple1}), ${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})]
 
         input.insert(${TestTuple1}, at: 0)
@@ -209,8 +209,8 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
+        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -219,8 +219,8 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0})], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
+        let expected = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0})], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -229,8 +229,8 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
-        let expected = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
+        let expected = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -239,7 +239,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -251,14 +251,14 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
+        let input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], ${CoordinateType}(tuple: ${ExpectedTuple1}))
     }
 
     func testSubscript_Set() {
 
-        var input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(elements: [${TestTuple0},${TestTuple1}], precision: precision, coordinateSystem: cs)
 
         input[1] = ${CoordinateType}(tuple: ${TestTuple0})
 
@@ -267,29 +267,29 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).equals(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs).equals(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${ExpectedTuple0}), ${CoordinateType}(tuple: ${ExpectedTuple1})], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(${GeometryType}<${CoordinateType}>(elements: [${CoordinateType}(tuple: ${TestTuple0}), ${CoordinateType}(tuple: ${TestTuple1})], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -302,7 +302,7 @@ class ${Self}_${FunctionQualifier}_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateReferenceSystem: crs)
+        var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity

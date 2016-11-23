@@ -74,11 +74,11 @@ extension MultiLineString: Geometry {
                 }
             }
 
-            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)
 
             for (coordinate, count) in endCoordinates {
                 if count % 2 == 1 {
-                    multiPoint.append(Point(coordinate: coordinate, precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                    multiPoint.append(Point(coordinate: coordinate, precision: self.precision, coordinateSystem: self.coordinateSystem))
                 }
             }
             return multiPoint

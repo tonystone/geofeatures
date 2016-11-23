@@ -40,13 +40,13 @@ extension LinearRing: Geometry {
 
         return self.buffer.withUnsafeMutablePointers { (header, elements) -> Geometry in
 
-            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            var multiPoint = MultiPoint<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)
 
             if !self.isClosed() && header.pointee.count >= 2 {
 
                 // Note: direct subscripts protected by self.count >= 2 above.
-                multiPoint.append(Point<CoordinateType>(coordinate: elements[0], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
-                multiPoint.append(Point<CoordinateType>(coordinate: elements[header.pointee.count - 1], precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem))
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[0], precision: self.precision, coordinateSystem: self.coordinateSystem))
+                multiPoint.append(Point<CoordinateType>(coordinate: elements[header.pointee.count - 1], precision: self.precision, coordinateSystem: self.coordinateSystem))
 
             }
             return multiPoint

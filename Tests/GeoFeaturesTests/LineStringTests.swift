@@ -33,13 +33,13 @@ import GeoFeatures
 class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -49,12 +49,12 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate2D>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
@@ -66,8 +66,8 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate2D>(other: LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(other: LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
@@ -80,7 +80,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -88,7 +88,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -98,7 +98,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -108,7 +108,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
 
         input.append((x: 1.0, y: 1.0))
@@ -120,8 +120,8 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -130,7 +130,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         input.append(contentsOf: expected)
@@ -142,8 +142,8 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)])
 
@@ -152,7 +152,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         input.insert(Coordinate2D(tuple: (x: 2.0, y: 2.0)), at: 0)
@@ -164,7 +164,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         input.insert((x: 2.0, y: 2.0), at: 0)
@@ -176,8 +176,8 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -186,8 +186,8 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -196,8 +196,8 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -206,7 +206,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -218,14 +218,14 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate2D(tuple: (x: 1.0, y: 1.0))
 
@@ -234,29 +234,29 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -269,7 +269,7 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -285,13 +285,13 @@ class LineString_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -301,12 +301,12 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate2DM>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
@@ -318,8 +318,8 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate2DM>(other: LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(other: LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
@@ -332,7 +332,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -340,7 +340,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -350,7 +350,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -360,7 +360,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
 
         input.append((x: 1.0, y: 1.0, m: 1.0))
@@ -372,8 +372,8 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -382,7 +382,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         input.append(contentsOf: expected)
@@ -394,8 +394,8 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0)])
 
@@ -404,7 +404,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         input.insert(Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), at: 0)
@@ -416,7 +416,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         input.insert((x: 2.0, y: 2.0, m: 2.0), at: 0)
@@ -428,8 +428,8 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -438,8 +438,8 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -448,8 +448,8 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -458,7 +458,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -470,14 +470,14 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))
 
@@ -486,29 +486,29 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -521,7 +521,7 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -537,13 +537,13 @@ class LineString_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -553,12 +553,12 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate3D>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
@@ -570,8 +570,8 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate3D>(other: LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(other: LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
@@ -584,7 +584,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -592,7 +592,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -602,7 +602,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -612,7 +612,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
 
         input.append((x: 1.0, y: 1.0, z: 1.0))
@@ -624,8 +624,8 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -634,7 +634,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         input.append(contentsOf: expected)
@@ -646,8 +646,8 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0)])
 
@@ -656,7 +656,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         input.insert(Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), at: 0)
@@ -668,7 +668,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         input.insert((x: 2.0, y: 2.0, z: 2.0), at: 0)
@@ -680,8 +680,8 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -690,8 +690,8 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -700,8 +700,8 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -710,7 +710,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -722,14 +722,14 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))
 
@@ -738,29 +738,29 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -773,7 +773,7 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -789,13 +789,13 @@ class LineString_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -805,12 +805,12 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate3DM>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
@@ -822,8 +822,8 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate3DM>(other: LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(other: LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
@@ -836,7 +836,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -844,7 +844,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -854,7 +854,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -864,7 +864,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
         input.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
@@ -876,8 +876,8 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -886,7 +886,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         input.append(contentsOf: expected)
@@ -898,8 +898,8 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0)])
 
@@ -908,7 +908,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         input.insert(Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), at: 0)
@@ -920,7 +920,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         input.insert((x: 2.0, y: 2.0, z: 2.0, m: 2.0), at: 0)
@@ -932,8 +932,8 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -942,8 +942,8 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -952,8 +952,8 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -962,7 +962,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -974,14 +974,14 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))
 
@@ -990,29 +990,29 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -1025,7 +1025,7 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -1041,13 +1041,13 @@ class LineString_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -1057,12 +1057,12 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate2D>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         XCTAssertTrue(
@@ -1074,8 +1074,8 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate2D>(other: LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(other: LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0),(x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate2D, rhs: Coordinate2D) -> Bool in
@@ -1088,7 +1088,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -1096,7 +1096,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2D>((x: 1.0, y: 1.0), (x: 2.0, y: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -1106,7 +1106,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -1116,7 +1116,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0))]
 
         input.append((x: 1.001, y: 1.001))
@@ -1128,8 +1128,8 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -1138,7 +1138,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         input.append(contentsOf: expected)
@@ -1150,8 +1150,8 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)])
 
@@ -1160,7 +1160,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         input.insert(Coordinate2D(tuple: (x: 2.002, y: 2.002)), at: 0)
@@ -1172,7 +1172,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2D(tuple: (x: 2.0, y: 2.0)), Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))]
 
         input.insert((x: 2.002, y: 2.002), at: 0)
@@ -1184,8 +1184,8 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -1194,8 +1194,8 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -1204,8 +1204,8 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -1214,7 +1214,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -1226,14 +1226,14 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate2D(tuple: (x: 2.0, y: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(elements: [(x: 1.001, y: 1.001),(x: 2.002, y: 2.002)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate2D(tuple: (x: 1.001, y: 1.001))
 
@@ -1242,29 +1242,29 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.0, y: 1.0)), Coordinate2D(tuple: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [Coordinate2D(tuple: (x: 1.001, y: 1.001)), Coordinate2D(tuple: (x: 2.002, y: 2.002))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -1277,7 +1277,7 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -1293,13 +1293,13 @@ class LineString_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -1309,12 +1309,12 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate2DM>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         XCTAssertTrue(
@@ -1326,8 +1326,8 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate2DM>(other: LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(other: LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0),(x: 2.0, y: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate2DM, rhs: Coordinate2DM) -> Bool in
@@ -1340,7 +1340,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -1348,7 +1348,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate2DM>((x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -1358,7 +1358,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -1368,7 +1368,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))]
 
         input.append((x: 1.001, y: 1.001, m: 1.001))
@@ -1380,8 +1380,8 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -1390,7 +1390,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         input.append(contentsOf: expected)
@@ -1402,8 +1402,8 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0)])
 
@@ -1412,7 +1412,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         input.insert(Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002)), at: 0)
@@ -1424,7 +1424,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)), Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))]
 
         input.insert((x: 2.002, y: 2.002, m: 2.002), at: 0)
@@ -1436,8 +1436,8 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -1446,8 +1446,8 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -1456,8 +1456,8 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -1466,7 +1466,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -1478,14 +1478,14 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(elements: [(x: 1.001, y: 1.001, m: 1.001),(x: 2.002, y: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001))
 
@@ -1494,29 +1494,29 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.0, y: 1.0, m: 1.0)), Coordinate2DM(tuple: (x: 2.0, y: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate2DM>(elements: [Coordinate2DM(tuple: (x: 1.001, y: 1.001, m: 1.001)), Coordinate2DM(tuple: (x: 2.002, y: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -1529,7 +1529,7 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate2DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -1545,13 +1545,13 @@ class LineString_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -1561,12 +1561,12 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate3D>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         XCTAssertTrue(
@@ -1578,8 +1578,8 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate3D>(other: LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(other: LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0),(x: 2.0, y: 2.0, z: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate3D, rhs: Coordinate3D) -> Bool in
@@ -1592,7 +1592,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -1600,7 +1600,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3D>((x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -1610,7 +1610,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -1620,7 +1620,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))]
 
         input.append((x: 1.001, y: 1.001, z: 1.001))
@@ -1632,8 +1632,8 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -1642,7 +1642,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         input.append(contentsOf: expected)
@@ -1654,8 +1654,8 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0)])
 
@@ -1664,7 +1664,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         input.insert(Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002)), at: 0)
@@ -1676,7 +1676,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)), Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))]
 
         input.insert((x: 2.002, y: 2.002, z: 2.002), at: 0)
@@ -1688,8 +1688,8 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -1698,8 +1698,8 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -1708,8 +1708,8 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -1718,7 +1718,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -1730,14 +1730,14 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(elements: [(x: 1.001, y: 1.001, z: 1.001),(x: 2.002, y: 2.002, z: 2.002)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001))
 
@@ -1746,29 +1746,29 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.0, y: 1.0, z: 1.0)), Coordinate3D(tuple: (x: 2.0, y: 2.0, z: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate3D>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate3D>(elements: [Coordinate3D(tuple: (x: 1.001, y: 1.001, z: 1.001)), Coordinate3D(tuple: (x: 2.002, y: 2.002, z: 2.002))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -1781,7 +1781,7 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate3D>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity
@@ -1797,13 +1797,13 @@ class LineString_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
     func testInit_Precision_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty, true)
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs).isEmpty, true)
     }
 
     func testInit_Precision() {
@@ -1813,12 +1813,12 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_CRS() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(coordinateReferenceSystem: crs).coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(LineString<Coordinate3DM>(coordinateSystem: cs).coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Tuple() {
 
-        let input = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         XCTAssertTrue(
@@ -1830,8 +1830,8 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInit_Copy() {
 
-        let input = LineString<Coordinate3DM>(other: LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)]), precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(other: LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)]), precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0),(x: 2.0, y: 2.0, z: 2.0, m: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(
             (input.elementsEqual(expected) { (lhs: Coordinate3DM, rhs: Coordinate3DM) -> Bool in
@@ -1844,7 +1844,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDescription() {
 
-        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.description, expected)
@@ -1852,7 +1852,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testDebugDescription() {
 
-        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = "LineString<Coordinate3DM>((x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -1862,7 +1862,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testReserveCapacity() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -1872,7 +1872,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))]
 
         input.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
@@ -1884,8 +1884,8 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf() {
 
-        let input1 = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
+        var input2 = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -1894,7 +1894,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Coordinates() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         input.append(contentsOf: expected)
@@ -1906,8 +1906,8 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testAppend_ContentsOf_Tuples() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         input.append(contentsOf: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0)])
 
@@ -1916,7 +1916,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Coordinate() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         input.insert(Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002)), at: 0)
@@ -1928,7 +1928,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testInsert_Tuple() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)), Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))]
 
         input.insert((x: 2.002, y: 2.002, z: 2.002, m: 2.002), at: 0)
@@ -1940,8 +1940,8 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemove() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -1950,8 +1950,8 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveLast() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0))], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -1960,8 +1960,8 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
-        let expected = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
+        let expected = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -1970,7 +1970,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testRemoveAll_KeepCapacity() {
 
-        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -1982,14 +1982,14 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testSubscript_Get() {
 
-        let input = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        let input = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input[1], Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0)))
     }
 
     func testSubscript_Set() {
 
-        var input = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(elements: [(x: 1.001, y: 1.001, z: 1.001, m: 1.001),(x: 2.002, y: 2.002, z: 2.002, m: 2.002)], precision: precision, coordinateSystem: cs)
 
         input[1] = Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001))
 
@@ -1998,29 +1998,29 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testEquals() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).equals(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateReferenceSystem: crs)), true)
+        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs).equals(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)), Coordinate3DM(tuple: (x: 2.0, y: 2.0, z: 2.0, m: 2.0))], precision: precision, coordinateSystem: cs)), true)
     }
 
     func testIsEmpty() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs).isEmpty(), true)
+        XCTAssertEqual(LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs).isEmpty(), true)
     }
 
     func testIsEmpty_False() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).isEmpty(), false)
+        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs).isEmpty(), false)
     }
 
     func testCount() {
 
-        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateReferenceSystem: crs).count, 2)
+        XCTAssertEqual(LineString<Coordinate3DM>(elements: [Coordinate3DM(tuple: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)), Coordinate3DM(tuple: (x: 2.002, y: 2.002, z: 2.002, m: 2.002))], precision: precision, coordinateSystem: cs).count, 2)
     }
 
     // MARK: Misc Internal
 
     func testEnsureUniquelyReferenced() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -2033,7 +2033,7 @@ class LineString_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
     func testResizeIfNeeded() {
 
-        var input = LineString<Coordinate3DM>(precision: precision, coordinateReferenceSystem: crs)
+        var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity

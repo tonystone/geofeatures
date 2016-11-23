@@ -37,7 +37,7 @@ import GeoFeatures
 class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     // MARK: Construction
 
@@ -50,16 +50,16 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
     func testInit_NoArg_Defaults() {
         let input    = GeometryCollection()
 
-        // FIXME: Currently Precision and CoordinateRefereceSystem can not be Equitable and be used for anything otherthan Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateReferenceSystem
+        // FIXME: Currently Precision and CoordinateRefereceSystem can not be Equitable and be used for anything otherthan Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
         // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
-        XCTAssertEqual(input.coordinateReferenceSystem as? Cartesian, GeoFeatures.defaultCoordinateReferenceSystem)
+        XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
     func testInit_Precision_CRS() {
-        let input = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        let input = GeometryCollection(precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input.precision as? FloatingPrecision, precision)
-        XCTAssertEqual(input.coordinateReferenceSystem as? Cartesian, crs)
+        XCTAssertEqual(input.coordinateSystem as? Cartesian, cs)
     }
 
     func testInit_Precision() {
@@ -70,15 +70,15 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
     }
 
     func testInit_CRS() {
-        let input = GeometryCollection(coordinateReferenceSystem: crs)
-        let expected = crs
+        let input = GeometryCollection(coordinateSystem: cs)
+        let expected = cs
 
-        XCTAssertEqual(input.coordinateReferenceSystem as? Cartesian, expected)
+        XCTAssertEqual(input.coordinateSystem as? Cartesian, expected)
     }
 
     func testInit_Tuple() {
 
-        let input = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element]
 
         XCTAssertTrue(
@@ -92,7 +92,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testDescription() {
 
-        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = "GeometryCollection(Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))"
 
         XCTAssertEqual(input.description, expected)
@@ -100,7 +100,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testDebugDescription() {
 
-        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = "GeometryCollection(Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []), Polygon<Coordinate2D>([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))"
 
         XCTAssertEqual(input.debugDescription, expected)
@@ -110,7 +110,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testReserveCapacity() {
 
-        var input = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        var input = GeometryCollection(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         input.reserveCapacity(expected)
@@ -120,7 +120,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testAppend() {
 
-        var input    = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        var input    = GeometryCollection(precision: precision, coordinateSystem: cs)
         let expected = [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element]
 
         input.append(Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])))
@@ -132,8 +132,8 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testAppend_ContentsOf() {
 
-        let input1 = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        var input2 = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        let input1 = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
+        var input2 = GeometryCollection(precision: precision, coordinateSystem: cs)
 
         input2.append(contentsOf: input1)
 
@@ -142,7 +142,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testInsert_2ExistingElements() {
 
-        var input = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        var input = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element]
 
         input.insert(Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), at: 0)
@@ -154,7 +154,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testInsert_1ExistingElements() {
 
-        var input = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        var input = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element]
 
         input.insert(Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), at: 0)
@@ -166,8 +166,8 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testRemove() {
 
-        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
+        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
 
         let _ = input.remove(at: 0)
 
@@ -176,8 +176,8 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testRemoveLast() {
 
-        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
+        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
 
         let _ = input.removeLast()
 
@@ -186,8 +186,8 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testRemoveAll() {
 
-        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected =  GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
+        let expected =  GeometryCollection(precision: precision, coordinateSystem: cs)
 
         input.removeAll()
 
@@ -196,7 +196,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testRemoveAll_KeepCapacity() {
 
-        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        var input =  GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = input.capacity
 
         input.removeAll(keepingCapacity: true)
@@ -208,7 +208,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testSubscript_Get() {
 
-        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])) as GeometryCollection.Element
 
         XCTAssertTrue(input[1].equals(expected))
@@ -216,8 +216,8 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testSubscript_Set() {
 
-        var input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        var input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
+        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
 
         input[1] = Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])) as GeometryCollection.Element
 
@@ -226,15 +226,15 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testEquals() {
 
-        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
-        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
+        let expected = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input, expected)
     }
 
     func testIsEmpty() {
 
-        let input = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        let input = GeometryCollection(precision: precision, coordinateSystem: cs)
         let expected = true
 
         XCTAssertEqual(input.isEmpty(), expected)
@@ -242,7 +242,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testIsEmpty_False() {
 
-        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = false
 
         XCTAssertEqual(input.isEmpty(), expected)
@@ -250,7 +250,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testCount() {
 
-        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateReferenceSystem: crs)
+        let input    = GeometryCollection(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))] as [GeometryCollection.Element], precision: precision, coordinateSystem: cs)
         let expected = 2
 
         XCTAssertEqual(input.count, expected)
@@ -260,7 +260,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testEnsureUniquelyReferenced() {
 
-        var input = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        var input = GeometryCollection(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         let copy = input    // This should force the reserveCapacity to clone
@@ -273,7 +273,7 @@ class GeometryCollection_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestC
 
     func testResizeIfNeeded() {
 
-        var input = GeometryCollection(precision: precision, coordinateReferenceSystem: crs)
+        var input = GeometryCollection(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
         // Force it beyond its initial capacity

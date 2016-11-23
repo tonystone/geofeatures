@@ -39,11 +39,11 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
     public let precision: Precision
 
     /**
-        - returns: The `CoordinateReferenceSystem` of this Polygon
+        - returns: The `CoordinateSystem` of this Polygon
 
-        - seealso: `CoordinateReferenceSystem`
+        - seealso: `CoordinateSystem`
      */
-    public let coordinateReferenceSystem: CoordinateReferenceSystem
+    public let coordinateSystem: CoordinateSystem
 
     /**
         - returns: The `LinearRing` representing the outerRing of this Polygon
@@ -55,7 +55,7 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
             if buffer.header.count > 0 {
                 return buffer.withUnsafeMutablePointerToElements { $0[0] }
             }
-            return RingType(precision: self.precision, coordinateReferenceSystem: self.coordinateReferenceSystem)
+            return RingType(precision: self.precision, coordinateSystem: self.coordinateSystem)
         }
     }
 
@@ -85,15 +85,15 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
 
         - parameters:
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
 
         - seealso: `CollectionType`
-        - seealso: `CoordinateReferenceSystem`
+        - seealso: `CoordinateSystem`
         - seealso: `Precision`
      */
-    public init (precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init (precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
         self.precision = precision
-        self.coordinateReferenceSystem = coordinateReferenceSystem
+        self.coordinateSystem = coordinateSystem
 
         self.buffer = BufferType.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! BufferType // swiftlint:disable:this force_cast
     }
@@ -104,14 +104,14 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
      - parameters:
         - other: The Polygon of the same type that you want to construct a new Polygon from.
         - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-        - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+        - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
 
-     - seealso: `CoordinateReferenceSystem`
+     - seealso: `CoordinateSystem`
      - seealso: `Precision`
      */
-    public init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) {
+    public init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
         self.buffer = other.buffer
     }
@@ -124,22 +124,22 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
             - outerRing: A `CollectionType` who's elements are of type `CoordinateType`.
             - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType`.
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
 
         - seealso: `CollectionType`
-        - seealso: `CoordinateReferenceSystem`
+        - seealso: `CoordinateSystem`
         - seealso: `Precision`
      */
-    public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType {
+    public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
-        buffer.append(RingType(elements: outerRing, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
+        buffer.append(RingType(elements: outerRing, precision: precision, coordinateSystem: coordinateSystem))
 
         var innerRingsGenerator = innerRings.makeIterator()
 
         while let ring = innerRingsGenerator.next() {
-            buffer.append(RingType(elements: ring, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
+            buffer.append(RingType(elements: ring, precision: precision, coordinateSystem: coordinateSystem))
         }
     }
 
@@ -157,35 +157,35 @@ extension Polygon where CoordinateType: TupleConvertible {
             - outerRing: A `CollectionType` who's elements are of type `CoordinateType.TupleType`.
             - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType.TupleType`.
             - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateReferenceSystem: The 'CoordinateReferenceSystem` this polygon should use in calculations on it's coordinates.
+            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
 
         - seealso: `CollectionType`
-        - seealso: `CoordinateReferenceSystem`
+        - seealso: `CoordinateSystem`
         - seealso: `Precision`
      */
-    public  init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public  init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType.TupleType {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
-        buffer.append(RingType(elements: outerRing, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
+        buffer.append(RingType(elements: outerRing, precision: precision, coordinateSystem: coordinateSystem))
 
         var innerRingsGenerator = innerRings.makeIterator()
 
         while let ring = innerRingsGenerator.next() {
-            buffer.append(RingType(elements: ring, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
+            buffer.append(RingType(elements: ring, precision: precision, coordinateSystem: coordinateSystem))
         }
     }
 
-    public  init<C: Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateReferenceSystem: CoordinateReferenceSystem = defaultCoordinateReferenceSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public  init<C: Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType.TupleType {
 
-        self.init(precision: precision, coordinateReferenceSystem: coordinateReferenceSystem)
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
 
-        buffer.append(RingType(elements: rings.0, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
+        buffer.append(RingType(elements: rings.0, precision: precision, coordinateSystem: coordinateSystem))
 
         var innerRingsGenerator = rings.1.makeIterator()
 
         while let ring = innerRingsGenerator.next() {
-            buffer.append(RingType(elements: ring, precision: precision, coordinateReferenceSystem: coordinateReferenceSystem))
+            buffer.append(RingType(elements: ring, precision: precision, coordinateSystem: coordinateSystem))
         }
     }
 }

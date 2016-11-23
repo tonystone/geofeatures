@@ -9,7 +9,7 @@
 import XCTest
 import GeoFeatures
 
-fileprivate struct DummyCoordinateReferenceSystem: CoordinateReferenceSystem, Equatable, Hashable {
+fileprivate struct DummyCoordinateReferenceSystem: CoordinateSystem, Equatable, Hashable {
     public var hashValue: Int { get { return String(reflecting: self).hashValue } }
 }
 

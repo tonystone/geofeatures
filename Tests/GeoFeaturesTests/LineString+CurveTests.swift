@@ -25,26 +25,26 @@ import GeoFeatures
 class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testLength_Test1() {
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 1, y: 1)], precision: precision, coordinateReferenceSystem: crs).length(), 1.4142135623730951)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 1, y: 1)], precision: precision, coordinateSystem: cs).length(), 1.4142135623730951)
     }
 
     func testLength_Test2() {
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2)], precision: precision, coordinateReferenceSystem: crs).length(), 2.0)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2)], precision: precision, coordinateSystem: cs).length(), 2.0)
     }
 
     func testLength_Test3() {
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 7, y:0)], precision: precision, coordinateReferenceSystem: crs).length(), 7.0)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 7, y:0)], precision: precision, coordinateSystem: cs).length(), 7.0)
     }
 
     func testLength_Test4() {
-        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs).length(), 5.0)
+        XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateSystem: cs).length(), 5.0)
     }
 
     func testLengthPerformance() {
-        let lineString = LineString<Coordinate2D>(elements: [(x:0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs)
+        let lineString = LineString<Coordinate2D>(elements: [(x:0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateSystem: cs)
 
         self.measure {
 
@@ -55,15 +55,15 @@ class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
     }
 
     func testIsClosed_Closed() {
-        XCTAssertTrue(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 2, y: 0), (x: 0, y: 0)], precision: precision, coordinateReferenceSystem: crs).isClosed())
+        XCTAssertTrue(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 2, y: 0), (x: 0, y: 0)], precision: precision, coordinateSystem: cs).isClosed())
     }
 
     func testIsClosed_Open() {
-        XCTAssertFalse(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateReferenceSystem: crs).isClosed())
+        XCTAssertFalse(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateSystem: cs).isClosed())
     }
 
     func testIsClosed_Empty() {
-        XCTAssertFalse(LineString<Coordinate2D>(precision: precision, coordinateReferenceSystem: crs).isClosed())
+        XCTAssertFalse(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).isClosed())
     }
 }
 
@@ -72,10 +72,10 @@ class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
 class LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let crs       = Cartesian()
+    let cs       = Cartesian()
 
     func testPerformanceLength() {
-        let lineString = LineString<Coordinate3D>(elements: [(x:0, y: 0, z: 0), (x: 0, y: 2, z: 0), (x: 0, y: 3, z: 0), (x: 0, y: 4, z: 0), (x: 0, y: 5, z:0)], precision: precision, coordinateReferenceSystem: crs)
+        let lineString = LineString<Coordinate3D>(elements: [(x:0, y: 0, z: 0), (x: 0, y: 2, z: 0), (x: 0, y: 3, z: 0), (x: 0, y: 4, z: 0), (x: 0, y: 5, z:0)], precision: precision, coordinateSystem: cs)
 
         self.measure {
 
