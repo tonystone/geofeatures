@@ -152,7 +152,7 @@ extension LineString: Collection {
 
             _ensureUniquelyReferenced()
 
-            let newSize = Math.max(buffer.capacity * 2, minimumCapacity)
+            let newSize = Swift.max(buffer.capacity * 2, minimumCapacity)
 
             buffer = buffer.resize(newSize)
         }
