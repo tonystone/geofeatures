@@ -25,7 +25,6 @@
 		4943A0824258381CF8638B9D /* LinearRing+Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7DC16406B3EF7E744C004 /* LinearRing+Surface.swift */; };
 		4AB58F8278AB5B939DE69DDB /* MultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BB58639A05E9F39D25D026 /* MultiPoint.swift */; };
 		4E5242064DC32B6FA897D68B /* MultiPolygon+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BFE51725B6AD2C5DC26080 /* MultiPolygon+Geometry.swift */; };
-		4F20B34FFFBBD67CF0F525CC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F7188D667E0B167E6478A8 /* Math.swift */; };
 		4F748E888F421473AAD06585 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05549309886141E8FF37B25D /* Foundation.framework */; };
 		61CC6DA3DCA42BFE928840E9 /* WKTReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B4C6B40ED8724284AD15B /* WKTReader.swift */; };
 		6430B7134345D6852C3CAF90 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150ACE235FD788BC5787384 /* Coordinate3D.swift */; };
@@ -98,7 +97,6 @@
 		233B20757F497C58C9ED68DA /* LinearRing+Curve.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LinearRing+Curve.swift"; sourceTree = "<group>"; };
 		251F49251BD2F0839421FBA7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E235B4B03102C0289D2688 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		28F7188D667E0B167E6478A8 /* Math.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		2971504E725C4DBF2844BF33 /* Pods-GeoFeatures_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GeoFeatures_Tests-dummy.m"; sourceTree = "<group>"; };
 		2A1AA2BC3901B3B819342430 /* GeoFeatures.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GeoFeatures.modulemap; sourceTree = "<group>"; };
 		2B651C7DAA87CB3362BA96F9 /* FixedPrecision.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FixedPrecision.swift; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 				00BB7BEEEDE9D52855BAFA68 /* LineString.swift */,
 				3F57DB6F284E6A2FC8EAC345 /* LineString+Curve.swift */,
 				A6B4B7443587F27DD391B2AB /* LineString+Geometry.swift */,
-				28F7188D667E0B167E6478A8 /* Math.swift */,
 				FF7942A8DE1B799381112AD0 /* MultiLineString.swift */,
 				22A7C9ED2B892FA936FD0EB0 /* MultiLineString+Curve.swift */,
 				D1EA5EED879238A55DDB727D /* MultiLineString+Geometry.swift */,
@@ -507,7 +504,6 @@
 				8F7F16CA22D038521C1FC6F8 /* LineString+Curve.swift in Sources */,
 				403CAD10DBBEEDBE646BDA92 /* LineString+Geometry.swift in Sources */,
 				985C4194575525CD58328E4B /* LineString.swift in Sources */,
-				4F20B34FFFBBD67CF0F525CC /* Math.swift in Sources */,
 				43AFF87F96C32B98224D9C7E /* MultiLineString+Curve.swift in Sources */,
 				C6D26CF0FFC9EBC17A6AC1A8 /* MultiLineString+Geometry.swift in Sources */,
 				1198F90EE351177488F9D83B /* MultiLineString.swift in Sources */,

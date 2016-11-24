@@ -33,7 +33,7 @@ extension GeometryCollection: Geometry {
 
                 for index in 0..<header.pointee.count {
 
-                    dimension = Math.max(dimension, elements[index].dimension)
+                    dimension = Swift.max(dimension, elements[index].dimension)
                 }
             }
             return dimension
