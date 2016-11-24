@@ -1,41 +1,41 @@
-/*
- *   Collection.swift
- *
- *   Copyright 2016 Tony Stone
- *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- *
- *   Created by Tony Stone on 2/13/16.
- */
+///
+///  Collection.swift
+///
+///  Copyright 2016 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 2/13/16.
+///
 import Swift
 
 public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafeContainer {
 
-    /**
-        Collection must define its Element
-     */
+    ///
+    /// Collection must define its Element
+    ///
     associatedtype Element
 
-    /**
-        Collections are empty constructable
-     */
+    ///
+    /// Collections are empty constructable
+    ///
     init(precision: Precision, coordinateSystem: CoordinateSystem)
 
-    /**
-        Collection can be constructed from any Swift.Collection including Array as
-        long as it has an Element type equal Self.Element and the Distance
-        is an Int type.
-     */
+    ///
+    /// Collection can be constructed from any Swift.Collection including Array as
+    /// long as it has an Element type equal Self.Element and the Distance
+    /// is an Int type.
+    ///
     init<C: Swift.Collection>(elements: C, precision: Precision, coordinateSystem: CoordinateSystem) where C.Iterator.Element == Element
 
     /**

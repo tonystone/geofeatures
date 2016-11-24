@@ -32,7 +32,7 @@ private let geometryDimension = Dimension.two    // MultiPolygon are always 2 di
 class MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
     let precision = FloatingPrecision()
-    let cs       = Cartesian()
+    let cs        = Cartesian()
 
     func testDimension () {
         XCTAssertEqual(MultiPolygon<Coordinate2D>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
@@ -72,7 +72,7 @@ class MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTe
         let input2 = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input1, input2)
-     }
+    }
 
     func testEqual_SameTypes_False() {
         let input1            = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))], precision: precision, coordinateSystem: cs)
@@ -81,12 +81,12 @@ class MultiPolygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTe
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
     }
 
-     func testEqual_DifferentTypes_False() {
+    func testEqual_DifferentTypes_False() {
         let input1            = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [[(x: 5.0, y: 2.0), (x: 2.0, y: 2.0), (x: 2.0, y: 3.0), (x: 3.5, y: 3.5), (x: 5.0, y: 3.0)]])), Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], []))], precision: precision, coordinateSystem: cs)
         let input2: Geometry  = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertFalse(input1.equals(input2), "\(input1) is not equal to \(input2)")
-     }
+    }
 }
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -

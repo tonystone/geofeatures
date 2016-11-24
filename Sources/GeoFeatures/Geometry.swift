@@ -1,22 +1,22 @@
-/*
- *   Geometry.swift
- *
- *   Copyright 2016 Tony Stone
- *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- *
- *   Created by Tony Stone on 2/5/16.
- */
+///
+///  Geometry.swift
+///
+///  Copyright (c) 2016 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 2/5/2016.
+///
 import Swift
 
 /**
@@ -33,7 +33,7 @@ public let defaultCoordinateSystem = Cartesian()
  Geometry
 
  A protocol that represents a geometric shape. Geometry
- is the abstract type that is implenented by all geometry classes.
+ is the abstract type that is implemented by all geometry classes.
 */
 public protocol Geometry {
 
@@ -43,12 +43,12 @@ public protocol Geometry {
     var precision: Precision { get }
 
     /**
-        The Coordinate Reference System used in algorithms applied to this GeoemetryType
+        The Coordinate Reference System used in algorithms applied to this GeometryType
     */
     var coordinateSystem: CoordinateSystem { get }
 
     /**
-        The inherent dimension of this Geoemetry.
+        The inherent dimension of this Geometry.
     */
     var dimension: Dimension { get }
 
@@ -65,8 +65,8 @@ public protocol Geometry {
     func boundary() -> Geometry
 
 //    /**
-//     - Returns:  true if this GeoemetryType instance has no anomalous geometric points, such
-//     as self intersection or self tangency.
+//     - Returns:  true if this GeometryType instance has no anomalous geometric points, such
+//     as self intersection or self tangent.
 //    */
 //    @warn_unused_result
 //    func isSimple() -> Bool
@@ -81,7 +81,7 @@ public protocol Geometry {
     //: Predicates
 
     /**
-     - Returns: true if this GeoemetryType instance is equal to the other Geometry instance.
+     - Returns: true if this GeometryType instance is equal to the other Geometry instance.
      */
 
     func equals(_ other: Geometry) -> Bool

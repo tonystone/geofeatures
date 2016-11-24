@@ -21,6 +21,7 @@ import Swift
 
 internal final class Math {
 
+    @inline(__always)
     internal class func max<T: Comparable>(_ x: T, _ y: T) -> T {
         return y >= x ? y : x
     }
