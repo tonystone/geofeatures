@@ -1,22 +1,22 @@
-/*
- *   IntersectionMatrix.swift
- *
- *   Copyright 2016 Tony Stone
- *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- *
- *   Created by Tony Stone on 5/8/16.
- */
+///
+///  IntersectionMatrix.swift
+///
+///  Copyright (c) 2016 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 5/8/2016.
+///
 import Swift
 
 /**
@@ -43,8 +43,7 @@ import Swift
  |-------------|------------------|------------------|------------------|
  ```
  */
-internal
-struct IntersectionMatrix {
+internal struct IntersectionMatrix {
 
     enum Index: Int { case interior = 0, boundary, exterior }
 
@@ -60,8 +59,7 @@ extension IntersectionMatrix {
     /**
      Initialize an IntersectionMatrix with the default values of .empty
     */
-    internal
-    init() {
+    internal init() {
         self.matrix =
             [
                 [.empty, .empty, .empty],
@@ -74,15 +72,14 @@ extension IntersectionMatrix {
      Initialize an IntersectionMatrix with an Array of Arrays of
      of Dimension values.
 
-     - Prameter: arrayLiteral: [[Dimension]] Array of `Dimension` arrays.
+     - Parameter: arrayLiteral: [[Dimension]] Array of `Dimension` arrays.
 
      - Requires: arrayLiteral.count == 3
      - Requires: arrayLiteral[0].count == 3
      - Requires: arrayLiteral[1].count == 3
      - Requires: arrayLiteral[2].count == 3
      */
-    internal
-    init(arrayLiteral elements: [[Dimension]]) {
+    internal init(arrayLiteral elements: [[Dimension]]) {
         assert( elements.count == 3 &&
                 elements[Index.interior.rawValue].count == 3 &&
                 elements[Index.boundary.rawValue].count == 3 &&
@@ -108,8 +105,7 @@ extension IntersectionMatrix {
 
      - parameter pattern: The pattern string consisting of legal characters from the set above.
      */
-    internal
-    func matches(_ pattern: String) -> Bool {
+    internal func matches(_ pattern: String) -> Bool {
 
         var characters = pattern.characters.makeIterator()
 
@@ -186,8 +182,7 @@ extension IntersectionMatrix: Sequence {
         matrix[.interior, .boundary] = .two
      ```
      */
-    internal
-    subscript (row: Index, col: Index) -> Dimension {
+    internal subscript (row: Index, col: Index) -> Dimension {
 
         get {
             return matrix[row.rawValue][col.rawValue]
@@ -209,8 +204,7 @@ extension IntersectionMatrix: Sequence {
         }
      ```
      */
-    internal
-    func makeIterator() -> AnyIterator<Dimension> {
+    internal func makeIterator() -> AnyIterator<Dimension> {
 
         // keep the index of the next element in the iteration
         var nextRow = Index.interior.rawValue
@@ -236,8 +230,7 @@ extension IntersectionMatrix: Sequence {
 
 extension IntersectionMatrix: CustomStringConvertible {
 
-    internal
-    var description: String {
+    internal var description: String {
         get {
             var string = ""
 
@@ -254,8 +247,7 @@ extension IntersectionMatrix: CustomStringConvertible {
 
 extension IntersectionMatrix: Equatable {}
 
-internal
-func == (lhs: IntersectionMatrix, rhs: IntersectionMatrix) -> Bool {
+internal func == (lhs: IntersectionMatrix, rhs: IntersectionMatrix) -> Bool {
 
     for row in 0...IntersectionMatrix.Index.exterior.rawValue {
         for col in 0...IntersectionMatrix.Index.exterior.rawValue {
