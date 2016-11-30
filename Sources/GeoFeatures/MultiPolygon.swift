@@ -60,7 +60,7 @@ public struct MultiPolygon<CoordinateType: Coordinate & CopyConstructable> {
     internal var buffer: CollectionBuffer<Element>
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 extension MultiPolygon {
 
@@ -79,7 +79,7 @@ extension MultiPolygon {
     }
 }
 
-// MARK:  Collection conformance
+// MARK: - Collection conformance
 
 extension MultiPolygon: Collection {
 
@@ -112,14 +112,14 @@ extension MultiPolygon: Collection {
         - Returns: The number of Polygon objects.
      */
     public var count: Int {
-        get { return self.buffer.header.count }
+        return self.buffer.header.count
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.buffer.header.capacity }
+        return self.buffer.header.capacity
     }
 
     /**
@@ -215,7 +215,7 @@ extension MultiPolygon: Collection {
     }
 }
 
-// MARK: Collection conformance
+// MARK: - Collection conformance
 
 extension MultiPolygon {
 
@@ -271,7 +271,7 @@ extension MultiPolygon: CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
-// MARK: Equatable Conformance
+// MARK: - Equatable Conformance
 
 extension MultiPolygon: Equatable {}
 

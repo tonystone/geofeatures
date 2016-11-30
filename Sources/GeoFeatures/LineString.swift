@@ -131,14 +131,14 @@ extension LineString: Collection {
         - Returns: The number of Coordinate3D objects.
      */
     public var count: Int {
-        get { return self.buffer.header.count }
+        return self.buffer.header.count
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.buffer.header.capacity }
+        return self.buffer.header.capacity
     }
 
     /**

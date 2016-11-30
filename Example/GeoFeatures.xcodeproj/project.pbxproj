@@ -224,8 +224,7 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for GeoFeatures";
-			path = GeoFeatures2;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;

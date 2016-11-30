@@ -155,6 +155,6 @@ import XCTest
          testCase(WKTWriter_Coordinate2D_Tests.allTests),
          testCase(WKTWriter_Coordinate2DM_Tests.allTests),
          testCase(WKTWriter_Coordinate3D_Tests.allTests),
-         testCase(WKTWriter_Coordinate3DM_Tests.allTests),
+         testCase(WKTWriter_Coordinate3DM_Tests.allTests)
     ])
 #endif

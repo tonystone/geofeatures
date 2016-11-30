@@ -47,7 +47,7 @@ extension WKTWriter_Coordinate2D_Tests {
                 ("testWrite_MultiLineString_MultipleLineString", testWrite_MultiLineString_MultipleLineString),
                 ("testWrite_MultiPolygon_Empty", testWrite_MultiPolygon_Empty),
                 ("testWrite_MultiPolygon", testWrite_MultiPolygon),
-                ("testWrite_GeometryCollection", testWrite_GeometryCollection),
+                ("testWrite_GeometryCollection", testWrite_GeometryCollection)
            ]
    }
 }
@@ -71,7 +71,7 @@ extension WKTWriter_Coordinate2DM_Tests {
                 ("testWrite_MultiLineString_SingleLineString", testWrite_MultiLineString_SingleLineString),
                 ("testWrite_MultiLineString_MultipleLineString", testWrite_MultiLineString_MultipleLineString),
                 ("testWrite_MultiPolygon_Empty", testWrite_MultiPolygon_Empty),
-                ("testWrite_MultiPolygon", testWrite_MultiPolygon),
+                ("testWrite_MultiPolygon", testWrite_MultiPolygon)
            ]
    }
 }
@@ -95,7 +95,7 @@ extension WKTWriter_Coordinate3D_Tests {
                 ("testWrite_MultiLineString_SingleLineString", testWrite_MultiLineString_SingleLineString),
                 ("testWrite_MultiLineString_MultipleLineString", testWrite_MultiLineString_MultipleLineString),
                 ("testWrite_MultiPolygon_Empty", testWrite_MultiPolygon_Empty),
-                ("testWrite_MultiPolygon", testWrite_MultiPolygon),
+                ("testWrite_MultiPolygon", testWrite_MultiPolygon)
            ]
    }
 }
@@ -119,7 +119,7 @@ extension WKTWriter_Coordinate3DM_Tests {
                 ("testWrite_MultiLineString_SingleLineString", testWrite_MultiLineString_SingleLineString),
                 ("testWrite_MultiLineString_MultipleLineString", testWrite_MultiLineString_MultipleLineString),
                 ("testWrite_MultiPolygon_Empty", testWrite_MultiPolygon_Empty),
-                ("testWrite_MultiPolygon", testWrite_MultiPolygon),
+                ("testWrite_MultiPolygon", testWrite_MultiPolygon)
            ]
    }
 }

@@ -40,7 +40,7 @@ extension Polygon_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testDebugDescription", testDebugDescription),
                 ("testDescription_Empty", testDescription_Empty),
                 ("testOperatorEqual_Geometry_Polygon", testOperatorEqual_Geometry_Polygon),
-                ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry),
+                ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry)
            ]
    }
 }
@@ -58,7 +58,7 @@ extension Polygon_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
                 ("testOperatorEqual_Geometry_Polygon", testOperatorEqual_Geometry_Polygon),
-                ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry),
+                ("testOperatorEqual_Polygon_Geometry", testOperatorEqual_Polygon_Geometry)
            ]
    }
 }

@@ -231,17 +231,15 @@ extension IntersectionMatrix: Sequence {
 extension IntersectionMatrix: CustomStringConvertible {
 
     internal var description: String {
-        get {
-            var string = ""
+        var string = ""
 
-            for dimension in self {
-                if string.characters.count > 0 {
-                    string += ", "
-                }
-                string += "\(dimension.rawValue)"
+        for dimension in self {
+            if string.characters.count > 0 {
+                string += ", "
             }
-            return string
+            string += "\(dimension.rawValue)"
         }
+        return string
     }
 }
 

@@ -60,7 +60,7 @@ public struct MultiLineString<CoordinateType: Coordinate & CopyConstructable> {
     internal var buffer: CollectionBuffer<Element>
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 extension MultiLineString {
 
@@ -79,7 +79,7 @@ extension MultiLineString {
     }
 }
 
-// MARK:  Collection conformance
+// MARK: - Collection conformance
 
 extension MultiLineString: Collection {
 
@@ -112,14 +112,14 @@ extension MultiLineString: Collection {
         - Returns: The number of LineString objects.
      */
     public var count: Int {
-        get { return self.buffer.header.count }
+        return self.buffer.header.count
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.buffer.header.capacity }
+        return self.buffer.header.capacity
     }
 
     /**
@@ -215,7 +215,7 @@ extension MultiLineString: Collection {
     }
 }
 
-// MARK: Collection conformance
+// MARK: - Collection conformance
 
 extension MultiLineString {
 
@@ -271,7 +271,7 @@ extension MultiLineString: CustomStringConvertible, CustomDebugStringConvertible
     }
 }
 
-// MARK: Equatable Conformance
+// MARK: - Equatable Conformance
 
 extension MultiLineString: Equatable {}
 

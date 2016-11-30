@@ -41,7 +41,7 @@ extension MultiLineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Test
                 ("testBoundary_OGC_MultiCurve_C", testBoundary_OGC_MultiCurve_C),
                 ("testBoundary_Odd_Intersection", testBoundary_Odd_Intersection),
                 ("testEqual_True", testEqual_True),
-                ("testEqual_False", testEqual_False),
+                ("testEqual_False", testEqual_False)
            ]
    }
 }
@@ -49,7 +49,7 @@ extension MultiLineString_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tes
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -57,7 +57,7 @@ extension MultiLineString_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Test
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -65,7 +65,7 @@ extension MultiLineString_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tes
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -73,7 +73,7 @@ extension MultiLineString_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -81,7 +81,7 @@ extension MultiLineString_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests 
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -89,7 +89,7 @@ extension MultiLineString_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -97,7 +97,7 @@ extension MultiLineString_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests 
 
    static var allTests: [(String, (MultiLineString_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }

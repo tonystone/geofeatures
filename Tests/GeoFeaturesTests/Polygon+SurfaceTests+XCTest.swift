@@ -41,7 +41,7 @@ extension Polygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testArea_RegularDecagon", testArea_RegularDecagon),
                 ("testArea_Tetrakaidecagon", testArea_Tetrakaidecagon),
                 ("testArea_RegularQuadrilateral_CrossingOrigin", testArea_RegularQuadrilateral_CrossingOrigin),
-                ("testPerformanceArea_Quadrilateral", testPerformanceArea_Quadrilateral),
+                ("testPerformanceArea_Quadrilateral", testPerformanceArea_Quadrilateral)
            ]
    }
 }

@@ -45,7 +45,7 @@ extension Coordinate3DTests {
                 ("testEqual", testEqual),
                 ("testNotEqual", testNotEqual),
                 ("testHashValue_Zero", testHashValue_Zero),
-                ("testHashValue_PositiveValue", testHashValue_PositiveValue),
+                ("testHashValue_PositiveValue", testHashValue_PositiveValue)
            ]
    }
 }

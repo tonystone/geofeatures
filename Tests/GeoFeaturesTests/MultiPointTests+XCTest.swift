@@ -53,7 +53,7 @@ extension MultiPoint_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -85,7 +85,7 @@ extension MultiPoint_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -117,7 +117,7 @@ extension MultiPoint_Coordinate3D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -149,7 +149,7 @@ extension MultiPoint_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -181,7 +181,7 @@ extension MultiPoint_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -213,7 +213,7 @@ extension MultiPoint_Coordinate2DM_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -245,7 +245,7 @@ extension MultiPoint_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
@@ -277,7 +277,7 @@ extension MultiPoint_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }

@@ -31,7 +31,7 @@ extension MultiPoint_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
-                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_Empty", testBoundary_Empty)
            ]
    }
 }
@@ -41,7 +41,7 @@ extension MultiPoint_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
-                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_Empty", testBoundary_Empty)
            ]
    }
 }
@@ -51,7 +51,7 @@ extension MultiPoint_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
-                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_Empty", testBoundary_Empty)
            ]
    }
 }
@@ -61,7 +61,7 @@ extension MultiPoint_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
-                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_Empty", testBoundary_Empty)
            ]
    }
 }
@@ -71,7 +71,7 @@ extension MultiPoint_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
-                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_Empty", testBoundary_Empty)
            ]
    }
 }
@@ -81,7 +81,7 @@ extension MultiPoint_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests {
       return [
                 ("testDimension", testDimension),
                 ("testBoundary", testBoundary),
-                ("testBoundary_Empty", testBoundary_Empty),
+                ("testBoundary_Empty", testBoundary_Empty)
            ]
    }
 }
@@ -93,7 +93,7 @@ extension MultiPoint_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
                 ("testBoundary", testBoundary),
                 ("testBoundary_Empty", testBoundary_Empty),
                 ("testEqual_True", testEqual_True),
-                ("testEqual_False", testEqual_False),
+                ("testEqual_False", testEqual_False)
            ]
    }
 }
@@ -105,7 +105,7 @@ extension MultiPoint_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testBoundary", testBoundary),
                 ("testBoundary_Empty", testBoundary_Empty),
                 ("testEqual_True", testEqual_True),
-                ("testEqual_False", testEqual_False),
+                ("testEqual_False", testEqual_False)
            ]
    }
 }

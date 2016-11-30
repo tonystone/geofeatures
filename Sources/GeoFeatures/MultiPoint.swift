@@ -60,7 +60,7 @@ public struct MultiPoint<CoordinateType: Coordinate & CopyConstructable> {
     internal var buffer: CollectionBuffer<Element>
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 extension MultiPoint {
 
@@ -79,7 +79,7 @@ extension MultiPoint {
     }
 }
 
-// MARK:  Collection conformance
+// MARK: - Collection conformance
 
 extension MultiPoint: Collection {
 
@@ -112,14 +112,14 @@ extension MultiPoint: Collection {
         - Returns: The number of Point objects.
      */
     public var count: Int {
-        get { return self.buffer.header.count }
+        return self.buffer.header.count
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.buffer.header.capacity }
+        return self.buffer.header.capacity
     }
 
     /**
@@ -215,7 +215,7 @@ extension MultiPoint: Collection {
     }
 }
 
-// MARK: Collection conformance
+// MARK: - Collection conformance
 
 extension MultiPoint {
 
@@ -271,7 +271,7 @@ extension MultiPoint: CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
-// MARK: Equatable Conformance
+// MARK: - Equatable Conformance
 
 extension MultiPoint: Equatable {}
 

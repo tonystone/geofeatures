@@ -90,7 +90,7 @@ extension WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testRead_GeometryCollection_Invalid_DoubleSapceAfterComma", testRead_GeometryCollection_Invalid_DoubleSapceAfterComma),
                 ("testRead_GeometryCollection_Invalid_MissingLeftParen", testRead_GeometryCollection_Invalid_MissingLeftParen),
                 ("testRead_GeometryCollection_Invalid_MissingRightParen", testRead_GeometryCollection_Invalid_MissingRightParen),
-                ("testReadPerformance_Polygon_California", testReadPerformance_Polygon_California),
+                ("testReadPerformance_Polygon_California", testReadPerformance_Polygon_California)
            ]
    }
 }
@@ -105,7 +105,7 @@ extension WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
                 ("testRead_Point_Invalid_Coordinate_NoSpaceBeforeM", testRead_Point_Invalid_Coordinate_NoSpaceBeforeM),
                 ("testRead_InvalidNumberOfCoordinates", testRead_InvalidNumberOfCoordinates),
                 ("testRead_GeometryCollection_Valid", testRead_GeometryCollection_Valid),
-                ("testRead_GeometryCollection_Invalid_ElementNoM", testRead_GeometryCollection_Invalid_ElementNoM),
+                ("testRead_GeometryCollection_Invalid_ElementNoM", testRead_GeometryCollection_Invalid_ElementNoM)
            ]
    }
 }
@@ -119,7 +119,7 @@ extension WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests {
                 ("testRead_Point_Invalid_Coordinate_NoSpaceAfterZ", testRead_Point_Invalid_Coordinate_NoSpaceAfterZ),
                 ("testRead_Point_Invalid_Coordinate_NoSpaceBeforeZ", testRead_Point_Invalid_Coordinate_NoSpaceBeforeZ),
                 ("testRead_GeometryCollection_Valid", testRead_GeometryCollection_Valid),
-                ("testRead_GeometryCollection_Invalid_ElementNoZ", testRead_GeometryCollection_Invalid_ElementNoZ),
+                ("testRead_GeometryCollection_Invalid_ElementNoZ", testRead_GeometryCollection_Invalid_ElementNoZ)
            ]
    }
 }
@@ -134,7 +134,7 @@ extension WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
                 ("testRead_Point_Invalid_Coordinate_NoSpaceBeforeM", testRead_Point_Invalid_Coordinate_NoSpaceBeforeM),
                 ("testRead_GeometryCollection_Valid", testRead_GeometryCollection_Valid),
                 ("testRead_GeometryCollection_Invalid_ElementNoZ", testRead_GeometryCollection_Invalid_ElementNoZ),
-                ("testRead_GeometryCollection_Invalid_ElementNoM", testRead_GeometryCollection_Invalid_ElementNoM),
+                ("testRead_GeometryCollection_Invalid_ElementNoM", testRead_GeometryCollection_Invalid_ElementNoM)
            ]
    }
 }

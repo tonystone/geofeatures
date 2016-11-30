@@ -50,7 +50,7 @@ extension IntersectionMatrixTests {
                 ("testMatches_NoMatch_PatternToShort", testMatches_NoMatch_PatternToShort),
                 ("testDescription", testDescription),
                 ("testEqual", testEqual),
-                ("testEqual_False", testEqual_False),
+                ("testEqual_False", testEqual_False)
            ]
    }
 }

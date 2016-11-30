@@ -53,7 +53,7 @@ extension MultiPolygon_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testIsEmpty_False", testIsEmpty_False),
                 ("testCount", testCount),
                 ("testEnsureUniquelyReferenced", testEnsureUniquelyReferenced),
-                ("testResizeIfNeeded", testResizeIfNeeded),
+                ("testResizeIfNeeded", testResizeIfNeeded)
            ]
    }
 }
