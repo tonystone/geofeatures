@@ -35,7 +35,7 @@ extension FloatingPrecisionTests {
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
                 ("testEqual_True", testEqual_True),
-                ("testEqual_False_DifferentType", testEqual_False_DifferentType),
+                ("testEqual_False_DifferentType", testEqual_False_DifferentType)
            ]
    }
 }

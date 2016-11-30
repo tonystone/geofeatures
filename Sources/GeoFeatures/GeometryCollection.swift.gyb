@@ -66,7 +66,7 @@ public struct ${Self} {
     internal var buffer: CollectionBuffer<Element>
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 extension ${Self} {
 
@@ -85,7 +85,7 @@ extension ${Self} {
     }
 }
 
-// MARK:  Collection conformance
+// MARK: - Collection conformance
 
 extension ${Self}: Collection {
 
@@ -118,14 +118,14 @@ extension ${Self}: Collection {
         - Returns: The number of ${Element} objects.
      */
     public var count: Int {
-        get { return self.buffer.header.count }
+        return self.buffer.header.count
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.buffer.header.capacity }
+        return self.buffer.header.capacity
     }
 
     /**
@@ -229,7 +229,7 @@ extension ${Self}: Collection {
     }
 }
 
-// MARK: Collection conformance
+// MARK: - Collection conformance
 
 extension ${Self} {
 
@@ -289,7 +289,7 @@ extension ${Self}: CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
-// MARK: Equatable Conformance
+// MARK: - Equatable Conformance
 
 extension ${Self}: Equatable {}
 

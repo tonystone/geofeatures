@@ -39,7 +39,7 @@ extension FixedPrecisionTests {
                 ("testDebugDescription", testDebugDescription),
                 ("testEqual_True", testEqual_True),
                 ("testEqual_False", testEqual_False),
-                ("testEqual_False_DifferentType", testEqual_False_DifferentType),
+                ("testEqual_False_DifferentType", testEqual_False_DifferentType)
            ]
    }
 }

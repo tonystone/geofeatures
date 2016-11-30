@@ -902,7 +902,7 @@ class WKTReader_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = GeometryCollection(elements:
             [
                 Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)),
-                LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0), (x: 3.0, y: 3.0, m: 3.0)]),
+                LineString<Coordinate2DM>(elements: [(x: 1.0, y: 1.0, m: 1.0), (x: 2.0, y: 2.0, m: 2.0), (x: 3.0, y: 3.0, m: 3.0)])
             ] as [Geometry])
 
         XCTAssertEqual(try wktReader.read(string: input) as? GeometryCollection, expected)
@@ -1004,7 +1004,7 @@ class WKTReader_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = GeometryCollection(elements:
             [
                 Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)),
-                LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0), (x: 3.0, y: 3.0, z: 3.0)]),
+                LineString<Coordinate3D>(elements: [(x: 1.0, y: 1.0, z: 1.0), (x: 2.0, y: 2.0, z: 2.0), (x: 3.0, y: 3.0, z: 3.0)])
             ] as [Geometry])
 
         XCTAssertEqual(try wktReader.read(string: input) as? GeometryCollection, expected)
@@ -1106,7 +1106,7 @@ class WKTReader_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
         let expected = GeometryCollection(elements:
             [
                 Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)),
-                LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0), (x: 3.0, y: 3.0, z: 3.0, m: 3.0)]),
+                LineString<Coordinate3DM>(elements: [(x: 1.0, y: 1.0, z: 1.0, m: 1.0), (x: 2.0, y: 2.0, z: 2.0, m: 2.0), (x: 3.0, y: 3.0, z: 3.0, m: 3.0)])
             ] as [Geometry])
 
         XCTAssertEqual(try wktReader.read(string: input) as? GeometryCollection, expected)

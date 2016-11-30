@@ -51,12 +51,10 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         - seealso: `LinearRing`
      */
     public var outerRing: RingType {
-        get {
-            if buffer.header.count > 0 {
-                return buffer.withUnsafeMutablePointerToElements { $0[0] }
-            }
-            return RingType(precision: self.precision, coordinateSystem: self.coordinateSystem)
+        if buffer.header.count > 0 {
+            return buffer.withUnsafeMutablePointerToElements { $0[0] }
         }
+        return RingType(precision: self.precision, coordinateSystem: self.coordinateSystem)
     }
 
     /**
@@ -65,19 +63,17 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         - seealso: `LinearRing`
      */
     public var innerRings: [RingType] {
-        get {
-            if buffer.header.count > 1 {
-                return buffer.withUnsafeMutablePointers { header, elements in
-                    var rings = [RingType]()
+        if buffer.header.count > 1 {
+            return buffer.withUnsafeMutablePointers { header, elements in
+                var rings = [RingType]()
 
-                    for i in stride(from: 1, to: header.pointee.count, by: 1) {
-                        rings.append(elements[i])
-                    }
-                    return rings
+                for i in stride(from: 1, to: header.pointee.count, by: 1) {
+                    rings.append(elements[i])
                 }
+                return rings
             }
-            return []
         }
+        return []
     }
 
     /**

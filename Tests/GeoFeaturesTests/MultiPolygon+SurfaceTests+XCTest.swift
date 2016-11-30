@@ -31,7 +31,7 @@ extension MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests {
       return [
                 ("testArea_Empty", testArea_Empty),
                 ("testArea_2_Same_Polygons", testArea_2_Same_Polygons),
-                ("testArea_2_Different_Polygons", testArea_2_Different_Polygons),
+                ("testArea_2_Different_Polygons", testArea_2_Different_Polygons)
            ]
    }
 }

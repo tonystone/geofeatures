@@ -68,8 +68,6 @@ internal class Tokenizer<T: Token> {
     }
 
     var matchString: String {
-        get {
-            return stringStream.substring(with: matchRange)
-        }
+        return stringStream.substring(with: matchRange)
     }
 }

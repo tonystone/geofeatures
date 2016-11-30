@@ -44,7 +44,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .zero,  .one],
                                                           [.two,   .empty, .zero],
-                                                          [.one,   .two,   .empty],
+                                                          [.one,   .two,   .empty]
                                                           ]
         )
         XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
@@ -66,7 +66,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .zero,  .one],
                                                           [.two,   .empty, .zero],
-                                                          [.one,   .two,   .empty],
+                                                          [.one,   .two,   .empty]
                                                           ]
         )
 
@@ -82,7 +82,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .zero,  .one],
                                                           [.two,   .empty, .zero],
-                                                          [.one,   .two,   .empty],
+                                                          [.one,   .two,   .empty]
                                                           ]
         )
 
@@ -132,7 +132,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,  .empty, .one],
                                                           [.zero, .one,   .two],
-                                                          [.zero, .empty, .empty],
+                                                          [.zero, .empty, .empty]
                                                           ]
         )
         XCTAssertTrue(matrix.matches("TF*012TF*"))
@@ -142,7 +142,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,  .empty, .one],
                                                           [.zero, .one,   .two],
-                                                          [.zero, .empty, .empty],
+                                                          [.zero, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("TFF012TF1"))
@@ -152,7 +152,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,   .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertTrue(matrix.matches("T********"))
@@ -162,7 +162,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertTrue(matrix.matches("F********"))
@@ -172,7 +172,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.zero,  .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertTrue(matrix.matches("0********"))
@@ -182,7 +182,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertTrue(matrix.matches("1********"))
@@ -192,7 +192,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,   .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertTrue(matrix.matches("2********"))
@@ -202,7 +202,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("T********"))
@@ -212,7 +212,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("F********"))
@@ -222,7 +222,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("0********"))
@@ -232,7 +232,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("1********"))
@@ -242,7 +242,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("2********"))
@@ -252,7 +252,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("P********"))
@@ -262,7 +262,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
-                                                          [.empty, .empty, .empty],
+                                                          [.empty, .empty, .empty]
                                                           ]
         )
         XCTAssertFalse(matrix.matches("T****"))
@@ -272,7 +272,7 @@ class IntersectionMatrixTests: XCTestCase {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,  .empty, .one],
                                                           [.zero, .one,   .two],
-                                                          [.zero, .empty, .empty],
+                                                          [.zero, .empty, .empty]
                                                           ]
         )
         XCTAssertEqual(matrix.description, "2, -1, 1, 0, 1, 2, 0, -1, -1")
@@ -282,7 +282,7 @@ class IntersectionMatrixTests: XCTestCase {
         let input = [
                                        [Dimension.two,  .empty, .one],
                                        [Dimension.two,  .empty, .two],
-                                       [Dimension.zero, .empty, .two],
+                                       [Dimension.zero, .empty, .two]
                                        ]
 
         XCTAssertEqual(IntersectionMatrix(arrayLiteral: input), IntersectionMatrix(arrayLiteral: input))
@@ -292,13 +292,13 @@ class IntersectionMatrixTests: XCTestCase {
         let input1 = [
                                        [Dimension.two,  .empty, .one],
                                        [Dimension.two,  .empty, .two],
-                                       [Dimension.zero, .empty, .two],
+                                       [Dimension.zero, .empty, .two]
                                        ]
 
         let input2 = [
                                         [Dimension.one,  .empty, .one],
                                         [Dimension.two,  .empty, .two],
-                                        [Dimension.zero, .empty, .two],
+                                        [Dimension.zero, .empty, .two]
                                         ]
 
         XCTAssertNotEqual(IntersectionMatrix(arrayLiteral: input1), IntersectionMatrix(arrayLiteral: input2))

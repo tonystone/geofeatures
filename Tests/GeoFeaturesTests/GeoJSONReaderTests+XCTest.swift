@@ -44,7 +44,7 @@ extension GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testReadWithValidMultiPoint", testReadWithValidMultiPoint),
                 ("testReadWithValidMultiLineString", testReadWithValidMultiLineString),
                 ("testReadWithValidMultiPolygon", testReadWithValidMultiPolygon),
-                ("testReadWithValidGeometryCollection", testReadWithValidGeometryCollection),
+                ("testReadWithValidGeometryCollection", testReadWithValidGeometryCollection)
            ]
    }
 }
@@ -59,7 +59,7 @@ extension GeoJSONReader_Coordinate3DM_FixedPrecision_Cartesian_Tests {
                 ("testReadWithValidMultiPoint", testReadWithValidMultiPoint),
                 ("testReadWithValidMultiLineString", testReadWithValidMultiLineString),
                 ("testReadWithValidMultiPolygon", testReadWithValidMultiPolygon),
-                ("testReadWithValidGeometryCollection", testReadWithValidGeometryCollection),
+                ("testReadWithValidGeometryCollection", testReadWithValidGeometryCollection)
            ]
    }
 }

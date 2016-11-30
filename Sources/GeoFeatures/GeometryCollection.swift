@@ -60,7 +60,7 @@ public struct GeometryCollection {
     internal var buffer: CollectionBuffer<Element>
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 
 extension GeometryCollection {
 
@@ -79,7 +79,7 @@ extension GeometryCollection {
     }
 }
 
-// MARK:  Collection conformance
+// MARK: - Collection conformance
 
 extension GeometryCollection: Collection {
 
@@ -112,14 +112,14 @@ extension GeometryCollection: Collection {
         - Returns: The number of Geometry objects.
      */
     public var count: Int {
-        get { return self.buffer.header.count }
+        return self.buffer.header.count
     }
 
     /**
         - Returns: The current minimum capacity.
      */
     public var capacity: Int {
-        get { return self.buffer.header.capacity }
+        return self.buffer.header.capacity
     }
 
     /**
@@ -213,7 +213,7 @@ extension GeometryCollection: Collection {
     }
 }
 
-// MARK: Collection conformance
+// MARK: - Collection conformance
 
 extension GeometryCollection {
 
@@ -268,7 +268,7 @@ extension GeometryCollection: CustomStringConvertible, CustomDebugStringConverti
     }
 }
 
-// MARK: Equatable Conformance
+// MARK: - Equatable Conformance
 
 extension GeometryCollection: Equatable {}
 

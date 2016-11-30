@@ -41,7 +41,7 @@ extension LinearRing_Surface_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testArea_RegularDecagon", testArea_RegularDecagon),
                 ("testArea_Tetrakaidecagon", testArea_Tetrakaidecagon),
                 ("testArea_Quadrilateral_CrossingOrigin", testArea_Quadrilateral_CrossingOrigin),
-                ("testPerformanceArea_RegularQuadrilateral", testPerformanceArea_RegularQuadrilateral),
+                ("testPerformanceArea_RegularQuadrilateral", testPerformanceArea_RegularQuadrilateral)
            ]
    }
 }
@@ -61,7 +61,7 @@ extension LinearRing_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests {
                 ("testArea_RegularDecagon", testArea_RegularDecagon),
                 ("testArea_Tetrakaidecagon", testArea_Tetrakaidecagon),
                 ("testArea_Quadrilateral_CrossingOrigin", testArea_Quadrilateral_CrossingOrigin),
-                ("testPerformanceArea_RegularQuadrilateral", testPerformanceArea_RegularQuadrilateral),
+                ("testPerformanceArea_RegularQuadrilateral", testPerformanceArea_RegularQuadrilateral)
            ]
    }
 }

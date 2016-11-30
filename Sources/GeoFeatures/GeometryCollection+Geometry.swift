@@ -19,11 +19,11 @@
 ///
 import Swift
 
-// MARK:  Geometry conformance
+// MARK: - Geometry conformance
 
 extension GeometryCollection: Geometry {
 
-    public var dimension: Dimension { get {
+    public var dimension: Dimension {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> Dimension in
 
@@ -38,7 +38,7 @@ extension GeometryCollection: Geometry {
             }
             return dimension
         }
-        }
+
     }
 
     public func isEmpty() -> Bool {

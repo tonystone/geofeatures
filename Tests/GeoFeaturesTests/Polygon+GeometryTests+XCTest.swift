@@ -34,7 +34,7 @@ extension Polygon_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests {
                 ("testBoundary_OuterRing_1InnerRing", testBoundary_OuterRing_1InnerRing),
                 ("testBoundary_Empty", testBoundary_Empty),
                 ("testEqual_True", testEqual_True),
-                ("testEqual_False", testEqual_False),
+                ("testEqual_False", testEqual_False)
            ]
    }
 }
@@ -42,7 +42,7 @@ extension Polygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -50,7 +50,7 @@ extension Polygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -58,7 +58,7 @@ extension Polygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -66,7 +66,7 @@ extension Polygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -74,7 +74,7 @@ extension Polygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -82,7 +82,7 @@ extension Polygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }
@@ -90,7 +90,7 @@ extension Polygon_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests {
 
    static var allTests: [(String, (Polygon_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests) -> () throws -> Void)] {
       return [
-                ("testDimension", testDimension),
+                ("testDimension", testDimension)
            ]
    }
 }

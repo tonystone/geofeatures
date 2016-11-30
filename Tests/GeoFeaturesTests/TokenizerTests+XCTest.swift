@@ -50,7 +50,7 @@ extension TokenizerTests {
                 ("testColumn_UnicodeEWithAccent", testColumn_UnicodeEWithAccent),
                 ("testColumn_UnicodeEPlusAccent_Canonical", testColumn_UnicodeEPlusAccent_Canonical),
                 ("testLine", testLine),
-                ("testMatchString", testMatchString),
+                ("testMatchString", testMatchString)
            ]
    }
 }

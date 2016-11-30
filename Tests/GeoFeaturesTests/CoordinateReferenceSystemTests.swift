@@ -21,7 +21,7 @@ import XCTest
 import GeoFeatures
 
 fileprivate struct DummyCoordinateReferenceSystem: CoordinateSystem, Equatable, Hashable {
-    public var hashValue: Int { get { return String(reflecting: self).hashValue } }
+    public var hashValue: Int { return String(reflecting: self).hashValue }
 }
 
 class CoordinateReferenceSystemTests: XCTestCase {
