@@ -24,6 +24,7 @@
 
 /* Begin PBXBuildFile section */
 		150B3974ACAF9C9F32A906B2 /* Pods_GeoFeatures_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F56601FAE47CDB9C5EFC43 /* Pods_GeoFeatures_Tests.framework */; };
+		366988F1665A1275A6250DDE /* AVLTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3669862165B76D440C670997 /* AVLTreeTests.swift */; };
 		44E29733FD59AEADF8848759 /* Pods_GeoFeatures_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9A080E0173D715C8FC58BE /* Pods_GeoFeatures_Example.framework */; };
 		EA475CDF1CDA63060013AFA1 /* generate_geometry_from_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */; };
 		EA475CE01CDA63060013AFA1 /* generate_tests_from_gyb.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */; };
@@ -82,6 +83,7 @@
 		0F243D2FCE8800EAB521DC72 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2E8E8258ACE5267DDF6D0D4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3570807BEA12508BC5987DDB /* Pods-GeoFeatures_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Tests/Pods-GeoFeatures_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3669862165B76D440C670997 /* AVLTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLTreeTests.swift; sourceTree = "<group>"; };
 		402534F70096EBD0C273C7E4 /* Pods-GeoFeatures_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Tests/Pods-GeoFeatures_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		52F2ACCACE34D9B4E9E59058 /* Pods-GeoFeatures_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures_Example/Pods-GeoFeatures_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GeoFeatures_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoFeatures_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +329,7 @@
 				EA8D58DE1DB7E34C00713261 /* WKTReaderTests.swift */,
 				EA8D58E01DB7E34C00713261 /* WKTWriterTests.swift */,
 				EA87EB851DDCD60500E679FA /* GeoJSONReaderTests.swift */,
+				3669862165B76D440C670997 /* AVLTreeTests.swift */,
 			);
 			path = GeoFeaturesTests;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				EA8D58ED1DB7E34C00713261 /* FloatingPrecisionTests.swift in Sources */,
 				EA8D58EB1DB7E34C00713261 /* FixedPrecisionTests.swift in Sources */,
 				EA8D591A1DB7E34C00713261 /* WKTWriterTests.swift in Sources */,
+				366988F1665A1275A6250DDE /* AVLTreeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

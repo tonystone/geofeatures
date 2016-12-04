@@ -29,6 +29,7 @@ import XCTest
    @testable import GeoFeaturesTests
 
    XCTMain([
+         testCase(AVLTreeTests.allTests),
          testCase(Coordinate2DMTests.allTests),
          testCase(Coordinate2DTests.allTests),
          testCase(Coordinate3DMTests.allTests),
