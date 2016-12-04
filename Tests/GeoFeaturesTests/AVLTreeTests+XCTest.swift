@@ -83,7 +83,9 @@ extension AVLTreeTests {
                 ("testPreviousOf17", testPreviousOf17),
                 ("testSearchPerformance", testSearchPerformance),
                 ("testInsertPerformance", testInsertPerformance),
-                ("testDeletePerformance", testDeletePerformance)
+                ("testDeletePerformance", testDeletePerformance),
+                ("testInsertDeleteBestTimePerformance", testInsertDeleteBestTimePerformance),
+                ("testInsertDeleteWorstTimePerformance", testInsertDeleteWorstTimePerformance)
            ]
    }
 }
