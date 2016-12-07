@@ -23,7 +23,7 @@ opt_in_rules:
   - explicit_init
   - force_unwrapping
   - private_outlet
-  - redundant_nil_coalesing
+  - redundant_nil_coalescing
 
 closing_brace:
   severity: error
@@ -92,7 +92,7 @@ private_unit_test:
   severity:
     error: XCTestCase
 
-redundant_nil_coalesing:
+redundant_nil_coalescing:
   severity: error
 
 return_arrow_whitespace:
