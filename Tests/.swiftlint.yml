@@ -133,4 +133,11 @@ variable_name:
 vertical_whitespace:
   severity: error
 
+custom_rules:
+  func_where_on_newline:
+    included: ".*.swift"
+    regex: "\)[ \t]*(?:->[ \t]*[a-zA-Z0-9]*[ \t]*)?[^\r\n][ \t]*where[ \t]"
+    message: "func definitions must have their where clause on a new line."
+    severity: error # violation severity. optional.
+
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
