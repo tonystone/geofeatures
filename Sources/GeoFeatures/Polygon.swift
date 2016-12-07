@@ -126,7 +126,8 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         - seealso: `CoordinateSystem`
         - seealso: `Precision`
      */
-    public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType {
+    public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == CoordinateType {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
 
@@ -159,7 +160,8 @@ extension Polygon where CoordinateType: TupleConvertible {
         - seealso: `CoordinateSystem`
         - seealso: `Precision`
      */
-    public  init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == CoordinateType.TupleType {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
 
@@ -172,7 +174,8 @@ extension Polygon where CoordinateType: TupleConvertible {
         }
     }
 
-    public  init<C: Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public init<C: Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == CoordinateType.TupleType {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
 

@@ -114,7 +114,8 @@ extension ${Self}: Collection {
         long as it has an Element type equal the Coordinate type specified in Element
         and the Distance is an Int type.
      */
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType {
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == CoordinateType {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
 
@@ -174,7 +175,8 @@ extension ${Self}: Collection {
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func append<C: Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == CoordinateType {
+    public mutating func append<C: Swift.Collection>(contentsOf newElements: C)
+            where C.Iterator.Element == CoordinateType {
 
         self.reserveCapacity(numericCast(newElements.count))
 
@@ -249,7 +251,8 @@ extension ${Self} where CoordinateType: TupleConvertible & CopyConstructable {
 
         - seealso: TupleConvertible.
      */
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == CoordinateType.TupleType {
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == CoordinateType.TupleType {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
 
@@ -274,7 +277,8 @@ extension ${Self} where CoordinateType: TupleConvertible & CopyConstructable {
     /**
         Append the elements of `newElements` to this ${Self}.
      */
-    public mutating func append<C: Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == CoordinateType.TupleType {
+    public mutating func append<C: Swift.Collection>(contentsOf newElements: C)
+            where C.Iterator.Element == CoordinateType.TupleType {
 
         _ensureUniquelyReferenced()
 

@@ -95,7 +95,8 @@ extension MultiPolygon: Collection {
         long as it has an Element type equal the Geometry Element and the Distance
         is an Int type.
      */
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) where C.Iterator.Element == Element {
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == Element {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
 
@@ -154,7 +155,8 @@ extension MultiPolygon: Collection {
     /**
         Append the elements of `newElements` to this MultiPolygon.
      */
-    public mutating func append<C: Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == Element {
+    public mutating func append<C: Swift.Collection>(contentsOf newElements: C)
+            where C.Iterator.Element == Element {
 
         self.reserveCapacity(numericCast(newElements.count))
 
