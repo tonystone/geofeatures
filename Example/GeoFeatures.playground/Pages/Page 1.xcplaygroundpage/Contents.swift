@@ -70,15 +70,15 @@ let pointsMatch1 = Point<Coordinate2D>(coordinate: (1.4, 2.3)) == Point<Coordina
 let pointsMatch2 = Point<Coordinate2D>(coordinate: (1, 1)) == Point<Coordinate2D>(coordinate: (1.4, 2.3))
 
 //: Algorythms
-Polygon<Coordinate2D>().union(Polygon<Coordinate2D>())
-Point<Coordinate2D>(coordinate: (1, 1)).union(Point<Coordinate2D>(coordinate: (1, 1)))
+//Polygon<Coordinate2D>().union(Polygon<Coordinate2D>())
+//Point<Coordinate2D>(coordinate: (1, 1)).union(Point<Coordinate2D>(coordinate: (1, 1)))
 
 /**
 Readers and Writers
 */
 
 do {
-    try WKTReader<Coordinate2D>().read(wkt: "LINESTRING (0 0, 0 90, 90 90, 90 0, 0 0)")
+    try WKTReader<Coordinate2D>().read(string: "LINESTRING (0 0, 0 90, 90 90, 90 0, 0 0)")
 } catch {
    print(error)
 }
