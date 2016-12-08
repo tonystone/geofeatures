@@ -36,7 +36,8 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     /// long as it has an Element type equal Self.Element and the Distance
     /// is an Int type.
     ///
-    init<C: Swift.Collection>(elements: C, precision: Precision, coordinateSystem: CoordinateSystem) where C.Iterator.Element == Element
+    init<C: Swift.Collection>(elements: C, precision: Precision, coordinateSystem: CoordinateSystem)
+            where C.Iterator.Element == Element
 
     /**
         - Returns: The number of Geometry objects.
@@ -64,7 +65,8 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     /**
         Append the elements of `newElements`.
      */
-    mutating func append<C: Swift.Collection>(contentsOf newElements: C) where C.Iterator.Element == Element
+    mutating func append<C: Swift.Collection>(contentsOf newElements: C)
+            where C.Iterator.Element == Element
 
     /**
         Insert `newElement` at index `i`.
