@@ -77,9 +77,6 @@ public protocol Geometry {
 //    @warn_unused_result
 //    func envelop() -> Geometry
 
-    //: ## Algorithms
-    //: Predicates
-
     /**
      - Returns: true if this GeometryType instance is equal to the other Geometry instance.
      */
@@ -148,7 +145,6 @@ public protocol Geometry {
 //    @warn_unused_result
 //    func locateBetween(mStart:Double, mEnd:Double) -> Geometry
 //
-//    //: Analysis
 //    @warn_unused_result
 //    public func distance(other: Geometry) -> Distance
 //
@@ -198,7 +194,7 @@ public func != <T: Geometry>(lhs: T, rhs: Geometry) -> Bool {
 /**
     Predicate implementation for `Geometry` protocol
 
-    - note: In the comments below P is used to refer to 0-dimensional geometries (Points and MultiPoints),\
+    - note: In the comments below P is used to refer to 0-dimensional geometries (Points and MultiPoints), \
             L is used to refer to 1-dimensional geometries (LineStrings and MultiLineStrings) and A is used\
             to refer to 2-dimensional geometries (Polygons and MultiPolygons).
  */

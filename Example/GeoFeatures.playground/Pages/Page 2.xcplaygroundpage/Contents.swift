@@ -34,9 +34,9 @@ lineString2.append((5.001, 5.001))
 
 var lineString3 = LineString<Coordinate3DM>()
 lineString3.append((0.0, 3.0, 0.0, 0.0))
-lineString3.insert((0.0, 2.0, 0.0, 0.0), atIndex: 0)
-lineString3.insert((0.0, 1.0, 0.0, 0.0), atIndex: 0)
-lineString3.insert((0.0, 0.0, 0.0, 0.0), atIndex: 0)
+lineString3.insert((0.0, 2.0, 0.0, 0.0), at: 0)
+lineString3.insert((0.0, 1.0, 0.0, 0.0), at: 0)
+lineString3.insert((0.0, 0.0, 0.0, 0.0), at: 0)
 
 lineString3.length()
 

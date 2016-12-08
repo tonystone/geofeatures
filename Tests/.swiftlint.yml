@@ -135,9 +135,35 @@ vertical_whitespace:
 
 custom_rules:
   func_where_on_newline:
-    included: ".*.swift"
     regex: "\)[ \t]*(?:->[ \t]*[a-zA-Z0-9]*[ \t]*)?[^\r\n][ \t]*where[ \t]"
     message: "func definitions must have their where clause on a new line."
-    severity: error # violation severity. optional.
+    severity: error
+
+  space_after_comment_mark:
+    regex: "\/\/\/?[^\s\/]"
+    match_kinds:
+      - comment
+    message: "There must be a space after /// or // comments and before the text."
+    severity: error
+
+  identifier_colon:
+    regex: "(?<!swiftlint|HH|mm|h|\"H|'H|\sH):([^\-\)\s\\\/\]])"
+    match_kinds:
+      - identifier
+    message: "Colons must be next to the identifier when specifying a type."
+    severity: error
+
+  comma_after_identifier:
+    regex: "(\s+,\s+)|([^\s]+,[^\s'\"]+)"
+    match_kinds:
+      - identifier
+      - typeidentifier
+      - argument
+      - objectliteral
+      - parameter
+      - keyword
+      - string
+    message: "There should be no space before any comma and at least 1 space after."
+    severity: error
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)

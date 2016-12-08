@@ -32,7 +32,7 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     init(precision: Precision, coordinateSystem: CoordinateSystem)
 
     ///
-    /// Collection can be constructed from any Swift.Collection including Array as
+    ///Collection can be constructed from any Swift.Collection including Array as
     /// long as it has an Element type equal Self.Element and the Distance
     /// is an Int type.
     ///

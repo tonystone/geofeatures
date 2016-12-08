@@ -174,7 +174,7 @@ extension Polygon where CoordinateType: TupleConvertible {
         }
     }
 
-    public init<C: Swift.Collection>(rings: (C,[C]), precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+    public init<C: Swift.Collection>(rings: (C, [C]), precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
             where C.Iterator.Element == CoordinateType.TupleType {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
