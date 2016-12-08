@@ -149,7 +149,7 @@ custom_rules:
     severity: error # violation severity. optional.
 
   space_after_comment_mark:
-    regex: "\/\/\/?[^\s\/]"
+    regex: "(\/\/\/?[^\s\/:])|(\/\/:[^\s\/])"
     match_kinds:
       - comment
     message: "There must be a space after /// or // comments and before the text."
