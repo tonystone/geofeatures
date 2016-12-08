@@ -24,9 +24,9 @@ let coordinates3d: [(x: Double, y: Double, z: Double)] = [(0,0,0), (0,7,0), (4,2
 // LinearRing created with simple tuble array
 LinearRing<Coordinate2D>(elements: coordinates2d)
 
-LinearRing<Coordinate3D>(elements:coordinates3d)
+LinearRing<Coordinate3D>(elements: coordinates3d)
 
-let geometry1: Geometry = LineString<Coordinate3D>(elements:[(x: 0, y: 0, z: 0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)])
+let geometry1: Geometry = LineString<Coordinate3D>(elements: [(x: 0, y: 0, z: 0), (0,7, 0), (4,2, 0), (2,0, 0), (0,0, 0)])
 
 if let linearType = geometry1 as? Curve {
     linearType.length()
@@ -48,7 +48,7 @@ var pointArray:    [Geometry] = [Point<Coordinate2D>(coordinate: (1,1)), Point<C
 var geometryCollection1 = GeometryCollection(elements: geometryArray)
 var geometryCollection2 = GeometryCollection(elements: pointArray)
 
-//let multiPoint = MultiPoint(pointArray)
+// let multiPoint = MultiPoint(pointArray)
 
 //  Iterate over a collection type
 for geometry in geometryCollection1 {
@@ -59,7 +59,7 @@ Point<Coordinate2D>(coordinate: (1,1)).isEmpty()
 Polygon<Coordinate3DM>().isEmpty()
 Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (0,7), (4,2), (2,0), (0,0)],[])).isEmpty()
 LineString<Coordinate2D>().isEmpty()
-LineString<Coordinate3D>(elements:[(x: 0, y: 0, z: 0), (0,7,0), (4,2,0), (2,0,0), (0,0,0)]).isEmpty()
+LineString<Coordinate3D>(elements: [(x: 0, y: 0, z: 0), (0,7, 0), (4,2, 0), (2,0, 0), (0,0, 0)]).isEmpty()
 
 GeometryCollection().isEmpty()
 GeometryCollection(elements: [Point<Coordinate2D>(coordinate: (1,1))] as [Geometry]).isEmpty()
@@ -70,8 +70,8 @@ let pointsMatch1 = Point<Coordinate2D>(coordinate: (1.4, 2.3)) == Point<Coordina
 let pointsMatch2 = Point<Coordinate2D>(coordinate: (1, 1)) == Point<Coordinate2D>(coordinate: (1.4, 2.3))
 
 //: Algorythms
-//Polygon<Coordinate2D>().union(Polygon<Coordinate2D>())
-//Point<Coordinate2D>(coordinate: (1, 1)).union(Point<Coordinate2D>(coordinate: (1, 1)))
+// Polygon<Coordinate2D>().union(Polygon<Coordinate2D>())
+// Point<Coordinate2D>(coordinate: (1, 1)).union(Point<Coordinate2D>(coordinate: (1, 1)))
 
 /**
 Readers and Writers
