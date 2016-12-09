@@ -37,7 +37,7 @@ internal class AVLTree<ValueType: Comparable>: ExpressibleByArrayLiteral {
     ///
     /// The root of the tree if it has any nodes
     ///
-    internal fileprivate(set) var root: NodeType? = nil
+    fileprivate fileprivate(set) var root: NodeType? = nil
 
     ///
     /// Construct an instance with an Array of ValueTypes
@@ -170,7 +170,6 @@ fileprivate extension AVLTree {
     /// Insert this node in the proper place in the tree ensuring it's balanced
     ///
     @inline(__always)
-    @discardableResult
     fileprivate func insert(value: ValueType, node root: inout NodeType?) -> NodeType {
 
         ///
@@ -240,7 +239,7 @@ fileprivate extension AVLTree {
                 // Unlink it from it's parent
                 root?.parent = nil
 
-                // Link the left nide to the directly to the root
+                // Link the left node to the directly to the root
                 left.parent = nil
                 root = left
 
@@ -356,7 +355,6 @@ fileprivate extension AVLTree {
     /// ```
     ///
     @inline(__always)
-    @discardableResult
     fileprivate func leftRotate(node a: NodeType) -> NodeType? {
 
         var newRoot: NodeType? = nil
@@ -403,7 +401,6 @@ fileprivate extension AVLTree {
     /// ```
     ///
     @inline(__always)
-    @discardableResult
     fileprivate func rightRotate(node c: NodeType) -> NodeType? {
 
         var newRoot: NodeType? = nil
@@ -450,7 +447,6 @@ fileprivate extension AVLTree {
     /// ```
     ///
     @inline(__always)
-    @discardableResult
     fileprivate func leftRightRotate(node c: NodeType) -> NodeType? {
 
         var newRoot: NodeType? = nil
@@ -504,7 +500,6 @@ fileprivate extension AVLTree {
     /// ```
     ///
     @inline(__always)
-    @discardableResult
     fileprivate func rightLeftRotate(node a: NodeType) -> NodeType? {
 
         var newRoot: NodeType? = nil
