@@ -19,11 +19,11 @@
 ///
 import Swift
 
-/**
-    TupleConvertible
-
-    Specifies the contract for a type that is convertible to and from a tuple type
-*/
+///
+/// TupleConvertible
+///
+/// Specifies the contract for a type that is convertible to and from a tuple type
+///
 public protocol TupleConvertible {
 
     /// Tuple conversion type (what does the tuple look like)

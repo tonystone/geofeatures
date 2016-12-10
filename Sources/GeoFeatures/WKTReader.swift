@@ -116,54 +116,54 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
 
         let tokenizer = Tokenizer<WKT>(string: string)
 
-        // BNF: <geometry tagged text> ::= <point tagged text>
-        //                          | <linestring tagged text>
-        //                          | <polygon tagged text>
-        //                          | <triangle tagged text>
-        //                          | <polyhedralsurface tagged text>
-        //                          | <tin tagged text>
-        //                          | <multipoint tagged text>
-        //                          | <multilinestring tagged text>
-        //                          | <multipolygon tagged text>
-        //                          | <geometrycollection tagged text>
-        //
+        /// BNF: <geometry tagged text> ::= <point tagged text>
+        ///                          | <linestring tagged text>
+        ///                          | <polygon tagged text>
+        ///                          | <triangle tagged text>
+        ///                          | <polyhedralsurface tagged text>
+        ///                          | <tin tagged text>
+        ///                          | <multipoint tagged text>
+        ///                          | <multilinestring tagged text>
+        ///                          | <multipolygon tagged text>
+        ///                          | <geometrycollection tagged text>
+        ///
 
-        // BNF: <point tagged text> ::= point <point text>
+        /// BNF: <point tagged text> ::= point <point text>
         if tokenizer.accept(.POINT) != nil {
             return try self.pointTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // BNF: <linestring tagged text> ::= linestring <linestring text>
+        /// BNF: <linestring tagged text> ::= linestring <linestring text>
         if tokenizer.accept(.LINESTRING) != nil {
             return try self.lineStringTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // Currently unsupported by OGC
+        /// Currently unsupported by OGC
         if tokenizer.accept(.LINEARRING) != nil {
             return try self.linearRingTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // BNF: <polygon tagged text> ::= polygon <polygon text>
+        /// BNF: <polygon tagged text> ::= polygon <polygon text>
         if tokenizer.accept(.POLYGON) != nil {
             return try self.polygonTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
+        /// BNF: <multipoint tagged text> ::= multipoint <multipoint text>
         if tokenizer.accept(.MULTIPOINT) != nil {
             return try self.multiPointTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
+        /// BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
         if tokenizer.accept(.MULTILINESTRING) != nil {
             return try self.multiLineStringTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
+        /// BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
         if tokenizer.accept(.MULTIPOLYGON) != nil {
             return try self.multiPolygonTaggedText(tokenizer, require: (z: nil, m: nil))
         }
 
-        // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
+        /// BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
         if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
             return try self.geometryCollectionTaggedText(tokenizer, require: (z: nil, m: nil))
         }
@@ -187,13 +187,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return try self.read(string: string)
     }
 
-    // BNF: <point tagged text> ::= point <point text>
+    /// BNF: <point tagged text> ::= point <point text>
     fileprivate func pointTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> Point<CoordinateType> {
 
         return try pointText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
+    /// BNF: <point text> ::= <empty set> | <left paren> <point> <right paren>
     fileprivate func pointText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> Point<CoordinateType> {
 
         if tokenizer.accept(.LEFT_PAREN) == nil {
@@ -208,13 +208,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return Point<CoordinateType>(coordinate: coordinate, precision: precision, coordinateSystem: cs)
     }
 
-    // BNF: <linestring tagged text> ::= linestring <linestring text>
+    /// BNF: <linestring tagged text> ::= linestring <linestring text>
     fileprivate func lineStringTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> LineString<CoordinateType> {
 
         return try lineStringText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <linestring text> ::= <empty set> | <left paren> <point> {<comma> <point>}* <right paren>
+    /// BNF: <linestring text> ::= <empty set> | <left paren> <point> {<comma> <point>}* <right paren>
     fileprivate func lineStringText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> LineString<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -247,13 +247,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return LineString<CoordinateType>(elements: coordinates, precision: precision, coordinateSystem: cs)
     }
 
-    // BNF: None defined by OGC
+    /// BNF: None defined by OGC
     fileprivate func linearRingTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> LinearRing<CoordinateType> {
 
         return try linearRingText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: None defined by OGC
+    /// BNF: None defined by OGC
     fileprivate func linearRingText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> LinearRing<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -286,13 +286,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return LinearRing<CoordinateType>(elements: coordinates, precision: precision, coordinateSystem: cs)
     }
 
-    // BNF: <polygon tagged text> ::= polygon <polygon text>
+    /// BNF: <polygon tagged text> ::= polygon <polygon text>
     fileprivate func polygonTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> Polygon<CoordinateType> {
 
         return try polygonText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
+    /// BNF: <polygon text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
     fileprivate func polygonText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> Polygon<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -339,13 +339,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return Polygon<CoordinateType>(outerRing: outerRing, innerRings: innerRings)
     }
 
-    // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
+    /// BNF: <multipoint tagged text> ::= multipoint <multipoint text>
     fileprivate func multiPointTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> MultiPoint<CoordinateType> {
 
         return try multiPointText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <multipoint text> ::= <empty set> | <left paren> <point text> {<comma> <point text>}* <right paren>
+    /// BNF: <multipoint text> ::= <empty set> | <left paren> <point text> {<comma> <point text>}* <right paren>
     fileprivate func multiPointText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> MultiPoint<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -378,13 +378,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return MultiPoint<CoordinateType>(elements: elements, precision: precision, coordinateSystem: cs)
     }
 
-    // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
+    /// BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
     fileprivate func multiLineStringTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> MultiLineString<CoordinateType> {
 
         return try multiLineStringText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <multilinestring text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
+    /// BNF: <multilinestring text> ::= <empty set> | <left paren> <linestring text> {<comma> <linestring text>}* <right paren>
     fileprivate func multiLineStringText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> MultiLineString<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -416,13 +416,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return MultiLineString<CoordinateType>(elements: elements, precision: precision, coordinateSystem: cs)
     }
 
-    // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
+    /// BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
     fileprivate func multiPolygonTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> MultiPolygon<CoordinateType> {
 
         return try multiPolygonText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
+    /// BNF: <multipolygon text> ::= <empty set> | <left paren> <polygon text> {<comma> <polygon text>}* <right paren>
     fileprivate func multiPolygonText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> MultiPolygon<CoordinateType> {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -456,13 +456,13 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return MultiPolygon<CoordinateType>(elements: elements)
     }
 
-    // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
+    /// BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
     fileprivate func geometryCollectionTaggedText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> GeometryCollection {
 
         return try geometryCollectionText(tokenizer, require: try dimensionText(tokenizer, require: require))
     }
 
-    // BNF: <geometrycollection text> ::= <empty set> | <left paren> <geometry tagged text> {<comma> <geometry tagged text>}* <right paren>
+    /// BNF: <geometrycollection text> ::= <empty set> | <left paren> <geometry tagged text> {<comma> <geometry tagged text>}* <right paren>
     fileprivate func geometryCollectionText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> GeometryCollection {
 
         if tokenizer.accept(.EMPTY) != nil {
@@ -477,35 +477,35 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         var done     = false
 
         repeat {
-            // BNF: <point tagged text> ::= point <point text>
+            /// BNF: <point tagged text> ::= point <point text>
             if tokenizer.accept(.POINT) != nil {
                 elements.append(try self.pointTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // BNF: <linestring tagged text> ::= linestring <linestring text>
+            /// BNF: <linestring tagged text> ::= linestring <linestring text>
             } else if tokenizer.accept(.LINESTRING) != nil {
                 elements.append(try self.lineStringTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // Currently unsupported by OGC
+            /// Currently unsupported by OGC
             } else if tokenizer.accept(.LINEARRING) != nil {
                 elements.append(try self.linearRingTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // BNF: <polygon tagged text> ::= polygon <polygon text>
+            /// BNF: <polygon tagged text> ::= polygon <polygon text>
             } else if tokenizer.accept(.POLYGON) != nil {
                 elements.append(try self.polygonTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // BNF: <multipoint tagged text> ::= multipoint <multipoint text>
+            /// BNF: <multipoint tagged text> ::= multipoint <multipoint text>
             } else if tokenizer.accept(.MULTIPOINT) != nil {
                 elements.append(try self.multiPointTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
+            /// BNF: <multilinestring tagged text> ::= multilinestring <multilinestring text>
             } else if tokenizer.accept(.MULTILINESTRING) != nil {
                 elements.append(try self.multiLineStringTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
+            /// BNF: <multipolygon tagged text> ::= multipolygon <multipolygon text>
             } else if tokenizer.accept(.MULTIPOLYGON) != nil {
                 elements.append(try self.multiPolygonTaggedText(tokenizer, require: (z: require.z, m: require.m)))
 
-            // BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
+            /// BNF: <geometrycollection tagged text> ::= geometrycollection <geometrycollection text>
             } else if tokenizer.accept(.GEOMETRYCOLLECTION) != nil {
                 elements.append(try self.geometryCollectionTaggedText(tokenizer, require: (z: require.z, m: require.m)))
             } else {
@@ -527,10 +527,10 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
         return GeometryCollection(elements: elements, precision: precision, coordinateSystem: cs)
     }
 
-    // BNF: <point> ::= <x> <y>
-    // BNF: <point z> ::= <x> <y> <z>
-    // BNF: <point m> ::= <x> <y> <m>
-    // BNF: <point zm> ::= <x> <y> <z> <m>
+    /// BNF: <point> ::= <x> <y>
+    /// BNF: <point z> ::= <x> <y> <z>
+    /// BNF: <point m> ::= <x> <y> <m>
+    /// BNF: <point zm> ::= <x> <y> <z> <m>
     fileprivate func coordinate(_ tokenizer: Tokenizer<WKT>, require: (z: Bool, m: Bool)) throws -> CoordinateType {
 
         var coordinates = [Double]()
@@ -615,7 +615,7 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
             result.m = tokenizer.accept(.MEASURED) != nil
         }
 
-        // If either was present, a single space after it is required.
+        /// If either was present, a single space after it is required.
         if result.z || result.m {
             if tokenizer.accept(.SINGLE_SPACE) == nil {
                 throw WKTReaderError.unexpectedToken(errorMessage(tokenizer, expectedToken: .SINGLE_SPACE))

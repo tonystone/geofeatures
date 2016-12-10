@@ -19,11 +19,11 @@
 ///
 import Swift
 
-/**
-    2D Coordinate
-
-    Low level 2 dimensional Coordinate type
- */
+///
+/// 2D Coordinate
+///
+/// Low level 2 dimensional Coordinate type
+///
 public struct Coordinate2D: Coordinate {
 
     public let x: Double

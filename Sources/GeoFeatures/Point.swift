@@ -19,13 +19,13 @@
 ///
 import Swift
 
-/**
- Point
-
- A Point is a 0-dimensional geometric object and represents a single location in coordinate space. A Point has an
- x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
- have coordinate values for z.
- */
+///
+/// Point
+///
+/// A Point is a 0-dimensional geometric object and represents a single location in coordinate space. A Point has an
+/// x coordinate value, a y coordinate value. If called for by the associated Spatial Reference System, it may also
+/// have coordinate values for z.
+///
 public struct Point<CoordinateType: Coordinate & CopyConstructable> {
 
     public let precision: Precision

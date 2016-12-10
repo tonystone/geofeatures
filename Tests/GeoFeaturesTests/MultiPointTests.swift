@@ -50,8 +50,8 @@ class MultiPointCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate2D>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -276,7 +276,7 @@ class MultiPointCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)))
         }
@@ -301,8 +301,8 @@ class MultiPointCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate2DM>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -527,7 +527,7 @@ class MultiPointCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate2DM>(coordinate: (x: 1.0, y: 1.0, m: 1.0)))
         }
@@ -552,8 +552,8 @@ class MultiPointCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate3D>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -778,7 +778,7 @@ class MultiPointCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate3D>(coordinate: (x: 1.0, y: 1.0, z: 1.0)))
         }
@@ -803,8 +803,8 @@ class MultiPointCoordinate3DMFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate3DM>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -1029,7 +1029,7 @@ class MultiPointCoordinate3DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate3DM>(coordinate: (x: 1.0, y: 1.0, z: 1.0, m: 1.0)))
         }
@@ -1054,8 +1054,8 @@ class MultiPointCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate2D>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -1280,7 +1280,7 @@ class MultiPointCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate2D>(coordinate: (x: 1.001, y: 1.001)))
         }
@@ -1305,8 +1305,8 @@ class MultiPointCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate2DM>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -1531,7 +1531,7 @@ class MultiPointCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate2DM>(coordinate: (x: 1.001, y: 1.001, m: 1.001)))
         }
@@ -1556,8 +1556,8 @@ class MultiPointCoordinate3DFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate3D>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -1782,7 +1782,7 @@ class MultiPointCoordinate3DFixedPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate3D>(coordinate: (x: 1.001, y: 1.001, z: 1.001)))
         }
@@ -1807,8 +1807,8 @@ class MultiPointCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiPoint<Coordinate3DM>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -2033,7 +2033,7 @@ class MultiPointCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
         var input = MultiPoint<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Point<Coordinate3DM>(coordinate: (x: 1.001, y: 1.001, z: 1.001, m: 1.001)))
         }

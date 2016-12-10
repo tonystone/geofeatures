@@ -39,60 +39,60 @@ public protocol Collection: Swift.Collection, MutableCollection, _DestructorSafe
     init<C: Swift.Collection>(elements: C, precision: Precision, coordinateSystem: CoordinateSystem)
             where C.Iterator.Element == Element
 
-    /**
-        - Returns: The number of Geometry objects.
-     */
+    ///
+    /// - Returns: The number of Geometry objects.
+    ///
     var count: Int { get }
 
-    /**
-        - Returns: The current minimum capacity.
-     */
+    ///
+    /// - Returns: The current minimum capacity.
+     ///
     var capacity: Int { get }
 
-    /**
-        Reserve enough space to store `minimumCapacity` elements.
-
-        - Postcondition: `capacity >= minimumCapacity` and the array has
-          mutable contiguous buffer.
-     */
+    ///
+    /// Reserve enough space to store `minimumCapacity` elements.
+    ///
+    /// - Postcondition: `capacity >= minimumCapacity` and the array has
+    ///   mutable contiguous buffer.
+    ///
     mutating func reserveCapacity(_ minimumCapacity: Int)
 
-    /**
-        Append `newElement`.
-     */
+    ///
+    /// Append `newElement`.
+    ///
     mutating func append(_ newElement: Element)
 
-    /**
-        Append the elements of `newElements`.
-     */
+    ///
+    /// Append the elements of `newElements`.
+    ///
     mutating func append<C: Swift.Collection>(contentsOf newElements: C)
             where C.Iterator.Element == Element
 
-    /**
-        Insert `newElement` at index `i`.
-
-        - Requires: `i <= count`.
-     */
+    ///
+    /// Insert `newElement` at index `i`.
+    ///
+    /// - Requires: `i <= count`.
+    ///
     mutating func insert(_ newElement: Element, at i: Int)
 
-    /**
-        Remove and return the element at index `i`.
-     */
+    ///
+    /// Remove and return the element at index `i`.
+    ///
     @discardableResult
     mutating func remove(at index: Int) -> Element
 
-    /**
-        Remove an element from the end of the Collection.
-
-        - Requires: `count > 0`.
-     */
+    ///
+    /// Remove an element from the end of the Collection.
+    ///
+    /// - Requires: `count > 0`.
+    ///
     @discardableResult
     mutating func removeLast() -> Element
 
-    /**
-        Remove all elements.
-
-        - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
-     */
+    ///
+    /// Remove all elements.
+    ///
+    /// - Postcondition: `capacity == 0` iff `keepCapacity` is `false`.
+    ///
     mutating func removeAll(keepingCapacity keepCapacity: Bool)
 }

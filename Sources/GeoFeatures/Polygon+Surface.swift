@@ -21,17 +21,16 @@ import Foundation
 
 extension Polygon: Surface {
 
-    /**
-        Calculates the area of this `Polygon`
-
-        - returns: The area of this `Polygon`.
-
-        - requires: The "outerRing" be oriented clockwise
-        - requires: The "innerRings" be oriented counter clockwise
-        - requires: isSimple == true
-        - requires: isClosed == true for "outerRing" and all "innerRings"
-     */
-
+    ///
+    /// Calculates the area of this `Polygon`
+    ///
+    /// - returns: The area of this `Polygon`.
+    ///
+    /// - requires: The "outerRing" be oriented clockwise
+    /// - requires: The "innerRings" be oriented counter clockwise
+    /// - requires: isSimple == true
+    /// - requires: isClosed == true for "outerRing" and all "innerRings"
+    ///
     public func area() -> Double {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> Double in

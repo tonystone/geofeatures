@@ -19,37 +19,37 @@
 ///
 import Swift
 
-/**
-    A polygon consists of an outer ring with it's coordinates in clockwise order and zero or more inner rings in counter clockwise order.
-
-    - requires: The "outerRing" be oriented clockwise
-    - requires: The "innerRings" be oriented counter clockwise
-    - requires: isSimple == true
-    - requires: isClosed == true for "outerRing" and all "innerRings"
- */
+///
+/// A polygon consists of an outer ring with it's coordinates in clockwise order and zero or more inner rings in counter clockwise order.
+///
+/// - requires: The "outerRing" be oriented clockwise
+/// - requires: The "innerRings" be oriented counter clockwise
+/// - requires: isSimple == true
+/// - requires: isClosed == true for "outerRing" and all "innerRings"
+///
 public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
 
     public typealias RingType = LinearRing<CoordinateType>
 
-    /**
-        - returns: The `Precision` of this Polygon
-
-        - seealso: `Precision`
-     */
+    ///
+    /// - returns: The `Precision` of this Polygon
+    ///
+    /// - seealso: `Precision`
+    ///
     public let precision: Precision
 
-    /**
-        - returns: The `CoordinateSystem` of this Polygon
-
-        - seealso: `CoordinateSystem`
-     */
+    ///
+    /// - returns: The `CoordinateSystem` of this Polygon
+    ///
+    /// - seealso: `CoordinateSystem`
+    ///
     public let coordinateSystem: CoordinateSystem
 
-    /**
-        - returns: The `LinearRing` representing the outerRing of this Polygon
-
-        - seealso: `LinearRing`
-     */
+    ///
+    /// - returns: The `LinearRing` representing the outerRing of this Polygon
+    ///
+    /// - seealso: `LinearRing`
+    ///
     public var outerRing: RingType {
         if buffer.header.count > 0 {
             return buffer.withUnsafeMutablePointerToElements { $0[0] }
@@ -57,11 +57,11 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         return RingType(precision: self.precision, coordinateSystem: self.coordinateSystem)
     }
 
-    /**
-        - returns: An Array of `LinearRing`s representing the innerRings of this Polygon
-
-        - seealso: `LinearRing`
-     */
+    ///
+    /// - returns: An Array of `LinearRing`s representing the innerRings of this Polygon
+    ///
+    /// - seealso: `LinearRing`
+    ///
     public var innerRings: [RingType] {
         if buffer.header.count > 1 {
             return buffer.withUnsafeMutablePointers { header, elements in
@@ -76,17 +76,17 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         return []
     }
 
-    /**
-        A Polygon initializer to create an empty polygon.
-
-        - parameters:
-            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
-
-        - seealso: `CollectionType`
-        - seealso: `CoordinateSystem`
-        - seealso: `Precision`
-     */
+    ///
+    /// A Polygon initializer to create an empty polygon.
+    ///
+    /// - parameters:
+    ///     - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
+    ///     - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
+    ///
+    /// - seealso: `CollectionType`
+    /// - seealso: `CoordinateSystem`
+    /// - seealso: `Precision`
+    ///
     public init (precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
         self.precision = precision
         self.coordinateSystem = coordinateSystem
@@ -94,17 +94,17 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         self.buffer = BufferType.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! BufferType // swiftlint:disable:this force_cast
     }
 
-    /**
-        Construct a Polygon from another Polygon (copy constructor).
-
-     - parameters:
-        - other: The Polygon of the same type that you want to construct a new Polygon from.
-        - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-        - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
-
-     - seealso: `CoordinateSystem`
-     - seealso: `Precision`
-     */
+    ///
+    /// Construct a Polygon from another Polygon (copy constructor).
+    ///
+    /// - parameters:
+    ///    - other: The Polygon of the same type that you want to construct a new Polygon from.
+    ///    - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
+    ///    - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
+    ///
+    /// - seealso: `CoordinateSystem`
+    /// - seealso: `Precision`
+    ///
     public init(other: Polygon<CoordinateType>, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem) {
 
         self.init(precision: precision, coordinateSystem: coordinateSystem)
@@ -112,20 +112,20 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
         self.buffer = other.buffer
     }
 
-    /**
-        A Polygon can be constructed from any `CollectionType` for it's rings including Array as
-        long as it has an Element type equal the `CoordinateType` specified.
-
-        - parameters:
-            - outerRing: A `CollectionType` who's elements are of type `CoordinateType`.
-            - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType`.
-            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
-
-        - seealso: `CollectionType`
-        - seealso: `CoordinateSystem`
-        - seealso: `Precision`
-     */
+    ///
+    /// A Polygon can be constructed from any `CollectionType` for it's rings including Array as
+    /// long as it has an Element type equal the `CoordinateType` specified.
+    ///
+    /// - parameters:
+    ///     - outerRing: A `CollectionType` who's elements are of type `CoordinateType`.
+    ///     - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType`.
+    ///     - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
+    ///     - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
+    ///
+    /// - seealso: `CollectionType`
+    /// - seealso: `CoordinateSystem`
+    /// - seealso: `Precision`
+    ///
     public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
             where C.Iterator.Element == CoordinateType {
 
@@ -146,20 +146,20 @@ public struct Polygon<CoordinateType: Coordinate & CopyConstructable> {
 
 extension Polygon where CoordinateType: TupleConvertible {
 
-    /**
-        A Polygon can be constructed from any `CollectionType` for it's rings including Array as
-        long as it has an Element type equal the `CoordinateType` specified.
-
-        - parameters:
-            - outerRing: A `CollectionType` who's elements are of type `CoordinateType.TupleType`.
-            - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType.TupleType`.
-            - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
-            - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
-
-        - seealso: `CollectionType`
-        - seealso: `CoordinateSystem`
-        - seealso: `Precision`
-     */
+    ///
+    /// A Polygon can be constructed from any `CollectionType` for it's rings including Array as
+    /// long as it has an Element type equal the `CoordinateType` specified.
+    ///
+    /// - parameters:
+    ///     - outerRing: A `CollectionType` who's elements are of type `CoordinateType.TupleType`.
+    ///     - innerRings: An `Array` of `CollectionType` who's elements are of type `CoordinateType.TupleType`.
+    ///     - precision: The `Precision` model this polygon should use in calculations on it's coordinates.
+    ///     - coordinateSystem: The 'CoordinateSystem` this polygon should use in calculations on it's coordinates.
+    ///
+    /// - seealso: `CollectionType`
+    /// - seealso: `CoordinateSystem`
+    /// - seealso: `Precision`
+    ///
     public init<C: Swift.Collection>(outerRing: C, innerRings: [C] = [], precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
             where C.Iterator.Element == CoordinateType.TupleType {
 

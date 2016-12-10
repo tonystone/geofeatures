@@ -27,12 +27,11 @@ extension MultiPoint: Geometry {
         return self.count == 0
     }
 
-    /**
-     - Returns: the closure of the combinatorial boundary of this Geometry instance.
-
-     - Note: The boundary of a MultiPoint is the empty set.
-     */
-
+    ///
+    /// - Returns: the closure of the combinatorial boundary of this Geometry instance.
+    ///
+    /// - Note: The boundary of a MultiPoint is the empty set.
+    ///
     public func boundary() -> Geometry {
         return MultiPoint<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)
     }

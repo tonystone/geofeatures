@@ -66,7 +66,7 @@ internal extension CollectionBuffer {
                     newElements.moveInitialize(from: oldElems, count: elementCount)
                 }
 
-                // Clear the old buffer since we moved the values
+                /// Clear the old buffer since we moved the values
                 self.header.count = 0
 
                 return CollectionBufferHeader(capacity: newSize, count: elementCount)
@@ -96,7 +96,7 @@ internal extension CollectionBuffer {
 
             header.pointee.count = header.pointee.count &+ 1
 
-            // Move the other elements
+            /// Move the other elements
             while  m >= index {
                 elements.advanced(by: m &+ 1).moveInitialize(from: elements.advanced(by: m), count: 1)
                 m = m &- 1
@@ -130,7 +130,7 @@ internal extension CollectionBuffer {
 
             var m = index
 
-            // Move the other elements
+            /// Move the other elements
             while  m <  header.pointee.count {
                 elements.advanced(by: m).moveInitialize(from: elements.advanced(by: m &+ 1), count: 1)
                 m = m &+ 1
@@ -144,7 +144,7 @@ internal extension CollectionBuffer {
 
         return self.withUnsafeMutablePointers { (header, elements) -> Element in
 
-            // No need to check for overflow in `header.pointee.count - 1` because `header.pointee.count` is known to be positive.
+            /// No need to check for overflow in `header.pointee.count - 1` because `header.pointee.count` is known to be positive.
             header.pointee.count = header.pointee.count &- 1
             return elements.advanced(by: header.pointee.count).move()
         }

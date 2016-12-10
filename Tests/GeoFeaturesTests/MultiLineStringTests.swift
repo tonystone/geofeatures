@@ -50,8 +50,8 @@ class MultiLineStringCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiLineString<Coordinate2D>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -276,7 +276,7 @@ class MultiLineStringCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
         var input = MultiLineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0), (x: 0.0, y: 2.0), (x: 0.0, y: 3.0), (x: 2.0, y: 0.0), (x: 0.0, y: 0.0)]))
         }
@@ -301,8 +301,8 @@ class MultiLineStringCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiLineString<Coordinate2DM>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -527,7 +527,7 @@ class MultiLineStringCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = MultiLineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(LineString<Coordinate2DM>(elements: [(x: 0.0, y: 0.0, m: 2.0), (x: 0.0, y: 2.0, m: 2.0), (x: 0.0, y: 3.0, m: 2.0), (x: 2.0, y: 0.0, m: 2.0), (x: 0.0, y: 0.0, m: 2.0)]))
         }
@@ -552,8 +552,8 @@ class MultiLineStringCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiLineString<Coordinate2D>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -778,7 +778,7 @@ class MultiLineStringCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
         var input = MultiLineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(LineString<Coordinate2D>(elements: [(x: 0.0, y: 0.0), (x: 0.0, y: 2.002), (x: 0.0, y: 3.003), (x: 2.002, y: 0.0), (x: 0.0, y: 0.0)]))
         }
@@ -803,8 +803,8 @@ class MultiLineStringCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = MultiLineString<Coordinate2DM>()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FixedPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -1029,7 +1029,7 @@ class MultiLineStringCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
         var input = MultiLineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(LineString<Coordinate2DM>(elements: [(x: 0.0, y: 0.0, m: 2.002), (x: 0.0, y: 2.002, m: 2.002), (x: 0.0, y: 3.003, m: 2.002), (x: 2.002, y: 0.0, m: 2.002), (x: 0.0, y: 0.0, m: 2.002)]))
         }

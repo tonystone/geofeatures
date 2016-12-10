@@ -21,13 +21,13 @@ import Swift
 
 public protocol CopyConstructable {
 
-    /**
-     Copy constructor
-     */
+    ///
+    /// Copy constructor
+    ///
     init(other: Self)
 
-    /**
-     Copy constructor with new precision
-     */
+    ///
+    /// Copy constructor with new precision
+    ///
     init(other: Self, precision: Precision)
 }

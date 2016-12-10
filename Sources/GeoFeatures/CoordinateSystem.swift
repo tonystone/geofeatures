@@ -19,11 +19,11 @@
 ///
 import Swift
 
-/**
- Coordinate System Types
-
- These are used by the algorithms when they are applied to the types
-*/
+///
+/// Coordinate System Types
+///
+/// These are used by the algorithms when they are applied to the types
+///
 public protocol CoordinateSystem {}
 
 public struct Cartesian: CoordinateSystem {

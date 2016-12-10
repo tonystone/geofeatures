@@ -19,11 +19,11 @@
 ///
 import Swift
 
-/**
-    Measured 3D Coordinate
-
-    Low level 3 dimensional Coordinate type with an m value.
- */
+///
+/// Measured 3D Coordinate
+///
+/// Low level 3 dimensional Coordinate type with an m value.
+///
 public struct Coordinate3DM: Coordinate, ThreeDimensional, Measured {
 
     public let x: Double

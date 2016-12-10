@@ -272,7 +272,7 @@ class LineStringCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0))
         }
@@ -524,7 +524,7 @@ class LineStringCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0, m: 1.0))
         }
@@ -776,7 +776,7 @@ class LineStringCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0, z: 1.0))
         }
@@ -1028,7 +1028,7 @@ class LineStringCoordinate3DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
         }
@@ -1280,7 +1280,7 @@ class LineStringCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001))
         }
@@ -1532,7 +1532,7 @@ class LineStringCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001, m: 1.001))
         }
@@ -1784,7 +1784,7 @@ class LineStringCoordinate3DFixedPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001, z: 1.001))
         }
@@ -2036,7 +2036,7 @@ class LineStringCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
         var input = LineString<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
         }

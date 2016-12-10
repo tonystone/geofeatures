@@ -138,7 +138,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         }
     }
 
-    // Parse a Point type
+    /// Parse a Point type
     private func point(jsonObject: [String : Any]) throws -> Point<CoordinateType> {
 
         let coordinates = try Coordinates<[Double]>.coordinates(json: jsonObject)
@@ -146,13 +146,13 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return try self.point(coordinates: coordinates)
     }
 
-    // Parse coordinates into a Point
+    /// Parse coordinates into a Point
     private func point(coordinates: [Double]) throws -> Point<CoordinateType> {
 
         return Point<CoordinateType>(coordinate: try self.coordinate(array: coordinates), precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse a LineString type
+    /// Parse a LineString type
     private func lineString(jsonObject: [String : Any]) throws -> LineString<CoordinateType> {
 
         let coordinates = try Coordinates<[[Double]]>.coordinates(json: jsonObject)
@@ -160,7 +160,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return LineString<CoordinateType>(elements: try self.coordinates(jsonArray: coordinates), precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse coordinates into a LineString
+    /// Parse coordinates into a LineString
     private func lineString(coordinates: [[Double]]) throws -> LineString<CoordinateType> {
 
         var elements: [CoordinateType] = []
@@ -172,7 +172,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return LineString<CoordinateType>(elements: try self.coordinates(jsonArray: coordinates), precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse a Polygon type
+    /// Parse a Polygon type
     private func polygon(jsonObject: [String : Any]) throws -> Polygon<CoordinateType> {
 
         let coordinates = try Coordinates<[[[Double]]]>.coordinates(json: jsonObject)
@@ -180,7 +180,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return try self.polygon(coordinates: coordinates)
     }
 
-    // Parse coordinates into a Polygon
+    /// Parse coordinates into a Polygon
     private func polygon(coordinates: [[[Double]]]) throws -> Polygon<CoordinateType> {
 
         var outerRing:  LinearRing<CoordinateType> = LinearRing<CoordinateType>(precision: self.precision, coordinateSystem: self.cs)
@@ -190,14 +190,14 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
             outerRing.append(contentsOf: try self.coordinates(jsonArray: coordinates[0]))
         }
 
-        // Get the inner rings
+        /// Get the inner rings
         for i in stride(from: 1, to: coordinates.count, by: 1) {
             innerRings.append(LinearRing<CoordinateType>(elements: try self.coordinates(jsonArray: coordinates[i]), precision: self.precision, coordinateSystem: self.cs))
         }
         return Polygon<CoordinateType>(outerRing: outerRing, innerRings: innerRings, precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse a MultiPoint type
+    /// Parse a MultiPoint type
     private func multiPoint(jsonObject: [String : Any]) throws -> MultiPoint<CoordinateType> {
 
         let coordinates = try Coordinates<[[Double]]>.coordinates(json: jsonObject)
@@ -205,7 +205,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return try self.multiPoint(coordinates: coordinates)
     }
 
-    // Parse coordinates into a MultiPoint
+    /// Parse coordinates into a MultiPoint
     private func multiPoint(coordinates: [[Double]]) throws -> MultiPoint<CoordinateType> {
 
         var elements: [Point<CoordinateType>] = []
@@ -217,7 +217,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return MultiPoint<CoordinateType>(elements: elements, precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse a MultiLineString type
+    /// Parse a MultiLineString type
     private func multiLineString(jsonObject: [String : Any]) throws -> MultiLineString<CoordinateType> {
 
         let coordinates = try Coordinates<[ [[Double]] ]>.coordinates(json: jsonObject)
@@ -225,7 +225,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return try self.multiLineString(coordinates: coordinates)
     }
 
-    // Parse coordinates into a MultiPoint
+    /// Parse coordinates into a MultiPoint
     private func multiLineString(coordinates: [ [[Double]] ]) throws -> MultiLineString<CoordinateType> {
 
         var elements: [LineString<CoordinateType>] = []
@@ -237,7 +237,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return MultiLineString<CoordinateType>(elements: elements, precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse a MultiPolygon type
+    /// Parse a MultiPolygon type
     private func multiPolygon(jsonObject: [String : Any]) throws -> MultiPolygon<CoordinateType> {
 
         let coordinates = try Coordinates<[ [[[Double]]] ]>.coordinates(json: jsonObject)
@@ -245,7 +245,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return try self.multiPolygon(coordinates: coordinates)
     }
 
-    // Parse coordinates into a MultiPolygon
+    /// Parse coordinates into a MultiPolygon
     private func multiPolygon(coordinates: [ [[[Double]]] ]) throws -> MultiPolygon<CoordinateType> {
 
         var elements: [Polygon<CoordinateType>] = []
@@ -257,7 +257,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return MultiPolygon<CoordinateType>(elements: elements, precision: self.precision, coordinateSystem: self.cs)
     }
 
-    // Parse a GeometryCollection type
+    /// Parse a GeometryCollection type
     private func geometryCollection(jsonObject: [String : Any]) throws -> GeometryCollection {
         var elements: [Geometry] = []
 

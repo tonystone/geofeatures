@@ -272,7 +272,7 @@ class LinearRingCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0))
         }
@@ -524,7 +524,7 @@ class LinearRingCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0, m: 1.0))
         }
@@ -776,7 +776,7 @@ class LinearRingCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0, z: 1.0))
         }
@@ -1028,7 +1028,7 @@ class LinearRingCoordinate3DMFloatingPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.0, y: 1.0, z: 1.0, m: 1.0))
         }
@@ -1280,7 +1280,7 @@ class LinearRingCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001))
         }
@@ -1532,7 +1532,7 @@ class LinearRingCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate2DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001, m: 1.001))
         }
@@ -1784,7 +1784,7 @@ class LinearRingCoordinate3DFixedPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate3D>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001, z: 1.001))
         }
@@ -2036,7 +2036,7 @@ class LinearRingCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
         var input = LinearRing<Coordinate3DM>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append((x: 1.001, y: 1.001, z: 1.001, m: 1.001))
         }
