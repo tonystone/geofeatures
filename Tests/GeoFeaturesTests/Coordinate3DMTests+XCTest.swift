@@ -29,24 +29,24 @@ extension Coordinate3DMTests {
 
    static var allTests: [(String, (Coordinate3DMTests) -> () throws -> Void)] {
       return [
-                ("testInit_XYZM", testInit_XYZM),
+                ("testInitWithXYZM", testInitWithXYZM),
                 ("testX", testX),
                 ("testY", testY),
                 ("testZ", testZ),
                 ("testM", testM),
-                ("testInit_Tuple", testInit_Tuple),
+                ("testInitWithTuple", testInitWithTuple),
                 ("testTuple", testTuple),
-                ("testInit_Array", testInit_Array),
-                ("testInit_Array_Invalid_ToSmall", testInit_Array_Invalid_ToSmall),
-                ("testInit_Array_Invalid_ToLarge", testInit_Array_Invalid_ToLarge),
-                ("testInit_Copy", testInit_Copy),
-                ("testInit_Copy_FixedPrecision", testInit_Copy_FixedPrecision),
+                ("testInitWithArray", testInitWithArray),
+                ("testInitWithArrayInvalidToSmall", testInitWithArrayInvalidToSmall),
+                ("testInitArrayInvalidToLarge", testInitArrayInvalidToLarge),
+                ("testInitCopy", testInitCopy),
+                ("testInitCopyWithFixedPrecision", testInitCopyWithFixedPrecision),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
                 ("testEqual", testEqual),
                 ("testNotEqual", testNotEqual),
-                ("testHashValue_Zero", testHashValue_Zero),
-                ("testHashValue_PositiveValue", testHashValue_PositiveValue)
+                ("testHashWithValueZero", testHashWithValueZero),
+                ("testHashValueWithPositiveValue", testHashValueWithPositiveValue)
            ]
    }
 }

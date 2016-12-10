@@ -60,91 +60,91 @@ private class TestToken: Token, CustomStringConvertible {
 
 class TokenizerTests: XCTestCase {
 
-    func testExpect_SingleWhiteSpace_True() {
+    func testExpectSingleWhiteSpaceTrue() {
         let tokenizer = Tokenizer<TestToken>(string: " (")
 
         XCTAssertTrue(tokenizer.expect(.SINGLE_SPACE))
     }
 
-    func testExpect_SingleWhiteSpace_False() {
+    func testExpectSingleWhiteSpaceFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertFalse(tokenizer.expect(.SINGLE_SPACE))
     }
 
-    func testMatch_SingleWhiteSpace_True() {
+    func testMatchSingleWhiteSpaceTrue() {
         let tokenizer = Tokenizer<TestToken>(string: " (")
 
         XCTAssertNotNil(tokenizer.accept(.SINGLE_SPACE))
     }
 
-    func testMatch_SingleWhiteSpace_False() {
+    func testMatchSingleWhiteSpaceFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertNil(tokenizer.accept(.SINGLE_SPACE))
     }
 
-    func testMatch_NewLine_True() {
+    func testMatchNewLineTrue() {
         let tokenizer = Tokenizer<TestToken>(string: "\n")
 
         XCTAssertNotNil(tokenizer.accept(.NEW_LINE))
     }
 
-    func testMatch_NewLine_False() {
+    func testMatchNewLineFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertNil(tokenizer.accept(.NEW_LINE))
     }
 
-    func testMatch_UnicodeGlobe_True() {
+    func testMatchUnicodeGlobeTrue() {
         let tokenizer = Tokenizer<TestToken>(string: "🌍")
 
         XCTAssertNotNil(tokenizer.accept(.GLOBE))
     }
 
-    func testMatch_UnicodeGlobe_False() {
+    func testMatchUnicodeGlobeFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertNil(tokenizer.accept(.GLOBE))
     }
 
-    func testMatch_UnicodeFlag_True() {
+    func testMatchUnicodeFlagTrue() {
         let tokenizer = Tokenizer<TestToken>(string: "🇵🇷")
 
         XCTAssertNotNil(tokenizer.accept(.FLAG))
     }
 
-    func testMatch_UnicodeFlag_False() {
+    func testMatchUnicodeFlagFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertNil(tokenizer.accept(.FLAG))
     }
 
-    func testMatch_UnicodeEPlusAccent() {
+    func testMatchUnicodeEPlusAccent() {
         let tokenizer = Tokenizer<TestToken>(string: "e\u{0301}")
 
         XCTAssertNotNil(tokenizer.accept(.E_PLUS_ACCENT))
     }
 
-    func testMatch_UnicodeEPlusAccent_False() {
+    func testMatchUnicodeEPlusAccentFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertNil(tokenizer.accept(.E_PLUS_ACCENT))
     }
 
-    func testMatch_UnicodeEWithAccent() {
+    func testMatchUnicodeEWithAccent() {
         let tokenizer = Tokenizer<TestToken>(string: "é")
 
         XCTAssertNotNil(tokenizer.accept(.E_WITH_ACCENT))
     }
 
-    func testMatch_UnicodeEWithAccent_False() {
+    func testMatchUnicodeEWithAccentFalse() {
         let tokenizer = Tokenizer<TestToken>(string: "  ")
 
         XCTAssertNil(tokenizer.accept(.E_WITH_ACCENT))
     }
 
-    func testColumn_Parens() {
+    func testColumnParens() {
         let tokenizer = Tokenizer<TestToken>(string: "((((((((((")
 
         for c in 1...tokenizer.matchString.characters.count {
@@ -154,7 +154,7 @@ class TokenizerTests: XCTestCase {
         }
     }
 
-    func testColumn_UnicodeGlobes() {
+    func testColumnUnicodeGlobes() {
         let tokenizer = Tokenizer<TestToken>(string: "🌍🌍🌍🌍🌍🌍🌍🌍🌍")
 
         for c in 1...tokenizer.matchString.characters.count {
@@ -164,7 +164,7 @@ class TokenizerTests: XCTestCase {
         }
     }
 
-    func testColumn_UnicodeFlags() {
+    func testColumnUnicodeFlags() {
         let tokenizer = Tokenizer<TestToken>(string: "🇵🇷🇵🇷🇵🇷🇵🇷🇵🇷🇵🇷🇵🇷🇵🇷🇵🇷")
 
         for c in 1...tokenizer.matchString.characters.count {
@@ -174,7 +174,7 @@ class TokenizerTests: XCTestCase {
         }
     }
 
-    func testColumn_UnicodeEPlusAccent() {
+    func testColumnUnicodeEPlusAccent() {
         let tokenizer = Tokenizer<TestToken>(string: "e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}")
 
         for c in 1...tokenizer.matchString.characters.count {
@@ -184,7 +184,7 @@ class TokenizerTests: XCTestCase {
         }
     }
 
-    func testColumn_UnicodeEWithAccent() {
+    func testColumnUnicodeEWithAccent() {
         let tokenizer = Tokenizer<TestToken>(string: "ééééééééé")
 
         for c in 1...tokenizer.matchString.characters.count {
@@ -194,7 +194,7 @@ class TokenizerTests: XCTestCase {
         }
     }
 
-    func testColumn_UnicodeEPlusAccent_Canonical() {
+    func testColumnUnicodeEPlusAccentCanonical() {
         let tokenizer = Tokenizer<TestToken>(string: "e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}e\u{0301}".precomposedStringWithCanonicalMapping)
 
         for c in 1...tokenizer.matchString.characters.count {

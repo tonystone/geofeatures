@@ -29,13 +29,13 @@ extension FloatingPrecisionTests {
 
    static var allTests: [(String, (FloatingPrecisionTests) -> () throws -> Void)] {
       return [
-                ("testConvert_Equal", testConvert_Equal),
-                ("testConvert_NotEqual1", testConvert_NotEqual1),
-                ("testConvert_NotEqual2", testConvert_NotEqual2),
+                ("testConvertEqual", testConvertEqual),
+                ("testConvertNotEqual1", testConvertNotEqual1),
+                ("testConvertNotEqual2", testConvertNotEqual2),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
-                ("testEqual_True", testEqual_True),
-                ("testEqual_False_DifferentType", testEqual_False_DifferentType)
+                ("testEqualTrue", testEqualTrue),
+                ("testEqualFalseWithDifferentType", testEqualFalseWithDifferentType)
            ]
    }
 }

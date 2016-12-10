@@ -22,24 +22,24 @@ import GeoFeatures
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class LineStringCurveCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
 
-    func testLength_Test1() {
+    func testLengthTest1() {
         XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 1, y: 1)], precision: precision, coordinateSystem: cs).length(), 1.4142135623730951)
     }
 
-    func testLength_Test2() {
+    func testLengthTest2() {
         XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2)], precision: precision, coordinateSystem: cs).length(), 2.0)
     }
 
-    func testLength_Test3() {
+    func testLengthTest3() {
         XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 7, y:0)], precision: precision, coordinateSystem: cs).length(), 7.0)
     }
 
-    func testLength_Test4() {
+    func testLengthTest4() {
         XCTAssertEqual(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateSystem: cs).length(), 5.0)
     }
 
@@ -54,22 +54,22 @@ class LineString_Curve_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCas
         }
     }
 
-    func testIsClosed_Closed() {
+    func testIsClosedClosed() {
         XCTAssertTrue(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 2, y: 0), (x: 0, y: 0)], precision: precision, coordinateSystem: cs).isClosed())
     }
 
-    func testIsClosed_Open() {
+    func testIsClosedOpen() {
         XCTAssertFalse(LineString<Coordinate2D>(elements: [(x: 0, y: 0), (x: 0, y: 2), (x: 0, y: 3), (x: 0, y: 4), (x: 0, y: 5)], precision: precision, coordinateSystem: cs).isClosed())
     }
 
-    func testIsClosed_Empty() {
+    func testIsClosedEmpty() {
         XCTAssertFalse(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).isClosed())
     }
 }
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
-class LineString_Curve_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class LineStringCurveCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()

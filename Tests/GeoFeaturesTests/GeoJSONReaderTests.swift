@@ -27,7 +27,7 @@ import GeoFeatures
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class GeoJSONReaderCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
 
     private typealias CoordinateType = Coordinate2D
     private typealias GeoJSONReaderType = GeoJSONReader<CoordinateType>
@@ -259,7 +259,7 @@ class GeoJSONReader_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
 
-class GeoJSONReader_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+class GeoJSONReaderCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
 
     private typealias CoordinateType = Coordinate3DM
     private typealias GeoJSONReaderType = GeoJSONReader<CoordinateType>
@@ -367,5 +367,4 @@ class GeoJSONReader_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
         XCTAssertEqual(try reader.read(string: input) as? GeometryCollection, expected)
     }
-
 }

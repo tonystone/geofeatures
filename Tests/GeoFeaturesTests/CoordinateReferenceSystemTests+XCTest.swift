@@ -29,8 +29,8 @@ extension CoordinateReferenceSystemTests {
 
    static var allTests: [(String, (CoordinateReferenceSystemTests) -> () throws -> Void)] {
       return [
-                ("testEqual_True", testEqual_True),
-                ("testEqual_False", testEqual_False)
+                ("testEqualTrue", testEqualTrue),
+                ("testEqualFalse", testEqualFalse)
            ]
    }
 }

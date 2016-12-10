@@ -24,27 +24,27 @@ class FixedPrecisionTests: XCTestCase {
 
     let precision  = FixedPrecision(scale: 10)
 
-    func testConvert_Scale10_Lower() {
+    func testConvertWithScale10Lower() {
         XCTAssertEqual(precision.convert(1.01), 1.0)
     }
 
-    func testConvert_Scale10_Middle() {
+    func testConvertWithScale10Middle() {
         XCTAssertEqual(precision.convert(1.05), 1.1)
     }
 
-    func testConvert_Scale10_Upper() {
+    func testConvertWithScale10Upper() {
         XCTAssertEqual(precision.convert(1.09), 1.1)
     }
 
-    func testConvert_Scale10_Lower2() {
+    func testConvertWithScale10Lower2() {
         XCTAssertEqual(precision.convert(1.0111), 1.0)
     }
 
-    func testConvert_Scale10_Middle2() {
+    func testConvertWithScale10Middle2() {
         XCTAssertEqual(precision.convert(1.0555), 1.1)
     }
 
-    func testConvert_Scale10_Upper2() {
+    func testConvertWithScale10Upper2() {
         XCTAssertEqual(precision.convert(1.0999), 1.1)
     }
 
@@ -58,21 +58,21 @@ class FixedPrecisionTests: XCTestCase {
         XCTAssertEqual(precision.debugDescription, "FixedPrecision(scale: 10.0)")
     }
 
-    func testEqual_True() {
+    func testEqualTrue() {
         let input1 = FixedPrecision(scale: 10)
         let input2 = FixedPrecision(scale: 10)
 
         XCTAssertEqual(input1, input2)
     }
 
-    func testEqual_False() {
+    func testEqualFalse() {
         let input1 = FixedPrecision(scale: 10)
         let input2 = FixedPrecision(scale: 100)
 
         XCTAssertNotEqual(input1, input2)
     }
 
-    func testEqual_False_DifferentType() {
+    func testEqualFalseWithDifferentType() {
         let input1 = FixedPrecision(scale: 10)
         let input2 = FloatingPrecision()
 

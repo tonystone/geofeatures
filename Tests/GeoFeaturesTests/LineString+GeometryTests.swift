@@ -24,7 +24,7 @@ private let geometryDimension = Dimension.one    // LineString are always 1 dime
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -33,49 +33,49 @@ class LineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTest
         XCTAssertEqual(LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).dimension, geometryDimension)
     }
 
-    func testBoundary_1Element_Invalid() {
+    func testBoundaryWith1ElementInvalid() {
         let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0)], precision: precision, coordinateSystem: cs).boundary()
         let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs) // Empty Set
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
-    func testBoundary_2Element() {
+    func testBoundaryWith2Element() {
         let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs).boundary()
         let expected = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)), Point<Coordinate2D>(coordinate: (x: 2.0, y: 2.0))], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
-    func testBoundary_3Element_Open() {
+    func testBoundaryWith3ElementOpen() {
         let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0)], precision: precision, coordinateSystem: cs).boundary()
         let expected = MultiPoint<Coordinate2D>(elements: [Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0)), Point<Coordinate2D>(coordinate: (x: 3.0, y: 3.0))], precision: precision, coordinateSystem: cs)
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
-    func testBoundary_4Element_Closed() {
+    func testBoundaryWith4ElementClosed() {
         let geometry = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0), (x: 3.0, y: 3.0), (x: 1.0, y: 1.0)], precision: precision, coordinateSystem: cs).boundary()
         let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs) // Empty Set
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
-    func testBoundary_Empty() {
+    func testBoundaryEmpty() {
         let geometry = LineString<Coordinate2D>(precision: precision, coordinateSystem: cs).boundary()
         let expected = MultiPoint<Coordinate2D>(precision: precision, coordinateSystem: cs)  // Empty Set
 
         XCTAssertTrue(geometry == expected, "\(geometry) is not equal to \(expected)")
     }
 
-    func testEqual_True() {
+    func testEqualTrue() {
         let input1 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
         let input2 = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
 
         XCTAssertEqual(input1, input2)
      }
 
-     func testEqual_False() {
+     func testEqualFalse() {
         let input1            = LineString<Coordinate2D>(elements: [(x: 1.0, y: 1.0), (x: 2.0, y: 2.0)], precision: precision, coordinateSystem: cs)
         let input2: Geometry  = Point<Coordinate2D>(coordinate: (x: 1.0, y: 1.0), precision: precision, coordinateSystem: cs)
 
@@ -85,7 +85,7 @@ class LineString_Geometry_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTest
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -97,7 +97,7 @@ class LineString_Geometry_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTes
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -109,7 +109,7 @@ class LineString_Geometry_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTest
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate3DMFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -121,7 +121,7 @@ class LineString_Geometry_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTes
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()
@@ -133,7 +133,7 @@ class LineString_Geometry_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCas
 
 // MARK: - Coordinate2DM, FixedPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()
@@ -145,7 +145,7 @@ class LineString_Geometry_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCa
 
 // MARK: - Coordinate3D, FixedPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate3DFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()
@@ -157,7 +157,7 @@ class LineString_Geometry_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCas
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
 
-class LineString_Geometry_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+class LineStringGeometryCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()

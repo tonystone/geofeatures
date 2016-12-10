@@ -27,19 +27,19 @@ import GeoFeatures
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
-class MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
+class MultiPolygonSurfaceCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100000)
     let cs       = Cartesian()
 
-    func testArea_Empty() {
+    func testAreaEmpty() {
         let input    = MultiPolygon<Coordinate2D>(precision: precision, coordinateSystem: cs)
         let expected = 0.0
 
         XCTAssertEqual(input.area(), expected)
     }
 
-    func testArea_2_Same_Polygons() {
+    func testAreaWith2SamePolygons() {
 
         let input    = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], [[(x: 1, y: 1), (x: 4, y: 1), (x: 4, y: 2), (x: 1, y: 2), (x: 1, y: 1)]])), Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], [[(x: 1, y: 1), (x: 4, y: 1), (x: 4, y: 2), (x: 1, y: 2), (x: 1, y: 1)]]))], precision: precision, coordinateSystem: cs)
         let expected = 66.0
@@ -47,7 +47,7 @@ class MultiPolygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCa
         XCTAssertEqual(input.area(), expected)
     }
 
-    func testArea_2_Different_Polygons() {
+    func testAreaWith2DifferentPolygons() {
 
         let input    = MultiPolygon<Coordinate2D>(elements: [Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], [[(x: 1, y: 1), (x: 4, y: 1), (x: 4, y: 2), (x: 1, y: 2), (x: 1, y: 1)]])), Polygon<Coordinate2D>(rings: ([(x: 0, y: 0), (x: 0, y: 6), (x: 6, y: 6), (x: 6, y: 0), (x: 0, y: 0)], []))], precision: precision, coordinateSystem: cs)
         let expected = 69.0

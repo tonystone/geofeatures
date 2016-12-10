@@ -24,7 +24,7 @@ class Coordinate3DMTests: XCTestCase {
 
     // MARK: Coordinate3DM
 
-    func testInit_XYZM () {
+    func testInitWithXYZM () {
         let coordinate = Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0)
 
         XCTAssertEqual(coordinate.x, 2.0)
@@ -51,7 +51,7 @@ class Coordinate3DMTests: XCTestCase {
 
     // MARK: TupleConvertible
 
-    func testInit_Tuple () {
+    func testInitWithTuple () {
         let coordinate = Coordinate3DM(tuple: (x: 2.0, y: 3.0, z: 4.0, m: 5.0))
 
         XCTAssertEqual(coordinate.x, 2.0)
@@ -67,9 +67,9 @@ class Coordinate3DMTests: XCTestCase {
         XCTAssertTrue(coordinate.tuple == expected, "\(coordinate.tuple) is not equal to \(expected)")
     }
 
-    // MARK: _ArrayConstructable
+    // MARK: ArrayConstructable
 
-    func testInit_Array () throws {
+    func testInitWithArray () throws {
         let coordinate = try Coordinate3DM(array: [2.0, 3.0, 4.0, 5.0])
 
         XCTAssertEqual(coordinate.x, 2.0)
@@ -78,7 +78,7 @@ class Coordinate3DMTests: XCTestCase {
         XCTAssertEqual(coordinate.m, 5.0)
     }
 
-    func testInit_Array_Invalid_ToSmall() {
+    func testInitWithArrayInvalidToSmall() {
 
         let input = [2.0, 1.0, 3.0]
         let expected = "Invalid array size (3)."
@@ -93,7 +93,7 @@ class Coordinate3DMTests: XCTestCase {
         }
     }
 
-    func testInit_Array_Invalid_ToLarge() {
+    func testInitArrayInvalidToLarge() {
 
         let input = [2.0, 3.0, 4.0, 5.0, 6.0]
         let expected = "Invalid array size (5)."
@@ -110,7 +110,7 @@ class Coordinate3DMTests: XCTestCase {
 
     // MARK: CopyConstructable
 
-    func testInit_Copy () {
+    func testInitCopy () {
         let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.0, y: 3.0, z: 4.0, m: 5.0))
 
         XCTAssertEqual(coordinate.x, 2.0)
@@ -119,7 +119,7 @@ class Coordinate3DMTests: XCTestCase {
         XCTAssertEqual(coordinate.m, 5.0)
     }
 
-    func testInit_Copy_FixedPrecision () {
+    func testInitCopyWithFixedPrecision () {
         let coordinate = Coordinate3DM(other: Coordinate3DM(x: 2.001, y: 3.001, z: 4.001, m: 5.001), precision: FixedPrecision(scale: 100))
 
         XCTAssertEqual(coordinate.x, 2.0)
@@ -154,14 +154,14 @@ class Coordinate3DMTests: XCTestCase {
 
     // MARK: Hashable
 
-    func testHashValue_Zero () {
+    func testHashWithValueZero () {
         let zero         = Coordinate3DM(tuple: (x: 0.0, y: 0.0, z: 0.0, m: 0.0))
         let negativeZero = Coordinate3DM(tuple: (x: -0.0, y: -0.0, z: -0.0, m: -0.0))
 
         XCTAssertEqual(zero.hashValue, negativeZero.hashValue)
     }
 
-    func testHashValue_PositiveValue () {
+    func testHashValueWithPositiveValue () {
         let zero = Coordinate3DM(tuple: (x: 0.0, y: 0.0, z: 0.0, m: 0.0))
         var last = zero
         let limit = 10000

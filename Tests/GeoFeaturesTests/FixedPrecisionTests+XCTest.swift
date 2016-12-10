@@ -29,17 +29,17 @@ extension FixedPrecisionTests {
 
    static var allTests: [(String, (FixedPrecisionTests) -> () throws -> Void)] {
       return [
-                ("testConvert_Scale10_Lower", testConvert_Scale10_Lower),
-                ("testConvert_Scale10_Middle", testConvert_Scale10_Middle),
-                ("testConvert_Scale10_Upper", testConvert_Scale10_Upper),
-                ("testConvert_Scale10_Lower2", testConvert_Scale10_Lower2),
-                ("testConvert_Scale10_Middle2", testConvert_Scale10_Middle2),
-                ("testConvert_Scale10_Upper2", testConvert_Scale10_Upper2),
+                ("testConvertWithScale10Lower", testConvertWithScale10Lower),
+                ("testConvertWithScale10Middle", testConvertWithScale10Middle),
+                ("testConvertWithScale10Upper", testConvertWithScale10Upper),
+                ("testConvertWithScale10Lower2", testConvertWithScale10Lower2),
+                ("testConvertWithScale10Middle2", testConvertWithScale10Middle2),
+                ("testConvertWithScale10Upper2", testConvertWithScale10Upper2),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
-                ("testEqual_True", testEqual_True),
-                ("testEqual_False", testEqual_False),
-                ("testEqual_False_DifferentType", testEqual_False_DifferentType)
+                ("testEqualTrue", testEqualTrue),
+                ("testEqualFalse", testEqualFalse),
+                ("testEqualFalseWithDifferentType", testEqualFalseWithDifferentType)
            ]
    }
 }

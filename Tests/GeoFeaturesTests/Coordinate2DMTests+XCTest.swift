@@ -29,23 +29,23 @@ extension Coordinate2DMTests {
 
    static var allTests: [(String, (Coordinate2DMTests) -> () throws -> Void)] {
       return [
-                ("testInit_XYM", testInit_XYM),
+                ("testInitWithXYM", testInitWithXYM),
                 ("testX", testX),
                 ("testY", testY),
                 ("testM", testM),
-                ("testInit_Tuple", testInit_Tuple),
+                ("testInitWithTuple", testInitWithTuple),
                 ("testTuple", testTuple),
-                ("testInit_Array", testInit_Array),
-                ("testInit_Array_Invalid_ToSmall", testInit_Array_Invalid_ToSmall),
-                ("testInit_Array_Invalid_ToLarge", testInit_Array_Invalid_ToLarge),
-                ("testInit_Copy", testInit_Copy),
-                ("testInit_Copy_FixedPrecision", testInit_Copy_FixedPrecision),
+                ("testInitWithArray", testInitWithArray),
+                ("testInitArrayWithInvalidToSmall", testInitArrayWithInvalidToSmall),
+                ("testInitWithArrayInvalidToLarge", testInitWithArrayInvalidToLarge),
+                ("testInitCopy", testInitCopy),
+                ("testInitCopyWithFixedPrecision", testInitCopyWithFixedPrecision),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
                 ("testEqual", testEqual),
                 ("testNotEqual", testNotEqual),
-                ("testHashValue_Zero", testHashValue_Zero),
-                ("testHashValue_PositiveValue", testHashValue_PositiveValue)
+                ("testHashValueWithZero", testHashValueWithZero),
+                ("testHashValueWithPositiveValue", testHashValueWithPositiveValue)
            ]
    }
 }

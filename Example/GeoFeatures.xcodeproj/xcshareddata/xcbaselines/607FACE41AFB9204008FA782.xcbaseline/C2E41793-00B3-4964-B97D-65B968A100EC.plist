@@ -70,9 +70,9 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>LinearRing_SurfaceTests</key>
+		<key>LinearRingSurfaceTests</key>
 		<dict>
-			<key>testPerformanceArea_Coordinate2D_FixedPrecision_Cartisian()</key>
+			<key>testPerformanceAreaCoordinate2DFixedPrecisionCartisian()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
@@ -82,7 +82,7 @@
 					<string>Local Baseline</string>
 				</dict>
 			</dict>
-			<key>testPerformanceArea_Coordinate2D_FixedPrecision_Cartisian_RegulareQuadrilateral()</key>
+			<key>testPerformanceAreaCoordinate2DFixedPrecisionCartisianRegulareQuadrilateral()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
@@ -93,9 +93,9 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>Polygon_SurfaceTests</key>
+		<key>PolygonSurfaceTests</key>
 		<dict>
-			<key>testPerformanceArea_Coordinate2D_FixedPrecision_Cartisian()</key>
+			<key>testPerformanceAreaCoordinate2DFixedPrecisionCartisian()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
@@ -105,7 +105,7 @@
 					<string>Local Baseline</string>
 				</dict>
 			</dict>
-			<key>testPerformanceArea_Coordinate2D_FixedPrecision_Cartisian_Quadrilateral()</key>
+			<key>testPerformanceAreaCoordinate2DFixedPrecisionCartisianQuadrilateral()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
@@ -116,9 +116,9 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>Polygon_Surface_Coordinate2D_FixedPrecision_Cartesian_Tests</key>
+		<key>PolygonSurfaceCoordinate2DFixedPrecisionCartesianTests</key>
 		<dict>
-			<key>testPerformanceArea_Quadrilateral()</key>
+			<key>testPerformanceAreaQuadrilateral()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
@@ -129,9 +129,9 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>WKTReader_Coordinate2D_FloatingPrecision_Cartesian_Tests</key>
+		<key>WKTReaderCoordinate2DFloatingPrecisionCartesianTests</key>
 		<dict>
-			<key>testReadPerformance_Polygon_California()</key>
+			<key>testReadPerformancePolygonCalifornia()</key>
 			<dict>
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
