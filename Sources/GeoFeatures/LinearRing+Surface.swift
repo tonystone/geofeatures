@@ -58,5 +58,4 @@ extension LinearRing: Surface {
             return self.precision.convert(area)
         }
     }
-
 }

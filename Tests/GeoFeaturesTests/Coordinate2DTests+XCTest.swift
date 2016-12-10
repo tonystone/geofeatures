@@ -29,22 +29,22 @@ extension Coordinate2DTests {
 
    static var allTests: [(String, (Coordinate2DTests) -> () throws -> Void)] {
       return [
-                ("testInit_XY", testInit_XY),
+                ("testInitWithXY", testInitWithXY),
                 ("testX", testX),
                 ("testY", testY),
-                ("testInit_Tuple", testInit_Tuple),
+                ("testInitWithTuple", testInitWithTuple),
                 ("testTuple", testTuple),
-                ("testInit_Array", testInit_Array),
-                ("testInit_Array_Invalid_ToSmall", testInit_Array_Invalid_ToSmall),
-                ("testInit_Array_Invalid_ToLarge", testInit_Array_Invalid_ToLarge),
-                ("testInit_Copy", testInit_Copy),
-                ("testInit_Copy_FixedPrecision", testInit_Copy_FixedPrecision),
+                ("testInitWithArray", testInitWithArray),
+                ("testInitArrayInvalidToSmall", testInitArrayInvalidToSmall),
+                ("testInitArrayInvalidToLarge", testInitArrayInvalidToLarge),
+                ("testInitCopy", testInitCopy),
+                ("testInitCopyWithFixedPrecision", testInitCopyWithFixedPrecision),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
                 ("testEqual", testEqual),
                 ("testNotEqual", testNotEqual),
-                ("testHashValue_Zero", testHashValue_Zero),
-                ("testHashValue_PositiveValue", testHashValue_PositiveValue)
+                ("testHashValueWithZero", testHashValueWithZero),
+                ("testHashValueWithPositiveValue", testHashValueWithPositiveValue)
            ]
    }
 }

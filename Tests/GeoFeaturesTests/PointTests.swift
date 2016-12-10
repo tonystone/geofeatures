@@ -22,7 +22,7 @@ import GeoFeatures
 
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
-class Point_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -51,7 +51,7 @@ class Point_Coordinate2D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate2DM, FloatingPrecision, Cartesian -
 
-class Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate2DMFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -81,7 +81,7 @@ class Point_Coordinate2DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate3D, FloatingPrecision, Cartesian -
 
-class Point_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate3DFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -111,7 +111,7 @@ class Point_Coordinate3D_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate3DM, FloatingPrecision, Cartesian -
 
-class Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate3DMFloatingPrecisionCartesianTests: XCTestCase {
 
     let precision = FloatingPrecision()
     let cs       = Cartesian()
@@ -142,7 +142,7 @@ class Point_Coordinate3DM_FloatingPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate2D, FixedPrecision, Cartesian -
 
-class Point_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()
@@ -157,7 +157,7 @@ class Point_Coordinate2D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate2DM, FixedPrecision, Cartesian -
 
-class Point_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate2DMFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()
@@ -173,7 +173,7 @@ class Point_Coordinate2DM_FixedPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate3D, FixedPrecision, Cartesian -
 
-class Point_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate3DFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()
@@ -189,7 +189,7 @@ class Point_Coordinate3D_FixedPrecision_Cartesian_Tests: XCTestCase {
 
 // MARK: - Coordinate3DM, FixedPrecision, Cartesian -
 
-class Point_Coordinate3DM_FixedPrecision_Cartesian_Tests: XCTestCase {
+class PointCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
 
     let precision = FixedPrecision(scale: 100)
     let cs       = Cartesian()

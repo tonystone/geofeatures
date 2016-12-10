@@ -26,11 +26,11 @@ fileprivate struct DummyCoordinateReferenceSystem: CoordinateSystem, Equatable, 
 
 class CoordinateReferenceSystemTests: XCTestCase {
 
-    func testEqual_True() {
+    func testEqualTrue() {
         XCTAssertTrue(Cartesian() == Cartesian())
     }
 
-    func testEqual_False() {
+    func testEqualFalse() {
         XCTAssertFalse(Cartesian() == DummyCoordinateReferenceSystem())
     }
 }

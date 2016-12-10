@@ -29,23 +29,23 @@ extension Coordinate3DTests {
 
    static var allTests: [(String, (Coordinate3DTests) -> () throws -> Void)] {
       return [
-                ("testInit_XYZ", testInit_XYZ),
+                ("testInitXYZ", testInitXYZ),
                 ("testX", testX),
                 ("testY", testY),
                 ("testZ", testZ),
-                ("testInit_Tuple", testInit_Tuple),
+                ("testInitWithTuple", testInitWithTuple),
                 ("testTuple", testTuple),
-                ("testInit_Array", testInit_Array),
-                ("testInit_Array_Invalid_ToSmall", testInit_Array_Invalid_ToSmall),
-                ("testInit_Array_Invalid_ToLarge", testInit_Array_Invalid_ToLarge),
-                ("testInit_Copy", testInit_Copy),
-                ("testInit_Copy_FixedPrecision", testInit_Copy_FixedPrecision),
+                ("testInitWithArray", testInitWithArray),
+                ("testInitArrayInvalidToSmall", testInitArrayInvalidToSmall),
+                ("testInitWithArrayInvalidToLarge", testInitWithArrayInvalidToLarge),
+                ("testInitCopy", testInitCopy),
+                ("testInitCopyWithFixedPrecision", testInitCopyWithFixedPrecision),
                 ("testDescription", testDescription),
                 ("testDebugDescription", testDebugDescription),
                 ("testEqual", testEqual),
                 ("testNotEqual", testNotEqual),
-                ("testHashValue_Zero", testHashValue_Zero),
-                ("testHashValue_PositiveValue", testHashValue_PositiveValue)
+                ("testHashValueWithZero", testHashValueWithZero),
+                ("testHashValueWithPositiveValue", testHashValueWithPositiveValue)
            ]
    }
 }

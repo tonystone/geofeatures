@@ -40,7 +40,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
 
-    func testInit_ArrayLiteral() {
+    func testInitWithArrayLiteral() {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .zero,  .one],
                                                           [.two,   .empty, .zero],
@@ -78,7 +78,7 @@ class IntersectionMatrixTests: XCTestCase {
         }
     }
 
-    func testSubscript_Get() {
+    func testSubscriptGet() {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .zero,  .one],
                                                           [.two,   .empty, .zero],
@@ -99,7 +99,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
 
-    func testSubscript_Set() {
+    func testSubscriptSet() {
         var matrix = IntersectionMatrix()
 
         matrix[.interior, .interior] = .empty
@@ -128,7 +128,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertEqual(matrix[.exterior, .exterior], Dimension.empty)
     }
 
-    func testMatches_True () {
+    func testMatchesTrue () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,  .empty, .one],
                                                           [.zero, .one,   .two],
@@ -138,7 +138,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertTrue(matrix.matches("TF*012TF*"))
     }
 
-    func testMatches_False () {
+    func testMatchesFalse () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,  .empty, .one],
                                                           [.zero, .one,   .two],
@@ -148,7 +148,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("TFF012TF1"))
     }
 
-    func testMatches_Match_T () {
+    func testMatchesMatchT () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,   .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -158,7 +158,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertTrue(matrix.matches("T********"))
     }
 
-    func testMatches_Match_F () {
+    func testMatchesMatchF () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -168,7 +168,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertTrue(matrix.matches("F********"))
     }
 
-    func testMatches_Match_0 () {
+    func testMatchesMatch0 () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.zero,  .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -178,7 +178,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertTrue(matrix.matches("0********"))
     }
 
-    func testMatches_Match_1 () {
+    func testMatchesMatch1 () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -188,7 +188,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertTrue(matrix.matches("1********"))
     }
 
-    func testMatches_Match_2 () {
+    func testMatchesMatch2 () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.two,   .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -198,7 +198,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertTrue(matrix.matches("2********"))
     }
 
-    func testMatches_NoMatch_T () {
+    func testMatchesNoMatchT () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -208,7 +208,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("T********"))
     }
 
-    func testMatches_NoMatch_F () {
+    func testMatchesNoMatchF () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -218,7 +218,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("F********"))
     }
 
-    func testMatches_NoMatch_0 () {
+    func testMatchesNoMatch0 () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -228,7 +228,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("0********"))
     }
 
-    func testMatches_NoMatch_1 () {
+    func testMatchesNoMatch1 () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -238,7 +238,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("1********"))
     }
 
-    func testMatches_NoMatch_2 () {
+    func testMatchesNoMatch2 () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -248,7 +248,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("2********"))
     }
 
-    func testMatches_NoMatch_InvalidChar () {
+    func testMatchesNoMatchInvalidChar () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.empty, .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -258,7 +258,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertFalse(matrix.matches("P********"))
     }
 
-    func testMatches_NoMatch_PatternToShort () {
+    func testMatchesNoMatchPatternToShort () {
         let matrix = IntersectionMatrix(arrayLiteral: [
                                                           [.one,   .empty, .empty],
                                                           [.empty, .empty, .empty],
@@ -288,7 +288,7 @@ class IntersectionMatrixTests: XCTestCase {
         XCTAssertEqual(IntersectionMatrix(arrayLiteral: input), IntersectionMatrix(arrayLiteral: input))
     }
 
-    func testEqual_False () {
+    func testEqualFalse () {
         let input1 = [
                                        [Dimension.two,  .empty, .one],
                                        [Dimension.two,  .empty, .two],

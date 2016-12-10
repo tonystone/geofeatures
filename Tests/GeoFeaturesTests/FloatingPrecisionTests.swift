@@ -24,15 +24,15 @@ class FloatingPrecisionTests: XCTestCase {
 
     let precision  = FloatingPrecision()
 
-    func testConvert_Equal() {
+    func testConvertEqual() {
         XCTAssertEqual(precision.convert(100.003), 100.003)
     }
 
-    func testConvert_NotEqual1() {
+    func testConvertNotEqual1() {
         XCTAssertNotEqual(precision.convert(100.0), 100.003)
     }
 
-    func testConvert_NotEqual2() {
+    func testConvertNotEqual2() {
         XCTAssertNotEqual(precision.convert(100.003), 100.0003)
     }
 
@@ -46,14 +46,14 @@ class FloatingPrecisionTests: XCTestCase {
         XCTAssertEqual(precision.debugDescription, "FloatingPrecision")
     }
 
-    func testEqual_True() {
+    func testEqualTrue() {
         let input1 = FloatingPrecision()
         let input2 = FloatingPrecision()
 
         XCTAssertEqual(input1, input2)
     }
 
-    func testEqual_False_DifferentType() {
+    func testEqualFalseWithDifferentType() {
         let input1 = FixedPrecision(scale: 10)
         let input2 = FloatingPrecision()
 

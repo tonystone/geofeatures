@@ -149,5 +149,4 @@ internal extension CollectionBuffer {
             return elements.advanced(by: header.pointee.count).move()
         }
     }
-
 }
