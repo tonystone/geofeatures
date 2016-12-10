@@ -15,18 +15,32 @@
    <img src="https://codecov.io/gh/tonystone/geofeatures2/branch/master/graph/badge.svg?token=pR1BEC4A1s" alt="Codecov" />
 </a>
 
-## Code Coverage Graph
+## Introduction
 
-<a href="https://codecov.io/gh/tonystone/geofeatures2">
-   <img src="https://codecov.io/gh/tonystone/geofeatures2/branch/master/graphs/tree.svg?token=pR1BEC4A1s" alt="Codecov Graph" />
-</a>
+GeoFeatures is a lightweight, high performance geometry library for Swift.  It supports the full set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
+![Inheritance Diagram](Docs/GeoFeatures-Inheritance-Diagram.png)
 
-## Usage
+## Features
+ 
+## Documentation
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Sources and Binaries
 
-## Requirements
+You can find the latest sources and binaries on [github] (https://github.com/tonystone/geofeatures).
+
+## Communication and Contributions
+
+- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
+- If you would like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
+- If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue] (https://github.com/tonystone/geofeatures/issues).
+- If you **have a feature request**, [open an issue] (https://github.com/tonystone/geofeatures/issues).
+- If you **want to contribute**
+   - Fork it! [GeoFeatures repository] (https://github.com/tonystone/geofeatures)
+   - Create your feature branch: `git checkout -b my-new-feature`
+   - Commit your changes: `git commit -am 'Add some feature'`
+   - Push to the branch: `git push origin my-new-feature`
+   - Submit a pull request :-)
 
 ## Installation
 
@@ -37,6 +51,14 @@ it, simply add the following line to your Podfile:
 pod "GeoFeatures"
 ```
 
+See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information.
+
+## Minimum Requirements
+
+| Xcode | Swift | iOS |  OS X |
+|:-----:|:-----:|:---:|:-----:|
+| 8.0   |  3.0  | 8.0 | 10.10 |
+
 ## License
 
-GeoFeatures is available under the Apache 2.0 license. See the LICENSE file for more info.
+GeoFeatures is released under the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html)
