@@ -27,10 +27,9 @@ import Swift
 
 extension MultiLineString: Curve {
 
-    /**
-     - Returns: True if all sub-elements are closed (begin and end coordinates are equal)
-     */
-
+    ///
+    /// - Returns: True if all sub-elements are closed (begin and end coordinates are equal)
+    ///
     public func isClosed() -> Bool {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> Bool in
@@ -45,10 +44,9 @@ extension MultiLineString: Curve {
         }
     }
 
-    /**
-    - Returns: The length of this Curve calculated using the sum of the length of the sub-elements.
-     */
-
+    ///
+    /// - Returns: The length of this Curve calculated using the sum of the length of the sub-elements.
+    ///
     public func length() -> Double {
 
         let length: Double  = buffer.withUnsafeMutablePointers { (header, elements) -> Double in

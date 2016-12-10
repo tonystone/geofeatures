@@ -207,4 +207,9 @@ custom_rules:
     message: "Empty brackets must not have white space, use {} instead."
     severity: error
 
+  triple_line_comments:
+    regex: "(\*(?>(?:(?>[^*]+)|\*(?!\/))*)\*)|(^[ \t]*\/\/[ \t]+(?i)(?!mark|swiftlint)[a-z0-9:]+)|(^[ \t]*\/\/$)"
+    message: "Comments must be in Quick Help triple line style (i.e. ///)."
+    severity: error
+
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)

@@ -19,151 +19,140 @@
 ///
 import Swift
 
-/**
-Default Precision for all class
-*/
+///
+/// Default Precision for all class
+///
 public let defaultPrecision = FloatingPrecision()
 
-/**
-Default CoordinateSystem
-*/
+///
+/// Default CoordinateSystem
+///
 public let defaultCoordinateSystem = Cartesian()
 
-/**
- Geometry
-
- A protocol that represents a geometric shape. Geometry
- is the abstract type that is implemented by all geometry classes.
-*/
+///
+/// Geometry
+///
+/// A protocol that represents a geometric shape. Geometry
+/// is the abstract type that is implemented by all geometry classes.
+///
 public protocol Geometry {
 
-    /**
-        The Precision used to store the coordinates for this Geometry
-    */
+    ///
+    /// The Precision used to store the coordinates for this Geometry
+    ///
     var precision: Precision { get }
 
-    /**
-        The Coordinate Reference System used in algorithms applied to this GeometryType
-    */
+    ///
+    /// The Coordinate Reference System used in algorithms applied to this GeometryType
+    ///
     var coordinateSystem: CoordinateSystem { get }
 
-    /**
-        The inherent dimension of this Geometry.
-    */
+    ///
+    /// The inherent dimension of this Geometry.
+    ///
     var dimension: Dimension { get }
 
-    /**
-     - Returns: true if this Geometry is an empty Geometry.
-    */
-
+    ///
+    /// - Returns: true if this Geometry is an empty Geometry.
+    ///
     func isEmpty() -> Bool
 
-    /**
-     - Returns: the closure of the combinatorial boundary of this Geometry instance.
-     */
-
+    ///
+    /// - Returns: the closure of the combinatorial boundary of this Geometry instance.
+    ///
     func boundary() -> Geometry
 
-//    /**
-//     - Returns:  true if this GeometryType instance has no anomalous geometric points, such
-//     as self intersection or self tangent.
-//    */
-//    @warn_unused_result
-//    func isSimple() -> Bool
-//
-//    /**
-//     The minimum bounding box for this Geometry, returned as a Geometry (Polygon).
-//    */
-//    @warn_unused_result
-//    func envelop() -> Geometry
+///    ///
+///    /// - Returns:  true if this GeometryType instance has no anomalous geometric points, such
+///    /// as self intersection or self tangent.
+///    ///
+///    @warn_unused_result
+///    func isSimple() -> Bool
+///
+///    ///
+///    /// The minimum bounding box for this Geometry, returned as a Geometry (Polygon).
+///    ///
+///    @warn_unused_result
+///    func envelop() -> Geometry
 
-    /**
-     - Returns: true if this GeometryType instance is equal to the other Geometry instance.
-     */
-
+    ///
+    /// - Returns: true if this GeometryType instance is equal to the other Geometry instance.
+    ///
     func equals(_ other: Geometry) -> Bool
 
-    /**
-    - Returns: true if this geometric object is “spatially disjoint” from the other Geometry.
-    */
-
+    ///
+    ///- Returns: true if this geometric object is “spatially disjoint” from the other Geometry.
+    ///
     func disjoint(_ other: Geometry) -> Bool
 
-    /**
-     - Returns: true if this geometric object “spatially intersects” the other Geometry.
-     */
-
+    ///
+    /// - Returns: true if this geometric object “spatially intersects” the other Geometry.
+    ///
     func intersects(_ other: Geometry) -> Bool
 
-    /**
-     - Returns: true if this geometric object “spatially touches” the other Geometry.
-     - Returns: false is self and other are both 0-Dimensional (Point and MultiPoint)
-     */
-
+    ///
+    /// - Returns: true if this geometric object “spatially touches” the other Geometry.
+    /// - Returns: false is self and other are both 0-Dimensional (Point and MultiPoint)
+    ///
     func touches(_ other: Geometry) -> Bool
 
-    /**
-     - Returns: true if this geometric object “spatially crosses" the other Geometry.
-     */
-
+    ///
+    /// - Returns: true if this geometric object “spatially crosses" the other Geometry.
+    ///
     func crosses(_ other: Geometry) -> Bool
 
-    /**
-     - Returns: true if this geometric object is “spatially within” the other Geometry.
-     */
-
+    ///
+    /// - Returns: true if this geometric object is “spatially within” the other Geometry.
+    ///
     func within(_ other: Geometry) -> Bool
 
-    /**
-     - Returns: true if this geometric object “spatially contains” the other Geometry
-     */
-
+    ///
+    /// - Returns: true if this geometric object “spatially contains” the other Geometry
+    ///
     func contains(_ other: Geometry) -> Bool
 
-    /**
-     - Returns: true if this geometric object “spatially overlaps” the other Geometry.
-     */
-
+    ///
+    /// - Returns: true if this geometric object “spatially overlaps” the other Geometry.
+    ///
     func overlaps(_ other: Geometry) -> Bool
 
-    /**
-     - Returns true if this geometric object is spatially related to the other Geometry by testing for intersections between the interior, boundary and exterior of the two geometric objects as specified by the values in the intersectionPatternMatrix.
-     - Returns: false if all the tested intersections are empty except exterior (this) intersect exterior (another).
-     */
-
+    ///
+    /// - Returns true if this geometric object is spatially related to the other Geometry by testing for intersections between the interior, boundary and exterior of the two geometric objects as specified by the values in the intersectionPatternMatrix.
+    /// - Returns: false if all the tested intersections are empty except exterior (this) intersect exterior (another).
+    ///
     func relate(_ other: Geometry, pattern: String) -> Bool
-//
-//    /**
-//     - Returns: A derived geometry collection value that matches the specified m coordinate value.
-//     */
-//    @warn_unused_result
-//    func locateAlong(mValue:Double) -> Geometry
-//
-//    /**
-//     - Returns: A derived geometry collection value that matches the specified range of m coordinate values inclusively.
-//     */
-//    @warn_unused_result
-//    func locateBetween(mStart:Double, mEnd:Double) -> Geometry
-//
-//    @warn_unused_result
-//    public func distance(other: Geometry) -> Distance
-//
-//    @warn_unused_result
-//    public func buffer(distance:Distance): Geometry
-//
-//    @warn_unused_result
-//    func convexHull() -> Geometry
-//
-//    @warn_unused_result
-//    func intersection(other: Geometry) -> Geometry
-//
-//    func union(_ other: Geometry) -> Geometry
-//
-//    @warn_unused_result
-//    func difference(other: Geometry) -> Geometry
-//
-//    @warn_unused_result
-//    func symDifference(other: Geometry) -> Geometry
+///
+///    ///
+///    /// - Returns: A derived geometry collection value that matches the specified m coordinate value.
+///    ///
+///    @warn_unused_result
+///    func locateAlong(mValue:Double) -> Geometry
+///
+///    ///
+///    /// - Returns: A derived geometry collection value that matches the specified range of m coordinate values inclusively.
+///    ///
+///    @warn_unused_result
+///    func locateBetween(mStart:Double, mEnd:Double) -> Geometry
+///
+///    @warn_unused_result
+///    public func distance(other: Geometry) -> Distance
+///
+///    @warn_unused_result
+///    public func buffer(distance:Distance): Geometry
+///
+///    @warn_unused_result
+///    func convexHull() -> Geometry
+///
+///    @warn_unused_result
+///    func intersection(other: Geometry) -> Geometry
+///
+///    func union(_ other: Geometry) -> Geometry
+///
+///    @warn_unused_result
+///    func difference(other: Geometry) -> Geometry
+///
+///    @warn_unused_result
+///    func symDifference(other: Geometry) -> Geometry
 }
 
 // MARK: Operators
@@ -191,13 +180,14 @@ public func != <T: Geometry>(lhs: Geometry, rhs: T) -> Bool {
 public func != <T: Geometry>(lhs: T, rhs: Geometry) -> Bool {
     return !lhs.equals(rhs)
 }
-/**
-    Predicate implementation for `Geometry` protocol
 
-    - note: In the comments below P is used to refer to 0-dimensional geometries (Points and MultiPoints), \
-            L is used to refer to 1-dimensional geometries (LineStrings and MultiLineStrings) and A is used\
-            to refer to 2-dimensional geometries (Polygons and MultiPolygons).
- */
+///
+/// Predicate implementation for `Geometry` protocol
+///
+/// - note: In the comments below P is used to refer to 0-dimensional geometries (Points and MultiPoints), \
+///         L is used to refer to 1-dimensional geometries (LineStrings and MultiLineStrings) and A is used\
+///         to refer to 2-dimensional geometries (Polygons and MultiPolygons).
+///
 extension Geometry {
 
     func equals(_ other: Geometry) -> Bool {   // FIXME: equals is implemented but is still required to be implemented for a class implementing Geometry.  Figure out why it is.

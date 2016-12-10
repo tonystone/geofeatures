@@ -27,12 +27,11 @@ extension Polygon: Geometry {
         return self.outerRing.count == 0
     }
 
-    /**
-     - Returns: the closure of the combinatorial boundary of this Geometry instance.
-
-     - Note: The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries
-     */
-
+    ///
+    /// - Returns: the closure of the combinatorial boundary of this Geometry instance.
+    ///
+    /// - Note: The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries
+    ///
     public func boundary() -> Geometry {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> MultiLineString<CoordinateType> in

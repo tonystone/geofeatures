@@ -50,8 +50,8 @@ class GeometryCollectionCoordinate2DFloatingPrecisionCartesianTests: XCTestCase 
     func testInitWithNoArgAndDefaults() {
         let input    = GeometryCollection()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -276,7 +276,7 @@ class GeometryCollectionCoordinate2DFloatingPrecisionCartesianTests: XCTestCase 
         var input = GeometryCollection(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(Polygon<Coordinate2D>(rings: ([(x: 6.0, y: 1.0), (x: 1.0, y: 1.0), (x: 1.0, y: 3.0), (x: 3.5, y: 4.0), (x: 6.0, y: 3.0)], [])))
         }

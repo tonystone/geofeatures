@@ -19,20 +19,19 @@
 ///
 import Swift
 
-/**
-    Surface extension for LinearRing
- */
+///
+/// Surface extension for LinearRing
+///
 extension LinearRing: Surface {
 
-    /**
-        Calculates the area of this `LinearRing`
-
-        - returns: The area of this `LinearRing`. If the orientation of the ring is clockwise, area will be positive, otherwise it will be negative.
-
-        - requires: isSimple == true
-        - requires: isClosed == true
-     */
-
+    ///
+    /// Calculates the area of this `LinearRing`
+    ///
+    ///  - returns: The area of this `LinearRing`. If the orientation of the ring is clockwise, area will be positive, otherwise it will be negative.
+    ///
+    /// - requires: isSimple == true
+    /// - requires: isClosed == true
+    ///
     public func area() -> Double {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> Double in

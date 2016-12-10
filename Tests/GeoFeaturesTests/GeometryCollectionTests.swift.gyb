@@ -92,8 +92,8 @@ class ${GeometryClass}${ClassQualifier}Tests: XCTestCase {
     func testInitWithNoArgAndDefaults() {
         let input    = ${GeometryType}()
 
-        // FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? ${PrecisionType}, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateSystem can not be Equitable and be used for anything other than Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? ${PrecisionType}, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? ${ReferenceSystemType}, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -318,7 +318,7 @@ class ${GeometryClass}${ClassQualifier}Tests: XCTestCase {
         var input = ${GeometryType}(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(${TestElement1})
         }

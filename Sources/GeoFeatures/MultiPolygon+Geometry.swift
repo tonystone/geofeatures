@@ -27,12 +27,11 @@ extension MultiPolygon: Geometry {
         return self.count == 0
     }
 
-    /**
-     - Returns: the closure of the combinatorial boundary of this Geometry instance.
-
-     - Note: The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
-     */
-
+    ///
+    /// - Returns: the closure of the combinatorial boundary of this Geometry instance.
+    ///
+    /// - Note: The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
+    ///
     public func boundary() -> Geometry {
         return self.buffer.withUnsafeMutablePointers({ (header, elements) -> Geometry in
             var multiLineString = MultiLineString<CoordinateType>(precision: self.precision, coordinateSystem: self.coordinateSystem)

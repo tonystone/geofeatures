@@ -114,7 +114,7 @@ class IntersectionMatrixTests: XCTestCase {
         matrix[.exterior, .boundary] = .two
         matrix[.exterior, .exterior] = .empty
 
-        // All values should match the input
+        /// All values should match the input
         XCTAssertEqual(matrix[.interior, .interior], Dimension.empty)
         XCTAssertEqual(matrix[.interior, .boundary], Dimension.zero)
         XCTAssertEqual(matrix[.interior, .exterior], Dimension.one)

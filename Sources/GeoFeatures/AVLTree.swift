@@ -236,19 +236,19 @@ fileprivate extension AVLTree {
 
             } else if node.right == nil, let left = node.left {    // Node has single child (left)
 
-                // Unlink it from it's parent
+                /// Unlink it from it's parent
                 root?.parent = nil
 
-                // Link the left node to the directly to the root
+                /// Link the left node to the directly to the root
                 left.parent = nil
                 root = left
 
             } else if node.left == nil, let right = node.right {     // Node has single child (right)
 
-                // Unlink the original node from it's parent
+                /// Unlink the original node from it's parent
                 root?.parent = nil
 
-                // Link the left node to the directly to the root
+                /// Link the left node to the directly to the root
                 right.parent = nil
                 root = right
 
@@ -370,7 +370,7 @@ fileprivate extension AVLTree {
             b.parent = nil
             newRoot = b
 
-            // Adjust the height of the nodes that changed
+            /// Adjust the height of the nodes that changed
             a.calculateHeight()
             b.calculateHeight()
         }
@@ -416,7 +416,7 @@ fileprivate extension AVLTree {
             b.parent = nil
             newRoot = b
 
-            // Adjust the height of the nodes that changed
+            /// Adjust the height of the nodes that changed
             c.calculateHeight()
             b.calculateHeight()
         }
@@ -468,7 +468,7 @@ fileprivate extension AVLTree {
             b.parent = nil
             newRoot = b
 
-            // Adjust the height of the nodes that changed
+            /// Adjust the height of the nodes that changed
             a.calculateHeight()
             c.calculateHeight()
             b.calculateHeight()
@@ -521,7 +521,7 @@ fileprivate extension AVLTree {
             b.parent = nil
             newRoot = b
 
-            // Adjust the height of the nodes that changed
+            /// Adjust the height of the nodes that changed
             a.calculateHeight()
             c.calculateHeight()
             b.calculateHeight()

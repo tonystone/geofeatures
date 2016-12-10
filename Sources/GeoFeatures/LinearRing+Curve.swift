@@ -27,10 +27,9 @@ import Swift
 
 extension LinearRing: Curve {
 
-    /**
-     - Returns: True if this curve is closed (begin and end coordinates are equal)
-     */
-
+    ///
+    /// - Returns: True if this curve is closed (begin and end coordinates are equal)
+    ///
     public func isClosed() -> Bool {
 
         return buffer.withUnsafeMutablePointers { (header, elements) -> Bool in
@@ -40,10 +39,9 @@ extension LinearRing: Curve {
         }
     }
 
-    /**
-     The length of this LinearType calculated using its associated CoordinateSystem.
-     */
-
+    ///
+    /// The length of this LinearType calculated using its associated CoordinateSystem.
+    ///
     public func length() -> Double {
 
         let length: Double  = buffer.withUnsafeMutablePointers { (header, elements) -> Double in

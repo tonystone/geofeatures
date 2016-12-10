@@ -305,7 +305,7 @@ class ${Self}${FunctionQualifier}Tests: XCTestCase {
         var input = ${GeometryType}<${CoordinateType}>(precision: precision, coordinateSystem: cs)
         let expected = input.capacity * 2
 
-        // Force it beyond its initial capacity
+        /// Force it beyond its initial capacity
         for _ in 0..<input.capacity + 1 {
             input.append(${TestTuple0})
         }

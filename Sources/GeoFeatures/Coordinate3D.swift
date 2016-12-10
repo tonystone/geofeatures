@@ -19,11 +19,11 @@
 ///
 import Swift
 
-/**
-    3D Coordinate
-
-    Low level 3 dimensional Coordinate type
- */
+///
+/// 3D Coordinate
+///
+/// Low level 3 dimensional Coordinate type
+///
 public struct Coordinate3D: Coordinate, ThreeDimensional {
 
     public let x: Double

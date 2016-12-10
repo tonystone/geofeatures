@@ -42,8 +42,8 @@ class PolygonCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgDefaults() {
         let input    = Polygon<Coordinate2D>()
 
-        // FIXME: Currently Precision and CoordinateRefereceSystem can not be Equitable and be used for anything otherthan Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateRefereceSystem can not be Equitable and be used for anything otherthan Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
@@ -144,8 +144,8 @@ class PolygonCoordinate2DFixedPrecisionCartesianTests: XCTestCase {
     func testInitWithNoArgDefaults() {
         let input    = Polygon<Coordinate2D>()
 
-        // FIXME: Currently Precision and CoordinateRefereceSystem can not be Equitable and be used for anything otherthan Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
-        // XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
+        /// FIXME: Currently Precision and CoordinateRefereceSystem can not be Equitable and be used for anything otherthan Generic constraints because it's a protocol, this limits testing of the defaultPrecision and defaultCoordinateSystem
+        /// XCTAssertEqual(input.precision as? FloatingPrecision, GeoFeatures.defaultPrecision)
         XCTAssertEqual(input.coordinateSystem as? Cartesian, GeoFeatures.defaultCoordinateSystem)
     }
 
