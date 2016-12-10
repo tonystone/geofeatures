@@ -25,10 +25,6 @@ import GeoFeatures
     import struct GeoFeatures.Polygon
 #endif
 
-// swiftlint:disable file_length
-// swiftlint:disable type_body_length
-// swiftlint:disable type_name
-
 // MARK: - Coordinate2D, FloatingPrecision, Cartesian -
 
 class WKTReaderCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
