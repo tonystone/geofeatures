@@ -17,7 +17,10 @@ disabled_rules:
   - switch_case_on_newline
   - overridden_super_call
   - line_length
-  - missing_docs # Development time only, remove when we get closer to production.  Also make this rule an error and not warning.
+  - type_body_length # Until swiftlint allows overriding rules in sub swiftlint.yml files, we're disabling this rule for tests
+  - file_length      # Until swiftlint allows overriding rules in sub swiftlint.yml files, we're disabling this rule for tests
+  - type_name        # Until swiftlint allows overriding rules in sub swiftlint.yml files, we're disabling this rule for tests
+  - missing_docs     # Development time only, remove when we get closer to production.  Also make this rule an error and not warning.
 
 opt_in_rules:
   - closure_spacing
@@ -165,8 +168,43 @@ custom_rules:
 
   comma_after_identifier:
     regex: "(\s+,\s+)|([^\s]+,[^\s'\"]+)"
+    match_kinds:
+      - argument
+      - attribute.builtin
+      - attribute.id
+      - buildconfig.id
+      - buildconfig.keyword
+      - identifier
+      - keyword
+      - number
+      - objectliteral
+      - parameter
+      - placeholder
+      - string
+      - string_interpolation_anchor
+      - typeidentifier
     message: "There should be no space before any comma and at least 1 space after."
     severity: error
 
+  comma_after_identifier_Comment:
+    regex: "(\/\/\/?[^\r\n]+[a-zA-Z]+,[a-zA-Z]+)"
+    match_kinds:
+      - comment
+      - comment.mark
+      - comment.url
+      - doccomment
+      - doccomment.field
+    message: "There should be no space before any comma and at least 1 space after."
+    severity: error
+
+  bracket:
+    regex: "(\}\n{2,}\}|\{\n{2,}\{)"
+    message: "No empty line between two open or close brackets. "
+    severity: error
+
+  empty_brackets:
+    regex: "(\{\s{1,}\})"
+    message: "Empty brackets must not have white space, use {} instead."
+    severity: error
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
