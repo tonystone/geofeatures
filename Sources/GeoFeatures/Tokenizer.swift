@@ -21,6 +21,7 @@ import Swift
 import Foundation
 
 internal protocol Token {
+
     func match(_ string: String, matchRange: Range<String.Index>) -> Range<String.Index>?
     func isNewLine() -> Bool
 }

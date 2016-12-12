@@ -199,7 +199,7 @@ custom_rules:
 
   bracket:
     regex: "(\}\n{2,}\}|\{\n{2,}\{)"
-    message: "No empty line between two open or close brackets. "
+    message: "No empty line between two open or close brackets."
     severity: error
 
   empty_brackets:
@@ -216,7 +216,22 @@ custom_rules:
     regex: "(swiftlint:disable)"
     match_kinds:
       - comment
-    message: "Please do not disable rule in code. "
+    message: "Please do not disable rules in code."
     severity: warning
+
+  declaration_attributes_on_newline:
+    regex: "(@(discardableResults|inline[ \t]*\(\S*\)|available[ \t]*(\S*\)))[^\r\n]+)"
+    message: "Declaration attributes must be on their own line."
+    severity: error
+
+  access_control_on_same_line:
+    regex: "(open|public|private|fileprivate|internal)[ \t]*[\r\n]"
+    message: "Access control modifiers must be on the same line as the type declaration."
+    severity: error
+
+  empty_first_line:
+    regex: "(^[ a-zA-Z ]*(?:protocol|extension|class|struct) (?!(?:var|let))[ a-zA-Z:]*\{\n *\S+)"
+    message: "There should be an empty line after a declaration."
+    severity: error
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)

@@ -64,12 +64,14 @@ public struct Point<CoordinateType: Coordinate & CopyConstructable> {
 }
 
 extension Point where CoordinateType: ThreeDimensional {
+
     public var z: Double {
         return coordinate.z
     }
 }
 
 extension Point where CoordinateType: Measured {
+
     public var m: Double {
         return coordinate.m
     }
