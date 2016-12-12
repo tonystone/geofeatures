@@ -20,6 +20,7 @@
 import Swift
 
 internal struct CollectionBufferHeader {
+
     var capacity: Int
     var count: Int
 }

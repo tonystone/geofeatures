@@ -194,18 +194,15 @@ extension Geometry {
         return relate(other, pattern: "TFFFTFFFT")
     }
 
-    public
-    func disjoint(_ other: Geometry) -> Bool {
+    public func disjoint(_ other: Geometry) -> Bool {
         return relate(other, pattern: "FF*FF****")
     }
 
-    public
-    func intersects(_ other: Geometry) -> Bool {
+    public func intersects(_ other: Geometry) -> Bool {
         return !disjoint(other)
     }
 
-    public
-    func touches(_ other: Geometry) -> Bool {
+    public func touches(_ other: Geometry) -> Bool {
 
         if self.dimension == .zero && other.dimension == .zero {
             return false
@@ -213,8 +210,7 @@ extension Geometry {
         return relate(other, pattern: "FT*******") || relate(other, pattern: "F**T*****") || relate(other, pattern: "F***T****")
     }
 
-    public
-    func crosses(_ other: Geometry) -> Bool {
+    public func crosses(_ other: Geometry) -> Bool {
 
         if self.dimension == .zero && other.dimension == .one ||
            self.dimension == .zero && other.dimension == .two ||
@@ -229,18 +225,15 @@ extension Geometry {
         return false
     }
 
-    public
-    func within(_ other: Geometry) -> Bool {
+    public func within(_ other: Geometry) -> Bool {
         return relate(other, pattern: "T*F**F***")
     }
 
-    public
-    func contains(_ other: Geometry) -> Bool {
+    public func contains(_ other: Geometry) -> Bool {
         return other.within(self)
     }
 
-    public
-    func overlaps(_ other: Geometry) -> Bool {
+    public func overlaps(_ other: Geometry) -> Bool {
 
         if self.dimension == .zero && other.dimension == .zero ||
            self.dimension == .two  && other.dimension == .two {
@@ -254,15 +247,13 @@ extension Geometry {
         return false
     }
 
-    public
-    func relate(_ other: Geometry, pattern: String) -> Bool {
+    public func relate(_ other: Geometry, pattern: String) -> Bool {
         let matrix = calculateIntersectionMatrix(other)
 
         return matrix.matches(pattern)
     }
 
-    fileprivate
-    func calculateIntersectionMatrix(_ other: Geometry) -> IntersectionMatrix {
+    fileprivate func calculateIntersectionMatrix(_ other: Geometry) -> IntersectionMatrix {
         let matrix = IntersectionMatrix()
 
         return matrix

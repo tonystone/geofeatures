@@ -27,6 +27,7 @@ import Swift
 public protocol CoordinateSystem {}
 
 public struct Cartesian: CoordinateSystem {
+
     public init() {}
 }
 
