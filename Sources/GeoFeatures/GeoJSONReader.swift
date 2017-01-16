@@ -286,12 +286,14 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
 
     private func coordinate(array: [Double]) throws -> CoordinateType {
 
-        do {
-            return try CoordinateType(array: array)
-
-        } catch _ArrayConstructableError.invalidArraySize {
+        ///
+        /// Since `CoordinateType.init(array:)` does not throw, we need to determine if the proper
+        /// number of coordinates were passed to construct it.
+        ///
+        guard 2 + (CoordinateType.self is Measured.Type ? 1 : 0) + (CoordinateType.self is ThreeDimensional.Type ? 1 : 0) == array.count else {
             throw GeoJSONReaderError.invalidNumberOfCoordinates("Invalid number of coordinates (\(array.count)) supplied for type \(String(reflecting: CoordinateType.self)).")
         }
+        return CoordinateType(array: array)
     }
 }
 

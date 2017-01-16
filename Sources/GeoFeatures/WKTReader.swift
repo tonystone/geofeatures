@@ -577,12 +577,14 @@ public class WKTReader<CoordinateType: Coordinate & CopyConstructable & _ArrayCo
             }
         }
 
-        do {
-            return try CoordinateType(array: coordinates)
-
-        } catch _ArrayConstructableError.invalidArraySize {
+        ///
+        /// Since `CoordinateType.init(array:)` does not throw, we need to determine if the proper
+        /// number of coordinates were passed to construct it.
+        ///
+        guard 2 + (CoordinateType.self is Measured.Type ? 1 : 0) + (CoordinateType.self is ThreeDimensional.Type ? 1 : 0) == coordinates.count else {
             throw WKTReaderError.invalidNumberOfCoordinates("Invalid number of coordinates (\(coordinates.count)) supplied for type \(String(reflecting: CoordinateType.self)).")
         }
+        return CoordinateType(array: coordinates)
     }
 
     fileprivate func dimensionText(_ tokenizer: Tokenizer<WKT>, require: (z: Bool?, m: Bool?)) throws -> (z: Bool, m: Bool) {

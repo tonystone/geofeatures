@@ -63,42 +63,16 @@ class Coordinate2DMTests: XCTestCase {
 
     // MARK: ArrayConstructable
 
-    func testInitWithArray () throws {
-        let coordinate = try Coordinate2DM(array: [2.0, 3.0, 4.0])
+    func testInit_Array () {
+        let coordinate = Coordinate2DM(array: [2.0, 3.0, 4.0])
 
         XCTAssertEqual(coordinate.x, 2.0)
         XCTAssertEqual(coordinate.y, 3.0)
         XCTAssertEqual(coordinate.m, 4.0)
     }
 
-    func testInitArrayWithInvalidToSmall() {
-
-        let input = [2.0, 3.0]
-        let expected = "Invalid array size (2)."
-
-        XCTAssertThrowsError(try Coordinate2DM(array: input)) { error in
-
-            if case _ArrayConstructableError.invalidArraySize(let message) = error {
-                XCTAssertEqual(message, expected)
-            } else {
-                XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
-            }
-        }
-    }
-
-    func testInitWithArrayInvalidToLarge() {
-
-        let input = [2.0, 3.0, 4.0, 5.0]
-        let expected = "Invalid array size (4)."
-
-        XCTAssertThrowsError(try Coordinate2DM(array: input)) { error in
-
-            if case _ArrayConstructableError.invalidArraySize(let message) = error {
-                XCTAssertEqual(message, expected)
-            } else {
-                XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
-            }
-        }
+    func testInit_Array_Invalid () {
+        /// TODO: Can't test precondition at this point due to lack of official support in Swift.
     }
 
     // MARK: CopyConstructable

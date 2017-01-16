@@ -39,10 +39,9 @@ public struct Coordinate3D: Coordinate, ThreeDimensional {
 
 extension Coordinate3D: _ArrayConstructable {
 
-    public init(array: [Double]) throws {
-        guard array.count == 3 else {
-            throw _ArrayConstructableError.invalidArraySize("Invalid array size (\(array.count)).")
-        }
+    public init(array: [Double]) {
+        precondition(array.count == 3)
+
         self.init(x: array[0], y: array[1], z: array[2])
     }
 }

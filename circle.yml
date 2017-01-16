@@ -24,7 +24,7 @@ test:
         CODE_SIGN_IDENTITY=
         PROVISIONING_PROFILE=
         -sdk iphonesimulator
-        -destination 'id=5F273E3F-7B26-436D-A8EB-36460917614D'
+        -destination 'id=25ED651C-B5E8-47A3-B435-933E305C23EF'
         -workspace "$XCODE_WORKSPACE"
         -scheme "$XCODE_SCHEME"
         -enableCodeCoverage YES
