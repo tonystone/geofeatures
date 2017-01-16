@@ -212,13 +212,6 @@ custom_rules:
     message: "Comments must be in Quick Help triple line style (i.e. ///)."
     severity: error
 
-  disable_rule:
-    regex: "(swiftlint:disable)"
-    match_kinds:
-      - comment
-    message: "Please do not disable rules in code."
-    severity: warning
-
   declaration_attributes_on_newline:
     regex: "(@(discardableResults|inline[ \t]*\(\S*\)|available[ \t]*(\S*\)))[^\r\n]+)"
     message: "Declaration attributes must be on their own line."
