@@ -207,7 +207,7 @@ extension MultiLineString: Collection {
 
         if keepCapacity {
 
-            buffer.withUnsafeMutablePointers { (header, elements) -> Void in
+            buffer.withUnsafeMutablePointerToHeader { (header) -> Void in
                 header.pointee.count = 0
             }
         } else {
