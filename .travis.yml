@@ -1,20 +1,65 @@
-language: objective-c
-os: osx
-osx_image: xcode8.2
+language: generic
 
-before_install:
-    - gem install xcpretty -N --no-ri --no-rdoc
+git:
+  submodules: false
 
 env:
-    global:
-        - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
-    matrix:
-        - MATRIX_TARGET="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator"
-        - MATRIX_TARGET="-scheme GeoFeatures-OSX-Example -sdk macosx"
+  global:
+    - WORKSPACE=Example/GeoFeatures.xcworkspace
+
+matrix:
+  include:
+    -
+      os: osx
+      osx_image: xcode8.2
+      env: 
+         - BUILD="pod lint"
+    - 
+      os: osx
+      osx_image: xcode8.2
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s" 
+         - TEST_SDK=iphonesimulator
+         - SCHEME=GeoFeatures-iOS-Example
+    - 
+      os: osx
+      osx_image: xcode8.2
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=OS X,arch=x86_64" 
+         - TEST_SDK=macosx
+         - SCHEME=GeoFeatures-OSX-Example
+
+before_install:
+  #
+  # If there is a Gemfile for this os, install bundler and ask bundler to install the gems
+  #
+  - |
+    if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then
+       export BUNDLE_GEMFILE=Gemfile."$TRAVIS_OS_NAME"
+       gem install bundler
+       bundler install
+    fi
 
 script:
-    - set -o pipefail
-    - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+       # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
+       rvm get head --auto-dotfiles || true
+    fi
+  - |
+    if [[ "$BUILD" == "pod lint" ]]; then
+        bundler exec pod repo update
+        bundler exec pod lib lint
+    fi
+  - |
+    if [[ "$BUILD" == "xcodebuild"  ]]; then
+        set -o pipefail
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing | bundler exec xcpretty
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test              | bundler exec xcpretty
+        set +o pipefail
+    fi
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
