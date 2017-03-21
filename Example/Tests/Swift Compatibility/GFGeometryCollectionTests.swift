@@ -33,16 +33,16 @@ class GFGeometryCollectionTests: XCTestCase {
     }
     
     func testInit_GeoJSON_NoThrow () throws {
-        let geometry1 = ["type": "Point", "coordinates": [100.0, 0.0]]
-        let geometry2 = ["type": "LineString", "coordinates": [[100.0, 0.0],[101.0, 1.0]]]
+        let geometry1 = ["type": "Point", "coordinates": [100.0, 0.0]] as [String : Any]
+        let geometry2 = ["type": "LineString", "coordinates": [[100.0, 0.0],[101.0, 1.0]]] as [String : Any]
         let geometry3 = ["type": "Polygon",
                          "coordinates": [
                             [ [100.0, 0.0], [200.0, 100.0],[200.0, 0.0], [100.0, 1.0], [100.0, 0.0] ],
                             [ [100.2, 0.2], [100.8, 0.2],  [100.8, 0.8], [100.2, 0.8], [100.2, 0.2] ]]
-        ]
-        let geometry4 = ["type": "MultiPoint", "coordinates": [[100.0, 0.0],[101.0, 1.0]]]
-        let geometry5 = ["type": "MultiLineString", "coordinates": [[[100.0, 0.0],[101.0, 1.0]], [[102.0, 2.0],[103.0, 3.0]]]]
-        let geoJSON: [NSObject : AnyObject] =  [  "type": "GeometryCollection", "geometries": [ geometry1, geometry2, geometry3, geometry4, geometry5 ] ]
+        ] as [String : Any]
+        let geometry4 = ["type": "MultiPoint", "coordinates": [[100.0, 0.0],[101.0, 1.0]]] as [String : Any]
+        let geometry5 = ["type": "MultiLineString", "coordinates": [[[100.0, 0.0],[101.0, 1.0]], [[102.0, 2.0],[103.0, 3.0]]]] as [String : Any]
+        let geoJSON: [AnyHashable: Any] =  [  "type": "GeometryCollection", "geometries": [ geometry1, geometry2, geometry3, geometry4, geometry5 ] ]
         
         XCTAssertEqual(try GFGeometryCollection(geoJSONGeometry: geoJSON).toWKTString(), "GEOMETRYCOLLECTION(POINT(100 0),LINESTRING(100 0,101 1),POLYGON((100 0,200 100,200 0,100 1,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)),MULTIPOINT((100 0),(101 1)),MULTILINESTRING((100 0,101 1),(102 2,103 3)))")
     }
