@@ -228,7 +228,7 @@ class WKTReaderCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
     func testReadLineStringValidEmpty() {
 
         let input = "LINESTRING EMPTY"
-        let expected = LineString<Coordinate2D>(elements: [])
+        let expected = LineString<Coordinate2D>(elements: [] as [Coordinate2D])
 
         XCTAssertEqual(try wktReader.read(string: input) as? LineString<Coordinate2D>, expected)
     }
@@ -302,7 +302,7 @@ class WKTReaderCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
     func testReadLinearRingValidEmpty() {
 
         let input = "LINEARRING EMPTY"
-        let expected = LinearRing<Coordinate2D>(elements: [])
+        let expected = LinearRing<Coordinate2D>(elements: [] as [Coordinate2D])
 
         XCTAssertEqual(try wktReader.read(string: input) as? LinearRing<Coordinate2D>, expected)
     }
