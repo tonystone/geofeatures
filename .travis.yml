@@ -57,7 +57,7 @@ matrix:
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s"
-         
+
 # don't re-build for tags so that [publish binary] is not re-run
 # https://github.com/travis-ci/travis-ci/issues/1532
 branches:
@@ -88,9 +88,9 @@ before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo apt-get update -y
-      wget https://swift.org/builds/swift-3.0-release/ubuntu1404/swift-3.0-RELEASE/swift-3.0-RELEASE-ubuntu14.04.tar.gz
-      tar xzvf swift-3.0-RELEASE-ubuntu14.04.tar.gz
-      export PATH=swift-3.0-RELEASE-ubuntu14.04/usr/bin:$PATH
+      wget https://swift.org/builds/swift-3.1-release/ubuntu1404/swift-3.1-RELEASE/swift-3.1-RELEASE-ubuntu14.04.tar.gz
+      tar xzvf swift-3.1-RELEASE-ubuntu14.04.tar.gz
+      export PATH=swift-3.1-RELEASE-ubuntu14.04/usr/bin:$PATH
       sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev
     fi
 
