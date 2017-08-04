@@ -66,6 +66,7 @@
 		EAA325A11DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */; };
 		EAA325A51DD407BC004534F3 /* TokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A41DD407BC004534F3 /* TokenizerTests.swift */; };
 		EAA325A81DD4E2CA004534F3 /* MultiLineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA325A71DD4E2CA004534F3 /* MultiLineStringTests.swift */; };
+		EAB0DF0A1F352BFB00B596CB /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = EAB0DF091F352BFB00B596CB /* .travis.yml */; };
 		EAD9F3961DD77BAD0059122C /* GeometryCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD9F3951DD77BAD0059122C /* GeometryCollectionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +148,7 @@
 		EAA325A01DD3DFBA004534F3 /* CoordinateReferenceSystemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystemTests.swift; sourceTree = "<group>"; };
 		EAA325A41DD407BC004534F3 /* TokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizerTests.swift; sourceTree = "<group>"; };
 		EAA325A71DD4E2CA004534F3 /* MultiLineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineStringTests.swift; sourceTree = "<group>"; };
+		EAB0DF091F352BFB00B596CB /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EAB4C1CC1C6F7D7D00F288D1 /* GeoFeatures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GeoFeatures.playground; sourceTree = "<group>"; };
 		EAD9F3921DD7621D0059122C /* MultiLineStringTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = MultiLineStringTestInput.py; path = Tests/GeoFeaturesTests/MultiLineStringTestInput.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
 		EAD9F3931DD76B6E0059122C /* MultiPolygonTestInput.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = MultiPolygonTestInput.py; path = Tests/GeoFeaturesTests/MultiPolygonTestInput.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
@@ -262,6 +264,7 @@
 				2E8E8258ACE5267DDF6D0D4E /* LICENSE */,
 				EAE2CF5E1CD43D500050BC30 /* Vagrantfile */,
 				EAE6C76D1DB7CDD200E2E492 /* Gemfile */,
+				EAB0DF091F352BFB00B596CB /* .travis.yml */,
 				EA634EFD1DCE32F800AC93E7 /* circle.yml */,
 				EA4CFEC91DCB9CF70050634D /* circle.yml.linux */,
 				EA634EFE1DCE481C00AC93E7 /* codecov.yml */,
@@ -466,6 +469,7 @@
 			files = (
 				EA8D58A21DB7D7F800713261 /* Main.storyboard in Resources */,
 				EA8D58A11DB7D7F800713261 /* LaunchScreen.xib in Resources */,
+				EAB0DF0A1F352BFB00B596CB /* .travis.yml in Resources */,
 				EA8D589C1DB7D7D700713261 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
