@@ -46,7 +46,7 @@ private enum WKT: String {
 ///
 /// WKTWriter generates a WKT – Well-known Text – representation of a `Geometry` object.
 ///
-public class WKTWriter<CoordinateType : Coordinate & CopyConstructable & _ArrayConstructable> {
+public class WKTWriter<CoordinateType: Coordinate & CopyConstructable & _ArrayConstructable> {
 
     public init() {}
 
