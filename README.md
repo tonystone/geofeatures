@@ -1,37 +1,35 @@
-# GeoFeatures
+# GeoFeatures ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
 
-[![Build Status](https://travis-ci.org/tonystone/geofeatures.svg?branch=master)](https://travis-ci.org/tonystone/geofeatures)
-[![codecov.io](http://codecov.io/github/tonystone/geofeatures/coverage.svg?branch=master)](http://codecov.io/github/tonystone/geofeatures?branch=master)
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+    <img src="https://img.shields.io/badge/Platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos%20%7C%20linux%20-lightgray.svg?style=flat" alt="Platforms: ios | osx | watchos | tvos | Linux">
+</a>
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+    <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
+</a>
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+</a>
 [![Version](https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
-[![License](https://img.shields.io/cocoapods/l/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
-[![Platform](https://img.shields.io/cocoapods/p/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
+[![Build Status](https://travis-ci.org/tonystone/geofeatures.svg?branch=master)](https://travis-ci.org/tonystone/geofeatures)
+<a href="https://codecov.io/gh/tonystone/geofeatures">
+   <img src="https://codecov.io/gh/tonystone/geofeatures/branch/master/graph/badge.svg?token=pR1BEC4A1s" alt="Codecov" />
+</a>
 
 ## Introduction
 
-GeoFeatures is a lightweight, high performance geometry library for Objective-C.  It supports the full
- set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
+GeoFeatures is a lightweight, high performance geometry library for Swift.  It supports the full set of geometric primitives such as Point, Polygon, and LineString as well as collection classes such as MultiPoint, MultiPolygon,and MultiLineString.
 
 ![Inheritance Diagram](Docs/GeoFeatures-Inheritance-Diagram.png)
 
 ## Features
-
 - [x] Easy to use.
 - [x] Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, Box and GeometryCollection implementations.
-- [x] Area, Length, BoundingBox, Centroid, Perimeter, Intersects, Intersection, Difference, Union, and Within (point in polygon) algorithms.  More coming soon.
-- [x] Immutable and mutable versions of all classes (e.g. `GFPolygon` and `GFMutablePolygon`).
 - [x] [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
 - [x] [GeoJSON] (http://geojson.org/) input and output.
-- [x] MapKit representations and drawing.
-- [x] Indexed Subscripting support for all collection types (e.g. `GEPoint * point = multiPoint[0]`).
-- [x] **Swift**: supports direct use in Swift applications.
+- [x] Indexed Subscripting support for all collection types (e.g. `Point * point = multiPoint[0]`).
+- [x] **Swift**: Written in pure Swift.
 - [x] CocoaPod framework support (compile as Objective-C framework or static lib).
 - [x] Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
-- [x] Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
-- [x] Implemented based on the popular and fast open source C++ boost geometry library.
- 
-## Documentation
-
-The doxygen documentation is online available at [github.io] (http://tonystone.github.io/geofeatures).
 
 ## Sources and Binaries
 
@@ -65,14 +63,8 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 | Xcode | Swift | iOS |  OS X |
 |:-----:|:-----:|:---:|:-----:|
-| 7.3.0 |  2.2  | 8.0 | 10.10 |
-
-## Author
-
-Tony Stone ([https://github.com/tonystone] (https://github.com/tonystone))
+| 8.0   |  3.0  | 8.0 | 10.10 |
 
 ## License
 
 GeoFeatures is released under the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html)
-
-The embedded Boost library is released under the [Boost Software License, Version 1.0] (http://www.boost.org/users/license.html)

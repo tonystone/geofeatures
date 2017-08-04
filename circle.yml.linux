@@ -1,0 +1,18 @@
+machine:
+
+  timezone:
+    America/Los_Angeles # Set the timezone
+
+  environment:
+    PATH: swift-3.0-RELEASE-ubuntu14.04/usr/bin:$PATH
+
+dependencies:
+  pre:
+    - sudo apt-get update -y
+    - wget https://swift.org/builds/swift-3.0-release/ubuntu1404/swift-3.0-RELEASE/swift-3.0-RELEASE-ubuntu14.04.tar.gz
+    - tar xzvf swift-3.0-RELEASE-ubuntu14.04.tar.gz
+    - sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev
+
+test:
+  override:
+    - swift test # use Swift PM to build and test
