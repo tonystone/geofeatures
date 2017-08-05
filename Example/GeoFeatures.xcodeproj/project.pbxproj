@@ -97,9 +97,7 @@
 		EA475CDD1CDA63060013AFA1 /* generate_geometry_from_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = generate_geometry_from_gyb.sh; path = Scripts/generate_geometry_from_gyb.sh; sourceTree = "<group>"; };
 		EA475CDE1CDA63060013AFA1 /* generate_tests_from_gyb.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = generate_tests_from_gyb.sh; path = Scripts/generate_tests_from_gyb.sh; sourceTree = "<group>"; };
 		EA475CED1CDAA4EB0013AFA1 /* generate_xctest_linux_runner.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = generate_xctest_linux_runner.rb; path = Scripts/generate_xctest_linux_runner.rb; sourceTree = "<group>"; };
-		EA4CFEC91DCB9CF70050634D /* circle.yml.linux */ = {isa = PBXFileReference; lastKnownFileType = text; name = circle.yml.linux; path = ../circle.yml.linux; sourceTree = "<group>"; };
 		EA5CE1241DD62CB600F773F2 /* MultiPolygonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPolygonTests.swift; sourceTree = "<group>"; };
-		EA634EFD1DCE32F800AC93E7 /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = circle.yml; path = ../circle.yml; sourceTree = "<group>"; };
 		EA634EFE1DCE481C00AC93E7 /* codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
 		EA634F061DD0341200AC93E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		EA799B4D1C723E0700397C2A /* GeoFeatures-Diagrams.graffle */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GeoFeatures-Diagrams.graffle"; path = "../Docs/GeoFeatures-Diagrams.graffle"; sourceTree = "<group>"; };
@@ -265,8 +263,6 @@
 				EAE2CF5E1CD43D500050BC30 /* Vagrantfile */,
 				EAE6C76D1DB7CDD200E2E492 /* Gemfile */,
 				EAB0DF091F352BFB00B596CB /* .travis.yml */,
-				EA634EFD1DCE32F800AC93E7 /* circle.yml */,
-				EA4CFEC91DCB9CF70050634D /* circle.yml.linux */,
 				EA634EFE1DCE481C00AC93E7 /* codecov.yml */,
 				EA634F061DD0341200AC93E7 /* .swiftlint.yml */,
 				EA8D591C1DB83EA300713261 /* .gitignore */,
