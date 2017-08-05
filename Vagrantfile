@@ -34,7 +34,7 @@ sourceName=""
 sourceDirectory=""
 
 swiftRelease=true
-swiftVersion="3.0"
+swiftVersion="3.1.1"
 
 options = GetoptLong.new(
     [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],
@@ -55,21 +55,21 @@ begin
 end
 
 if swiftRelease
-    sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1510/swift-#{swiftVersion}-RELEASE"
-    sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu15.10"
+    sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1610/swift-#{swiftVersion}-RELEASE"
+    sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu16.10"
 else
-    sourceDirectory = "builds/development/ubuntu1510/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
-    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu15.10"
+    sourceDirectory = "builds/development/ubuntu1610/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
+    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu16.10"
 end
 
 Vagrant.configure("2") do |config|
-  
-  config.vm.box = "bento/ubuntu-15.10"
+
+  config.vm.box = "bento/ubuntu-16.10"
 
   config.vm.provider "virtualbox"
 
   config.vm.provider "parallels" do |v|
-     v.name = "Ubuntu Linux 15.10 - GeoFeatures Development"
+     v.name = "Ubuntu Linux 16.10 - GeoFeatures Development"
      v.memory = 512
   end
 
