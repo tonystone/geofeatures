@@ -1,3 +1,9 @@
+
+> :warning: **WARNING** :warning: The version in the `master` branch of this project is in a _prerelease_ state. There
+> is active work going on that will result in API changes that can/will break code while things are finished.  Use with caution.
+>
+>  For a stable release, please use version [1.6.4](https://github.com/tonystone/geofeatures/releases/tag/1.6.4).  You can change the view of this repo to the stable version by using this [link](https://github.com/tonystone/geofeatures/tree/1.6.4).
+
 # GeoFeatures ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
