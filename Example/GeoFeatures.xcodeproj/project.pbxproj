@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		EAC75E881C91E84900BA35F8 /* Process Source Files */ = {
+		EAC75E881C91E84900BA35F8 /* Process Source & Test Files */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source Files" */;
+			buildConfigurationList = EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source & Test Files" */;
 			buildPhases = (
 				EAC75E8C1C91E86600BA35F8 /* [Run Script] Generate Geometry from GYB */,
 				EAC75E8D1C91E86800BA35F8 /* [Run Script] Generate Tests from GYB */,
@@ -17,7 +17,7 @@
 			);
 			dependencies = (
 			);
-			name = "Process Source Files";
+			name = "Process Source & Test Files";
 			productName = "Process GYB Files";
 		};
 /* End PBXAggregateTarget section */
@@ -453,7 +453,7 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* GeoFeatures_Example */,
 				607FACE41AFB9204008FA782 /* GeoFeatures_Tests */,
-				EAC75E881C91E84900BA35F8 /* Process Source Files */,
+				EAC75E881C91E84900BA35F8 /* Process Source & Test Files */,
 			);
 		};
 /* End PBXProject section */
@@ -959,7 +959,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source Files" */ = {
+		EAC75E891C91E84900BA35F8 /* Build configuration list for PBXAggregateTarget "Process Source & Test Files" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAC75E8A1C91E84900BA35F8 /* Debug */,

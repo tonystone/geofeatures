@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EAC75E881C91E84900BA35F8"
-               BuildableName = "Process Source Files"
-               BlueprintName = "Process Source Files"
+               BuildableName = "Process Source &amp; Test Files"
+               BlueprintName = "Process Source &amp; Test Files"
                ReferencedContainer = "container:GeoFeatures.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EAC75E881C91E84900BA35F8"
-            BuildableName = "Process Source Files"
-            BlueprintName = "Process Source Files"
+            BuildableName = "Process Source &amp; Test Files"
+            BlueprintName = "Process Source &amp; Test Files"
             ReferencedContainer = "container:GeoFeatures.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EAC75E881C91E84900BA35F8"
-            BuildableName = "Process Source Files"
-            BlueprintName = "Process Source Files"
+            BuildableName = "Process Source &amp; Test Files"
+            BlueprintName = "Process Source &amp; Test Files"
             ReferencedContainer = "container:GeoFeatures.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
