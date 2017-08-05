@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:GeoFeatures.xcodeproj">
+      location = "self:GeoFeatures2.xcodeproj">
    </FileRef>
 </Workspace>

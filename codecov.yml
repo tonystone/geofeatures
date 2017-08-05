@@ -1,13 +1,46 @@
-comment:
-  layout: header, changes, diff, sunburst
-coverage:
-  ignore:
-  - Applications/.*
-  - Example/.*
-  - GeoFeatures/boost/.*
-  - GeoFeatures/internal/.*
-  - GeoFeatures/Internal/.*
-  status:
-    patch: false
-    project: false
+codecov:
+  notify:
+    require_ci_to_pass: true
     
+comment:
+  behavior: default
+  layout: header, diff, tree
+  require_changes: false
+  
+coverage:
+  notify:
+    slack:
+      default:
+        url: https://hooks.slack.com/services/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
+        attachments: "sunburst, diff"
+  precision: 2
+  range:
+  - 70.0
+  - 100.0
+  round: down
+  status:
+    changes: true
+    patch: true
+    project: true
+  ignore:
+    - Example/*
+    - Scripts/*
+    - Docs/*
+    - Tests/*
+    - Pods/*
+    - Applications/Xcode.app/*
+    - vendor/*
+    - Carthage/*
+    - build/*
+    - .build/*
+    - .vagrant/*
+    
+parsers:
+  gcov:
+    branch_detection:
+      conditional: true
+      loop: true
+      macro: false
+      method: false
+  javascript:
+    enable_partials: false
