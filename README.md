@@ -9,8 +9,12 @@
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
    <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
 </a>
-[![Version](https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
-[![Build Status](https://travis-ci.org/tonystone/geofeatures.svg?branch=master)](https://travis-ci.org/tonystone/geofeatures)
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+   <img src="https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat" alt="Pod Version">
+</a>
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+   <img src="https://travis-ci.org/tonystone/geofeatures.svg?branch=master" alt="Build Status">
+</a>
 <a href="https://codecov.io/gh/tonystone/geofeatures">
    <img src="https://codecov.io/gh/tonystone/geofeatures/branch/master/graph/badge.svg?token=pR1BEC4A1s" alt="Codecov" />
 </a>
