@@ -45,7 +45,6 @@ extension TokenizerTests {
                 ("testMatchUnicodeEWithAccentFalse", testMatchUnicodeEWithAccentFalse),
                 ("testColumnParens", testColumnParens),
                 ("testColumnUnicodeGlobes", testColumnUnicodeGlobes),
-                ("testColumnUnicodeFlags", testColumnUnicodeFlags),
                 ("testColumnUnicodeEPlusAccent", testColumnUnicodeEPlusAccent),
                 ("testColumnUnicodeEWithAccent", testColumnUnicodeEWithAccent),
                 ("testColumnUnicodeEPlusAccentCanonical", testColumnUnicodeEPlusAccentCanonical),
