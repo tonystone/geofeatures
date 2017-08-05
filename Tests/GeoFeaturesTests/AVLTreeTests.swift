@@ -578,7 +578,7 @@ class AVLTreeTests: XCTestCase {
         if let node = input.tree.search(value: input.value) {
             XCTAssertEqual(input.tree.next(node: node)?.value, expected)
         } else {
-            XCTFail("Expected value '\(expected)' not found in tree \(input.tree).")
+            XCTFail("Expected value '\((expected != nil) ? String(describing: expected) : "nil")' not found in tree \(input.tree).")
         }
     }
 
@@ -589,7 +589,7 @@ class AVLTreeTests: XCTestCase {
         if let node = input.tree.search(value: input.value) {
             XCTAssertEqual(input.tree.previous(node: node)?.value, expected)
         } else {
-            XCTFail("Expected value '\(expected)' not found in tree \(input.tree).")
+            XCTFail("Expected value '\((expected != nil) ? String(describing: expected) : "nil")' not found in tree \(input.tree).")
         }
     }
 
