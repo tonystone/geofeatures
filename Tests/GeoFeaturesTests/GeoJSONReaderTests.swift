@@ -39,12 +39,12 @@ class GeoJSONReaderCoordinate2DFloatingPrecisionCartesianTests: XCTestCase {
     func testReadWithInvalidJSON() {
 
         let input = ":&*** This is not JSON"
-        let expected = "The data couldn’t be read because it isn’t in the correct format."
+        let expected = "^The data couldn’t be read because it isn’t in the correct format.*"
 
         XCTAssertThrowsError(try reader.read(string: input)) { error in
 
             if case GeoJSONReaderError.invalidJSON(let message) = error {
-                XCTAssertEqual(message, expected)
+                XCTAssert(message.range(of: expected, options: .regularExpression) != nil)
             } else {
                 XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
             }

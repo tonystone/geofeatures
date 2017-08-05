@@ -86,7 +86,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
             parsedJSON = try JSONSerialization.jsonObject(with: data)
 
         } catch let error as NSError {
-            throw GeoJSONReaderError.invalidJSON(error.localizedDescription)
+            throw GeoJSONReaderError.invalidJSON("The data couldn’t be read because it isn’t in the correct format: "  + error.localizedDescription)
         }
 
         guard let jsonObject = parsedJSON as? [String : Any] else {
