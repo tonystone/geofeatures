@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
 </a>
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
-   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+   <img src="https://img.shields.io/badge/Swift-3.1.1-orange.svg?style=flat" alt="Swift 3.1.1">
 </a>
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
    <img src="https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat" alt="Pod Version">
