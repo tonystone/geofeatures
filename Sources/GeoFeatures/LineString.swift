@@ -38,6 +38,13 @@ public struct LineString<CoordinateType: Coordinate & CopyConstructable> {
     public let precision: Precision
     public let coordinateSystem: CoordinateSystem
 
+    ///
+    /// LineStrings are empty constructable
+    ///
+    public init() {
+        self.init(precision: defaultPrecision, coordinateSystem: defaultCoordinateSystem)
+    }
+
     public init(coordinateSystem: CoordinateSystem) {
         self.init(precision: defaultPrecision, coordinateSystem: coordinateSystem)
     }
@@ -78,6 +85,25 @@ public struct LineString<CoordinateType: Coordinate & CopyConstructable> {
         }
     }
 
+    ///
+    /// LineString can be constructed from any Swift.Collection including Array as
+    /// long as it has an Element type equal the Coordinate type specified in Element
+    /// and the Distance is an Int type.
+    ///
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == CoordinateType {
+
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
+
+        self.reserveCapacity(numericCast(elements.count))
+
+        var Iterator = elements.makeIterator()
+
+        while let coordinate = Iterator.next() {
+            self.append(coordinate)
+        }
+    }
+
     internal var buffer: CollectionBuffer<CoordinateType>
 }
 
@@ -100,31 +126,44 @@ extension LineString {
 
 // MARK: Collection conformance
 
-extension LineString: Collection {
+extension LineString: Collection, MutableCollection, _DestructorSafeContainer {
 
     ///
-    /// LineStrings are empty constructable
+    /// Returns the position immediately after `i`.
     ///
-    public init() {
-        self.init(precision: defaultPrecision, coordinateSystem: defaultCoordinateSystem)
+    /// - Precondition: `(startIndex..<endIndex).contains(i)`
+    ///
+    public func index(after i: Int) -> Int {
+        return i+1
     }
 
     ///
-    /// LineString can be constructed from any Swift.Collection including Array as
-    /// long as it has an Element type equal the Coordinate type specified in Element
-    /// and the Distance is an Int type.
+    /// Always zero, which is the index of the first element when non-empty.
     ///
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
-            where C.Iterator.Element == CoordinateType {
+    public var startIndex: Int {
+        return 0
+    }
 
-        self.init(precision: precision, coordinateSystem: coordinateSystem)
+    ///
+    /// A "past-the-end" element index; the successor of the last valid subscript argument.
+    ///
+    public var endIndex: Int {
+        return buffer.header.count
+    }
 
-        self.reserveCapacity(numericCast(elements.count))
+    public subscript(index: Int) -> CoordinateType {
 
-        var Iterator = elements.makeIterator()
+        get {
+            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
-        while let coordinate = Iterator.next() {
-            self.append(coordinate)
+            return buffer.withUnsafeMutablePointerToElements { $0[index] }
+        }
+
+        set (newValue) {
+
+            _ensureUniquelyReferenced()
+
+            buffer.update(CoordinateType(other: newValue, precision: precision), at: index)
         }
     }
 
@@ -298,50 +337,6 @@ extension LineString where CoordinateType: TupleConvertible & CopyConstructable 
     ///
     public mutating func insert(_ newElement: CoordinateType.TupleType, at i: Int) {
         self.insert(CoordinateType(tuple: newElement), at: i)
-    }
-}
-
-// MARK: Swift.Collection conformance
-
-extension LineString: Swift.Collection, MutableCollection, _DestructorSafeContainer {
-
-    ///
-    /// Returns the position immediately after `i`.
-    ///
-    /// - Precondition: `(startIndex..<endIndex).contains(i)`
-    ///
-    public func index(after i: Int) -> Int {
-        return i+1
-    }
-
-    ///
-    /// Always zero, which is the index of the first element when non-empty.
-    ///
-    public var startIndex: Int {
-        return 0
-    }
-
-    ///
-    /// A "past-the-end" element index; the successor of the last valid subscript argument.
-    ///
-    public var endIndex: Int {
-        return buffer.header.count
-    }
-
-    public subscript(index: Int) -> CoordinateType {
-
-        get {
-            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
-
-            return buffer.withUnsafeMutablePointerToElements { $0[index] }
-        }
-
-        set (newValue) {
-
-            _ensureUniquelyReferenced()
-
-            buffer.update(CoordinateType(other: newValue, precision: precision), at: index)
-        }
     }
 }
 

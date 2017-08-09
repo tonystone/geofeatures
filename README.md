@@ -1,3 +1,9 @@
+
+> :warning: **WARNING** :warning: The version in the `master` branch of this project is in a _prerelease_ state. There
+> is active work going on that will result in API changes that can/will break code while things are finished.  Use with caution.
+>
+>  For a stable release, please use version [1.6.4](https://github.com/tonystone/geofeatures/releases/tag/1.6.4).  You can change the view of this repo to the stable version by using this [link](https://github.com/tonystone/geofeatures/tree/1.6.4).
+
 # GeoFeatures ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
@@ -7,7 +13,7 @@
     <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
 </a>
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
-   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+   <img src="https://img.shields.io/badge/Swift-3.1.1-orange.svg?style=flat" alt="Swift 3.1.1">
 </a>
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
    <img src="https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat" alt="Pod Version">

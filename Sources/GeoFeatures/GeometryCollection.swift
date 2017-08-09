@@ -41,6 +41,13 @@ public struct GeometryCollection {
     public let precision: Precision
     public let coordinateSystem: CoordinateSystem
 
+    ///
+    /// GeometryCollections are empty constructable
+    ///
+    public init() {
+        self.init(precision: defaultPrecision, coordinateSystem: defaultCoordinateSystem)
+    }
+
     public init(coordinateSystem: CoordinateSystem) {
         self.init(precision: defaultPrecision, coordinateSystem: coordinateSystem)
     }
@@ -54,6 +61,25 @@ public struct GeometryCollection {
         self.coordinateSystem = coordinateSystem
 
         buffer = CollectionBuffer<Element>.create(minimumCapacity: 8) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
+    }
+
+    ///
+    /// GeometryCollection can be constructed from any Swift.Collection including Array as
+    /// long as it has an Element type equal the Geometry Element and the Distance
+    /// is an Int type.
+    ///
+    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
+            where C.Iterator.Element == Element {
+
+        self.init(precision: precision, coordinateSystem: coordinateSystem)
+
+        self.reserveCapacity(numericCast(elements.count))
+
+        var Iterator = elements.makeIterator()
+
+        while let element = Iterator.next() {
+            self.append(element)
+        }
     }
 
     internal var buffer: CollectionBuffer<Element>
@@ -80,31 +106,42 @@ extension GeometryCollection {
 
 // MARK: - Collection conformance
 
-extension GeometryCollection: Collection {
+extension GeometryCollection: Collection, MutableCollection, _DestructorSafeContainer {
 
+   ///
+    /// Returns the position immediately after `i`.
     ///
-    /// GeometryCollections are empty constructable
+    /// - Precondition: `(startIndex..<endIndex).contains(i)`
     ///
-    public init() {
-        self.init(precision: defaultPrecision, coordinateSystem: defaultCoordinateSystem)
+    public func index(after i: Int) -> Int {
+        return i+1
     }
 
     ///
-    /// GeometryCollection can be constructed from any Swift.Collection including Array as
-    /// long as it has an Element type equal the Geometry Element and the Distance
-    /// is an Int type.
+    /// Always zero, which is the index of the first element when non-empty.
     ///
-    public init<C: Swift.Collection>(elements: C, precision: Precision = defaultPrecision, coordinateSystem: CoordinateSystem = defaultCoordinateSystem)
-            where C.Iterator.Element == Element {
+    public var startIndex: Int {
+       return 0
+    }
 
-        self.init(precision: precision, coordinateSystem: coordinateSystem)
+    ///
+    /// A "past-the-end" element index; the successor of the last valid subscript argument.
+    ///
+    public var endIndex: Int {
+        return buffer.header.count
+    }
 
-        self.reserveCapacity(numericCast(elements.count))
+    public subscript(index: Int) -> Element {
+        get {
+            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
 
-        var Iterator = elements.makeIterator()
+            return buffer.withUnsafeMutablePointerToElements { $0[index] }
+        }
+        set (newValue) {
 
-        while let element = Iterator.next() {
-            self.append(element)
+            _ensureUniquelyReferenced()
+
+            buffer.update(newValue, at: index)
         }
     }
 
@@ -210,48 +247,6 @@ extension GeometryCollection: Collection {
             }
         } else {
             buffer = CollectionBuffer<Element>.create(minimumCapacity: 0) { newBuffer in CollectionBufferHeader(capacity: newBuffer.capacity, count: 0) } as! CollectionBuffer<Element> // swiftlint:disable:this force_cast
-        }
-    }
-}
-
-// MARK: - Collection conformance
-
-extension GeometryCollection {
-
-    ///
-    /// Returns the position immediately after `i`.
-    ///
-    /// - Precondition: `(startIndex..<endIndex).contains(i)`
-    ///
-    public func index(after i: Int) -> Int {
-        return i+1
-    }
-
-    ///
-    /// Always zero, which is the index of the first element when non-empty.
-    ///
-    public var startIndex: Int {
-       return 0
-    }
-
-    ///
-    /// A "past-the-end" element index; the successor of the last valid subscript argument.
-    ///
-    public var endIndex: Int {
-        return buffer.header.count
-    }
-
-    public subscript(index: Int) -> Element {
-        get {
-            guard (index >= 0) && (index < buffer.header.count) else { preconditionFailure("Index out of range.") }
-
-            return buffer.withUnsafeMutablePointerToElements { $0[index] }
-        }
-        set (newValue) {
-
-            _ensureUniquelyReferenced()
-
-            buffer.update(newValue, at: index)
         }
     }
 }

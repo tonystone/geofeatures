@@ -50,8 +50,8 @@ extension LineString: Geometry {
     }
 
     public func equals(_ other: Geometry) -> Bool {
-        if let other = other as? LineString<Element> {
-            return self.elementsEqual(other, by: { (lhs: Element, rhs: Element) -> Bool in
+        if let other = other as? LineString<Iterator.Element> {
+            return self.elementsEqual(other, by: { (lhs: Iterator.Element, rhs: Iterator.Element) -> Bool in
                 return lhs == rhs
             })
         }
