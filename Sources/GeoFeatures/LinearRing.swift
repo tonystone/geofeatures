@@ -280,7 +280,7 @@ extension LinearRing: Collection, MutableCollection, _DestructorSafeContainer {
 ///
 /// Coordinates that are TupleConvertible allow initialization via an ordinary Swift tuple.
 ///
-extension LinearRing where CoordinateType: TupleConvertible & CopyConstructable {
+extension LinearRing where CoordinateType: TupleConvertible {
 
     ///
     /// LinearRing can be constructed from any Swift.Collection if it's Elements are tuples that match
@@ -357,6 +357,6 @@ extension LinearRing: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension LinearRing: Equatable {}
 
-public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
+public func == <CoordinateType>(lhs: LinearRing<CoordinateType>, rhs: LinearRing<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

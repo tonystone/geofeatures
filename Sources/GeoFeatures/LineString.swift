@@ -280,7 +280,7 @@ extension LineString: Collection, MutableCollection, _DestructorSafeContainer {
 ///
 /// Coordinates that are TupleConvertible allow initialization via an ordinary Swift tuple.
 ///
-extension LineString where CoordinateType: TupleConvertible & CopyConstructable {
+extension LineString where CoordinateType: TupleConvertible {
 
     ///
     /// LineString can be constructed from any Swift.Collection if it's Elements are tuples that match
@@ -357,6 +357,6 @@ extension LineString: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension LineString: Equatable {}
 
-public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: LineString<CoordinateType>, rhs: LineString<CoordinateType>) -> Bool {
+public func == <CoordinateType>(lhs: LineString<CoordinateType>, rhs: LineString<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

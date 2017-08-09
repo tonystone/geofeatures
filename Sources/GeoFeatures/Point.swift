@@ -97,6 +97,6 @@ extension Point: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Point: Equatable {}
 
-public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
+public func == <CoordinateType>(lhs: Point<CoordinateType>, rhs: Point<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

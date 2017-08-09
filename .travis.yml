@@ -13,6 +13,7 @@ env:
     - SCHEME=GeoFeatures-Example
     - TEST_SDK=iphonesimulator
     - SWIFT_VERSION=3.1.1
+    - osx_image: xcode9
 
 matrix:
   include:
@@ -24,41 +25,34 @@ matrix:
          - BUILD="swift build"
     - 
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="swift build"
     -
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="pod lint"
     - 
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
     - 
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6"
     - 
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6"
     - 
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s"
     - 
       os: osx
-      osx_image: xcode8.3
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s"

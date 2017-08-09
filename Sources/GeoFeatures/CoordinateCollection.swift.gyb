@@ -280,7 +280,7 @@ extension ${Self}: Collection, MutableCollection, _DestructorSafeContainer {
 ///
 /// Coordinates that are TupleConvertible allow initialization via an ordinary Swift tuple.
 ///
-extension ${Self} where CoordinateType: TupleConvertible & CopyConstructable {
+extension ${Self} where CoordinateType: TupleConvertible {
 
     ///
     /// ${Self} can be constructed from any Swift.Collection if it's Elements are tuples that match
@@ -357,6 +357,6 @@ extension ${Self}: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension ${Self}: Equatable {}
 
-public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: ${Self}<CoordinateType>, rhs: ${Self}<CoordinateType>) -> Bool {
+public func == <CoordinateType>(lhs: ${Self}<CoordinateType>, rhs: ${Self}<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

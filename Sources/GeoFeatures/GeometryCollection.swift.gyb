@@ -290,7 +290,7 @@ extension ${Self}: CustomStringConvertible, CustomDebugStringConvertible {
 extension ${Self}: Equatable {}
 
 %if CoordinateSpecialized == 'true':
-public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: ${Self}<CoordinateType>, rhs: ${Self}<CoordinateType>) -> Bool {
+public func == <CoordinateType>(lhs: ${Self}<CoordinateType>, rhs: ${Self}<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }
 %else:

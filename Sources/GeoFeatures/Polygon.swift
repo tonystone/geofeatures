@@ -226,6 +226,6 @@ extension Polygon: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Polygon: Equatable {}
 
-public func == <CoordinateType: Coordinate & CopyConstructable>(lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool {
+public func == <CoordinateType>(lhs: Polygon<CoordinateType>, rhs: Polygon<CoordinateType>) -> Bool {
     return lhs.equals(rhs)
 }

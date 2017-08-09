@@ -24,7 +24,7 @@ import Swift
 ///
 /// Implemented by all Coordinate structs.
 ///
-public protocol Coordinate: Equatable, Hashable, CopyConstructable {
+public protocol Coordinate: Hashable, CopyConstructable {
 
     var x: Double { get }
     var y: Double { get }
