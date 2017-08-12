@@ -33,8 +33,9 @@ require 'getoptlong'
 sourceName=""
 sourceDirectory=""
 
-swiftRelease=true
-swiftVersion="3.1.1"
+swiftRelease=false
+swiftVersion="4.0"
+swiftSnapshotDate="2017-08-04-a"
 
 options = GetoptLong.new(
     [ '--swift-version', GetoptLong::OPTIONAL_ARGUMENT ],
@@ -58,8 +59,8 @@ if swiftRelease
     sourceDirectory = "builds/swift-#{swiftVersion}-release/ubuntu1610/swift-#{swiftVersion}-RELEASE"
     sourceName      = "swift-#{swiftVersion}-RELEASE-ubuntu16.10"
 else
-    sourceDirectory = "builds/development/ubuntu1610/swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}"
-    sourceName      = "swift-DEVELOPMENT-SNAPSHOT-#{swiftVersion}-ubuntu16.10"
+    sourceDirectory = "builds/swift-#{swiftVersion}-branch/ubuntu1610/swift-#{swiftVersion}-DEVELOPMENT-SNAPSHOT-#{swiftSnapshotDate}"
+    sourceName      = "swift-#{swiftVersion}-DEVELOPMENT-SNAPSHOT-#{swiftSnapshotDate}-ubuntu16.10"
 end
 
 Vagrant.configure("2") do |config|
@@ -124,6 +125,8 @@ Vagrant.configure("2") do |config|
         # Update the path so we can get to swift
         #
         echo "export PATH=/home/vagrant/#{sourceName}/usr/bin:\"${PATH}\"" >> .profile
+        echo "export C_INCLUDE_PATH=/home/vagrant/#{sourceName}/usr/lib/swift/clang/include/" >> .profile
+        echo "export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH" >> .profile
         echo ""
         echo "Swift #{sourceName} has been successfully installed on Linux"
         echo "To use it, call 'vagrant ssh' and once logged in, cd to the /vagrant directory"
