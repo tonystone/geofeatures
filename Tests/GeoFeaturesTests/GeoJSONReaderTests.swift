@@ -18,7 +18,7 @@
 ///  Created by Tony Stone on 11/16/2016.
 ///
 import XCTest
-import GeoFeatures
+@testable import GeoFeatures
 
 #if (os(OSX) || os(iOS) || os(tvOS) || os(watchOS)) && SWIFT_PACKAGE
     /// TODO: Remove this after figuring out why there seems to be a symbol conflict (error: cannot specialize a non-generic definition) with another Polygon on Swift PM on Apple platforms only.
@@ -368,3 +368,52 @@ class GeoJSONReaderCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
         XCTAssertEqual(try reader.read(string: input) as? GeometryCollection, expected)
     }
 }
+
+// MARK: - Test internal methods
+
+class GeoJSONReaderInternal: XCTestCase {
+
+    private typealias CoordinateType = Coordinate3DM
+    private typealias GeoJSONReaderType = GeoJSONReader<CoordinateType>
+
+    private var reader = GeoJSONReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
+
+    func testCoordinate() {
+
+        let input: [Any] = [Double(1.0), NSNumber(value: 1.0), Int(1), "1.0"]
+        let expected = CoordinateType(array: [1.0, 1.0, 1.0, 1.0])
+
+        XCTAssertEqual(try reader.coordinate(array: input), expected)
+    }
+
+    func testCoordinateWithInvalidString() {
+
+        let input: [Any] = ["1.0.0.2.1"]
+        let expected = "Invalid structure for \"coordinates\" attribute."
+
+        XCTAssertThrowsError(try reader.coordinate(array: input)) { error in
+
+            if case GeoJSONReaderError.invalidJSON(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
+            }
+        }
+    }
+
+    func testCoordinatesWithInvalidStructure() {
+
+        let input = ["coordinates": [1.0, 1.0, 1.0, 1.0] ]
+        let expected = "Invalid structure for \"coordinates\" attribute."
+
+        XCTAssertThrowsError(try Coordinates<String>.coordinates(json: input)) { error in
+
+            if case GeoJSONReaderError.invalidJSON(let message) = error {
+                XCTAssertEqual(message, expected)
+            } else {
+                XCTFail("Wrong error thrown: \(error) is not equal to \(expected)")
+            }
+        }
+    }
+}
+

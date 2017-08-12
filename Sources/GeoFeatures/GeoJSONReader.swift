@@ -284,7 +284,8 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
         return coordinates
     }
 
-    private func coordinate(array: [Any]) throws -> CoordinateType {
+    internal /// @Testable
+    func coordinate(array: [Any]) throws -> CoordinateType {
 
         let coordinateValues = try array.map { (value) -> Double in
             switch value {
@@ -313,8 +314,10 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
     }
 }
 
-fileprivate class Coordinates<T> {
+internal /// @Testable
+class Coordinates<T> {
 
+    internal /// @Testable
     class func coordinates(json: [String: Any]) throws -> T {
 
         guard let coordinatesObject = json["coordinates"] else {
