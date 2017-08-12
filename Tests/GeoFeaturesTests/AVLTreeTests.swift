@@ -641,94 +641,76 @@ class AVLTreeTests: XCTestCase {
 
     func testSearchPerformance() {
 
-        measureMetrics(XCTestCase.defaultPerformanceMetrics(), automaticallyStartMeasuring: false) {
+        let tree = { () -> AVLTree<Int> in
+            let tree = AVLTree<Int>()
 
-            let tree = { () -> AVLTree<Int> in
-                let tree = AVLTree<Int>()
+            /// Prime the tree with initial values
+            for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
+                tree.insert(value: i)
+            }
+            return tree
+        }()
+        let input = stride(from: 0, to: 20000, by: 2) /// 10,000 iterations for the test matching stride of tree
 
-                /// Prime the tree with initial values
-                for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
-                    tree.insert(value: i)
-                }
-                return tree
-            }()
-            let input = stride(from: 0, to: 20000, by: 2) /// 10,000 iterations for the test matching stride of tree
-
-            self.startMeasuring()
-
+        measure {
             for value in input {
                 let _ = tree.search(value: value)
             }
-
-            self.stopMeasuring()
         }
     }
 
     func testInsertPerformance() {
 
-        measureMetrics(XCTestCase.defaultPerformanceMetrics(), automaticallyStartMeasuring: false) {
+        let tree = { () -> AVLTree<Int> in
+            let tree = AVLTree<Int>()
+            ///
+            /// Prime the tree with initial values
+            /// Increment by 2 to allow room to insert using a stride starting at 1 for the input
+            ///
+            for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
+                tree.insert(value: i)
+            }
+            return tree
+        }()
+        let input = stride(from: 1, to: 20001, by: 2) /// 10,000 iterations for the test
 
-            let tree = { () -> AVLTree<Int> in
-                let tree = AVLTree<Int>()
-                ///
-                /// Prime the tree with initial values
-                /// Increment by 2 to allow room to insert using a stride starting at 1 for the input
-                ///
-                for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
-                    tree.insert(value: i)
-                }
-                return tree
-            }()
-            let input = stride(from: 1, to: 20001, by: 2) /// 10,000 iterations for the test
-
-            self.startMeasuring()
-
+        measure {
             for value in input {
                 tree.insert(value: value)
             }
-
-            self.stopMeasuring()
         }
     }
 
     func testDeletePerformance() {
 
-        measureMetrics(XCTestCase.defaultPerformanceMetrics(), automaticallyStartMeasuring: false) {
+        let tree = { () -> AVLTree<Int> in
+            let tree = AVLTree<Int>()
+            ///
+            /// Prime the tree with initial values
+            /// Increment by 2 to allow room to insert using a stride starting at 1 for the input
+            ///
+            for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
+                tree.insert(value: i)
+            }
+            return tree
+        }()
+        let input = stride(from: 0, to: 20000, by: 2) /// 10,000 iterations for the test
 
-            let tree = { () -> AVLTree<Int> in
-                let tree = AVLTree<Int>()
-                ///
-                /// Prime the tree with initial values
-                /// Increment by 2 to allow room to insert using a stride starting at 1 for the input
-                ///
-                for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
-                    tree.insert(value: i)
-                }
-                return tree
-            }()
-            let input = stride(from: 0, to: 20000, by: 2) /// 10,000 iterations for the test
-
-            self.startMeasuring()
-
+        measure {
             for value in input {
                 tree.delete(value: value)
             }
-
-            self.stopMeasuring()
         }
     }
 
     func testInsertDeleteBestTimePerformance() {
 
-        measureMetrics(XCTestCase.defaultPerformanceMetrics(), automaticallyStartMeasuring: false) {
+        let tree = { () -> AVLTree<Int> in
+            return AVLTree<Int>()
+        }()
+        let input = (iterations: 0..<5000, values: [2, 1])  /// We have a total of 20,000 operations 5,000 x (2 inserts + 2 deletes)
 
-            let tree = { () -> AVLTree<Int> in
-                return AVLTree<Int>()
-            }()
-            let input = (iterations: 0..<5000, values: [2, 1])  /// We have a total of 20,000 operations 5,000 x (2 inserts + 2 deletes)
-
-            self.startMeasuring()
-
+        measure {
             for _ in input.iterations {
                 for value in input.values {
                     tree.insert(value: value)
@@ -737,30 +719,25 @@ class AVLTreeTests: XCTestCase {
                     tree.delete(value: value)
                 }
             }
-
-            self.stopMeasuring()
         }
     }
 
     func testInsertDeleteWorstTimePerformance() {
 
-        measureMetrics(XCTestCase.defaultPerformanceMetrics(), automaticallyStartMeasuring: false) {
+        let tree = { () -> AVLTree<Int> in
+            let tree = AVLTree<Int>()
+            ///
+            /// Prime the tree with initial values
+            /// Increment by 2 to allow room to insert using a stride starting at 1 for the input
+            ///
+            for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
+                tree.insert(value: i)
+            }
+            return tree
+        }()
+        let input = (iterations: 0..<5000, values: [63987, 63989])  /// We have a total of 20,000 operations 5,000 x (2 inserts + 2 deletes)
 
-            let tree = { () -> AVLTree<Int> in
-                let tree = AVLTree<Int>()
-                ///
-                /// Prime the tree with initial values
-                /// Increment by 2 to allow room to insert using a stride starting at 1 for the input
-                ///
-                for i in stride(from: 0, to: 64000, by: 2) {    /// 32,000 initial values in tree
-                    tree.insert(value: i)
-                }
-                return tree
-            }()
-            let input = (iterations: 0..<5000, values: [63987, 63989])  /// We have a total of 20,000 operations 5,000 x (2 inserts + 2 deletes)
-
-            self.startMeasuring()
-
+        measure {
             for _ in input.iterations {
                 for value in input.values {
                     tree.insert(value: value)
@@ -769,8 +746,6 @@ class AVLTreeTests: XCTestCase {
                     tree.delete(value: value)
                 }
             }
-
-            self.stopMeasuring()
         }
     }
 }

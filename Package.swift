@@ -1,3 +1,4 @@
+// swift-tools-version:4.0
 ///
 ///  Package.swift
 ///
@@ -21,15 +22,22 @@ import PackageDescription
 
 let package = Package(
     name: "GeoFeatures",
-    targets: [
-        Target(
+    products: [
+        /// Products define the executables and libraries produced by a package, and make them visible to other packages.
+        .library(
             name: "GeoFeatures",
-            dependencies: [])
+            targets: ["GeoFeatures"])
+        ],
+    dependencies: [
+        /// Dependencies declare other packages that this package depends on.
+        /// .package(url: packageURL, from: "1.0.0"),
     ],
-    exclude: ["_Pods.xcodeproj", "Docs", "Example", "GeoFeatures.podspec", "Visualization"]
+    targets: [
+        .target(
+            name: "GeoFeatures",
+            dependencies: []),
+        .testTarget(
+            name: "GeoFeaturesTests",
+            dependencies: ["GeoFeatures"])
+        ]
 )
-
-/// Added the modules to a framework module
-let dylib = Product(name: "GeoFeatures", type: .Library(.Dynamic), modules: "GeoFeatures")
-
-products.append(dylib)

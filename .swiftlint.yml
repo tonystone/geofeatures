@@ -208,7 +208,7 @@ custom_rules:
     severity: error
 
   triple_line_comments:
-    regex: "(\*(?>(?:(?>[^*]+)|\*(?!\/))*)\*)|(^[ \t]*\/\/[ \t]+(?i)(?!mark|swiftlint)[a-z0-9:]+)|(^[ \t]*\/\/$)"
+    regex: "(\*(?>(?:(?>[^*]+)|\*(?!\/))*)\*)|(^[ \t]*\/\/[ \t]+(?i)(?!mark|swiftlint|swift-tools-version)[a-z0-9:]+)|(^[ \t]*\/\/$)"
     message: "Comments must be in Quick Help triple line style (i.e. ///)."
     severity: error
 

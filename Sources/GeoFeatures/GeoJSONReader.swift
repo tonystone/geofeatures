@@ -301,7 +301,7 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
                 throw GeoJSONReaderError.invalidJSON("Invalid structure for \"coordinates\" attribute.")
             }
         }
-        
+
         ///
         /// Since `CoordinateType.init(array:)` does not throw, we need to determine if the proper
         /// number of coordinates were passed to construct it.
