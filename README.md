@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
 </a>
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
-   <img src="https://img.shields.io/badge/Swift-3.1.1-orange.svg?style=flat" alt="Swift 3.1.1">
+   <img src="https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat" alt="Swift 4.0">
 </a>
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
    <img src="https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat" alt="Pod Version">
@@ -35,24 +35,24 @@ GeoFeatures is a lightweight, high performance geometry library for Swift.  It s
 - [x] Easy to use.
 - [x] Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, Box and GeometryCollection implementations.
 - [x] [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
-- [x] [GeoJSON] (http://geojson.org/) input and output.
+- [x] [GeoJSON](http://geojson.org/) input and output.
 - [x] Indexed Subscripting support for all collection types (e.g. `Point * point = multiPoint[0]`).
 - [x] **Swift**: Written in pure Swift.
 - [x] CocoaPod framework support (compile as Objective-C framework or static lib).
-- [x] Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
+- [x] Open Sourced under the the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
 
 ## Sources and Binaries
 
-You can find the latest sources and binaries on [github] (https://github.com/tonystone/geofeatures).
+You can find the latest sources and binaries on [github](https://github.com/tonystone/geofeatures).
 
 ## Communication and Contributions
 
 - If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
 - If you would like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
-- If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue] (https://github.com/tonystone/geofeatures/issues).
-- If you **have a feature request**, [open an issue] (https://github.com/tonystone/geofeatures/issues).
+- If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue](https://github.com/tonystone/geofeatures/issues).
+- If you **have a feature request**, [open an issue](https://github.com/tonystone/geofeatures/issues).
 - If you **want to contribute**
-   - Fork it! [GeoFeatures repository] (https://github.com/tonystone/geofeatures)
+   - Fork it! [GeoFeatures repository](https://github.com/tonystone/geofeatures)
    - Create your feature branch: `git checkout -b my-new-feature`
    - Commit your changes: `git commit -am 'Add some feature'`
    - Push to the branch: `git push origin my-new-feature`
@@ -71,10 +71,19 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 ## Minimum Requirements
 
-| Xcode         | Swift        | iOS |  OS X | Linux |
-|:-------------:|:-----------:|:---:|:-----:|:------------:|
-| 9.0 beta 5   |  4.0 Dev Branch  | 8.0 | 10.10 | Ubuntu 16.10 |
+Build Environment
+
+| Platform | Swift | Swift Build | Xcode |
+|:--------:|:-----:|:----------:|:------:|
+| Linux    | [4.0 Development Snapshot 2017-08-03-a](https://swift.org/builds/development/ubuntu1610/swift-DEVELOPMENT-SNAPSHOT-2017-08-03-a/swift-DEVELOPMENT-SNAPSHOT-2017-08-03-a-ubuntu16.10.tar.gz) | &#x2714; | &#x2718; |
+| OSX      | [4.0 Development Snapshot 2017-08-03-a](https://swift.org/builds/development/ubuntu1610/swift-DEVELOPMENT-SNAPSHOT-2017-08-03-a/swift-DEVELOPMENT-SNAPSHOT-2017-08-03-a-ubuntu16.10.tar.gz) | &#x2714; | Xcode 9 beta 5 |
+
+Minimum Runtime Version
+
+| iOS |  OS X | Linux |
+|:---:|:-----:|:------------:|
+| 8.0 | 10.10 | Ubuntu 14.04, 16.04, 16.10 |
 
 ## License
 
-GeoFeatures is released under the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html)
+GeoFeatures is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
