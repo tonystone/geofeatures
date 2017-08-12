@@ -416,4 +416,3 @@ class GeoJSONReaderInternal: XCTestCase {
         }
     }
 }
-
