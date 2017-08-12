@@ -108,19 +108,25 @@ script:
     fi
   - |
     if [[ "$BUILD" == "swift build"  ]]; then
+      set -e  # Fail (and stop build) on first non zero exit code
       swift test
+      set +e
     fi
   - |
     if [[ "$BUILD" == "pod lint" ]]; then
+        set -e  # Fail (and stop build) on first non zero exit code
         bundler exec pod repo update
         bundler exec pod lib lint
+        set +e
     fi
   - |
     if [[ "$BUILD" == "xcodebuild"  ]]; then
+        set -e  # Fail (and stop build) on first non zero exit code
         set -o pipefail
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing | bundler exec xcpretty
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test              | bundler exec xcpretty
         set +o pipefail
+        set +e
     fi
 
 after_success:
