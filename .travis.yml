@@ -12,8 +12,8 @@ env:
     - WORKSPACE=Example/GeoFeatures.xcworkspace
     - SCHEME=GeoFeatures-Example
     - TEST_SDK=iphonesimulator
-    - SWIFT_VERSION=3.1.1
-    - osx_image: xcode9
+    - SWIFT_VERSION=4.0
+    - SWIFT_SNAPSHOT_DATE="2017-08-04-a"
 
 matrix:
   include:
@@ -25,34 +25,41 @@ matrix:
          - BUILD="swift build"
     - 
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="swift build"
     -
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="pod lint"
     - 
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
     - 
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6"
     - 
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6"
     - 
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s"
     - 
       os: osx
+      osx_image: xcode9
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s"
@@ -87,9 +94,9 @@ before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo apt-get update -y
-      wget https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu1404/swift-$SWIFT_VERSION-RELEASE/swift-$SWIFT_VERSION-RELEASE-ubuntu14.04.tar.gz
-      tar xzvf swift-$SWIFT_VERSION-RELEASE-ubuntu14.04.tar.gz
-      export PATH=swift-$SWIFT_VERSION-RELEASE-ubuntu14.04/usr/bin:$PATH
+      wget https://swift.org/builds/swift-$SWIFT_VERSION-branch/ubuntu1404/swift-$SWIFT_VERSION-DEVELOPMENT-SNAPSHOT-$SWIFT_SNAPSHOT_DATE/swift-$SWIFT_VERSION-DEVELOPMENT-SNAPSHOT-$SWIFT_SNAPSHOT_DATE-ubuntu14.04.tar.gz
+      tar xzvf swift-$SWIFT_VERSION-DEVELOPMENT-SNAPSHOT-$SWIFT_SNAPSHOT_DATE-ubuntu14.04.tar.gz
+      export PATH=swift-$SWIFT_VERSION-DEVELOPMENT-SNAPSHOT-$SWIFT_SNAPSHOT_DATE-ubuntu14.04/usr/bin:$PATH
       sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev
     fi
 
