@@ -380,7 +380,7 @@ class GeoJSONReaderInternal: XCTestCase {
 
     func testCoordinate() {
 
-        let input: [Any] = [Double(1.0), NSNumber(value: 1.0), Int(1), "1.0"]
+        let input: [Any] = [Float(1.0), NSNumber(value: 1.0), Int(1), "1.0"]
         let expected = CoordinateType(array: [1.0, 1.0, 1.0, 1.0])
 
         XCTAssertEqual(try reader.coordinate(array: input), expected)
