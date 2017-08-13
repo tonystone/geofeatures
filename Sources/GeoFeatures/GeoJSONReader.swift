@@ -289,10 +289,14 @@ public class GeoJSONReader<CoordinateType: Coordinate & CopyConstructable & _Arr
 
         let coordinateValues = try array.map { (value) -> Double in
             switch value {
-            case let value as Double:   return value
-            case let value as NSNumber: return Double(value)
-            case let value as Int:      return Double(value)
-            case let value as Float:    return Double(value)
+            case let value as Double:
+                return value
+            case let value as NSNumber:
+                return Double(value)
+            case let value as Int:
+                return Double(value)
+            case let value as Float:
+                return Double(value)
             case let value as String:
                 if let value = Double(value) {
                     return value

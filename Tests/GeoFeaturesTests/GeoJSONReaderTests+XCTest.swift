@@ -67,7 +67,11 @@ extension GeoJSONReaderInternal {
 
    static var allTests: [(String, (GeoJSONReaderInternal) -> () throws -> Void)] {
       return [
-                ("testCoordinate", testCoordinate),
+                ("testCoordinateWithDouble", testCoordinateWithDouble),
+                ("testCoordinateWithNSNumber", testCoordinateWithNSNumber),
+                ("testCoordinateWithInt", testCoordinateWithInt),
+                ("testCoordinateWithFloat", testCoordinateWithFloat),
+                ("testCoordinateWithString", testCoordinateWithString),
                 ("testCoordinateWithInvalidString", testCoordinateWithInvalidString),
                 ("testCoordinatesWithInvalidStructure", testCoordinatesWithInvalidStructure)
            ]

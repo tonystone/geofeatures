@@ -373,15 +373,47 @@ class GeoJSONReaderCoordinate3DMFixedPrecisionCartesianTests: XCTestCase {
 
 class GeoJSONReaderInternal: XCTestCase {
 
-    private typealias CoordinateType = Coordinate3DM
+    private typealias CoordinateType = Coordinate2D
     private typealias GeoJSONReaderType = GeoJSONReader<CoordinateType>
 
     private var reader = GeoJSONReaderType(precision: FloatingPrecision(), coordinateSystem: Cartesian())
 
-    func testCoordinate() {
+    func testCoordinateWithDouble() {
 
-        let input: [Any] = [Float(1.0), NSNumber(value: 1.0), Int(1), "1.0"]
-        let expected = CoordinateType(array: [1.0, 1.0, 1.0, 1.0])
+        let input = [Double(1.0), Double(1.0)]
+        let expected = CoordinateType(array: [1.0, 1.0])
+
+        XCTAssertEqual(try reader.coordinate(array: input), expected)
+    }
+
+    func testCoordinateWithNSNumber() {
+
+        let input = [NSNumber(value: 1.0), NSNumber(value: 1.0)]
+        let expected = CoordinateType(array: [1.0, 1.0])
+
+        XCTAssertEqual(try reader.coordinate(array: input), expected)
+    }
+
+    func testCoordinateWithInt() {
+
+        let input = [Int(1), Int(1)]
+        let expected = CoordinateType(array: [1.0, 1.0])
+
+        XCTAssertEqual(try reader.coordinate(array: input), expected)
+    }
+
+    func testCoordinateWithFloat() {
+
+        let input = [Float(1.0), Float(1.0)]
+        let expected = CoordinateType(array: [1.0, 1.0])
+
+        XCTAssertEqual(try reader.coordinate(array: input), expected)
+    }
+
+    func testCoordinateWithString() {
+
+        let input = ["1.0", "1.0"]
+        let expected = CoordinateType(array: [1.0, 1.0])
 
         XCTAssertEqual(try reader.coordinate(array: input), expected)
     }
