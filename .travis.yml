@@ -57,12 +57,6 @@ matrix:
       env: 
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s"
-    - 
-      os: osx
-      osx_image: xcode9
-      env: 
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s"
 
 # don't re-build for tags so that [publish binary] is not re-run
 # https://github.com/travis-ci/travis-ci/issues/1532
