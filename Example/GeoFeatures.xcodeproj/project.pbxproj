@@ -196,6 +196,7 @@
 		D55390E9C8D39A6FA3089F14 /* Pods-GeoFeatures-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS/Pods-GeoFeatures-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DBB8F15B84614469DFC7B7D4 /* Pods-GeoFeatures-iOS-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS-Tests/Pods-GeoFeatures-iOS-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E1F901962B543281B0EBFD9F /* Pods-GeoFeatures-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS-Tests/Pods-GeoFeatures-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA40EB261F5B54BB00FD2FD4 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
 		EA52C85B1B9F47F9002C8018 /* GFRingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFRingTests.m; sourceTree = "<group>"; };
 		EA75020C1BF3B69000E8D89A /* GeoFeatures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFeatures.framework; path = "Pods/../build/Debug-iphoneos/Pods-GeoFeatures-iOS-Tests/GeoFeatures.framework"; sourceTree = "<group>"; };
 		EA7502121BF3B6F400E8D89A /* GeoFeatures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFeatures.framework; path = "Pods/../build/Debug-iphoneos/Pods-GeoFeatures-iOS/GeoFeatures.framework"; sourceTree = "<group>"; };
@@ -208,7 +209,7 @@
 		EA9E6F891CB884D600236F50 /* GFGeometryCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFGeometryCollectionTests.swift; path = "Swift Compatibility/GFGeometryCollectionTests.swift"; sourceTree = "<group>"; };
 		EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFGeometryTests.swift; path = "Swift Compatibility/GFGeometryTests.swift"; sourceTree = "<group>"; };
 		EAC397FA1CC70ADD00134746 /* GFDifferenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFDifferenceTests.m; sourceTree = "<group>"; };
-		EAD890E71BF3ABFF00BD4FAC /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		EAD890E71BF3ABFF00BD4FAC /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.csh; };
 		EAD891341BF3AFDF00BD4FAC /* GeoFeatures-OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GeoFeatures-OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD891361BF3AFDF00BD4FAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD891381BF3AFDF00BD4FAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 				22529FD0A77AEC89DC728E5F /* LICENSE */,
 				366984B0285B2E6759E2F690 /* LICENSE_BOOST_1_0 */,
 				EAD890E71BF3ABFF00BD4FAC /* .travis.yml */,
+				EA40EB261F5B54BB00FD2FD4 /* Gemfile */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
