@@ -574,6 +574,7 @@
 				ORGANIZATIONNAME = "Tony Stone";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
+						LastSwiftMigration = 0830;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 					EAD891331BF3AFDF00BD4FAC = {

@@ -42,7 +42,7 @@ class GFMultiPolygonTests: XCTestCase {
                     [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]
                 ]
             ]
-        ]
+        ] as [String : Any]
         XCTAssertEqual(try GFMultiPolygon(geoJSONGeometry: geoJSON).toWKTString(), "MULTIPOLYGON(((102 2,102 3,103 3,103 2,102 2)),((100 0,101 1,100 1,101 0,100 0),(100.2 0.2,100.8 0.2,100.8 0.8,100.2 0.8,100.2 0.2)))")
     }
     
