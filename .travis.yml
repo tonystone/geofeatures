@@ -9,7 +9,8 @@ env:
     global:
         - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
     matrix:
-        - MATRIX_TARGET="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator"
+
+        - MATRIX_TARGET="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'"
         - MATRIX_TARGET="-scheme GeoFeatures-OSX-Example -sdk macosx"
 
 script:
