@@ -20,31 +20,29 @@ GeoFeatures is a lightweight, high performance geometry library for Objective-C.
 - [x] Area, Length, BoundingBox, Centroid, Perimeter, Intersects, Intersection, Difference, Union, and Within (point in polygon) algorithms.  More coming soon.
 - [x] Immutable and mutable versions of all classes (e.g. `GFPolygon` and `GFMutablePolygon`).
 - [x] [WKT (Well-Known-Text)](https://en.wikipedia.org/wiki/Well-known_text) input and output.
-- [x] [GeoJSON] (http://geojson.org/) input and output.
+- [x] [GeoJSON](http://geojson.org/) input and output.
 - [x] MapKit representations and drawing.
 - [x] Indexed Subscripting support for all collection types (e.g. `GEPoint * point = multiPoint[0]`).
 - [x] **Swift**: supports direct use in Swift applications.
 - [x] CocoaPod framework support (compile as Objective-C framework or static lib).
-- [x] Open Sourced under the the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html).
-- [x] Comprehensive doxygen documentation of the library available at [github.io] (http://tonystone.github.io/geofeatures).
+- [x] Open Sourced under the the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
+- [x] Comprehensive doxygen documentation of the library available at [github.io](http://tonystone.github.io/geofeatures).
 - [x] Implemented based on the popular and fast open source C++ boost geometry library.
  
 ## Documentation
 
-The doxygen documentation is online available at [github.io] (http://tonystone.github.io/geofeatures).
+The doxygen documentation is online available at [github.io](http://tonystone.github.io/geofeatures).
 
 ## Sources and Binaries
 
-You can find the latest sources and binaries on [github] (https://github.com/tonystone/geofeatures).
+You can find the latest sources and binaries on [github](https://github.com/tonystone/geofeatures).
 
 ## Communication and Contributions
 
-- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
-- If you would like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/geofeatures). (Tag 'geofeatures')
-- If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue] (https://github.com/tonystone/geofeatures/issues).
-- If you **have a feature request**, [open an issue] (https://github.com/tonystone/geofeatures/issues).
+- If you **found a bug**, _and can provide steps to reliably reproduce it_, [open an issue](https://github.com/tonystone/geofeatures/issues).
+- If you **have a feature request**, [open an issue](https://github.com/tonystone/geofeatures/issues).
 - If you **want to contribute**
-   - Fork it! [GeoFeatures repository] (https://github.com/tonystone/geofeatures)
+   - Fork it! [GeoFeatures repository](https://github.com/tonystone/geofeatures)
    - Create your feature branch: `git checkout -b my-new-feature`
    - Commit your changes: `git commit -am 'Add some feature'`
    - Push to the branch: `git push origin my-new-feature`
@@ -69,10 +67,10 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 ## Author
 
-Tony Stone ([https://github.com/tonystone] (https://github.com/tonystone))
+Tony Stone ([https://github.com/tonystone](https://github.com/tonystone))
 
 ## License
 
-GeoFeatures is released under the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html)
+GeoFeatures is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 The embedded Boost library is released under the [Boost Software License, Version 1.0] (http://www.boost.org/users/license.html)
