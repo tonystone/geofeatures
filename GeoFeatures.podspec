@@ -29,23 +29,6 @@ Pod::Spec.new do |s|
      
     s.preserve_paths       = 'GeoFeatures/boost/**/*.{hpp,h}', 'LICENSE_BOOST_1_0'
 
-    s.exclude_files        =    'GeoFeatures/**/*.pl',
-                                'GeoFeatures/boost/boost/test/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/bcc/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/bcc551/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/bcc_pre590/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/dmc/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/msvc60/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/msvc70/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/mwcw/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/np_ctps/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/no_ttp/**/*',
-                                'GeoFeatures/boost/boost/mpl/aux_/preprocessed/plain/**/*',
-                                'GeoFeatures/boost/boost/mpl/vector/aux_/preprocessed/plain/**/*',
-                                'GeoFeatures/boost/boost/mpl/vector/aux_/preprocessed/no_ctps/**/*',
-                                'GeoFeatures/boost/boost/parameter/aux_/preprocessed/**/*',
-                                'GeoFeatures/boost/boost/fusion/**/*'
-
     s.frameworks = 'MapKit'
 
     #
