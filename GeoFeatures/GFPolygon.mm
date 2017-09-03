@@ -29,9 +29,9 @@
 #include "GFRing+Protected.hpp"
 #include "GFGeometryCollection+Protected.hpp"
 
-#include "geofeatures/Polygon.hpp"
-#include "geofeatures/GeometryCollection.hpp"
-#include "geofeatures/GeometryVariant.hpp"
+#include "GFPolygon.hpp"
+#include "GFGeometryCollection.hpp"
+#include "GFGeometryVariant.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>

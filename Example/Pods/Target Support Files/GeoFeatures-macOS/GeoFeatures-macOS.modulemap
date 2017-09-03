@@ -1,6 +1,5 @@
 framework module GeoFeatures {
-  umbrella header "GeoFeatures-macOS-umbrella.h"
-
-  export *
-  module * { export * }
+    umbrella header "GeoFeatures.h"
+    export *
+    module * { export * }
 }

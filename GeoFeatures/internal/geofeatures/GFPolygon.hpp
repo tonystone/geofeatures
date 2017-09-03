@@ -26,11 +26,11 @@
 #ifndef __Polygon_HPP_
 #define __Polygon_HPP_
 
-#include "Geometry.hpp"
-#include "Ring.hpp"
-#include "LineString.hpp"
-#include "MultiLineString.hpp"
-#include "MultiPoint.hpp"
+#include "GFGeometry.hpp"
+#include "GFRing.hpp"
+#include "GFLineString.hpp"
+#include "GFMultiLineString.hpp"
+#include "GFMultiPoint.hpp"
 
 #include <boost/concept/assert.hpp>
 

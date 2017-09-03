@@ -36,10 +36,10 @@
 #include "GFMultiLineString+Protected.hpp"
 #include "GFMultiPolygon+Protected.hpp"
 
-#include "geofeatures/GeometryVariant.hpp"
-#include "geofeatures/GeometryCollection.hpp"
+#include "GFGeometryVariant.hpp"
+#include "GFGeometryCollection.hpp"
 
-#include "geofeatures/io/ReadWKT.hpp"
+#include "ReadWKT.hpp"
 
 #pragma clang pop
 

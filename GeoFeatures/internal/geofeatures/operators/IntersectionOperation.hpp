@@ -26,7 +26,7 @@
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/intersection.hpp>
 
-#include "GeometryVariant.hpp"
+#include "GFGeometryVariant.hpp"
 
 namespace geofeatures {
     namespace operators {

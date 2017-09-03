@@ -26,18 +26,18 @@
 #ifndef __GeometryCollection_HPP_
 #define __GeometryCollection_HPP_
 
-#include "Geometry.hpp"
-#include "Point.hpp"
-#include "MultiPoint.hpp"
-#include "Box.hpp"
-#include "LineString.hpp"
-#include "MultiLineString.hpp"
-#include "Ring.hpp"
-#include "Polygon.hpp"
-#include "MultiPolygon.hpp"
+#include "GFGeometry.hpp"
+#include "GFPoint.hpp"
+#include "GFMultiPoint.hpp"
+#include "GFBox.hpp"
+#include "GFLineString.hpp"
+#include "GFMultiLineString.hpp"
+#include "GFRing.hpp"
+#include "GFPolygon.hpp"
+#include "GFMultiPolygon.hpp"
 
-#include "Collection.hpp"
-#include "Allocator.hpp"
+#include "GFCollection.hpp"
+#include "GFAllocator.hpp"
 
 #include <boost/variant.hpp>
 #include <vector>

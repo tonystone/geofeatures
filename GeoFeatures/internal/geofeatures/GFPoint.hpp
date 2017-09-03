@@ -26,7 +26,7 @@
 #ifndef __Point_HPP_
 #define __Point_HPP_
 
-#include "Geometry.hpp"
+#include "GFGeometry.hpp"
 
 #include <boost/geometry/core/access.hpp>
 #include <boost/geometry/core/coordinate_type.hpp>

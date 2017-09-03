@@ -22,7 +22,7 @@
 #ifndef __GeoFeatures_Collection_HPP_
 #define __GeoFeatures_Collection_HPP_
 
-#include "Allocator.hpp"
+#include "GFAllocator.hpp"
 
 #include <vector>
 

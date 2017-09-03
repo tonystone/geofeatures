@@ -26,8 +26,8 @@
 #ifndef __Box_HPP_
 #define __Box_HPP_
 
-#include "Geometry.hpp"
-#include "Point.hpp"
+#include "GFGeometry.hpp"
+#include "GFPoint.hpp"
 
 #include <boost/concept/assert.hpp>
 #include <boost/geometry/core/access.hpp>

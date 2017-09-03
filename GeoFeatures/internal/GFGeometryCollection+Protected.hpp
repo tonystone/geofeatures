@@ -26,7 +26,7 @@
 #import "GFGeometryCollection.h"
 
 // Note: we must specifically include GeometryCollection.hpp here instead of forward declaring GeometryCollection
-#include "geofeatures/GeometryCollection.hpp"
+#include "GFGeometryCollection.hpp"
 
 @interface GFGeometryCollection (Protected)
 

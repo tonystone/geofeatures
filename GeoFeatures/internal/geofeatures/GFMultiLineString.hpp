@@ -26,9 +26,9 @@
 #ifndef __MultiLineString_HPP_
 #define __MultiLineString_HPP_
 
-#include "Geometry.hpp"
-#include "LineString.hpp"
-#include "Collection.hpp"
+#include "GFGeometry.hpp"
+#include "GFLineString.hpp"
+#include "GFCollection.hpp"
 
 #include <boost/concept/requires.hpp>
 

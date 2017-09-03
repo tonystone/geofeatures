@@ -27,8 +27,8 @@
 #include "GFBox+Protected.hpp"
 #include "GFPoint+Protected.hpp"
 
-#include "geofeatures/Box.hpp"
-#include "geofeatures/GeometryVariant.hpp"
+#include "GFBox.hpp"
+#include "GFGeometryVariant.hpp"
 
 #include "boost/geometry/io/wkt/wkt.hpp"
 

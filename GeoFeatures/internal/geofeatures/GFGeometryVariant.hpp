@@ -29,15 +29,15 @@
 #include <boost/variant.hpp>
 #include <boost/variant/polymorphic_get.hpp>
 
-#include "Point.hpp"
-#include "MultiPoint.hpp"
-#include "LineString.hpp"
-#include "MultiLineString.hpp"
-#include "Ring.hpp"
-#include "Polygon.hpp"
-#include "MultiPolygon.hpp"
-#include "GeometryCollection.hpp"
-#include "Box.hpp"
+#include "GFPoint.hpp"
+#include "GFMultiPoint.hpp"
+#include "GFLineString.hpp"
+#include "GFMultiLineString.hpp"
+#include "GFRing.hpp"
+#include "GFPolygon.hpp"
+#include "GFMultiPolygon.hpp"
+#include "GFGeometryCollection.hpp"
+#include "GFBox.hpp"
 
 namespace geofeatures {
 

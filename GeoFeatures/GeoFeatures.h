@@ -37,7 +37,6 @@
 *
 *  These classes can be used if direct access to
 *  the individual geometric shapes is required.
-
 **/
 #import "GFPoint.h"
 #import "GFMultiPoint.h"
@@ -48,6 +47,12 @@
 #import "GFPolygon.h"
 #import "GFMultiPolygon.h"
 #import "GFGeometryCollection.h"
+
+/* Deprecated
+ **/
+#import "GFPointAbstract.h"
+#import "GFLineStringAbstract.h"
+#import "GFPolygonAbstract.h"
 
 #endif
 

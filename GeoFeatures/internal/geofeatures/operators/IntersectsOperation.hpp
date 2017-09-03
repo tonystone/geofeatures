@@ -30,7 +30,7 @@
 
 #include <boost/geometry/geometries/concepts/check.hpp>
 
-#include "GeometryVariant.hpp"
+#include "GFGeometryVariant.hpp"
 
 namespace geofeatures {
     namespace operators {

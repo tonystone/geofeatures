@@ -27,9 +27,9 @@
 #include "GFLineString+Protected.hpp"
 #include "GFPoint+Protected.hpp"
 
-#include "geofeatures/Point.hpp"
-#include "geofeatures/LineString.hpp"
-#include "geofeatures/GeometryVariant.hpp"
+#include "GFPoint.hpp"
+#include "GFLineString.hpp"
+#include "GFGeometryVariant.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>

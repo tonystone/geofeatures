@@ -1,5 +1,5 @@
 /**
-*   AreaOperation.hpp
+*   LengthOperation.hpp
 *
 *   Copyright 2015 The Climate Corporation
 *   Copyright 2015 Tony Stone
@@ -21,41 +21,60 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma once
 
-#ifndef __AreaOperation_HPP_
-#define __AreaOperation_HPP_
+#ifndef __GeoFeatures_Length_HPP_
+#define __GeoFeatures_Length_HPP_
 
 #include <boost/variant/variant.hpp>
 #include <boost/geometry/strategies/strategies.hpp>
-#include <boost/geometry/algorithms/area.hpp>
+#include <boost/geometry/algorithms/length.hpp>
 
-#include "GeometryVariant.hpp"
+#include "GFGeometryVariant.hpp"
 
 namespace geofeatures {
     namespace operators {
 
         namespace detail {
-            
-            struct area {
-                
+
+            /**
+             *  length implementation class.
+             */
+            struct length {
+
                 class Visitor : public  boost::static_visitor<double> {
-                    
+
+                    /**
+                     * Internal class to convert from GeometryCollection variant
+                     * to the GeometryPtrVariant type.
+                     */
+                    struct VariantToPtrVariant : public boost::static_visitor<GeometryPtrVariant> {
+                        template <typename T>
+                        GeometryPtrVariant operator()(const T & v) const {
+                            return GeometryPtrVariant(&v);
+                        }
+                    };
+
+                    VariantToPtrVariant variantToPtrVariantVisitor;
+
                 public:
                     template <typename T>
                     double operator()(const T * v) const {
-                        return boost::geometry::area(*v);
+                        return boost::geometry::length(*v);
                     }
-                    
+
                     double operator()(const GeometryCollection<> * collection) const {
-                        double area = 0.0;
+                        double length = 0.0;
 
                         for (auto it = collection->begin(); it != collection->end(); ++it ) {
-                            area += boost::geometry::area(*it);
+                            geofeatures::GeometryPtrVariant ptrVariant = boost::apply_visitor(variantToPtrVariantVisitor,*it);
+
+                            length += boost::apply_visitor(*this, ptrVariant);
                         }
-                        return area;
+                        return length;
                     }
                 };
-                
+
                 template <BOOST_VARIANT_ENUM_PARAMS(typename T1)>
                 static inline double apply(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
                 {
@@ -65,15 +84,14 @@ namespace geofeatures {
         }   // namespace detail
 
         /**
-         * area algorithm.
+         * length algorithm.
          */
         template <BOOST_VARIANT_ENUM_PARAMS(typename T1)>
-        inline double area(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
+        inline double length(boost::variant<BOOST_VARIANT_ENUM_PARAMS(T1)> const & variant)
         {
-            return detail::area::apply(variant);
+            return detail::length::apply(variant);
         }
-
     }   // namespace operators
 }   // namespace geofeatures
 
-#endif //__AreaOperator_HPP_
+#endif //__GeoFeatures_Length_HPP_

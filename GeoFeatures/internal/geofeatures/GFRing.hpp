@@ -26,9 +26,9 @@
 #ifndef __Ring_HPP_
 #define __Ring_HPP_
 
-#include "Geometry.hpp"
-#include "Point.hpp"
-#include "Collection.hpp"
+#include "GFGeometry.hpp"
+#include "GFPoint.hpp"
+#include "GFCollection.hpp"
 
 #include <boost/geometry/core/closure.hpp>
 #include <boost/geometry/core/point_order.hpp>

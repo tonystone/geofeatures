@@ -25,7 +25,7 @@
 #ifndef __WKTOperation_HPP_
 #define __WKTOperation_HPP_
 
-#include "GeometryVariant.hpp"
+#include "GFGeometryVariant.hpp"
 #include <boost/geometry/io/wkt/wkt.hpp>
 
 namespace geofeatures {

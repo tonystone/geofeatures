@@ -1,5 +1,5 @@
 /**
-*   MultiPolygon.hpp
+*   LineString.hpp
 *
 *   Copyright 2015 The Climate Corporation
 *   Copyright 2015 Tony Stone
@@ -23,44 +23,46 @@
 */
 #pragma once
 
-#ifndef __MultiPolygon_HPP_
-#define __MultiPolygon_HPP_
+#ifndef __LineString_HPP_
+#define __LineString_HPP_
 
-#include "Geometry.hpp"
-#include "Polygon.hpp"
-#include "Collection.hpp"
+#include "GFGeometry.hpp"
+#include "GFPoint.hpp"
+#include "GFCollection.hpp"
 
-#include <boost/geometry/core/access.hpp>
-#include <boost/geometry/core/coordinate_type.hpp>
-#include <boost/geometry/core/coordinate_system.hpp>
-#include <boost/geometry/core/coordinate_dimension.hpp>
+#include <boost/concept/assert.hpp>
+#include <boost/range.hpp>
+
+#include <boost/geometry/core/tag.hpp>
+#include <boost/geometry/core/tags.hpp>
 
 #include <boost/geometry/geometries/concepts/point_concept.hpp>
-#include <vector>
+
 
 namespace geofeatures {
 
     /**
-    * @class       MultiPolygon
+    * @class       LineString
     *
-    * @brief       A Collection of Polygons.
+    * @brief       A Line of Points.
     *
     * @author      Tony Stone
     * @date        6/9/15
     */
-    class MultiPolygon : public Geometry, public Collection <geofeatures::Polygon> {
+    class LineString : public Geometry, public Collection <geofeatures::Point> {
 
     private:
-        typedef Collection <geofeatures::Polygon> BaseType;
+        typedef Collection <geofeatures::Point> BaseType;
 
     public:
+        inline LineString() noexcept : Geometry(), BaseType() {}
+        LineString(LineString &other) noexcept : Geometry(), BaseType(other) {}
+        LineString(LineString const &other) noexcept : Geometry(), BaseType(other) {}
+        LineString(BaseType &other) noexcept : Geometry(), BaseType(other) {}
+        LineString(BaseType const &other) noexcept : Geometry(), BaseType(other) {}
 
-        inline MultiPolygon () noexcept : Geometry(), BaseType() {}
-        inline MultiPolygon (BaseType & polygons) noexcept : Geometry(), BaseType(polygons) {}
-
-        inline virtual ~MultiPolygon() {};
+        inline virtual ~LineString() noexcept {};
     };
-
 
 }   // namespace geofeatures
 
@@ -69,20 +71,12 @@ namespace geofeatures_boost {
         namespace traits
         {
             template<>
-            struct tag<geofeatures::MultiPolygon> {
-                typedef multi_polygon_tag type;
+            struct tag<geofeatures::LineString> {
+                typedef linestring_tag type;
             };
         }
     } // namespace geometry::traits
-
-    template<>
-    struct range_iterator<geofeatures::MultiPolygon>
-    { typedef typename geofeatures::MultiPolygon::iterator type; };
-
-    template<>
-    struct range_const_iterator<geofeatures::MultiPolygon>
-    { typedef typename geofeatures::MultiPolygon::const_iterator type; };
-
 } // namespace boost
 
-#endif //__MultiPolygon_HPP_
+
+#endif //__LineString_HPP_

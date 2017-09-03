@@ -28,20 +28,21 @@
 #import <MapKit/MapKit.h>
 #import "NSString+CaseInsensitiveHasPrefix.h"
 
-#include "geofeatures/Geometry.hpp"
-#include "geofeatures/GeometryVariant.hpp"
-#include "geofeatures/operators/UnionOperation.hpp"
-#include "geofeatures/operators/CentroidOperation.hpp"
-#include "geofeatures/operators/Length.hpp"
-#include "geofeatures/operators/Area.hpp"
-#include "geofeatures/operators/BoundingBox.hpp"
-#include "geofeatures/operators/PerimeterOperation.hpp"
-#include "geofeatures/operators/WKTOperation.hpp"
-#include "geofeatures/operators/Within.hpp"
-#include "geofeatures/operators/IsValid.hpp"
-#include "geofeatures/operators/Intersects.hpp"
-#include "geofeatures/operators/Intersection.hpp"
-#include "geofeatures/operators/Difference.hpp"
+#include "GFGeometry.hpp"
+#include "GFGeometryVariant.hpp"
+
+#include "CentroidOperation.hpp"
+#include "UnionOperation.hpp"
+#include "LengthOperation.hpp"
+#include "AreaOperation.hpp"
+#include "BoundingBoxOperation.hpp"
+#include "PerimeterOperation.hpp"
+#include "WKTOperation.hpp"
+#include "WithinOperation.hpp"
+#include "IsValidOperation.hpp"
+#include "IntersectsOperation.hpp"
+#include "IntersectionOperation.hpp"
+#include "DifferenceOperation.hpp"
 
 #include <memory>
 
