@@ -21,6 +21,8 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
 
 #import "GFGeometry+Protected.hpp"
 #import <MapKit/MapKit.h>
@@ -46,6 +48,8 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/variant.hpp>
 #include <boost/variant/polymorphic_get.hpp>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

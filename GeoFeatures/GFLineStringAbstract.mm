@@ -21,8 +21,12 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
 
 #import "GFLineStringAbstract.h"
+
+#pragma clang pop
 
 @implementation GFLineStringAbstract
 

@@ -15,9 +15,12 @@
   },
   "requires_arc": true,
   "public_header_files": "GeoFeatures/*.h",
-  "private_header_files": "GeoFeatures/internal/**/*.{hpp,h}",
   "source_files": "GeoFeatures/**/*",
-  "preserve_paths": "LICENSE_BOOST_1_0",
+  "preserve_paths": [
+    "LICENSE_BOOST_1_0",
+    "GeoFeatures/internal/**/*.{hpp,h}"
+  ],
+  "header_mappings_dir": "GeoFeatures/internal",
   "exclude_files": [
     "GeoFeatures/**/*.pl",
     "GeoFeatures/internal/boost/test/**/*",

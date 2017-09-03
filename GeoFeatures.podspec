@@ -22,10 +22,11 @@ Pod::Spec.new do |s|
     s.requires_arc = true
 
     s.public_header_files  = 'GeoFeatures/*.h'
-    s.private_header_files = 'GeoFeatures/internal/**/*.{hpp,h}'
+#s.private_header_files = 'GeoFeatures/internal/**/*.{hpp,h}'
     s.source_files         = 'GeoFeatures/**/*'
-    s.preserve_paths       = 'LICENSE_BOOST_1_0'
-
+    s.preserve_paths       = 'LICENSE_BOOST_1_0', 'GeoFeatures/internal/**/*.{hpp,h}'
+    s.header_mappings_dir  = 'GeoFeatures/internal'
+    
     s.exclude_files        =    'GeoFeatures/**/*.pl',
                                 'GeoFeatures/internal/boost/test/**/*',
                                 'GeoFeatures/internal/boost/mpl/aux_/preprocessed/bcc/**/*',

@@ -21,13 +21,17 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
 
 #include "GFPoint+Protected.hpp"
 
-#include "Point.hpp"
-#include "GeometryVariant.hpp"
+#include "geofeatures/Point.hpp"
+#include "geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

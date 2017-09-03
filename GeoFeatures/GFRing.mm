@@ -19,6 +19,9 @@
 *
 *   Created by Tony Stone on 08/29/15.
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #include "GFRing+Protected.hpp"
 #include "GFPoint+Protected.hpp"
 #include "GFLineString+Protected.hpp"
@@ -31,6 +34,8 @@
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

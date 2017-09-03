@@ -21,18 +21,23 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #import "GFPolygon.h"
 #include "GFPolygon+Protected.hpp"
 #include "GFRing+Protected.hpp"
 #include "GFGeometryCollection+Protected.hpp"
 
-#include "Polygon.hpp"
-#include "GeometryCollection.hpp"
-#include "GeometryVariant.hpp"
+#include "geofeatures/Polygon.hpp"
+#include "geofeatures/GeometryCollection.hpp"
+#include "geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
 #include <boost/geometry/io/wkt/wkt.hpp>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

@@ -39,7 +39,7 @@
 #include "GFMultiPolygon+Protected.hpp"
 #include "GFGeometryCollection+Protected.hpp"
 
-#include "GeometryVariant.hpp"
+#include "geofeatures/GeometryVariant.hpp"
 
 namespace gf = geofeatures;
 

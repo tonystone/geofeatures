@@ -21,14 +21,19 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #include "GFMultiLineString+Protected.hpp"
 #include "GFLineString+Protected.hpp"
 
-#include "MultiLineString.hpp"
-#include "GeometryVariant.hpp"
+#include "geofeatures/MultiLineString.hpp"
+#include "geofeatures/GeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 #include <vector>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

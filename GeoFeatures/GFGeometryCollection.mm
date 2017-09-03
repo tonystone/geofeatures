@@ -21,6 +21,9 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #include "GFGeometryCollection+Protected.hpp"
 #include "GFGeometry+Protected.hpp"
 
@@ -33,10 +36,12 @@
 #include "GFMultiLineString+Protected.hpp"
 #include "GFMultiPolygon+Protected.hpp"
 
-#include "GeometryVariant.hpp"
-#include "GeometryCollection.hpp"
+#include "geofeatures/GeometryVariant.hpp"
+#include "geofeatures/GeometryCollection.hpp"
 
-#include "ReadWKT.hpp"
+#include "geofeatures/io/ReadWKT.hpp"
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 
