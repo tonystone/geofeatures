@@ -44,11 +44,7 @@ Pod::Spec.new do |s|
                                 'GeoFeatures/boost/boost/mpl/vector/aux_/preprocessed/plain/**/*',
                                 'GeoFeatures/boost/boost/mpl/vector/aux_/preprocessed/no_ctps/**/*',
                                 'GeoFeatures/boost/boost/parameter/aux_/preprocessed/**/*',
-                                'GeoFeatures/boost/boost/fusion/container/deque/detail/cpp03/preprocessed/**/*',
-                                'GeoFeatures/boost/boost/fusion/container/list/detail/cpp03/preprocessed/**/*',
-                                'GeoFeatures/boost/boost/fusion/container/map/detail/cpp03/preprocessed/**/*',
-                                'GeoFeatures/boost/boost/fusion/container/set/detail/cpp03/preprocessed/**/*',
-                                'GeoFeatures/boost/boost/fusion/container/vector/detail/cpp03/preprocessed/**/*'
+                                'GeoFeatures/boost/boost/fusion/**/*'
 
     s.frameworks = 'MapKit'
 
