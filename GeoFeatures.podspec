@@ -26,8 +26,8 @@ Pod::Spec.new do |s|
     s.source_files         = 'GeoFeatures/**/*.{mm,m,hpp,h}'
     s.public_header_files  = 'GeoFeatures/*.h'
     s.private_header_files = 'GeoFeatures/internal/**/*.{hpp,h}'
-     
-    s.preserve_paths       = 'GeoFeatures/boost/**/*.{hpp,h}', 'LICENSE_BOOST_1_0'
+
+    s.preserve_paths       = 'boost/**/*.{hpp,h}', 'LICENSE_BOOST_1_0'
 
     s.frameworks = 'MapKit'
 
@@ -41,6 +41,6 @@ Pod::Spec.new do |s|
         'CLANG_CXX_LIBRARY' => 'libc++',
         'OTHER_LDFLAGS' => '-lc++',
         'OTHER_CFLAGS' => '-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0',
-        'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_TARGET_SRCROOT)/GeoFeatures/boost"'
+        'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_TARGET_SRCROOT)/boost"'
     }
 end

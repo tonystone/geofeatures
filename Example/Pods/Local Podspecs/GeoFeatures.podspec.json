@@ -19,7 +19,7 @@
   "public_header_files": "GeoFeatures/*.h",
   "private_header_files": "GeoFeatures/internal/**/*.{hpp,h}",
   "preserve_paths": [
-    "GeoFeatures/boost/**/*.{hpp,h}",
+    "boost/**/*.{hpp,h}",
     "LICENSE_BOOST_1_0"
   ],
   "frameworks": "MapKit",
@@ -29,6 +29,6 @@
     "CLANG_CXX_LIBRARY": "libc++",
     "OTHER_LDFLAGS": "-lc++",
     "OTHER_CFLAGS": "-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0",
-    "HEADER_SEARCH_PATHS": "$(inherited) \"$(PODS_TARGET_SRCROOT)/GeoFeatures/boost\""
+    "HEADER_SEARCH_PATHS": "$(inherited) \"$(PODS_TARGET_SRCROOT)/boost\""
   }
 }
