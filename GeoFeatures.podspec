@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
     s.license           = 'Apache License, Version 2.0'
     s.author            = "Tony Stone"
     s.source            = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
+    s.documentation_url = "http://tonystone.github.io/geofeatures"
 
     s.ios.deployment_target     = '6.0'
     s.osx.deployment_target     = '10.7'
