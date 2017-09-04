@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['gfbox',['GFBox',['../interface_g_f_box.html',1,'']]],
+  ['gfgeometry',['GFGeometry',['../interface_g_f_geometry.html',1,'']]],
+  ['gfgeometry_28geojson_29',['GFGeometry(GeoJSON)',['../category_g_f_geometry_07_geo_j_s_o_n_08.html',1,'']]],
+  ['gfgeometry_28mapkit_29',['GFGeometry(MapKit)',['../category_g_f_geometry_07_map_kit_08.html',1,'']]],
+  ['gfgeometry_28wkt_29',['GFGeometry(WKT)',['../category_g_f_geometry_07_w_k_t_08.html',1,'']]],
+  ['gfgeometrycollection',['GFGeometryCollection',['../interface_g_f_geometry_collection.html',1,'']]],
+  ['gflinestring',['GFLineString',['../interface_g_f_line_string.html',1,'']]],
+  ['gfmultilinestring',['GFMultiLineString',['../interface_g_f_multi_line_string.html',1,'']]],
+  ['gfmultipoint',['GFMultiPoint',['../interface_g_f_multi_point.html',1,'']]],
+  ['gfmultipolygon',['GFMultiPolygon',['../interface_g_f_multi_polygon.html',1,'']]],
+  ['gfmutablebox',['GFMutableBox',['../interface_g_f_mutable_box.html',1,'']]],
+  ['gfmutablegeometrycollection',['GFMutableGeometryCollection',['../interface_g_f_mutable_geometry_collection.html',1,'']]],
+  ['gfmutablelinestring',['GFMutableLineString',['../interface_g_f_mutable_line_string.html',1,'']]],
+  ['gfmutablemultilinestring',['GFMutableMultiLineString',['../interface_g_f_mutable_multi_line_string.html',1,'']]],
+  ['gfmutablemultipoint',['GFMutableMultiPoint',['../interface_g_f_mutable_multi_point.html',1,'']]],
+  ['gfmutablemultipolygon',['GFMutableMultiPolygon',['../interface_g_f_mutable_multi_polygon.html',1,'']]],
+  ['gfmutablepoint',['GFMutablePoint',['../interface_g_f_mutable_point.html',1,'']]],
+  ['gfmutablepolygon',['GFMutablePolygon',['../interface_g_f_mutable_polygon.html',1,'']]],
+  ['gfmutablering',['GFMutableRing',['../interface_g_f_mutable_ring.html',1,'']]],
+  ['gfpoint',['GFPoint',['../interface_g_f_point.html',1,'']]],
+  ['gfpolygon',['GFPolygon',['../interface_g_f_polygon.html',1,'']]],
+  ['gfring',['GFRing',['../interface_g_f_ring.html',1,'']]]
+];

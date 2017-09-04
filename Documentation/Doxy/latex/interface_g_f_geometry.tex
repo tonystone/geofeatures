@@ -1,0 +1,604 @@
+\hypertarget{interface_g_f_geometry}{}\section{G\+F\+Geometry Class Reference}
+\label{interface_g_f_geometry}\index{G\+F\+Geometry@{G\+F\+Geometry}}
+
+
+An abstract class that represents a geometric shape.  
+
+
+
+
+{\ttfamily \#import $<$Geo\+Features/\+G\+F\+Geometry.\+h$>$}
+
+
+
+Inheritance diagram for G\+F\+Geometry\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_geometry__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+F\+Geometry\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_g_f_geometry__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Instance Methods}
+\begin{DoxyCompactItemize}
+\item 
+(B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a3a63de5905eae52356c6afd7313e4828}{is\+Valid}
+\item 
+(double) -\/ \hyperlink{interface_g_f_geometry_a0028dc3b2c2315a24d803dfa4cf2250e}{area}
+\item 
+(double) -\/ \hyperlink{interface_g_f_geometry_ab68dd3c418a3f06c6593d02dfebe2585}{length}
+\item 
+(double) -\/ \hyperlink{interface_g_f_geometry_a31593eea12da7a9ed46b2dd4e6ca511e}{perimeter}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_geometry_af53b7bf19dfea6827eed19a7979c7dca}{centroid}
+\item 
+(\hyperlink{interface_g_f_point}{G\+F\+Point} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a16f03e92b3636e574d5f8659e822de69}{centroid\+:}
+\item 
+(\hyperlink{interface_g_f_box}{G\+F\+Box} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a808ba7daf6d4c3d742668ad3fe5d0f0e}{bounding\+Box}
+\item 
+(B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a832350c76f4a42a39889c9138108edd2}{within\+:}
+\item 
+(B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a3735ea20bc337cff79944bbe08f3bdf0}{intersects}
+\item 
+(B\+O\+O\+L) -\/ \hyperlink{interface_g_f_geometry_a86d1a80435c6b838dfb8b1a22a17a0b8}{intersects\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_ac93053aeabad1f97466b1ec31292ed11}{intersection\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a6faa39e502da86516c58b5ce65847924}{intersection\+:error\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_acb76057cb6cdee9255ecba8447045cc6}{difference\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a30eb0242f8e9f9e3e1d542af03e4144b}{difference\+:error\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_a58c32fcf4a3932281498d1a1b25fb46b}{union\+\_\+\+:}
+\item 
+(\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} $\ast$) -\/ \hyperlink{interface_g_f_geometry_ac3fa56a053de364baf4b9c496b0b93a4}{union\+\_\+\+:error\+:}
+\item 
+(N\+S\+Dictionary $\ast$) -\/ \hyperlink{interface_g_f_geometry_a89a1dd53c1d9a51fd5b933fde28be5b7}{to\+Geo\+J\+S\+O\+N\+Geometry}
+\item 
+(N\+S\+Array $\ast$) -\/ \hyperlink{interface_g_f_geometry_a69a56e7786e1de09034c546ade1c7262}{mk\+Map\+Overlays}
+\item 
+(N\+S\+String $\ast$) -\/ \hyperlink{interface_g_f_geometry_a9d257cce05d031211e2cece24b5530e4}{to\+W\+K\+T\+String}
+\end{DoxyCompactItemize}
+\subsection*{Class Methods}
+\begin{DoxyCompactItemize}
+\item 
+(instancetype) + \hyperlink{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}
+\item 
+(instancetype) + \hyperlink{interface_g_f_geometry_ac665565535c19e73e6b7a696e8109586}{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}
+\item 
+(instancetype) + \hyperlink{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}{geometry\+With\+W\+K\+T\+:}
+\item 
+(instancetype) + \hyperlink{interface_g_f_geometry_a04922dcfc9db4543970774b0457d487b}{geometry\+With\+W\+K\+T\+:error\+:}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class that represents a geometric shape. 
+
+\hyperlink{interface_g_f_geometry}{G\+F\+Geometry} is the abstract base class for all geometry subclasses. It is also the central factory object for creation of geometries.
+
+\begin{DoxyWarning}{Warning}
+Do not instantiate this abstract class.
+\end{DoxyWarning}
+\begin{DoxyAuthor}{Author}
+Tony Stone 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6/14/15 
+\end{DoxyDate}
+
+
+\subsection{Method Documentation}
+\hypertarget{interface_g_f_geometry_a3a63de5905eae52356c6afd7313e4828}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{is\+Valid()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\+O\+O\+L) is\+Valid 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a3a63de5905eae52356c6afd7313e4828}
+Checks if a geometry is valid. \hypertarget{interface_g_f_geometry_a0028dc3b2c2315a24d803dfa4cf2250e}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!area@{area}}
+\index{area@{area}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{area()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) area 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a0028dc3b2c2315a24d803dfa4cf2250e}
+The area algorithm calculates the surface area of all geometries having a surface, namely box, polygon, ring, multipolygon. The units are the square of the units used for the points defining the surface. If subject geometry is defined in meters, then area is calculated in square meters
+
+\begin{DoxyReturn}{Returns}
+The area of the geometry. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_ab68dd3c418a3f06c6593d02dfebe2585}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!length@{length}}
+\index{length@{length}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{length()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) length 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_ab68dd3c418a3f06c6593d02dfebe2585}
+The length method calculates the length (the sum of distances between consecutive points) of a geometry.
+
+\begin{DoxyNote}{Note}
+
+
+point types (e.\+g. \hyperlink{interface_g_f_point}{G\+F\+Point}) Return zero
+
+linear types (e.\+g. \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String}) Return the length
+
+areal (e.\+g. \hyperlink{interface_g_f_polygon}{G\+F\+Polygon}) Return zero
+
+
+
+
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The length of linear \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} types (e.\+g. \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String}). 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a31593eea12da7a9ed46b2dd4e6ca511e}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{perimeter()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (double) perimeter 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a31593eea12da7a9ed46b2dd4e6ca511e}
+Calculates the perimeter of a geometry
+
+\begin{DoxyNote}{Note}
+
+
+point types (e.\+g. \hyperlink{interface_g_f_point}{G\+F\+Point}) Returns zero
+
+linear types (e.\+g. \hyperlink{interface_g_f_line_string}{G\+F\+Line\+String}) Returns zero
+
+areal (e.\+g. \hyperlink{interface_g_f_polygon}{G\+F\+Polygon}) Returns the perimeter
+
+
+\end{DoxyNote}
+
+
+\begin{DoxyReturn}{Returns}
+The perimeter of areal \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} types (e.\+g. \hyperlink{interface_g_f_polygon}{G\+F\+Polygon}). 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_af53b7bf19dfea6827eed19a7979c7dca}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!centroid@{centroid}}
+\index{centroid@{centroid}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{centroid()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) centroid 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_af53b7bf19dfea6827eed19a7979c7dca}
+The centroid method calculates the geometric center (or\+: center of mass) of a geometry.
+
+\begin{DoxyReturn}{Returns}
+The calculated centroid as a \hyperlink{interface_g_f_point}{G\+F\+Point}. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a16f03e92b3636e574d5f8659e822de69}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!centroid\+:@{centroid\+:}}
+\index{centroid\+:@{centroid\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{centroid\+:(\+N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Point} $\ast$) centroid\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a16f03e92b3636e574d5f8659e822de69}
+The centroid method calculates the geometric center (or\+: center of mass) of a geometry.
+
+\begin{DoxyReturn}{Returns}
+The calculated centroid as a \hyperlink{interface_g_f_point}{G\+F\+Point}. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a808ba7daf6d4c3d742668ad3fe5d0f0e}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!bounding\+Box@{bounding\+Box}}
+\index{bounding\+Box@{bounding\+Box}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{bounding\+Box()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Box} $\ast$) bounding\+Box 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a808ba7daf6d4c3d742668ad3fe5d0f0e}
+The bounding\+Box method calculates the bounding\+Box (also known as axis aligned bounding box, aabb, or minimum bounding rectangle, mbr) of a geometry.
+
+\begin{DoxyReturn}{Returns}
+The bounding box as a \hyperlink{interface_g_f_box}{G\+F\+Box}. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a832350c76f4a42a39889c9138108edd2}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!within\+:@{within\+:}}
+\index{within\+:@{within\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{within\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\+O\+O\+L) within\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a832350c76f4a42a39889c9138108edd2}
+Checks if the geometry is completely inside the other geometry.
+
+\begin{DoxyReturn}{Returns}
+True if self is within the other \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance. False otherwise. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a3735ea20bc337cff79944bbe08f3bdf0}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!intersects@{intersects}}
+\index{intersects@{intersects}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{intersects()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\+O\+O\+L) intersects 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a3735ea20bc337cff79944bbe08f3bdf0}
+Checks if self has at least one intersection.
+
+\begin{DoxyReturn}{Returns}
+true if self has at least one intersection. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a86d1a80435c6b838dfb8b1a22a17a0b8}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!intersects\+:@{intersects\+:}}
+\index{intersects\+:@{intersects\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{intersects\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (B\+O\+O\+L) intersects\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a86d1a80435c6b838dfb8b1a22a17a0b8}
+Checks if self has at least one intersection with the other geometry.
+
+\begin{DoxyReturn}{Returns}
+true if self has at least one intersection with the other geometry. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_ac93053aeabad1f97466b1ec31292ed11}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!intersection\+:@{intersection\+:}}
+\index{intersection\+:@{intersection\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{intersection\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) intersection\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_ac93053aeabad1f97466b1ec31292ed11}
+Calculates the point set intersection of this geometry with other.
+
+\begin{DoxyReturn}{Returns}
+A geometry object that represents the point set intersection of this geometric object with other.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Invalid\+Argument\+Exception} & If the an intersection between self and other are not supported. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_geometry_a6faa39e502da86516c58b5ce65847924}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!intersection\+:error\+:@{intersection\+:error\+:}}
+\index{intersection\+:error\+:@{intersection\+:error\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{intersection\+:error\+:(\+G\+F\+Geometry $\ast$other,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) {\bf intersection\+:} 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a6faa39e502da86516c58b5ce65847924}
+Calculates the point set intersection of this geometry with other.
+
+\begin{DoxyReturn}{Returns}
+A geometry object that represents the point set intersection of this geometric object with other. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_acb76057cb6cdee9255ecba8447045cc6}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!difference\+:@{difference\+:}}
+\index{difference\+:@{difference\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{difference\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) difference\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_acb76057cb6cdee9255ecba8447045cc6}
+Calculate the difference of two geometries.
+
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the difference of self and other.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Invalid\+Argument\+Exception} & If the difference between self and other are not supported. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_geometry_a30eb0242f8e9f9e3e1d542af03e4144b}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!difference\+:error\+:@{difference\+:error\+:}}
+\index{difference\+:error\+:@{difference\+:error\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{difference\+:error\+:(\+G\+F\+Geometry $\ast$other,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) {\bf difference\+:} 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a30eb0242f8e9f9e3e1d542af03e4144b}
+Calculate the difference of two geometries.
+
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the difference of self and other. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a58c32fcf4a3932281498d1a1b25fb46b}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!union\+\_\+\+:@{union\+\_\+\+:}}
+\index{union\+\_\+\+:@{union\+\_\+\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{union\+\_\+\+:(\+G\+F\+Geometry $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) union\+\_\+\+: 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a58c32fcf4a3932281498d1a1b25fb46b}
+Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
+
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the union of the and other.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Invalid\+Argument\+Exception} & if the one of the geometries is invalid. You can test for an invalid geometry by calling is\+Valid. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{interface_g_f_geometry_ac3fa56a053de364baf4b9c496b0b93a4}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!union\+\_\+\+:error\+:@{union\+\_\+\+:error\+:}}
+\index{union\+\_\+\+:error\+:@{union\+\_\+\+:error\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{union\+\_\+\+:error\+:(\+G\+F\+Geometry $\ast$other,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf G\+F\+Geometry} $\ast$) {\bf union\+\_\+\+:} 
+\begin{DoxyParamCaption}
+\item[{({\bf G\+F\+Geometry} $\ast$)}]{other}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_ac3fa56a053de364baf4b9c496b0b93a4}
+Combines the other geometry with self. The union calculates the spatial set theoretic union of the two geometries.
+
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance that represents the union of self and other. 
+\end{DoxyReturn}
+\hypertarget{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}}
+\index{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{geo\+J\+S\+O\+N\+Geometry\+Dictionary}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a5b730dcea33fc8b2c156199400e3014e}
+Creates a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} from the Geo\+J\+S\+O\+N dictionary supplied.
+
+\begin{DoxyNote}{Note}
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object. 
+
+Given the following Geo\+J\+S\+O\+N\+: 
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}:  \{
+          \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+          \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+      \}
+ \}
+\end{DoxyCode}
+
+
+You would pass the geometry section below to the init method. 
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+    \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Example\+: 
+\begin{DoxyCode}
+\{
+    NSString * jsonString = \textcolor{stringliteral}{@"\{ \(\backslash\)"}type\(\backslash\)\textcolor{stringliteral}{": \(\backslash\)"Polygon\(\backslash\)","}
+                             \textcolor{stringliteral}{"    \(\backslash\)"coordinates\(\backslash\)": ["}
+                             \textcolor{stringliteral}{"      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0,
+       0.0] ],"}
+                             \textcolor{stringliteral}{"      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]
+       ]"}
+                             \textcolor{stringliteral}{"      ]"}
+                             \textcolor{stringliteral}{"   \}"}
+
+    NSDictionary * geometryDictionary = [NSJSONSerialization JSONObjectWithData: [jsonString 
+      dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil];
+
+    \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithGeoJSONGeometry: geometryDictionary
+       ]
+
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & This method will throw an exception if the geo json is invalid. \\
+\hline
+\end{DoxyExceptions}
+
+
+Provided by category \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_a5b730dcea33fc8b2c156199400e3014e}{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}.
+
+\hypertarget{interface_g_f_geometry_ac665565535c19e73e6b7a696e8109586}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}}
+\index{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:@{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:error\+:(\+N\+S\+Dictionary $\ast$geo\+J\+S\+O\+N\+Geometry\+Dictionary,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) {\bf geometry\+With\+Geo\+J\+S\+O\+N\+Geometry\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+Dictionary $\ast$)}]{geo\+J\+S\+O\+N\+Geometry\+Dictionary}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_ac665565535c19e73e6b7a696e8109586}
+Creates a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} from the Geo\+J\+S\+O\+N dictionary supplied.
+
+\begin{DoxyNote}{Note}
+You must pass the geometry portion of the Geo\+J\+S\+O\+N structure and not the entire Geo\+J\+S\+O\+N object. 
+
+Given the following Geo\+J\+S\+O\+N\+: 
+\begin{DoxyCode}
+\{
+      \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Feature"},
+
+      \textcolor{stringliteral}{"geometry"}:  \{
+          \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+          \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+      \}
+ \}
+\end{DoxyCode}
+
+
+You would pass the geometry section below to the init method. 
+\begin{DoxyCode}
+\{
+    \textcolor{stringliteral}{"type"}: \textcolor{stringliteral}{"Box"},
+    \textcolor{stringliteral}{"coordinates"}: [[100.0, 0.0], [101.0, 1.0]]
+\}
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+
+
+Example\+: 
+\begin{DoxyCode}
+\{
+    NSString * jsonString = \textcolor{stringliteral}{@"\{ \(\backslash\)"}type\(\backslash\)\textcolor{stringliteral}{": \(\backslash\)"Polygon\(\backslash\)","}
+                             \textcolor{stringliteral}{"    \(\backslash\)"coordinates\(\backslash\)": ["}
+                             \textcolor{stringliteral}{"      [ [100.0, 0.0], [200.0, 0.0], [200.0, 100.0], [100.0, 1.0], [100.0,
+       0.0] ],"}
+                             \textcolor{stringliteral}{"      [ [100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]
+       ]"}
+                             \textcolor{stringliteral}{"      ]"}
+                             \textcolor{stringliteral}{"   \}"}
+
+    NSDictionary * geometryDictionary = [NSJSONSerialization JSONObjectWithData: [jsonString 
+      dataUsingEncoding: NSUTF8StringEncoding] options: 0 error: nil];
+
+    \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithGeoJSONGeometry: geometryDictionary
+       ]
+
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & This method will throw an exception if the geo json is invalid. \\
+\hline
+\end{DoxyExceptions}
+
+
+Provided by category \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_ac665565535c19e73e6b7a696e8109586}{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}.
+
+\hypertarget{interface_g_f_geometry_a89a1dd53c1d9a51fd5b933fde28be5b7}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}}
+\index{to\+Geo\+J\+S\+O\+N\+Geometry@{to\+Geo\+J\+S\+O\+N\+Geometry}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{to\+Geo\+J\+S\+O\+N\+Geometry()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+Dictionary $\ast$) to\+Geo\+J\+S\+O\+N\+Geometry 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a89a1dd53c1d9a51fd5b933fde28be5b7}
+Converts the Geometry to a Geo\+J\+S\+O\+N object.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em N\+S\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+A N\+S\+Dictionary Geo\+J\+S\+O\+N representation of self. 
+\end{DoxyReturn}
+
+
+Provided by category \hyperlink{category_g_f_geometry_07_geo_j_s_o_n_08_a89a1dd53c1d9a51fd5b933fde28be5b7}{G\+F\+Geometry(\+Geo\+J\+S\+O\+N)}.
+
+\hypertarget{interface_g_f_geometry_a69a56e7786e1de09034c546ade1c7262}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!mk\+Map\+Overlays@{mk\+Map\+Overlays}}
+\index{mk\+Map\+Overlays@{mk\+Map\+Overlays}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{mk\+Map\+Overlays()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+Array $\ast$) mk\+Map\+Overlays 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a69a56e7786e1de09034c546ade1c7262}
+\begin{DoxyReturn}{Returns}
+An array of map overlay objects that represent this geometry. These can be placed directly on a Map\+Kit map. 
+\end{DoxyReturn}
+
+
+Provided by category \hyperlink{category_g_f_geometry_07_map_kit_08_a69a56e7786e1de09034c546ade1c7262}{G\+F\+Geometry(\+Map\+Kit)}.
+
+\hypertarget{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}}
+\index{geometry\+With\+W\+K\+T\+:@{geometry\+With\+W\+K\+T\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{geometry\+With\+W\+K\+T\+:(\+N\+S\+String $\ast$wkt)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) geometry\+With\+W\+K\+T\+: 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a32a49e08fdbc2998735c26ddbfa88741}
+Create a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance from the W\+K\+T string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em wkt} & an N\+S\+String wkt representation of the geometry\\
+\hline
+\end{DoxyParams}
+Example 1\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+
+
+Example 2\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"};
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+ 
+
+Provided by category \hyperlink{category_g_f_geometry_07_w_k_t_08_a32a49e08fdbc2998735c26ddbfa88741}{G\+F\+Geometry(\+W\+K\+T)}.
+
+\hypertarget{interface_g_f_geometry_a04922dcfc9db4543970774b0457d487b}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!geometry\+With\+W\+K\+T\+:error\+:@{geometry\+With\+W\+K\+T\+:error\+:}}
+\index{geometry\+With\+W\+K\+T\+:error\+:@{geometry\+With\+W\+K\+T\+:error\+:}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{geometry\+With\+W\+K\+T\+:error\+:(\+N\+S\+String $\ast$wkt,[error] N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$error)}]{\setlength{\rightskip}{0pt plus 5cm}+ (instancetype) {\bf geometry\+With\+W\+K\+T\+:} 
+\begin{DoxyParamCaption}
+\item[{(N\+S\+String $\ast$)}]{wkt}
+\item[{error:(N\+S\+Error $\ast$\+\_\+\+\_\+autoreleasing $\ast$)}]{error}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a04922dcfc9db4543970774b0457d487b}
+Create a \hyperlink{interface_g_f_geometry}{G\+F\+Geometry} instance from the W\+K\+T string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em wkt} & an N\+S\+String wkt representation of the geometry\\
+\hline
+\end{DoxyParams}
+Example 1\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"POLYGON((0 0,0 90,90 90,90 0,0 0))"};
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt]];
+
+\}
+\end{DoxyCode}
+
+
+Example 2\+: 
+\begin{DoxyCode}
+\{
+
+  NSString * wkt = \textcolor{stringliteral}{@"MULTILINESTRING((0 0,5 0),(5 0,10 0,5 -5,5 0),(5 0,5 5))"};
+  
+  NSError * error = nil;
+
+  \hyperlink{interface_g_f_geometry}{GFGeometry} * geometry = [\hyperlink{interface_g_f_geometry}{GFGeometry} geometryWithWKT: wkt error: &error]];
+
+\}
+\end{DoxyCode}
+ 
+
+Provided by category \hyperlink{category_g_f_geometry_07_w_k_t_08_a04922dcfc9db4543970774b0457d487b}{G\+F\+Geometry(\+W\+K\+T)}.
+
+\hypertarget{interface_g_f_geometry_a9d257cce05d031211e2cece24b5530e4}{}\index{G\+F\+Geometry@{G\+F\+Geometry}!to\+W\+K\+T\+String@{to\+W\+K\+T\+String}}
+\index{to\+W\+K\+T\+String@{to\+W\+K\+T\+String}!G\+F\+Geometry@{G\+F\+Geometry}}
+\subsubsection[{to\+W\+K\+T\+String()}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\+S\+String $\ast$) to\+W\+K\+T\+String 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}\label{interface_g_f_geometry_a9d257cce05d031211e2cece24b5530e4}
+\begin{DoxyReturn}{Returns}
+A W\+K\+T string representation of this \hyperlink{interface_g_f_geometry}{G\+F\+Geometry}. 
+\end{DoxyReturn}
+
+
+Provided by category \hyperlink{category_g_f_geometry_07_w_k_t_08_a9d257cce05d031211e2cece24b5530e4}{G\+F\+Geometry(\+W\+K\+T)}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Geo\+Features/G\+F\+Geometry.\+h\end{DoxyCompactItemize}
