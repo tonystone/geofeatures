@@ -3,7 +3,7 @@ CLANG_CXX_LIBRARY = libc++
 CONFIGURATION_BUILD_DIR = $PODS_CONFIGURATION_BUILD_DIR/GeoFeatures-iOS
 GCC_C_LANGUAGE_STANDARD = c11
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public" $(inherited) "$(PODS_ROOT)/GeoFeatures/GeoFeatures/boost" "$(PODS_ROOT)/../../GeoFeatures/boost"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public" $(inherited) "$(PODS_TARGET_SRCROOT)/GeoFeatures/boost"
 OTHER_CFLAGS = -D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0
 OTHER_LDFLAGS = -l"c++" -framework "MapKit"
 PODS_BUILD_DIR = $BUILD_DIR

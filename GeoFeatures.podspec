@@ -41,6 +41,6 @@ Pod::Spec.new do |s|
         'CLANG_CXX_LIBRARY' => 'libc++',
         'OTHER_LDFLAGS' => '-lc++',
         'OTHER_CFLAGS' => '-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0',
-        'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_ROOT)/GeoFeatures/GeoFeatures/boost" "$(PODS_ROOT)/../../GeoFeatures/boost"',
+        'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_TARGET_SRCROOT)/GeoFeatures/boost"'
     }
 end
