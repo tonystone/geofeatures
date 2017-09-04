@@ -50,7 +50,9 @@
 		8C6BD196A30BD823CEF78238 /* Pods_GeoFeatures_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BC180F31995EB3A1DCD5BA /* Pods_GeoFeatures_OSX.framework */; };
 		8E63E3242C23B9F1A0F39C60 /* Pods_GeoFeatures_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182CA7ECBB6457DDB089FC71 /* Pods_GeoFeatures_iOS.framework */; };
 		9F9AF28B1F881B6E9B44E140 /* Pods_GeoFeatures_OSX_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F73DDDAF9AF786574D18A5C /* Pods_GeoFeatures_OSX_Tests.framework */; };
+		EA40EB281F5B6AF500FD2FD4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EA40EB271F5B6AF500FD2FD4 /* .gitignore */; };
 		EA52C85C1B9F47F9002C8018 /* GFRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA52C85B1B9F47F9002C8018 /* GFRingTests.m */; };
+		EA57001F1F5DB97400E5DEB1 /* codecov.yml in Resources */ = {isa = PBXBuildFile; fileRef = EA57001E1F5DB97400E5DEB1 /* codecov.yml */; };
 		EA7389411CB58F20000E8697 /* GFGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */; };
 		EA9E6F731CB71F2D00236F50 /* GFPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F711CB71F1E00236F50 /* GFPointTests.swift */; };
 		EA9E6F741CB71F2F00236F50 /* GFPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E6F711CB71F1E00236F50 /* GFPointTests.swift */; };
@@ -196,7 +198,11 @@
 		D55390E9C8D39A6FA3089F14 /* Pods-GeoFeatures-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS/Pods-GeoFeatures-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DBB8F15B84614469DFC7B7D4 /* Pods-GeoFeatures-iOS-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS-Tests/Pods-GeoFeatures-iOS-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E1F901962B543281B0EBFD9F /* Pods-GeoFeatures-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoFeatures-iOS-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoFeatures-iOS-Tests/Pods-GeoFeatures-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA40EB261F5B54BB00FD2FD4 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
+		EA40EB271F5B6AF500FD2FD4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		EA4E26E41F5C8D0C00BF2BC4 /* GeoFeatures.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = GeoFeatures.modulemap; path = ../GeoFeatures.modulemap; sourceTree = "<group>"; };
 		EA52C85B1B9F47F9002C8018 /* GFRingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFRingTests.m; sourceTree = "<group>"; };
+		EA57001E1F5DB97400E5DEB1 /* codecov.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
 		EA75020C1BF3B69000E8D89A /* GeoFeatures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFeatures.framework; path = "Pods/../build/Debug-iphoneos/Pods-GeoFeatures-iOS-Tests/GeoFeatures.framework"; sourceTree = "<group>"; };
 		EA7502121BF3B6F400E8D89A /* GeoFeatures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GeoFeatures.framework; path = "Pods/../build/Debug-iphoneos/Pods-GeoFeatures-iOS/GeoFeatures.framework"; sourceTree = "<group>"; };
 		EA9E6F711CB71F1E00236F50 /* GFPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFPointTests.swift; path = "Swift Compatibility/GFPointTests.swift"; sourceTree = "<group>"; };
@@ -208,7 +214,7 @@
 		EA9E6F891CB884D600236F50 /* GFGeometryCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFGeometryCollectionTests.swift; path = "Swift Compatibility/GFGeometryCollectionTests.swift"; sourceTree = "<group>"; };
 		EAC266BF1CB42D36003AB6E9 /* GFGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFGeometryTests.swift; path = "Swift Compatibility/GFGeometryTests.swift"; sourceTree = "<group>"; };
 		EAC397FA1CC70ADD00134746 /* GFDifferenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFDifferenceTests.m; sourceTree = "<group>"; };
-		EAD890E71BF3ABFF00BD4FAC /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		EAD890E71BF3ABFF00BD4FAC /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EAD891341BF3AFDF00BD4FAC /* GeoFeatures-OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GeoFeatures-OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD891361BF3AFDF00BD4FAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD891381BF3AFDF00BD4FAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -424,10 +430,14 @@
 			isa = PBXGroup;
 			children = (
 				B5167E5171228242A1D08E37 /* GeoFeatures.podspec */,
+				EA4E26E41F5C8D0C00BF2BC4 /* GeoFeatures.modulemap */,
 				9DF7637309C9BB8D8AC49B41 /* README.md */,
 				22529FD0A77AEC89DC728E5F /* LICENSE */,
 				366984B0285B2E6759E2F690 /* LICENSE_BOOST_1_0 */,
+				EA40EB261F5B54BB00FD2FD4 /* Gemfile */,
 				EAD890E71BF3ABFF00BD4FAC /* .travis.yml */,
+				EA57001E1F5DB97400E5DEB1 /* codecov.yml */,
+				EA40EB271F5B6AF500FD2FD4 /* .gitignore */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -574,6 +584,7 @@
 				ORGANIZATIONNAME = "Tony Stone";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
+						LastSwiftMigration = 0830;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 					EAD891331BF3AFDF00BD4FAC = {
@@ -612,10 +623,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADCE0391BF39FBA00BA10DA /* Main_iPad.storyboard in Resources */,
+				EA40EB281F5B6AF500FD2FD4 /* .gitignore in Resources */,
 				EADCE0471BF3A02000BA10DA /* InfoPlist.strings in Resources */,
 				EADCE0401BF39FE300BA10DA /* new-mexico.json in Resources */,
 				EADCE03A1BF39FBA00BA10DA /* Main_iPhone.storyboard in Resources */,
 				EADCE0341BF39F8D00BA10DA /* Images.xcassets in Resources */,
+				EA57001F1F5DB97400E5DEB1 /* codecov.yml in Resources */,
 				366980C141A1F3E42C509EA0 /* LICENSE_BOOST_1_0 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,9 +680,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures-iOS/Pods-GeoFeatures-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GeoFeatures-iOS/GeoFeatures.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFeatures.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -682,9 +698,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures-OSX-Tests/Pods-GeoFeatures-OSX-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GeoFeatures-macOS/GeoFeatures.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFeatures.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -712,13 +731,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoFeatures-iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4FC1BA9F02EEFE0DA1CC1F33 /* [CP] Check Pods Manifest.lock */ = {
@@ -727,13 +749,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoFeatures-OSX-Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FAC457964232D806E7CA168 /* [CP] Check Pods Manifest.lock */ = {
@@ -742,13 +767,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoFeatures-iOS-Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A40B5239C3C9C4C4746C5135 /* [CP] Embed Pods Frameworks */ = {
@@ -757,9 +785,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures-OSX/Pods-GeoFeatures-OSX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GeoFeatures-macOS/GeoFeatures.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFeatures.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -772,13 +803,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoFeatures-OSX-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C0D320A990366E1ED24DC10F /* [CP] Copy Pods Resources */ = {
@@ -802,9 +836,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GeoFeatures-iOS-Tests/Pods-GeoFeatures-iOS-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GeoFeatures-iOS/GeoFeatures.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFeatures.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1049,6 +1086,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1082,6 +1120,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

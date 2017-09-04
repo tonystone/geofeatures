@@ -23,11 +23,10 @@
 #define __GFGeometryCollectionProtected_hpp
 
 #import <Foundation/Foundation.h>
-#import "GeometryCollection.hpp"
 #import "GFGeometryCollection.h"
 
 // Note: we must specifically include GeometryCollection.hpp here instead of forward declaring GeometryCollection
-#include "GeometryCollection.hpp"
+#include "GFGeometryCollection.hpp"
 
 @interface GFGeometryCollection (Protected)
 

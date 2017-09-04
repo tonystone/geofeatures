@@ -29,7 +29,7 @@
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/perimeter.hpp>
 
-#include "GeometryVariant.hpp"
+#include "GFGeometryVariant.hpp"
 
 namespace geofeatures {
     namespace operators {

@@ -1,20 +1,92 @@
 language: objective-c
 os: osx
-osx_image: xcode7.3
+osx_image: xcode8.3
 
-before_install:
-    - gem install xcpretty -N --no-ri --no-rdoc
+git:
+  submodules: false
+
+notifications:
+  slack:
+    secure: XuwxghbhM3QeTlHhjJ4jrZdRGK5bhRK9b5hT8rPxa8V56+oMtNI+rgnJu5bj1NCJWfYDGMHp2uKJ5+8SQj9osMeZ1tKTrbGsbhQjJ0WPC0+rEhJhbYol4AktttYuSfZCFNV9BBJp+dodwJr0M05TQchdWYeRZM185DAMipHG6QkILiwvqEmAcn8gEs4EGloXY01oB21lEInC4SX0nM2xYvYl9g2+3fkJ1PF1dBQppr4mYoVayu8sIENOyB4RHYc1rD2YYsBGk1U9er+G4M3UPDtqmX08oQ+nRp5ZXSXNEGTxRIBGhXH2LbtI3kjjAinAhjZHPN0Cc9WbDACENLBmLeWt4yYq6+2ppPk2s9z/Yc3gf8vmdmG5k5/ufVkeIZiUsA6PTDEBZ2NbcDqFATtHdEKDLm5WoLaYw7yM3cfUu3w4CBRN0HH9MEMm5kXq4CqODgtYLpPTUzlwDmhpgDQYY8oUPczqtVZwt8ff9D+2vOjY+tMqXAe3liy5sm2kC7f9bjKRx16FsDv6PH1AJcgV1KwH3pTpTkSSMeiM2EJM4iiZ8bRmIC5ee+ulAcjEI+sYrjELmc1M2DxwACUMqzNoTEI8egRstWW9/WFFDnAl47ojDfzZNBbJcFFoyONv2BlQCefZ8NpDDniS+7F94ZloOGGgWknUkPh70LJ1444BViQ=
 
 env:
     global:
         - COCOAPODS_DISABLE_DETERMINISTIC_UUIDS=1
-    matrix:
-        - MATRIX_TARGET="-scheme GeoFeatures-iOS-Example -sdk iphonesimulator"
-        - MATRIX_TARGET="-scheme GeoFeatures-OSX-Example -sdk macosx"
+        - WORKSPACE=Example/GeoFeatures.xcworkspace
+
+matrix:
+  include:
+    -
+      os: osx
+      osx_image: xcode8.3
+      env: 
+         - BUILD="pod lint"
+    -
+      os: osx
+      osx_image: xcode8.3
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=macosx"
+         - SCHEME=GeoFeatures-OSX-Example
+         - TEST_SDK=macosx
+    -
+      os: osx
+      osx_image: xcode8.3
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
+         - SCHEME=GeoFeatures-iOS-Example
+         - TEST_SDK=iphonesimulator
+    -
+      os: osx
+      osx_image: xcode8.3
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6"
+         - SCHEME=GeoFeatures-iOS-Example
+         - TEST_SDK=iphonesimulator
+    -
+      os: osx
+      osx_image: xcode8.3
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6"
+         - SCHEME=GeoFeatures-iOS-Example
+         - TEST_SDK=iphonesimulator
+
+before_install:
+  #
+  # If there is a Gemfile for this os, install bundler and ask bundler to install the gems
+  #
+  - |
+    if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then
+       export BUNDLE_GEMFILE=Gemfile."$TRAVIS_OS_NAME"
+       gem install bundler
+       bundler install
+    fi
 
 script:
-    - set -o pipefail
-    - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+       # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
+       rvm get head --auto-dotfiles || true
+    fi
+  - |
+    if [[ "$BUILD" == "pod lint" ]]; then
+        set -e  # Fail (and stop build) on first non zero exit code
+        bundler exec pod repo update
+        bundler exec pod lib lint
+        set +e
+    fi
+  - |
+    if [[ "$BUILD" == "xcodebuild"  ]]; then
+        set -e  # Fail (and stop build) on first non zero exit code
+        set -o pipefail
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build-for-testing | bundler exec xcpretty
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test              | bundler exec xcpretty
+        set +o pipefail
+        set +e
+    fi
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)

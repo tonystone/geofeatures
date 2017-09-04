@@ -23,7 +23,7 @@
 #define __GFLineStringProtected_hpp
 
 #import <Foundation/Foundation.h>
-#import "LineString.hpp"
+#import "GFLineString.hpp"
 #import "GFLineString.h"
 
 namespace geofeatures {

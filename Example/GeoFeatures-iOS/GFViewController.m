@@ -19,7 +19,7 @@
 */
 
 #import "GFViewController.h"
-#import "GeoFeatures.h"
+#import <GeoFeatures/GeoFeatures.h>
 
 @interface GFViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;

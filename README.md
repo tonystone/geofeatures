@@ -61,9 +61,17 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 ## Minimum Requirements
 
-| Xcode | Swift | iOS |  OS X |
-|:-----:|:-----:|:---:|:-----:|
-| 7.3.0 |  2.2  | 8.0 | 10.10 |
+Build Environment
+
+| Platform | Xcode |
+|:--------:|:-----:|
+| OSX      | 8.3 |
+
+Minimum Runtime Version
+
+| iOS |  OS X |
+|:---:|:-----:|
+| 8.0 | 10.10 | 
 
 ## Author
 

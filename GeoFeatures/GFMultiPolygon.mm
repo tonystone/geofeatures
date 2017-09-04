@@ -21,15 +21,20 @@
 *   MODIFIED 2015 BY Tony Stone. Modifications licensed under Apache License, Version 2.0.
 *
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #include "GFMultiPolygon+Protected.hpp"
 #include "GFPolygon+Protected.hpp"
 
-#include "geofeatures/MultiPolygon.hpp"
-#include "geofeatures/GeometryVariant.hpp"
+#include "GFMultiPolygon.hpp"
+#include "GFGeometryVariant.hpp"
 
 #include <vector>
 
 #include <boost/geometry/io/wkt/wkt.hpp>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

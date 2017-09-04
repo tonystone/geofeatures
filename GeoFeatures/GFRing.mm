@@ -19,18 +19,23 @@
 *
 *   Created by Tony Stone on 08/29/15.
 */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #include "GFRing+Protected.hpp"
 #include "GFPoint+Protected.hpp"
 #include "GFLineString+Protected.hpp"
 
-#include "geofeatures/Ring.hpp"
-#include "geofeatures/LineString.hpp"
-#include "geofeatures/GeometryVariant.hpp"
+#include "GFRing.hpp"
+#include "GFLineString.hpp"
+#include "GFGeometryVariant.hpp"
 
 #include <boost/geometry/io/wkt/wkt.hpp>
 
 #include <boost/geometry/strategies/strategies.hpp>
 #include <boost/geometry/algorithms/correct.hpp>
+
+#pragma clang pop
 
 namespace gf = geofeatures;
 

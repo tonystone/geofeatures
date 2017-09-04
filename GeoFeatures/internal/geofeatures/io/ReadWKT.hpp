@@ -25,7 +25,7 @@
 #ifndef __ReadWKT_HPP_
 #define __ReadWKT_HPP_
 
-#include "GeometryCollection.hpp"
+#include "GFGeometryCollection.hpp"
 #include <boost/geometry/io/wkt/read.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string/replace.hpp>
