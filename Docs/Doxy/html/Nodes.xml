@@ -6,10 +6,6 @@
       <Path>index.html</Path>
       <Subnodes>
        <Node>
-        <Name>Deprecated List</Name>
-        <Path>deprecated.html</Path>
-       </Node>
-       <Node>
         <Name>Classes</Name>
         <Path>annotated.html</Path>
         <Subnodes>
@@ -298,10 +294,6 @@
               <Anchor>a0711dbf3ae2b60f3f4d447578f544323</Anchor>
              </Node>
             </Subnodes>
-           </Node>
-           <Node>
-            <Name>GFLineStringAbstract</Name>
-            <Path>interface_g_f_line_string_abstract.html</Path>
            </Node>
            <Node>
             <Name>GFMultiLineString</Name>
@@ -732,10 +724,6 @@
             </Subnodes>
            </Node>
            <Node>
-            <Name>GFPointAbstract</Name>
-            <Path>interface_g_f_point_abstract.html</Path>
-           </Node>
-           <Node>
             <Name>GFPolygon</Name>
             <Path>interface_g_f_polygon.html</Path>
             <Subnodes>
@@ -770,10 +758,6 @@
               <Anchor>ae2a7ec1a59646496e5ed5e4a813909f9</Anchor>
              </Node>
             </Subnodes>
-           </Node>
-           <Node>
-            <Name>GFPolygonAbstract</Name>
-            <Path>interface_g_f_polygon_abstract.html</Path>
            </Node>
            <Node>
             <Name>GFRing</Name>
@@ -902,10 +886,6 @@
                 </Subnodes>
                </Node>
                <Node>
-                <Name>GFLineStringAbstract</Name>
-                <Path>interface_g_f_line_string_abstract.html</Path>
-               </Node>
-               <Node>
                 <Name>GFPoint</Name>
                 <Path>interface_g_f_point.html</Path>
                 <Subnodes>
@@ -916,10 +896,6 @@
                 </Subnodes>
                </Node>
                <Node>
-                <Name>GFPointAbstract</Name>
-                <Path>interface_g_f_point_abstract.html</Path>
-               </Node>
-               <Node>
                 <Name>GFPolygon</Name>
                 <Path>interface_g_f_polygon.html</Path>
                 <Subnodes>
@@ -928,10 +904,6 @@
                   <Path>interface_g_f_mutable_polygon.html</Path>
                  </Node>
                 </Subnodes>
-               </Node>
-               <Node>
-                <Name>GFPolygonAbstract</Name>
-                <Path>interface_g_f_polygon_abstract.html</Path>
                </Node>
               </Subnodes>
              </Node>
@@ -1022,10 +994,6 @@
               <Path>_g_f_line_string_8h_source.html</Path>
              </Node>
              <Node>
-              <Name>GFLineStringAbstract.h</Name>
-              <Path>_g_f_line_string_abstract_8h_source.html</Path>
-             </Node>
-             <Node>
               <Name>GFMultiLineString.h</Name>
               <Path>_g_f_multi_line_string_8h_source.html</Path>
              </Node>
@@ -1042,16 +1010,8 @@
               <Path>_g_f_point_8h_source.html</Path>
              </Node>
              <Node>
-              <Name>GFPointAbstract.h</Name>
-              <Path>_g_f_point_abstract_8h_source.html</Path>
-             </Node>
-             <Node>
               <Name>GFPolygon.h</Name>
               <Path>_g_f_polygon_8h_source.html</Path>
-             </Node>
-             <Node>
-              <Name>GFPolygonAbstract.h</Name>
-              <Path>_g_f_polygon_abstract_8h_source.html</Path>
              </Node>
              <Node>
               <Name>GFRing.h</Name>
