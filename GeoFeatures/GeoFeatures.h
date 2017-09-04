@@ -48,11 +48,5 @@
 #import "GFMultiPolygon.h"
 #import "GFGeometryCollection.h"
 
-/* Deprecated
- **/
-#import "GFPointAbstract.h"
-#import "GFLineStringAbstract.h"
-#import "GFPolygonAbstract.h"
-
 #endif
 
