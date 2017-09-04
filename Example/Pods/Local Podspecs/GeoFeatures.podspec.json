@@ -1,14 +1,15 @@
 {
   "name": "GeoFeatures",
-  "version": "1.6.5",
+  "version": "1.7.0",
   "summary": "A lightweight, high performance geometry library for Objective-C",
   "homepage": "https://github.com/tonystone/geofeatures",
   "license": "Apache License, Version 2.0",
   "authors": "Tony Stone",
   "source": {
     "git": "https://github.com/tonystone/geofeatures.git",
-    "tag": "1.6.5"
+    "tag": "1.7.0"
   },
+  "documentation_url": "http://tonystone.github.io/geofeatures",
   "platforms": {
     "ios": "6.0",
     "osx": "10.7"
@@ -29,6 +30,6 @@
     "CLANG_CXX_LIBRARY": "libc++",
     "OTHER_LDFLAGS": "-lc++",
     "OTHER_CFLAGS": "-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0",
-    "HEADER_SEARCH_PATHS": "$(inherited) \"$(PODS_TARGET_SRCROOT)/boost\""
+    "HEADER_SEARCH_PATHS": "\"$(PODS_TARGET_SRCROOT)/boost\""
   }
 }

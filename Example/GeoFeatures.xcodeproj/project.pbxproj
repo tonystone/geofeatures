@@ -14,9 +14,7 @@
 		36698207A19EC8CE74AB2FAF /* GFWithinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698D1BBEB6C10EB3476B2C /* GFWithinTests.m */; };
 		3669821F3CEFEF4B6F458D14 /* GFMultiPolygonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669866E55BBAB7FE20F06C7 /* GFMultiPolygonTests.m */; };
 		366982BCCAC434E702E20896 /* GFLineStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698CCB90E1B4DC9F9DD6AF /* GFLineStringTests.m */; };
-		3669836B4BAC01B742CBAB72 /* GFPointAbstractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698D7F428C0932B157DBDB /* GFPointAbstractTests.m */; };
 		3669854C457F463037D058F6 /* GFMutableMultiPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366985FC8A115E2536D824B2 /* GFMutableMultiPointTests.m */; };
-		366985884DA03B6774617494 /* GFPolygonAbstractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669840BBD50B8C394F05B93 /* GFPolygonAbstractTests.m */; };
 		366985E09B9633326DB82E12 /* GFIsValidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669818456264350A29F3AEB /* GFIsValidTests.m */; };
 		3669866AF010812E23F9F2EE /* GFPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698907141EECAB15ED39DF /* GFPointTests.m */; };
 		36698699B44CF23FF9319C66 /* GFCentroidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698C3FE1385E161EB5A0A7 /* GFCentroidTests.m */; };
@@ -28,7 +26,6 @@
 		36698792FACB6885C5F50498 /* GFMutableGeometryCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366982A459C575E06FA95CE7 /* GFMutableGeometryCollectionTests.m */; };
 		366987B4790476C2AA46A086 /* GFPolygonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698EA5DB721C9CE82CD242 /* GFPolygonTests.m */; };
 		366988604C2F147E2AF4531C /* GFMutableMultiPolygonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698447517F88CC6F1A0662 /* GFMutableMultiPolygonTests.m */; };
-		3669892241E56291821679FA /* GFLineStringAbstractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698BCEB85EDBF2042502F4 /* GFLineStringAbstractTests.m */; };
 		366989E10C0CC989A79BDB14 /* GFMutableBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698A3DCBEA9448744A277E /* GFMutableBoxTests.m */; };
 		36698A000919EEEA85208C76 /* GFBoundingBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698E4DA2252BF2E0933035 /* GFBoundingBoxTests.m */; };
 		36698B38A8D25E4B5A17B997 /* GFEncodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698FF5EDACF80E61C3CF4F /* GFEncodingTest.m */; };
@@ -85,9 +82,6 @@
 		EAD891591BF3B02F00BD4FAC /* GFMultiLineStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */; };
 		EAD8915A1BF3B02F00BD4FAC /* GFGeometryCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */; };
 		EAD8915B1BF3B02F00BD4FAC /* GFGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698879AFDB8DC101C0F624 /* GFGeometryTests.m */; };
-		EAD8915C1BF3B02F00BD4FAC /* GFPointAbstractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698D7F428C0932B157DBDB /* GFPointAbstractTests.m */; };
-		EAD8915D1BF3B02F00BD4FAC /* GFLineStringAbstractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698BCEB85EDBF2042502F4 /* GFLineStringAbstractTests.m */; };
-		EAD8915E1BF3B02F00BD4FAC /* GFPolygonAbstractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3669840BBD50B8C394F05B93 /* GFPolygonAbstractTests.m */; };
 		EAD8915F1BF3B02F00BD4FAC /* GFMutablePointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366980E7C488CE8F26E24DEE /* GFMutablePointTests.m */; };
 		EAD891601BF3B02F00BD4FAC /* GFMutableBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36698A3DCBEA9448744A277E /* GFMutableBoxTests.m */; };
 		EAD891611BF3B02F00BD4FAC /* GFMutableLineStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366988818383A7B5D257634A /* GFMutableLineStringTests.m */; };
@@ -150,7 +144,6 @@
 		366981225BFB9BEBE9A3B512 /* GFWKTTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFWKTTests.m; sourceTree = "<group>"; };
 		3669818456264350A29F3AEB /* GFIsValidTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFIsValidTests.m; sourceTree = "<group>"; };
 		366982A459C575E06FA95CE7 /* GFMutableGeometryCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutableGeometryCollectionTests.m; sourceTree = "<group>"; };
-		3669840BBD50B8C394F05B93 /* GFPolygonAbstractTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPolygonAbstractTests.m; sourceTree = "<group>"; };
 		3669841D7B352FD8D549B9CE /* GFBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBoxTests.m; sourceTree = "<group>"; };
 		36698447517F88CC6F1A0662 /* GFMutableMultiPolygonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutableMultiPolygonTests.m; sourceTree = "<group>"; };
 		366984B0285B2E6759E2F690 /* LICENSE_BOOST_1_0 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_BOOST_1_0; path = ../LICENSE_BOOST_1_0; sourceTree = "<group>"; };
@@ -169,11 +162,9 @@
 		366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMultiLineStringTests.m; sourceTree = "<group>"; };
 		36698A3DCBEA9448744A277E /* GFMutableBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFMutableBoxTests.m; sourceTree = "<group>"; };
 		36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeometryCollectionTests.m; sourceTree = "<group>"; };
-		36698BCEB85EDBF2042502F4 /* GFLineStringAbstractTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFLineStringAbstractTests.m; sourceTree = "<group>"; };
 		36698C3FE1385E161EB5A0A7 /* GFCentroidTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCentroidTests.m; sourceTree = "<group>"; };
 		36698CCB90E1B4DC9F9DD6AF /* GFLineStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFLineStringTests.m; sourceTree = "<group>"; };
 		36698D1BBEB6C10EB3476B2C /* GFWithinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFWithinTests.m; sourceTree = "<group>"; };
-		36698D7F428C0932B157DBDB /* GFPointAbstractTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPointAbstractTests.m; sourceTree = "<group>"; };
 		36698E4DA2252BF2E0933035 /* GFBoundingBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBoundingBoxTests.m; sourceTree = "<group>"; };
 		36698EA5DB721C9CE82CD242 /* GFPolygonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPolygonTests.m; sourceTree = "<group>"; };
 		36698EBD18A1228C9719FE73 /* GFAreaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFAreaTests.m; sourceTree = "<group>"; };
@@ -316,9 +307,6 @@
 				366989CE6B97F08360CFFDDC /* GFMultiLineStringTests.m */,
 				36698A93346A44A8E5779C88 /* GFGeometryCollectionTests.m */,
 				36698879AFDB8DC101C0F624 /* GFGeometryTests.m */,
-				36698D7F428C0932B157DBDB /* GFPointAbstractTests.m */,
-				36698BCEB85EDBF2042502F4 /* GFLineStringAbstractTests.m */,
-				3669840BBD50B8C394F05B93 /* GFPolygonAbstractTests.m */,
 				366980E7C488CE8F26E24DEE /* GFMutablePointTests.m */,
 				36698A3DCBEA9448744A277E /* GFMutableBoxTests.m */,
 				366988818383A7B5D257634A /* GFMutableLineStringTests.m */,
@@ -908,9 +896,6 @@
 				3669808E58860FC07296186F /* GFGeometryCollectionTests.m in Sources */,
 				EAA463721B9E60DE00ADEC86 /* GFGeometryTests.m in Sources */,
 				EA9E6F7B1CB73DCB00236F50 /* GFMultiPointTests.swift in Sources */,
-				3669836B4BAC01B742CBAB72 /* GFPointAbstractTests.m in Sources */,
-				3669892241E56291821679FA /* GFLineStringAbstractTests.m in Sources */,
-				366985884DA03B6774617494 /* GFPolygonAbstractTests.m in Sources */,
 				EAFEC2731CB5C0DB004AB31B /* GFRingTests.swift in Sources */,
 				36698E4F0A58568D0FBCBC4E /* GFMutablePointTests.m in Sources */,
 				366989E10C0CC989A79BDB14 /* GFMutableBoxTests.m in Sources */,
@@ -971,10 +956,7 @@
 				EA9E6F7C1CB73DCC00236F50 /* GFMultiPointTests.swift in Sources */,
 				EAD8915A1BF3B02F00BD4FAC /* GFGeometryCollectionTests.m in Sources */,
 				EAD8915B1BF3B02F00BD4FAC /* GFGeometryTests.m in Sources */,
-				EAD8915C1BF3B02F00BD4FAC /* GFPointAbstractTests.m in Sources */,
 				EAFEC2741CB5C0DB004AB31B /* GFRingTests.swift in Sources */,
-				EAD8915D1BF3B02F00BD4FAC /* GFLineStringAbstractTests.m in Sources */,
-				EAD8915E1BF3B02F00BD4FAC /* GFPolygonAbstractTests.m in Sources */,
 				EAD8915F1BF3B02F00BD4FAC /* GFMutablePointTests.m in Sources */,
 				EAD891601BF3B02F00BD4FAC /* GFMutableBoxTests.m in Sources */,
 				EAD891611BF3B02F00BD4FAC /* GFMutableLineStringTests.m in Sources */,

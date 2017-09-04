@@ -9,12 +9,13 @@
 
 Pod::Spec.new do |s|
     s.name              = "GeoFeatures"
-    s.version           = "1.6.5"
+    s.version           = "1.7.0"
     s.summary           = "A lightweight, high performance geometry library for Objective-C"
     s.homepage          = "https://github.com/tonystone/geofeatures"
     s.license           = 'Apache License, Version 2.0'
     s.author            = "Tony Stone"
     s.source            = { :git => "https://github.com/tonystone/geofeatures.git", :tag => s.version.to_s }
+    s.documentation_url = "http://tonystone.github.io/geofeatures"
 
     s.ios.deployment_target     = '6.0'
     s.osx.deployment_target     = '10.7'
@@ -41,6 +42,6 @@ Pod::Spec.new do |s|
         'CLANG_CXX_LIBRARY' => 'libc++',
         'OTHER_LDFLAGS' => '-lc++',
         'OTHER_CFLAGS' => '-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0',
-        'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_TARGET_SRCROOT)/boost"'
+        'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/boost"'
     }
 end
