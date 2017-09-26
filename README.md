@@ -1,10 +1,20 @@
-# GeoFeatures
+# GeoFeatures ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
-[![Build Status](https://travis-ci.org/tonystone/geofeatures.svg?branch=master)](https://travis-ci.org/tonystone/geofeatures)
-[![codecov.io](http://codecov.io/github/tonystone/geofeatures/coverage.svg?branch=master)](http://codecov.io/github/tonystone/geofeatures?branch=master)
-[![Version](https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
-[![License](https://img.shields.io/cocoapods/l/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
-[![Platform](https://img.shields.io/cocoapods/p/GeoFeatures.svg?style=flat)](http://cocoapods.org/pods/GeoFeatures)
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+    <img src="https://img.shields.io/badge/platforms-iOS%20%7C%20macOS-lightgray.svg?style=flat" alt="Platforms: iOS | macOS" />
+</a>
+<a href="http://cocoadocs.org/docsets/geofeatures" target="_blank">
+   <img src="https://img.shields.io/cocoapods/v/GeoFeatures.svg?style=flat" alt="Version"/>
+</a>
+<a href="https://travis-ci.org/tonystone/geofeatures" target="_blank">
+   <img src="https://travis-ci.org/tonystone/geofeatures.svg?branch=master" alt="Build Status"/>
+</a>
+<a href="https://codecov.io/gh/tonystone/geofeatures">
+  <img src="https://codecov.io/gh/tonystone/GeoFeatures/branch/master/graph/badge.svg" alt="Codecov" />
+</a>
+<a href="https://github.com/tonystone/geofeatures/" target="_blank">
+    <img src="https://img.shields.io/cocoapods/dt/GeoFeatures.svg?style=flat" alt="Downloads">
+</a>
 
 ## Introduction
 
