@@ -410,8 +410,3 @@ NSArray * geofeatures::GFGeometryCollection::geoJSONGeometriesWithGeometryCollec
     }
     return geometries;
 }
-
-//id <MKOverlay> geofeatures::GFGeometryCollection::mkOverlayWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
-//   return nil;
-//}
-
