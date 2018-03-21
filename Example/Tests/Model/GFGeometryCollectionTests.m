@@ -224,6 +224,24 @@ static void __attribute__((constructor)) staticInitializer() {
                 @"GEOMETRYCOLLECTION(POLYGON((0 0,0 90,90 90,90 0,0 0)),POLYGON((120 0,120 90,210 90,210 0,120 0)),LINESTRING(40 50,40 140),LINESTRING(160 50,160 140),POINT(60 50),POINT(60 140),POINT(40 140))");
     }
 
+#pragma mark - Test mapOverlays
+
+- (void) testMapOverlays {
+
+    NSArray * mapOverlays = [[[GFGeometryCollection alloc] initWithGeoJSONGeometry: geoJSON]  mkMapOverlays];
+
+    XCTAssertNotNil (mapOverlays);
+    XCTAssertTrue   ([mapOverlays count] == 11);
+
+    XCTAssertTrue   ([[mapOverlays objectAtIndex: 2] isKindOfClass: [MKPolygon class]]);
+
+    MKPolygon * polygon = (MKPolygon *) [mapOverlays objectAtIndex: 2];
+
+    XCTAssertTrue   ([polygon pointCount] == 5);
+    XCTAssertTrue   ([[polygon interiorPolygons] count] == 1);
+
+}
+
 #pragma mark - Test count
 
     - (void) testCount_WithEmptyGeometryCollection {
