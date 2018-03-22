@@ -228,6 +228,18 @@ namespace gf = geofeatures;
         return gf::GeometryPtrVariant(&_geometryCollection);
     }
 
+#pragma mark - MapKit
+
+    - (NSArray *) mkMapOverlays {
+        NSMutableArray * mkMapOverlays = [[NSMutableArray alloc] init];
+
+        for (int idx = 0; idx < self.count; ++idx) {
+            GFGeometry * geometry = [self geometryAtIndex: idx];
+            [mkMapOverlays addObjectsFromArray: geometry.mkMapOverlays];
+        }
+        return mkMapOverlays;
+    }
+
 @end
 
 
@@ -398,8 +410,3 @@ NSArray * geofeatures::GFGeometryCollection::geoJSONGeometriesWithGeometryCollec
     }
     return geometries;
 }
-
-//id <MKOverlay> geofeatures::GFGeometryCollection::mkOverlayWithGeometryCollection(const geofeatures::GeometryCollection<> & geometryCollection) {
-//   return nil;
-//}
-
