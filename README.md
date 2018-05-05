@@ -1,3 +1,7 @@
+> **Note**: GeoFeatures is currently being rewritten in pure Swift.  This project will continue to be maintained until the production release of the Swift version.  
+>
+> Please see [https://github.com/tonystone/geofeatures2](https://github.com/tonystone/geofeatures2) for the Swift rewrite.
+
 # GeoFeatures ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
@@ -15,6 +19,8 @@
 <a href="https://github.com/tonystone/geofeatures/" target="_blank">
     <img src="https://img.shields.io/cocoapods/dt/GeoFeatures.svg?style=flat" alt="Downloads">
 </a>
+
+
 
 ## Introduction
 
