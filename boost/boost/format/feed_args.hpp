@@ -53,7 +53,7 @@ namespace detail {
             std::streamsize n_after = 0, n_before = 0; 
             res.reserve(static_cast<size_type>(w)); // allocate once for the 2 inserts
             if(center) 
-                n_after = n/2, n_before = n - n_after; 
+                static_cast<void>(n_after = n/2), n_before = n - n_after;
             else 
                 if(f & std::ios_base::left)
                     n_after = n;
