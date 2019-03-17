@@ -150,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @since 1.0.0
      */
-    - (id) firstGeometry;
+    - (id _Nullable) firstGeometry;
 
     /** The last GFGeometry in this collection.
      *
@@ -158,7 +158,7 @@ NS_ASSUME_NONNULL_BEGIN
      *
      * @since 1.0.0
      */
-    - (id) lastGeometry;
+    - (id _Nullable) lastGeometry;
 
     /** Returns the GFGeometry at the specified index.
      *

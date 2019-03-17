@@ -181,7 +181,7 @@ NS_ASSUME_NONNULL_BEGIN
     *
     * @since 1.1.0
     */
-    - (GFLineString *) firstGeometry;
+    - (GFLineString * _Nullable) firstGeometry;
 
     /** The last GFLineString in this collection.
     *
@@ -189,7 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
     *
     * @since 1.1.0
     */
-    - (GFLineString *) lastGeometry;
+    - (GFLineString * _Nullable) lastGeometry;
 
     /** Returns the GFLineString at the specified index.
      *
