@@ -9,4 +9,7 @@ All significant changes to this project will be documented in this file.
 
 #### Fixed
 - Nullability of GFLineString `- (GFPoint *) firstPoint` and `- (GFPoint *) lastPoint` changed to  `_Nullable` return type.
-- Nullability of GFGeometry `- (GFPoint *) firstGeometry` and `- (GFPoint *) lastGeometry` changed to  `_Nullable` return type.
+- Nullability of GFGeometryCollection `- (GFPoint *) firstGeometry` and `- (GFPoint *) lastGeometry` changed to  `_Nullable` return type.
+- Nullability of GFMultiLineString `- (GFPoint *) firstGeometry` and `- (GFPoint *) lastGeometry` changed to  `_Nullable` return type.
+- Nullability of GFMultiPoint `- (GFPoint *) firstGeometry` and `- (GFPoint *) lastGeometry` changed to  `_Nullable` return type.
+- Nullability of GFMultiPolygon `- (GFPoint *) firstGeometry` and `- (GFPoint *) lastGeometry` changed to  `_Nullable` return type.
