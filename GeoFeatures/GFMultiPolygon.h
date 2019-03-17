@@ -203,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
     *
     * @since 1.1.0
     */
-    - (GFPolygon *) firstGeometry;
+    - (GFPolygon * _Nullable) firstGeometry;
 
     /** The last GFPolygon in this collection.
     *
@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
     *
     * @since 1.1.0
     */
-    - (GFPolygon *) lastGeometry;
+    - (GFPolygon * _Nullable) lastGeometry;
 
     /** Returns the GFPolygon at the specified index.
      *

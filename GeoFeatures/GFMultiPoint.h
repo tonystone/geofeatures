@@ -167,7 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
     *
     * @since 1.1.0
     */
-    - (GFPoint *) firstGeometry;
+    - (GFPoint * _Nullable) firstGeometry;
 
     /** The last GFPoint in this collection.
     *
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
     *
     * @since 1.1.0
     */
-    - (GFPoint *) lastGeometry;
+    - (GFPoint * _Nullable) lastGeometry;
 
     /** Returns the point at the specified index.
      *

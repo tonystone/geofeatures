@@ -81,7 +81,7 @@ Build Environment
 
 | Platform | Xcode |
 |:--------:|:-----:|
-| OSX      | 8.3 |
+| OSX      | 10.1 |
 
 Minimum Runtime Version
 
